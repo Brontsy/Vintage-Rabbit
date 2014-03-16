@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "Vintage Rabbit";
+    Layout = "~/Views/Shared/_Layout"+ViewBag.Version +".cshtml";
+}
+
+
+
+        <div class="gutter">
+
+            <div class="image-container">
+                <img src="/content/images/teddy-bear.jpg" />
+                @Html.RouteLink("Styles", Routes.Styles)
+
+                <div class="hidden">
+                    Styles: We have 6 different party themes to choose from.
+                    Let us look after the styling of your childs birthday!
+
+                    Hire: Need something extra?
+                    We have lots of items for hire, ranging cups through to large tables.
+
+                    Buy: Games, Party Supplies and Gifts
+                    We have 100's of products for you to choose from.
+                </div>
+
+                <div class="nav-controls">
+                    <div class="left">
+                        <i class="fa fa-angle-left"></i>
+                    </div>
+                    <div class="right">
+                        <i class="fa fa-angle-right"></i>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+
+        <div class="gutter">
+            <div class="grid-wrap">
+                <div class="col-4 col-12-t">
+                    <div class="highlight">
+                        <div class="border-colour yellow"></div>
+                        <div class="content">
+                            <h3>
+                                <i class=" fa fa-truck"></i>
+                                Free delivery over $100
+                                <em>Australia wide</em>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 col-12-t">
+                    <div class="highlight">
+                        <div class="border-colour green"></div>
+                        <div class="content">
+                            <h3>
+                                <i class="fa fa-question-circle"></i>
+                                Have a question?
+                                <em>Give us a call any time on 13 41 41</em>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 col-12-t">
+                    <div class="highlight">
+                        <div class="border-colour pink"></div>
+                        <div class="content">
+                            <h3>
+                                <i class="fa fa-question-circle"></i>
+                                Another promotion
+                                <em>Extra text related to the promotion</em>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid hidden">
+                <div class="span8">
+                    <div class="highlight">
+                        <div class="row-fluid">
+                            <i class="fa fa-rocket"></i>
+                            <h3 class="span10">
+                                Checkout our new Rocket Party Style
+                            </h3>
+                        </div>
+                        <a href="/rockets">Click here to view our latest party style.</a>
+                        <img class="right" src="/content/images/Soccer-dessert-table.jpg"  height="100"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    @{Html.RenderPartial("products3");}
+        

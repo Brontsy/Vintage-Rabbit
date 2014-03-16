@@ -1,0 +1,19 @@
+﻿
+
+
+.search { position: relative; margin-top: 3px;
+
+    &:hover {
+        .button-search { border-left: 1px solid #333333;
+            i { color: #669966; }
+        }
+        input { color: #669966; border: 1px solid #333333; }
+    }
+
+
+    .button-search { height: 42px; width: 42px; position: absolute; right: 10px; top: 0px; cursor: pointer; z-index: 9; color: #333333; transition: color 0.2s linear; font-size: 20px; border-left: 1px solid #cccccc;
+        i { display: block; margin: 10px 0px 0px 15px; }
+    }
+
+    input { background: #ffffff; padding: 0px 33px 0px 20px; -webkit-box-shadow: 0 0 5px -3px #808080 inset; -moz-box-shadow: 0 0 5px -3px #808080 inset; box-shadow: 0 0 5px -3px #808080 inset; width: 100%; line-height: 42px; height: 42px; color: #333333; border: 1px solid #cccccc;}
+}
