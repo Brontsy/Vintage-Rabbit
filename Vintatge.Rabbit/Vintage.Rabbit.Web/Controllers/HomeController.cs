@@ -14,7 +14,7 @@ namespace Vintage.Rabbit.Web.Controllers
         public ActionResult Index(string version)
         {
             ViewBag.Version = version;
-            return View();
+            return View(string.Format("v{0}/Home/Index", version));
         }
 
     }

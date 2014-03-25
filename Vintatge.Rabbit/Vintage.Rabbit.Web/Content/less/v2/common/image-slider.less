@@ -2,8 +2,11 @@
 
 .image-container 
 {
-    position: relative; margin-top: @gutter;
-    img { display: block; width: 100%; }
-    a { position: absolute; color: #333333; bottom: 6px; left: 6px; background: #ffffff; padding: 10px 40px 10px 40px; text-align: center; min-width: 15%; border: 1px solid #333333; }
+    height: 300px; margin-top: @gutter; position: relative;
+    a { display: block; position: absolute; left: 0px; bottom: 0px; text-align: center; background: rgba(0,0,0,0.8); width: 100%; padding: 15px 0px 15px 0px; color: #ffffff; border-top: 1px solid #ffffff; }
+    img { display: block; }
 
+    &.style { background: url(/content/images/Birthday-Party-Supplies.jpeg) no-repeat; background-position: center center; }
+    &.hire { background: url(/content/images/Toffee-Apples.jpg) no-repeat; background-position: center center; }
+    &.buy { background: url(/content/images/Soccer-dessert-table.jpg) no-repeat; background-position: center center; }
 }

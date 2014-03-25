@@ -1,12 +1,13 @@
 ﻿
 
-
+.promotions
+{
 .highlight 
 { 
-    margin-top: 20px;
+    margin-top: @gutter * 2;   min-height: 87px;
     .content
     {
-        padding: 15px 20px 15px 20px; border: 1px solid #cccccc; border-top: none; position: relative; background: #eeeeee; min-height: 87px;
+        padding: 15px 0px 15px 0px; position: relative;
         h3 { color: #333333; }
         i { color: #333333; font-size: 1.3em; }
         img { position: absolute; top: 0px; right: 0px; height: 100%; }
@@ -15,13 +16,13 @@
     }
     .border-colour 
     { 
-        width: 100%; height: 8px;
+        width: 100%; height: 6px;
         /*&.yellow { background: #FFCC00;}
         &.green { background: #669966; }
         &.pink { background: #993366; }*/
-        &.yellow { background: #993366;}
-        &.green { background: #993366; }
-        &.pink { background: #993366; }
+        &.yellow { background: #ffffff;}
+        &.green { background: #ffffff; }
+        &.pink { background: #ffffff; }
     }
 }
 
@@ -32,4 +33,5 @@
         padding: @gutter / 2;
     }
 
+}
 }

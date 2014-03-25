@@ -1,0 +1,51 @@
+﻿            
+
+
+     <div class="grid-wrap">
+        <div class="col-4 col-12-t">
+            <div class="image-container style">
+                @Html.RouteLink("Styles", Routes.Styles)
+            </div>
+        </div>
+        <div class="col-4 col-12-t">
+            <div class="image-container hire">
+                @Html.RouteLink("Hire", Routes.Hire)
+            </div>
+        </div>
+        <div class="col-4 col-12-t">
+            <div class="image-container buy">
+                @Html.RouteLink("Buy", Routes.Buy)
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+<div class="image-container hidden">
+                <img src="/content/images/teddy-bear.jpg" />
+                @Html.RouteLink("Styles", Routes.Styles)
+
+                <div class="hidden">
+                    Styles: We have 6 different party themes to choose from.
+                    Let us look after the styling of your childs birthday!
+
+                    Hire: Need something extra?
+                    We have lots of items for hire, ranging cups through to large tables.
+
+                    Buy: Games, Party Supplies and Gifts
+                    We have 100's of products for you to choose from.
+                </div>
+
+                <div class="nav-controls">
+                    <div class="left">
+                        <i class="fa fa-angle-left"></i>
+                    </div>
+                    <div class="right">
+                        <i class="fa fa-angle-right"></i>
+                    </div>
+                </div>
+            </div>
