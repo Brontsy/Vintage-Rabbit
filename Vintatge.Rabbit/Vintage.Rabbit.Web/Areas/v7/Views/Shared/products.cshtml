@@ -52,7 +52,9 @@
                             <div class="image-container">
                                 <img src="/content/images/lollies_1.jpg" width="100%"/>
                             </div>
-                                <h4>Bottle of Lollies</h4>
+                                <h4>
+                                    @Html.RouteLink("Bottle of lollies", v7Routes.Product, new { name = "bottle-of-lollies", productId = 35228 }, new { })
+                                </h4>
                             <div class="price">$7.95</div>
                             <div class="product-controls">
                                 <div class="left">
