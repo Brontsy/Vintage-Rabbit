@@ -160,11 +160,19 @@
     <Content Include="Content\fonts\Matchbook Serif\Readme.txt" />
     <Content Include="Content\fonts\Matchbook\Readme.txt" />
     <Content Include="Content\images\age-05-102-spot.jpg" />
+    <Content Include="Content\images\apple-party-collage.jpg" />
     <Content Include="Content\images\Birthday-Party-Supplies.jpeg" />
     <Content Include="Content\images\confetti-party-in-a-box.jpg" />
     <Content Include="Content\images\il_570xn.445330436_5xg8.jpg" />
+    <Content Include="Content\images\Kids-Party-Ideas.jpeg" />
+    <Content Include="Content\images\lanterns and parasol garden party.jpg" />
+    <Content Include="Content\images\larkstore1lores2.jpg" />
+    <Content Include="Content\images\larkstore2lores1.jpg" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\lollies_1.jpg" />
+    <Content Include="Content\images\pink barbie party decor.PNG" />
     <Content Include="Content\images\rainbow-cups---hr.jpg" />
+    <Content Include="Content\images\rainbownew.jpg" />
     <Content Include="Content\images\ribbon.jpg" />
     <Content Include="Content\images\ribbon.png" />
     <Content Include="Content\images\rocket-space-party-printables-08.jpg" />
@@ -172,6 +180,7 @@
     <Content Include="Content\images\Soccer-dessert-table.jpg" />
     <Content Include="Content\images\teddy-bear.jpg" />
     <Content Include="Content\images\Toffee-Apples.jpg" />
+    <Content Include="Content\images\woodland fairies3.jpg" />
     <Content Include="Content\scripts\jquery\jquery-1.11.0.min.js" />
     <Content Include="Content\scripts\jquery\jquery-1.11.0.js" />
     <Content Include="Global.asax" />
@@ -402,6 +411,7 @@
     <Content Include="Content\less\v7\common\buttons.less" />
     <Content Include="Areas\v7\Views\Styles\Index.cshtml" />
     <Content Include="Content\less\v7\common\styles.less" />
+    <Content Include="Areas\v7\Views\Styles\woodland-faries.cshtml" />
     <None Include="Content\less\v7\common\mixins.less" />
     <None Include="Content\scripts\jquery\jquery-2.1.0.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-2.1.0.js" />
