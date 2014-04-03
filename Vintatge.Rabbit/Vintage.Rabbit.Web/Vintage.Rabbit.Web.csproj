@@ -412,7 +412,7 @@
     <Content Include="Areas\v7\Views\Styles\Index.cshtml" />
     <Content Include="Content\less\v7\common\styles.less" />
     <Content Include="Areas\v7\Views\Styles\woodland-faries.cshtml" />
-    <None Include="Content\less\v7\common\mixins.less" />
+    <Content Include="Content\less\v7\common\mixins.less" />
     <None Include="Content\scripts\jquery\jquery-2.1.0.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-2.1.0.js" />
     <Content Include="Content\scripts\jquery\jquery-2.1.0.min.js" />
@@ -421,7 +421,9 @@
     <Content Include="Content\scripts\jquery\jquery.validate.min.js" />
     <Content Include="Content\scripts\jquery\jquery.validate.unobtrusive.js" />
     <Content Include="Content\scripts\jquery\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
