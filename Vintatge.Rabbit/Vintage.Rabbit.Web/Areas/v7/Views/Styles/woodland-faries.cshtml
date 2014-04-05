@@ -9,9 +9,78 @@
         <div class="grid-wrap">
         <div class="col-6 col-12-m">
                
+            <div class="large-image">
             <img src="/content/images/woodland fairies3.jpg" />
                 
-         
+                <div class="marker p1" data-info-tip="p1">
+                    <div class="inner-circle"></div>
+                </div>
+                <div class="marker p2" data-info-tip="p2">
+                    <div class="inner-circle"></div>
+                </div>
+                <div class="marker p3" data-info-tip="p3">
+                    <div class="inner-circle"></div>
+                </div>
+                <div class="marker p4" data-info-tip="p4">
+                    <div class="inner-circle"></div>
+                </div>
+                
+                <div class="info-tip p1 hidden">
+                    <div class="relative">
+                        <div class="triangle">
+                            <h3>Table flowers</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
+                                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it <br />
+                                to make a type specimen book. It has survived not only five centuries, but also the leap into electronic 
+                            </p>
+                            <a class="right btn secondary" href="/view/flowers">View</a>
+                        </div>
+                        <div class="content"></div>
+                    </div>
+                </div>
+                
+                <div class="info-tip p2 hidden">
+                    <div class="relative">
+                        <div class="triangle">
+                            <h3>Table flowers</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
+                                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it <br />
+                                to make a type specimen book. It has survived not only five centuries, but also the leap into electronic 
+                            </p>
+                            <a class="right btn secondary" href="/view/flowers">View</a>
+                        </div>
+                        <div class="content"></div>
+                    </div>
+                </div>
+                
+                <div class="info-tip p3 hidden">
+                    <div class="relative">
+                        <div class="triangle">
+                            <h3>Mushroom stools</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
+                                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it <br />
+                                to make a type specimen book. It has survived not only five centuries, but also the leap into electronic 
+                            </p>
+                            <a class="right btn secondary" href="/view/flowers">View</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-tip p4 hidden">
+                    <div class="relative">
+                        <div class="triangle">
+                            <h3>Treestump seats</h3>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's 
+                                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it <br />
+                                to make a type specimen book. It has survived not only five centuries, but also the leap into electronic 
+                            </p>
+                            <a class="right btn secondary" href="/view/flowers">View</a>
+                        </div>
+                        <div class="content"></div>
+                    </div>
+                </div>
+
+                </div>
           
         </div>
         <div class="col-6 col-12-m">
@@ -88,3 +157,20 @@ once dispatched. (Please check delivery note above.)
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+
+    $('.marker').on('click', function (event) {
+        event.stopPropagation();
+        var infoTip = $(this).data('info-tip');
+
+        $('.info-tip').addClass('hidden');
+        $('.info-tip.' + infoTip).removeClass('hidden');
+    });
+
+    $('body').on('click', function () {
+        $('.info-tip').addClass('hidden');
+    });
+
+</script>
