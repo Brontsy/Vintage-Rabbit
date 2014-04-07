@@ -131,7 +131,7 @@
     <Compile Include="Areas\v6\v6AreaRegistration.cs" />
     <Compile Include="Areas\v7\Controllers\HomeController.cs" />
     <Compile Include="Areas\v7\Controllers\ProductController.cs" />
-    <Compile Include="Areas\v7\Controllers\StylesController.cs" />
+    <Compile Include="Areas\v7\Controllers\StyleController.cs" />
     <Compile Include="Areas\v7\v7AreaRegistration.cs" />
     <Compile Include="Controllers\BuyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -178,6 +178,10 @@
     <Content Include="Content\images\rocket-space-party-printables-08.jpg" />
     <Content Include="Content\images\sambellina_rainbow_treat_box__23750.1377144079.1280.1280.jpg" />
     <Content Include="Content\images\Soccer-dessert-table.jpg" />
+    <Content Include="Content\images\social-media\fb.png" />
+    <Content Include="Content\images\social-media\googleplus.png" />
+    <Content Include="Content\images\social-media\pinterest.png" />
+    <Content Include="Content\images\social-media\twitter.png" />
     <Content Include="Content\images\teddy-bear.jpg" />
     <Content Include="Content\images\Toffee-Apples.jpg" />
     <Content Include="Content\images\woodland fairies3.jpg" />
@@ -409,10 +413,11 @@
     <Content Include="Areas\v7\Views\Product\bottle-of-lollies.cshtml" />
     <Content Include="Content\less\v7\common\product-detail.less" />
     <Content Include="Content\less\v7\common\buttons.less" />
-    <Content Include="Areas\v7\Views\Styles\Index.cshtml" />
+    <Content Include="Areas\v7\Views\Style\Index.cshtml" />
     <Content Include="Content\less\v7\common\styles.less" />
-    <Content Include="Areas\v7\Views\Styles\woodland-faries.cshtml" />
+    <Content Include="Areas\v7\Views\Style\woodland-faries.cshtml" />
     <Content Include="Content\less\v7\common\mixins.less" />
+    <Content Include="Content\less\v7\common\login.less" />
     <None Include="Content\scripts\jquery\jquery-2.1.0.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-2.1.0.js" />
     <Content Include="Content\scripts\jquery\jquery-2.1.0.min.js" />

@@ -41,10 +41,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-2 col-3-t col-12-m social">
-                    <img src="https://member.carsalesnetwork.com.au/seller/Content/images/myadverts/icon-facebook.png" />
-                    <img src="https://member.carsalesnetwork.com.au/seller/Content/images/myadverts/icon-twitter.png" />
-                    <img src="https://member.carsalesnetwork.com.au/seller/Content/images/myadverts/icon-google-plus.png" />
+                <div class="col-2 col-3-t col-12-m">
+                    <div class="login-register">
+                        <a href="/login">Login</a>&nbsp; &nbsp; / &nbsp; &nbsp;<a href="/register">Register</a>
+                    </div>
+                    <div class="social-media">
+                        <img src="/content/images/social-media/fb.png" width="24" />
+                        <img src="/content/images/social-media/twitter.png" width="24" />
+                        <img src="/content/images/social-media/pinterest.png" width="24" />
+                        <img src="/content/images/social-media/googleplus.png" width="24" />
                     </div>
                 </div>
             </div>
@@ -54,13 +59,13 @@
             <div class="gutter">
                 <ol class="grid-wrap">
                     <li class="col-2 col-12-m offset1">
-                        @Html.RouteLink("Buy", Routes.Buy)
-                    </li>
-                    <li class="col-2 col-12-m">
                         @Html.RouteLink("Hire", Routes.Hire)
                     </li>
                     <li class="col-2 col-12-m">
-                        @Html.RouteLink("Styles", Routes.Styles)
+                        @Html.RouteLink("Style", Routes.Style)
+                    </li>
+                    <li class="col-2 col-12-m">
+                        @Html.RouteLink("Buy", Routes.Buy)
                     </li>
                     <li class="col-2 col-12-m">
                         @Html.RouteLink("Blog", Routes.Blog)

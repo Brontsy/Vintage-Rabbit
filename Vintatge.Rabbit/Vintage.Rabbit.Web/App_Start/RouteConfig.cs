@@ -12,7 +12,7 @@ namespace Vintage.Rabbit.Web
         public static string Home = "Home";
         public static string Buy = "Buy";
         public static string Hire = "Hire";
-        public static string Styles = "Styles";
+        public static string Style = "Style";
         public static string ContactUs = "ContactUs";
         public static string Blog = "Blog";
 
@@ -22,7 +22,7 @@ namespace Vintage.Rabbit.Web
 
             routes.MapRoute(Routes.Buy, url: "buy", defaults: new { controller = "Buy", action = "Index" });
             routes.MapRoute(Routes.Hire, url: "hire", defaults: new { controller = "Hire", action = "Index" });
-            routes.MapRoute(Routes.Styles, url: "styles", defaults: new { controller = "Styles", action = "Index" });
+            routes.MapRoute(Routes.Style, url: "style", defaults: new { controller = "Style", action = "Index" });
             routes.MapRoute(Routes.ContactUs, url: "contact-us", defaults: new { controller = "ContactUs", action = "Index" });
             routes.MapRoute(Routes.Blog, url: "blog", defaults: new { controller = "Blog", action = "Index" });
 

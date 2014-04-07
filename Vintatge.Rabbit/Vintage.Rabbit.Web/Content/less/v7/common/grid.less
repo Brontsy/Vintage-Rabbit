@@ -21,8 +21,23 @@ Taken from http://csswizardry.com/2011/10/the-island-object/) -- */
 /* -- Setup grids with base class -- */
 .grid-wrap {
   margin-left: -3em;
-  overflow: hidden;
   clear: both; }
+
+
+.grid-wrap {
+  *zoom: 1;
+}
+
+.grid-wrap:before,
+.grid-wrap:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.grid-wrap:after {
+  clear: both;
+}
 
 [class^="col-"] 
 {

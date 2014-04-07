@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Vintage.Rabbit.Web.Areas.v7.Controllers
 {
-    public class StylesController : Controller
+    public class StyleController : Controller
     {
         //
         // GET: /v7/Styles/
