@@ -3,27 +3,23 @@
     <div class="large-images">
          <div class="grid-wrap">
             <div class="col-4 col-12-t">
-                <div class="image-container-3 style"></div>
-
-                <div class="link-container-3">
-                    <div class="highlight"></div>
-                    @Html.RouteLink("Style", Routes.Style)
-                </div>
-
+                
+                <a class="tile-image hire" href="@Url.RouteUrl(Routes.Hire)">
+                    <img src="/content/images/Toffee-Apples.jpg" />
+                    <em>Hire</em>
+                </a>
             </div>
             <div class="col-4 col-12-t">
-                <div class="image-container-3 hire"></div>
-                <div class="link-container-3">
-                    <div class="highlight"></div>
-                    @Html.RouteLink("Hire", Routes.Hire)
-                </div>
+                <a class="tile-image style" href="@Url.RouteUrl(Routes.Style)">
+                    <img src="/content/images/Birthday-Party-Supplies.jpeg" />
+                    <em>Style</em>
+                </a>
             </div>
             <div class="col-4 col-12-t">
-                <div class="image-container-3 buy"></div>
-                <div class="link-container-3">
-                    <div class="highlight"></div>
-                    @Html.RouteLink("Buy", Routes.Buy)
-                </div>
+                <a class="tile-image buy" href="@Url.RouteUrl(Routes.Buy)">
+                    <img src="/content/images/Soccer-dessert-table.jpg" />
+                    <em>Buy</em>
+                </a>
             </div>
         </div>
     </div>
