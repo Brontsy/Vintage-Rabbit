@@ -3,7 +3,7 @@
 .large-images {
 
     margin-top: @gutter;
-    .image-container-3 { height: 300px; margin-top: @gutter; position: relative;
+    .image-container-3 { height: 400px; margin-top: @gutter; position: relative;
         a { display: block; position: absolute; left: 0px; bottom: 0px; text-align: center; background: rgba(0,0,0,0.8); width: 100%; padding: 15px 0px 15px 0px; color: #ffffff; border-top: 1px solid #ffffff; }
         img { display: block; }
 
@@ -23,14 +23,27 @@
     .tile-image {
         img { width: 100%; display: block; display: none; }
         em { display: block; border-top: 1px solid #ffffff; text-align: center; font-style: normal; color: #fff; line-height: 42px; background: #333333; margin-top: 1px; padding: 0px 20px 0px 20px; transition: all 0.15s linear 0s; }
-        padding-top: 300px; display: block; margin: 0px;
+        padding-top: 400px; display: block; margin: 0px;
         
         &.style { background: url(/content/images/Birthday-Party-Supplies.jpeg) no-repeat; background-position: -695px -415px; }
-        &.hire { background: url(/content/images/Toffee-Apples.jpg) no-repeat; background-position: -100px center; }
+        &.hire { background: url(/content/images/Toffee-Apples.jpg) no-repeat; background-position: -100px top; }
         &.buy { background: url(/content/images/Soccer-dessert-table.jpg) no-repeat; background-position: center -100px; }
 
         &:hover {
+            text-decoration: none;
             em { background: #222222; }
         }
     }
+}
+
+
+@media only screen and (max-width: @mobile) 
+{
+    
+.large-images {
+
+
+    .tile-image { margin-bottom: 30px;
+    }
+}
 }

@@ -17,5 +17,21 @@ body
 .right { float: right; }
 .hidden { display: none !important; }
 
-.header { margin-top: @gutter; }
+.header { margin-top: 20px; }
 .relative { position: relative; }
+
+
+
+
+@media only screen and (max-width: @desktop) 
+{
+.gutter { margin: 0px auto 0px auto; max-width: 990px; }
+}
+
+
+@media only screen and (max-width: @mobile) 
+{
+.gutter { padding-left: 20px; padding-right: 20px; }
+}
+
+.text-right { text-align: right; }
