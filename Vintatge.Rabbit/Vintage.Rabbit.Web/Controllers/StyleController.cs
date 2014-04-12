@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Vintage.Rabbit.Web.Areas.v7.Controllers
+namespace Vintage.Rabbit.Web.Controllers
 {
-    public class Style1Controller : Controller
+    public class StyleController : Controller
     {
         //
         // GET: /v7/Styles/

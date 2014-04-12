@@ -47,3 +47,96 @@
     }
 }
 }
+
+/*
+#wraparound { position: relative; padding: 20px 30px; margin: 0 -30px 0 -30px; }
+#wraparound:before,
+#wraparound:after { content: " "; border-top: 10px solid @green; position: absolute; bottom: -10px; }
+#wraparound:before { border-left: 10px solid transparent; left: 0; }
+#wraparound:after { border-right: 10px solid transparent; right: 0; }
+
+.ribbon2
+{
+	position: relative;
+	width: 50%;
+	font-size: 1.5em;
+	font-weight: bold;
+	padding: 9px 20px 9px 70px;
+	margin: 30px 10px 10px -70px;
+	color: #ffffff;
+	background-color: #333;
+	-webkit-box-shadow: 0px 2px 2px #000;
+	-moz-box-shadow: 0px 2px 2px #000;
+	box-shadow: 0px 2px 2px #000;
+    position: absolute;
+    top: 190px; left:184px;
+    width: 200px;
+}
+.ribbon2:after
+{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 0px;
+	top: 100%;
+	border-width: 5px 10px;
+	border-style: solid;
+	border-color: #000 #000 transparent transparent;
+}
+
+.ribbon2:before
+{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	right: -2px;
+	top: 0px;
+	border-color: transparent #ff0000 transparent transparent;
+}
+
+.ribbon {
+    width: 350px;
+    margin: 10px auto;
+    padding: 0 10px 0;
+    position: relative;
+    color: #444;
+    background: #fff;
+    border: 1px solid #d2d2d2;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.ribbon em {
+    display: block;
+    height: 30px;
+    line-height: 1.3;
+    width: 360px;
+    margin: 0;
+    padding: 5px 10px;
+    position: relative;
+    left: -16px;
+    top: 8px;
+    color: #cfcfcf;
+    text-shadow: 0 1px 1px #111;
+    border-top: 1px solid #363636;
+    border-bottom: 1px solid #202020;
+    background: @blue;
+
+    border-radius: 2px 2px 0 0;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+.ribbon em::before,
+.ribbon em::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    bottom: -11px;
+    z-index: -10;
+    border: 5px solid;
+    border-color: #242424 transparent transparent transparent;    
+}
+.ribbon em::before {left: 0;}
+.ribbon em::after {right: 0;}*/

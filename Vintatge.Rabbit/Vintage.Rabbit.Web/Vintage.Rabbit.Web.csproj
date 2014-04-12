@@ -117,24 +117,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\v1\Controllers\HomeController.cs" />
-    <Compile Include="Areas\v1\v1AreaRegistration.cs" />
-    <Compile Include="Areas\v2\Controllers\HomeController.cs" />
-    <Compile Include="Areas\v2\v2AreaRegistration.cs" />
-    <Compile Include="Areas\v3\Controllers\HomeController.cs" />
-    <Compile Include="Areas\v3\v3AreaRegistration.cs" />
-    <Compile Include="Areas\v4\Controllers\HomeController.cs" />
-    <Compile Include="Areas\v4\v4AreaRegistration.cs" />
-    <Compile Include="Areas\v5\Controllers\HomeController.cs" />
-    <Compile Include="Areas\v5\v5AreaRegistration.cs" />
-    <Compile Include="Areas\v6\Controllers\HomeController.cs" />
-    <Compile Include="Areas\v6\v6AreaRegistration.cs" />
+    <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Areas\v7\Controllers\HomeController.cs" />
     <Compile Include="Areas\v7\Controllers\ProductController.cs" />
     <Compile Include="Areas\v7\Controllers\StyleController.cs" />
     <Compile Include="Areas\v7\v7AreaRegistration.cs" />
     <Compile Include="Controllers\BuyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\StyleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -341,33 +333,6 @@
     <Content Include="Content\less\v3\common\Type.less" />
     <Content Include="Content\less\v3\common\variables.less" />
     <Content Include="Content\less\v3\site.less" />
-    <Content Include="Areas\v2\Views\Web.config" />
-    <Content Include="Areas\v1\Views\Web.config" />
-    <Content Include="Areas\v1\Views\Home\Index.cshtml" />
-    <Content Include="Areas\v3\Views\Web.config" />
-    <Content Include="Areas\v3\Views\Home\image.header.cshtml" />
-    <Content Include="Areas\v3\Views\Home\Index.cshtml" />
-    <Content Include="Areas\v3\Views\Home\promotions.cshtml" />
-    <Content Include="Areas\v3\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\v3\Views\Shared\products.cshtml" />
-    <Content Include="Areas\v5\Views\Home\image.header.cshtml" />
-    <Content Include="Areas\v5\Views\Home\Index.cshtml" />
-    <Content Include="Areas\v5\Views\Home\promotions.cshtml" />
-    <Content Include="Areas\v5\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\v5\Views\Shared\products.cshtml" />
-    <Content Include="Areas\v5\Views\Web.config" />
-    <Content Include="Areas\v4\Views\Home\image.header.cshtml" />
-    <Content Include="Areas\v4\Views\Home\Index.cshtml" />
-    <Content Include="Areas\v4\Views\Home\promotions.cshtml" />
-    <Content Include="Areas\v4\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\v4\Views\Shared\products.cshtml" />
-    <Content Include="Areas\v4\Views\Web.config" />
-    <Content Include="Areas\v6\Views\Home\image.header.cshtml" />
-    <Content Include="Areas\v6\Views\Home\Index.cshtml" />
-    <Content Include="Areas\v6\Views\Home\promotions.cshtml" />
-    <Content Include="Areas\v6\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\v6\Views\Shared\products.cshtml" />
-    <Content Include="Areas\v6\Views\Web.config" />
     <Content Include="Content\less\v7\common\Copy of grid.less" />
     <Content Include="Content\less\v7\common\fonts.less" />
     <Content Include="Content\less\v7\common\footer.less" />
@@ -418,6 +383,8 @@
     <Content Include="Areas\v7\Views\Style\woodland-faries.cshtml" />
     <Content Include="Content\less\v7\common\mixins.less" />
     <Content Include="Content\less\v7\common\login.less" />
+    <Content Include="Views\ContactUs\Index.cshtml" />
+    <Content Include="Content\less\v7\common\contact-us.less" />
     <None Include="Content\scripts\jquery\jquery-2.1.0.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-2.1.0.js" />
     <Content Include="Content\scripts\jquery\jquery-2.1.0.min.js" />
@@ -437,40 +404,24 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Content\scripts\jquery\jquery-2.1.0.min.map" />
-    <Content Include="Areas\v2\Views\Home\Index.cshtml" />
     <Content Include="Views\ViewStart.cshtml" />
-    <Content Include="Views\Shared\__Layout.cshtml" />
-    <Content Include="Views\Shared\Copy of _Layout.cshtml" />
-    <Content Include="Views\Shared\_Layout2.cshtml" />
-    <Content Include="Areas\v1\Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\products.cshtml" />
-    <Content Include="Views\Shared\products2.cshtml" />
-    <Content Include="Areas\v1\Views\Home\products.cshtml" />
     <Content Include="Views\Shared\footer.cshtml" />
-    <Content Include="Views\Shared\footer2.cshtml" />
     <Content Include="Views\Buy\Index.cshtml" />
-    <Content Include="Areas\v2\Views\Shared\products.cshtml" />
-    <Content Include="Areas\v2\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\v2\Views\Home\image.header.cshtml" />
-    <Content Include="Areas\v1\Views\Home\image.header.cshtml" />
-    <Content Include="Areas\v1\Views\Home\promotions.cshtml" />
-    <Content Include="Areas\v2\Views\Home\promotions.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\products.cshtml" />
+    <Content Include="Views\Home\image.header.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\promotions.cshtml" />
+    <Content Include="Views\Style\Index.cshtml" />
+    <Content Include="Views\Style\woodland-faries.cshtml" />
+    <Content Include="Views\Product\bottle-of-lollies.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\v1\Models\" />
-    <Folder Include="Areas\v2\Models\" />
-    <Folder Include="Areas\v3\Models\" />
-    <Folder Include="Areas\v4\Models\" />
-    <Folder Include="Areas\v5\Models\" />
-    <Folder Include="Areas\v6\Models\" />
     <Folder Include="Areas\v7\Models\" />
     <Folder Include="Content\fonts\fontleroy-brown\web fonts\fontleroybrown_regular_macroman\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\" />
-    <Folder Include="Views\Home\" />
-    <Folder Include="Views\Shared\v4\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
