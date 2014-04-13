@@ -1,8 +1,6 @@
 ﻿
 
-.large-images {
-
-    margin-top: @gutter;
+.large-images { margin-top: @gutter;
     .image-container-3 { height: 400px; margin-top: @gutter; position: relative;
         a { display: block; position: absolute; left: 0px; bottom: 0px; text-align: center; background: rgba(0,0,0,0.8); width: 100%; padding: 15px 0px 15px 0px; color: #ffffff; border-top: 1px solid #ffffff; }
         img { display: block; }
@@ -19,10 +17,10 @@
         }
         p { color: #fff; font-size: 12px; text-align: center; line-height: 22px; }
     }
-
+    /*
     .tile-image {
         img { width: 100%; display: block; display: none; }
-        em { display: block; border-top: 1px solid #ffffff; text-align: center; font-style: normal; color: #fff; line-height: 42px; background: #333333; margin-top: 1px; padding: 0px 20px 0px 20px; transition: all 0.15s linear 0s; }
+        em { display: block; border-top: 1px solid #ffffff; text-align: center; font-style: normal; color: #fff; line-height: 42px; background: @pink; margin-top: 1px; padding: 0px 20px 0px 20px; transition: all 0.15s linear 0s; }
         padding-top: 400px; display: block; margin: 0px;
         
         &.style { background: url(/content/images/Birthday-Party-Supplies.jpeg) no-repeat; background-position: -695px -415px; }
@@ -33,6 +31,33 @@
             text-decoration: none;
             em { background: #222222; }
         }
+    }
+*/ .tile-image {
+        img { width: 100%; display: block; display: none; }
+        color: #333333; text-align: center; font-size: 26px; padding-top: 10px;
+
+        em { display: block; border-bottom: 5px solid @green; text-align: center; font-style: normal; color: #666666; line-height: 24px; font-size: 14px; margin-top: 1px; padding: 5px 0px 20px 0px; transition: all 0.15s linear 0s; }
+        display: block; margin: 0px;
+
+        &:hover { text-decoration: none;
+            em { }
+        }
+
+        &.style {
+            em { border-bottom: 0px solid @blue; }
+        }
+        &.hire {em { border-bottom: 0px solid @green; } }
+        &.buy { em { border-bottom: 0px solid @pink; }}
+    }
+
+    .hire-image { background: url(/content/images/Toffee-Apples.jpg) no-repeat; background-position: -100px top; height: 400px;
+        img { display: none; }
+    }
+    .style-image { background: url(/content/images/Birthday-Party-Supplies.jpeg) no-repeat; background-position: -695px -415px; height: 400px;
+        img { display: none; }
+    }
+    .buy-image { background: url(/content/images/Soccer-dessert-table.jpg) no-repeat; background-position: center 0px; height: 400px;
+        img { display: none; }
     }
 }
 

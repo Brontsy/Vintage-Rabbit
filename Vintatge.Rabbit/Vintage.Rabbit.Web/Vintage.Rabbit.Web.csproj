@@ -415,6 +415,7 @@
     <Content Include="Views\Style\Index.cshtml" />
     <Content Include="Views\Style\woodland-faries.cshtml" />
     <Content Include="Views\Product\bottle-of-lollies.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
