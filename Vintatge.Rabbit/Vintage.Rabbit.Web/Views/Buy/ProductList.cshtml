@@ -1,0 +1,11 @@
+﻿@model IList<Vintage.Rabbit.Web.Models.Products.ProductListItemViewModel>
+
+
+<ul class="buy-page row">
+    @foreach (var product in Model)
+    {
+        <li class="col-2">
+            @{Html.RenderPartial("product-list-item", product);}
+        </li>
+    }
+</ul>

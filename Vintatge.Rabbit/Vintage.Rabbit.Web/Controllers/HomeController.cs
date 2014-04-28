@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vintage.Rabbit.Carts.Entities;
+using Vintage.Rabbit.Carts.QueryHandlers;
+using Vintage.Rabbit.Interfaces.CQRS;
 
 namespace Vintage.Rabbit.Web.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
+        private IQueryDispatcher _queryDispatcher;
 
-        public ActionResult Index(string version)
+        public HomeController(IQueryDispatcher queryDispatcher)
         {
-            ViewBag.Version = version;
-            return View(string.Format("Index", version));
+            this._queryDispatcher = queryDispatcher;
         }
 
+        public ActionResult Index()
+        {
+            var cart = this._queryDispatcher.Dispatch<Cart, GetCartQuery>(new GetCartQuery(Guid.NewGuid()));
+            return View();
+        }
     }
 }

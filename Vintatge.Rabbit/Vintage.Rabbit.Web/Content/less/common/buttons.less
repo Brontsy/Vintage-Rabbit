@@ -1,0 +1,37 @@
+﻿
+
+
+.btn {
+  cursor: hand;
+  cursor: pointer;
+  line-height: 36px;
+  padding: 0px 15px 0px 15px;
+  margin: 0px;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  color: white;
+  min-height: 36px;
+  .transition(all linear .1s);
+}
+
+a.btn {
+  &:hover { text-decoration: none; }
+}
+
+a.btn { color: #ffffff; }
+
+.btn.primary { background: @green;
+    &:hover { background: darken(@green, 10%);  }
+}
+
+.btn.secondary { background: @blue; color: #fff;
+    &:hover { background: darken(@blue, 10%);  }
+}
+
+

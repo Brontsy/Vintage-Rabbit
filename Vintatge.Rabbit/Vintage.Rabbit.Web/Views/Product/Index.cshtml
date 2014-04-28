@@ -1,0 +1,76 @@
+﻿@model Vintage.Rabbit.Web.Models.Products.ProductViewModel
+
+
+<div class="gutter product-detail">
+    <div class="row">
+        <div class="col-5 col-12-m">
+            <div class="image-container">
+                <img src="@Model.Images.First().Url" />
+                <ul class="thumbnails">
+                    @foreach(var image in Model.Images)
+                    { 
+                    <li>
+                        <img src="@image.Url" />
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-7  col-12-m">
+            <h2>@Model.Title</h2>
+            <div class="description">
+                <p>
+                    Mmm... we love lollies at Lark! 
+                </p>
+                <p>
+                    In this sweet bottle you'll find lots of yummy Australian-made chocolate freckles.
+                </p>
+                <p>
+                    Perfect for party gifts or little treats, our lollies come packaged in a re-usable Lark Store milk bottle.
+                </p>
+                <p>
+                    200g. approx weight. Plastic milk bottle with lid - removable label.
+                </p>
+            </div>
+
+            <div class="controls">
+            
+                <div class="price">@Model.Cost</div>
+            
+                <p class="availble"><i class="fa fa-check"></i>&nbsp; This product is currently in stock</p>
+
+                <div class="row">
+                    <div class="col-12 qty">
+                        @using(Html.BeginRouteForm(Routes.ShoppingCart.Add, new { }, FormMethod.Post, new { }))
+                        {
+                            <fieldset>
+                                Qty &nbsp; <input type="text" name="qty" id="qty" value="1" /> &nbsp;  &nbsp;
+
+                                <button type="submit" class="btn primary add-to-cart">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    Add to cart
+                                </button>
+                            </fieldset>
+                        }
+                    </div>
+                    <div class="col-4">
+                    </div>
+                </div>
+                
+                <div class="delivery box-container">
+                    <strong>Delivery</strong>
+
+                    <p>
+                        This item will be dispatched within 2-3 business days. Shipping options available at check out include:
+                    </p>
+                    <p>
+                        FREE Australia wide usually arrives in 3-7 working days <br />
+                        once dispatched. (Please check delivery note above.)
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

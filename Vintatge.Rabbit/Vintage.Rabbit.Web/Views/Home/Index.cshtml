@@ -1,21 +1,60 @@
 ﻿@{
-    ViewBag.Title = "Vintage Rabbit";
-    Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = "Home Page";
 }
 
 
-
-        <div class="gutter">
-
-            @{Html.RenderPartial("image.header");}
-
+<div class="home">
+    <div class="row styles">
+        <div class="col-4">
+            <a href="@Url.RouteUrl(Routes.Hire)" class="hire tile-image">
+                Hire
+                <em>Lorem Ipsum is simply dummy text of the printing</em>
+            </a>
         </div>
-
-        <div class="gutter">
-
-            @{Html.RenderPartial("promotions");}
-
+        <div class="col-4">
+            <a href="@Url.RouteUrl(Routes.Style)" class="style tile-image">
+                Style
+                <em>Lorem Ipsum is simply dummy text of the printing</em>
+            </a>
         </div>
+        <div class="col-4">
+            <a href="@Url.RouteUrl(Routes.Buy.Index)" class="buy tile-image">
+                Buy
+                <em>Lorem Ipsum is simply dummy text of the printing</em>
+            </a>
+        </div>
+    </div>
 
-    @{Html.RenderPartial("products");}
-        
+
+
+
+    <div class="promotions box-container">
+            <div class="row">
+                <div class="col-4 col-12-t">
+                    <h3>
+                        <i class=" fa fa-truck"></i>Free delivery over $100
+                        <em>Australia wide</em>
+                    </h3>
+                </div>
+
+
+                <div class="col-4 col-12-t">
+                    <h3>
+                        <i class="fa fa-question-circle"></i>Have a question?
+                        <em>Give us a call any time on 13 41 41</em>
+                    </h3>
+                </div>
+
+                <div class="col-4 col-12-t">
+                    <h3>
+                        <i class="fa fa-question-circle"></i>Another promotion
+                        <em>Extra text related to the promotion</em>
+                    </h3>
+                </div>
+            </div>
+    </div>
+
+
+    @{Html.RenderAction("Featured", "Products");}
+
+</div>

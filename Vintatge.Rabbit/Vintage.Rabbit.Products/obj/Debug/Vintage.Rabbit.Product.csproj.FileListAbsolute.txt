@@ -1,0 +1,4 @@
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Product\bin\Debug\Vintage.Rabbit.Product.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Product\bin\Debug\Vintage.Rabbit.Product.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Product\obj\Debug\Vintage.Rabbit.Product.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Product\obj\Debug\Vintage.Rabbit.Product.pdb

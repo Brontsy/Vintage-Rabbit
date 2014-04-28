@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{27D9CFE4-9249-4386-A81D-5C3180D999E4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Vintage.Rabbit.Carts</RootNamespace>
+    <AssemblyName>Vintage.Rabbit.Carts</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.3.1\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommandHandlers\RemoveCartItemCommandHandler.cs" />
+    <Compile Include="CommandHandlers\AddProductToCartCommandHandler.cs" />
+    <Compile Include="CommandHandlers\SaveCartCommandHandler.cs" />
+    <Compile Include="Entities\Cart.cs" />
+    <Compile Include="Entities\CartItem.cs" />
+    <Compile Include="Ioc\Bindings.cs" />
+    <Compile Include="Messaging\Messages\SaveCartMessage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryHandlers\GetCartByOwnerIdQueryHandler.cs" />
+    <Compile Include="QueryHandlers\GetCartQueryHandler.cs" />
+    <Compile Include="Repository\CartRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vintage.Rabbit.Caching\Vintage.Rabbit.Caching.csproj">
+      <Project>{93ee8576-6e36-4fef-ad10-0ec71fa9aaa4}</Project>
+      <Name>Vintage.Rabbit.Caching</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Interfaces\Vintage.Rabbit.Interfaces.csproj">
+      <Project>{93bcba0e-cfff-4963-a237-4be306ec0d2b}</Project>
+      <Name>Vintage.Rabbit.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Products\Vintage.Rabbit.Products.csproj">
+      <Project>{2ee117ed-6ab6-478d-93e7-1c695fc57b0a}</Project>
+      <Name>Vintage.Rabbit.Products</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

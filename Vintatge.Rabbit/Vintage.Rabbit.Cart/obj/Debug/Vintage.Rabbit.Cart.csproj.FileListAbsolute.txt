@@ -1,0 +1,11 @@
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Cart.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Cart.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Caching.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Interfaces.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Caching.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Interfaces.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\obj\Debug\Vintage.Rabbit.Cart.csprojResolveAssemblyReference.cache
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\obj\Debug\Vintage.Rabbit.Cart.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\obj\Debug\Vintage.Rabbit.Cart.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Products.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Products.pdb

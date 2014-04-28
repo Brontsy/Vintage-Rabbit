@@ -1,0 +1,7 @@
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Membership\bin\Debug\Vintage.Rabbit.Membership.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Membership\bin\Debug\Vintage.Rabbit.Membership.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Membership\bin\Debug\Vintage.Rabbit.Interfaces.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Membership\bin\Debug\Vintage.Rabbit.Interfaces.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Membership\obj\Debug\Vintage.Rabbit.Membership.csprojResolveAssemblyReference.cache
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Membership\obj\Debug\Vintage.Rabbit.Membership.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Membership\obj\Debug\Vintage.Rabbit.Membership.pdb

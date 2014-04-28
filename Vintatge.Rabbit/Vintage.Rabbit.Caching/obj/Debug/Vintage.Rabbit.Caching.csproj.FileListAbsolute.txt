@@ -1,0 +1,9 @@
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Caching\bin\Debug\Vintage.Rabbit.Caching.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Caching\bin\Debug\Vintage.Rabbit.Caching.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Caching\obj\Debug\Vintage.Rabbit.Caching.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Caching\obj\Debug\Vintage.Rabbit.Caching.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Caching\obj\Debug\Vintage.Rabbit.Caching.csprojResolveAssemblyReference.cache
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Caching\bin\Debug\Autofac.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Caching\bin\Debug\Vintage.Rabbit.Interfaces.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Caching\bin\Debug\Vintage.Rabbit.Interfaces.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Caching\bin\Debug\Autofac.xml

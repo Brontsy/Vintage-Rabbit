@@ -1,47 +1,17 @@
-﻿@{
-    ViewBag.Title = "Vintage Rabbit - Buy";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@model IList<Vintage.Rabbit.Web.Models.Categories.CategoryViewModel>
 
 
-<div class="gutter">
-    <div class="grid-wrap">
-        <div class="col-2 col-3-d col-6-t">&nbsp;
-            <div class="category dropdown2">
 
-                <div class="select">Categories<i class="fa fa-angle-down"></i></div>
-                <div class="categories items">
-                    <ul class="v2 col-3">
-                        <li class="selected">All</li>
-                        <li>Party</li>
-                        <li>Gifts</li>
-                        <li>Games</li>
-                    </ul>
-                </div>
+<div class="row buy-page">
 
-            </div>
-
-        </div>
-
-        <div class="col-6 col-2-d">
-            &nbsp;
-        </div>
-        
-        <div class="col-2 col-3-d offset1">&nbsp;
-            <div class="sort-by">
-                
-                <div class="dropdown2"><div class="select">Sort by <i class="fa fa-angle-down"></i></div></div>
-            </div>
-        </div>
-        <div class="col-2 col-3-d">&nbsp;
-            <div class="sort-by">
-                <div class="dropdown2"><div class="select">25 Items per page <i class="fa fa-angle-down"></i></div></div>
-            </div>
-        </div>
+    @foreach(var category in Model)
+    { 
+    <div class="col-4">
+        <a href="@Url.RouteUrl(Routes.Buy.Category, new { categoryName = category.Name })" class="@category.Name tile-image">
+            @category.DisplayName
+        </a>
     </div>
+    }
 </div>
 
 
-@{Html.RenderPartial("products");}   
-@{Html.RenderPartial("products");}    
-@{Html.RenderPartial("products");}
