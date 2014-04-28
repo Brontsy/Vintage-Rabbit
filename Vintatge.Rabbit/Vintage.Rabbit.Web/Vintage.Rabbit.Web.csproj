@@ -185,6 +185,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\images\Birthday-Party-Supplies.jpeg" />
     <Content Include="Content\images\nav-background02.jpg" />
     <Content Include="Content\images\products\20130226172444_1.jpg" />
@@ -255,6 +256,10 @@
     <Content Include="Content\less\components\featured-products.less" />
     <Content Include="Content\less\components\product-detail.less" />
     <Content Include="Content\less\pages\buy.less" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -293,7 +298,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\fonts\" />
     <Folder Include="Models\Product\" />
   </ItemGroup>
   <ItemGroup>
