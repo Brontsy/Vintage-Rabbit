@@ -59,6 +59,7 @@ $('button.add-to-cart').on('click', function (event) {
         type: 'POST',
         complete: function (json) {
             $this.html($this.data('button-text'));
+            
             $(window).trigger('AddToCart', json)
         }
     })
@@ -72,6 +73,7 @@ AddClickEvents();
 
 $(window).on('AddToCart RemovedFromCart', function (json) {
 
+    $('.added-to-cart').removeClas
     $.each($('.shopping-cart'), function (index, element) {
 
         var open = $(this).find('.container').hasClass('active');
@@ -79,7 +81,7 @@ $(window).on('AddToCart RemovedFromCart', function (json) {
         $.ajax({
             url: $(element).data('reload'),
             type: 'GET',
-            data: {isOpen: open},
+            data: { isOpen: open },
             dataType: 'html',
             success: function (html) {
 
@@ -88,6 +90,17 @@ $(window).on('AddToCart RemovedFromCart', function (json) {
             }
         })
     });
+});
+
+
+$(window).on('AddToCart', function (json) {
+
+    $('.added-to-cart').removeClass('hidden');
+});
+
+$(window).on('RemovedFromCart', function (json) {
+
+    $('.added-to-cart').addClass('hidden');
 });
 
 $('body').on('click', function () {

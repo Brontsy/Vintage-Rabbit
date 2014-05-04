@@ -44,13 +44,17 @@
                     <div class="col-12 qty">
                         @using(Html.BeginRouteForm(Routes.ShoppingCart.Add, new { }, FormMethod.Post, new { }))
                         {
-                            <fieldset>
+                            <fieldset class="row">
                                 Qty &nbsp; <input type="text" name="qty" id="qty" value="1" /> &nbsp;  &nbsp;
 
                                 <button type="submit" class="btn primary add-to-cart">
                                     <i class="fa fa-shopping-cart"></i>
                                     Add to cart
                                 </button>
+
+                                <div class="alert positive icon hidden added-to-cart">
+                                    <i class="fa fa-check-circle"></i> @Model.Title has been added to your cart
+                                </div>
                             </fieldset>
                         }
                     </div>
