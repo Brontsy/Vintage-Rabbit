@@ -6,9 +6,11 @@ using System.Web.Mvc;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Products.QueryHandlers;
+using Vintage.Rabbit.Web.Models.Breadcrumbs;
 using Vintage.Rabbit.Web.Models.Categories;
 using Vintage.Rabbit.Web.Models.Hire;
 using Vintage.Rabbit.Web.Models.Products;
+using Vintage.Rabbit.Common.Extensions;
 
 namespace Vintage.Rabbit.Web.Controllers
 {
@@ -39,7 +41,12 @@ namespace Vintage.Rabbit.Web.Controllers
                 available = this._queryDispatcher.Dispatch<bool, IsHireProductAvailableQuery>(new IsHireProductAvailableQuery(productId, hireDates.StartDate.Value, hireDates.EndDate.Value));
             }
 
-            return View("Product", new HireProductViewModel(product, available, hireDates));
+            BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
+            breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
+            breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Index), "Hire");
+            breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Product, new { productId = product.Id, name = product.Title.ToUrl() }), product.Title, true);
+
+            return View("Product", new HireProductViewModel(product, available, hireDates, breadCrumbs));
         }
 
         public ActionResult CheckProductAvailability(int productId, HireDatesViewModel hireDates)

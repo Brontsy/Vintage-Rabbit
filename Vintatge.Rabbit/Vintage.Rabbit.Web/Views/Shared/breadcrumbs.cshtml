@@ -1,0 +1,25 @@
+﻿@model BreadcrumbsViewModel
+@using Vintage.Rabbit.Web.Models.Breadcrumbs
+
+<div class="breadcrumbs">
+    @{int counter = 1;}
+    @foreach (Breadcrumb breadcrumb in Model.Breadcrumbs)
+    {
+        <a href="@breadcrumb.Url">
+            @if (breadcrumb.Selected)
+            {
+                <strong>@breadcrumb.Name</strong>
+            }
+            else
+            {
+                <text>@breadcrumb.Name</text>
+            }
+
+        </a>
+        if (counter != Model.Breadcrumbs.Count)
+        {
+            <text>&nbsp; <i class="fa fa-angle-right"></i> &nbsp; </text>
+        }
+        counter++;
+    }
+</div>

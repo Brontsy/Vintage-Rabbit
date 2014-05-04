@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Vintage.Rabbit.Products.Entities;
+using Vintage.Rabbit.Web.Models.Breadcrumbs;
 using Vintage.Rabbit.Web.Models.Products;
 
 namespace Vintage.Rabbit.Web.Models.Hire
@@ -27,12 +28,14 @@ namespace Vintage.Rabbit.Web.Models.Hire
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime? EndDate { get; private set; }
 
+        public BreadcrumbsViewModel Breadcrumbs { get; private set; }
+
         public string UrlTitle
         {
             get { return this.Title.Replace(" ", "-").ToLower(); }
         }
 
-        public HireProductViewModel(HireProduct product, bool? available, HireDatesViewModel hireDates)
+        public HireProductViewModel(HireProduct product, bool? available, HireDatesViewModel hireDates, BreadcrumbsViewModel breadcrumbs)
         {
             this.Id = product.Id;
             this.Images = product.Images.Select(o => new ProductImageViewModel(o)).ToList();
@@ -41,6 +44,7 @@ namespace Vintage.Rabbit.Web.Models.Hire
             this.StartDate = hireDates.StartDate;
             this.EndDate = hireDates.EndDate;
             this.IsAvailable = available;
+            this.Breadcrumbs = breadcrumbs;
         }
     }
 }

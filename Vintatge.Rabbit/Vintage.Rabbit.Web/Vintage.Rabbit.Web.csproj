@@ -177,6 +177,7 @@
     </Compile>
     <Compile Include="ModelBinders\HireDatesModelBinder.cs" />
     <Compile Include="ModelBinders\MemberModelBinder.cs" />
+    <Compile Include="Models\Breadcrumbs\BreadcrumbsViewModel.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
     <Compile Include="Models\Hire\HireDatesViewModel.cs" />
     <Compile Include="Models\Hire\HireProductListItemViewModel.cs" />
@@ -310,6 +311,7 @@
     <Content Include="Views\Buy\ProductList.cshtml" />
     <Content Include="Views\Hire\Index.cshtml" />
     <Content Include="Views\Hire\Product.cshtml" />
+    <Content Include="Views\Shared\breadcrumbs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
