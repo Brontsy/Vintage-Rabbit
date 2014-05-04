@@ -274,6 +274,7 @@
     <Content Include="Content\less\components\jquery-ui.less" />
     <Content Include="Content\less\components\datepicker - Copy.less" />
     <Content Include="Content\less\common\alerts.less" />
+    <Content Include="Content\less\components\breadcrumbs.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
