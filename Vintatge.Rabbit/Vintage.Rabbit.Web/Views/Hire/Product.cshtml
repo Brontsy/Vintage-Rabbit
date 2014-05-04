@@ -1,0 +1,151 @@
+﻿@model Vintage.Rabbit.Web.Models.Hire.HireProductViewModel
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<div class="hire-product-detail">
+    <div class="row">
+        <div class="col-5 col-12-m">
+            <div class="image-container">
+                <img src="@Model.Images.First().Url" />
+                <ul class="thumbnails">
+                    @foreach(var image in Model.Images)
+                    { 
+                    <li>
+                        <img src="@image.Url" />
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-7  col-12-m">
+            <h2>@Model.Title</h2>
+            <div class="description">
+                <p>
+                    Mmm... we love lollies at Lark! 
+                </p>
+                <p>
+                    In this sweet bottle you'll find lots of yummy Australian-made chocolate freckles.
+                </p>
+                <p>
+                    Perfect for party gifts or little treats, our lollies come packaged in a re-usable Lark Store milk bottle.
+                </p>
+                <p>
+                    200g. approx weight. Plastic milk bottle with lid - removable label.
+                </p>
+            </div>
+
+            <div class="controls">
+            
+                <div class="price">@Model.Cost</div>
+            
+                <div class="row">
+                    <div class="col-12 check-availability@(Model.IsAvailable.HasValue ? Model.IsAvailable.Value ? " available" : "unavailable" : string.Empty)">
+                        @using (Html.BeginRouteForm(Routes.Hire.CheckProductAvailability, new { productId = Model.Id, name = Model.UrlTitle }, FormMethod.Post, new { @class = "check-availability-form", @data_add_to_cart = @Url.RouteUrl(Routes.ShoppingCart.AddHireProduct, new { productId = Model.Id, name = Model.UrlTitle }) }))
+                        {
+                            <fieldset>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="input-icon">
+                                            <i class="fa fa-calendar"></i>
+                                            @Html.EditorFor(o => o.StartDate, new { htmlAttributes = new { @placeholder = "Start Date", @class = "datepicker-trigger" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="input-icon">
+                                            <i class="fa fa-calendar"></i>
+                                            @Html.EditorFor(o => o.EndDate, new { htmlAttributes = new { @placeholder = "End Date", @class = "datepicker-trigger" }})
+                                        </div>
+                                    </div>
+
+                                    <div class="col-7">
+                                        <div class="unavailable-text alert negative">
+                                            <i class="fa fa-times"></i>&nbsp; Sorry this product is currently unavailable for those dates. Please call us on 131313
+                                        </div>
+                                        <div class="available-text alert positive">
+                                            <i class="fa fa-check"></i>&nbsp; This product is currently in stock
+                                        </div>
+                                    </div>
+
+                                    <div class="col-5">
+                                        <button type="submit" class="btn primary check-availability-button">
+                                            <i class="fa fa-refresh"></i>
+                                            Check availability
+                                        </button>
+                                        <button type="submit" class="btn primary add-to-cart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            Add to cart
+                                        </button>
+                                    </div>
+                                    <div class="col-12 added-to-cart">
+                                        <div class="alert positive">
+                                            <strong>@Model.Title</strong> has been added to your cart
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        }
+
+                        @*@using (Html.BeginRouteForm(Routes.ShoppingCart.AddHireProduct, new { productId = Model.Id, name = Model.UrlTitle }, FormMethod.Post, new { @class = "add-hire-product-to-cart" + (Model.IsAvailable.HasValue && Model.IsAvailable.Value ? " hidden" : " hidden") }))
+                        {
+                            <fieldset>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="input-icon">
+                                            <i class="fa fa-calendar"></i>
+                                            @Html.EditorFor(o => o.HireDates.StartDate, new { htmlAttributes = new { @placeholder = "Start Date", @class = "datepicker-trigger" }})
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="input-icon">
+                                            <i class="fa fa-calendar"></i>                                            
+                                            @Html.EditorFor(o => o.HireDates.EndDate, new { htmlAttributes = new { @placeholder = "End Date", @class = "datepicker-trigger" } })
+                                        </div>
+                                    </div>
+
+                                    <div class="col-7">
+                                        <div class="available">
+                                            <i class="fa fa-check"></i>&nbsp; This product is currently in stock
+                                        </div>
+                                    </div>
+
+                                    <div class="col-5">
+                                        <button type="submit" class="btn primary add-to-cart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            Add to cart
+                                        </button>
+                                    </div>
+
+                                    <div class="col-12 hidden added-to-cart">
+                                        <div class="alert positive">
+                                            <strong>@Model.Title</strong> has been added to your cart
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </fieldset>
+                        }*@
+                    </div>
+                    <div class="col-4">
+                    </div>
+                </div>
+                
+                <div class="delivery box-container">
+                    <strong>Delivery</strong>
+
+                    <p>
+                        This item will be dispatched within 2-3 business days. Shipping options available at check out include:
+                    </p>
+                    <p>
+                        FREE Australia wide usually arrives in 3-7 working days <br />
+                        once dispatched. (Please check delivery note above.)
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

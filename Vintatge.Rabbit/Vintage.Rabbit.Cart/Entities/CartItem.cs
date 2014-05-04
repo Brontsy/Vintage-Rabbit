@@ -11,7 +11,7 @@ namespace Vintage.Rabbit.Carts.Entities
     {
         public Guid Id { get; private set; }
 
-        public Product Product { get; private set; }
+        public ProductCartItem Product { get; private set; }
 
         public int Quantity { get; private set; }
 
@@ -25,7 +25,8 @@ namespace Vintage.Rabbit.Carts.Entities
             this.Id = Guid.NewGuid();
         }
 
-        public CartItem(int quantity, Product product) : this()
+        public CartItem(int quantity, ProductCartItem product)
+            : this()
         {
             this.Quantity = quantity;
             this.Product = product;

@@ -19,11 +19,5 @@ namespace Vintage.Rabbit.Web.Controllers
             this._queryDispatcher = queryDispatcher;
         }
 
-        public ActionResult Index(int productId, string name)
-        {
-            Product product = this._queryDispatcher.Dispatch<Product, GetProductQuery>(new GetProductQuery(productId));
-
-            return View("Index", new ProductViewModel(product));
-        }
 	}
 }

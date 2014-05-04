@@ -42,11 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\AddHireProductToCartCommandHandler.cs" />
     <Compile Include="CommandHandlers\RemoveCartItemCommandHandler.cs" />
-    <Compile Include="CommandHandlers\AddProductToCartCommandHandler.cs" />
+    <Compile Include="CommandHandlers\AddBuyProductToCartCommandHandler.cs" />
     <Compile Include="CommandHandlers\SaveCartCommandHandler.cs" />
+    <Compile Include="Entities\BuyProductCartItem.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\CartItem.cs" />
+    <Compile Include="Entities\ProductCartItem.cs" />
+    <Compile Include="Entities\HireProductCartItem.cs" />
     <Compile Include="Ioc\Bindings.cs" />
     <Compile Include="Messaging\Messages\SaveCartMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

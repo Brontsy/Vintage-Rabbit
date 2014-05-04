@@ -3,14 +3,14 @@
 
 <div class="product-list-item">
     <img src="@Model.Image.Url" width="100%" />
-    <h4>@Html.RouteLink(Model.Title, Routes.Product.Index, new { productId = Model.Id, name = Model.UrlTitle }, new { })</h4>
+    <h4>@Html.RouteLink(Model.Title, Routes.Buy.Product, new { productId = Model.Id, name = Model.UrlTitle }, new { })</h4>
     <div class="price">@Model.Cost</div>
     <div class="product-controls">
         <a class="left add-to-cart" href="@Url.RouteUrl(Routes.ShoppingCart.Add, new { productId = Model.Id, name = Model.UrlTitle })">
             <i class="fa fa-shopping-cart"></i>
             Add
         </a>
-        <a class="right" href="@Url.RouteUrl(Routes.Product.Preview, new { productId = Model.Id, name = Model.UrlTitle })">
+        <a class="right" href="@Url.RouteUrl(Routes.Buy.Preview, new { productId = Model.Id, name = Model.UrlTitle })">
             <i class="fa fa-search"></i>
             Preview
         </a>

@@ -165,6 +165,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\HireController.cs" />
     <Compile Include="Controllers\BuyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
@@ -174,9 +175,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ModelBinders\HireDatesModelBinder.cs" />
     <Compile Include="ModelBinders\MemberModelBinder.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
-    <Compile Include="Models\Products\ProductViewModel.cs" />
+    <Compile Include="Models\Hire\HireDatesViewModel.cs" />
+    <Compile Include="Models\Hire\HireProductListItemViewModel.cs" />
+    <Compile Include="Models\Hire\HireProductViewModel.cs" />
+    <Compile Include="Models\Buy\BuyProductViewModel.cs" />
     <Compile Include="Models\Products\ProductImageViewModel.cs" />
     <Compile Include="Models\Products\ProductListItemViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartItemViewModel.cs" />
@@ -214,6 +219,8 @@
     <Content Include="Content\images\products\sambellina_rainbow_treat_box__23750.1377144079.1280.1280.jpg" />
     <Content Include="Content\images\Soccer-dessert-table.jpg" />
     <Content Include="Content\images\Toffee-Apples.jpg" />
+    <Content Include="Content\scripts\datepicker\datepicker.source.js" />
+    <Content Include="Content\scripts\datepicker.js" />
     <Content Include="Content\scripts\shopping-cart.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -260,6 +267,12 @@
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\less\pages\hire.less" />
+    <Content Include="Content\less\components\hire-product-detail.less" />
+    <Content Include="Content\less\components\datepicker.less" />
+    <Content Include="Content\less\components\jquery-ui.less" />
+    <Content Include="Content\less\components\datepicker - Copy.less" />
+    <Content Include="Content\less\common\alerts.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -291,14 +304,18 @@
     <Content Include="Views\ShoppingCart\PageHeader.cshtml" />
     <Content Include="Views\Shared\product-list-item.cshtml" />
     <Content Include="Views\Products\Featured.cshtml" />
-    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Buy\Product.cshtml" />
     <Content Include="Views\Buy\Index.cshtml" />
     <Content Include="Views\Categories\PageHeader.cshtml" />
     <Content Include="Views\Buy\ProductList.cshtml" />
+    <Content Include="Views\Hire\Index.cshtml" />
+    <Content Include="Views\Hire\Product.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Attributes\" />
     <Folder Include="Models\Product\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

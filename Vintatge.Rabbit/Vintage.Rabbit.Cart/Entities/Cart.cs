@@ -32,7 +32,7 @@ namespace Vintage.Rabbit.Carts.Entities
             this.MemberId = memberId;
         }
 
-        internal void AddProduct(int quantity, Product product)
+        internal void AddProduct(int quantity, BuyProduct product)
         {
             if (this.Items.Any(o => o.Product.Id == product.Id))
             {
@@ -41,9 +41,23 @@ namespace Vintage.Rabbit.Carts.Entities
             }
             else
             {
-                this.Items.Add(new CartItem(quantity, product));
+                this.Items.Add(new CartItem(quantity, new BuyProductCartItem(product)));
             }
         }
+
+        internal void AddProduct(HireProduct product, DateTime startDate, DateTime endDate)
+        {
+            if (this.Items.Any(o => o.Product.Id == product.Id))
+            {
+                CartItem cartItem = this.Items.FirstOrDefault(o => o.Product.Id == product.Id);
+                cartItem.ChangeQuantity(cartItem.Quantity + 1);
+            }
+            else
+            {
+                this.Items.Add(new CartItem(1, new HireProductCartItem(product, startDate, endDate)));
+            }
+        }
+
 
         internal void RemoveProduct(Guid cartItemId)
         {

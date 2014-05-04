@@ -9,7 +9,7 @@
     @Scripts.Render("~/bundles/modernizr")
 
     <link rel="stylesheet" href="/Content/less/site.less" type="text/css" charset="utf-8" />
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    @*<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>*@
 </head>
 <body>
 
@@ -47,7 +47,7 @@
         <nav>
             <ol class="row">
                 <li class="col-2 col-12-m">
-                    @Html.RouteLink("Hire", Routes.Hire)
+                    @Html.RouteLink("Hire", Routes.Hire.Index)
                 </li>
                 <li class="col-2 col-12-m">
                     @Html.RouteLink("Style", Routes.Style)

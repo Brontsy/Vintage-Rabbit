@@ -11,28 +11,28 @@ using Vintage.Rabbit.Caching;
 
 namespace Vintage.Rabbit.Products.QueryHandlers
 {
-    public class GetProductsQuery
+    public class GetHireProductQuery
     {
-        public int Page { get; private set; }
+        public int ProductId { get; private set; }
 
-        public GetProductsQuery(int? page)
+        public GetHireProductQuery(int productId)
         {
-            this.Page = page ?? 1;
+            this.ProductId = productId;
         }
     }
 
-    internal class GetProductsQueryHandler : IQueryHandler<IList<Product>, GetProductsQuery>
+    internal class GetHireProductQueryHandler : IQueryHandler<HireProduct, GetHireProductQuery>
     {
         private IProductRepository _productRepository;
 
-        public GetProductsQueryHandler(IProductRepository productRepository)
+        public GetHireProductQueryHandler(IProductRepository productRepository)
         {
             this._productRepository = productRepository;
         }
 
-        public IList<Product> Handle(GetProductsQuery query)
+        public HireProduct Handle(GetHireProductQuery query)
         {
-            return this._productRepository.GetProducts(query.Page);
+            return this._productRepository.GetHireProduct(query.ProductId);
         }
     }
 }

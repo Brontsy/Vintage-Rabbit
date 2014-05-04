@@ -34,9 +34,20 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult Add(int productId, Member member, int qty = 1)
         {
-            Product product = this._queryDispatcher.Dispatch<Product, GetProductQuery>(new GetProductQuery(productId));
+            BuyProduct product = this._queryDispatcher.Dispatch<BuyProduct, GetBuyProductQuery>(new GetBuyProductQuery(productId));
 
-            this._commandDispatcher.Dispatch(new AddProductToCartCommand(member.Id, qty, product));
+            this._commandDispatcher.Dispatch(new AddBuyProductToCartCommand(member.Id, qty, product));
+
+            Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Id));
+
+            return this.Json(cart, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult AddHireProduct(int productId, Member member, DateTime startDate, DateTime endDate)
+        {
+            HireProduct product = this._queryDispatcher.Dispatch<HireProduct, GetHireProductQuery>(new GetHireProductQuery(productId));
+
+            this._commandDispatcher.Dispatch(new AddHireProductToCartCommand(member.Id, product, startDate, endDate));
 
             Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Id));
 

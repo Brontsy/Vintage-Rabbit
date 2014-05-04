@@ -1,0 +1,128 @@
+﻿
+
+
+.hire-product-detail {
+    margin-top: 20px;
+    .page-content();
+
+    .image-container {
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        .thumbnails {
+            width: 100%;
+            overflow: hidden;
+            margin-top: 5px;
+
+            li {
+                border: 1px solid #ffffff;
+                padding: 2px;
+                width: 100px;
+                float: left;
+                margin: 0px 0px 0px 2px;
+
+                &:first-child {
+                    margin-left: 0px;
+                }
+
+                &:hover {
+                    border: 1px solid #cccccc;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .description {
+        margin-top: 20px;
+    }
+
+    .check-availability {
+        .add-to-cart {
+            display: none;
+        }
+        .added-to-cart { display: none; }
+
+        .unavailable-text {
+            display: none;
+        }
+
+        .available-text {
+            display: none;
+        }
+
+        &.available {
+            .add-to-cart {
+                display: block;
+            }
+
+            .check-availability-button {
+                display: none;
+            }
+
+            .available-text {
+                display: block;
+            }
+        }
+
+        &.unavailable {
+            .unavailable-text {
+                display: block;
+            }
+        }
+
+        &.in-cart
+            {
+        .add-to-cart {
+            display: none;
+        }
+        .available-text {
+            display: none;
+        }
+            
+        .added-to-cart { display: block; }
+        }
+    }
+
+    
+    .available-text {
+        margin-top: 10px;
+    }
+    .unavailable-text {
+        margin-top: 10px;
+    }
+    .added-to-cart{
+        margin-top: 10px;
+    }
+
+    .check-availability {
+        margin-right: 20px;
+        margin-top: 15px;
+
+        input {
+        }
+
+        button {
+            width: 100%;
+            margin-top: 10px;
+        }
+    }
+
+    .price {
+        font-size: 36px;
+        position: relative;
+        margin-top: 20px;
+
+        span {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+    }
+
+    .delivery {
+        margin-top: 20px;
+    }
+}

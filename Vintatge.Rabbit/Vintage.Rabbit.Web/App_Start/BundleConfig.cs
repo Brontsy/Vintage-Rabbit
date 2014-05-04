@@ -8,7 +8,7 @@ namespace Vintage.Rabbit.Web
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include("~/Content/scripts/jquery/jquery-{version}.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include("~/Content/scripts/jquery/jquery-{version}.js").Include("~/Content/scripts/jquery/jquery-ui-1.10.4.custom.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include("~/Content/scripts/jquery/jquery.validate*"));
 
@@ -16,7 +16,7 @@ namespace Vintage.Rabbit.Web
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Content/scripts/modernizr/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/scripts").Include("~/Content/scripts/*.js"));
+            bundles.Add(new ScriptBundle("~/bundles/scripts").Include("~/Content/scripts/datepicker/*.js").Include("~/Content/scripts/*.js"));
 
         }
     }

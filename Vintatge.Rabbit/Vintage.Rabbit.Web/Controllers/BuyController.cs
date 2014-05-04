@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Products.QueryHandlers;
+using Vintage.Rabbit.Web.Models.Buy;
 using Vintage.Rabbit.Web.Models.Categories;
 using Vintage.Rabbit.Web.Models.Products;
 
@@ -32,11 +33,18 @@ namespace Vintage.Rabbit.Web.Controllers
         public ActionResult Category(string categoryName)
         {
             Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName));
-            IList<Product> product = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByCategoryQuery>(new GetProductsByCategoryQuery(category));
+            IList<BuyProduct> product = this._queryDispatcher.Dispatch<IList<BuyProduct>, GetBuyProductsByCategoryQuery>(new GetBuyProductsByCategoryQuery(category));
 
             IList<ProductListItemViewModel> viewModel = product.Select(o => new ProductListItemViewModel(o)).ToList();
 
             return View("ProductList", viewModel);
+        }
+
+        public ActionResult Product(int productId, string name)
+        {
+            BuyProduct product = this._queryDispatcher.Dispatch<BuyProduct, GetBuyProductQuery>(new GetBuyProductQuery(productId));
+
+            return View("Product", new BuyProductViewModel(product));
         }
 	}
 }

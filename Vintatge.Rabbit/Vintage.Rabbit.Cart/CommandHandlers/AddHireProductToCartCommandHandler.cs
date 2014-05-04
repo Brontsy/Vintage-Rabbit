@@ -14,38 +14,41 @@ using Vintage.Rabbit.Products.Entities;
 
 namespace Vintage.Rabbit.Carts.CommandHandlers
 {
-    public class AddProductToCartCommand
+    public class AddHireProductToCartCommand
     {
         public Guid OwnerId { get; private set; }
 
-        public int Quantity { get; private set; }
+        public HireProduct Product { get; private set; }
 
-        public Product Product { get; private set; }
+        public DateTime StartDate { get; private set; }
 
-        public AddProductToCartCommand(Guid ownerId, int quantity, Product product)
+        public DateTime EndDate { get; private set; }
+
+        public AddHireProductToCartCommand(Guid ownerId, HireProduct product, DateTime startDate, DateTime endDate)
         {
             this.OwnerId = ownerId;
-            this.Quantity = quantity;
             this.Product = product;
+            this.StartDate = startDate;
+            this.EndDate = endDate;
         }
     }
 
-    internal class AddProductToCartCommandHandler : ICommandHandler<AddProductToCartCommand>
+    internal class AddHireProductToCartCommandHandler : ICommandHandler<AddHireProductToCartCommand>
     {
         private IQueryDispatcher _queryDispatcher;
         private ICommandDispatcher _commandDispatcher;
 
-        public AddProductToCartCommandHandler(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
+        public AddHireProductToCartCommandHandler(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
         {
             this._queryDispatcher = queryDispatcher;
             this._commandDispatcher = commandDispatcher;
         }
 
-        public void Handle(AddProductToCartCommand command)
+        public void Handle(AddHireProductToCartCommand command)
         {
             Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(command.OwnerId));
 
-            cart.AddProduct(command.Quantity, command.Product);
+            cart.AddProduct(command.Product, command.StartDate, command.EndDate);
 
             this._commandDispatcher.Dispatch(new SaveCartCommand(cart));
         }
