@@ -1,0 +1,39 @@
+﻿@model Vintage.Rabbit.Web.Models.Membership.RegisterViewModel
+
+
+<h3>Already a member?</h3>
+
+
+@using(Html.BeginRouteForm(Routes.Membership.Register, new {}, FormMethod.Post, new {}))
+{ 
+    <ol>
+        <li>
+            <div class="input-icon">
+				<i class="fa fa-envelope"></i>
+                @Html.TextBoxFor(o => o.Email, new { placeholder = "Email" })
+                @Html.ValidationMessageFor(o => o.Email)
+			</div>
+        </li>
+
+        <li>
+            <div class="input-icon">
+                <i class="fa fa-lock"></i>
+                @Html.PasswordFor(o => o.Password, new { placeholder = "Password" })
+                @Html.ValidationMessageFor(o => o.Password)
+            </div>
+        </li>
+
+        <li>
+            <div class="input-icon">
+                <i class="fa fa-lock"></i>
+                @Html.PasswordFor(o => o.ConfirmPassword, new { placeholder = "Confirm password" })
+                @Html.ValidationMessageFor(o => o.ConfirmPassword)
+            </div>
+        </li>
+                    
+        <li class="submit">
+            <button type="submit" class="btn primary right">Create account</button>
+        </li>
+    </ol>
+}
+      

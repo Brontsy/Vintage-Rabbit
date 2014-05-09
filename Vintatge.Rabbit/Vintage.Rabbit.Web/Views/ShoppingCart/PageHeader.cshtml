@@ -46,7 +46,7 @@
                 <div class="row">
                     <div class="col-8">&nbsp;</div>
                     <div class="col-4 text-right">
-                        <div href="#" class="btn primary">Proceed to checkout</div>
+                        @Html.RouteLink("Proceed to checkout", Routes.Checkout.Index, new { }, new { @class = "btn primary" })
                     </div>
                 </div>
             </li>

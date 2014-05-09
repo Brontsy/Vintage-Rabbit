@@ -35,7 +35,7 @@
                 @{Html.RenderAction("PageHeader", "ShoppingCart");}
 
                 <div class="login-register">
-                    <a href="/login">Login</a>&nbsp; / &nbsp;<a href="/register">Register</a>
+                    @Html.RouteLink("Login", Routes.Membership.Login)&nbsp; / &nbsp;@Html.RouteLink("Register", Routes.Membership.Register)
                 </div>
             </div>
 
@@ -45,24 +45,26 @@
     
 
         <nav>
-            <ol class="row">
-                <li class="col-2 col-12-m">
+            <ol class="float-container">
+                <li>
                     @Html.RouteLink("Hire", Routes.Hire.Index)
                 </li>
-                <li class="col-2 col-12-m">
-                    @Html.RouteLink("Style", Routes.Style)
+                <li>
+                    @Html.RouteLink("Themes", Routes.Themes)
                 </li>
-                <li class="col-2 col-12-m">
-                    @Html.RouteLink("Buy", Routes.Buy.Index)
-                    @{Html.RenderAction("GetCategories", "Categories");}
+                <li>
+                    @Html.RouteLink("Party Supplies", Routes.Buy.PartySupplies)
                 </li>
-                <li class="col-2 col-12-m">
-                    @Html.RouteLink("About us", Routes.Blog)
+                <li>
+                    @Html.RouteLink("Gifts", Routes.Buy.Gifts)
                 </li>
-                <li class="col-2 col-12-m">
-                    @Html.RouteLink("Blog", Routes.Blog)
+                <li>
+                    @Html.RouteLink("Games", Routes.Buy.Games)
                 </li>
-                <li class="col-2 col-12-m">
+                <li>
+                    @Html.RouteLink("FAQ", Routes.FAQ)
+                </li>
+                <li>
                     @Html.RouteLink("Contact us", Routes.ContactUs)
                 </li>
             </ol>
@@ -79,6 +81,7 @@
 
     <!-- scripts -->
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/scripts")
     @RenderSection("scripts", required: false)
 

@@ -1,0 +1,22 @@
+﻿@model Vintage.Rabbit.Web.Models.Membership.LoginRegisterViewModel
+@{
+    ViewBag.Title = "Login / Register";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+
+<div class="login-register-page">
+    <div class="row">
+        <div class="col-4 offset-1">            
+            @{Html.RenderPartial("Register", Model.Register);}
+        </div>
+        <div class="col-1">
+            <div class="line">
+                <div class="or">Or</div>
+            </div>
+        </div>
+        <div class="col-4">
+            @{Html.RenderPartial("Login", Model.Login);}
+        </div>
+    </div>
+</div>

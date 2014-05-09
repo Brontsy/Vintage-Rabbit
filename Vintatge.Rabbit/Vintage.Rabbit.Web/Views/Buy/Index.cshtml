@@ -2,7 +2,9 @@
 
 
 
-<div class="row buy-page">
+<div class="row buy-page">    
+    
+    @{Html.RenderPartial("breadcrumbs", Model.Breadcrumbs);}
 
     @foreach(var category in Model)
     { 

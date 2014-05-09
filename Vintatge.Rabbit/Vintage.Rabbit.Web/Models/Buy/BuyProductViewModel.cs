@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Vintage.Rabbit.Products.Entities;
+using Vintage.Rabbit.Web.Models.Breadcrumbs;
 using Vintage.Rabbit.Web.Models.Products;
 
 namespace Vintage.Rabbit.Web.Models.Buy
@@ -22,12 +23,15 @@ namespace Vintage.Rabbit.Web.Models.Buy
             get { return this.Title.Replace(" ", "-").ToLower(); }
         }
 
-        public BuyProductViewModel(Product product)
+        public BreadcrumbsViewModel Breadcrumbs { get; private set; }
+
+        public BuyProductViewModel(Product product, BreadcrumbsViewModel breadcrumbs) 
         {
             this.Id = product.Id;
             this.Images = product.Images.Select(o => new ProductImageViewModel(o)).ToList();
             this.Cost = product.Cost.ToString("C");
             this.Title = product.Title;
+            this.Breadcrumbs = breadcrumbs;
         }
     }
 }

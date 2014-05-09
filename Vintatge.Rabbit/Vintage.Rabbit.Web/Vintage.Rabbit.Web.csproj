@@ -165,10 +165,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Attributes\Validation\EmailAttribute.cs" />
+    <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\HireController.cs" />
     <Compile Include="Controllers\BuyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\MembershipController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
@@ -178,11 +182,15 @@
     <Compile Include="ModelBinders\HireDatesModelBinder.cs" />
     <Compile Include="ModelBinders\MemberModelBinder.cs" />
     <Compile Include="Models\Breadcrumbs\BreadcrumbsViewModel.cs" />
+    <Compile Include="Models\Buy\BuyProductListViewModel.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
     <Compile Include="Models\Hire\HireDatesViewModel.cs" />
     <Compile Include="Models\Hire\HireProductListItemViewModel.cs" />
     <Compile Include="Models\Hire\HireProductViewModel.cs" />
     <Compile Include="Models\Buy\BuyProductViewModel.cs" />
+    <Compile Include="Models\Membership\LoginRegisterViewModel.cs" />
+    <Compile Include="Models\Membership\LoginViewModel.cs" />
+    <Compile Include="Models\Membership\RegisterViewModel.cs" />
     <Compile Include="Models\Products\ProductImageViewModel.cs" />
     <Compile Include="Models\Products\ProductListItemViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartItemViewModel.cs" />
@@ -275,6 +283,8 @@
     <Content Include="Content\less\components\datepicker - Copy.less" />
     <Content Include="Content\less\common\alerts.less" />
     <Content Include="Content\less\components\breadcrumbs.less" />
+    <Content Include="Content\less\pages\contact-us.less" />
+    <Content Include="Content\less\pages\login-register.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -313,10 +323,14 @@
     <Content Include="Views\Hire\Index.cshtml" />
     <Content Include="Views\Hire\Product.cshtml" />
     <Content Include="Views\Shared\breadcrumbs.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\ContactUs\Index.cshtml" />
+    <Content Include="Views\Membership\Index.cshtml" />
+    <Content Include="Views\Membership\Login.cshtml" />
+    <Content Include="Views\Membership\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Attributes\" />
     <Folder Include="Models\Product\" />
     <Folder Include="Views\Product\" />
   </ItemGroup>

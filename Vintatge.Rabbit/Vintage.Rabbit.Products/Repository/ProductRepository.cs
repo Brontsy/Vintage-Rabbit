@@ -48,7 +48,7 @@ namespace Vintage.Rabbit.Products.Repository
 
         public IList<Product> GetFeaturedProducts()
         {
-            return this.GetProducts().Take(6).Select(o => o as Product).ToList();
+            return this.GetProducts().Take(12).Select(o => o as Product).ToList();
         }
 
         public IList<BuyProduct> GetBuyProducts(int page)
@@ -97,7 +97,7 @@ namespace Vintage.Rabbit.Products.Repository
                 new BuyProduct() { Id = 87653, Title = "Regency Paper Plates (Set of 8)", Cost = 5.95M, Categories = new List<Category>() { new Category() { Id = 1, Name = "party-supplies" } }, Description = "", Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/23944.jpg" }}},
                 new BuyProduct() { Id = 54452, Title = "Hope & Greenwood Baking Cases (pack of 12)", Cost = 8.95M, Categories = new List<Category>() { new Category() { Id = 1, Name = "party-supplies" } }, Description = "", Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/baking-cases2.jpg" }}},
                 new BuyProduct() { Id = 218, Title = "Frills and Frosting Cake Toppers", Cost = 9.95M, Categories = new List<Category>() { new Category() { Id = 1, Name = "games" } }, Description = "", Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/20130226172444_1.jpg" }}},
-                new BuyProduct() { Id = 3577, Title = "Mason Drinking Jar with Daisy Lid", Cost = 8.95M, Categories = new List<Category>() { new Category() { Id = 1, Name = "party-supplies" } }, Description = "", Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/mason2lores_1.jpg" }}},
+                new BuyProduct() { Id = 3577, Title = "Mason Drinking Jar with Daisy Lid", Cost = 8.95M, Categories = new List<Category>() { new Category() { Id = 1, Name = "party-supplies", DisplayName = "Part supplies" } }, Description = "", Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/mason2lores_1.jpg" }}},
                 new BuyProduct() { Id = 8972231, Title = "Yellow Diagonal Stripe Paper Party Bags (pack of 10)", Cost = 4.95M, Categories = new List<Category>() { new Category() { Id = 1, Name = "party-supplies" } }, Description = "", Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/bag37lores.jpg" }}},
                 new BuyProduct() { Id = 21378, Title = "Carnival Stripe Ceramic Lemonade Bottle (set of 2)", Cost = 12.95M, Categories = new List<Category>() { new Category() { Id = 1, Name = "party-supplies" } }, Description = "", Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/rg-may2013_1293-copy.jpg" }}},
                 new BuyProduct() { Id = 21345, Title = "Make Lemonade Sign", Cost = 89.95M, Categories = new List<Category>() { new Category() { Id = 1, Name = "party-supplies" } }, Description = "", Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/age-04-125.jpg" }}},
