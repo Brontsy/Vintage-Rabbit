@@ -17,6 +17,7 @@ namespace Vintage.Rabbit.Web.Models.Membership
         [MinLength(6, ErrorMessage = "Your password must be greater then  characters")]
         public string Password { get; private set; }
 
+        [Required(ErrorMessage = "Please enter your password")]
         [Compare("Password", ErrorMessage = "The password and confirmation do not match.")]
         public string ConfirmPassword { get; private set; }
     }

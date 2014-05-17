@@ -22,6 +22,8 @@ namespace Vintage.Rabbit.Web.Models.ShoppingCart
 
         public int ProductId { get; private set; }
 
+        public bool IsHire { get; private set; }
+
         public CartItemViewModel(CartItem item)
         {
             this.Id = item.Id.ToString();
@@ -31,6 +33,7 @@ namespace Vintage.Rabbit.Web.Models.ShoppingCart
             this.Quantity = item.Quantity;
             this.Key = item.Product.Title.Replace(" ", "-").ToLower();
             this.ProductId = item.Product.Id;
+            this.IsHire = item.Product is HireProductCartItem;
         }
     }
 }

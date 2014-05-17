@@ -1,0 +1,53 @@
+﻿@model Vintage.Rabbit.Web.Models.Membership.LoginRegisterViewModel
+@{
+    ViewBag.Title = "Login / Register";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+
+<div class="checkout-register-page">
+    <div class="row">
+        <div class="col-5">
+            <h3>Checkout as a guest or register</h3>
+            <p>
+                Register with us to save time, earn rewards, create or view your wish list, join our mailing list and much more
+            </p>
+
+            <div class="checkout-control-container">
+                @using (Html.BeginRouteForm(Routes.Checkout.Guest, new { }, FormMethod.Post, new { @class = "guest-form" }))
+{
+                    <fieldset>
+                        <ol>
+                            <li class="radiobuttons">
+                                <input type="radio" value="guest" name="register" id="guest" /> <label for="guest">Checkout as guest</label>
+                            </li>
+                            <li class="radiobuttons">
+                                <input type="radio" value="register" name="register" id="register" /> <label for="register">Register</label>
+                            </li>
+                            <li>
+                                <button class="btn primary" type="submit">Continue</button>
+                            </li>
+                        </ol>
+                    </fieldset>
+                }
+
+                <div class="register">
+
+                    @{Html.RenderAction("Register", "Membership");}
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-2">
+            <div class="line">
+                <div class="or">Or</div>
+            </div>
+        </div>
+        <div class="col-5">
+            @{Html.RenderAction("Login", "Membership");}
+        </div>
+    </div>
+</div>
+

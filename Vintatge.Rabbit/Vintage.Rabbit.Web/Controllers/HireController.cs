@@ -27,7 +27,11 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             IList<HireProduct> products = this._queryDispatcher.Dispatch<IList<HireProduct>, GetHireProductsQuery>(new GetHireProductsQuery());
 
-            IList<HireProductListItemViewModel> viewModel = products.Select(o => new HireProductListItemViewModel(o)).ToList();
+            BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
+            breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
+            breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Index), "Hire");
+
+            HireProductListViewModel viewModel = new HireProductListViewModel(products, breadCrumbs);
 
             return View("Index", viewModel);
         }

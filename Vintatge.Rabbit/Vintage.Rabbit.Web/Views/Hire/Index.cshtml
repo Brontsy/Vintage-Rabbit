@@ -1,10 +1,12 @@
-﻿@model IList<Vintage.Rabbit.Web.Models.Hire.HireProductListItemViewModel>
+﻿@model Vintage.Rabbit.Web.Models.Hire.HireProductListViewModel
 
 
-<div class="hire-page">
+<div class="hire-page">    
+    
+    @{Html.RenderPartial("breadcrumbs", Model.Breadcrumbs);}
 
     <ul class="row">
-        @foreach (var product in Model)
+        @foreach (var product in Model.Products)
         {
             <li class="col-2">
                 <div class="product-list-item">

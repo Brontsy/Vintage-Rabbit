@@ -28,6 +28,12 @@ namespace Vintage.Rabbit.Web
         public static class Checkout
         {
             public static string Index = "Checkout";
+            public static string LoginRegister = "Checkout - LoginRegister";
+            public static string Guest = "Checkout - Guest";
+            public static string ShippingInformation = "Checkout - ShippingInformation";
+            public static string PaymentInfo = "Checkout - PaymentInfo";
+            public static string Confirm = "Checkout - Confirm";
+            public static string Complete = "Checkout - Complete";
 
         }
 
@@ -73,6 +79,12 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.Hire.CheckProductAvailability, url: "hire/availability/{name}/{productId}", defaults: new { controller = "Hire", action = "CheckProductAvailability" });
 
             routes.MapRoute(Routes.Checkout.Index, url: "checkout", defaults: new { controller = "Payment", action = "Index" });
+            routes.MapRoute(Routes.Checkout.LoginRegister, url: "checkout/register", defaults: new { controller = "Payment", action = "LoginRegister" });
+            routes.MapRoute(Routes.Checkout.Guest, url: "checkout/guest", defaults: new { controller = "Payment", action = "Guest" });
+            routes.MapRoute(Routes.Checkout.ShippingInformation, url: "checkout/shipping-information", defaults: new { controller = "Payment", action = "ShippingInformation" });
+            routes.MapRoute(Routes.Checkout.PaymentInfo, url: "checkout/payment-info", defaults: new { controller = "Payment", action = "PaymentInfo" });
+            routes.MapRoute(Routes.Checkout.Confirm, url: "checkout/confirm", defaults: new { controller = "Payment", action = "Confirm" });
+            routes.MapRoute(Routes.Checkout.Complete, url: "checkout/complete", defaults: new { controller = "Payment", action = "Complete" });
 
 
             routes.MapRoute(Routes.Membership.Register, url: "register", defaults: new { controller = "Membership", action = "Register" });
@@ -97,8 +109,10 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.Buy.Preview, url: "{categoryName}/preview/{name}/{productId}", defaults: new { controller = "Buy", action = "Preview" });
             routes.MapRoute(Routes.Buy.Category, url: "{categoryName}", defaults: new { controller = "Buy", action = "Category" });
 
+            routes.MapRoute(name: Routes.Home, url: "", defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
+
             routes.MapRoute(
-                name: Routes.Home,
+                name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );

@@ -48,11 +48,12 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult Product(int productId, string name, string categoryName)
         {
+            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName));
             BuyProduct product = this._queryDispatcher.Dispatch<BuyProduct, GetBuyProductQuery>(new GetBuyProductQuery(productId));
 
             BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
             breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
-            breadCrumbs.Add(Url.RouteUrl(Routes.Buy.Category, new { categoryName = categoryName }), product.Categories.First(o => o.Name == categoryName).DisplayName);
+            breadCrumbs.Add(Url.RouteUrl(Routes.Buy.Category, new { categoryName = category.Name }), category.DisplayName);
             breadCrumbs.Add(Url.RouteUrl(Routes.Buy.Product, new { productId = product.Id, name = product.Title.ToUrl() }), product.Title, true);
 
 

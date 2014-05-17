@@ -20,8 +20,8 @@
                 <h1><a href="/">Vintage Ra<span>bb</span>it</a></h1>
             </div>
 
-            <div class="col-4">
-                <form action="/" class="search">
+            <div class="col-3">
+                <form action="/" class="search" style="display: none;">
 
                     <div class="button-search">
                         <i class="fa fa-search"></i>
@@ -31,12 +31,29 @@
                 </form>
             </div>
 
-            <div class="col-3 offset-1">
+            <div class="col-4 offset-1">
                 @{Html.RenderAction("PageHeader", "ShoppingCart");}
 
                 <div class="login-register">
-                    @Html.RouteLink("Login", Routes.Membership.Login)&nbsp; / &nbsp;@Html.RouteLink("Register", Routes.Membership.Register)
+                    <div class="triangle left"></div>
+                    <div class="link-container">
+                        @Html.RouteLink("Login", Routes.Membership.Login)&nbsp; / &nbsp;@Html.RouteLink("Register", Routes.Membership.Register)
+                    </div>
                 </div>
+
+
+                <div class="search">
+
+                    <input type="text" class="left" name="search" placeholder="Search" value="">
+                    <div class="submit-container">
+                        <div class="triangle left"></div>
+                        <button type="submit" class="btn left">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                </div>
+
             </div>
 
         </div>

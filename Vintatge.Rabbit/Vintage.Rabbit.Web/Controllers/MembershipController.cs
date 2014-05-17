@@ -12,6 +12,11 @@ namespace Vintage.Rabbit.Web.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            if(this.ControllerContext.IsChildAction)
+            {
+                return this.PartialView("Login", new LoginViewModel());
+            }
+
             LoginRegisterViewModel viewModel = new LoginRegisterViewModel();
 
             return View("Index", viewModel);
@@ -20,6 +25,11 @@ namespace Vintage.Rabbit.Web.Controllers
         [HttpGet]
         public ActionResult Register()
         {
+            if (this.ControllerContext.IsChildAction)
+            {
+                return this.PartialView("Register", new RegisterViewModel());
+            }
+
             LoginRegisterViewModel viewModel = new LoginRegisterViewModel();
 
             return View("Index", viewModel);

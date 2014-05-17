@@ -16,7 +16,7 @@ namespace Vintage.Rabbit.Web.Models.ShoppingCart
 
         public CartViewModel(Cart cart, bool isOpen)
         {
-            this.Items = cart.Items.Select(o => new CartItemViewModel(o)).ToList(); ;
+            this.Items = cart.Items.Select(o => new CartItemViewModel(o)).OrderBy(o => o.IsHire).ToList();
             this.Total = cart.Total.ToString("C2");
             this.IsOpen = isOpen;
         }
