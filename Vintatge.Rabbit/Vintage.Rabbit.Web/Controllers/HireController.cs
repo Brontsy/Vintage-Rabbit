@@ -35,6 +35,25 @@ namespace Vintage.Rabbit.Web.Controllers
 
             return View("Index", viewModel);
         }
+
+        public ActionResult Preview(int productId, string name, HireDatesViewModel hireDates)
+        {
+            HireProduct product = this._queryDispatcher.Dispatch<HireProduct, GetHireProductQuery>(new GetHireProductQuery(productId));
+            bool? available = null;
+
+            if (hireDates.StartDate.HasValue && hireDates.EndDate.HasValue)
+            {
+                available = this._queryDispatcher.Dispatch<bool, IsHireProductAvailableQuery>(new IsHireProductAvailableQuery(productId, hireDates.StartDate.Value, hireDates.EndDate.Value));
+            }
+
+            BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
+            breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
+            breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Index), "Hire");
+            breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Product, new { productId = product.Id, name = product.Title.ToUrl() }), product.Title, true);
+
+            return this.PartialView("Product", new HireProductViewModel(product, available, hireDates, breadCrumbs));
+        }
+
         public ActionResult Product(int productId, string name, HireDatesViewModel hireDates)
         {
             HireProduct product = this._queryDispatcher.Dispatch<HireProduct, GetHireProductQuery>(new GetHireProductQuery(productId));

@@ -232,7 +232,14 @@
     <Content Include="Content\images\products\rg-may2013_1293-copy.jpg" />
     <Content Include="Content\images\products\sambellina_rainbow_treat_box__23750.1377144079.1280.1280.jpg" />
     <Content Include="Content\images\Soccer-dessert-table.jpg" />
+    <Content Include="Content\images\social\email.gif" />
+    <Content Include="Content\images\social\facebook.gif" />
+    <Content Include="Content\images\social\instagram.gif" />
+    <Content Include="Content\images\social\pinterest.gif" />
     <Content Include="Content\images\Toffee-Apples.jpg" />
+    <Content Include="Content\scripts\lightbox\feather-light.js" />
+    <Content Include="Content\scripts\preload.js" />
+    <Content Include="Content\scripts\lightbox.js" />
     <Content Include="Content\scripts\checkout.js" />
     <Content Include="Content\scripts\datepicker\datepicker.source.js" />
     <Content Include="Content\scripts\datepicker.js" />
@@ -296,6 +303,7 @@
     <Content Include="Content\fonts\honey-script\HoneyScriptSemiBold.eot" />
     <Content Include="Content\fonts\honey-script\HoneyScriptSemiBold.ttf" />
     <Content Include="Content\fonts\honey-script\HoneyScriptSemiBold.woff" />
+    <Content Include="Content\less\common\lightbox.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />

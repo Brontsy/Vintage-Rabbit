@@ -14,7 +14,7 @@
                     <h4>@Html.RouteLink(product.Title, Routes.Hire.Product, new { productId = product.Id, name = product.UrlTitle }, new { })</h4>
                     <div class="price">@product.Cost</div>
                     <div class="product-controls">
-                        <a href="@Url.RouteUrl(Routes.Hire.Preview, new { productId = product.Id, name = product.UrlTitle })">
+                        <a class="ajax-lightbox" href="@Url.RouteUrl(Routes.Hire.Preview, new { productId = product.Id, name = product.UrlTitle })">
                             <i class="fa fa-search"></i>
                             Preview
                         </a>

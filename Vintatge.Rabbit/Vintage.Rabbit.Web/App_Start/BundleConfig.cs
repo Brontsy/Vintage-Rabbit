@@ -16,7 +16,7 @@ namespace Vintage.Rabbit.Web
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Content/scripts/modernizr/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/scripts").Include("~/Content/scripts/datepicker/*.js").Include("~/Content/scripts/*.js"));
+            bundles.Add(new ScriptBundle("~/bundles/scripts").Include("~/Content/scripts/datepicker/*.js").Include("~/Content/scripts/lightbox/*.js").Include("~/Content/scripts/*.js"));
 
         }
     }
