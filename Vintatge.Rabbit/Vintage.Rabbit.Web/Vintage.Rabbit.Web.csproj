@@ -204,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\honey-script\HoneyScriptSemiBold.png" />
     <Content Include="Content\images\Birthday-Party-Supplies.jpeg" />
     <Content Include="Content\images\nav-background02.jpg" />
     <Content Include="Content\images\products\20130226172444_1.jpg" />
@@ -292,6 +293,9 @@
     <Content Include="Content\less\pages\login-register.less" />
     <Content Include="Content\less\pages\checkout-register.less" />
     <Content Include="Content\less\pages\checkout-shipping.less" />
+    <Content Include="Content\fonts\honey-script\HoneyScriptSemiBold.eot" />
+    <Content Include="Content\fonts\honey-script\HoneyScriptSemiBold.ttf" />
+    <Content Include="Content\fonts\honey-script\HoneyScriptSemiBold.woff" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
