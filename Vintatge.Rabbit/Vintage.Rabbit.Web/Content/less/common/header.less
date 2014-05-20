@@ -23,29 +23,26 @@ header {
     }
 
     .login-register {
-        margin-top: 5px;
         text-align: right;
-        float: right;
 
         .link-container {
-            background: @blue;
+            background: #666;
             line-height: 28px;
-            width: 170px;
             color: #fff;
-            padding: 0px 20px 0px 20px;
-
-            a { color: #fff;
-            }
+            height: 28px;
+            text-align: center;
+            width: 100%;
+            a { color: #fff; }
         }
 
         .triangle {
             margin-right: -1px;
-            background: @blue;
+            background: #666;
             width: 0px;
             height: 0px;
             border-style: solid;
             border-width: 14px 0 14px 14px;
-            border-color: transparent transparent transparent #ffffff;
+            border-color: transparent transparent transparent #999999;
         }
     }
 }
@@ -53,8 +50,8 @@ header {
 nav {
     .page-content();
     margin-top: 5px;
-    background: url(/content/images/nav-background02.jpg) no-repeat;
-
+    border-top: 1px dotted #666666;
+    border-bottom: 1px dotted #666666;
     ol {
         > li {
             text-align: center;
@@ -68,7 +65,7 @@ nav {
                 display: block;
                 padding: 0px;
                 transition: all 0.15s linear .1s;
-                font-family: 'Brandon Grotesque Regular', 'FontleroyBrown', Arial, sans-serif;
+                font-family: 'TypicalWriter', 'FontleroyBrown', Arial, sans-serif;
                 font-size: 20px;
                 height: 54px; line-height: 54px;
             }

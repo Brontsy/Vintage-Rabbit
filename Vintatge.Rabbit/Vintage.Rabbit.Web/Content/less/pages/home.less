@@ -6,16 +6,16 @@
     margin-top: 20px;
 
     .styles {
-        height: 520px;
 
         .tile-image {
+            
             color: #333333;
             text-align: center;
             font-size: 46px;
-            padding-top: 420px;
             display: block;
             font-family: 'HoneyScriptSemiBold', Arial;
 
+            img { width: 100%; }
             em {
                 display: block;
                 text-align: center;
@@ -27,24 +27,8 @@
                 padding: 5px 0px 10px 0px;
                 transition: all 0.15s linear 0s;
             }
-
-            &.hire {
-                background: url(/content/images/Toffee-Apples.jpg) no-repeat;
-                background-position: -100px top;
-                height: 400px;
-            }
-
-            &.style {
-                background: url(/content/images/Birthday-Party-Supplies.jpeg) no-repeat;
-                background-position: -695px -415px;
-                height: 400px;
-            }
-
-            &.buy {
-                background: url(/content/images/Soccer-dessert-table.jpg) no-repeat;
-                background-position: center 0px;
-                height: 400px;
-            }
+            &:hover { text-decoration: none; }
+           
         }
     }
 
@@ -57,6 +41,11 @@
 
     .featured
     {
-        li { margin-bottom: 20px; }
+        li 
+        {
+             margin-bottom: 20px; 
+             .price {display:none;}
+             .product-controls {display:none;}
+        }
     }
 }

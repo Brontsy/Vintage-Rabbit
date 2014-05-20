@@ -13,8 +13,6 @@ namespace Vintage.Rabbit.Web.ModelBinders
     {
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            //do implementation here
-
              var cookie = controllerContext.RequestContext.HttpContext.Request.Cookies["MemberGuid"];
 
             if(cookie != null)

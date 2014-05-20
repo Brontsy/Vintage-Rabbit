@@ -6,9 +6,11 @@
 
     .container {
 
+        position: absolute;
+        right: -20px;
         .triangle {
             margin-right: -1px;
-            background: @green;
+            background: #999999;
             width: 0px;
             height: 0px;
             border-style: solid;
@@ -17,18 +19,18 @@
             float: left;
         }
 
-        float: right;
 
         .item-count {
-            background: @green;
-            border: 1px solid @green;
+            background: #999;
+            border: 1px solid #999;
+            height: 28px;
             border-bottom: none;
             padding: 0px 10px 0px 10px;
             color: #ffffff;
             text-align: center;
             position: relative;
             float: left;
-            line-height: 27px;
+            line-height: 28px;
         }
 
         &:hover {
@@ -54,9 +56,9 @@
 
     .cart-content {
         position: absolute;
-        width: 300%;
+        width: 500%;
         top: 27px;
-        right: 0px;
+        right: -20px;
         background: #ffffff;
         margin-left: -200%;
         z-index: 90;

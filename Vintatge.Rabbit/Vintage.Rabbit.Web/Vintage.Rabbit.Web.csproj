@@ -39,8 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.3.3.1\lib\net40\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=3.4.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Autofac.3.4.0\lib\net40\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Autofac.Integration.Mvc">
       <HintPath>..\packages\Autofac.Mvc5.3.2.1\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
@@ -192,6 +193,7 @@
     <Compile Include="Models\Buy\BuyProductViewModel.cs" />
     <Compile Include="Models\Membership\LoginRegisterViewModel.cs" />
     <Compile Include="Models\Membership\LoginViewModel.cs" />
+    <Compile Include="Models\Membership\PageHeaderViewModel.cs" />
     <Compile Include="Models\Membership\RegisterViewModel.cs" />
     <Compile Include="Models\Payment\PaymentInfoViewModel.cs" />
     <Compile Include="Models\Payment\ShippingInformationViewModel.cs" />
@@ -200,12 +202,17 @@
     <Compile Include="Models\ShoppingCart\CartItemViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\LoginProvider.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\honey-script\HoneyScriptSemiBold.png" />
+    <Content Include="Content\fonts\typical-writer\Readme.txt" />
     <Content Include="Content\images\Birthday-Party-Supplies.jpeg" />
+    <Content Include="Content\images\home\buy.jpg" />
+    <Content Include="Content\images\home\hire.jpg" />
+    <Content Include="Content\images\home\themes.jpg" />
     <Content Include="Content\images\nav-background02.jpg" />
     <Content Include="Content\images\products\20130226172444_1.jpg" />
     <Content Include="Content\images\products\23944.jpg" />
@@ -293,7 +300,6 @@
     <Content Include="Content\less\components\hire-product-detail.less" />
     <Content Include="Content\less\components\datepicker.less" />
     <Content Include="Content\less\components\jquery-ui.less" />
-    <Content Include="Content\less\components\datepicker - Copy.less" />
     <Content Include="Content\less\common\alerts.less" />
     <Content Include="Content\less\components\breadcrumbs.less" />
     <Content Include="Content\less\pages\contact-us.less" />
@@ -304,6 +310,8 @@
     <Content Include="Content\fonts\honey-script\HoneyScriptSemiBold.ttf" />
     <Content Include="Content\fonts\honey-script\HoneyScriptSemiBold.woff" />
     <Content Include="Content\less\common\lightbox.less" />
+    <Content Include="Content\fonts\typical-writer\carl-johanson_typical-writer.zip" />
+    <Content Include="Content\fonts\typical-writer\TYPIW___.TTF" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -349,6 +357,7 @@
     <Content Include="Views\Membership\Register.cshtml" />
     <Content Include="Views\Payment\LoginRegister.cshtml" />
     <Content Include="Views\Payment\Register.cshtml" />
+    <Content Include="Views\Membership\PageHeader.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -20,24 +20,34 @@
                 <h1><a href="/">Vintage Ra<span>bb</span>it</a></h1>
             </div>
 
-            <div class="col-3">
-                <form action="/" class="search" style="display: none;">
+            <div class="col-4">
 
-                    <div class="button-search">
-                        <i class="fa fa-search"></i>
-                    </div>
-                    <input type="text" name="search" placeholder="Search" value="">
+                <div class="social">
+                    <a href="http://www.facebook.com">
+                        <img src="/content/images/social/facebook.gif" />
+                    </a>
+                    <a href="http://www.instagram.com">
+                        <img src="/content/images/social/instagram.gif" />
+                    </a>
+                    <a href="http://www.pinterest.com">
+                        <img src="/content/images/social/pinterest.gif" />
+                    </a>
+                    <a href="mailto:asd@asd.com">
+                        <img src="/content/images/social/email.gif" />
+                    </a>
+                </div>
 
-                </form>
+
             </div>
 
-            <div class="col-4 offset-1">
-                @{Html.RenderAction("PageHeader", "ShoppingCart");}
+            <div class="col-4">
 
-                <div class="login-register">
-                    <div class="triangle left"></div>
-                    <div class="link-container">
-                        @Html.RouteLink("Login", Routes.Membership.Login)&nbsp; / &nbsp;@Html.RouteLink("Register", Routes.Membership.Register)
+                <div class="row">
+                    <div class="col-6">                        
+                        @{Html.RenderAction("PageHeader", "ShoppingCart");}
+                    </div>
+                    <div class="col-6">                        
+                        @{Html.RenderAction("PageHeader", "Membership");}
                     </div>
                 </div>
 

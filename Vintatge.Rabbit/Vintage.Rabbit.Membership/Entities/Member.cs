@@ -12,18 +12,41 @@ namespace Vintage.Rabbit.Membership.Entities
 
         public string Email { get; private set; }
 
+        public string Password { get; private set; }
+
         public string FirstName { get; private set; }
 
         public string LastName { get; private set; }
 
-        public Member()
-        {
-            this.Id = Guid.NewGuid();
-        }
+        public IList<Address> ShippingAddresses { get; private set; }
+
+        public IList<Address> BillingAddresses { get; private set; }
 
         public Member(Guid id)
         {
             this.Id = id;
+            this.ShippingAddresses = new List<Address>();
+            this.BillingAddresses = new List<Address>();
+        }
+
+        public Member() : this(Guid.NewGuid())
+        {
+        }
+
+        public Member(string email, string password) : this()
+        {
+            this.Email = email;
+            this.Password = password;
+        }
+
+        internal void AddShippingAddress(Address address)
+        {
+            this.ShippingAddresses.Add(address);
+        }
+
+        internal void AddBillingAddress(Address address)
+        {
+            this.BillingAddresses.Add(address);
         }
     }
 }

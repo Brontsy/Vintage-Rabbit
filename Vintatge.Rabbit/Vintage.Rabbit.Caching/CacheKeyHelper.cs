@@ -35,5 +35,17 @@ namespace Vintage.Rabbit.Caching
                 return string.Format("Order-ById-{0}", orderId);
             }
         }
+
+        public static class Member
+        {
+            public static string ById(Guid orderId)
+            {
+                return string.Format("Member-ById-{0}", orderId);
+            }
+            public static string ByEmail(string email)
+            {
+                return string.Format("Member-ByEmail-{0}", email);
+            }
+        }
     }
 }
