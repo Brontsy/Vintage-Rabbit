@@ -13,7 +13,8 @@
             text-align: center;
             font-size: 46px;
             display: block;
-            font-family: 'HoneyScriptSemiBold', Arial;
+            font-family: 'TypicalWriter', Arial;
+                transition: all 0.15s linear 0s;
 
             img { width: 100%; }
             em {
@@ -22,12 +23,15 @@
                 font-style: normal;
                 color: #666666;
                 line-height: 24px;
-                font-size: 24px;
+                font-size: 16px;
                 margin-top: 1px;
                 padding: 5px 0px 10px 0px;
                 transition: all 0.15s linear 0s;
             }
-            &:hover { text-decoration: none; }
+            &:hover { text-decoration: none;
+                      color: @green;
+                      em { color: @green;}
+            }
            
         }
     }
