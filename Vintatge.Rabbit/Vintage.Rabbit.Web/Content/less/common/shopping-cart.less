@@ -1,122 +1,146 @@
 ﻿
+.shopping-cart-hover {
 
-.shopping-cart {
-    .clearfix();
-    position: relative;
-        margin-top: 45px;
+    .shopping-cart {
 
-    .container {
-
-        position: absolute;
-        right: -20px;
-        .triangle {
-            margin-right: -1px;
-            background: #999999;
-            width: 0px;
-            height: 0px;
-            border-style: solid;
-            border-width: 14px 0 14px 14px;
-            border-color: transparent transparent transparent #ffffff;
-            float: left;
-        }
-
-
-        .item-count {
-            background: #999;
-            border: 1px solid #999;
-            height: 28px;
-            border-bottom: none;
-            padding: 0px 10px 0px 10px;
-            color: #ffffff;
-            text-align: center;
-            position: relative;
-            float: left;
-            line-height: 28px;
-        }
-
-        &:hover {
-            cursor: pointer;
-            background: darken(@green, 10%);
-        }
-
-        &.active {
-            .item-count {
-                background: #ffffff;
-                border: 1px solid #333333;
-                border-bottom: none;
-                color: #333333;
-                z-index: 91;
-            }
+        .container {
 
             .triangle {
-                display: none;
+                background: @green;
+            }
+
+
+            .item-count {
+                background: @green;
+                border: 1px solid @green;
             }
         }
     }
+}
 
 
-    .cart-content {
-        position: absolute;
-        width: 500%;
-        top: 27px;
-        right: -20px;
-        background: #ffffff;
-        margin-left: -200%;
-        z-index: 90;
-        padding: 10px;
-        font-size: 14px;
-        border: 1px solid #666666;
-        border-right: 1px solid #666666;
-        border-bottom: 1px solid #666666;
+    .shopping-cart {
+        .clearfix();
+        position: relative;
+        margin-top: 45px;
 
-        ul {
-            li.item-header {
-                font-weight: bold;
-                border-top: none;
-                padding-bottom: 5px;
+        .container {
+            position: absolute;
+            right: -20px;
+
+            .triangle {
+                margin-right: -1px;
+                background: #999999;
+                width: 0px;
+                height: 0px;
+                border-style: solid;
+                border-width: 16px 0 16px 16px;
+                border-color: transparent transparent transparent #ffffff;
+                float: left;
             }
 
-            li.total {
-                font-weight: bold;
-                padding-bottom: 5px;
-                text-align: right;
+
+            .item-count {
+                background: #999;
+                border: 1px solid #999;
+                height: 32px;
+                border-bottom: none;
+                padding: 0px 10px 0px 10px;
+                color: #ffffff;
+                text-align: center;
+                position: relative;
+                float: left;
+                line-height: 28px;
+
+                span {
+                    font-family: 'Journal', Arial;
+                    font-size: 24px;
+                }
             }
 
-            li.checkout {
-                border-top: none;
+            &:hover {
+                cursor: pointer;
+                background: darken(@green, 10%);
             }
 
-            li {
-                border-top: 1px solid #dddddd;
-                padding: 15px 15px 10px 15px;
-                font-size: 13px;
-                line-height: 18px;
+            &.active {
+                .item-count {
+                    background: #ffffff;
+                    border: 1px solid #333333;
+                    border-bottom: none;
+                    color: #333333;
+                    z-index: 91;
+                }
 
-                .price {
+                .triangle {
+                    display: none;
+                }
+            }
+        }
+
+
+        .cart-content {
+            position: absolute;
+            width: 500%;
+            top: 31px;
+            right: -20px;
+            background: #ffffff;
+            margin-left: -200%;
+            z-index: 90;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #666666;
+            border-right: 1px solid #666666;
+            border-bottom: 1px solid #666666;
+
+            ul {
+                li.item-header {
+                    font-weight: bold;
+                    border-top: none;
+                    padding-bottom: 5px;
+                }
+
+                li.total {
+                    font-weight: bold;
+                    padding-bottom: 5px;
                     text-align: right;
                 }
 
-                i {
-                    color: @red;
-                    cursor: pointer;
-
-                    &:hover {
-                        color: darken(@red, 10%);
-                    }
+                li.checkout {
+                    border-top: none;
                 }
 
-                input {
-                    height: 24px;
-                    width: 24px;
-                    text-align: center;
-                    font-size: 14px;
-                    line-height: 24px;
-                    margin-top: -5px;
+                li {
+                    border-top: 1px solid #dddddd;
+                    padding: 15px 15px 10px 15px;
+                    font-size: 13px;
+                    line-height: 18px;
+
+                    .price {
+                        text-align: right;
+                    }
+
+                    i {
+                        color: @red;
+                        cursor: pointer;
+
+                        &:hover {
+                            color: darken(@red, 10%);
+                        }
+                    }
+
+                    input {
+                        height: 24px;
+                        width: 24px;
+                        text-align: center;
+                        font-size: 14px;
+                        line-height: 24px;
+                        margin-top: -5px;
+                    }
                 }
             }
         }
-    }
 
-    .item-count {
+        .item-count {
+        }
     }
-}

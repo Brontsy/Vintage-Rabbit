@@ -1,4 +1,18 @@
 ﻿
+    header {
+.shopping-cart-hover {
+
+
+        .login-register {
+
+
+
+            .triangle {
+                border-color: transparent transparent transparent @green;
+            }
+        }
+    }
+}
 
 
 header {
@@ -12,7 +26,7 @@ header {
             color: #333333;
             font-weight: bold;
             background: url(/content/images/logo.png);
-            height:110px;
+            height: 110px;
             width: 204px;
             display: block;
             text-indent: -9999px;
@@ -35,10 +49,15 @@ header {
             background: #666;
             line-height: 28px;
             color: #fff;
-            height: 28px;
+            height: 32px;
             text-align: center;
             width: 100%;
-            a { color: #fff; }
+
+            a {
+                color: #fff;
+                font-family: 'Journal', Arial;
+                font-size: 24px;
+            }
         }
 
         .triangle {
@@ -47,8 +66,18 @@ header {
             width: 0px;
             height: 0px;
             border-style: solid;
-            border-width: 14px 0 14px 14px;
+            border-width: 16px 0 16px 16px;
             border-color: transparent transparent transparent #999999;
+        }
+
+        &:hover {
+            .link-container {
+                background: @green;
+            }
+
+            .triangle {
+            background: @green;
+            }
         }
     }
 }
