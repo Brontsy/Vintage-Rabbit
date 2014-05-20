@@ -313,6 +313,7 @@
     <Content Include="Content\less\common\lightbox.less" />
     <Content Include="Content\fonts\typical-writer\carl-johanson_typical-writer.zip" />
     <Content Include="Content\fonts\typical-writer\TYPIW___.TTF" />
+    <Content Include="Content\fonts\journal\JOURNAL.TTF" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
