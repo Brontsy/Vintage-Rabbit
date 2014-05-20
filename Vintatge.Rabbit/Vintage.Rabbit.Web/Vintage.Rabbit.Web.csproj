@@ -213,6 +213,7 @@
     <Content Include="Content\images\home\buy.jpg" />
     <Content Include="Content\images\home\hire.jpg" />
     <Content Include="Content\images\home\themes.jpg" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\nav-background02.jpg" />
     <Content Include="Content\images\products\20130226172444_1.jpg" />
     <Content Include="Content\images\products\23944.jpg" />

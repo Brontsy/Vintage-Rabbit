@@ -2,6 +2,7 @@
 
 
 <div class="product-list-item">
+    <div class="we-love"><div class="start"></div>@Model.Cost</div>
     <img src="@Model.Image.Url" width="100%" />
     <h4>@Html.RouteLink(Model.Title, Routes.Buy.Product, new { productId = Model.Id, name = Model.UrlTitle }, new { })</h4>
     <div class="price">@Model.Cost</div>
