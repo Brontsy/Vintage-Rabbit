@@ -48,7 +48,7 @@ namespace Vintage.Rabbit.Products.Repository
 
         public IList<Product> GetFeaturedProducts()
         {
-            return this.GetProducts().Take(12).Select(o => o as Product).ToList();
+            return this.GetProducts().Take(15).Select(o => o as Product).ToList();
         }
 
         public IList<BuyProduct> GetBuyProducts(int page)

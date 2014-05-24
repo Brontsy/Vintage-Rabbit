@@ -8,15 +8,17 @@
     .styles {
 
         .tile-image {
-            
             color: #333333;
             text-align: center;
             font-size: 46px;
             display: block;
             font-family: 'TypicalWriter', Arial;
-                transition: all 0.15s linear 0s;
+            transition: all 0.15s linear 0s;
 
-            img { width: 100%; }
+            img {
+                width: 100%;
+            }
+
             em {
                 display: block;
                 text-align: center;
@@ -28,29 +30,49 @@
                 padding: 5px 0px 10px 0px;
                 transition: all 0.15s linear 0s;
             }
-            &:hover { text-decoration: none;
-                      color: @green;
-                      em { color: @green;}
+
+            &:hover {
+                text-decoration: none;
+                color: @green;
+
+                em {
+                    color: @green;
+                }
             }
-           
         }
     }
 
-    .social { text-align: center; margin-top: 20px;}
-
-    .promotions
-    {
-        text-align: center; margin-top: 25px;
+    .social {
+        text-align: center;
+        margin-top: 20px;
     }
 
-    .featured
-    {
-        li 
-        {
-             margin-bottom: 20px; 
-             h4 { font-size: 11px; padding-bottom: 10px; }
-             .price {display:none;}
-             .product-controls {display:none;}
+    .promotions {
+        text-align: center;
+        margin-top: 25px;
+    }
+
+    .featured {
+        margin-top: 40px;
+        li {
+            margin-bottom: 20px;
         }
+
+            li.square-text {
+                margin-bottom: 20px;
+
+                h4 {
+                    height: 146px; padding: 0px 10px 0px 10px;
+                    background: #fefefe;
+                    font-family: 'Journal', Arial;
+                    font-size: 52px;
+                    line-height: 46px;
+                    font-weight: normal;
+                    .box-shadow(2px 2px 3px 0px rgba(50, 50, 50, 0.25));
+
+                }
+            }
     }
+
+    hr { margin-top: 20px; }
 }

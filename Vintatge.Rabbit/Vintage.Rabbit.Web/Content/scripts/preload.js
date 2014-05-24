@@ -13,4 +13,10 @@ $(document).ready(function () {
     $('.shopping-cart').on('mouseleave', function (event) {
         $(this).parents('.row').removeClass('shopping-cart-hover');
     });
+
+    $('.product-list-item').on('mouseover', function (event) {
+
+
+    });
+
 });
