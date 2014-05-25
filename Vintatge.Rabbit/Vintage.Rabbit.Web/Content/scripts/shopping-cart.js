@@ -22,7 +22,7 @@ function AddClickEvents()
         event.stopPropagation();
     });
 
-    $('.shopping-cart .container').on('click', function (event) {
+    $('header .shopping-cart .container').on('click', function (event) {
 
         event.stopPropagation();
         $(this).toggleClass('active');
@@ -104,6 +104,6 @@ $(window).on('RemovedFromCart', function (json) {
 });
 
 $('body').on('click', function () {
-    $('.shopping-cart .container').removeClass('active');
-    $('.cart-content').addClass('hidden');
+    $('header .shopping-cart .container').removeClass('active');
+    $('header .cart-content').addClass('hidden');
 });

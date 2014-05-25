@@ -1,17 +1,17 @@
-﻿@model Vintage.Rabbit.Web.Models.Payment.ShippingInformationViewModel
+﻿@model Vintage.Rabbit.Web.Models.Payment.BillingInformationViewModel
 @{
-    ViewBag.Title = "Checkout - Shipping";
+    ViewBag.Title = "Checkout - Billing";
 }
 
 
-<div class="checkout shipping-information">
+<div class="checkout billing-information">
     
 
     <div class="row">
 
         <div class="col-6">
-            <h2>Shipping Information</h2>
-            @using (Html.BeginRouteForm(Routes.Checkout.ShippingInformation, new { }, FormMethod.Post, new { }))
+            <h2>Billing Information</h2>
+            @using (Html.BeginRouteForm(Routes.Checkout.BillingInformation, new { }, FormMethod.Post, new { }))
             {
                 <fieldset>
                     <ol class="row">
@@ -42,10 +42,6 @@
                         <li class="col-12">
                             @Html.TextBoxFor(o => o.State, new { placeholder = "State" })
                             @Html.ValidationMessageFor(o => o.State)
-                        </li>
-                        <li class="col-12">
-                            @Html.CheckBoxFor(o => o.BillingAddressIsTheSame, new {  })
-                            @Html.LabelFor(o => o.BillingAddressIsTheSame)
                         </li>
                         <li class="col-4 offset-8">
                             <div class=" text-right">

@@ -7,7 +7,7 @@
 
 @grid-columns:          12;
 @small-gutter:          20px;
-@base-gutter:           40px;
+@base-gutter:           30px;
 @large-gutter:          30px;
 
   .row {
@@ -37,9 +37,13 @@
   }
 
   .offset-1 { margin-left: percentage((1 / @grid-columns)); }
+  .offset-2 { margin-left: percentage((2 / @grid-columns)); }
+  .offset-3 { margin-left: percentage((3 / @grid-columns)); }
+  .offset-4 { margin-left: percentage((4 / @grid-columns)); }
   .offset-5 { margin-left: percentage((5 / @grid-columns)); }
   .offset-6 { margin-left: percentage((6 / @grid-columns)); }
   .offset-7 { margin-left: percentage((7 / @grid-columns)); }
+  .offset-8 { margin-left: percentage((8 / @grid-columns)); }
 
   .col-1  { width: percentage((1 / @grid-columns)); }
   .col-2  { width: percentage((2 / @grid-columns)); }

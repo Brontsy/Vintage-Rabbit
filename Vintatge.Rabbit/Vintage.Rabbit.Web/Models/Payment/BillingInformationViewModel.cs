@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Vintage.Rabbit.Web.Models.Payment
 {
-    public class ShippingInformationViewModel
+    public class BillingInformationViewModel
     {
         public string Address { get; set; }
 
@@ -22,12 +22,9 @@ namespace Vintage.Rabbit.Web.Models.Payment
 
         public string LastName { get; set; }
 
-        [Display(Name = "Is your billing address the same as your shipping address?")]
-        public bool BillingAddressIsTheSame { get; set; }
-
-        public ShippingInformationViewModel()
+        public BillingInformationViewModel()
         {
-            this.BillingAddressIsTheSame = true;
+
         }
     }
 }

@@ -1,0 +1,79 @@
+﻿@model Vintage.Rabbit.Web.Models.ShoppingCart.CartViewModel
+
+
+<div class="shopping-cart">
+
+    <div class="float-container">
+        <h2 class="right">Shopping cart</h2>
+    </div>
+
+</div>
+
+    <div class="shopping-cart" data-reload="@Url.RouteUrl(Routes.ShoppingCart.PageHeader, new {})">
+
+    
+        <div class="cart-content@(Model.IsOpen ? string.Empty : " hidden")">
+            <ul>
+                @if (Model.Items.Any(o => !o.IsHire))
+                {
+                    <li class="item-header">
+                        <div class="row">
+                            <div class="col-6">Purchase</div>
+                            <div class="col-2 text-right">Price</div>
+                            <div class="col-2 text-right">Qty</div>
+                            <div class="col-2 text-right">Total</div>
+                        </div>
+                    </li>
+                    foreach (var cartItem in Model.Items.Where(o => !o.IsHire))
+                    {
+                        <li>
+                            <div class="row">
+                                <div class="col-6">
+                                    @Html.RouteLink(cartItem.Title, Routes.Buy.Product, new { categoryName = "test", name = cartItem.Key, productId = cartItem.ProductId }, new { })
+                                </div>
+                                <div class="col-2 text-right">@cartItem.Cost</div>
+                                <div class="col-2 text-right">@cartItem.Quantity</div>
+                                <div class="col-2 text-right">@cartItem.Total</div>
+                            </div>
+                        </li>
+                    }
+                }
+                @if (Model.Items.Any(o => o.IsHire))
+                {
+                    <li class="item-header">
+                        <div class="row">
+                            <div class="col-6">Hire</div>
+                            <div class="col-2 text-right">Price</div>
+                            <div class="col-2 text-right">Qty</div>
+                            <div class="col-2 text-right">Total</div>
+                        </div>
+                    </li>
+                    foreach (var cartItem in Model.Items.Where(o => o.IsHire))
+                    {
+                        <li>
+                            <div class="row">
+                                <div class="col-6">
+                                    @Html.RouteLink(cartItem.Title, Routes.Hire.Product, new { name = cartItem.Key, productId = cartItem.ProductId }, new { })
+                                </div>
+                                <div class="col-2 text-right">@cartItem.Cost</div>
+                                <div class="col-2 text-right">@cartItem.Quantity</div>
+                                <div class="col-2 text-right">@cartItem.Total</div>
+                            </div>
+                        </li>
+                    }
+                }
+
+                <li class="total">
+                    <div class="row">
+                        <div class="col-6">&nbsp;</div>
+                        <div class="col-2">&nbsp;</div>
+                        <div class="col-2">Total</div>
+                        <div class="col-2">@Model.Total</div>
+                    </div>
+                </li>
+               
+            </ul>
+        </div>
+
+    </div>
+        

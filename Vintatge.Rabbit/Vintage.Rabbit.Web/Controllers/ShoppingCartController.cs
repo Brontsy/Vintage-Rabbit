@@ -32,6 +32,14 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.PartialView("PageHeader", new CartViewModel(cart, isOpen));
         }
 
+        public ActionResult Checkout(Member member)
+        {
+            Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Id));
+
+            return this.PartialView("Checkout", new CartViewModel(cart, true));
+        }
+
+
         public ActionResult Add(int productId, Member member, int qty = 1)
         {
             BuyProduct product = this._queryDispatcher.Dispatch<BuyProduct, GetBuyProductQuery>(new GetBuyProductQuery(productId));

@@ -28,11 +28,11 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             return this.RedirectToRoute(Routes.Checkout.ShippingInformation);
         }
-        
+
         [HttpGet]
         public ActionResult ShippingInformation()
         {
-            return this.View("ShippingInformation");
+            return this.View("ShippingInformation", new ShippingInformationViewModel());
         }
 
         [HttpPost]
@@ -40,19 +40,43 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
+                if (viewModel.BillingAddressIsTheSame)
+                {
+                    return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
+                }
+
+                return this.RedirectToRoute(Routes.Checkout.BillingInformation);
             }
 
             return this.View("ShippingInformation", viewModel);
         }
-        
-        
 
+
+        [HttpGet]
+        public ActionResult BillingInformation()
+        {
+            return this.View("BillingInformation", new BillingInformationViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult BillingInformation(BillingInformationViewModel viewModel)
+        {
+            if (this.ModelState.IsValid)
+            {
+                return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
+            }
+
+            return this.View("BillingInformation    ", viewModel);
+        }
+
+
+        [HttpGet]
         public ActionResult PaymentInfo()
         {
             return this.View("PaymentInfo");
         }
 
+        [HttpPost]
         public ActionResult PaymentInfo(PaymentInfoViewModel viewModel)
         {
             if (this.ModelState.IsValid)

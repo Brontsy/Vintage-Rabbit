@@ -196,6 +196,7 @@
     <Compile Include="Models\Membership\PageHeaderViewModel.cs" />
     <Compile Include="Models\Membership\RegisterViewModel.cs" />
     <Compile Include="Models\Payment\PaymentInfoViewModel.cs" />
+    <Compile Include="Models\Payment\BillingInformationViewModel.cs" />
     <Compile Include="Models\Payment\ShippingInformationViewModel.cs" />
     <Compile Include="Models\Products\ProductImageViewModel.cs" />
     <Compile Include="Models\Products\ProductListItemViewModel.cs" />
@@ -246,6 +247,7 @@
     <Content Include="Content\images\social\pinterest.gif" />
     <Content Include="Content\images\Toffee-Apples.jpg" />
     <Content Include="Content\scripts\lightbox\feather-light.js" />
+    <Content Include="Content\scripts\placeholder.js" />
     <Content Include="Content\scripts\preload.js" />
     <Content Include="Content\scripts\lightbox.js" />
     <Content Include="Content\scripts\checkout.js" />
@@ -314,6 +316,7 @@
     <Content Include="Content\fonts\typical-writer\carl-johanson_typical-writer.zip" />
     <Content Include="Content\fonts\typical-writer\TYPIW___.TTF" />
     <Content Include="Content\fonts\journal\JOURNAL.TTF" />
+    <Content Include="Content\less\pages\checkout-billing.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -360,6 +363,10 @@
     <Content Include="Views\Payment\LoginRegister.cshtml" />
     <Content Include="Views\Payment\Register.cshtml" />
     <Content Include="Views\Membership\PageHeader.cshtml" />
+    <Content Include="Views\Payment\ShippingInformation.cshtml" />
+    <Content Include="Views\ShoppingCart\Checkout.cshtml" />
+    <Content Include="Views\Payment\BillingInformation.cshtml" />
+    <Content Include="Views\Payment\PaymentInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

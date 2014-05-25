@@ -1,0 +1,29 @@
+﻿@model Vintage.Rabbit.Web.Models.Payment.PaymentInfoViewModel
+@{
+    ViewBag.Title = "Checkout - Shipping";
+}
+
+
+<div class="checkout shipping-information">
+    
+
+    <div class="row">
+
+        <div class="col-6">
+            <h2>Payment Information</h2>
+            @using (Html.BeginRouteForm(Routes.Checkout.PaymentInfo, new { }, FormMethod.Post, new { }))
+            {
+                <fieldset>
+                    <ol class="row">
+       
+                    </ol>
+                </fieldset>
+            }
+
+        </div>
+
+        <div class="col-6">
+            @{Html.RenderAction("Checkout", "ShoppingCart");}
+        </div>
+    </div>
+</div>

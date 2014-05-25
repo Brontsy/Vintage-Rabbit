@@ -1,32 +1,32 @@
 ﻿@model IList<Vintage.Rabbit.Web.Models.Products.ProductListItemViewModel>
 
 
-<ul class="featured row">
+<ul class="featured row product-list">
     @{int counter = 1;}
     @foreach (var product in Model)
     {
-        if(counter == 2)
+        if (counter == 2)
         {
-        <li class="col-2 square-text">
+            <li class="col-2 square-text">
                 <h4>party supplies</h4>
             </li>
         }
-        if(counter == 10)
+        if (counter == 8)
         {
-        <li class="col-2 square-text">
+            <li class="col-2 square-text">
                 <h4>prop & furniture hire</h4>
             </li>
         }
-        if(counter == 11)
+        if (counter == 9)
         {
-        <li class="col-2 square-text">
+            <li class="col-2 square-text">
                 <h4>gifts & games</h4>
             </li>
         }
         <li class="col-2">
             @{Html.RenderPartial("product-list-item", product);}
         </li>
-        counter++;
+            counter++;
     }
 </ul>
 
