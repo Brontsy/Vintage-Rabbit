@@ -10,7 +10,7 @@
         .tile-image {
             color: #333333;
             text-align: center;
-            font-size: 46px;
+            font-size: 36px;
             display: block;
             font-family: 'TypicalWriter', Arial;
             transition: all 0.15s linear 0s;
@@ -25,10 +25,11 @@
                 font-style: normal;
                 color: #666666;
                 line-height: 24px;
-                font-size: 16px;
+                font-size: 24px;
                 margin-top: 1px;
                 padding: 5px 0px 10px 0px;
                 transition: all 0.15s linear 0s;
+                font-family: 'Journal', Arial;
             }
 
             &:hover {
@@ -55,18 +56,18 @@
     .featured {
         margin-top: 40px;
         li {
-            margin-bottom: 20px;
+            margin-bottom: @gutter;
         }
 
             li.square-text {
                 margin-bottom: 20px;
 
                 h4 {
-                    height: 146px; padding: 0px 10px 0px 10px;
+                    height: 173px; padding: 0px 10px 0px 10px;
                     background: #fefefe;
                     font-family: 'Journal', Arial;
-                    font-size: 52px;
-                    line-height: 46px;
+                    font-size: 56px;
+                    line-height: 56px;
                     font-weight: normal;
                     .box-shadow(2px 2px 3px 0px rgba(50, 50, 50, 0.25));
 

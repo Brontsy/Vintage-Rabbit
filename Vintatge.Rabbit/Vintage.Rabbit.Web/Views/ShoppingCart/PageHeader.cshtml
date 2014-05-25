@@ -1,89 +1,90 @@
 ﻿@model Vintage.Rabbit.Web.Models.ShoppingCart.CartViewModel
 
 
+<div class="float-container">
 
+    <div class="shopping-cart" data-reload="@Url.RouteUrl(Routes.ShoppingCart.PageHeader, new {})">
 
-<div class="shopping-cart" data-reload="@Url.RouteUrl(Routes.ShoppingCart.PageHeader, new {})">
-
-    <div class="container">
-        <div class="triangle"></div>
-        <div class="text-small item-count@(Model.IsOpen ? " active" : string.Empty)">
-            <i class="fa fa-shopping-cart"></i> &nbsp;
-            <span class="">@Model.Items.Count items</span> &nbsp;
-            <i class="fa fa-angle-down"></i>
+        <div class="container">
+            <div class="triangle"></div>
+            <div class="text-small item-count@(Model.IsOpen ? " active" : string.Empty)">
+                <i class="fa fa-shopping-cart"></i> &nbsp;
+                <span class="">@Model.Items.Count items</span> &nbsp;
+                <i class="fa fa-angle-down"></i>
+            </div>
         </div>
-    </div>
-    <div class="cart-content@(Model.IsOpen ? string.Empty : " hidden")">
-        <ul>
-            @if(Model.Items.Any(o => !o.IsHire))
-            {
-                <li class="item-header">
-                    <div class="row">
-                        <div class="col-6">Purchase</div>
-                        <div class="col-2 text-right">Price</div>
-                        <div class="col-2 text-right">Qty</div>
-                        <div class="col-2 text-right">Total</div>
-                    </div>
-                </li>            
-                foreach (var cartItem in Model.Items.Where(o => !o.IsHire))
+        <div class="cart-content@(Model.IsOpen ? string.Empty : " hidden")">
+            <ul>
+                @if (Model.Items.Any(o => !o.IsHire))
                 {
-                    <li>
+                    <li class="item-header">
                         <div class="row">
-                            <div class="col-1"><a class="remove-from-cart" href="@Url.RouteUrl(Routes.ShoppingCart.Remove, new { cartItemId = cartItem.Id, name = cartItem.Key })"><i class="fa fa-times-circle"></i></a></div>
-                            <div class="col-5">
-                                @Html.RouteLink(cartItem.Title, Routes.Buy.Product, new { name = cartItem.Key, productId = cartItem.ProductId }, new { })
-                            </div>
-                            <div class="col-2 text-right">@cartItem.Cost</div>
-                            <div class="col-2 text-right"><input type="text" value="@cartItem.Quantity" /></div>
-                            <div class="col-2 text-right">@cartItem.Total</div>
+                            <div class="col-6">Purchase</div>
+                            <div class="col-2 text-right">Price</div>
+                            <div class="col-2 text-right">Qty</div>
+                            <div class="col-2 text-right">Total</div>
                         </div>
                     </li>
+                    foreach (var cartItem in Model.Items.Where(o => !o.IsHire))
+                    {
+                        <li>
+                            <div class="row">
+                                <div class="col-1"><a class="remove-from-cart" href="@Url.RouteUrl(Routes.ShoppingCart.Remove, new { cartItemId = cartItem.Id, name = cartItem.Key })"><i class="fa fa-times-circle"></i></a></div>
+                                <div class="col-5">
+                                    @Html.RouteLink(cartItem.Title, Routes.Buy.Product, new { name = cartItem.Key, productId = cartItem.ProductId }, new { })
+                                </div>
+                                <div class="col-2 text-right">@cartItem.Cost</div>
+                                <div class="col-2 text-right"><input type="text" value="@cartItem.Quantity" /></div>
+                                <div class="col-2 text-right">@cartItem.Total</div>
+                            </div>
+                        </li>
+                    }
                 }
-            }
-            @if(Model.Items.Any(o => o.IsHire))
-            { 
-                <li class="item-header">
+                @if (Model.Items.Any(o => o.IsHire))
+                {
+                    <li class="item-header">
+                        <div class="row">
+                            <div class="col-6">Hire</div>
+                            <div class="col-2 text-right">Price</div>
+                            <div class="col-2 text-right">Qty</div>
+                            <div class="col-2 text-right">Total</div>
+                        </div>
+                    </li>
+                    foreach (var cartItem in Model.Items.Where(o => o.IsHire))
+                    {
+                        <li>
+                            <div class="row">
+                                <div class="col-1"><a class="remove-from-cart" href="@Url.RouteUrl(Routes.ShoppingCart.Remove, new { cartItemId = cartItem.Id, name = cartItem.Key })"><i class="fa fa-times-circle"></i></a></div>
+                                <div class="col-5">
+                                    @Html.RouteLink(cartItem.Title, Routes.Hire.Product, new { name = cartItem.Key, productId = cartItem.ProductId }, new { })
+                                </div>
+                                <div class="col-2 text-right">@cartItem.Cost</div>
+                                <div class="col-2 text-right"><input type="text" value="@cartItem.Quantity" /></div>
+                                <div class="col-2 text-right">@cartItem.Total</div>
+                            </div>
+                        </li>
+                    }
+                }
+
+                <li class="total">
                     <div class="row">
-                        <div class="col-6">Hire</div>
-                        <div class="col-2 text-right">Price</div>
-                        <div class="col-2 text-right">Qty</div>
-                        <div class="col-2 text-right">Total</div>
+                        <div class="col-6">&nbsp;</div>
+                        <div class="col-2">&nbsp;</div>
+                        <div class="col-2">Total</div>
+                        <div class="col-2">@Model.Total</div>
                     </div>
                 </li>
-                foreach (var cartItem in Model.Items.Where(o => o.IsHire))
-                {
-                    <li>
-                        <div class="row">
-                            <div class="col-1"><a class="remove-from-cart" href="@Url.RouteUrl(Routes.ShoppingCart.Remove, new { cartItemId = cartItem.Id, name = cartItem.Key })"><i class="fa fa-times-circle"></i></a></div>
-                            <div class="col-5">
-                                @Html.RouteLink(cartItem.Title, Routes.Hire.Product, new { name = cartItem.Key, productId = cartItem.ProductId }, new { })
-                            </div>
-                            <div class="col-2 text-right">@cartItem.Cost</div>
-                            <div class="col-2 text-right"><input type="text" value="@cartItem.Quantity" /></div>
-                            <div class="col-2 text-right">@cartItem.Total</div>
+                <li class="checkout">
+                    <div class="row">
+                        <div class="col-8">&nbsp;</div>
+                        <div class="col-4 text-right">
+                            @Html.RouteLink("Proceed to checkout", Routes.Checkout.Index, new { }, new { @class = "btn primary" })
                         </div>
-                    </li>
-                }
-            }
-
-            <li class="total">
-                <div class="row">
-                    <div class="col-6">&nbsp;</div>
-                    <div class="col-2">&nbsp;</div>
-                    <div class="col-2">Total</div>
-                    <div class="col-2">@Model.Total</div>
-                </div>
-            </li>
-            <li class="checkout">
-                <div class="row">
-                    <div class="col-8">&nbsp;</div>
-                    <div class="col-4 text-right">
-                        @Html.RouteLink("Proceed to checkout", Routes.Checkout.Index, new { }, new { @class = "btn primary" })
                     </div>
-                </div>
-            </li>
-        </ul>
-    </div>
+                </li>
+            </ul>
+        </div>
 
+    </div>
 </div>
         

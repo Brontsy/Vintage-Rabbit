@@ -79,8 +79,8 @@ nav {
         > li {
             text-align: center;
             position: relative;
-            float: left; padding-left: 30px; padding-right: 27px;
-            &:first-child {padding-left: 25px;}
+            float: left; padding-left: 45px; padding-right: 47px;
+            &:first-child {padding-left: 40px;}
             &:last-child {padding-right: 15px;}
             > a {
                 color: #555555;
@@ -147,4 +147,24 @@ nav {
             }
         }
     }
+}
+
+
+
+@media only screen and (max-width: @desktop) 
+{
+    
+nav {
+  
+    ol {
+        > li {
+           
+            float: left; padding-left: 30px; padding-right: 27px;
+            &:first-child {padding-left: 25px;}
+            &:last-child {padding-right: 15px;}
+           
+        }
+    }
+}
+
 }
