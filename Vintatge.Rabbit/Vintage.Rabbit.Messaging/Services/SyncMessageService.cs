@@ -20,9 +20,12 @@ namespace Vintage.Rabbit.Messaging.Services
 
         public void AddMessage<TMessage>(TMessage message)
         {
-            var messageHandler = this._container.Resolve<IMessageHandler<TMessage>>();
+            IMessageHandler<TMessage> messageHandler = null;
 
-            messageHandler.Handle(message);
+            if (this._container.TryResolve(out messageHandler))
+            {
+                messageHandler.Handle(message);
+            }
         }
     }
 }

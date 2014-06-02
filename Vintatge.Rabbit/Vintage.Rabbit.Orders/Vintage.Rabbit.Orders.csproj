@@ -43,10 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\AddBillingAddressCommandHandler.cs" />
+    <Compile Include="CommandHandlers\AddShippingAddressCommandHandler.cs" />
     <Compile Include="CommandHandlers\SaveOrderCommandHandler.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderItem.cs" />
+    <Compile Include="Enums\OrderWorkflowStatus.cs" />
+    <Compile Include="Enums\OrderStatus.cs" />
     <Compile Include="Ioc\Bindings.cs" />
+    <Compile Include="Messaging\Handlers\OrderPaidMessageHandler.cs" />
+    <Compile Include="Messaging\Messages\OrderPaidMessage.cs" />
     <Compile Include="Messaging\Messages\SaveOrderMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryHandlers\GetOrderQueryHandler.cs" />
@@ -65,9 +71,17 @@
       <Project>{93bcba0e-cfff-4963-a237-4be306ec0d2b}</Project>
       <Name>Vintage.Rabbit.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Membership\Vintage.Rabbit.Membership.csproj">
+      <Project>{1b494888-3127-473d-9769-7e31d55ba2eb}</Project>
+      <Name>Vintage.Rabbit.Membership</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Vintage.Rabbit.Messaging\Vintage.Rabbit.Messaging.csproj">
       <Project>{3e38b9c9-a416-474d-8829-4780b15573f8}</Project>
       <Name>Vintage.Rabbit.Messaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Payment\Vintage.Rabbit.Payment.csproj">
+      <Project>{29436f02-08d5-4142-8eec-939197c01ec4}</Project>
+      <Name>Vintage.Rabbit.Payment</Name>
     </ProjectReference>
     <ProjectReference Include="..\Vintage.Rabbit.Products\Vintage.Rabbit.Products.csproj">
       <Project>{2ee117ed-6ab6-478d-93e7-1c695fc57b0a}</Project>

@@ -2,3 +2,4 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfa
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfaces\bin\Debug\Vintage.Rabbit.Interfaces.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfaces\obj\Debug\Vintage.Rabbit.Interfaces.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfaces\obj\Debug\Vintage.Rabbit.Interfaces.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfaces\obj\Debug\Vintage.Rabbit.Interfaces.csprojResolveAssemblyReference.cache

@@ -1,0 +1,44 @@
+﻿@model Vintage.Rabbit.Admin.Web.Models.Buy.BuyProductListViewModel
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="page-head">
+    <button class="btn btn-success btn-lg pull-right" style="margin-top:10px;">Add Product</button>
+    <h2>Products available for <strong>purchase</strong></h2>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Products</a></li>
+        <li class="active">Buy</li>
+    </ol>
+</div>
+
+
+    <div class="main-app">
+
+     
+        <div class="items products product-list">
+            @foreach (var product in Model.Products)
+            {
+                <div class="item">
+                    <div><div class="icheckbox_square-blue checkbox" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" name="c[]" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div> </div>
+                    <div>
+                        <span class="date pull-right price">@product.Cost</span>
+                        <img class="product-image" src="@product.Image.Url">
+                        <h4 class="from">
+                            @Html.RouteLink(product.Title, Routes.Products.Product, new { name = product.UrlTitle, productId = product.Id }, new { })
+                        </h4>
+                        <p class="msg">@product.Description</p>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        alert($('.item').length);
+       
+    });
+</script>
+

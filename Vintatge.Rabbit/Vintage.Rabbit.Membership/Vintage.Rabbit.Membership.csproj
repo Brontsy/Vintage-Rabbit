@@ -42,15 +42,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\SaveAddressCommandHandler.cs" />
     <Compile Include="CommandHandlers\SaveMemberCommandHandler.cs" />
     <Compile Include="CommandHandlers\RegisterCommandHandler.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Member.cs" />
+    <Compile Include="Enums\Role.cs" />
     <Compile Include="Ioc\Bindings.cs" />
     <Compile Include="Messaging\Messages\SaveMemberMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryHandlers\GetMemberByIdQueryHandler.cs" />
     <Compile Include="QueryHandlers\ValidateLoginQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetMemberByEmailQueryHandler.cs" />
+    <Compile Include="Repository\AddressRepository.cs" />
     <Compile Include="Repository\MembershipRepository.cs" />
   </ItemGroup>
   <ItemGroup />

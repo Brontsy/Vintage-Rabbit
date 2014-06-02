@@ -6,6 +6,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using Vintage.Rabbit.Interfaces.CQRS;
+using Vintage.Rabbit.Membership.Entities;
 using Vintage.Rabbit.Membership.QueryHandlers;
 
 namespace Vintage.Rabbit.Web.Providers
@@ -49,7 +50,9 @@ namespace Vintage.Rabbit.Web.Providers
 
             if (isValid)
             {
-                var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, email), }, DefaultAuthenticationTypes.ApplicationCookie, ClaimTypes.Name, ClaimTypes.Role);
+                Member member = this._queryDispatcher.Dispatch<Member, GetMemberByEmailQuery>(new GetMemberByEmailQuery(email));
+
+                var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, member.Id.ToString()), }, DefaultAuthenticationTypes.ApplicationCookie, ClaimTypes.Name, ClaimTypes.Role);
 
                 // if you want roles, just add as many as you want here (for loop maybe?)
                 identity.AddClaim(new Claim(ClaimTypes.Role, "guest"));

@@ -15,3 +15,7 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\obj\Debug\Vintage.Rabbit.Orders.csprojResolveAssemblyReference.cache
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\obj\Debug\Vintage.Rabbit.Orders.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\obj\Debug\Vintage.Rabbit.Orders.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\Vintage.Rabbit.Membership.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\Vintage.Rabbit.Membership.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\Vintage.Rabbit.Payment.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\Vintage.Rabbit.Payment.pdb

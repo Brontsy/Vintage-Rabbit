@@ -16,11 +16,11 @@
                 <fieldset>
                     <ol class="row">
                         <li class="col-6">
-                            @Html.TextBoxFor(o => o.FirstName, new { placeholder = "First name" })
+                            @Html.TextBoxFor(o => o.FirstName, new { placeholder = "First name*" })
                             @Html.ValidationMessageFor(o => o.FirstName)
                         </li>
                         <li class="col-6">
-                            @Html.TextBoxFor(o => o.LastName, new { placeholder = "First name" })
+                            @Html.TextBoxFor(o => o.LastName, new { placeholder = "Last name*" })
                             @Html.ValidationMessageFor(o => o.LastName)
                         </li>
                         <li class="col-12">
@@ -28,29 +28,27 @@
                             @Html.ValidationMessageFor(o => o.CompanyName)
                         </li>
                         <li class="col-12">
-                            @Html.TextBoxFor(o => o.Address, new { placeholder = "Address" })
+                            @Html.TextBoxFor(o => o.Address, new { placeholder = "Address*" })
                             @Html.ValidationMessageFor(o => o.Address)
                         </li>
                         <li class="col-12">
-                            @Html.TextBoxFor(o => o.SuburbCity, new { placeholder = "Suburb / city" })
+                            @Html.TextBoxFor(o => o.SuburbCity, new { placeholder = "Suburb / city*" })
                             @Html.ValidationMessageFor(o => o.SuburbCity)
                         </li>
                         <li class="col-12">
-                            @Html.TextBoxFor(o => o.Postcode, new { placeholder = "Postcode" })
+                            @Html.TextBoxFor(o => o.Postcode, new { placeholder = "Postcode*" })
                             @Html.ValidationMessageFor(o => o.Postcode)
                         </li>
                         <li class="col-12">
-                            @Html.TextBoxFor(o => o.State, new { placeholder = "State" })
+                            @Html.TextBoxFor(o => o.State, new { placeholder = "State*" })
                             @Html.ValidationMessageFor(o => o.State)
                         </li>
                         <li class="col-12">
                             @Html.CheckBoxFor(o => o.BillingAddressIsTheSame, new {  })
                             @Html.LabelFor(o => o.BillingAddressIsTheSame)
                         </li>
-                        <li class="col-4 offset-8">
-                            <div class=" text-right">
-                                <button type="submit" class="btn primary">Save & continue</button>
-                            </div>
+                        <li class="col-5 offset-7">
+                            <button type="submit" class="btn primary">Save & continue</button>
                         </li>
                     </ol>
                 </fieldset>

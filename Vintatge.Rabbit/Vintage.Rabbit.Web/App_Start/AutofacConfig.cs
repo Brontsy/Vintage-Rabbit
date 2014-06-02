@@ -28,12 +28,17 @@ namespace Vintage.Rabbit.Web.App_Start
             builder.RegisterModule(new Vintage.Rabbit.Messaging.Ioc.Bindings());
             builder.RegisterModule(new Vintage.Rabbit.Orders.Ioc.Bindings());
             builder.RegisterModule(new Vintage.Rabbit.Membership.Ioc.Bindings());
+            builder.RegisterModule(new Vintage.Rabbit.Payment.Ioc.Bindings());
 
 
             builder.RegisterType<LoginProvider>().As<ILoginProvider>();
+            builder.RegisterType<CreateOrderProvider>().As<ICreateOrderProvider>();
+            builder.RegisterType<AddressProvider>().As<IAddressProvider>();
 
             builder.RegisterModelBinders(Assembly.GetExecutingAssembly());
             builder.RegisterModelBinderProvider();
+
+            builder.RegisterFilterProvider();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

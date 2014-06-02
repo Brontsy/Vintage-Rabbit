@@ -1,21 +1,83 @@
-﻿@model Vintage.Rabbit.Web.Models.Payment.PaymentInfoViewModel
+﻿@model Vintage.Rabbit.Web.Models.Payment.PaymentInformationViewModel
 @{
     ViewBag.Title = "Checkout - Shipping";
 }
 
 
-<div class="checkout shipping-information">
-    
+<div class="checkout payment-information">
+
 
     <div class="row">
 
         <div class="col-6">
+
+
+
             <h2>Payment Information</h2>
-            @using (Html.BeginRouteForm(Routes.Checkout.PaymentInfo, new { }, FormMethod.Post, new { }))
+            <p>
+                Please choost a payment method
+            </p>
+            <div class="row payment-methods">
+                @using (Html.BeginRouteForm(Routes.Checkout.PaymentInfo, new { }, FormMethod.Post, new { @class = "" }))
+            {
+                <div class="col-6">
+                    <div class="radiobuttons">
+                        <input type="radio" value="credit-card" name="payment-method" id="credit-card" /> <label for="credit-card">Credit card</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="radiobuttons">
+                        <input type="radio" value="paypal" name="payment-method" id="paypal" />
+                        <label for="paypal">PayPal</label>
+                    </div>
+                </div>
+            }
+            </div>
+
+            @using (Html.BeginRouteForm(Routes.Checkout.CreditCard, new { }, FormMethod.Post, new { @class = "credit-card-form hidden" }))
             {
                 <fieldset>
                     <ol class="row">
-       
+                        <li class="col-12">
+                            @Html.TextBoxFor(o => o.Name, new { placeholder = "Name on credit card" })
+                            @Html.ValidationMessageFor(o => o.Name)
+                        </li>
+                        <li class="col-12">
+                            @Html.TextBoxFor(o => o.CreditCardNumber, new { placeholder = "Credit card number" })
+                            @Html.ValidationMessageFor(o => o.CreditCardNumber)
+                        </li>
+                        <li class="col-6">
+                            @Html.DropDownListFor(o => o.ExpiryMonth, Model.ExpiryMonths, "Expiry month...", new { })
+                            @Html.ValidationMessageFor(o => o.ExpiryMonth)
+                        </li>
+                        <li class="col-6">
+                            @Html.DropDownListFor(o => o.ExpiryYear, Model.ExpiryYears, "Expiry year...", new { })
+                            @Html.ValidationMessageFor(o => o.ExpiryYear)
+                        </li>
+                        <li class="col-12">
+                            @Html.TextBoxFor(o => o.CCV, new { placeholder = "CCV" })
+                            @Html.ValidationMessageFor(o => o.CCV)
+                        </li>
+                        <li class="col-5 offset-7">
+                            <button type="submit" class="btn primary">Continue</button>
+                        </li>
+                    </ol>
+                </fieldset>
+            }
+
+            @using (Html.BeginRouteForm(Routes.Checkout.PayPal, new { }, FormMethod.Post, new { @class = "paypal-form hidden" }))
+            {
+                <fieldset>
+                    <ol class="row">
+                        <li class="col-12">
+                            <p>
+                                <img src="http://dev.vintage-rabbit.com.au/content/images/footer/paypal.png" />
+                                you will be redirected to the paypal website.
+                            </p>
+                        </li>
+                        <li class="col-5">
+                            <button type="submit" class="btn primary">Continue</button>
+                        </li>
                     </ol>
                 </fieldset>
             }

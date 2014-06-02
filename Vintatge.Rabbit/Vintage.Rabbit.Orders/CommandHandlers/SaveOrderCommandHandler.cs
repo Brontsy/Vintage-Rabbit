@@ -15,6 +15,11 @@ namespace Vintage.Rabbit.Orders.CommandHandlers
     public class SaveOrderCommand
     {
         public Order Order { get; private set; }
+
+        public SaveOrderCommand(Order order)
+        {
+            this.Order = order;
+        }
     }
 
     internal class SaveOrderCommandHandler : ICommandHandler<SaveOrderCommand>
@@ -34,7 +39,7 @@ namespace Vintage.Rabbit.Orders.CommandHandlers
 
             this._cacheService.Add(cacheKey, command.Order);
 
-            IMessage message = new SaveOrderMessage(command.Order);
+            SaveOrderMessage message = new SaveOrderMessage(command.Order);
 
             this._messageService.AddMessage(message);
         }

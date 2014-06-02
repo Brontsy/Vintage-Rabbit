@@ -1,7 +1,7 @@
 ﻿@model Vintage.Rabbit.Web.Models.Products.ProductListItemViewModel
 
 
-<div class="product-list-item2">
+<div class="product-list-item">
 
     <img src="@Model.Image.Url" width="100%" />
 
@@ -23,38 +23,6 @@
                     Preview
                 </a>
             </div>
-        </div>
-    </div>
-
-</div>
-
-<div class="product-list-item1 hidden">
-
-    <img src="@Model.Image.Url" width="100%" />
-
-    <div class="details">
-        <h4>@Html.RouteLink(Model.Title, Routes.Buy.Product, new { productId = Model.Id, name = Model.UrlTitle }, new { })</h4>
-        <div class="price">
-            <div class="triangle"></div>
-            <div class="price-text">@Model.Cost</div>
-        </div>
-
-        <a class="hidden add-to-cart2" href="@Url.RouteUrl(Routes.ShoppingCart.Add, new { productId = Model.Id, name = Model.UrlTitle })">
-            <div class="triangle"></div>
-            <div class="add-to-cart-text">
-                <i class="fa fa-shopping-cart"></i>&nbsp; Add to cart
-            </div>
-        </a>
-
-        <div class="product-controls">
-            <a class="left add-to-cart" href="@Url.RouteUrl(Routes.ShoppingCart.Add, new { productId = Model.Id, name = Model.UrlTitle })">
-                <i class="fa fa-shopping-cart"></i>
-                Add
-            </a>
-            <a class="right ajax-lightbox" href="@Url.RouteUrl(Routes.Buy.Preview, new { productId = Model.Id, name = Model.UrlTitle })">
-                <i class="fa fa-search"></i>
-                Preview
-            </a>
         </div>
     </div>
 

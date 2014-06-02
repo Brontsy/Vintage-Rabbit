@@ -166,6 +166,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Attributes\HasOrderAttribute.cs" />
     <Compile Include="Attributes\CheckoutRegisterAttribute.cs" />
     <Compile Include="Attributes\Validation\EmailAttribute.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
@@ -182,6 +183,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ModelBinders\HireDatesModelBinder.cs" />
+    <Compile Include="ModelBinders\OrderModelBinder.cs" />
     <Compile Include="ModelBinders\MemberModelBinder.cs" />
     <Compile Include="Models\Breadcrumbs\BreadcrumbsViewModel.cs" />
     <Compile Include="Models\Buy\BuyProductListViewModel.cs" />
@@ -195,7 +197,8 @@
     <Compile Include="Models\Membership\LoginViewModel.cs" />
     <Compile Include="Models\Membership\PageHeaderViewModel.cs" />
     <Compile Include="Models\Membership\RegisterViewModel.cs" />
-    <Compile Include="Models\Payment\PaymentInfoViewModel.cs" />
+    <Compile Include="Models\Payment\CreditCardPaymentViewModel.cs" />
+    <Compile Include="Models\Payment\PaymentInformationViewModel.cs" />
     <Compile Include="Models\Payment\BillingInformationViewModel.cs" />
     <Compile Include="Models\Payment\ShippingInformationViewModel.cs" />
     <Compile Include="Models\Products\ProductImageViewModel.cs" />
@@ -203,6 +206,8 @@
     <Compile Include="Models\ShoppingCart\CartItemViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\CreateOrderProvider.cs" />
+    <Compile Include="Providers\AddressProvider.cs" />
     <Compile Include="Providers\LoginProvider.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -317,6 +322,7 @@
     <Content Include="Content\fonts\typical-writer\TYPIW___.TTF" />
     <Content Include="Content\fonts\journal\JOURNAL.TTF" />
     <Content Include="Content\less\pages\checkout-billing.less" />
+    <Content Include="Content\less\pages\checkout-payment.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -409,6 +415,10 @@
     <ProjectReference Include="..\Vintage.Rabbit.Orders\Vintage.Rabbit.Orders.csproj">
       <Project>{58cacda3-d8be-4d84-a4e2-50d811581690}</Project>
       <Name>Vintage.Rabbit.Orders</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Payment\Vintage.Rabbit.Payment.csproj">
+      <Project>{29436f02-08d5-4142-8eec-939197c01ec4}</Project>
+      <Name>Vintage.Rabbit.Payment</Name>
     </ProjectReference>
     <ProjectReference Include="..\Vintage.Rabbit.Products\Vintage.Rabbit.Products.csproj">
       <Project>{2ee117ed-6ab6-478d-93e7-1c695fc57b0a}</Project>

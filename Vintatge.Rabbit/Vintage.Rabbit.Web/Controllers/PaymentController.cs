@@ -3,18 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vintage.Rabbit.Interfaces.CQRS;
+using Vintage.Rabbit.Membership.Entities;
+using Vintage.Rabbit.Orders.CommandHandlers;
+using Vintage.Rabbit.Orders.Entities;
+using Vintage.Rabbit.Payment.CommandHandlers;
+using Vintage.Rabbit.Payment.Entities;
+using Vintage.Rabbit.Payment.QueryHandlers;
+using Vintage.Rabbit.Payment.Services;
 using Vintage.Rabbit.Web.Attributes;
 using Vintage.Rabbit.Web.Models.Membership;
 using Vintage.Rabbit.Web.Models.Payment;
+using Vintage.Rabbit.Web.Providers;
 
 namespace Vintage.Rabbit.Web.Controllers
 {
     public class PaymentController : Controller
     {
-        [CheckoutRegister]
-        public ActionResult Index()
+        private IQueryDispatcher _queryDispatcher;
+        private ICommandDispatcher _commandDispatcher;
+        private ICreateOrderProvider _createOrderProvider;
+        private IAddressProvider _addressProvider;
+        private ICreditCardService _creditCardService;
+
+        public PaymentController(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher, ICreateOrderProvider createOrderProvider, IAddressProvider addressProvider, ICreditCardService creditCardService)
         {
-            return View("Index");
+            this._queryDispatcher = queryDispatcher;
+            this._commandDispatcher = commandDispatcher;
+            this._createOrderProvider = createOrderProvider;
+            this._addressProvider = addressProvider;
+            this._creditCardService = creditCardService;
+        }
+
+        [CheckoutRegister]
+        public ActionResult Index(Member member, Order order)
+        {
+            if(order == null)
+            {
+                order = this._createOrderProvider.CreateOrder(member);
+            }
+
+            return this.LoginRegister();
         }
 
         public ActionResult LoginRegister()
@@ -29,19 +58,27 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.RedirectToRoute(Routes.Checkout.ShippingInformation);
         }
 
+        [HasOrder]
         [HttpGet]
-        public ActionResult ShippingInformation()
+        public ActionResult ShippingInformation(Order order)
         {
-            return this.View("ShippingInformation", new ShippingInformationViewModel());
+            return this.View("ShippingInformation", new ShippingInformationViewModel(order));
         }
 
+        [HasOrder]
         [HttpPost]
-        public ActionResult ShippingInformation(ShippingInformationViewModel viewModel)
+        public ActionResult ShippingInformation(ShippingInformationViewModel viewModel, Order order, Member member)
         {
             if (this.ModelState.IsValid)
             {
+                Address shippingAddress = this._addressProvider.SaveAddress(member, viewModel);
+                this._commandDispatcher.Dispatch<AddShippingAddressCommand>(new AddShippingAddressCommand(order, shippingAddress));
+
                 if (viewModel.BillingAddressIsTheSame)
                 {
+                    Address billingAddress = this._addressProvider.SaveAddress(member, viewModel);
+                    this._commandDispatcher.Dispatch<AddBillingAddressCommand>(new AddBillingAddressCommand(order, billingAddress));
+
                     return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
                 }
 
@@ -59,10 +96,13 @@ namespace Vintage.Rabbit.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult BillingInformation(BillingInformationViewModel viewModel)
+        public ActionResult BillingInformation(BillingInformationViewModel viewModel, Order order, Member member)
         {
             if (this.ModelState.IsValid)
             {
+                Address billingAddress = this._addressProvider.SaveAddress(member, viewModel);
+                this._commandDispatcher.Dispatch<AddBillingAddressCommand>(new AddBillingAddressCommand(order, billingAddress));
+
                 return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
             }
 
@@ -73,28 +113,29 @@ namespace Vintage.Rabbit.Web.Controllers
         [HttpGet]
         public ActionResult PaymentInfo()
         {
-            return this.View("PaymentInfo");
-        }
-
-        [HttpPost]
-        public ActionResult PaymentInfo(PaymentInfoViewModel viewModel)
-        {
-            if (this.ModelState.IsValid)
-            {
-                return this.RedirectToRoute(Routes.Checkout.Confirm);
-            }
+            PaymentInformationViewModel viewModel = new PaymentInformationViewModel();
 
             return this.View("PaymentInfo", viewModel);
         }
 
-        public ActionResult Confirm()
+        [HttpPost]
+        public ActionResult CreditCard(PaymentInformationViewModel viewModel, Order order, Member member)
         {
-            return this.View("Confirm");
-        }
+            if (this.ModelState.IsValid)
+            {
+                PaymentResult result = this._creditCardService.PayForOrder(order, viewModel.Name, viewModel.CreditCardNumber, viewModel.ExpiryMonth, viewModel.ExpiryYear, viewModel.CCV);
 
-        public ActionResult Confirmed()
-        {
-            return this.RedirectToRoute(Routes.Checkout.Complete);
+                if (result.Successful)
+                {
+                    return this.RedirectToRoute(Routes.Checkout.Complete, new { orderId = order.Id });
+                }
+                else
+                {
+                    this.ModelState.AddModelError("CreditCardNumber", result.ErrorMessage);
+                }
+            }
+
+            return this.View("PaymentInfo", viewModel);
         }
 
         public ActionResult Complete()

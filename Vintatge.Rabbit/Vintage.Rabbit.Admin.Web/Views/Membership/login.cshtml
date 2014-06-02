@@ -1,0 +1,73 @@
+﻿@model Vintage.Rabbit.Admin.Web.Models.Membership.LoginViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Vintage Rabbit - Login</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,400italic,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:300,200,100' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/content/js/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="/content/fonts/font-awesome-4/css/font-awesome.min.css">
+
+    <!-- Plugins Includes -->
+
+    <!-- Template Style -->
+    <link href="/content/css/style.less" rel="stylesheet">
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <!-- General Plugins Instances -->
+    <script type="text/javascript" src="/content/js/behaviour/general.js"></script>
+
+</head>
+<body>
+    <div class="login-page">
+        <div class="header-section">
+            <a href="#">Vintage Rabbit - Administration</a>
+        </div><!--end of header -section-->
+        <div class="form-section">
+            <div class="container">
+                @using(Html.BeginRouteForm(Routes.Membership.Login, new {}, FormMethod.Post, new { @class="form-inputs"}))
+                {
+                @Html.AntiForgeryToken()
+                    <h4>Member Area</h4>
+    <ol>
+        <li>
+            <div class="input-icon input-icon-right">
+                <i class="fa fa-user"></i>
+                @Html.TextBoxFor(o => o.Email, new { placeholder = "Email", @class = "form-control" })
+            </div>
+            @Html.ValidationMessageFor(o => o.Email)
+        </li>
+        <li>
+            <div class="input-icon input-icon-right">
+                <i class="fa fa-user"></i>
+                @Html.PasswordFor(o => o.Password, new { placeholder = "Password", @class = "form-control" })
+            </div>
+            @Html.ValidationMessageFor(o => o.Password)
+
+        <li>
+            <input class="polaris-input" type="checkbox" id="RememberMe" name="RememberMe" value="option1"> <label for="RememberMe" class="check-text">Remember me</label> 
+            <button type="submit" class="btn btn-info pull-right">Sign In</button>
+            <h5><a href="forgot.html" target="_blank">Forgot Your Password ?</a></h5>
+
+        </li>
+    </ol>
+                }
+            </div>
+        </div><!--emd of form-section-->
+        <div class="footer">
+
+        </div>
+    </div><!--cnd of login-page-->
+
+</body>
+
+</html>

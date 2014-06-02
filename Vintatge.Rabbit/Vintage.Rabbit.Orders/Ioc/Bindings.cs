@@ -4,6 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vintage.Rabbit.Interfaces.CQRS;
+using Vintage.Rabbit.Interfaces.Messaging;
+using Vintage.Rabbit.Orders.CommandHandlers;
+using Vintage.Rabbit.Orders.Entities;
+using Vintage.Rabbit.Orders.Messaging.Handlers;
+using Vintage.Rabbit.Orders.Messaging.Messages;
+using Vintage.Rabbit.Orders.QueryHandlers;
+using Vintage.Rabbit.Orders.Repository;
+using Vintage.Rabbit.Payment.Messaging.Messages;
 
 namespace Vintage.Rabbit.Orders.Ioc
 {
@@ -11,6 +20,17 @@ namespace Vintage.Rabbit.Orders.Ioc
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<GetOrderQueryHandler>().As<IQueryHandler<Order, GetOrderQuery>>();
+
+            builder.RegisterType<SaveOrderCommandHandler>().As<ICommandHandler<SaveOrderCommand>>();
+            builder.RegisterType<AddBillingAddressCommandHandler>().As<ICommandHandler<AddBillingAddressCommand>>();
+            builder.RegisterType<AddShippingAddressCommandHandler>().As<ICommandHandler<AddShippingAddressCommand>>();
+
+            builder.RegisterType<OrderRepository>().As<IMessageHandler<SaveOrderMessage>>();
+            builder.RegisterType<OrderRepository>().As<IOrderRepository>();
+
+
+            builder.RegisterType<OrderPaidMessageHandler>().As<IMessageHandler<PaymentCompleteMessage>>();
         }
     }
 }

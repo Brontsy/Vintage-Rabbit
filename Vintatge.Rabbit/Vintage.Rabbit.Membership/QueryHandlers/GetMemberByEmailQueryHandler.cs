@@ -45,6 +45,7 @@ namespace Vintage.Rabbit.Membership.QueryHandlers
 
             this._cacheService.Add(cacheKey, member);
             this._cacheService.Add(CacheKeyHelper.Member.ById(member.Id), member);
+            this._cacheService.Add(CacheKeyHelper.Member.ByEmail(member.Email), member);
 
             return member;
         }

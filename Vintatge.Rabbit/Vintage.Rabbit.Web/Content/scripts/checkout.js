@@ -20,6 +20,23 @@ $(document).ready(function () {
             $('.checkout-control-container').removeClass('register');
         }
     });
-   
+
+    $('#credit-card').on('change', function () {
+
+        if ($(this).is(':checked')) {
+            $('.credit-card-form').removeClass('hidden');
+            $('.paypal-form').addClass('hidden');
+        }
+    });
+
+
+    $('#paypal').on('change', function () {
+        
+        if ($(this).is(':checked')) {
+            $('.credit-card-form').addClass('hidden');
+            $('.paypal-form').removeClass('hidden');
+        }
+    });
+
 
 });

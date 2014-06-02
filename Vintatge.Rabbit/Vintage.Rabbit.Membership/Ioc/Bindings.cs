@@ -20,12 +20,15 @@ namespace Vintage.Rabbit.Membership.Ioc
         {
             builder.RegisterType<ValidateLoginQueryHandler>().As<IQueryHandler<bool, ValidateLoginQuery>>();
             builder.RegisterType<GetMemberByEmailQueryHandler>().As<IQueryHandler<Member, GetMemberByEmailQuery>>();
+            builder.RegisterType<GetMemberByIdQueryHandler>().As<IQueryHandler<Member, GetMemberByIdQuery>>();
 
             builder.RegisterType<RegisterCommandHandler>().As<ICommandHandler<RegisterCommand>>();
             builder.RegisterType<SaveMemberCommandHandler>().As<ICommandHandler<SaveMemberCommand>>();
+            builder.RegisterType<SaveAddressCommandHandler>().As<ICommandHandler<SaveAddressCommand>>();
 
             builder.RegisterType<MembershipRepository>().As<IMessageHandler<SaveMemberMessage>>();
             builder.RegisterType<MembershipRepository>().As<IMembershipRepository>();
+            builder.RegisterType<AddressRepository>().As<IAddressRepository>();
         }
     }
 }

@@ -14,6 +14,11 @@ namespace Vintage.Rabbit.Orders.QueryHandlers
     public class GetOrderQuery
     {
         public Guid OrderId { get; private set; }
+
+        public GetOrderQuery(Guid orderId)
+        {
+            this.OrderId = orderId;
+        }
     }
 
     internal class GetOrderQueryHandler : IQueryHandler<Order, GetOrderQuery>

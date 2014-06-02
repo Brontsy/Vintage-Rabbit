@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Membership.Entities;
+using Vintage.Rabbit.Membership.Enums;
 using Vintage.Rabbit.Membership.Repository;
 
 namespace Vintage.Rabbit.Membership.QueryHandlers
@@ -15,10 +16,13 @@ namespace Vintage.Rabbit.Membership.QueryHandlers
 
         public string Password { get; private set; }
 
-        public ValidateLoginQuery(string email, string password)
+        public Role Role { get; private set; }
+
+        public ValidateLoginQuery(string email, string password, Role role = Role.Member)
         {
-            this.Email = email; 
+            this.Email = email;
             this.Password = password;
+            this.Role = role;
         }
     }
 

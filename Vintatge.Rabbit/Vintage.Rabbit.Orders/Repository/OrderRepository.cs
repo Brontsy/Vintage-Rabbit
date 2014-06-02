@@ -15,25 +15,41 @@ namespace Vintage.Rabbit.Orders.Repository
         Order GetOrder(Guid Orderid);
     }
 
-    internal class OrderRepository : IMessageHandler<SaveOrderMessage>
+    internal class OrderRepository : IOrderRepository, IMessageHandler<SaveOrderMessage>
     {
         private ISerializer _serializer;
+        private static Dictionary<Guid, Order> _orders;
+
+        static OrderRepository()
+        {
+            _orders = new Dictionary<Guid, Order>();
+        }
 
         public OrderRepository(ISerializer serializer)
         {
             this._serializer = serializer;
         }
 
-        public Order GetOrder(Guid Orderid)
+        public Order GetOrder(Guid orderId)
         {
-            return new Entities.Order();
+            if (_orders.ContainsKey(orderId))
+            {
+                return _orders[orderId];
+            }
+
+            return null;
         }
 
         public void Handle(SaveOrderMessage message)
         {
-            string serialized = this._serializer.Serialize(message);
-
-            string sql = "Insert Into Query.Order";
+            if (_orders.ContainsKey(message.Order.Id))
+            {
+                _orders[message.Order.Id] = message.Order;
+            }
+            else
+            {
+                _orders.Add(message.Order.Id, message.Order);
+            }
         }
     }
 }
