@@ -216,6 +216,9 @@
     <Content Include="Content\fonts\honey-script\HoneyScriptSemiBold.png" />
     <Content Include="Content\fonts\typical-writer\Readme.txt" />
     <Content Include="Content\images\Birthday-Party-Supplies.jpeg" />
+    <Content Include="Content\images\footer\mastercard.png" />
+    <Content Include="Content\images\footer\paypal.png" />
+    <Content Include="Content\images\footer\visa.png" />
     <Content Include="Content\images\home\buy.jpg" />
     <Content Include="Content\images\home\hire.jpg" />
     <Content Include="Content\images\home\themes.jpg" />
