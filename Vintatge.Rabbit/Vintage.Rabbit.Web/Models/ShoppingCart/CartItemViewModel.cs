@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Vintage.Rabbit.Carts.Entities;
+using Vintage.Rabbit.Web.Models.Categories;
 
 namespace Vintage.Rabbit.Web.Models.ShoppingCart
 {
@@ -24,6 +25,8 @@ namespace Vintage.Rabbit.Web.Models.ShoppingCart
 
         public bool IsHire { get; private set; }
 
+        public IList<CategoryViewModel> Categories { get; private set; }
+
         public CartItemViewModel(CartItem item)
         {
             this.Id = item.Id.ToString();
@@ -34,6 +37,7 @@ namespace Vintage.Rabbit.Web.Models.ShoppingCart
             this.Key = item.Product.Title.Replace(" ", "-").ToLower();
             this.ProductId = item.Product.Id;
             this.IsHire = item.Product is HireProductCartItem;
+            this.Categories = item.Product.Categories.Select(o => new CategoryViewModel(o)).ToList();
         }
     }
 }

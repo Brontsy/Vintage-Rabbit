@@ -140,7 +140,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult Complete()
         {
-            return this.View("PaymentInfo");
+            return this.View("Complete");
         }
 	}
 }

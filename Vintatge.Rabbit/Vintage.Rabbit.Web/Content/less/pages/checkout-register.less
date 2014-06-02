@@ -49,3 +49,86 @@
         }
     }
 }
+
+
+.checkout-breadcrumb {
+    li {
+        position: relative;
+        float: left;
+        margin-bottom: 30px;
+        margin-right: 1px;
+        h3 {
+            font-size: 15px;
+            line-height: 28px;
+            padding: 0px 55px 0px 55px;
+            background: #cccccc;
+            color: #fff;
+        }
+
+        .triangle {
+            margin-right: -1px;
+            background: #cccccc;
+            width: 0px;
+            height: 0px;
+            border-style: solid;
+            border-width: 14px 0 14px 14px;
+            border-color: #ffffff #ffffff #ffffff transparent;
+            position: absolute;
+            right: 0px;
+            top: 0px;
+        }
+
+        .triangle-left {
+            margin-right: -1px;
+            background: #ccc;
+            width: 0px;
+            height: 0px;
+            border-style: solid;
+            border-width: 14px 0 14px 14px;
+            border-color: transparent transparent transparent #ffffff;
+            float: left;
+        }
+
+        &.active {
+            h3 {
+                background: @green;
+                color: #fff;
+            }
+
+            .triangle {
+                background: @green;
+            }
+
+            .triangle-left {
+                background: @green;
+            }
+        }
+    }
+    
+    .checkout {
+        h3 {
+            background: #333333;
+            color: #fff;
+        }
+
+        .triangle {
+            background: #333333;
+        }
+            .triangle-left {
+                background: #333333;
+            }
+    }
+    .completed {
+        h3 {
+            background: #333333;
+            color: #fff;
+        }
+
+        .triangle {
+            background: #333333;
+        }
+            .triangle-left {
+                background: #333333;
+            }
+    }
+}

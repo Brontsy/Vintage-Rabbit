@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Vintage.Rabbit.Products.Entities;
+using Vintage.Rabbit.Web.Models.Categories;
 
 namespace Vintage.Rabbit.Web.Models.Products
 {
@@ -16,6 +17,8 @@ namespace Vintage.Rabbit.Web.Models.Products
 
         public string Title { get; private set; }
 
+        public IList<CategoryViewModel> Categories { get; private set; }
+
         public string UrlTitle
         {
             get { return this.Title.Replace(" ", "-").ToLower(); }
@@ -27,6 +30,7 @@ namespace Vintage.Rabbit.Web.Models.Products
             this.Image = new ProductImageViewModel(product.Images.First());
             this.Cost = product.Cost.ToString("C");
             this.Title = product.Title;
+            this.Categories = product.Categories.Select(o => new CategoryViewModel(o)).ToList();
         }
     }
 }

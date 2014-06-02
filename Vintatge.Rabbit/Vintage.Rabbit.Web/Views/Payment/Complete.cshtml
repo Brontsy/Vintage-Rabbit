@@ -1,0 +1,52 @@
+﻿@model Vintage.Rabbit.Web.Models.Payment.PaymentInformationViewModel
+@{
+    ViewBag.Title = "Checkout - Shipping";
+}
+
+
+<div class="checkout payment-information">
+
+    <ol class="float-container checkout-breadcrumb">
+
+        <li class="checkout">
+            <div class="triangle-left"></div>
+            <div class="triangle"></div>
+            <h3>Checkout</h3>
+        </li>
+        <li class="login-register completed">
+            <div class="triangle-left"></div>
+            <div class="triangle"></div>
+            <h3>Login / Register</h3>
+        </li>
+        <li class="address completed">
+            <div class="triangle-left"></div>
+            <div class="triangle"></div>
+            <h3>Address</h3>
+        </li>
+        <li class="payment completed">
+            <div class="triangle-left"></div>
+            <div class="triangle"></div>
+            <h3>Payment</h3>
+        </li>
+        <li class="confirmation active">
+            <div class="triangle-left"></div>
+            <div class="triangle"></div>
+            <h3>Confirmation</h3>
+        </li>
+
+    </ol>
+
+
+    <div class="row">
+
+        <div class="col-6">
+
+            <h2>Payment Complete</h2>
+
+            <div class="alert positive icon">
+                <i class="fa fa-check-circle"></i> Your payment has been completed.
+            </div>
+        </div>
+
+    </div>
+</div>
