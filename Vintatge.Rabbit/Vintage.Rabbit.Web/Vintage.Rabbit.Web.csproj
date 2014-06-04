@@ -224,6 +224,7 @@
     <Content Include="Content\images\home\hire.jpg" />
     <Content Include="Content\images\home\themes.jpg" />
     <Content Include="Content\images\logo.jpg" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\nav-background02.jpg" />
     <Content Include="Content\images\products\20130226172444_1.jpg" />
     <Content Include="Content\images\products\23944.jpg" />
@@ -375,7 +376,7 @@
     <Content Include="Content\fonts\journal\JOURNAL.TTF" />
     <Content Include="Content\less\pages\checkout-billing.less" />
     <Content Include="Content\less\pages\checkout-payment.less" />
-    <Content Include="Content\fonts\smudgie-crayon\Smudgie Crayon.ttf" />
+    <Content Include="Content\fonts\smudgie-crayon\Smudgie-Crayon.ttf" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
