@@ -160,7 +160,7 @@ namespace Vintage.Rabbit.Products.Repository
                 }
 
             }
-            //return buyProducts;
+            return buyProducts;
 
             buyProducts = new List<BuyProduct>()
             {
