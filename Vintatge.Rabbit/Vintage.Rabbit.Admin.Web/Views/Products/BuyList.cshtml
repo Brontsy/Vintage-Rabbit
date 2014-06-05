@@ -4,14 +4,16 @@
 }
 
 <div class="page-head">
-    <button class="btn btn-success btn-lg pull-right" style="margin-top:10px;">Add Product</button>
+
+    @Html.RouteLink("Add Product", Routes.Products.AddProduct, new { }, new { @class = "btn primary right" })
     <h2>Products available for <strong>purchase</strong></h2>
-    <ol class="breadcrumb">
+    <ol class="breadcrumbs">
         <li><a href="#">Home</a></li>
         <li><a href="#">Products</a></li>
         <li class="active">Buy</li>
     </ol>
 </div>
+
 
 
     <div class="main-app">
@@ -24,9 +26,9 @@
                     <div><div class="icheckbox_square-blue checkbox" aria-checked="false" aria-disabled="false" style="position: relative;"><input type="checkbox" name="c[]" style="position: absolute; opacity: 0;"><ins class="iCheck-helper" style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; border: 0px; opacity: 0; background: rgb(255, 255, 255);"></ins></div> </div>
                     <div>
                         <span class="date pull-right price">@product.Cost</span>
-                        <img class="product-image" src="@product.Image.Url">
+                        <img class="product-image" src="@product.Image.Thumbnail">
                         <h4 class="from">
-                            @Html.RouteLink(product.Title, Routes.Products.Product, new { name = product.UrlTitle, productId = product.Id }, new { })
+                            @Html.RouteLink(product.Title, Routes.Products.Edit, new { name = product.UrlTitle, productId = product.Id }, new { })
                         </h4>
                         <p class="msg">@product.Description</p>
                     </div>
@@ -37,7 +39,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        alert($('.item').length);
+
        
     });
 </script>

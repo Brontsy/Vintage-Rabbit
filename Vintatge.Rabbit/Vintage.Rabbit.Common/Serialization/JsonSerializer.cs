@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,12 +12,24 @@ namespace Vintage.Rabbit.Common.Serialization
     {
         public string Serialize<T>(T obj)
         {
-            return string.Empty;
+            JsonSerializerSettings jss = new JsonSerializerSettings();
+
+            Newtonsoft.Json.Serialization.DefaultContractResolver dcr = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+            dcr.DefaultMembersSearchFlags |= System.Reflection.BindingFlags.NonPublic;
+            jss.ContractResolver = dcr;
+
+            return JsonConvert.SerializeObject(obj, jss);
         }
 
         public T Deserialize<T>(string s)
         {
-            return default(T);
+            JsonSerializerSettings jss = new JsonSerializerSettings();
+
+            Newtonsoft.Json.Serialization.DefaultContractResolver dcr = new Newtonsoft.Json.Serialization.DefaultContractResolver();
+            dcr.DefaultMembersSearchFlags |= System.Reflection.BindingFlags.NonPublic;
+            jss.ContractResolver = dcr;
+
+            return JsonConvert.DeserializeObject<T>(s, jss);
         }
     }
 }

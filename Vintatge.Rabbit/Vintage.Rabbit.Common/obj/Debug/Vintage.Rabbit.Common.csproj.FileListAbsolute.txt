@@ -7,3 +7,5 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Common\
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Common\obj\Debug\Vintage.Rabbit.Common.csprojResolveAssemblyReference.cache
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Common\obj\Debug\Vintage.Rabbit.Common.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Common\obj\Debug\Vintage.Rabbit.Common.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Common\bin\Debug\Newtonsoft.Json.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Common\bin\Debug\Newtonsoft.Json.xml

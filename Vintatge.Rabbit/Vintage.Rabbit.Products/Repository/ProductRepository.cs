@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,8 @@ using Vintage.Rabbit.Interfaces.Messaging;
 using Vintage.Rabbit.Interfaces.Serialization;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Products.Messaging.Messages;
+using Dapper;
+using Vintage.Rabbit.Products.Repository.Entities;
 
 namespace Vintage.Rabbit.Products.Repository
 {
@@ -28,6 +31,7 @@ namespace Vintage.Rabbit.Products.Repository
     internal class ProductRepository : IProductRepository, IMessageHandler<SaveProductMessage>
     {
         private ISerializer _serializer;
+        private string _connectionString = "Server=tcp:jb68d1a41k.database.windows.net,1433;Database=Castlerock-2013-11-27-20-3;User ID=Brontsy@jb68d1a41k;Password=Zest2517;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;";
 
         public ProductRepository(ISerializer serializer)
         {
@@ -41,9 +45,63 @@ namespace Vintage.Rabbit.Products.Repository
 
         public void Handle(SaveProductMessage message)
         {
-            string serialized = this._serializer.Serialize(message);
+            var product = message.Product;
+            string categories = this._serializer.Serialize(product.Categories);
+            string images = this._serializer.Serialize(product.Images);
 
-            string sql = "Insert Into Query.Product";
+
+            if (message.Product.Id == 0)
+            {
+                string sql = @"Insert Into VintageRabbit.Products
+                                (Code, [Type], Title, Description, Price, Keywords, Inventory, DateCreated, DateLastModified, UpdatedBy, Categories, Images)
+                                Values
+                                (@Code, @Type, @Title, @Description, @Price, @Keywords, @Inventory, @DateCreated, @DateLastModified, @UpdatedBy, @Categories, @Images);
+                                Select SCOPE_IDENTITY() as ProductId";
+
+                using (SqlConnection connection = new SqlConnection(this._connectionString))
+                {
+                    connection.Query(sql, new
+                    {
+                        Code = product.Code,
+                        Type = (product is BuyProduct ? "Buy" : "Hire"),
+                        Title = product.Title,
+                        Description = product.Description,
+                        Price = product.Cost,
+                        Keywords = product.Keywords,
+                        Inventory = (product is BuyProduct ? ((BuyProduct)product).InventoryCount : 1),
+                        DateCreated = DateTime.Now,
+                        DateLastModified = DateTime.Now,
+                        UpdatedBy = message.ActionBy.Email,
+                        Categories = categories,
+                        Images = images
+                    });
+                }
+            }
+            else
+            {
+                string sql = @"Update VintageRabbit.Products Set Code = @Code, [Type] = @Type, Title = @Title, Description = @Description, Price = Price, Keywords = @Keywords,
+                                Inventory = @Inventory, DateLastModified = @DateLastModified, UpdatedBy = @UpdatedBy, Categories = @Categories, Images = @Images
+                                Where Id = @ProductId";
+
+                using (SqlConnection connection = new SqlConnection(this._connectionString))
+                {
+                    connection.Execute(sql, new
+                    {
+                        Code = product.Code,
+                        Type = (product is BuyProduct ? "Buy" : "Hire"),
+                        Title = product.Title,
+                        Description = product.Description,
+                        Price = product.Cost,
+                        Keywords = product.Keywords,
+                        Inventory = (product is BuyProduct ? ((BuyProduct)product).InventoryCount : 1),
+                        DateLastModified = DateTime.Now,
+                        UpdatedBy = message.ActionBy.Email,
+                        Categories = categories,
+                        Images = images,
+                        ProductId = product.Id
+                    });
+                }
+            }
         }
 
         public IList<Product> GetFeaturedProducts()
@@ -71,16 +129,47 @@ namespace Vintage.Rabbit.Products.Repository
             return this.GetHireProducts().First(o => o.Id == productId);
         }
 
+
         private IList<BuyProduct> GetProducts()
         {
-            return new List<BuyProduct>()
+            IList<BuyProduct> buyProducts = new List<BuyProduct>();
+
+            using(SqlConnection connection = new SqlConnection(this._connectionString))
+            {
+                var products = connection.Query<ProductDb>("Select * From VintageRabbit.Products Where [Type] = 'Buy'");
+
+                foreach(var product in products)
+                {
+                    IList<Category> categories = this._serializer.Deserialize<List<Category>>(product.Categories);
+                    IList<ProductImage> images = this._serializer.Deserialize<List<ProductImage>>(product.Images);
+
+                    BuyProduct buyProduct = new BuyProduct()
+                    {
+                        Id = product.Id,
+                        Code = product.Code,
+                        Title = product.Title,
+                        Description = product.Description,
+                        Keywords = product.Keywords,
+                        Cost = product.Price,
+                        InventoryCount = product.Inventory,
+                        Categories = categories,
+                        Images = images,
+                    };
+
+                    buyProducts.Add(buyProduct);
+                }
+
+            }
+            //return buyProducts;
+
+            buyProducts = new List<BuyProduct>()
             {
                 new BuyProduct() { Id = 632881, Title = "Rainbow Stripe Paper Cups", Cost = 6.95M, Categories = new List<Category>() { new Category() { Id = 1, Name = "party-supplies" } }, Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/new/gifts-and-games/Doggie hand puppet 3605.jpg" }}},
-                new BuyProduct() { Id = 254676, Title = "Tall Milk Bottle", Cost = 9.95M, Categories = new List<Category>() { new Category() { Id = 1, Name = "party-supplies" } }, Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/new/gifts-and-games/Hemp twine variegated 3582.jpg" }}},
+                new BuyProduct() { Id = 254676, Title = "Tall Milk Bottle", Cost = 9.95M, Categories = new List<Category>() { new Category() { Id = 1, Name = "party-supplies" } }, Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/new/gifts-and-games/Hemp twine variegated 3578.jpg" }}},
                 new BuyProduct() { Id = 642333, Title = "Bottle of lollies", Cost = 7.95M, Categories = new List<Category>() { new Category() { Id = 1, Name = "party-supplies" } }, Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/new/gifts-and-games/Hopscotch pink 3591.jpg" }}},
                 new BuyProduct() { Id = 818274, Title = "Rainbow Stripe Paper Cups", Cost = 4.95M, Categories = new List<Category>() { new Category() { Id = 1, Name = "party-supplies" } }, Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/new/gifts-and-games/Pin the tail on the donkey.jpg" }}},
-                new BuyProduct() { Id = 798133, Title = "Confetti Party in a Box", Cost = 14.95M, Categories = new List<Category>() { new Category() { Id = 1, Name = "party-supplies" } }, Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/new/gifts-and-games/Money bank 3597.jpg" }}},
-                new BuyProduct() { Id = 140289, Title = "Party Confetti", Cost = 8.00M, Categories = new List<Category>() { new Category() { Id = 1, Name = "games" } }, Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/new/gifts-and-games/blue paper straws 3665.jpg" }}},
+                new BuyProduct() { Id = 798133, Title = "Confetti Party in a Box", Cost = 14.95M, Categories = new List<Category>() { new Category() { Id = 1, Name = "party-supplies" } }, Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/new/gifts-and-games/Elastics Red 3587.jpg" }}},
+                new BuyProduct() { Id = 140289, Title = "Party Confetti", Cost = 8.00M, Categories = new List<Category>() { new Category() { Id = 1, Name = "games" } }, Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/new/gifts-and-games/Matryoshka doll 1234.jpg" }}},
 
                 
                 new BuyProduct() { Id = 135566, Title = "Red Stripe Vintage Candy Store Bags (set of 10)", Cost = 4.95M, Categories = new List<Category>() { new Category() { Id = 1, Name = "party-supplies" } }, Description = "Our Vintage Candy Store range features sweet paper cups and bags in nostalgic styles for a look you'll love! \r\n These traditional paper bags are perfect to fill with sweets and treats. \r\n18x9 cms with a 5.5cm gusset.", Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/new/gifts-and-games/Picnic.jpg" }}},
@@ -102,6 +191,8 @@ namespace Vintage.Rabbit.Products.Repository
                 new BuyProduct() { Id = 21378, Title = "Carnival Stripe Ceramic Lemonade Bottle (set of 2)", Cost = 12.95M, Categories = new List<Category>() { new Category() { Id = 1, Name = "party-supplies" } }, Description = "", Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/rg-may2013_1293-copy.jpg" }}},
                 new BuyProduct() { Id = 21345, Title = "Make Lemonade Sign", Cost = 89.95M, Categories = new List<Category>() { new Category() { Id = 1, Name = "party-supplies" } }, Description = "", Images = new List<ProductImage>() { new ProductImage() { Url = "/content/images/products/age-04-125.jpg" }}},
             };
+
+            return buyProducts;
         }
         private IList<HireProduct> GetHireProducts1()
         {

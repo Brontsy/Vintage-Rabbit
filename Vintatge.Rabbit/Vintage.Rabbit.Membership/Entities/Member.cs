@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vintage.Rabbit.Interfaces.Membership;
 
 namespace Vintage.Rabbit.Membership.Entities
 {
-    public class Member
+    public class Member : IActionBy
     {
         public Guid Id { get; private set; }
 

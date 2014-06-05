@@ -8,9 +8,11 @@ namespace Vintage.Rabbit.Products.Entities
 {
     public class ProductImage
     {
-        public Guid Id { get; internal set; }
+        public Guid Id { get; set; }
 
-        public string Url { get; internal set; }
+        public string Url { get; set; }
+
+        public string Thumbnail { get; set; }
 
         public ProductImage()
         {

@@ -8,7 +8,7 @@ namespace Vintage.Rabbit.Products.Entities
 {
     public class BuyProduct : Product
     {
-        public int InventoryCount { get; private set; }
+        public int InventoryCount { get; set; }
 
         public BuyProduct() 
             :base()

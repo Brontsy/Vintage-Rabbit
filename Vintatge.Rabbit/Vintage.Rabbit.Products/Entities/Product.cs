@@ -8,17 +8,23 @@ namespace Vintage.Rabbit.Products.Entities
 {
     public class Product
     {
-        public int Id { get; internal set; }
+        public int Id { get; set; }
 
-        public string Title { get; internal set; }
+        public string Code { get; set; }
 
-        public string Description { get; internal set; }
+        public string Type { get; set; }
 
-        public decimal Cost { get; internal set; }
+        public string Title { get; set; }
 
-        public IList<ProductImage> Images { get; internal set; }
+        public string Description { get; set; }
 
-        public IList<Category> Categories { get; internal set; }
+        public string Keywords { get; set; }
+
+        public decimal Cost { get; set; }
+
+        public IList<ProductImage> Images { get; set; }
+
+        public IList<Category> Categories { get; set; }
 
         public Product()
         {

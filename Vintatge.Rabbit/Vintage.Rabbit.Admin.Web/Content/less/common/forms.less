@@ -1,0 +1,100 @@
+﻿
+
+
+
+form {
+    label {
+        margin-bottom: 5px;
+        color: #666666;
+    }
+
+    input[type="text"], input[type="datetime"] {
+        line-height: 36px;
+        padding: 0px 15px 0px 15px;
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-size: 18px;
+    }
+
+    input[type="password"] {
+        line-height: 36px;
+        padding: 0px 15px 0px 15px;
+        width: 100%;
+        border: 1px solid #cccccc;
+        font-size: 18px;
+    }
+
+    textarea {
+        width: 100%;
+        min-height: 150px;
+        border: 1px solid #cccccc;
+    }
+
+    select {
+        height: 36px;
+        width: 100%;
+        padding-left: 15px;
+        border: 1px solid #cccccc;
+        font-size: 18px;
+
+        option:nth-child(1) {
+            color: #666;
+            font-size: 26px;
+        }
+    }
+
+    ol {
+        li {
+            margin-top: 20px;
+        }
+    }
+
+    .radiobuttons {
+        input[type="radio"] {
+            line-height: 24px;
+        }
+
+        label {
+            line-height: 24px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    }
+
+    .input-icon {
+        position: relative;
+
+        input {
+            padding-left: 33px;
+        }
+
+        i {
+            color: #ccc;
+            display: block;
+            position: absolute;
+            margin: 14px 2px 4px 10px;
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+            text-align: center;
+        }
+    }
+
+    .field-validation-error {
+        background: #ffcccc;
+        color: #df5a5a;
+        padding: 5px;
+        font-size: 16px;
+        display: block;
+        width: 100%;
+    }
+
+    input[type="text"].valid,
+    input[type="password"].valid {
+        border: 1px solid @green;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}

@@ -217,6 +217,10 @@
     <Content Include="Content\fonts\smudgie-crayon\License - READ THIS.txt" />
     <Content Include="Content\fonts\typical-writer\Readme.txt" />
     <Content Include="Content\images\Birthday-Party-Supplies.jpeg" />
+    <Content Include="Content\images\BUNTING-06.png" />
+    <Content Include="Content\images\footer\footer1.jpg" />
+    <Content Include="Content\images\footer\footer2.jpg" />
+    <Content Include="Content\images\footer\footer3.jpg" />
     <Content Include="Content\images\footer\mastercard.png" />
     <Content Include="Content\images\footer\paypal.png" />
     <Content Include="Content\images\footer\visa.png" />
@@ -265,6 +269,7 @@
     <Content Include="Content\images\products\new\gifts-and-games\Koala hand puppet 3637.jpg" />
     <Content Include="Content\images\products\new\gifts-and-games\Lion hand puppet 3602.jpg" />
     <Content Include="Content\images\products\new\gifts-and-games\Little red riding hood puppet show 3652.jpg" />
+    <Content Include="Content\images\products\new\gifts-and-games\Matryoshka doll 1234.jpg" />
     <Content Include="Content\images\products\new\gifts-and-games\Money bank 3597.jpg" />
     <Content Include="Content\images\products\new\gifts-and-games\Monkey hand puppet 3640.jpg" />
     <Content Include="Content\images\products\new\gifts-and-games\Orangutan hand puppet 3640.jpg" />
@@ -377,6 +382,7 @@
     <Content Include="Content\less\pages\checkout-billing.less" />
     <Content Include="Content\less\pages\checkout-payment.less" />
     <Content Include="Content\fonts\smudgie-crayon\Smudgie-Crayon.ttf" />
+    <Content Include="Content\fonts\a-little-sunshine\a-little-sunshine.ttf" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />

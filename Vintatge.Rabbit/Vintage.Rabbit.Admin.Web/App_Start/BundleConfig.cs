@@ -11,6 +11,17 @@ namespace Vintage.Rabbit.Admin.Web
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include("~/Content/scripts/jquery/jquery-{version}.js").Include("~/Content/scripts/jquery/jquery-ui-1.10.4.custom.min.js"));
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include("~/Content/scripts/jquery/jquery.validate*"));
 
+            // Use the development version of Modernizr to develop with and learn from. Then, when you're
+            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
+            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Content/scripts/modernizr/modernizr-*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/scripts")
+                .Include("~/Content/scripts/bootstrap/*.js")
+                .Include("~/Content/scripts/datepicker/*.js")
+                .Include("~/Content/scripts/photo-uploader/*.js")
+                .Include("~/Content/scripts/*.js"));
+
+
             //// Use the development version of Modernizr to develop with and learn from. Then, when you're
             //// ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             //bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(

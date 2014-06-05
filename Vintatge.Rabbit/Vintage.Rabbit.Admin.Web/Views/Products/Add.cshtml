@@ -1,0 +1,98 @@
+﻿@model Vintage.Rabbit.Admin.Web.Models.Products.ProductViewModel
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="page-head">
+
+    <h2>Add Product</h2>
+    <ol class="breadcrumbs">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Products</a></li>
+        <li class="active">Add</li>
+    </ol>
+</div>
+
+<div class="body-content">
+    <div class="row">
+        <div class="col-5">
+            @using (Html.BeginRouteForm(Routes.Products.SaveProduct, new { productId = Model.ProductId }, FormMethod.Post, new { }))
+            {
+                <fieldset>
+                    <ol class="row">
+                        <li class="col-12">
+                            @Html.TextBoxFor(o => o.Code, new { placeholder = "Code*" })
+                            @Html.ValidationMessageFor(o => o.Code)
+                        </li>
+                        <li class="col-12">
+                            @Html.DropDownListFor(o => o.Type, Model.Types, "Product Type...", new { })
+                            @Html.ValidationMessageFor(o => o.Type)
+                        </li>
+                        <li class="col-12">
+                            @Html.TextBoxFor(o => o.Title, new { placeholder = "Title*" })
+                            @Html.ValidationMessageFor(o => o.Title)
+                        </li>
+                        <li class="col-12">
+                            @Html.TextAreaFor(o => o.Description, new { placeholder = "Description" })
+                            @Html.ValidationMessageFor(o => o.Description)
+                        </li>
+                        <li class="col-12">
+                            @Html.TextBoxFor(o => o.Keywords, new { placeholder = "Keywords*" })
+                            @Html.ValidationMessageFor(o => o.Keywords)
+                        </li>
+                        <li class="col-12">
+                            @Html.TextBoxFor(o => o.Cost, new { placeholder = "Price*" })
+                            @Html.ValidationMessageFor(o => o.Cost)
+                        </li>
+                        <li class="col-12">
+                            @Html.TextBoxFor(o => o.Inventory, new { placeholder = "Inventory*" })
+                            @Html.ValidationMessageFor(o => o.Inventory)
+                        </li>
+
+                        <li class="col-12">
+
+
+                            <h3><strong>Categories</strong></h3>
+                            <ul class="categories">
+
+                                @for (int i = 0; i < Model.Categories.Count; i++)
+                                {
+                                    <li>
+                                        @Html.CheckBoxFor(o => o.Categories[i].Selected)
+                                        @Html.LabelFor(o => o.Categories[i].Selected, Model.Categories[i].DisplayName)
+                                        @Html.HiddenFor(o => Model.Categories[i].Id)
+                                    </li>
+                                }
+
+                            </ul>
+                        </li>
+
+                        <li class="col-4 offset-8">
+                            <button type="submit" class="btn primary">Save & continue</button>
+                        </li>
+                    </ol>
+                </fieldset>
+            }
+        </div>
+
+        <div class="col-5 offset-1" >
+            <div class="upload-photos">
+
+                <button class="btn primary" id="pickfiles">Upload Photos</button>
+
+                <ol class="photo-list">
+                </ol>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $('.upload-photos').photoUploader(
+        {
+            uploadUrl: '@Url.RouteUrl(Routes.Products.UploadPhoto, new {  productId = Model.ProductId })'
+        });
+
+</script>

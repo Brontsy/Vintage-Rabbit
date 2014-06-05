@@ -78,3 +78,17 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.W
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Autofac.Integration.Mvc.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Vintage.Rabbit.Payment.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Vintage.Rabbit.Payment.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Dapper.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Dapper.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Dapper.xml
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.WindowsAzure.Storage.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.Data.Edm.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.Data.Services.Client.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.Data.OData.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\System.Spatial.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.WindowsAzure.Storage.xml
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.Data.Edm.xml
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.Data.Services.Client.xml
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.Data.OData.xml
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\System.Spatial.xml
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\ImageProcessor.dll
