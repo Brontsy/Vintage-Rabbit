@@ -13,6 +13,7 @@ namespace Vintage.Rabbit.Web
         public static string Themes = "Themes";
         public static string ContactUs = "ContactUs";
         public static string FAQ = "FAQ";
+        public static string Blog = "Blog";
 
         public static string StyleProduct = "StyleProduct";
 
@@ -71,7 +72,8 @@ namespace Vintage.Rabbit.Web
 
             routes.MapRoute(Routes.Themes, url: "style", defaults: new { controller = "Style", action = "Index" });
             routes.MapRoute(Routes.ContactUs, url: "contact-us", defaults: new { controller = "ContactUs", action = "Index" });
-            routes.MapRoute(Routes.FAQ, url: "blog", defaults: new { controller = "Blog", action = "Index" });
+            routes.MapRoute(Routes.FAQ, url: "faq", defaults: new { controller = "FAQ", action = "Index" });
+            routes.MapRoute(Routes.Blog, url: "blog", defaults: new { controller = "Blog", action = "Index" });
 
 
 
