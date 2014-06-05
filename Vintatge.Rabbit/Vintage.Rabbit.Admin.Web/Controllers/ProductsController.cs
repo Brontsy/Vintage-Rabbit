@@ -13,6 +13,7 @@ using Vintage.Rabbit.Products.CommandHandlers;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Products.QueryHandlers;
 using Vintage.Rabbit.Products.Services;
+using Vintage.Rabbit.Common.Extensions;
 
 namespace Vintage.Rabbit.Admin.Web.Controllers
 {
@@ -106,14 +107,22 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
             var result = this._uploadPhotoService.UploadFiles(this.Request.Files);
 
             var product = this._queryDispatcher.Dispatch<BuyProduct, GetBuyProductQuery>(new GetBuyProductQuery(productId));
-            foreach(var image in result)
+            foreach (var image in result)
             {
                 product.Images.Add(image);
             }
-            
+
             this._commandDispatcher.Dispatch(new SaveProductCommand(product, member));
 
-            return null;
+            return this.PartialView("Photo", new ProductImageViewModel(result[0]));
+        }
+
+        public ActionResult RemovePhoto(int productId, Guid photoId, Member member)
+        {
+            var product = this._queryDispatcher.Dispatch<BuyProduct, GetBuyProductQuery>(new GetBuyProductQuery(productId));
+            this._commandDispatcher.Dispatch(new RemovePhotoCommand(product, member, photoId));
+
+            return this.RedirectToRoute(Routes.Products.Edit, new { productId = productId, name = product.Title.ToUrl() });
         }
 	}
 }

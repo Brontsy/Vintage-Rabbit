@@ -19,6 +19,7 @@ namespace Vintage.Rabbit.Admin.Web
             public static string AddProduct = "Product - Add";
             public static string SaveProduct = "Product - Save";
             public static string UploadPhoto = "Product - Upload Photo";
+            public static string RemovePhoto = "Product - Remove Photo";
         }
 
         public static class Membership
@@ -39,6 +40,7 @@ namespace Vintage.Rabbit.Admin.Web
             routes.MapRoute(Routes.Products.SaveProduct, url: "products/save/{productId}", defaults: new { controller = "Products", action = "Save" });
             routes.MapRoute(Routes.Products.Edit, url: "products/edit/{name}/{productId}", defaults: new { controller = "Products", action = "Edit" });
             routes.MapRoute(Routes.Products.UploadPhoto, url: "products/upload-photo/{productId}", defaults: new { controller = "Products", action = "UploadPhoto" });
+            routes.MapRoute(Routes.Products.RemovePhoto, url: "products/{productId}/remove-photo/{photoId}", defaults: new { controller = "Products", action = "RemovePhoto" });
 
             routes.MapRoute(Routes.Membership.Login, url: "login", defaults: new { controller = "Membership", action = "Login" });
             routes.MapRoute(Routes.Membership.Logout, url: "logout", defaults: new { controller = "Membership", action = "Logout" });

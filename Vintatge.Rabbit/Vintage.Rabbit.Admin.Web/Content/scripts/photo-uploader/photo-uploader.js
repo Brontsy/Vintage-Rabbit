@@ -344,7 +344,7 @@
 
         fileSelected: function (file) {
 
-            var context = $('<li class="uploading"><div class="image-container"><div class="progress progress-striped"><div class="bar"></div></div></div></li>');
+            var context = $('<li class="col-6 uploading"><div class="image-container"><div class="progress progress-striped"><div class="bar"></div></div></div></li>');
             context.appendTo($('.photo-list'));
 
             this._files[file.id] = context;

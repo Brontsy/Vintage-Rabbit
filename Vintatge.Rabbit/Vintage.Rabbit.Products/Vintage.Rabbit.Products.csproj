@@ -78,7 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandHandlers\UploadProductPhotoCommandHandler.cs" />
+    <Compile Include="CommandHandlers\RemovePhotoCommandHandler.cs" />
     <Compile Include="CommandHandlers\SaveProductCommandHandler.cs" />
     <Compile Include="Entities\BuyProduct.cs" />
     <Compile Include="Entities\Category.cs" />

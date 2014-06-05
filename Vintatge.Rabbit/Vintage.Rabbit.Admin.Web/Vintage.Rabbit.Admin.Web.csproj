@@ -229,6 +229,8 @@
     <Content Include="Content\less\common\header.less" />
     <Content Include="Content\less\bootstrap\dropdown.less" />
     <Content Include="Content\less\components\sidebar.less" />
+    <Content Include="Content\less\components\photo-uploader.less" />
+    <Content Include="Content\less\common\progress-bar.less" />
     <None Include="Content\less\components\breadcrumbs.less" />
     <Content Include="Content\less\components\page-head.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
@@ -278,6 +280,7 @@
     <Content Include="Views\Products\BuyList.cshtml" />
     <Content Include="Views\Products\HireList.cshtml" />
     <Content Include="Views\Products\Add.cshtml" />
+    <Content Include="Views\Products\Photo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

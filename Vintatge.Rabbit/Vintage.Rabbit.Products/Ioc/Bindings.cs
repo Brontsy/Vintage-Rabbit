@@ -20,6 +20,7 @@ namespace Vintage.Rabbit.Products.Ioc
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<SaveProductCommandHandler>().As<ICommandHandler<SaveProductCommand>>();
+            builder.RegisterType<RemovePhotoCommandHandler>().As<ICommandHandler<RemovePhotoCommand>>();
 
             builder.RegisterType<ProductRepository>().As<IMessageHandler<SaveProductMessage>>();
 

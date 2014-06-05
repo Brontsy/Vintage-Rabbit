@@ -75,12 +75,16 @@
             }
         </div>
 
-        <div class="col-5 offset-1" >
+        <div class="col-6 offset-1 photo-uploader">
             <div class="upload-photos">
 
                 <button class="btn primary" id="pickfiles">Upload Photos</button>
 
-                <ol class="photo-list">
+                <ol class="photo-list row">
+                    @foreach (var image in Model.ImageUrls)
+                    {
+                        Html.RenderPartial("Photo", image);
+                    }
                 </ol>
 
             </div>

@@ -18,10 +18,32 @@ namespace Vintage.Rabbit.Products.Services
         IList<UploadProductImageResult> UploadFiles(HttpFileCollectionBase files, string path);
 
         UploadProductImageResult UploadFile(Stream file, string fileName, string path);
+
+        bool DeleteFile(string path);
     }
 
     internal class AzureBlobStorage : IFileStorage
     {
+        public bool DeleteFile(string path)
+        {
+            if(path.Contains("http://vintagerabbit.blob.core.windows.net/vintage-rabbit/"))
+            {
+                path = path.Replace("http://vintagerabbit.blob.core.windows.net/vintage-rabbit/", string.Empty);
+            }
+
+            // Retrieve a reference to a container 
+            CloudBlobContainer blobContainer = this.GetCloudBlobContainer();
+
+            CloudBlockBlob cloudBlob = blobContainer.GetBlockBlobReference(path);
+
+            // If we cannot delete a direct reference (ie a file) then we must be deleting a directory
+            if (!cloudBlob.DeleteIfExists())
+            {
+                return false;
+            }
+
+            return true;
+        }
 
         /// <summary>
         /// Upload a collection of files to the server

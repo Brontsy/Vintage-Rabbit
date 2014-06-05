@@ -1,0 +1,9 @@
+﻿@model Vintage.Rabbit.Admin.Web.Models.Products.ProductImageViewModel
+@{
+    ViewBag.Title = "List";
+}
+
+<li class="col-6">
+    <div class="image-container"><img src="@Model.Url" /></div>
+    @Html.RouteLink("Remove", Routes.Products.RemovePhoto, new { photoId = Model.Id })
+</li>

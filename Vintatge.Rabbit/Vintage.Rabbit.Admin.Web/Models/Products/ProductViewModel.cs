@@ -43,7 +43,7 @@ namespace Vintage.Rabbit.Admin.Web.Models.Products
         public IList<CategoryViewModel> Categories { get; set; }
 
         [Display(Name = "Images")]
-        public IList<string> ImageUrls { get; set; }
+        public IList<ProductImageViewModel> ImageUrls { get; set; }
 
         public IList<SelectListItem> Types
         {
@@ -60,7 +60,7 @@ namespace Vintage.Rabbit.Admin.Web.Models.Products
         public ProductViewModel()
         {
             this.Categories = new List<CategoryViewModel>();
-            this.ImageUrls = new List<string>();
+            this.ImageUrls = new List<ProductImageViewModel>();
         }
 
         public ProductViewModel(Product product, IList<Category> categories)
@@ -74,7 +74,7 @@ namespace Vintage.Rabbit.Admin.Web.Models.Products
             this.Cost = product.Cost;
             this.Inventory = (product is BuyProduct ? ((BuyProduct)product).InventoryCount : 1);
             this.Type = (product is BuyProduct ? "Buy" : "Hire");
-            this.ImageUrls = product.Images.Select(o => o.Url).ToList();
+            this.ImageUrls = product.Images.Select(o => new ProductImageViewModel(o)).ToList();
 
             foreach (Category category in categories)
             {
