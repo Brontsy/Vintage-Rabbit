@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vintage.Rabbit.Admin.Web.Models.Categories;
-using Vintage.Rabbit.Admin.Web.Models.Hire;
 using Vintage.Rabbit.Admin.Web.Models.Products;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Membership.Entities;
@@ -30,7 +29,7 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
             this._uploadPhotoService = uploadPhotoService;
         }
 
-        public ActionResult BuyList()
+        public ActionResult List()
         {
             IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsQuery>(new GetProductsQuery()).OrderBy(o => o.Title).ToList();
 
@@ -38,15 +37,7 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
 
             return View("BuyList", viewModel);
         }
-        public ActionResult HireList()
-        {
-            IList<HireProduct> products = this._queryDispatcher.Dispatch<IList<HireProduct>, GetHireProductsQuery>(new GetHireProductsQuery()).OrderBy(o => o.Title).ToList();
-
-            HireProductListViewModel viewModel = new HireProductListViewModel(products);
-
-            return View("HireList", viewModel);
-        }
-
+      
         public ActionResult Add()
         {
             IList<Category> categories = this._queryDispatcher.Dispatch<IList<Category>, GetCategoriesQuery>(new GetCategoriesQuery());

@@ -53,7 +53,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult AddHireProduct(int productId, Member member, DateTime startDate, DateTime endDate)
         {
-            HireProduct product = this._queryDispatcher.Dispatch<HireProduct, GetHireProductQuery>(new GetHireProductQuery(productId));
+            Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
             this._commandDispatcher.Dispatch(new AddHireProductToCartCommand(member.Id, product, startDate, endDate));
 

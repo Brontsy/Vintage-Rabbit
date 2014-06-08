@@ -8,28 +8,32 @@ using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Interfaces.Cache;
 using Vintage.Rabbit.Products.Repository;
 using Vintage.Rabbit.Caching;
+using Vintage.Rabbit.Products.Enums;
 
 namespace Vintage.Rabbit.Products.QueryHandlers
 {
-    public class GetHireProductsQuery
+    public class GetProductsByTypeQuery
     {
-        public GetHireProductsQuery()
+        public ProductType Type { get; private set; }
+
+        public GetProductsByTypeQuery(ProductType type)
         {
+            this.Type = type;
         }
     }
 
-    internal class GetHireProductsQueryHandler : IQueryHandler<IList<HireProduct>, GetHireProductsQuery>
+    internal class GetProductsByTypeQueryHandler : IQueryHandler<IList<Product>, GetProductsByTypeQuery>
     {
         private IProductRepository _productRepository;
 
-        public GetHireProductsQueryHandler(IProductRepository productRepository)
+        public GetProductsByTypeQueryHandler(IProductRepository productRepository)
         {
             this._productRepository = productRepository;
         }
 
-        public IList<HireProduct> Handle(GetHireProductsQuery query)
+        public IList<Product> Handle(GetProductsByTypeQuery query)
         {
-            return this._productRepository.GetHireProducts();
+            return this._productRepository.GetProductsByType(query.Type);
         }
     }
 }

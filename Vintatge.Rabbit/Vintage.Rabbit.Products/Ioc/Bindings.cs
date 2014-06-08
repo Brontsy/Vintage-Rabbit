@@ -26,21 +26,20 @@ namespace Vintage.Rabbit.Products.Ioc
             builder.RegisterType<ProductRepository>().As<IMessageHandler<SaveProductMessage>>();
 
             builder.RegisterType<GetFeaturedProductsQueryHandler>().As<IQueryHandler<IList<Product>, GetFeaturedProductsQuery>>();
-            builder.RegisterType<GetHireProductsQueryHandler>().As<IQueryHandler<IList<HireProduct>, GetHireProductsQuery>>();
-            builder.RegisterType<GetHireProductQueryHandler>().As<IQueryHandler<HireProduct, GetHireProductQuery>>();
 
 
             builder.RegisterType<GetProductByGuidQueryHandler>().As<IQueryHandler<Product, GetProductByGuidQuery>>();
             builder.RegisterType<GetProductByIdQueryHandler>().As<IQueryHandler<Product, GetProductByIdQuery>>();
             builder.RegisterType<GetProductsQueryHandler>().As<IQueryHandler<IList<Product>, GetProductsQuery>>();
             builder.RegisterType<GetProductsByCategoryQueryHandler>().As<IQueryHandler<IList<Product>, GetProductsByCategoryQuery>>();
+            builder.RegisterType<GetProductsByTypeQueryHandler>().As<IQueryHandler<IList<Product>, GetProductsByTypeQuery>>();
 
 
 
             builder.RegisterType<GetCategoriesQueryHandler>().As<IQueryHandler<IList<Category>, GetCategoriesQuery>>();
             builder.RegisterType<GetCategoryQueryHandler>().As<IQueryHandler<Category, GetCategoryQuery>>();
 
-            builder.RegisterType<IsHireProductAvailableQueryHandler>().As<IQueryHandler<bool, IsHireProductAvailableQuery>>();
+            builder.RegisterType<IsProductAvailableForHireQueryHandler>().As<IQueryHandler<bool, IsProductAvailableForHireQuery>>();
 
             builder.RegisterType<ProductRepository>().As<IProductRepository>();
             builder.RegisterType<CategoryRepository>().As<ICategoryRepository>();

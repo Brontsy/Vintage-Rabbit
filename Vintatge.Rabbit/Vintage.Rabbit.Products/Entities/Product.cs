@@ -45,5 +45,15 @@ namespace Vintage.Rabbit.Products.Entities
         {
             this.Guid = guid;
         }
+
+        internal bool IsAvailableForHire(DateTime startDate, DateTime endDate)
+        {
+            if (this.Type == ProductType.Hire)
+            {
+                return this.Inventory.Any(o => o.IsAvailable(startDate, endDate));
+            }
+
+            return false;
+        }
     }
 }

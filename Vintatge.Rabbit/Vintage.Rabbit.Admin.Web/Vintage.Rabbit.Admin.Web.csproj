@@ -176,12 +176,7 @@
     </Compile>
     <Compile Include="ModelBinders\MemberModelBinder.cs" />
     <Compile Include="Models\Products\ProductListViewModel.cs" />
-    <Compile Include="Models\Buy\BuyProductViewModel.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
-    <Compile Include="Models\Hire\HireDatesViewModel.cs" />
-    <Compile Include="Models\Hire\HireProductListItemViewModel.cs" />
-    <Compile Include="Models\Hire\HireProductListViewModel.cs" />
-    <Compile Include="Models\Hire\HireProductViewModel.cs" />
     <Compile Include="Models\Membership\LoginViewModel.cs" />
     <Compile Include="Models\Products\ProductImageViewModel.cs" />
     <Compile Include="Models\Products\ProductListItemViewModel.cs" />

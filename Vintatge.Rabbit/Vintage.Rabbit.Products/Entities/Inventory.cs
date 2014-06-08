@@ -21,22 +21,28 @@ namespace Vintage.Rabbit.Products.Entities
         {
             this.Id = Guid.NewGuid();
             this.Status = InventoryStatus.Available;
+            this.DatesUnavailable = new List<DateTime>();
         }
 
         public bool IsAvailable(DateTime startDate, DateTime endDate)
         {
-            DateTime currentDate = startDate.Date;
-            while(currentDate <= endDate.Date)
+            bool available = false;
+            if (this.Status == InventoryStatus.Available)
             {
-                if(this.DatesUnavailable.Contains(currentDate))
+                available = true;
+                DateTime currentDate = startDate.Date;
+                while (currentDate <= endDate.Date)
                 {
-                    return false;
-                }
+                    if (this.DatesUnavailable.Contains(currentDate))
+                    {
+                        available = false;
+                    }
 
-                currentDate = currentDate.AddDays(1);
+                    currentDate = currentDate.AddDays(1);
+                }
             }
 
-            return true;
+            return available;
         }
     }
 }

@@ -1,0 +1,56 @@
+﻿@model Vintage.Rabbit.Web.Models.Hire.AvailabilityCheckViewModel
+
+                    <div class="col-12 check-availability@(Model.IsAvailable.HasValue ? Model.IsAvailable.Value ? " available" : " unavailable" : string.Empty)">
+                        @{string routeName = (Model.IsAvailable.HasValue && Model.IsAvailable.Value ? Routes.ShoppingCart.AddHireProduct : Routes.Hire.CheckProductAvailability);}
+                        @{ string addToCartUrl = Url.RouteUrl(Routes.ShoppingCart.AddHireProduct, new { productId = Model.Product.Id, name = Model.Product.UrlTitle }); }
+                        @{ string checkAvailabilityUrl = Url.RouteUrl(Routes.Hire.CheckProductAvailability, new { productId = Model.Product.Id, name = Model.Product.UrlTitle }); }
+
+                        @using (Html.BeginRouteForm(routeName, new { productId = Model.Product.Id, name = Model.Product.UrlTitle }, FormMethod.Post, new { @class = "check-availability-form", data_add_to_cart = addToCartUrl, data_check_availability = checkAvailabilityUrl }))
+                        {
+                            <fieldset>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="input-icon">
+                                            <i class="fa fa-calendar"></i>
+                                            @Html.EditorFor(o => o.StartDate, new { htmlAttributes = new { @placeholder = "Start Date", @class = "datepicker-trigger" } })
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="input-icon">
+                                            <i class="fa fa-calendar"></i>
+                                            @Html.EditorFor(o => o.EndDate, new { htmlAttributes = new { @placeholder = "End Date", @class = "datepicker-trigger" }})
+                                        </div>
+                                    </div>
+
+                                    <div class="col-7">
+                                        <div class="unavailable-text alert negative icon">
+                                            <i class="fa fa-times"></i>Sorry this product is currently unavailable for those dates. Please call us on 131313
+                                        </div>
+                                        <div class="available-text alert positive icon">
+                                            <i class="fa fa-check"></i>@Model.Product.Title is currently available for your selected dates.
+                                        </div>
+                                    </div>
+
+                                    <div class="col-5">
+                                        <button type="submit" class="btn primary check-availability-button">
+                                            <i class="fa fa-refresh"></i>
+                                            Check availability
+                                        </button>
+                                        <button type="submit" class="btn primary add-to-cart">
+                                            <i class="fa fa-shopping-cart"></i>
+                                            Add to cart
+                                        </button>
+                                    </div>
+                                    <div class="col-12 added-to-cart">
+                                        <div class="alert positive icon">
+                                            <i class="fa fa-check-circle"></i> <strong>@Model.Product.Title</strong> has been added to your cart
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        }
+
+                      
+                    </div>
+               

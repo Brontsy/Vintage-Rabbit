@@ -94,7 +94,8 @@
     <Compile Include="QueryHandlers\GetProductByGuidQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetCategoryQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetCategoriesQueryHandler.cs" />
-    <Compile Include="QueryHandlers\IsHireProductAvailableQueryHandler.cs" />
+    <Compile Include="QueryHandlers\GetProductsByTypeQueryHandler.cs" />
+    <Compile Include="QueryHandlers\IsProductAvailableForHireQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetProductsByCategoryQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetProductsQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetFeaturedProductsQueryHandler.cs" />

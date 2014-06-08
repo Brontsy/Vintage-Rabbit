@@ -11,6 +11,7 @@ using Vintage.Rabbit.Products.Messaging.Messages;
 using Dapper;
 using Vintage.Rabbit.Products.Repository.Entities;
 using System.Configuration;
+using Vintage.Rabbit.Products.Enums;
 
 namespace Vintage.Rabbit.Products.Repository
 {
@@ -25,6 +26,8 @@ namespace Vintage.Rabbit.Products.Repository
         Product GetProductByGuid(Guid productGuid);
 
         Product GetProductById(int productId);
+
+        IList<Product> GetProductsByType(ProductType type);
     }
 
     internal class ProductRepository : IProductRepository, IMessageHandler<SaveProductMessage>
@@ -36,6 +39,24 @@ namespace Vintage.Rabbit.Products.Repository
         {
             this._connectionString = ConfigurationManager.ConnectionStrings["VintageRabbit"].ConnectionString;
             this._serializer = serializer;
+        }
+
+        public IList<Product> GetProductsByType(ProductType type)
+        {
+            IList<Product> products = new List<Product>();
+
+            using (SqlConnection connection = new SqlConnection(this._connectionString))
+            {
+                var productResults = connection.Query<ProductDb>("Select * From VintageRabbit.Products Where [Type] = @Type Order By DateCreated Desc", new { Type = type.ToString() });
+
+                foreach (var product in productResults)
+                {
+                    products.Add(this.ConvertToProduct(product));
+                }
+
+            }
+
+            return products;
         }
 
         public Product GetProductById(int productId)
@@ -177,6 +198,7 @@ namespace Vintage.Rabbit.Products.Repository
             {
                 Id = productDb.Id,
                 Guid = productDb.Guid,
+                Type = productDb.Type,
                 Code = productDb.Code,
                 Title = productDb.Title,
                 Description = productDb.Description,

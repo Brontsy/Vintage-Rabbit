@@ -13,7 +13,7 @@ namespace Vintage.Rabbit.Carts.Entities
 
         public DateTime EndDate { get; private set; }
 
-        public HireProductCartItem(HireProduct product, DateTime startDate, DateTime endDate) 
+        public HireProductCartItem(Product product, DateTime startDate, DateTime endDate) 
             :base(product)
         {
             this.StartDate = startDate;

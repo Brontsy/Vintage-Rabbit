@@ -45,7 +45,7 @@ namespace Vintage.Rabbit.Carts.Entities
             }
         }
 
-        internal void AddProduct(HireProduct product, DateTime startDate, DateTime endDate)
+        internal void AddProduct(Product product, DateTime startDate, DateTime endDate)
         {
             if (this.Items.Any(o => o.Product.Id == product.Id))
             {

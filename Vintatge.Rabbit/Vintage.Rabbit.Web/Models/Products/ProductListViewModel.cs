@@ -6,15 +6,15 @@ using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Web.Models.Breadcrumbs;
 using Vintage.Rabbit.Web.Models.Products;
 
-namespace Vintage.Rabbit.Web.Models.Buy
+namespace Vintage.Rabbit.Web.Models.Products
 {
-    public class BuyProductListViewModel
+    public class ProductListViewModel
     {
         public IList<ProductListItemViewModel> Products { get; private set; }
 
         public BreadcrumbsViewModel Breadcrumbs { get; private set; }
 
-        public BuyProductListViewModel(IList<Product> products, BreadcrumbsViewModel breadcrumbs)
+        public ProductListViewModel(IList<Product> products, BreadcrumbsViewModel breadcrumbs)
         {
             this.Products = products.Select(o => new ProductListItemViewModel(o)).ToList();
             this.Breadcrumbs = breadcrumbs;

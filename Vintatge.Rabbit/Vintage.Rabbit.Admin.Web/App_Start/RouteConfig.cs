@@ -13,8 +13,7 @@ namespace Vintage.Rabbit.Admin.Web
         public static class Products
         {
             public static string List = "Product List";
-            public static string Buy = "Product Buy";
-            public static string Hire = "Product Hire";
+            public static string Type = "Product Type";
             public static string Edit = "Product - Edit";
             public static string AddProduct = "Product - Add";
             public static string SaveProduct = "Product - Save";
@@ -33,10 +32,9 @@ namespace Vintage.Rabbit.Admin.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 
-            routes.MapRoute(Routes.Products.List, url: "products", defaults: new { controller = "Products", action = "BuyList" });
-            routes.MapRoute(Routes.Products.Buy, url: "products/buy", defaults: new { controller = "Products", action = "BuyList" });
-            routes.MapRoute(Routes.Products.Hire, url: "products/hire", defaults: new { controller = "Products", action = "HireList" });
             routes.MapRoute(Routes.Products.AddProduct, url: "products/add", defaults: new { controller = "Products", action = "Add" });
+            routes.MapRoute(Routes.Products.List, url: "products", defaults: new { controller = "Products", action = "List" });
+            routes.MapRoute(Routes.Products.Type, url: "products/{productType}", defaults: new { controller = "Products", action = "List" });
             routes.MapRoute(Routes.Products.SaveProduct, url: "products/save/{productId}", defaults: new { controller = "Products", action = "Save" });
             routes.MapRoute(Routes.Products.Edit, url: "products/edit/{name}/{productId}", defaults: new { controller = "Products", action = "Edit" });
             routes.MapRoute(Routes.Products.UploadPhoto, url: "products/upload-photo/{productId}", defaults: new { controller = "Products", action = "UploadPhoto" });

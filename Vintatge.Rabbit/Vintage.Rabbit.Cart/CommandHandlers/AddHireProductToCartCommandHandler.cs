@@ -18,13 +18,13 @@ namespace Vintage.Rabbit.Carts.CommandHandlers
     {
         public Guid OwnerId { get; private set; }
 
-        public HireProduct Product { get; private set; }
+        public Product Product { get; private set; }
 
         public DateTime StartDate { get; private set; }
 
         public DateTime EndDate { get; private set; }
 
-        public AddHireProductToCartCommand(Guid ownerId, HireProduct product, DateTime startDate, DateTime endDate)
+        public AddHireProductToCartCommand(Guid ownerId, Product product, DateTime startDate, DateTime endDate)
         {
             this.OwnerId = ownerId;
             this.Product = product;

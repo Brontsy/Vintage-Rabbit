@@ -25,63 +25,67 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult Index()
         {
-            IList<HireProduct> products = this._queryDispatcher.Dispatch<IList<HireProduct>, GetHireProductsQuery>(new GetHireProductsQuery());
+            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByTypeQuery>(new GetProductsByTypeQuery(Products.Enums.ProductType.Hire));
 
             BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
             breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
             breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Index), "Hire");
 
-            HireProductListViewModel viewModel = new HireProductListViewModel(products, breadCrumbs);
+            ProductListViewModel viewModel = new ProductListViewModel(products, breadCrumbs);
 
             return View("Index", viewModel);
         }
 
-        public ActionResult Preview(int productId, string name, HireDatesViewModel hireDates)
+        public ActionResult Preview(int productId, string name)
         {
-            HireProduct product = this._queryDispatcher.Dispatch<HireProduct, GetHireProductQuery>(new GetHireProductQuery(productId));
-            bool? available = null;
-
-            if (hireDates.StartDate.HasValue && hireDates.EndDate.HasValue)
-            {
-                available = this._queryDispatcher.Dispatch<bool, IsHireProductAvailableQuery>(new IsHireProductAvailableQuery(productId, hireDates.StartDate.Value, hireDates.EndDate.Value));
-            }
+            Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
             BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
             breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
             breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Index), "Hire");
             breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Product, new { productId = product.Id, name = product.Title.ToUrl() }), product.Title, true);
 
-            return this.PartialView("Product", new HireProductViewModel(product, available, hireDates, breadCrumbs));
+            return this.PartialView("Product", new ProductViewModel(product, breadCrumbs));
         }
 
-        public ActionResult Product(int productId, string name, HireDatesViewModel hireDates)
+        public ActionResult Product(int productId, string name)
         {
-            HireProduct product = this._queryDispatcher.Dispatch<HireProduct, GetHireProductQuery>(new GetHireProductQuery(productId));
-            bool? available = null;
-
-            if(hireDates.StartDate.HasValue && hireDates.EndDate.HasValue)
-            {
-                available = this._queryDispatcher.Dispatch<bool, IsHireProductAvailableQuery>(new IsHireProductAvailableQuery(productId, hireDates.StartDate.Value, hireDates.EndDate.Value));
-            }
+            Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
             BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
             breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
             breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Index), "Hire");
             breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Product, new { productId = product.Id, name = product.Title.ToUrl() }), product.Title, true);
 
-            return View("Product", new HireProductViewModel(product, available, hireDates, breadCrumbs));
+            return this.View("Product", new ProductViewModel(product, breadCrumbs));
         }
 
         public ActionResult CheckProductAvailability(int productId, HireDatesViewModel hireDates)
         {
             if (hireDates.StartDate.HasValue && hireDates.EndDate.HasValue)
             {
-                bool available = this._queryDispatcher.Dispatch<bool, IsHireProductAvailableQuery>(new IsHireProductAvailableQuery(productId, hireDates.StartDate.Value, hireDates.EndDate.Value));
+                bool available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(productId, hireDates.StartDate.Value, hireDates.EndDate.Value));
 
                 return this.Json(new { Available = available }, JsonRequestBehavior.AllowGet);
             }
 
             return this.Json(new { Available = false }, JsonRequestBehavior.AllowGet);
+        }
+
+        [ChildActionOnly]
+        public ActionResult AvailabilityCheck(int productId, HireDatesViewModel hireDates)
+        {
+            Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
+            bool? available = null;
+
+            if (hireDates.StartDate.HasValue && hireDates.EndDate.HasValue)
+            {
+                available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(productId, hireDates.StartDate.Value, hireDates.EndDate.Value));
+            }
+
+            AvailabilityCheckViewModel viewModel = new AvailabilityCheckViewModel(new ProductViewModel(product, null), available, hireDates);
+
+            return this.PartialView("AvailabilityCheck", viewModel);
         }
 	}
 }

@@ -6,9 +6,9 @@ using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Web.Models.Breadcrumbs;
 using Vintage.Rabbit.Web.Models.Products;
 
-namespace Vintage.Rabbit.Web.Models.Buy
+namespace Vintage.Rabbit.Web.Models.Products
 {
-    public class BuyProductViewModel
+    public class ProductViewModel
     {
         public int Id { get; private set; }
 
@@ -20,6 +20,8 @@ namespace Vintage.Rabbit.Web.Models.Buy
 
         public string Description { get; private set; }
 
+        public bool IsAvailable { get; private set; }
+
         public string UrlTitle
         {
             get { return this.Title.Replace(" ", "-").ToLower(); }
@@ -27,7 +29,7 @@ namespace Vintage.Rabbit.Web.Models.Buy
 
         public BreadcrumbsViewModel Breadcrumbs { get; private set; }
 
-        public BuyProductViewModel(Product product, BreadcrumbsViewModel breadcrumbs) 
+        public ProductViewModel(Product product, BreadcrumbsViewModel breadcrumbs) 
         {
             this.Id = product.Id;
             this.Images = product.Images.Select(o => new ProductImageViewModel(o)).ToList();
@@ -35,6 +37,7 @@ namespace Vintage.Rabbit.Web.Models.Buy
             this.Title = product.Title;
             this.Description = product.Description;
             this.Breadcrumbs = breadcrumbs;
+            this.IsAvailable = product.Inventory.Any(o => o.Status == Rabbit.Products.Enums.InventoryStatus.Available);
         }
     }
 }
