@@ -15,9 +15,9 @@ namespace Vintage.Rabbit.Web.Providers
 {
     public interface IAddressProvider
     {
-        Address SaveAddress(Member member, ShippingInformationViewModel viewModel);
+        Address SaveShippingAddress(Member member, AddressViewModel viewModel);
 
-        Address SaveAddress(Member member, BillingInformationViewModel viewModel);
+        Address SaveBillingAddress(Member member, AddressViewModel viewModel);
     }
 
 
@@ -32,7 +32,7 @@ namespace Vintage.Rabbit.Web.Providers
             this._commandDispatcher = commandDispatcher;
         }
 
-        public Address SaveAddress(Member member, ShippingInformationViewModel viewModel)
+        public Address SaveShippingAddress(Member member, AddressViewModel viewModel)
         {
             Guid addressId = Guid.NewGuid();
 
@@ -44,7 +44,7 @@ namespace Vintage.Rabbit.Web.Providers
             return address;
         }
 
-        public Address SaveAddress(Member member, BillingInformationViewModel viewModel)
+        public Address SaveBillingAddress(Member member, AddressViewModel viewModel)
         {
             Guid addressId = Guid.NewGuid();
 

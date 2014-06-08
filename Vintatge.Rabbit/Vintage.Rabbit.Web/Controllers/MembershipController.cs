@@ -103,12 +103,12 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             if(this.ModelState.IsValid)
             {
-                RegisterCommand command = new RegisterCommand(register.Email, register.Password);
+                RegisterCommand command = new RegisterCommand(register.RegisterEmail, register.Password);
                 this._commandDispatcher.Dispatch(command);
 
-                Member member = this._queryDispatcher.Dispatch<Member, GetMemberByEmailQuery>(new GetMemberByEmailQuery(register.Email));
+                Member member = this._queryDispatcher.Dispatch<Member, GetMemberByEmailQuery>(new GetMemberByEmailQuery(register.RegisterEmail));
 
-                this._loginProvider.Login(this.Request.GetOwinContext().Authentication, member.Email, member.Password, false);
+                this._loginProvider.Login(this.Request.GetOwinContext().Authentication, register.RegisterEmail, register.Password, false);
 
                 if (string.IsNullOrEmpty(register.ReturnUrl))
                 {

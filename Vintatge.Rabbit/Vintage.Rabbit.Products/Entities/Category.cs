@@ -8,10 +8,10 @@ namespace Vintage.Rabbit.Products.Entities
 {
     public class Category
     {
-        public int Id { get; internal set; }
+        public int Id { get; set; }
 
-        public string Name { get; internal set; }
+        public string Name { get; set; }
 
-        public string DisplayName { get; internal set; }
+        public string DisplayName { get; set; }
     }
 }

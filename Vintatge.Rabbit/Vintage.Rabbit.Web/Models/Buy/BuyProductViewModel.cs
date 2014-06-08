@@ -18,6 +18,8 @@ namespace Vintage.Rabbit.Web.Models.Buy
 
         public string Title { get; private set; }
 
+        public string Description { get; private set; }
+
         public string UrlTitle
         {
             get { return this.Title.Replace(" ", "-").ToLower(); }
@@ -31,6 +33,7 @@ namespace Vintage.Rabbit.Web.Models.Buy
             this.Images = product.Images.Select(o => new ProductImageViewModel(o)).ToList();
             this.Cost = product.Cost.ToString("C");
             this.Title = product.Title;
+            this.Description = product.Description;
             this.Breadcrumbs = breadcrumbs;
         }
     }

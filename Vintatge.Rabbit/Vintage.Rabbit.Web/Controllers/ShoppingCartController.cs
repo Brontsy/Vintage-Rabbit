@@ -42,7 +42,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult Add(int productId, Member member, int qty = 1)
         {
-            BuyProduct product = this._queryDispatcher.Dispatch<BuyProduct, GetBuyProductQuery>(new GetBuyProductQuery(productId));
+            Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
             this._commandDispatcher.Dispatch(new AddBuyProductToCartCommand(member.Id, qty, product));
 

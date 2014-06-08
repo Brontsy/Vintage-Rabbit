@@ -32,7 +32,7 @@ namespace Vintage.Rabbit.Carts.Entities
             this.MemberId = memberId;
         }
 
-        internal void AddProduct(int quantity, BuyProduct product)
+        internal void AddProduct(int quantity, Product product)
         {
             if (this.Items.Any(o => o.Product.Id == product.Id))
             {

@@ -27,7 +27,10 @@ namespace Vintage.Rabbit.Web.Models.Products
         public ProductListItemViewModel(Product product)
         {
             this.Id = product.Id;
-            this.Image = new ProductImageViewModel(product.Images.First());
+            if (product.Images.Any())
+            {
+                this.Image = new ProductImageViewModel(product.Images.First());
+            }
             this.Cost = product.Cost.ToString("C");
             this.Title = product.Title;
             this.Categories = product.Categories.Select(o => new CategoryViewModel(o)).ToList();

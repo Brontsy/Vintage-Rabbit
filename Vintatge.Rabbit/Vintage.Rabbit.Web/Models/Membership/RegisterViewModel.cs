@@ -11,7 +11,7 @@ namespace Vintage.Rabbit.Web.Models.Membership
     {
         [Required(ErrorMessage = "Please enter a email address")]
         [Email(ErrorMessage = "Plesae enter a valid email address")]
-        public string Email { get; set; }
+        public string RegisterEmail { get; set; }
 
         [Required(ErrorMessage = "Please enter your password")]
         [MinLength(6, ErrorMessage = "Your password must be greater then  characters")]

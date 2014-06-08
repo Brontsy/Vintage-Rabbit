@@ -17,6 +17,7 @@ namespace Vintage.Rabbit.Common.Serialization
             Newtonsoft.Json.Serialization.DefaultContractResolver dcr = new Newtonsoft.Json.Serialization.DefaultContractResolver();
             dcr.DefaultMembersSearchFlags |= System.Reflection.BindingFlags.NonPublic;
             jss.ContractResolver = dcr;
+            jss.TypeNameHandling = TypeNameHandling.All;
 
             return JsonConvert.SerializeObject(obj, jss);
         }
@@ -28,6 +29,7 @@ namespace Vintage.Rabbit.Common.Serialization
             Newtonsoft.Json.Serialization.DefaultContractResolver dcr = new Newtonsoft.Json.Serialization.DefaultContractResolver();
             dcr.DefaultMembersSearchFlags |= System.Reflection.BindingFlags.NonPublic;
             jss.ContractResolver = dcr;
+            jss.TypeNameHandling = TypeNameHandling.All;
 
             return JsonConvert.DeserializeObject<T>(s, jss);
         }

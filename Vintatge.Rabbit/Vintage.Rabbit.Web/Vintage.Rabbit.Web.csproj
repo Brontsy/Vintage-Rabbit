@@ -199,8 +199,7 @@
     <Compile Include="Models\Membership\RegisterViewModel.cs" />
     <Compile Include="Models\Payment\CreditCardPaymentViewModel.cs" />
     <Compile Include="Models\Payment\PaymentInformationViewModel.cs" />
-    <Compile Include="Models\Payment\BillingInformationViewModel.cs" />
-    <Compile Include="Models\Payment\ShippingInformationViewModel.cs" />
+    <Compile Include="Models\Payment\AddressViewModel.cs" />
     <Compile Include="Models\Products\ProductImageViewModel.cs" />
     <Compile Include="Models\Products\ProductListItemViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartItemViewModel.cs" />

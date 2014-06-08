@@ -43,15 +43,20 @@ namespace Vintage.Rabbit.Membership.QueryHandlers
 
             Member member = this._membershipRepository.GetMember(query.Id);
 
-            this._cacheService.Add(cacheKey, member);
-            this._cacheService.Add(CacheKeyHelper.Member.ById(member.Id), member);
-
-            if (!string.IsNullOrEmpty(member.Email))
+            if (member != null)
             {
-                this._cacheService.Add(CacheKeyHelper.Member.ByEmail(member.Email), member);
+                this._cacheService.Add(cacheKey, member);
+                this._cacheService.Add(CacheKeyHelper.Member.ById(member.Id), member);
+
+                if (!string.IsNullOrEmpty(member.Email))
+                {
+                    this._cacheService.Add(CacheKeyHelper.Member.ByEmail(member.Email), member);
+                }
+
+                return member;
             }
 
-            return member;
+            return new Member(query.Id);
         }
     }
 }

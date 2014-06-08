@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Encryption\SimpleHash.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Ioc\AutoFacBindings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

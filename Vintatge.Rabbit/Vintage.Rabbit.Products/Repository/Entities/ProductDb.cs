@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vintage.Rabbit.Products.Enums;
 
 namespace Vintage.Rabbit.Products.Repository.Entities
 {
@@ -10,9 +11,11 @@ namespace Vintage.Rabbit.Products.Repository.Entities
     {
         public int Id { get; internal set; }
 
+        public Guid Guid { get; internal set; }
+
         public string Code { get; internal set; }
 
-        public string Type { get; internal set; }
+        public ProductType Type { get; internal set; }
 
         public string Title { get; internal set; }
 
@@ -24,7 +27,9 @@ namespace Vintage.Rabbit.Products.Repository.Entities
 
         public bool Featured { get; internal set; }
 
-        public int Inventory { get; internal set; }
+        public string Inventory { get; internal set; }
+
+        public bool IsFeatured { get; internal set; }
 
         public DateTime DateCreated { get; internal set; }
 

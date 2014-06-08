@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Vintage.Rabbit.Admin.Web.Models.Buy;
 using Vintage.Rabbit.Admin.Web.Models.Categories;
 using Vintage.Rabbit.Admin.Web.Models.Hire;
 using Vintage.Rabbit.Admin.Web.Models.Products;
@@ -33,9 +32,9 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
 
         public ActionResult BuyList()
         {
-            IList<BuyProduct> products = this._queryDispatcher.Dispatch<IList<BuyProduct>, GetBuyProductsQuery>(new GetBuyProductsQuery(1)).OrderBy(o => o.Title).ToList();
+            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsQuery>(new GetProductsQuery()).OrderBy(o => o.Title).ToList();
 
-            BuyProductListViewModel viewModel = new BuyProductListViewModel(products);
+            ProductListViewModel viewModel = new ProductListViewModel(products);
 
             return View("BuyList", viewModel);
         }
@@ -60,7 +59,7 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
 
         public ActionResult Edit(int productId)
         {
-            BuyProduct product = this._queryDispatcher.Dispatch<BuyProduct, GetBuyProductQuery>(new GetBuyProductQuery(productId));
+            Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
             IList<Category> categories = this._queryDispatcher.Dispatch<IList<Category>, GetCategoriesQuery>(new GetCategoriesQuery());
 
             ProductViewModel viewModel = new ProductViewModel(product, categories);
@@ -75,27 +74,35 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
             {
                 IList<Category> categories = this._queryDispatcher.Dispatch<IList<Category>, GetCategoriesQuery>(new GetCategoriesQuery());
 
-                if (viewModel.Type == "Buy")
+                Product product;
+                if(viewModel.ProductId == 0)
                 {
-                    BuyProduct product = new BuyProduct();
-                    if (viewModel.ProductId != 0)
-                    {
-                        product = this._queryDispatcher.Dispatch<BuyProduct, GetBuyProductQuery>(new GetBuyProductQuery(viewModel.ProductId));
-                    }
-
-                    product.Code = viewModel.Code;
-                    product.Title = viewModel.Title;
-                    product.Description = viewModel.Description;
-                    product.Keywords = viewModel.Keywords;
-                    product.Cost = viewModel.Cost.Value;
-                    product.InventoryCount = viewModel.Inventory.Value;
-
-                    IEnumerable<int> categoryIds = viewModel.Categories.Where(o => o.Selected).Select(o => o.Id);
-
-                    product.Categories = categories.Where(o => categoryIds.Contains(o.Id)).ToList();
-
-                    this._commandDispatcher.Dispatch(new SaveProductCommand(product, member));
+                    Guid productGuid = Guid.NewGuid();
+                    this._commandDispatcher.Dispatch(new CreateProductCommand(productGuid, viewModel.Inventory.Value, member));
+                    product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(productGuid));
                 }
+                else
+                {
+                    product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(viewModel.ProductId));
+                }
+
+                product.Code = viewModel.Code;
+                product.Title = viewModel.Title;
+                product.Description = viewModel.Description;
+                product.Keywords = viewModel.Keywords;
+                product.Cost = viewModel.Cost.Value;
+                product.Type = viewModel.Type;
+                product.IsFeatured = viewModel.IsFeatured;
+                product.InventoryCount = viewModel.Inventory.Value;
+
+                IEnumerable<int> categoryIds = viewModel.Categories.Where(o => o.Selected).Select(o => o.Id);
+
+                product.Categories = categories.Where(o => categoryIds.Contains(o.Id)).ToList();
+
+                this._commandDispatcher.Dispatch(new SaveProductCommand(product, member));
+                  
+                // Get Product By Code if productId = 0
+                return this.RedirectToRoute(Routes.Products.Edit, new { productId = product.Id, name = product.Title.ToUrl() });
 
             }
 
@@ -106,7 +113,7 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
         {
             var result = this._uploadPhotoService.UploadFiles(this.Request.Files);
 
-            var product = this._queryDispatcher.Dispatch<BuyProduct, GetBuyProductQuery>(new GetBuyProductQuery(productId));
+            var product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
             foreach (var image in result)
             {
                 product.Images.Add(image);
@@ -119,7 +126,7 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
 
         public ActionResult RemovePhoto(int productId, Guid photoId, Member member)
         {
-            var product = this._queryDispatcher.Dispatch<BuyProduct, GetBuyProductQuery>(new GetBuyProductQuery(productId));
+            var product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
             this._commandDispatcher.Dispatch(new RemovePhotoCommand(product, member, photoId));
 
             return this.RedirectToRoute(Routes.Products.Edit, new { productId = productId, name = product.Title.ToUrl() });

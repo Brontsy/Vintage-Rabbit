@@ -14,7 +14,7 @@ namespace Vintage.Rabbit.Web.Models.Buy
 
         public BreadcrumbsViewModel Breadcrumbs { get; private set; }
 
-        public BuyProductListViewModel(IList<BuyProduct> products, BreadcrumbsViewModel breadcrumbs)
+        public BuyProductListViewModel(IList<Product> products, BreadcrumbsViewModel breadcrumbs)
         {
             this.Products = products.Select(o => new ProductListItemViewModel(o)).ToList();
             this.Breadcrumbs = breadcrumbs;

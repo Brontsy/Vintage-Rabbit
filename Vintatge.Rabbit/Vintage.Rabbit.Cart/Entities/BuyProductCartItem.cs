@@ -9,9 +9,13 @@ namespace Vintage.Rabbit.Carts.Entities
 {
     public class BuyProductCartItem : ProductCartItem
     {
-        public BuyProductCartItem(BuyProduct product)
+        public BuyProductCartItem(Product product)
             : base(product)
-        {  
+        {
+
+        }
+        public BuyProductCartItem()
+        {
 
         }
     }

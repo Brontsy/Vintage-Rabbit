@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Vintage.Rabbit.Admin.Web.Models.Categories;
 using Vintage.Rabbit.Products.Entities;
+using Vintage.Rabbit.Products.Enums;
 
 namespace Vintage.Rabbit.Admin.Web.Models.Products
 {
@@ -13,32 +14,35 @@ namespace Vintage.Rabbit.Admin.Web.Models.Products
     {
         public int ProductId { get; set; }
 
-        [Display(Name = "Code")]
+        [Display(Name = "Code*")]
         [Required(ErrorMessage = "Please enter a product code")]
         public string Code { get; set; }
 
-        [Display(Name = "Product Type")]
+        [Display(Name = "Product Type*")]
         [Required(ErrorMessage = "Please choose the product type")]
-        public string Type { get; set; }
+        public ProductType Type { get; set; }
 
-        [Display(Name = "Title")]
+        [Display(Name = "Title*")]
         [Required(ErrorMessage = "Please enter the products title")]
         public string Title { get; set; }
 
-        [Display(Name = "Description")]
+        [Display(Name = "Description*")]
         [Required(ErrorMessage = "Please enter the products description")]
         public string Description { get; set; }
 
-        [Display(Name = "Description")]
+        [Display(Name = "Keywords")]
         public string Keywords { get; set; }
 
-        [Display(Name = "Price")]
+        [Display(Name = "Price*")]
         [Required(ErrorMessage = "Please enter the products price")]
         public decimal? Cost { get; set; }
 
-        [Display(Name = "Inventory")]
+        [Display(Name = "Inventory*")]
         [Required(ErrorMessage = "Please enter the products inventory count")]
         public int? Inventory { get; set; }
+
+        [Display(Name = "Feature this product on the homepage?")]
+        public bool IsFeatured { get; set; }
 
         public IList<CategoryViewModel> Categories { get; set; }
 
@@ -71,9 +75,10 @@ namespace Vintage.Rabbit.Admin.Web.Models.Products
             this.Title = product.Title;
             this.Description = product.Description;
             this.Keywords = product.Keywords;
+            this.Inventory = product.Inventory.Count;
             this.Cost = product.Cost;
-            this.Inventory = (product is BuyProduct ? ((BuyProduct)product).InventoryCount : 1);
-            this.Type = (product is BuyProduct ? "Buy" : "Hire");
+            this.Type = product.Type;
+            this.IsFeatured = product.IsFeatured;
             this.ImageUrls = product.Images.Select(o => new ProductImageViewModel(o)).ToList();
 
             foreach (Category category in categories)

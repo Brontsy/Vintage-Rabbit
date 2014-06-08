@@ -35,12 +35,16 @@ namespace Vintage.Rabbit.Web.Controllers
             this._creditCardService = creditCardService;
         }
 
-        [CheckoutRegister]
         public ActionResult Index(Member member, Order order)
         {
             if(order == null)
             {
                 order = this._createOrderProvider.CreateOrder(member);
+            }
+
+            if (this.HttpContext.User.Identity.IsAuthenticated)
+            {
+                return new RedirectToRouteResult(Routes.Checkout.ShippingInformation, new System.Web.Routing.RouteValueDictionary());
             }
 
             return this.LoginRegister();
@@ -62,21 +66,21 @@ namespace Vintage.Rabbit.Web.Controllers
         [HttpGet]
         public ActionResult ShippingInformation(Order order)
         {
-            return this.View("ShippingInformation", new ShippingInformationViewModel(order));
+            return this.View("ShippingInformation", new AddressViewModel(order.ShippingAddress));
         }
 
         [HasOrder]
         [HttpPost]
-        public ActionResult ShippingInformation(ShippingInformationViewModel viewModel, Order order, Member member)
+        public ActionResult ShippingInformation(AddressViewModel viewModel, Order order, Member member, bool billingAddressIsTheSame)
         {
             if (this.ModelState.IsValid)
             {
-                Address shippingAddress = this._addressProvider.SaveAddress(member, viewModel);
+                Address shippingAddress = this._addressProvider.SaveShippingAddress(member, viewModel);
                 this._commandDispatcher.Dispatch<AddShippingAddressCommand>(new AddShippingAddressCommand(order, shippingAddress));
 
-                if (viewModel.BillingAddressIsTheSame)
+                if (billingAddressIsTheSame)
                 {
-                    Address billingAddress = this._addressProvider.SaveAddress(member, viewModel);
+                    Address billingAddress = this._addressProvider.SaveBillingAddress(member, viewModel);
                     this._commandDispatcher.Dispatch<AddBillingAddressCommand>(new AddBillingAddressCommand(order, billingAddress));
 
                     return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
@@ -92,15 +96,15 @@ namespace Vintage.Rabbit.Web.Controllers
         [HttpGet]
         public ActionResult BillingInformation()
         {
-            return this.View("BillingInformation", new BillingInformationViewModel());
+            return this.View("BillingInformation", new AddressViewModel());
         }
 
         [HttpPost]
-        public ActionResult BillingInformation(BillingInformationViewModel viewModel, Order order, Member member)
+        public ActionResult BillingInformation(AddressViewModel viewModel, Order order, Member member)
         {
             if (this.ModelState.IsValid)
             {
-                Address billingAddress = this._addressProvider.SaveAddress(member, viewModel);
+                Address billingAddress = this._addressProvider.SaveBillingAddress(member, viewModel);
                 this._commandDispatcher.Dispatch<AddBillingAddressCommand>(new AddBillingAddressCommand(order, billingAddress));
 
                 return this.RedirectToRoute(Routes.Checkout.PaymentInfo);

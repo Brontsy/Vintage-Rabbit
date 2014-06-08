@@ -79,24 +79,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandHandlers\RemovePhotoCommandHandler.cs" />
+    <Compile Include="CommandHandlers\CreateProductCommandHandler.cs" />
     <Compile Include="CommandHandlers\SaveProductCommandHandler.cs" />
-    <Compile Include="Entities\BuyProduct.cs" />
     <Compile Include="Entities\Category.cs" />
-    <Compile Include="Entities\HireProduct.cs" />
+    <Compile Include="Entities\Inventory.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ProductImage.cs" />
+    <Compile Include="Enums\InventoryStatus.cs" />
+    <Compile Include="Enums\ProductType.cs" />
     <Compile Include="Ioc\Bindings.cs" />
     <Compile Include="Messaging\Message\SaveProductMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryHandlers\GetProductByIdQueryHandler.cs" />
+    <Compile Include="QueryHandlers\GetProductByGuidQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetCategoryQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetCategoriesQueryHandler.cs" />
     <Compile Include="QueryHandlers\IsHireProductAvailableQueryHandler.cs" />
-    <Compile Include="QueryHandlers\GetHireProductQueryHandler.cs" />
-    <Compile Include="QueryHandlers\GetBuyProductsByCategoryQueryHandler.cs" />
-    <Compile Include="QueryHandlers\GetHireProductsQueryHandler.cs" />
-    <Compile Include="QueryHandlers\GetBuyProductsQueryHandler.cs" />
+    <Compile Include="QueryHandlers\GetProductsByCategoryQueryHandler.cs" />
+    <Compile Include="QueryHandlers\GetProductsQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetFeaturedProductsQueryHandler.cs" />
-    <Compile Include="QueryHandlers\GetBuyProductQueryHandler.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\Entities\ProductDb.cs" />
     <Compile Include="Repository\ProductRepository.cs" />

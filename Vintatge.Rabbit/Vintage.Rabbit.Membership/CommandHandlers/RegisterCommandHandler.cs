@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vintage.Rabbit.Common.Encryption;
 using Vintage.Rabbit.Interfaces.Cache;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Interfaces.Messaging;
@@ -37,7 +38,7 @@ namespace Vintage.Rabbit.Membership.CommandHandlers
 
         public void Handle(RegisterCommand command)
         {
-            Member member = new Member(command.Email, command.Password);
+            Member member = new Member(command.Email, SimpleHash.ComputeHash(command.Password, "MD5"));
 
             this._commandDispatcher.Dispatch(new SaveMemberCommand(member));
         }

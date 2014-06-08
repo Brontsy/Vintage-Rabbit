@@ -30,5 +30,7 @@ namespace Vintage.Rabbit.Carts.Entities
             this.Images = product.Images;
             this.Categories = product.Categories;
         }
+
+        public ProductCartItem() { }
     }
 }

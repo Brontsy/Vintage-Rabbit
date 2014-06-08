@@ -175,7 +175,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ModelBinders\MemberModelBinder.cs" />
-    <Compile Include="Models\Buy\BuyProductListViewModel.cs" />
+    <Compile Include="Models\Products\ProductListViewModel.cs" />
     <Compile Include="Models\Buy\BuyProductViewModel.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
     <Compile Include="Models\Hire\HireDatesViewModel.cs" />
@@ -233,6 +233,7 @@
     <Content Include="Content\less\common\progress-bar.less" />
     <None Include="Content\less\components\breadcrumbs.less" />
     <Content Include="Content\less\components\page-head.less" />
+    <Content Include="Content\less\components\product-list.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />

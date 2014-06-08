@@ -20,9 +20,9 @@ namespace Vintage.Rabbit.Carts.CommandHandlers
 
         public int Quantity { get; private set; }
 
-        public BuyProduct Product { get; private set; }
+        public Product Product { get; private set; }
 
-        public AddBuyProductToCartCommand(Guid ownerId, int quantity, BuyProduct product)
+        public AddBuyProductToCartCommand(Guid ownerId, int quantity, Product product)
         {
             this.OwnerId = ownerId;
             this.Quantity = quantity;

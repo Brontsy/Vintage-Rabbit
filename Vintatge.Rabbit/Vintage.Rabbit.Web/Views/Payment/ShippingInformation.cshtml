@@ -1,4 +1,4 @@
-﻿@model Vintage.Rabbit.Web.Models.Payment.ShippingInformationViewModel
+﻿@model Vintage.Rabbit.Web.Models.Payment.AddressViewModel
 @{
     ViewBag.Title = "Checkout - Shipping";
 }
@@ -73,8 +73,9 @@
                             @Html.ValidationMessageFor(o => o.State)
                         </li>
                         <li class="col-12">
-                            @Html.CheckBoxFor(o => o.BillingAddressIsTheSame, new {  })
-                            @Html.LabelFor(o => o.BillingAddressIsTheSame)
+                            <input checked="checked" id="BillingAddressIsTheSame" name="BillingAddressIsTheSame" type="checkbox" value="true">
+                            <input name="BillingAddressIsTheSame" type="hidden" value="false">
+                            <label for="BillingAddressIsTheSame">Is your billing address the same as your shipping address?</label>
                         </li>
                         <li class="col-5 offset-7">
                             <button type="submit" class="btn primary">Save & continue</button>

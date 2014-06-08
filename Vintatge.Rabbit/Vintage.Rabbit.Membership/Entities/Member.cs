@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vintage.Rabbit.Interfaces.Membership;
+using Vintage.Rabbit.Membership.Enums;
 
 namespace Vintage.Rabbit.Membership.Entities
 {
@@ -19,6 +20,8 @@ namespace Vintage.Rabbit.Membership.Entities
 
         public string LastName { get; private set; }
 
+        public IList<Role> Roles { get; internal set; }
+
         public IList<Address> ShippingAddresses { get; private set; }
 
         public IList<Address> BillingAddresses { get; private set; }
@@ -28,6 +31,7 @@ namespace Vintage.Rabbit.Membership.Entities
             this.Id = id;
             this.ShippingAddresses = new List<Address>();
             this.BillingAddresses = new List<Address>();
+            this.Roles = new List<Role>();
         }
 
         public Member() : this(Guid.NewGuid())

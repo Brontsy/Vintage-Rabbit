@@ -21,15 +21,21 @@ namespace Vintage.Rabbit.Products.Ioc
         {
             builder.RegisterType<SaveProductCommandHandler>().As<ICommandHandler<SaveProductCommand>>();
             builder.RegisterType<RemovePhotoCommandHandler>().As<ICommandHandler<RemovePhotoCommand>>();
+            builder.RegisterType<CreateProductCommandHandler>().As<ICommandHandler<CreateProductCommand>>();
 
             builder.RegisterType<ProductRepository>().As<IMessageHandler<SaveProductMessage>>();
 
             builder.RegisterType<GetFeaturedProductsQueryHandler>().As<IQueryHandler<IList<Product>, GetFeaturedProductsQuery>>();
-            builder.RegisterType<GetBuyProductQueryHandler>().As<IQueryHandler<BuyProduct, GetBuyProductQuery>>();
-            builder.RegisterType<GetBuyProductsQueryHandler>().As<IQueryHandler<IList<BuyProduct>, GetBuyProductsQuery>>();
-            builder.RegisterType<GetBuyProductsByCategoryQueryHandler>().As<IQueryHandler<IList<BuyProduct>, GetBuyProductsByCategoryQuery>>();
             builder.RegisterType<GetHireProductsQueryHandler>().As<IQueryHandler<IList<HireProduct>, GetHireProductsQuery>>();
             builder.RegisterType<GetHireProductQueryHandler>().As<IQueryHandler<HireProduct, GetHireProductQuery>>();
+
+
+            builder.RegisterType<GetProductByGuidQueryHandler>().As<IQueryHandler<Product, GetProductByGuidQuery>>();
+            builder.RegisterType<GetProductByIdQueryHandler>().As<IQueryHandler<Product, GetProductByIdQuery>>();
+            builder.RegisterType<GetProductsQueryHandler>().As<IQueryHandler<IList<Product>, GetProductsQuery>>();
+            builder.RegisterType<GetProductsByCategoryQueryHandler>().As<IQueryHandler<IList<Product>, GetProductsByCategoryQuery>>();
+
+
 
             builder.RegisterType<GetCategoriesQueryHandler>().As<IQueryHandler<IList<Category>, GetCategoriesQuery>>();
             builder.RegisterType<GetCategoryQueryHandler>().As<IQueryHandler<Category, GetCategoryQuery>>();
