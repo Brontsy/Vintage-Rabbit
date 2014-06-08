@@ -38,7 +38,7 @@ namespace Vintage.Rabbit.Caching
 
         public static class Member
         {
-            public static string ById(Guid orderId)
+            public static string ByGuid(Guid orderId)
             {
                 return string.Format("Member-ById-{0}", orderId);
             }

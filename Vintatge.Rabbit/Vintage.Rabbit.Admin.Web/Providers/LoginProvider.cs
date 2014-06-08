@@ -53,7 +53,7 @@ namespace Vintage.Rabbit.Admin.Web.Providers
             {
                 Member member = this._queryDispatcher.Dispatch<Member, GetMemberByEmailQuery>(new GetMemberByEmailQuery(email));
 
-                var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, member.Id.ToString()), }, DefaultAuthenticationTypes.ApplicationCookie, ClaimTypes.Name, ClaimTypes.Role);
+                var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, member.Guid.ToString()), }, DefaultAuthenticationTypes.ApplicationCookie, ClaimTypes.Name, ClaimTypes.Role);
 
                 // if you want roles, just add as many as you want here (for loop maybe?)
                 identity.AddClaim(new Claim(ClaimTypes.Role, "admin"));

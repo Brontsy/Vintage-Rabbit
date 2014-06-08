@@ -39,6 +39,7 @@ namespace Vintage.Rabbit.Membership.CommandHandlers
         public void Handle(RegisterCommand command)
         {
             Member member = new Member(command.Email, SimpleHash.ComputeHash(command.Password, "MD5"));
+            member.Roles.Add(Enums.Role.Member);
 
             this._commandDispatcher.Dispatch(new SaveMemberCommand(member));
         }

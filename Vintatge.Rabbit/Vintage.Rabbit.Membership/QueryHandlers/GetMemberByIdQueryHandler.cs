@@ -34,7 +34,7 @@ namespace Vintage.Rabbit.Membership.QueryHandlers
 
         public Member Handle(GetMemberByIdQuery query)
         {
-            string cacheKey = CacheKeyHelper.Member.ById(query.Id);
+            string cacheKey = CacheKeyHelper.Member.ByGuid(query.Id);
 
             if(this._cacheService.Exists(cacheKey))
             {
@@ -46,7 +46,7 @@ namespace Vintage.Rabbit.Membership.QueryHandlers
             if (member != null)
             {
                 this._cacheService.Add(cacheKey, member);
-                this._cacheService.Add(CacheKeyHelper.Member.ById(member.Id), member);
+                this._cacheService.Add(CacheKeyHelper.Member.ByGuid(member.Guid), member);
 
                 if (!string.IsNullOrEmpty(member.Email))
                 {

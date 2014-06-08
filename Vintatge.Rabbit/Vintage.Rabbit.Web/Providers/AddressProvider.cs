@@ -36,7 +36,7 @@ namespace Vintage.Rabbit.Web.Providers
         {
             Guid addressId = Guid.NewGuid();
 
-            Address address = new Address(member.Id, addressId, viewModel.Address, viewModel.SuburbCity, viewModel.State, viewModel.Postcode.Value, viewModel.FirstName, viewModel.LastName, viewModel.CompanyName);
+            Address address = new Address(member.Guid, addressId, viewModel.Address, viewModel.SuburbCity, viewModel.State, viewModel.Postcode.Value, viewModel.FirstName, viewModel.LastName, viewModel.CompanyName);
             address.IsShippingAddress = true;
 
             this._commandDispatcher.Dispatch<SaveAddressCommand>(new SaveAddressCommand(address));
@@ -48,7 +48,7 @@ namespace Vintage.Rabbit.Web.Providers
         {
             Guid addressId = Guid.NewGuid();
 
-            Address address = new Address(member.Id, addressId, viewModel.Address, viewModel.SuburbCity, viewModel.State, viewModel.Postcode.Value, viewModel.FirstName, viewModel.LastName, viewModel.CompanyName);
+            Address address = new Address(member.Guid, addressId, viewModel.Address, viewModel.SuburbCity, viewModel.State, viewModel.Postcode.Value, viewModel.FirstName, viewModel.LastName, viewModel.CompanyName);
 
             this._commandDispatcher.Dispatch<SaveAddressCommand>(new SaveAddressCommand(address));
 

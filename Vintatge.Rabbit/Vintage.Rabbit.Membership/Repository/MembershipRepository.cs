@@ -32,21 +32,29 @@ namespace Vintage.Rabbit.Membership.Repository
             this._serializer = serializer;
         }
 
-        public Member GetMember(Guid memberId)
+        public Member GetMember(Guid memberGuid)
         {
-            string sql = @"Select * From VintageRabbit.Members Where Id = @MemberId;
-                           Select Role From VintageRabbit.MemberRoles Where MemberId = @MemberId";
+            string sql = @"Select * From VintageRabbit.Members Where Guid = @MemberGuid;
+                           Select Role From VintageRabbit.MemberRoles Where MemberGuid = @MemberGuid";
 
             using (SqlConnection connection = new SqlConnection(this._connectionString))
             {
-                using (var multi = connection.QueryMultiple(sql, new { MemberId = memberId }))
+                using (var multi = connection.QueryMultiple(sql, new { MemberGuid = memberGuid }))
                 {
-                    Member member = multi.Read<Member>().Single();
-                    IList<string> roles = multi.Read<string>().ToList();
+                    IEnumerable<Member> members = multi.Read<Member>();
 
-                    member.Roles = roles.Select(o => (Role)Enum.Parse(typeof(Role), o)).ToList();
+                    if (members.Any())
+                    {
+                        Member member = members.First();
 
-                    return member;
+                        IList<string> roles = multi.Read<string>().ToList();
+
+                        member.Roles = roles.Select(o => (Role)Enum.Parse(typeof(Role), o)).ToList();
+
+                        return member;
+                    }
+
+                    return null;
                 }
             }
         }
@@ -61,7 +69,7 @@ namespace Vintage.Rabbit.Membership.Repository
                 {
                     Member member = members.First();
 
-                    var roles = connection.Query<string>("Select Role From VintageRabbit.MemberRoles Where MemberId = @MemberId", new { MemberId = member .Id });
+                    var roles = connection.Query<string>("Select Role From VintageRabbit.MemberRoles Where MemberGuid = @MemberGuid", new { MemberGuid = member.Guid });
                     member.Roles = roles.Select(o => (Role)Enum.Parse(typeof(Role), o)).ToList();
 
                     return member;
@@ -75,16 +83,16 @@ namespace Vintage.Rabbit.Membership.Repository
         {
             Member member = message.Member;
 
-            if(this.GetMember(member.Id) == null)
+            if(this.GetMember(member.Guid) == null)
             {
                 // insert
-                string sql = "Insert Into VintageRabbit.Members (Id, Email, Password, FirstName, LastName, DateCreated, DateLastModified) Values (@MemberId, @Email, @Password, @FirstName, @LastName, @DateCreated, @DateLastModified)";
+                string sql = "Insert Into VintageRabbit.Members (Guid, Email, Password, FirstName, LastName, DateCreated, DateLastModified) Values (@Guid, @Email, @Password, @FirstName, @LastName, @DateCreated, @DateLastModified)";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
                     connection.Execute(sql, new
                     {
-                        MemberId = member.Id,
+                        Guid = member.Guid,
                         Email = member.Email,
                         Password = member.Password,
                         FirstName = member.FirstName,
@@ -98,13 +106,13 @@ namespace Vintage.Rabbit.Membership.Repository
             else
             {
                 //update
-                string sql = @"Updated VintageRabbit.Members Set Email = @Email, Password = @Password, FirstName = @FirstName, LastName = @LastName, DateLastModified = @DateLastModified Where Id = @MemberId";
+                string sql = @"Updated VintageRabbit.Members Set Email = @Email, Password = @Password, FirstName = @FirstName, LastName = @LastName, DateLastModified = @DateLastModified Where Guid = @Guid";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
-                    connection.Query(sql, new
+                    connection.Execute(sql, new
                     {
-                        MemberId = member.Id,
+                        Guid = member.Guid,
                         Email = member.Email,
                         Password = member.Password,
                         FirstName = member.FirstName,
@@ -112,6 +120,17 @@ namespace Vintage.Rabbit.Membership.Repository
                         DateLastModified = DateTime.Now
 
                     });
+                }
+            }
+
+            // TODO: Look to make this a command!
+            using (SqlConnection connection = new SqlConnection(this._connectionString))
+            {
+                connection.Execute("Delete From VintageRabbit.MemberRoles Where MemberGuid = @MemberGuid", new { MemberGuid = member.Guid });
+
+                foreach(var role in member.Roles)
+                {
+                    connection.Execute("Insert Into VintageRabbit.MemberRoles (MemberGuid, [Role]) Values (@MemberGuid, @Role)", new { MemberGuid = member.Guid, Role = role.ToString() });
                 }
             }
         }

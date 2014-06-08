@@ -27,14 +27,14 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult PageHeader(Member member, bool isOpen = false)
         {
-            Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Id));
+            Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
 
             return this.PartialView("PageHeader", new CartViewModel(cart, isOpen));
         }
 
         public ActionResult Checkout(Member member)
         {
-            Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Id));
+            Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
 
             return this.PartialView("Checkout", new CartViewModel(cart, true));
         }
@@ -44,9 +44,9 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
-            this._commandDispatcher.Dispatch(new AddBuyProductToCartCommand(member.Id, qty, product));
+            this._commandDispatcher.Dispatch(new AddBuyProductToCartCommand(member.Guid, qty, product));
 
-            Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Id));
+            Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
 
             return this.Json(cart, JsonRequestBehavior.AllowGet);
         }
@@ -55,18 +55,18 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
-            this._commandDispatcher.Dispatch(new AddHireProductToCartCommand(member.Id, product, startDate, endDate));
+            this._commandDispatcher.Dispatch(new AddHireProductToCartCommand(member.Guid, product, startDate, endDate));
 
-            Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Id));
+            Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
 
             return this.Json(cart, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Remove(Guid cartItemId, Member member)
         {
-            this._commandDispatcher.Dispatch(new RemoveCartItemCommand(member.Id, cartItemId));
+            this._commandDispatcher.Dispatch(new RemoveCartItemCommand(member.Guid, cartItemId));
 
-            Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Id));
+            Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
 
             return this.Json(cart, JsonRequestBehavior.AllowGet);
         }

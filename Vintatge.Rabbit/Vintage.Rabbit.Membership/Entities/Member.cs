@@ -10,7 +10,9 @@ namespace Vintage.Rabbit.Membership.Entities
 {
     public class Member : IActionBy
     {
-        public Guid Id { get; private set; }
+        public int Id { get; private set; }
+
+        public Guid Guid { get; private set; }
 
         public string Email { get; private set; }
 
@@ -26,9 +28,9 @@ namespace Vintage.Rabbit.Membership.Entities
 
         public IList<Address> BillingAddresses { get; private set; }
 
-        public Member(Guid id)
+        public Member(Guid guid)
         {
-            this.Id = id;
+            this.Guid = guid;
             this.ShippingAddresses = new List<Address>();
             this.BillingAddresses = new List<Address>();
             this.Roles = new List<Role>();

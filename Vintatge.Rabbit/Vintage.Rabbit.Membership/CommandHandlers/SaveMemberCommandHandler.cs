@@ -36,7 +36,7 @@ namespace Vintage.Rabbit.Membership.CommandHandlers
 
         public void Handle(SaveMemberCommand command)
         {
-            this._cacheService.Add(CacheKeyHelper.Member.ById(command.Member.Id), command.Member);
+            this._cacheService.Add(CacheKeyHelper.Member.ByGuid(command.Member.Guid), command.Member);
             this._cacheService.Add(CacheKeyHelper.Member.ByEmail(command.Member.Email), command.Member);
 
             SaveMemberMessage message = new SaveMemberMessage(command.Member);

@@ -29,7 +29,7 @@ namespace Vintage.Rabbit.Web.Providers
 
         public Order CreateOrder(Member member)
         {
-            Order order = new Order(member.Id);
+            Order order = new Order(member.Guid);
             this._commandDispatcher.Dispatch<SaveOrderCommand>(new SaveOrderCommand(order));
 
             HttpCookie myCookie = new HttpCookie("OrderGuid");

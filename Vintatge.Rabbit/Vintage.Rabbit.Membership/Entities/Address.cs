@@ -8,9 +8,11 @@ namespace Vintage.Rabbit.Membership.Entities
 {
     public class Address
     {
-        public Guid MemberId { get; private set; }
+        public int Id { get; private set; }
 
-        public Guid Id { get; private set; }
+        public Guid Guid { get; private set; }
+
+        public Guid MemberGuid { get; private set; }
 
         public string Line1 { get; internal set; }
 
@@ -30,12 +32,12 @@ namespace Vintage.Rabbit.Membership.Entities
 
         public Address()
         {
-            this.Id = Guid.NewGuid();
+            this.Guid = Guid.NewGuid();
         }
-        public Address(Guid memberId, Guid addressId, string address, string suburbCity, string state, int postcode, string firstName, string lastName, string companyName = null)
+        public Address(Guid memberId, Guid addressGuid, string address, string suburbCity, string state, int postcode, string firstName, string lastName, string companyName = null)
         {
-            this.MemberId = memberId;
-            this.Id = addressId;
+            this.MemberGuid = memberId;
+            this.Guid = addressGuid;
             this.Line1 = address;
             this.SuburbCity = suburbCity;
             this.State = state;
