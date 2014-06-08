@@ -226,7 +226,7 @@
     <Content Include="Content\less\components\sidebar.less" />
     <Content Include="Content\less\components\photo-uploader.less" />
     <Content Include="Content\less\common\progress-bar.less" />
-    <None Include="Content\less\components\breadcrumbs.less" />
+    <Content Include="Content\less\components\breadcrumbs.less" />
     <Content Include="Content\less\components\page-head.less" />
     <Content Include="Content\less\components\product-list.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
