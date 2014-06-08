@@ -30,14 +30,14 @@ namespace Vintage.Rabbit.Web.Controllers
             this._commandDispatcher = commandDispatcher;
         }
 
-        public ActionResult PageHeader()
+        public ActionResult PageHeader(Member member)
         {
             bool isLoggedIn = this.HttpContext.User.Identity.IsAuthenticated;
             string email = null;
 
             if(isLoggedIn)
             {
-                email = "brontsy@gmail.com";
+                email = member.Email;
             }
 
             PageHeaderViewModel viewModel = new PageHeaderViewModel(isLoggedIn, email);
