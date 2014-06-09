@@ -4,24 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vintage.Rabbit.Interfaces.CQRS;
-using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Interfaces.Cache;
-using Vintage.Rabbit.Products.Repository;
-using Vintage.Rabbit.Caching;
+using Vintage.Rabbit.Inventory.Entities;
 
-namespace Vintage.Rabbit.Products.QueryHandlers
+namespace Vintage.Rabbit.Inventory.QueryHandlers
 {
     public class IsProductAvailableForHireQuery
     {
-        public int ProductId { get; private set; }
+        public Guid ProductGuid { get; private set; }
 
         public DateTime StartDate { get; private set; }
 
         public DateTime EndDate { get; private set; }
 
-        public IsProductAvailableForHireQuery(int productId, DateTime startDate, DateTime endDate)
+        public IsProductAvailableForHireQuery(Guid productGuid, DateTime startDate, DateTime endDate)
         {
-            this.ProductId = productId;
+            this.ProductGuid = productGuid;
             this.StartDate = startDate;
             this.EndDate = endDate;
         }
@@ -38,9 +36,9 @@ namespace Vintage.Rabbit.Products.QueryHandlers
 
         public bool Handle(IsProductAvailableForHireQuery query)
         {
-            Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(query.ProductId));
+            IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductQuery>(new GetInventoryForProductQuery(query.ProductGuid));
 
-            return product.IsAvailableForHire(query.StartDate, query.EndDate);
+            return inventory.Any(o => o.IsAvailable(query.StartDate, query.EndDate));
         }
     }
 }

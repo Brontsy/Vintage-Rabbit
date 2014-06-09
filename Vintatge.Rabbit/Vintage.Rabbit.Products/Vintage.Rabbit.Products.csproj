@@ -88,14 +88,14 @@
     <Compile Include="Enums\InventoryStatus.cs" />
     <Compile Include="Enums\ProductType.cs" />
     <Compile Include="Ioc\Bindings.cs" />
-    <Compile Include="Messaging\Message\SaveProductMessage.cs" />
+    <Compile Include="Messaging\Messages\ProductCreatedMessage.cs" />
+    <Compile Include="Messaging\Messages\SaveProductMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryHandlers\GetProductByIdQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetProductByGuidQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetCategoryQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetCategoriesQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetProductsByTypeQueryHandler.cs" />
-    <Compile Include="QueryHandlers\IsProductAvailableForHireQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetProductsByCategoryQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetProductsQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetFeaturedProductsQueryHandler.cs" />

@@ -84,7 +84,7 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
                 product.Cost = viewModel.Cost.Value;
                 product.Type = viewModel.Type.Value;
                 product.IsFeatured = viewModel.IsFeatured;
-                product.InventoryCount = viewModel.Inventory.Value;
+                product.Inventory = viewModel.Inventory.Value;
 
                 IEnumerable<int> categoryIds = viewModel.Categories.Where(o => o.Selected).Select(o => o.Id);
 

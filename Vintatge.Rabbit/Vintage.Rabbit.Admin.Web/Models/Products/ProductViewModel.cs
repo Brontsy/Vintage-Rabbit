@@ -75,7 +75,7 @@ namespace Vintage.Rabbit.Admin.Web.Models.Products
             this.Title = product.Title;
             this.Description = product.Description;
             this.Keywords = product.Keywords;
-            this.Inventory = product.Inventory.Count;
+            this.Inventory = product.Inventory;
             this.Cost = product.Cost;
             this.Type = product.Type;
             this.IsFeatured = product.IsFeatured;

@@ -11,6 +11,7 @@ using Vintage.Rabbit.Web.Models.Categories;
 using Vintage.Rabbit.Web.Models.Hire;
 using Vintage.Rabbit.Web.Models.Products;
 using Vintage.Rabbit.Common.Extensions;
+using Vintage.Rabbit.Inventory.QueryHandlers;
 
 namespace Vintage.Rabbit.Web.Controllers
 {
@@ -60,11 +61,11 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.View("Product", new ProductViewModel(product, breadCrumbs));
         }
 
-        public ActionResult CheckProductAvailability(int productId, HireDatesViewModel hireDates)
+        public ActionResult CheckProductAvailability(Guid productGuid, HireDatesViewModel hireDates)
         {
             if (hireDates.StartDate.HasValue && hireDates.EndDate.HasValue)
             {
-                bool available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(productId, hireDates.StartDate.Value, hireDates.EndDate.Value));
+                bool available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(productGuid, hireDates.StartDate.Value, hireDates.EndDate.Value));
 
                 return this.Json(new { Available = available }, JsonRequestBehavior.AllowGet);
             }
@@ -80,7 +81,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
             if (hireDates.StartDate.HasValue && hireDates.EndDate.HasValue)
             {
-                available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(productId, hireDates.StartDate.Value, hireDates.EndDate.Value));
+                available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(product.Guid, hireDates.StartDate.Value, hireDates.EndDate.Value));
             }
 
             AvailabilityCheckViewModel viewModel = new AvailabilityCheckViewModel(new ProductViewModel(product, null), available, hireDates);

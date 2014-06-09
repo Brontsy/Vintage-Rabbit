@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vintage.Rabbit.Interfaces.Products;
 using Vintage.Rabbit.Products.Enums;
 
 namespace Vintage.Rabbit.Products.Entities
 {
-    public class Product
+    public class Product : IProduct
     {
         public int Id { get; set; }
 
@@ -31,29 +32,17 @@ namespace Vintage.Rabbit.Products.Entities
 
         public IList<Category> Categories { get; set; }
 
-        public IList<Inventory> Inventory { get; internal set; }
-
-        public int InventoryCount { get; set; }
+        public int Inventory { get; set; }
 
         public Product()
         {
             this.Images = new List<ProductImage>();
             this.Categories = new List<Category>();
-            this.Inventory = new List<Inventory>();
         }
-        public Product(Guid guid) : this()
+        public Product(Guid guid, int inventoryCount) : this()
         {
             this.Guid = guid;
-        }
-
-        internal bool IsAvailableForHire(DateTime startDate, DateTime endDate)
-        {
-            if (this.Type == ProductType.Hire)
-            {
-                return this.Inventory.Any(o => o.IsAvailable(startDate, endDate));
-            }
-
-            return false;
+            this.Inventory = inventoryCount;
         }
     }
 }

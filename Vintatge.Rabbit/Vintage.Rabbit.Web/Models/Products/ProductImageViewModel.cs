@@ -10,13 +10,13 @@ namespace Vintage.Rabbit.Web.Models.Products
     {
         public string Url { get; private set; }
 
-        public int? Width { get; set; }
+        public string Thumbnail { get; private set; }
 
-        public int? Height { get; set; }
 
         public ProductImageViewModel(ProductImage image)
         {
             this.Url = image.Url;
+            this.Thumbnail = image.Thumbnail;
         }
     }
 }

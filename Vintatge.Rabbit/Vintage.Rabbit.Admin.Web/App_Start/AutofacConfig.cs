@@ -28,6 +28,7 @@ namespace Vintage.Rabbit.Admin.Web.App_Start
             builder.RegisterModule(new Vintage.Rabbit.Messaging.Ioc.Bindings());
             builder.RegisterModule(new Vintage.Rabbit.Orders.Ioc.Bindings());
             builder.RegisterModule(new Vintage.Rabbit.Membership.Ioc.Bindings());
+            builder.RegisterModule(new Vintage.Rabbit.Inventory.Ioc.Bindings());
 
 
             builder.RegisterType<LoginProvider>().As<ILoginProvider>();

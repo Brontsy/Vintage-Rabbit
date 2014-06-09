@@ -94,8 +94,6 @@ namespace Vintage.Rabbit.Products.Repository
             var product = message.Product;
             string categories = this._serializer.Serialize(product.Categories);
             string images = this._serializer.Serialize(product.Images);
-            string inventory = this._serializer.Serialize(product.Inventory);
-
 
             if (message.Product.Id == 0)
             {
@@ -121,7 +119,7 @@ namespace Vintage.Rabbit.Products.Repository
                         DateLastModified = DateTime.Now,
                         UpdatedBy = message.ActionBy.Email,
                         Categories = categories,
-                        Inventory = inventory,
+                        Inventory = product.Inventory,
                         Images = images
                     });
                 }
@@ -147,7 +145,7 @@ namespace Vintage.Rabbit.Products.Repository
                         DateLastModified = DateTime.Now,
                         UpdatedBy = message.ActionBy.Email,
                         Categories = categories,
-                        Inventory = inventory,
+                        Inventory = product.Inventory,
                         Images = images,
                         ProductId = product.Id
                     });
@@ -192,7 +190,6 @@ namespace Vintage.Rabbit.Products.Repository
         {
             IList<Category> categories = this._serializer.Deserialize<List<Category>>(productDb.Categories);
             IList<ProductImage> images = this._serializer.Deserialize<List<ProductImage>>(productDb.Images);
-            IList<Inventory> inventory = this._serializer.Deserialize<List<Inventory>>(productDb.Inventory);
 
             Product product = new Product()
             {
@@ -205,7 +202,7 @@ namespace Vintage.Rabbit.Products.Repository
                 Keywords = productDb.Keywords,
                 Cost = productDb.Price,
                 IsFeatured = productDb.IsFeatured,
-                Inventory = inventory,
+                Inventory = productDb.Inventory,
                 Categories = categories,
                 Images = images,
             };

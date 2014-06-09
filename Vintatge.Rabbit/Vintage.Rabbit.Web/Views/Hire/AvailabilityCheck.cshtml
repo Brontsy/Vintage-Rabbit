@@ -3,9 +3,9 @@
                     <div class="col-12 check-availability@(Model.IsAvailable.HasValue ? Model.IsAvailable.Value ? " available" : " unavailable" : string.Empty)">
                         @{string routeName = (Model.IsAvailable.HasValue && Model.IsAvailable.Value ? Routes.ShoppingCart.AddHireProduct : Routes.Hire.CheckProductAvailability);}
                         @{ string addToCartUrl = Url.RouteUrl(Routes.ShoppingCart.AddHireProduct, new { productId = Model.Product.Id, name = Model.Product.UrlTitle }); }
-                        @{ string checkAvailabilityUrl = Url.RouteUrl(Routes.Hire.CheckProductAvailability, new { productId = Model.Product.Id, name = Model.Product.UrlTitle }); }
+                        @{ string checkAvailabilityUrl = Url.RouteUrl(Routes.Hire.CheckProductAvailability, new { productGuid = Model.Product.Guid, name = Model.Product.UrlTitle }); }
 
-                        @using (Html.BeginRouteForm(routeName, new { productId = Model.Product.Id, name = Model.Product.UrlTitle }, FormMethod.Post, new { @class = "check-availability-form", data_add_to_cart = addToCartUrl, data_check_availability = checkAvailabilityUrl }))
+                        @using (Html.BeginRouteForm(routeName, new { productId = Model.Product.Id, productGuid = Model.Product.Guid, name = Model.Product.UrlTitle }, FormMethod.Post, new { @class = "check-availability-form", data_add_to_cart = addToCartUrl, data_check_availability = checkAvailabilityUrl }))
                         {
                             <fieldset>
 

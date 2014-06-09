@@ -13,7 +13,7 @@
                     @foreach(var image in Model.Images)
                     { 
                     <li>
-                        <img src="@image.Url" />
+                        <img data-full-source="@image.Url" src="@image.Thumbnail" />
                     </li>
                     }
                 </ul>

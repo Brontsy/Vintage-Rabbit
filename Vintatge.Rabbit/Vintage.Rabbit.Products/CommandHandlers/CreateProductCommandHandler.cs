@@ -8,6 +8,7 @@ using Vintage.Rabbit.Interfaces.Cache;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Interfaces.Membership;
 using Vintage.Rabbit.Interfaces.Messaging;
+using Vintage.Rabbit.Interfaces.Products;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Products.Messaging.Messages;
 
@@ -42,17 +43,15 @@ namespace Vintage.Rabbit.Products.CommandHandlers
 
         public void Handle(CreateProductCommand command)
         {
-            Product product = new Product(command.ProductGuid);
-
-            for (int i = 0; i < command.InventoryCount; i++)
-            {
-                Inventory inventory = new Inventory() { ProductGuid = product.Guid };
-                product.Inventory.Add(inventory);
-            }
+            Product product = new Product(command.ProductGuid, command.InventoryCount);
 
             SaveProductMessage message = new SaveProductMessage(product, command.ActionBy);
 
             this._messageService.AddMessage(message);
+
+            IProductCreatedMessage createdMessage = new ProductCreatedMessage(product);
+
+            this._messageService.AddMessage<IProductCreatedMessage>(createdMessage);
         }
     }
 }

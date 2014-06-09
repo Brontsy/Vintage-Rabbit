@@ -39,8 +39,6 @@ namespace Vintage.Rabbit.Products.Ioc
             builder.RegisterType<GetCategoriesQueryHandler>().As<IQueryHandler<IList<Category>, GetCategoriesQuery>>();
             builder.RegisterType<GetCategoryQueryHandler>().As<IQueryHandler<Category, GetCategoryQuery>>();
 
-            builder.RegisterType<IsProductAvailableForHireQueryHandler>().As<IQueryHandler<bool, IsProductAvailableForHireQuery>>();
-
             builder.RegisterType<ProductRepository>().As<IProductRepository>();
             builder.RegisterType<CategoryRepository>().As<ICategoryRepository>();
 

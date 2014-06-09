@@ -10,33 +10,25 @@
     <div class="row">
         <div class="col-5 col-12-m">
             <div class="image-container">
+                @if(Model.Images.Any())
+                { 
                 <img src="@Model.Images.First().Url" />
                 <ul class="thumbnails">
                     @foreach(var image in Model.Images)
                     { 
                     <li>
-                        <img src="@image.Url" />
+                        <img data-full-source="@image.Url" src="@image.Thumbnail" />
                     </li>
                     }
                 </ul>
+                }
             </div>
         </div>
 
         <div class="col-7  col-12-m">
             <h2>@Model.Title</h2>
             <div class="description">
-                <p>
-                    Mmm... we love lollies at Lark! 
-                </p>
-                <p>
-                    In this sweet bottle you'll find lots of yummy Australian-made chocolate freckles.
-                </p>
-                <p>
-                    Perfect for party gifts or little treats, our lollies come packaged in a re-usable Lark Store milk bottle.
-                </p>
-                <p>
-                    200g. approx weight. Plastic milk bottle with lid - removable label.
-                </p>
+                <p>@Model.Description</p>
             </div>
 
             <div class="controls">

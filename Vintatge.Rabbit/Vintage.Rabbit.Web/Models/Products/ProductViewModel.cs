@@ -12,6 +12,8 @@ namespace Vintage.Rabbit.Web.Models.Products
     {
         public int Id { get; private set; }
 
+        public Guid Guid { get; private set; }
+
         public IList<ProductImageViewModel> Images { get; private set; }
 
         public string Cost { get; private set; }
@@ -32,12 +34,13 @@ namespace Vintage.Rabbit.Web.Models.Products
         public ProductViewModel(Product product, BreadcrumbsViewModel breadcrumbs) 
         {
             this.Id = product.Id;
+            this.Guid = product.Guid;
             this.Images = product.Images.Select(o => new ProductImageViewModel(o)).ToList();
             this.Cost = product.Cost.ToString("C");
             this.Title = product.Title;
             this.Description = product.Description;
             this.Breadcrumbs = breadcrumbs;
-            this.IsAvailable = product.Inventory.Any(o => o.Status == Rabbit.Products.Enums.InventoryStatus.Available);
+            this.IsAvailable = product.Inventory > 0;
         }
     }
 }

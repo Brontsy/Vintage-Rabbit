@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Admin.Web", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Payment", "Vintage.Rabbit.Payment\Vintage.Rabbit.Payment.csproj", "{29436F02-08D5-4142-8EEC-939197C01EC4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Inventory", "Vintage.Rabbit.Inventory\Vintage.Rabbit.Inventory.csproj", "{7F2A5F29-08D3-476D-9881-F88B6B5260D8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{29436F02-08D5-4142-8EEC-939197C01EC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29436F02-08D5-4142-8EEC-939197C01EC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29436F02-08D5-4142-8EEC-939197C01EC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F2A5F29-08D3-476D-9881-F88B6B5260D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F2A5F29-08D3-476D-9881-F88B6B5260D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F2A5F29-08D3-476D-9881-F88B6B5260D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F2A5F29-08D3-476D-9881-F88B6B5260D8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

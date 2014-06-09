@@ -27,7 +27,7 @@ namespace Vintage.Rabbit.Products.Repository.Entities
 
         public bool Featured { get; internal set; }
 
-        public string Inventory { get; internal set; }
+        public int Inventory { get; internal set; }
 
         public bool IsFeatured { get; internal set; }
 

@@ -51,6 +51,8 @@
     <Compile Include="Messaging\IMessageHandler.cs" />
     <Compile Include="Messaging\IMessageService.cs" />
     <Compile Include="Orders\IOrder.cs" />
+    <Compile Include="Products\IProduct.cs" />
+    <Compile Include="Products\IProductCreatedMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\ISerializer.cs" />
   </ItemGroup>

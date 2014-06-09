@@ -41,33 +41,78 @@ namespace Vintage.Rabbit.Products.Services
 
                 ProductImage image = new ProductImage();
 
-                using (MemoryStream inStream = new MemoryStream(photoBytes))
-                {
-                    var uploadResult = this._fileStorage.UploadFile(inStream, file.FileName, "products/");
-                    image.Url = uploadResult.Uri.ToString();
+                image.Url = this.SaveLargeImage(photoBytes, file.FileName);
+                image.Thumbnail = this.SaveThumbnail(photoBytes, file.FileName);
 
-                    using (MemoryStream outStream = new MemoryStream())
+                result.Add(image);
+            }
+
+            return result;
+        }
+
+        private string SaveThumbnail(byte[] bytes, string fileName)
+        {
+            using (MemoryStream inStream = new MemoryStream(bytes))
+            {
+                using (MemoryStream outStream = new MemoryStream())
+                {
+                    using (ImageFactory imageFactory = new ImageFactory())
                     {
-                        using (ImageFactory imageFactory = new ImageFactory())
+                        // Load, resize, set the format and quality and save an image.
+                        imageFactory.Load(inStream);
+                        imageFactory.Resize(new Size(200, 0));
+                        imageFactory.Format(ImageFormat.Jpeg);
+                        imageFactory.Quality(80);
+                        imageFactory.Save(outStream);
+                    }
+
+                    outStream.Position = 0;
+                    var thumbnailResult = this._fileStorage.UploadFile(outStream, "thumb-" + fileName, "products/");
+                    return thumbnailResult.Uri.ToString();
+                }
+            }
+        }
+
+        private string SaveLargeImage(byte[] bytes, string fileName)
+        {
+            using (MemoryStream inStream = new MemoryStream(bytes))
+            {
+                using (MemoryStream outStream = new MemoryStream())
+                {
+                    using (ImageFactory imageFactory = new ImageFactory())
+                    {
+                        // Load, resize, set the format and quality and save an image.
+                        imageFactory.Load(inStream);
+                        int width = imageFactory.Image.Size.Width;
+                        int height = imageFactory.Image.Size.Height;
+
+                        if (width > 1600)
                         {
-                            // Load, resize, set the format and quality and save an image.
-                            imageFactory.Load(inStream);
-                            imageFactory.Resize(thumbnailSize); 
+                            int newHeight = (int)((1600 / (double)width) * height);
+                            imageFactory.Resize(new Size(1600, newHeight));
                             imageFactory.Format(ImageFormat.Jpeg);
                             imageFactory.Quality(80);
                             imageFactory.Save(outStream);
                         }
-
-                        outStream.Position = 0;
-                        var thumbnailResult = this._fileStorage.UploadFile(outStream, "thumb-"+file.FileName, "products/");
-                        image.Thumbnail = thumbnailResult.Uri.ToString();
+                        else if (height > 1600)
+                        {
+                            int newWidth = (int)((1600 / (double)height) * width);
+                            imageFactory.Resize(new Size(newWidth, 1600));
+                            imageFactory.Format(ImageFormat.Jpeg);
+                            imageFactory.Quality(80);
+                            imageFactory.Save(outStream);
+                        }
+                        else
+                        {
+                            imageFactory.Save(outStream);
+                        }
                     }
 
-                    result.Add(image);
+                    outStream.Position = 0;
+                    var resizedResult = this._fileStorage.UploadFile(outStream, fileName, "products/");
+                    return resizedResult.Uri.ToString();
                 }
             }
-
-            return result;
         }
     }
 }

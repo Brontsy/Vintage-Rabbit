@@ -465,6 +465,10 @@
       <Project>{93bcba0e-cfff-4963-a237-4be306ec0d2b}</Project>
       <Name>Vintage.Rabbit.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Inventory\Vintage.Rabbit.Inventory.csproj">
+      <Project>{7f2a5f29-08d3-476d-9881-f88b6b5260d8}</Project>
+      <Name>Vintage.Rabbit.Inventory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Vintage.Rabbit.Membership\Vintage.Rabbit.Membership.csproj">
       <Project>{1b494888-3127-473d-9769-7e31d55ba2eb}</Project>
       <Name>Vintage.Rabbit.Membership</Name>
