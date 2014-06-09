@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Membership",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Carts", "Vintage.Rabbit.Cart\Vintage.Rabbit.Carts.csproj", "{27D9CFE4-9249-4386-A81D-5C3180D999E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Web.Old", "Vintage.Rabbit.Web.Old\Vintage.Rabbit.Web.Old.csproj", "{421B7F4A-3F60-4CD4-B006-BCBDE0F99D05}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.CQRS", "Vintage.Rabbit.CQRS\Vintage.Rabbit.CQRS.csproj", "{2665E4F5-684B-4F0B-9368-801F11B78EB7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Web", "Vintage.Rabbit.Web\Vintage.Rabbit.Web.csproj", "{C2364158-72DF-4E72-8A9F-A9DA5CEEC7B7}"
@@ -73,10 +71,6 @@ Global
 		{27D9CFE4-9249-4386-A81D-5C3180D999E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27D9CFE4-9249-4386-A81D-5C3180D999E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27D9CFE4-9249-4386-A81D-5C3180D999E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{421B7F4A-3F60-4CD4-B006-BCBDE0F99D05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{421B7F4A-3F60-4CD4-B006-BCBDE0F99D05}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{421B7F4A-3F60-4CD4-B006-BCBDE0F99D05}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{421B7F4A-3F60-4CD4-B006-BCBDE0F99D05}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2665E4F5-684B-4F0B-9368-801F11B78EB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2665E4F5-684B-4F0B-9368-801F11B78EB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2665E4F5-684B-4F0B-9368-801F11B78EB7}.Release|Any CPU.ActiveCfg = Release|Any CPU

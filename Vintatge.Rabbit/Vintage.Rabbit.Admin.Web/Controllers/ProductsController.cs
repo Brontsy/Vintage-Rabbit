@@ -82,7 +82,7 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
                 product.Description = viewModel.Description;
                 product.Keywords = viewModel.Keywords;
                 product.Cost = viewModel.Cost.Value;
-                product.Type = viewModel.Type;
+                product.Type = viewModel.Type.Value;
                 product.IsFeatured = viewModel.IsFeatured;
                 product.InventoryCount = viewModel.Inventory.Value;
 

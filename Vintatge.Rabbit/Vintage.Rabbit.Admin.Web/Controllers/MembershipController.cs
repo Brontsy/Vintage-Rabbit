@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Admin.Web.Providers;
 using Vintage.Rabbit.Admin.Web.Models.Membership;
+using Vintage.Rabbit.Membership.Entities;
 
 namespace Vintage.Rabbit.Admin.Web.Controllers
 {
@@ -75,6 +76,11 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
             this._loginProvider.Logout(this.HttpContext.GetOwinContext().Authentication);
 
             return RedirectToRoute(Routes.Membership.Login);
+        }
+
+        public ActionResult LoggedInMember(Member member)
+        {
+            return this.Content(member.Email);
         }
     }
 }

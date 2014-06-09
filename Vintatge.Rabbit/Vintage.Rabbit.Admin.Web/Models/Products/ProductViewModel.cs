@@ -20,7 +20,7 @@ namespace Vintage.Rabbit.Admin.Web.Models.Products
 
         [Display(Name = "Product Type*")]
         [Required(ErrorMessage = "Please choose the product type")]
-        public ProductType Type { get; set; }
+        public ProductType? Type { get; set; }
 
         [Display(Name = "Title*")]
         [Required(ErrorMessage = "Please enter the products title")]
