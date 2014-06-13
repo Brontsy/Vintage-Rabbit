@@ -1,0 +1,51 @@
+﻿@model Vintage.Rabbit.Admin.Web.Models.Inventory.InventoryPageViewModel
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="page-head">
+
+    <h2>Add Product</h2>
+    <ol class="breadcrumbs">
+        <li>@Html.RouteLink("Home", Routes.Home)</li>
+        <li>@Html.RouteLink("Products", Routes.Products.List)</li>
+        <li>@Html.RouteLink("Edit", Routes.Products.Edit)</li>
+        <li class="active">Inventory</li>
+    </ol>
+</div>
+<div class="body-content inventory-list">
+    <div class="tab-container">
+        <ul class="nav nav-tabs">
+            <li>@Html.RouteLink("Details", Routes.Products.Edit, new { name = Model.Product.UrlTitle }, new { })</li>
+            <li class="active">@Html.RouteLink("Inventory", Routes.Products.Inventory)</li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active cont" id="details">
+
+                <h2>@Model.Product.Title</h2>
+
+                <ul class="inventory">
+                    <li class="inventory-header row">
+              
+                            <div class="col-3 guid">Inventory Id</div>
+                            <div class="col-2 date-created">DateCreated</div>
+                            <div class="col-2 status">Status</div>
+                   
+                    </li>
+                    @foreach (var inventory in Model.Inventory) 
+                    { 
+                        <li class="row">
+                       
+                                <div class="col-3 guid">@inventory.Guid</div>
+                                <div class="col-2 date-created">@inventory.DateCreated.ToString("dd MMM yyyy")</div>
+                                <div class="col-2 status">@inventory.Status.ToString()</div>
+                            
+                        </li>
+                    }
+                </ul>
+
+            </div>
+        </div>
+
+    </div>
+</div>

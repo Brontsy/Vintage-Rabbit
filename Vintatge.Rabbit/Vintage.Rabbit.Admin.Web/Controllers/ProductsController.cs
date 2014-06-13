@@ -12,6 +12,10 @@ using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Products.QueryHandlers;
 using Vintage.Rabbit.Products.Services;
 using Vintage.Rabbit.Common.Extensions;
+using Vintage.Rabbit.Inventory.QueryHandlers;
+using Vintage.Rabbit.Interfaces.Inventory;
+using Vintage.Rabbit.Admin.Web.Models.Inventory;
+using Vintage.Rabbit.Inventory.Entities;
 
 namespace Vintage.Rabbit.Admin.Web.Controllers
 {
@@ -121,6 +125,14 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
             this._commandDispatcher.Dispatch(new RemovePhotoCommand(product, member, photoId));
 
             return this.RedirectToRoute(Routes.Products.Edit, new { productId = productId, name = product.Title.ToUrl() });
+        }
+
+        public ActionResult Inventory(int productId)
+        {
+            Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
+            IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductQuery>(new GetInventoryForProductQuery(product.Guid));
+
+            return this.View("Inventory", new InventoryPageViewModel(product, inventory));
         }
 	}
 }

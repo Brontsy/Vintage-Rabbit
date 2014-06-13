@@ -49,6 +49,11 @@ namespace Vintage.Rabbit.Admin.Web.Models.Products
         [Display(Name = "Images")]
         public IList<ProductImageViewModel> ImageUrls { get; set; }
 
+        public string UrlTitle
+        {
+            get { return this.Title.Replace(" ", "-").ToLower(); }
+        }
+
         public IList<SelectListItem> Types
         {
             get

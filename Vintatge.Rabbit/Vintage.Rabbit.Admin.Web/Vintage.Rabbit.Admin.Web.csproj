@@ -175,6 +175,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ModelBinders\MemberModelBinder.cs" />
+    <Compile Include="Models\Inventory\InventoryItemViewModel.cs" />
+    <Compile Include="Models\Inventory\InventoryPageViewModel.cs" />
     <Compile Include="Models\Products\ProductListViewModel.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
     <Compile Include="Models\Membership\LoginViewModel.cs" />
@@ -229,6 +231,8 @@
     <Content Include="Content\less\components\breadcrumbs.less" />
     <Content Include="Content\less\components\page-head.less" />
     <Content Include="Content\less\components\product-list.less" />
+    <Content Include="Content\less\common\tabs.less" />
+    <Content Include="Content\less\pages\inventory-list.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -277,6 +281,7 @@
     <Content Include="Views\Products\HireList.cshtml" />
     <Content Include="Views\Products\Add.cshtml" />
     <Content Include="Views\Products\Photo.cshtml" />
+    <Content Include="Views\Products\Inventory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

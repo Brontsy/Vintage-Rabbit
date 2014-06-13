@@ -12,101 +12,113 @@
         <li class="active">Add</li>
     </ol>
 </div>
-
 <div class="body-content">
-    <div class="row">
-        <div class="col-5">
-            @using (Html.BeginRouteForm(Routes.Products.SaveProduct, new { productId = Model.ProductId }, FormMethod.Post, new { }))
-            {
-                <fieldset>
-                    <ol class="row">
-                        <li class="col-12">                            
-                            @Html.LabelFor(o => o.Code)
-                            @Html.TextBoxFor(o => o.Code, new { placeholder = "Code*" })
-                            @Html.ValidationMessageFor(o => o.Code)
-                        </li>
-                        <li class="col-12">                            
-                            @Html.LabelFor(o => o.Type)
-                            @Html.DropDownListFor(o => o.Type, Model.Types, "Product Type...", new { })
-                            @Html.ValidationMessageFor(o => o.Type)
-                        </li>
-                        <li class="col-12">                            
-                            @Html.LabelFor(o => o.Title)
-                            @Html.TextBoxFor(o => o.Title, new { placeholder = "Title*" })
-                            @Html.ValidationMessageFor(o => o.Title)
-                        </li>
-                        <li class="col-12">                            
-                            @Html.LabelFor(o => o.Description)
-                            @Html.TextAreaFor(o => o.Description, new { placeholder = "Description" })
-                            @Html.ValidationMessageFor(o => o.Description)
-                        </li>
-                        <li class="col-12">                            
-                            @Html.LabelFor(o => o.Keywords)
-                            @Html.TextBoxFor(o => o.Keywords, new { placeholder = "Keywords*" })
-                            @Html.ValidationMessageFor(o => o.Keywords)
-                        </li>
-                        <li class="col-12">                            
-                            @Html.LabelFor(o => o.Cost)
-                            @Html.TextBoxFor(o => o.Cost, new { placeholder = "Price*" })
-                            @Html.ValidationMessageFor(o => o.Cost)
-                        </li>
-                        <li class="col-12">
-                            @Html.LabelFor(o => o.Inventory)
-                            @Html.TextBoxFor(o => o.Inventory, new { placeholder = "Inventory*" })
-                            @Html.ValidationMessageFor(o => o.Inventory)
-                        </li>
-                        <li class="col-12 checkbox-container">
-                            @Html.CheckBoxFor(o => o.IsFeatured)
-                            @Html.LabelFor(o => o.IsFeatured)
-                            @Html.HiddenFor(o => Model.IsFeatured)
-                        </li>
-
-                        <li class="col-12">
-
-
-                            <h3><strong>Categories</strong></h3>
-                            <ul class="categories row">
-
-                                @for (int i = 0; i < Model.Categories.Count; i++)
-                                {
-                                    <li class="checkbox-container col-6">
-                                        @Html.CheckBoxFor(o => o.Categories[i].Selected)
-                                        @Html.LabelFor(o => o.Categories[i].Selected, Model.Categories[i].DisplayName)
-                                        @Html.HiddenFor(o => Model.Categories[i].Id)
-                                    </li>
-                                }
-
-                            </ul>
-                        </li>
-
-                        <li class="col-4 offset-8">
-                            <button type="submit" class="btn primary">Save & continue</button>
-                        </li>
-                    </ol>
-                </fieldset>
+    <div class="tab-container">
+        <ul class="nav nav-tabs">
+            <li class="active">@Html.RouteLink("Details", Routes.Products.Edit)</li>
+            @if(Model.ProductId != 0)
+            { 
+            <li>@Html.RouteLink("Inventory", Routes.Products.Inventory)</li>
             }
-        </div>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active cont" id="details">
+                <div class="row">
+                    <div class="col-5">
+                        @using (Html.BeginRouteForm(Routes.Products.SaveProduct, new { productId = Model.ProductId }, FormMethod.Post, new { }))
+                        {
+                            <fieldset>
+                                <ol class="row">
+                                    <li class="col-12">
+                                        @Html.LabelFor(o => o.Code)
+                                        @Html.TextBoxFor(o => o.Code, new { placeholder = "Code*" })
+                                        @Html.ValidationMessageFor(o => o.Code)
+                                    </li>
+                                    <li class="col-12">
+                                        @Html.LabelFor(o => o.Type)
+                                        @Html.DropDownListFor(o => o.Type, Model.Types, "Product Type...", new { })
+                                        @Html.ValidationMessageFor(o => o.Type)
+                                    </li>
+                                    <li class="col-12">
+                                        @Html.LabelFor(o => o.Title)
+                                        @Html.TextBoxFor(o => o.Title, new { placeholder = "Title*" })
+                                        @Html.ValidationMessageFor(o => o.Title)
+                                    </li>
+                                    <li class="col-12">
+                                        @Html.LabelFor(o => o.Description)
+                                        @Html.TextAreaFor(o => o.Description, new { placeholder = "Description" })
+                                        @Html.ValidationMessageFor(o => o.Description)
+                                    </li>
+                                    <li class="col-12">
+                                        @Html.LabelFor(o => o.Keywords)
+                                        @Html.TextBoxFor(o => o.Keywords, new { placeholder = "Keywords*" })
+                                        @Html.ValidationMessageFor(o => o.Keywords)
+                                    </li>
+                                    <li class="col-12">
+                                        @Html.LabelFor(o => o.Cost)
+                                        @Html.TextBoxFor(o => o.Cost, new { placeholder = "Price*" })
+                                        @Html.ValidationMessageFor(o => o.Cost)
+                                    </li>
+                                    <li class="col-12">
+                                        @Html.LabelFor(o => o.Inventory)
+                                        @Html.TextBoxFor(o => o.Inventory, new { placeholder = "Inventory*" })
+                                        @Html.ValidationMessageFor(o => o.Inventory)
+                                    </li>
+                                    <li class="col-12 checkbox-container">
+                                        @Html.CheckBoxFor(o => o.IsFeatured)
+                                        @Html.LabelFor(o => o.IsFeatured)
+                                        @Html.HiddenFor(o => Model.IsFeatured)
+                                    </li>
 
-        @if(Model.ProductId != 0)
-        { 
-        <div class="col-6 offset-1 photo-uploader">
-            <div class="upload-photos">
+                                    <li class="col-12">
 
-                <button class="btn primary" id="pickfiles">Upload Photos</button>
 
-                <ol class="photo-list row">
-                    @foreach (var image in Model.ImageUrls)
+                                        <h3><strong>Categories</strong></h3>
+                                        <ul class="categories row">
+
+                                            @for (int i = 0; i < Model.Categories.Count; i++)
+                                            {
+                                                <li class="checkbox-container col-6">
+                                                    @Html.CheckBoxFor(o => o.Categories[i].Selected)
+                                                    @Html.LabelFor(o => o.Categories[i].Selected, Model.Categories[i].DisplayName)
+                                                    @Html.HiddenFor(o => Model.Categories[i].Id)
+                                                </li>
+                                            }
+
+                                        </ul>
+                                    </li>
+
+                                    <li class="col-4 offset-8">
+                                        <button type="submit" class="btn primary">Save & continue</button>
+                                    </li>
+                                </ol>
+                            </fieldset>
+                        }
+                    </div>
+
+                    @if (Model.ProductId != 0)
                     {
-                        Html.RenderPartial("Photo", image);
-                    }
-                </ol>
+                        <div class="col-6 offset-1 photo-uploader">
+                            <div class="upload-photos">
 
+                                <button class="btn primary" id="pickfiles">Upload Photos</button>
+
+                                <ol class="photo-list row">
+                                    @foreach (var image in Model.ImageUrls)
+                                    {
+                                        Html.RenderPartial("Photo", image);
+                                    }
+                                </ol>
+
+                            </div>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
-        }
+
     </div>
 </div>
-
 <script type="text/javascript">
 
     $('.upload-photos').photoUploader(

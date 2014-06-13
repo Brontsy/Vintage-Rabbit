@@ -18,7 +18,9 @@ namespace Vintage.Rabbit.Inventory.Entities
 
         public InventoryStatus Status { get; internal set; }
 
-        internal IList<DateTime> DatesUnavailable { get; set; }
+        public DateTime DateCreated { get; internal set; }
+
+        public IList<DateTime> DatesUnavailable { get; set; }
 
         public InventoryItem()
         {

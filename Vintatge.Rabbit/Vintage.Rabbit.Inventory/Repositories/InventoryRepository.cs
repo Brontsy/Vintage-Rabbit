@@ -75,7 +75,8 @@ namespace Vintage.Rabbit.Inventory.Repository
                 Guid = inventory.Guid,
                 ProductGuid = inventory.ProductGuid,
                 Status = (InventoryStatus)Enum.Parse(typeof(InventoryStatus), inventory.Status),
-                DatesUnavailable = datesUnavailable
+                DatesUnavailable = datesUnavailable,
+                DateCreated = inventory.DateCreated
             };
 
             return inventoryItem;
