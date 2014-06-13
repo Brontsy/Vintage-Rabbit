@@ -65,11 +65,11 @@
 
 
                             <h3><strong>Categories</strong></h3>
-                            <ul class="categories">
+                            <ul class="categories row">
 
                                 @for (int i = 0; i < Model.Categories.Count; i++)
                                 {
-                                    <li class="checkbox-container">
+                                    <li class="checkbox-container col-6">
                                         @Html.CheckBoxFor(o => o.Categories[i].Selected)
                                         @Html.LabelFor(o => o.Categories[i].Selected, Model.Categories[i].DisplayName)
                                         @Html.HiddenFor(o => Model.Categories[i].Id)
