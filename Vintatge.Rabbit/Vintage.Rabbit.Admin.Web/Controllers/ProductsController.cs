@@ -43,7 +43,7 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
             IList<Category> categories = this._queryDispatcher.Dispatch<IList<Category>, GetCategoriesQuery>(new GetCategoriesQuery());
 
             ProductViewModel viewModel = new ProductViewModel();
-            viewModel.Categories = categories.Select(o => new CategoryViewModel(o)).ToList();
+            viewModel.Categories = categories.OrderBy(o => o.DisplayName).Select(o => new CategoryViewModel(o)).ToList();
 
             return this.View("Add", viewModel);
         }
