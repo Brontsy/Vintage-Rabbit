@@ -35,7 +35,7 @@ namespace Vintage.Rabbit.Web.Providers
             HttpCookie myCookie = new HttpCookie("OrderGuid");
 
             myCookie.Value = order.Id.ToString();
-            myCookie.Expires = DateTime.Now.AddYears(1);
+            myCookie.Expires = DateTime.Now.AddDays(3);
 
             HttpContext.Current.Response.Cookies.Add(myCookie);
 

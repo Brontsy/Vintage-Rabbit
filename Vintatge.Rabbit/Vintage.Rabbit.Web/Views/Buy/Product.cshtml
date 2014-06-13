@@ -27,28 +27,32 @@
             <div class="controls">
             
                 <div class="price">@Model.Cost</div>
-            
+                
+                @if(Model.IsAvailable)
+                { 
                 <p class="availble"><i class="fa fa-check"></i>&nbsp; This product is currently in stock</p>
-
                 <div class="row">
                     <div class="col-12 qty">
                         @using(Html.BeginRouteForm(Routes.ShoppingCart.Add, new { }, FormMethod.Post, new { }))
                         {
                             <fieldset>
-                                Qty &nbsp; <input type="text" name="qty" id="qty" value="1" /> &nbsp;  &nbsp;
+                                Qty &nbsp; 
+                                @Html.DropDownListFor(o => o.Qty, Model.InventoryCount)
+                                 &nbsp;  &nbsp;
 
                                 <button type="submit" class="btn primary add-to-cart">
                                     <i class="fa fa-shopping-cart"></i>
                                     Add to cart
                                 </button>
 
-                                <div class="alert positive icon hidden added-to-cart">
-                                    <i class="fa fa-check-circle"></i> @Model.Title has been added to your cart
-                                </div>
                             </fieldset>
                         }
                     </div>
-                    <div class="col-4">
+                    <div class="col-12">
+
+                        <div class="alert positive icon hidden added-to-cart">
+                            <i class="fa fa-check-circle"></i> @Model.Title has been added to your cart
+                        </div>
                     </div>
                 </div>
                 
@@ -63,6 +67,12 @@
                         once dispatched. (Please check delivery note above.)
                     </p>
                 </div>
+                }
+                else
+                {
+                <p class="unavailable"><i class="fa fa-times"></i>&nbsp; This product is currently out of stock</p>
+                }
+
             </div>
         </div>
         

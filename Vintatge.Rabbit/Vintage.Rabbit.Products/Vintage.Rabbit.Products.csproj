@@ -82,12 +82,10 @@
     <Compile Include="CommandHandlers\CreateProductCommandHandler.cs" />
     <Compile Include="CommandHandlers\SaveProductCommandHandler.cs" />
     <Compile Include="Entities\Category.cs" />
-    <Compile Include="Entities\Inventory.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ProductImage.cs" />
-    <Compile Include="Enums\InventoryStatus.cs" />
-    <Compile Include="Enums\ProductType.cs" />
     <Compile Include="Ioc\Bindings.cs" />
+    <Compile Include="Messaging\Handlers\InventorySoldMessageHandler.cs" />
     <Compile Include="Messaging\Messages\ProductCreatedMessage.cs" />
     <Compile Include="Messaging\Messages\SaveProductMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

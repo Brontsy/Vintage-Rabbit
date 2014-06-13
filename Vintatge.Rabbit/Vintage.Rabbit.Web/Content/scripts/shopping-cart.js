@@ -36,6 +36,23 @@ function AddClickEvents()
     $('.shopping-cart').on('mouseleave', function (event) {
         $(this).parents('.row').removeClass('shopping-cart-hover');
     });
+
+    $('#qty').on('change', function () {
+        
+        if(parseInt($(this).val()))
+        {
+            if(parseInt($(this).val()) > parseInt($(this).data('max-value')))
+            {
+                $(this).val($(this).data('max-value'));
+                $(this).removeClass('valid');
+            }
+        }
+        else
+        {
+            //alert('no number');
+            $(this).removeClass('valid');
+        }
+    });
 }
 
 

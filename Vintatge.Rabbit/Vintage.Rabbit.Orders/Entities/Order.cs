@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vintage.Rabbit.Carts.Entities;
 using Vintage.Rabbit.Interfaces.Data;
 using Vintage.Rabbit.Interfaces.Orders;
 using Vintage.Rabbit.Membership.Entities;
@@ -21,7 +22,7 @@ namespace Vintage.Rabbit.Orders.Entities
 
         public Address BillingAddress { get; private set; }
 
-        public IList<OrderItem> Items { get; private set; }
+        public IList<IOrderItem> Items { get; private set; }
 
         public OrderStatus Status { get; private set; }
 
@@ -39,7 +40,7 @@ namespace Vintage.Rabbit.Orders.Entities
         public Order()
         {
             this.Id = Guid.NewGuid();
-            this.Items = new List<OrderItem>();
+            this.Items = new List<IOrderItem>();
             this.Status = OrderStatus.Initialised;
             this.WorkflowStatus = OrderWorkflowStatus.AwaitingPayment;
             this.DateCreated = DateTime.Now;
@@ -50,14 +51,14 @@ namespace Vintage.Rabbit.Orders.Entities
             this.MemberId = memberId;
         }
 
-        internal void AddProduct(Product product)
+        internal void AddProduct(CartItem cartItem)
         {
-            this.Items.Add(new OrderItem(product));
+            this.Items.Add(new OrderItem(cartItem));
         }
 
         internal void RemoveProduct(Guid OrderItemId)
         {
-            OrderItem OrderItem = this.Items.FirstOrDefault(o => o.Id == OrderItemId);
+            IOrderItem OrderItem = this.Items.FirstOrDefault(o => o.Id == OrderItemId);
 
             if (OrderItem != null)
             {
@@ -67,7 +68,7 @@ namespace Vintage.Rabbit.Orders.Entities
 
         internal void Clear()
         {
-            this.Items = new List<OrderItem>();
+            this.Items = new List<IOrderItem>();
         }
 
         internal void AddShippingAddress(Address address)

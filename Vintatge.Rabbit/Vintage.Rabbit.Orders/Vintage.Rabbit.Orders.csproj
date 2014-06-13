@@ -43,25 +43,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\AddCartItemsToOrderCommandHandler.cs" />
     <Compile Include="CommandHandlers\AddBillingAddressCommandHandler.cs" />
     <Compile Include="CommandHandlers\AddShippingAddressCommandHandler.cs" />
     <Compile Include="CommandHandlers\SaveOrderCommandHandler.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderItem.cs" />
-    <Compile Include="Enums\OrderWorkflowStatus.cs" />
     <Compile Include="Enums\OrderStatus.cs" />
+    <Compile Include="Enums\OrderWorkflowStatus.cs" />
     <Compile Include="Ioc\Bindings.cs" />
     <Compile Include="Messaging\Handlers\OrderPaidMessageHandler.cs" />
     <Compile Include="Messaging\Messages\OrderPaidMessage.cs" />
     <Compile Include="Messaging\Messages\SaveOrderMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryHandlers\GetOrderQueryHandler.cs" />
+    <Compile Include="QueryHandlers\GetUnavailableOrderItemsQueryHandler.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Vintage.Rabbit.Caching\Vintage.Rabbit.Caching.csproj">
       <Project>{93ee8576-6e36-4fef-ad10-0ec71fa9aaa4}</Project>
       <Name>Vintage.Rabbit.Caching</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Cart\Vintage.Rabbit.Carts.csproj">
+      <Project>{27d9cfe4-9249-4386-a81d-5c3180d999e4}</Project>
+      <Name>Vintage.Rabbit.Carts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Vintage.Rabbit.Common\Vintage.Rabbit.Common.csproj">
       <Project>{5aff0585-9864-4f50-b84a-c8ef1f5c85e3}</Project>
@@ -70,6 +76,10 @@
     <ProjectReference Include="..\Vintage.Rabbit.Interfaces\Vintage.Rabbit.Interfaces.csproj">
       <Project>{93bcba0e-cfff-4963-a237-4be306ec0d2b}</Project>
       <Name>Vintage.Rabbit.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Inventory\Vintage.Rabbit.Inventory.csproj">
+      <Project>{7f2a5f29-08d3-476d-9881-f88b6b5260d8}</Project>
+      <Name>Vintage.Rabbit.Inventory</Name>
     </ProjectReference>
     <ProjectReference Include="..\Vintage.Rabbit.Membership\Vintage.Rabbit.Membership.csproj">
       <Project>{1b494888-3127-473d-9769-7e31d55ba2eb}</Project>

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Web.Models.Breadcrumbs;
 using Vintage.Rabbit.Web.Models.Products;
@@ -24,6 +26,10 @@ namespace Vintage.Rabbit.Web.Models.Products
 
         public bool IsAvailable { get; private set; }
 
+        public int Qty { get; private set; }
+
+        public IList<SelectListItem> InventoryCount { get; private set; }
+
         public string UrlTitle
         {
             get { return this.Title.Replace(" ", "-").ToLower(); }
@@ -41,6 +47,13 @@ namespace Vintage.Rabbit.Web.Models.Products
             this.Description = product.Description;
             this.Breadcrumbs = breadcrumbs;
             this.IsAvailable = product.Inventory > 0;
+
+            this.Qty = 1;
+            this.InventoryCount = new List<SelectListItem>();
+            for(int i = 1; i <= product.Inventory; i++)
+            {
+                this.InventoryCount.Add(new SelectListItem() { Text = i.ToString(), Value = i.ToString() });
+            }
         }
     }
 }

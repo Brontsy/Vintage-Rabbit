@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vintage.Rabbit.Carts.Entities;
+using Vintage.Rabbit.Products.Entities;
 
 namespace Vintage.Rabbit.Web.Models.Payment
 {

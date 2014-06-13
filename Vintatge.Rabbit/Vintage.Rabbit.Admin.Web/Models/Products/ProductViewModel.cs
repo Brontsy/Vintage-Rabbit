@@ -5,8 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vintage.Rabbit.Admin.Web.Models.Categories;
+using Vintage.Rabbit.Common.Enums;
 using Vintage.Rabbit.Products.Entities;
-using Vintage.Rabbit.Products.Enums;
 
 namespace Vintage.Rabbit.Admin.Web.Models.Products
 {
@@ -81,7 +81,7 @@ namespace Vintage.Rabbit.Admin.Web.Models.Products
             this.IsFeatured = product.IsFeatured;
             this.ImageUrls = product.Images.Select(o => new ProductImageViewModel(o)).ToList();
 
-            foreach (Category category in categories)
+            foreach (Category category in categories.OrderBy(o => o.DisplayName))
             {
                 CategoryViewModel categoryViewModel = new CategoryViewModel(category);
                 if (product.Categories.Any(o => o.Id == category.Id))

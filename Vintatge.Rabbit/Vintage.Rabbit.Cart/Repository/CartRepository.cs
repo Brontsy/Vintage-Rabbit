@@ -7,9 +7,9 @@ using Dapper;
 using Vintage.Rabbit.Carts.Entities;
 using Vintage.Rabbit.Carts.Messaging.Messages;
 using Vintage.Rabbit.Interfaces.Messaging;
-using Vintage.Rabbit.Interfaces.Serialization;
 using System.Configuration;
 using System.Data.SqlClient;
+using Vintage.Rabbit.Common.Serialization;
 
 namespace Vintage.Rabbit.Carts.Repository
 {

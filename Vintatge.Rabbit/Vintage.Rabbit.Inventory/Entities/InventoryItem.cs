@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vintage.Rabbit.Interfaces.Inventory;
 using Vintage.Rabbit.Inventory.Enums;
 
 namespace Vintage.Rabbit.Inventory.Entities
 {
-    public class InventoryItem
+    public class InventoryItem : IInventoryItem
     {
         public int  Id { get; internal set; }
 
@@ -24,6 +25,21 @@ namespace Vintage.Rabbit.Inventory.Entities
             this.Guid = Guid.NewGuid();
             this.Status = InventoryStatus.Available;
             this.DatesUnavailable = new List<DateTime>();
+        }
+
+        internal void Sold()
+        {
+            this.Status = InventoryStatus.Sold;
+        }
+
+        internal void Hired(DateTime startDate, DateTime endDate)
+        {
+            DateTime currentDate = startDate.Date;
+            while(currentDate <= endDate.Date)
+            {
+                this.DatesUnavailable.Add(currentDate);
+                currentDate = currentDate.AddDays(1);
+            }
         }
 
         public bool IsAvailable(DateTime startDate, DateTime endDate)
@@ -45,6 +61,11 @@ namespace Vintage.Rabbit.Inventory.Entities
             }
 
             return available;
+        }
+
+        public bool IsAvailable()
+        {
+            return this.Status == InventoryStatus.Available;
         }
     }
 }

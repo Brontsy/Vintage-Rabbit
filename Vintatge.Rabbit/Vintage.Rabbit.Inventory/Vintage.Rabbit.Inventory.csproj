@@ -46,21 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\SaveInventoryCommandHandler.cs" />
     <Compile Include="Entities\InventoryItem.cs" />
     <Compile Include="Enums\InventoryStatus.cs" />
     <Compile Include="Ioc\Bindings.cs" />
+    <Compile Include="Messaging\Handlers\OrderPaidMessageHandler.cs" />
     <Compile Include="Messaging\Handlers\ProductCreatedMessageHandler.cs" />
+    <Compile Include="Messaging\Messages\InventorySoldMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryHandlers\GetInventoryForProductQueryHandler.cs" />
+    <Compile Include="QueryHandlers\IsProductAvailableQueryHandler.cs" />
     <Compile Include="QueryHandlers\IsProductAvailableForHireQueryHandler.cs" />
     <Compile Include="Repositories\InventoryRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CommandHandlers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Vintage.Rabbit.Common\Vintage.Rabbit.Common.csproj">
       <Project>{5aff0585-9864-4f50-b84a-c8ef1f5c85e3}</Project>
@@ -69,6 +71,10 @@
     <ProjectReference Include="..\Vintage.Rabbit.Interfaces\Vintage.Rabbit.Interfaces.csproj">
       <Project>{93bcba0e-cfff-4963-a237-4be306ec0d2b}</Project>
       <Name>Vintage.Rabbit.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Payment\Vintage.Rabbit.Payment.csproj">
+      <Project>{29436f02-08d5-4142-8eec-939197c01ec4}</Project>
+      <Name>Vintage.Rabbit.Payment</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -12,6 +12,7 @@ using Vintage.Rabbit.Web.Models.Hire;
 using Vintage.Rabbit.Web.Models.Products;
 using Vintage.Rabbit.Common.Extensions;
 using Vintage.Rabbit.Inventory.QueryHandlers;
+using Vintage.Rabbit.Common.Enums;
 
 namespace Vintage.Rabbit.Web.Controllers
 {
@@ -26,7 +27,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult Index()
         {
-            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByTypeQuery>(new GetProductsByTypeQuery(Products.Enums.ProductType.Hire));
+            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByTypeQuery>(new GetProductsByTypeQuery(ProductType.Hire));
 
             BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
             breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
@@ -65,7 +66,7 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             if (hireDates.StartDate.HasValue && hireDates.EndDate.HasValue)
             {
-                bool available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(productGuid, hireDates.StartDate.Value, hireDates.EndDate.Value));
+                bool available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(productGuid, 1, hireDates.StartDate.Value, hireDates.EndDate.Value));
 
                 return this.Json(new { Available = available }, JsonRequestBehavior.AllowGet);
             }
@@ -81,7 +82,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
             if (hireDates.StartDate.HasValue && hireDates.EndDate.HasValue)
             {
-                available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(product.Guid, hireDates.StartDate.Value, hireDates.EndDate.Value));
+                available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(product.Guid, 1, hireDates.StartDate.Value, hireDates.EndDate.Value));
             }
 
             AvailabilityCheckViewModel viewModel = new AvailabilityCheckViewModel(new ProductViewModel(product, null), available, hireDates);

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Interfaces.Messaging;
+using Vintage.Rabbit.Interfaces.Orders;
 using Vintage.Rabbit.Orders.CommandHandlers;
 using Vintage.Rabbit.Orders.Entities;
 using Vintage.Rabbit.Orders.Messaging.Handlers;
@@ -21,10 +22,12 @@ namespace Vintage.Rabbit.Orders.Ioc
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<GetOrderQueryHandler>().As<IQueryHandler<Order, GetOrderQuery>>();
+            builder.RegisterType<GetUnavailableOrderItemsQueryHandler>().As<IQueryHandler<IList<IOrderItem>, GetUnavailableOrderItemsQuery>>();
 
             builder.RegisterType<SaveOrderCommandHandler>().As<ICommandHandler<SaveOrderCommand>>();
             builder.RegisterType<AddBillingAddressCommandHandler>().As<ICommandHandler<AddBillingAddressCommand>>();
             builder.RegisterType<AddShippingAddressCommandHandler>().As<ICommandHandler<AddShippingAddressCommand>>();
+            builder.RegisterType<AddCartItemsToOrderCommandHandler>().As<ICommandHandler<AddCartItemsToOrderCommand>>();
 
             builder.RegisterType<OrderRepository>().As<IMessageHandler<SaveOrderMessage>>();
             builder.RegisterType<OrderRepository>().As<IOrderRepository>();

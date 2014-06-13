@@ -9,7 +9,7 @@ using Vintage.Rabbit.Orders.Entities;
 
 namespace Vintage.Rabbit.Orders.Messaging.Messages
 {
-    public class OrderPaidMessage : IMessage
+    public class OrderPaidMessage : IOrderPaidMessage
     {
         public IOrder Order { get; private set; }
 

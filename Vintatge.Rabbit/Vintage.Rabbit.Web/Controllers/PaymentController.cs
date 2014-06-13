@@ -3,16 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vintage.Rabbit.Carts.Entities;
+using Vintage.Rabbit.Carts.QueryHandlers;
 using Vintage.Rabbit.Interfaces.CQRS;
+using Vintage.Rabbit.Interfaces.Orders;
+using Vintage.Rabbit.Inventory.QueryHandlers;
 using Vintage.Rabbit.Membership.Entities;
 using Vintage.Rabbit.Orders.CommandHandlers;
 using Vintage.Rabbit.Orders.Entities;
+using Vintage.Rabbit.Orders.QueryHandlers;
 using Vintage.Rabbit.Payment.CommandHandlers;
 using Vintage.Rabbit.Payment.Entities;
 using Vintage.Rabbit.Payment.QueryHandlers;
 using Vintage.Rabbit.Payment.Services;
+using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Web.Attributes;
 using Vintage.Rabbit.Web.Models.Membership;
+using Vintage.Rabbit.Web.Models.Orders;
 using Vintage.Rabbit.Web.Models.Payment;
 using Vintage.Rabbit.Web.Providers;
 
@@ -115,8 +122,12 @@ namespace Vintage.Rabbit.Web.Controllers
 
 
         [HttpGet]
-        public ActionResult PaymentInfo()
+        public ActionResult PaymentInfo(Order order, Member member)
         {
+            Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
+
+            this._commandDispatcher.Dispatch(new AddCartItemsToOrderCommand(order, cart));
+
             PaymentInformationViewModel viewModel = new PaymentInformationViewModel();
 
             return this.View("PaymentInfo", viewModel);
@@ -127,15 +138,19 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                PaymentResult result = this._creditCardService.PayForOrder(order, viewModel.Name, viewModel.CreditCardNumber, viewModel.ExpiryMonth, viewModel.ExpiryYear, viewModel.CCV);
+                IList<IOrderItem> unavailableOrderItems = this._queryDispatcher.Dispatch<IList<IOrderItem>, GetUnavailableOrderItemsQuery>(new GetUnavailableOrderItemsQuery(order));
+                if (unavailableOrderItems.Count == 0)
+                {
+                    PaymentResult result = this._creditCardService.PayForOrder(order, viewModel.Name, viewModel.CreditCardNumber, viewModel.ExpiryMonth, viewModel.ExpiryYear, viewModel.CCV);
 
-                if (result.Successful)
-                {
-                    return this.RedirectToRoute(Routes.Checkout.Complete, new { orderId = order.Id });
-                }
-                else
-                {
-                    this.ModelState.AddModelError("CreditCardNumber", result.ErrorMessage);
+                    if (result.Successful)
+                    {
+                        return this.RedirectToRoute(Routes.Checkout.Complete, new { orderId = order.Id });
+                    }
+                    else
+                    {
+                        this.ModelState.AddModelError("CreditCardNumber", result.ErrorMessage);
+                    }
                 }
             }
 
@@ -145,6 +160,20 @@ namespace Vintage.Rabbit.Web.Controllers
         public ActionResult Complete()
         {
             return this.View("Complete");
+        }
+
+        public ActionResult CheckOrderAvailability(Order order)
+        {
+            IList<IOrderItem> unavailableOrderItems = this._queryDispatcher.Dispatch<IList<IOrderItem>, GetUnavailableOrderItemsQuery>(new GetUnavailableOrderItemsQuery(order));
+
+            IList<OrderItemViewModel> orderItems = unavailableOrderItems.Select(o => new OrderItemViewModel(o)).ToList();
+
+            return this.PartialView("OrderAvailability", orderItems);
+        }
+
+        public ActionResult OrderSummary(Order order)
+        {
+            return this.PartialView("OrderSummary", new OrderViewModel(order));
         }
 	}
 }

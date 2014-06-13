@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vintage.Rabbit.Interfaces.Serialization
+namespace Vintage.Rabbit.Common.Serialization
 {
     public interface ISerializer
     {

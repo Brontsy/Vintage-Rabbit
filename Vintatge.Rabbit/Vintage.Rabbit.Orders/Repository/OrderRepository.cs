@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Vintage.Rabbit.Orders.Messaging.Messages;
 using Vintage.Rabbit.Interfaces.Messaging;
-using Vintage.Rabbit.Interfaces.Serialization;
 using Vintage.Rabbit.Orders.Entities;
+using Vintage.Rabbit.Common.Serialization;
 
 namespace Vintage.Rabbit.Orders.Repository
 {

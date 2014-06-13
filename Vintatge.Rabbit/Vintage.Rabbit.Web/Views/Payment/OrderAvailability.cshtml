@@ -1,0 +1,15 @@
+﻿@model IList<Vintage.Rabbit.Web.Models.Orders.OrderItemViewModel>
+@{
+    ViewBag.Title = "Checkout - Shipping";
+}
+
+@if(Model.Any())
+{ 
+    <div class="alert neutral">Unfortunatly we cannot supply you with everything in your shopping cart. We can not fullfil the following items:</div>
+<ol>
+    @foreach(var orderItem in Model)
+    {
+        <li>@orderItem.Title</li>
+    }
+</ol>
+}

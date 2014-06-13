@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vintage.Rabbit.Interfaces.Messaging;
-using Vintage.Rabbit.Interfaces.Serialization;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Products.Messaging.Messages;
 using Dapper;
 using Vintage.Rabbit.Products.Repository.Entities;
 using System.Configuration;
-using Vintage.Rabbit.Products.Enums;
+using Vintage.Rabbit.Common.Enums;
+using Vintage.Rabbit.Common.Serialization;
 
 namespace Vintage.Rabbit.Products.Repository
 {

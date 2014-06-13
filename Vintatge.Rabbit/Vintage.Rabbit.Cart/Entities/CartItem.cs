@@ -11,9 +11,11 @@ namespace Vintage.Rabbit.Carts.Entities
     {
         public Guid Id { get; private set; }
 
-        public ProductCartItem Product { get; private set; }
+        public Product Product { get; private set; }
 
         public int Quantity { get; private set; }
+
+        public Dictionary<string, object> Properties { get; private set; }
 
         public decimal Total
         {
@@ -23,9 +25,10 @@ namespace Vintage.Rabbit.Carts.Entities
         public CartItem()
         {
             this.Id = Guid.NewGuid();
+            this.Properties = new Dictionary<string, object>();
         }
 
-        public CartItem(int quantity, ProductCartItem product)
+        public CartItem(int quantity, Product product)
             : this()
         {
             this.Quantity = quantity;

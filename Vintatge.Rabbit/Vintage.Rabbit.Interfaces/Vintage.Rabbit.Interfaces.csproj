@@ -45,16 +45,24 @@
     <Compile Include="CQRS\IQueryDispatcher.cs" />
     <Compile Include="CQRS\IQueryHandler.cs" />
     <Compile Include="Data\IEntity.cs" />
+    <Compile Include="Inventory\IInventoryItem.cs" />
+    <Compile Include="Inventory\IInventorySoldMessage.cs" />
     <Compile Include="Ioc\IResolver.cs" />
     <Compile Include="Membership\IActionBy.cs" />
     <Compile Include="Messaging\IMessage.cs" />
     <Compile Include="Messaging\IMessageHandler.cs" />
     <Compile Include="Messaging\IMessageService.cs" />
+    <Compile Include="Orders\IOrderPaidMessage.cs" />
     <Compile Include="Orders\IOrder.cs" />
     <Compile Include="Products\IProduct.cs" />
     <Compile Include="Products\IProductCreatedMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serialization\ISerializer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Vintage.Rabbit.Common\Vintage.Rabbit.Common.csproj">
+      <Project>{5aff0585-9864-4f50-b84a-c8ef1f5c85e3}</Project>
+      <Name>Vintage.Rabbit.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

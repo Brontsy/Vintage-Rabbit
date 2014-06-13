@@ -41,7 +41,7 @@ namespace Vintage.Rabbit.Carts.Entities
             }
             else
             {
-                this.Items.Add(new CartItem(quantity, new BuyProductCartItem(product)));
+                this.Items.Add(new CartItem(quantity, product));
             }
         }
 
@@ -51,10 +51,12 @@ namespace Vintage.Rabbit.Carts.Entities
             {
                 CartItem cartItem = this.Items.FirstOrDefault(o => o.Product.Id == product.Id);
                 cartItem.ChangeQuantity(cartItem.Quantity + 1);
+                cartItem.Properties["StartDate"] = startDate;
+                cartItem.Properties["EndDate"] = endDate;
             }
             else
             {
-                this.Items.Add(new CartItem(1, new HireProductCartItem(product, startDate, endDate)));
+                this.Items.Add(new HireCartItem(1, product, startDate, endDate));
             }
         }
 

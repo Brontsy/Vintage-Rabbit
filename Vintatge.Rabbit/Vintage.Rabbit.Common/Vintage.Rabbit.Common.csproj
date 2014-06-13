@@ -47,16 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Encryption\SimpleHash.cs" />
+    <Compile Include="Enums\ProductType.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Ioc\AutoFacBindings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\ISerializer.cs" />
     <Compile Include="Serialization\JsonSerializer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Vintage.Rabbit.Interfaces\Vintage.Rabbit.Interfaces.csproj">
-      <Project>{93bcba0e-cfff-4963-a237-4be306ec0d2b}</Project>
-      <Name>Vintage.Rabbit.Interfaces</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

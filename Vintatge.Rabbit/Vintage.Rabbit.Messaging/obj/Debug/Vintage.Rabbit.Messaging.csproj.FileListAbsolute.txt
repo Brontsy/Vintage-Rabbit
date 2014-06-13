@@ -7,3 +7,7 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Messagi
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Messaging\obj\Debug\Vintage.Rabbit.Messaging.csprojResolveAssemblyReference.cache
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Messaging\obj\Debug\Vintage.Rabbit.Messaging.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Messaging\obj\Debug\Vintage.Rabbit.Messaging.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Messaging\bin\Debug\Vintage.Rabbit.Common.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Messaging\bin\Debug\Newtonsoft.Json.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Messaging\bin\Debug\Vintage.Rabbit.Common.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Messaging\bin\Debug\Newtonsoft.Json.xml

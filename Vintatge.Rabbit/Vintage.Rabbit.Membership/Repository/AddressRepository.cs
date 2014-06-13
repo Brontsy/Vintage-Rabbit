@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using Vintage.Rabbit.Interfaces.Messaging;
-using Vintage.Rabbit.Interfaces.Serialization;
 using Vintage.Rabbit.Membership.Entities;
 using Vintage.Rabbit.Membership.Messaging.Messages;
+using Vintage.Rabbit.Common.Serialization;
 
 namespace Vintage.Rabbit.Membership.Repository
 {

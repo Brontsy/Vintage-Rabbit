@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vintage.Rabbit.Products.Enums
+namespace Vintage.Rabbit.Common.Enums
 {
-    public enum InventoryStatus
+    public enum ProductType
     {
-        Available,
-        Sold
+        Buy,
+        Hire
     }
 }

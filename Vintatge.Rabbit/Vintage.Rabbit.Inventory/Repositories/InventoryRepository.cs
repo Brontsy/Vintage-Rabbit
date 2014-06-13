@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vintage.Rabbit.Interfaces.Messaging;
-using Vintage.Rabbit.Interfaces.Serialization;
 using Dapper;
 using System.Configuration;
 using Vintage.Rabbit.Inventory.Entities;
 using Vintage.Rabbit.Inventory.Enums;
+using Vintage.Rabbit.Common.Serialization;
 
 namespace Vintage.Rabbit.Inventory.Repository
 {
@@ -50,7 +50,7 @@ namespace Vintage.Rabbit.Inventory.Repository
             return inventoryItems;
         }
 
-        private IList<InventoryItem> GetInventoryByGuid(Guid inventoryGuid)
+        private InventoryItem GetInventoryByGuid(Guid inventoryGuid)
         {
             using (SqlConnection connection = new SqlConnection(this._connectionString))
             {
@@ -58,7 +58,7 @@ namespace Vintage.Rabbit.Inventory.Repository
 
                 if(inventoryResults.Any())
                 {
-                    return inventoryResults.First();
+                    return this.ConvertToInventory(inventoryResults.First());
                 }
             }
 
@@ -107,7 +107,7 @@ namespace Vintage.Rabbit.Inventory.Repository
             else
             {
                 //update
-                string sql = @"Updated VintageRabbit.Inventory Set ProductGuid = @ProductGuid, Status = @Status, DatesUnavailable = @DatesUnavailable, DateLastModified = @DateLastModified Where Guid = @Guid";
+                string sql = @"Update VintageRabbit.Inventory Set ProductGuid = @ProductGuid, Status = @Status, DatesUnavailable = @DatesUnavailable, DateLastModified = @DateLastModified Where Guid = @Guid";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {

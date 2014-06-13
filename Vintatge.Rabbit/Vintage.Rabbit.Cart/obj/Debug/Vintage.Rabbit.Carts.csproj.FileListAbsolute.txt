@@ -27,3 +27,7 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bi
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\obj\Debug\Vintage.Rabbit.Carts.csprojResolveAssemblyReference.cache
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\obj\Debug\Vintage.Rabbit.Carts.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\obj\Debug\Vintage.Rabbit.Carts.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Inventory.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Inventory.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Common.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Common.pdb

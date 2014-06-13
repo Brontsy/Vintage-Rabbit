@@ -8,7 +8,7 @@ using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Interfaces.Cache;
 using Vintage.Rabbit.Products.Repository;
 using Vintage.Rabbit.Caching;
-using Vintage.Rabbit.Products.Enums;
+using Vintage.Rabbit.Common.Enums;
 
 namespace Vintage.Rabbit.Products.QueryHandlers
 {

@@ -187,6 +187,8 @@
     <Compile Include="ModelBinders\MemberModelBinder.cs" />
     <Compile Include="Models\Breadcrumbs\BreadcrumbsViewModel.cs" />
     <Compile Include="Models\Hire\AvailabilityCheckViewModel.cs" />
+    <Compile Include="Models\Orders\OrderItemViewModel.cs" />
+    <Compile Include="Models\Orders\OrderViewModel.cs" />
     <Compile Include="Models\Products\ProductListViewModel.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
     <Compile Include="Models\Hire\HireDatesViewModel.cs" />
@@ -433,6 +435,7 @@
     <Content Include="Views\Payment\PaymentInfo.cshtml" />
     <Content Include="Views\Payment\Complete.cshtml" />
     <Content Include="Views\Hire\AvailabilityCheck.cshtml" />
+    <Content Include="Views\Payment\OrderAvailability.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Interfaces.Messaging;
+using Vintage.Rabbit.Interfaces.Orders;
 using Vintage.Rabbit.Orders.CommandHandlers;
 using Vintage.Rabbit.Orders.Entities;
 using Vintage.Rabbit.Orders.Messaging.Messages;
@@ -34,7 +35,7 @@ namespace Vintage.Rabbit.Orders.Messaging.Handlers
 
             this._commandDispatcher.Dispatch(new SaveOrderCommand(order));
 
-            this._messageService.AddMessage(new OrderPaidMessage(order));
+            this._messageService.AddMessage<IOrderPaidMessage>(new OrderPaidMessage(order));
         }
     }
 }
