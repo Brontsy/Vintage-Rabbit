@@ -14,12 +14,15 @@ namespace Vintage.Rabbit.Membership.CommandHandlers
 {
     public class RegisterCommand
     {
+        public Guid MemberGuid { get; private set; }
+
         public string Email { get; private set; }
 
         public string Password { get; private set; }
 
-        public RegisterCommand(string email, string password)
+        public RegisterCommand(Guid memberGuid, string email, string password)
         {
+            this.MemberGuid = memberGuid;
             this.Email = email;
             this.Password = password;
         }
@@ -38,7 +41,7 @@ namespace Vintage.Rabbit.Membership.CommandHandlers
 
         public void Handle(RegisterCommand command)
         {
-            Member member = new Member(command.Email, SimpleHash.ComputeHash(command.Password, "MD5"));
+            Member member = new Member(command.MemberGuid, command.Email, SimpleHash.ComputeHash(command.Password, "MD5"));
             member.Roles.Add(Enums.Role.Member);
 
             this._commandDispatcher.Dispatch(new SaveMemberCommand(member));

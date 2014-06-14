@@ -22,5 +22,11 @@ namespace Vintage.Rabbit.Web.Models.Membership
         public string ConfirmPassword { get; set; }
 
         public string ReturnUrl { get; set; }
+
+        public RegisterViewModel(string returnUrl = null)
+        {
+            this.ReturnUrl = returnUrl;
+        }
+        public RegisterViewModel() { }
     }
 }

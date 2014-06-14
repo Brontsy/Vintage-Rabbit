@@ -4,7 +4,7 @@
 <h3>Already a member?</h3>
 
 
-@using(Html.BeginRouteForm(Routes.Membership.Register, new {}, FormMethod.Post, new {}))
+@using(Html.BeginRouteForm(Routes.Membership.Register, new { returnUrl = Url.RouteUrl(Routes.Checkout.Index) }, FormMethod.Post, new {}))
 { 
     <ol>
         <li>

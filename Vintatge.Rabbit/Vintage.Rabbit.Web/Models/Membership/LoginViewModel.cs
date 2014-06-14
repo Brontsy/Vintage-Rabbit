@@ -20,5 +20,12 @@ namespace Vintage.Rabbit.Web.Models.Membership
         public bool RememberMe { get; set; }
 
         public string ReturnUrl { get; set; }
+
+        public LoginViewModel(string returnUrl = null)
+        {
+            this.ReturnUrl = returnUrl;
+        }
+
+        public LoginViewModel() { }
     }
 }

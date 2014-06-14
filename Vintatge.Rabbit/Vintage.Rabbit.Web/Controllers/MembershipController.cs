@@ -45,27 +45,27 @@ namespace Vintage.Rabbit.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult Login(string returnUrl)
         {
             if(this.ControllerContext.IsChildAction)
             {
-                return this.PartialView("Login", new LoginViewModel());
+                return this.PartialView("Login", new LoginViewModel(returnUrl));
             }
 
-            LoginRegisterViewModel viewModel = new LoginRegisterViewModel();
+            LoginRegisterViewModel viewModel = new LoginRegisterViewModel(returnUrl);
 
             return View("Index", viewModel);
         }
 
         [HttpGet]
-        public ActionResult Register()
+        public ActionResult Register(string returnUrl)
         {
             if (this.ControllerContext.IsChildAction)
             {
-                return this.PartialView("Register", new RegisterViewModel());
+                return this.PartialView("Register", new RegisterViewModel(returnUrl));
             }
 
-            LoginRegisterViewModel viewModel = new LoginRegisterViewModel();
+            LoginRegisterViewModel viewModel = new LoginRegisterViewModel(returnUrl);
 
             return View("Index", viewModel);
         }
@@ -95,19 +95,20 @@ namespace Vintage.Rabbit.Web.Controllers
                 }
             }
 
-            return this.Login();
+            return this.Login(login.ReturnUrl);
         }
 
         [HttpPost]
-        public ActionResult Register(RegisterViewModel register)
+        public ActionResult Register(RegisterViewModel register, Member existingMemberRecord)
         {
             if(this.ModelState.IsValid)
             {
-                RegisterCommand command = new RegisterCommand(register.RegisterEmail, register.Password);
+                RegisterCommand command = new RegisterCommand(existingMemberRecord.Guid, register.RegisterEmail, register.Password);
                 this._commandDispatcher.Dispatch(command);
 
                 Member member = this._queryDispatcher.Dispatch<Member, GetMemberByEmailQuery>(new GetMemberByEmailQuery(register.RegisterEmail));
 
+                // TODO: Update carts memberId
                 this._loginProvider.Login(this.Request.GetOwinContext().Authentication, register.RegisterEmail, register.Password, false);
 
                 if (string.IsNullOrEmpty(register.ReturnUrl))
@@ -121,7 +122,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
             }
 
-            return this.Register();
+            return this.Register(register.ReturnUrl);
         }
         public ActionResult Logout()
         {

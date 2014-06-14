@@ -40,7 +40,8 @@ namespace Vintage.Rabbit.Membership.Entities
         {
         }
 
-        public Member(string email, string password) : this()
+        public Member(Guid memberGuid, string email, string password)
+            : this(memberGuid)
         {
             this.Email = email;
             this.Password = password;

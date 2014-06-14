@@ -11,10 +11,10 @@ namespace Vintage.Rabbit.Web.Models.Membership
 
         public RegisterViewModel Register { get; private set; }
 
-        public LoginRegisterViewModel()
+        public LoginRegisterViewModel(string returnUrl = null)
         {
-            this.Login = new LoginViewModel();
-            this.Register = new RegisterViewModel();
+            this.Login = new LoginViewModel(returnUrl);
+            this.Register = new RegisterViewModel(returnUrl);
         }
     }
 }
