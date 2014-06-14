@@ -12,6 +12,7 @@ using Vintage.Rabbit.Orders.Entities;
 using Vintage.Rabbit.Membership.Entities;
 using Vintage.Rabbit.Orders.QueryHandlers;
 using Vintage.Rabbit.Carts.Entities;
+using Vintage.Rabbit.Common.Enums;
 
 namespace Vintage.Rabbit.Orders.CommandHandlers
 {
@@ -45,6 +46,11 @@ namespace Vintage.Rabbit.Orders.CommandHandlers
             foreach(var cartItem in command.Cart.Items)
             {
                 order.AddProduct(cartItem);
+            }
+
+            if (command.Cart.Items.Any(o => o.Product.Type == ProductType.Buy))
+            {
+                order.AddDelivery(new Delivery("Delivery", 9.95M));
             }
 
             this._commandDispatcher.Dispatch<SaveOrderCommand>(new SaveOrderCommand(order));

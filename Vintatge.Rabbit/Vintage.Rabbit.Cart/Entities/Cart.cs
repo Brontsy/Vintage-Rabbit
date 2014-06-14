@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vintage.Rabbit.Interfaces.Data;
+using Vintage.Rabbit.Inventory.Entities;
 using Vintage.Rabbit.Products.Entities;
 
 namespace Vintage.Rabbit.Carts.Entities
@@ -32,30 +33,61 @@ namespace Vintage.Rabbit.Carts.Entities
             this.MemberId = memberId;
         }
 
-        internal void AddProduct(int quantity, Product product)
+        internal void AddProduct(int quantity, Product product, IList<InventoryItem> inventory)
         {
+            int availableInventory = inventory.Count(o => o.IsAvailable());
+
             if (this.Items.Any(o => o.Product.Id == product.Id))
             {
                 CartItem cartItem = this.Items.FirstOrDefault(o => o.Product.Id == product.Id);
-                cartItem.ChangeQuantity(cartItem.Quantity + quantity);
+
+                quantity += cartItem.Quantity;
+
+                if(quantity > availableInventory)
+                {
+                    quantity = availableInventory;
+                }
+
+                cartItem.ChangeQuantity(quantity);
             }
             else
             {
+                if (quantity > availableInventory)
+                {
+                    quantity = availableInventory;
+                }
+
                 this.Items.Add(new CartItem(quantity, product));
             }
         }
 
-        internal void AddProduct(int quantity, Product product, DateTime startDate, DateTime endDate)
+        internal void AddProduct(int quantity, Product product, DateTime startDate, DateTime endDate, IList<InventoryItem> inventory)
         {
+            int availableInventory = inventory.Count(o => o.IsAvailable(startDate, endDate));
+
             if (this.Items.Any(o => o.Product.Id == product.Id))
             {
                 CartItem cartItem = this.Items.FirstOrDefault(o => o.Product.Id == product.Id);
-                cartItem.ChangeQuantity(cartItem.Quantity + quantity);
+
+                quantity += cartItem.Quantity;
+
+                if (quantity > availableInventory)
+                {
+                    quantity = availableInventory;
+                }
+
+                cartItem.ChangeQuantity(quantity);
+
                 cartItem.Properties["StartDate"] = startDate;
                 cartItem.Properties["EndDate"] = endDate;
             }
             else
             {
+                if (quantity > availableInventory)
+                {
+                    quantity = availableInventory;
+                }
+
                 this.Items.Add(new HireCartItem(quantity, product, startDate, endDate));
             }
         }

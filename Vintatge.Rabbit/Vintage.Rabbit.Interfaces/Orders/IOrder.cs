@@ -24,6 +24,8 @@ namespace Vintage.Rabbit.Interfaces.Orders
 
         int Quantity { get; }
 
+        decimal Total { get; }
+
         Dictionary<string, object> Properties { get; }
     }
 }

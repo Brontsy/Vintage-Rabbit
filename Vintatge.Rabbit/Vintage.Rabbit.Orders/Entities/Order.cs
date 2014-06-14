@@ -56,6 +56,11 @@ namespace Vintage.Rabbit.Orders.Entities
             this.Items.Add(new OrderItem(cartItem));
         }
 
+        internal void AddDelivery(Delivery delivery)
+        {
+            this.Items.Add(new OrderItem(delivery));
+        }
+
         internal void RemoveProduct(Guid OrderItemId)
         {
             IOrderItem OrderItem = this.Items.FirstOrDefault(o => o.Id == OrderItemId);

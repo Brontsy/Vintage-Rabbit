@@ -47,6 +47,7 @@
     <Compile Include="CommandHandlers\AddBillingAddressCommandHandler.cs" />
     <Compile Include="CommandHandlers\AddShippingAddressCommandHandler.cs" />
     <Compile Include="CommandHandlers\SaveOrderCommandHandler.cs" />
+    <Compile Include="Entities\Delivery.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderItem.cs" />
     <Compile Include="Enums\OrderStatus.cs" />

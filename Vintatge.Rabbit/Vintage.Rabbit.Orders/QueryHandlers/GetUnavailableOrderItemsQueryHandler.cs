@@ -47,7 +47,7 @@ namespace Vintage.Rabbit.Orders.QueryHandlers
                         unavailableOrderItems.Add(orderItem);
                     }
                 }
-                else
+                else if(orderItem.Product.Type == ProductType.Hire)
                 {
                     DateTime startDate = DateTime.Parse(orderItem.Properties["StartDate"].ToString());
                     DateTime endDate = DateTime.Parse(orderItem.Properties["EndDate"].ToString());

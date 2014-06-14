@@ -10,6 +10,8 @@ namespace Vintage.Rabbit.Interfaces.Products
 {
     public interface IProduct : IMessage
     {
+        int Id { get; }
+
         Guid Guid { get; }
 
         ProductType Type { get; }

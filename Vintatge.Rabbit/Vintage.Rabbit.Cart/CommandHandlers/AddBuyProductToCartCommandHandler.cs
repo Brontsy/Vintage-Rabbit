@@ -49,14 +49,7 @@ namespace Vintage.Rabbit.Carts.CommandHandlers
             Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(command.OwnerId));
             IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductQuery>(new GetInventoryForProductQuery(command.Product.Guid));
 
-            int availableInventory = inventory.Count(o => o.IsAvailable());
-            int quantity = command.Quantity;
-            if (availableInventory < command.Quantity)
-            {
-                quantity = availableInventory;
-            }
-
-            cart.AddProduct(quantity, command.Product);
+            cart.AddProduct(command.Quantity, command.Product, inventory);
 
             this._commandDispatcher.Dispatch(new SaveCartCommand(cart));
         }

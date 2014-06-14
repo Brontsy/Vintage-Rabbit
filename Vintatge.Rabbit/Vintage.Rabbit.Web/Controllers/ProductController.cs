@@ -19,5 +19,9 @@ namespace Vintage.Rabbit.Web.Controllers
             this._queryDispatcher = queryDispatcher;
         }
 
+        public ActionResult ProductLink(Guid productGuid)
+        {
+            return null;
+        }
 	}
 }

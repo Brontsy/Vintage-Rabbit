@@ -9,6 +9,7 @@ namespace Vintage.Rabbit.Common.Enums
     public enum ProductType
     {
         Buy,
-        Hire
+        Hire,
+        Delivery
     }
 }

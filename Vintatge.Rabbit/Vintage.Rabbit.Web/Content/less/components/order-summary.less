@@ -1,0 +1,55 @@
+﻿
+
+
+.order-summary {
+    background: #ffffff;
+    z-index: 90;
+    font-size: 14px;
+
+    ul {
+        li.item-header {
+            font-weight: bold;
+            border-top: none;
+            padding-bottom: 5px;
+        }
+
+        li.total {
+            font-weight: bold;
+            padding-bottom: 5px;
+            text-align: right;
+        }
+
+        li.checkout {
+            border-top: none;
+        }
+
+        li {
+            border-top: 1px solid #dddddd;
+            padding: 15px 15px 10px 15px;
+            font-size: 13px;
+            line-height: 18px;
+
+            .price {
+                text-align: right;
+            }
+
+            i {
+                color: @red;
+                cursor: pointer;
+
+                &:hover {
+                    color: darken(@red, 10%);
+                }
+            }
+
+            input {
+                height: 24px;
+                width: 24px;
+                text-align: center;
+                font-size: 14px;
+                line-height: 24px;
+                margin-top: -5px;
+            }
+        }
+    }
+}

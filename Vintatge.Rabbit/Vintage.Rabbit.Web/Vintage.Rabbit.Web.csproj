@@ -176,6 +176,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\LegalController.cs" />
     <Compile Include="Controllers\MembershipController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -384,6 +385,9 @@
     <Content Include="Content\less\pages\checkout-payment.less" />
     <Content Include="Content\fonts\smudgie-crayon\Smudgie-Crayon.ttf" />
     <Content Include="Content\fonts\a-little-sunshine\a-little-sunshine.ttf" />
+    <Content Include="Content\less\pages\terms-and-conditions.less" />
+    <Content Include="Content\less\pages\privacy-policy.less" />
+    <Content Include="Content\less\components\order-summary.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -438,6 +442,8 @@
     <Content Include="Views\Hire\AvailabilityCheck.cshtml" />
     <Content Include="Views\Payment\OrderAvailability.cshtml" />
     <Content Include="Views\Legal\TermsAndConditions.cshtml" />
+    <Content Include="Views\Legal\PrivacyPolicy.cshtml" />
+    <Content Include="Views\Order\Summary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

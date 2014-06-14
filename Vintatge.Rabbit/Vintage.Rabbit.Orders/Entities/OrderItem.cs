@@ -18,6 +18,11 @@ namespace Vintage.Rabbit.Orders.Entities
 
         public int Quantity { get; private set; }
 
+        public decimal Total
+        {
+            get { return this.Product.Cost * this.Quantity; }
+        }
+
         public Dictionary<string, object> Properties { get; private set; }
 
         public OrderItem()
@@ -26,11 +31,19 @@ namespace Vintage.Rabbit.Orders.Entities
             this.Properties = new Dictionary<string, object>();
         }
 
-        public OrderItem(CartItem cartItem) : this()
+        public OrderItem(CartItem cartItem)
+            : this()
         {
             this.Product = cartItem.Product;
             this.Properties = cartItem.Properties;
             this.Quantity = cartItem.Quantity;
+        }
+
+        public OrderItem(Delivery delivery)
+            : this()
+        {
+            this.Product = delivery;
+            this.Quantity = 1;
         }
     }
 }
