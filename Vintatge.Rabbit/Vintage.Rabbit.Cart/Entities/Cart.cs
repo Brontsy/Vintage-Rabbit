@@ -45,18 +45,18 @@ namespace Vintage.Rabbit.Carts.Entities
             }
         }
 
-        internal void AddProduct(Product product, DateTime startDate, DateTime endDate)
+        internal void AddProduct(int quantity, Product product, DateTime startDate, DateTime endDate)
         {
             if (this.Items.Any(o => o.Product.Id == product.Id))
             {
                 CartItem cartItem = this.Items.FirstOrDefault(o => o.Product.Id == product.Id);
-                cartItem.ChangeQuantity(cartItem.Quantity + 1);
+                cartItem.ChangeQuantity(cartItem.Quantity + quantity);
                 cartItem.Properties["StartDate"] = startDate;
                 cartItem.Properties["EndDate"] = endDate;
             }
             else
             {
-                this.Items.Add(new HireCartItem(1, product, startDate, endDate));
+                this.Items.Add(new HireCartItem(quantity, product, startDate, endDate));
             }
         }
 

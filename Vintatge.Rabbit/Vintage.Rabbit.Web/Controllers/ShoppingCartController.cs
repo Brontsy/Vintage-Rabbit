@@ -51,11 +51,11 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.Json(cart, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult AddHireProduct(int productId, Member member, DateTime startDate, DateTime endDate)
+        public ActionResult AddHireProduct(int productId, Member member, DateTime startDate, DateTime endDate, int qty = 1)
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
-            this._commandDispatcher.Dispatch(new AddHireProductToCartCommand(member.Guid, product, startDate, endDate));
+            this._commandDispatcher.Dispatch(new AddHireProductToCartCommand(member.Guid, qty, product, startDate, endDate));
 
             Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
 

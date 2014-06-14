@@ -41,7 +41,7 @@ namespace Vintage.Rabbit.Inventory.Messaging.Handlers
                     if(orderItem.Product.Type == Common.Enums.ProductType.Buy)
                     {
                         var inventoryItem = inventory.First(o => o.IsAvailable());
-                        inventoryItem.Sold();
+                        inventoryItem.Sold(orderItem);
 
                         this._commandDispatcher.Dispatch(new SaveInventoryCommand(inventoryItem));
                         inventorySold.Add(inventoryItem);

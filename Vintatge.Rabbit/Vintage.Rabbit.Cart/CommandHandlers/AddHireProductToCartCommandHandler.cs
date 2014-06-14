@@ -10,6 +10,8 @@ using Vintage.Rabbit.Carts.QueryHandlers;
 using Vintage.Rabbit.Interfaces.Cache;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Interfaces.Messaging;
+using Vintage.Rabbit.Inventory.Entities;
+using Vintage.Rabbit.Inventory.QueryHandlers;
 using Vintage.Rabbit.Products.Entities;
 
 namespace Vintage.Rabbit.Carts.CommandHandlers
@@ -20,14 +22,17 @@ namespace Vintage.Rabbit.Carts.CommandHandlers
 
         public Product Product { get; private set; }
 
+        public int Quantity { get; private set; }
+
         public DateTime StartDate { get; private set; }
 
         public DateTime EndDate { get; private set; }
 
-        public AddHireProductToCartCommand(Guid ownerId, Product product, DateTime startDate, DateTime endDate)
+        public AddHireProductToCartCommand(Guid ownerId, int quantity, Product product, DateTime startDate, DateTime endDate)
         {
             this.OwnerId = ownerId;
             this.Product = product;
+            this.Quantity = quantity;
             this.StartDate = startDate;
             this.EndDate = endDate;
         }
@@ -48,7 +53,16 @@ namespace Vintage.Rabbit.Carts.CommandHandlers
         {
             Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(command.OwnerId));
 
-            cart.AddProduct(command.Product, command.StartDate, command.EndDate);
+            IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductQuery>(new GetInventoryForProductQuery(command.Product.Guid));
+
+            int availableInventory = inventory.Count(o => o.IsAvailable(command.StartDate, command.EndDate));
+            int quantity = command.Quantity;
+            if (availableInventory < command.Quantity)
+            {
+                quantity = availableInventory;
+            }
+
+            cart.AddProduct(quantity, command.Product, command.StartDate, command.EndDate);
 
             this._commandDispatcher.Dispatch(new SaveCartCommand(cart));
         }

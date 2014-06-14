@@ -14,6 +14,8 @@ namespace Vintage.Rabbit.Web
         public static string ContactUs = "ContactUs";
         public static string FAQ = "FAQ";
         public static string Blog = "Blog";
+        public static string TermsAndConditions = "TermsAndConditions";
+        public static string PrivacyPolicy = "PrivacyPolicy";
 
         public static string StyleProduct = "StyleProduct";
 
@@ -74,6 +76,8 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.ContactUs, url: "contact-us", defaults: new { controller = "ContactUs", action = "Index" });
             routes.MapRoute(Routes.FAQ, url: "faq", defaults: new { controller = "FAQ", action = "Index" });
             routes.MapRoute(Routes.Blog, url: "blog", defaults: new { controller = "Blog", action = "Index" });
+            routes.MapRoute(Routes.TermsAndConditions, url: "terms-and-conditions", defaults: new { controller = "Legal", action = "TermsAndConditions" });
+            routes.MapRoute(Routes.PrivacyPolicy, url: "privacy-policy", defaults: new { controller = "Legal", action = "PrivacyPolicy" });
 
 
 

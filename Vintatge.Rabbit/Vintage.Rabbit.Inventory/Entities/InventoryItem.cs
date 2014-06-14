@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vintage.Rabbit.Interfaces.Inventory;
+using Vintage.Rabbit.Interfaces.Orders;
 using Vintage.Rabbit.Inventory.Enums;
 
 namespace Vintage.Rabbit.Inventory.Entities
@@ -22,6 +23,10 @@ namespace Vintage.Rabbit.Inventory.Entities
 
         public IList<DateTime> DatesUnavailable { get; set; }
 
+        public DateTime DateSold { get; set; }
+
+        public Guid? OrderItemGuid { get; set; }
+
         public InventoryItem()
         {
             this.Guid = Guid.NewGuid();
@@ -29,9 +34,11 @@ namespace Vintage.Rabbit.Inventory.Entities
             this.DatesUnavailable = new List<DateTime>();
         }
 
-        internal void Sold()
+        internal void Sold(IOrderItem orderItem)
         {
             this.Status = InventoryStatus.Sold;
+            this.DateSold = DateTime.Now;
+            this.OrderItemGuid = orderItem.Id;
         }
 
         internal void Hired(DateTime startDate, DateTime endDate)
