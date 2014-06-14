@@ -20,7 +20,7 @@ namespace Vintage.Rabbit.Interfaces.Orders
     {
         Guid Id { get; }
 
-        IProduct Product { get; }
+        IPurchaseable Product { get; }
 
         int Quantity { get; }
 

@@ -8,7 +8,7 @@ using Vintage.Rabbit.Interfaces.Products;
 
 namespace Vintage.Rabbit.Products.Entities
 {
-    public class Product : IProduct
+    public class Product : IProduct, IPurchaseable
     {
         public int Id { get; set; }
 

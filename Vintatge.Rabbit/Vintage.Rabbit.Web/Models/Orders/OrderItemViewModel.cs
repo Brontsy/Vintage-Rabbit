@@ -30,7 +30,7 @@ namespace Vintage.Rabbit.Web.Models.Orders
 
         public bool IsHire { get; private set; }
 
-        public IList<CategoryViewModel> Categories { get; private set; }
+        public ProductType Type { get; private set; }
 
         public OrderItemViewModel(IOrderItem orderItem)
         {
@@ -41,9 +41,9 @@ namespace Vintage.Rabbit.Web.Models.Orders
             this.Quantity = orderItem.Quantity;
             this.Key = orderItem.Product.Title.ToUrl();
             this.ProductGuid = orderItem.Product.Guid;
-            this.ProductId = orderItem.Product.Id;
             this.IsHire = orderItem.Product.Type == ProductType.Hire;
-            //this.Categories = orderItem.Product.Categories.Select(o => new CategoryViewModel(o)).ToList();
+            this.Type = orderItem.Product.Type;
+
         }
     }
 }

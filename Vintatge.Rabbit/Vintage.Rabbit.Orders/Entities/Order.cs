@@ -34,7 +34,7 @@ namespace Vintage.Rabbit.Orders.Entities
 
         public decimal Total
         {
-            get { return this.Items.Sum(o => o.Product.Cost); }
+            get { return this.Items.Sum(o => o.Total); }
         }
 
         public Order()

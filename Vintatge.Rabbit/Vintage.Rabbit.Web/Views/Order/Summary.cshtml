@@ -26,7 +26,14 @@
                 <li>
                     <div class="row">
                         <div class="col-6">
-                            @Html.RouteLink(cartItem.Title, Routes.Buy.Product, new { name = cartItem.Key, productId = cartItem.ProductId }, new { })
+                            @if(cartItem.Type == Vintage.Rabbit.Common.Enums.ProductType.Buy)
+                            { 
+                                Html.RenderAction("ProductLink", "Product", new { productGuid = cartItem.ProductGuid });
+                            }
+                            else
+                            {
+                                <text>@cartItem.Title</text>
+                            }
                         </div>
                         <div class="col-2 text-right">@cartItem.Cost</div>
                         <div class="col-2 text-right">@cartItem.Quantity</div>
@@ -49,8 +56,15 @@
             {
                 <li>
                     <div class="row">
-                        <div class="col-6">
-                            @Html.RouteLink(cartItem.Title, Routes.Hire.Product, new { name = cartItem.Key, productId = cartItem.ProductId }, new { })
+                        <div class="col-6">                                                        
+                            @if (cartItem.Type == Vintage.Rabbit.Common.Enums.ProductType.Hire)
+                            {
+                                Html.RenderAction("ProductLink", "Product", new { productGuid = cartItem.ProductGuid });
+                            }
+                            else
+                            {
+                                <text>@cartItem.Title</text>
+                            }
                         </div>
                         <div class="col-2 text-right">@cartItem.Cost</div>
                         <div class="col-2 text-right">@cartItem.Quantity</div>

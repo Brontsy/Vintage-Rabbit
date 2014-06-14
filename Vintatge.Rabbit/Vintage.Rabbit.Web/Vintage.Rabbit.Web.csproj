@@ -444,12 +444,12 @@
     <Content Include="Views\Legal\TermsAndConditions.cshtml" />
     <Content Include="Views\Legal\PrivacyPolicy.cshtml" />
     <Content Include="Views\Order\Summary.cshtml" />
+    <Content Include="Views\Product\Link.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\Buy\" />
     <Folder Include="Models\Product\" />
-    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

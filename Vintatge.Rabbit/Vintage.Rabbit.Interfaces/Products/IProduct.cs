@@ -8,6 +8,17 @@ using Vintage.Rabbit.Interfaces.Messaging;
 
 namespace Vintage.Rabbit.Interfaces.Products
 {
+    public interface IPurchaseable
+    {
+        Guid Guid { get; }
+
+        ProductType Type { get; }
+
+        string Title { get; }
+
+        decimal Cost { get; }
+    }
+
     public interface IProduct : IMessage
     {
         int Id { get; }

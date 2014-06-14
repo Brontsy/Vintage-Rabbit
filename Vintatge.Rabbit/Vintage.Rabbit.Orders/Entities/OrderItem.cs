@@ -14,7 +14,7 @@ namespace Vintage.Rabbit.Orders.Entities
     {
         public Guid Id { get; private set; }
 
-        public IProduct Product { get; private set; }
+        public IPurchaseable Product { get; private set; }
 
         public int Quantity { get; private set; }
 

@@ -21,7 +21,9 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult ProductLink(Guid productGuid)
         {
-            return null;
+            Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(productGuid));
+
+            return this.PartialView("Link", new ProductViewModel(product, null));
         }
 	}
 }

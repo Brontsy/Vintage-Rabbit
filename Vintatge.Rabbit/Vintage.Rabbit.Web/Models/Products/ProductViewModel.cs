@@ -6,7 +6,10 @@ using System.Web;
 using System.Web.Mvc;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Web.Models.Breadcrumbs;
+using Vintage.Rabbit.Web.Models.Categories;
 using Vintage.Rabbit.Web.Models.Products;
+using Vintage.Rabbit.Common.Extensions;
+using Vintage.Rabbit.Common.Enums;
 
 namespace Vintage.Rabbit.Web.Models.Products
 {
@@ -28,14 +31,18 @@ namespace Vintage.Rabbit.Web.Models.Products
 
         public int Qty { get; private set; }
 
+        public ProductType Type { get; private set; }
+
         public IList<SelectListItem> InventoryCount { get; private set; }
 
         public string UrlTitle
         {
-            get { return this.Title.Replace(" ", "-").ToLower(); }
+            get { return this.Title.ToUrl(); }
         }
 
         public BreadcrumbsViewModel Breadcrumbs { get; private set; }
+
+        public IList<CategoryViewModel> Categories { get; private set; }
 
         public ProductViewModel(Product product, BreadcrumbsViewModel breadcrumbs) 
         {
@@ -47,6 +54,8 @@ namespace Vintage.Rabbit.Web.Models.Products
             this.Description = product.Description;
             this.Breadcrumbs = breadcrumbs;
             this.IsAvailable = product.Inventory > 0;
+            this.Categories = product.Categories.Select(o => new CategoryViewModel(o)).ToList();
+            this.Type = product.Type;
 
             this.Qty = 1;
             this.InventoryCount = new List<SelectListItem>();
