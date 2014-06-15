@@ -9,7 +9,9 @@ namespace Vintage.Rabbit.Interfaces.Orders
 {
     public interface IOrder
     {
-        Guid Id { get; }
+        Guid Guid { get; }
+
+        Guid MemberGuid { get; }
 
         IList<IOrderItem> Items { get; }
 
@@ -18,13 +20,15 @@ namespace Vintage.Rabbit.Interfaces.Orders
 
     public interface IOrderItem
     {
-        Guid Id { get; }
+        Guid Guid { get; }
 
         IPurchaseable Product { get; }
 
         int Quantity { get; }
 
         decimal Total { get; }
+
+        DateTime DateCreated { get; }
 
         Dictionary<string, object> Properties { get; }
     }

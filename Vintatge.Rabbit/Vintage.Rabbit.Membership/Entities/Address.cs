@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vintage.Rabbit.Membership.Enums;
 
 namespace Vintage.Rabbit.Membership.Entities
 {
@@ -28,15 +29,20 @@ namespace Vintage.Rabbit.Membership.Entities
 
         public string LastName { get; internal set; }
 
-        public bool IsShippingAddress { get; set; }
+        public string Email { get; internal set; }
+
+        public string PhoneNumber { get; internal set; }
+
+        public AddressType Type { get; set; }
 
         public Address()
         {
             this.Guid = Guid.NewGuid();
         }
-        public Address(Guid memberId, Guid addressGuid, string address, string suburbCity, string state, int postcode, string firstName, string lastName, string companyName = null)
+        public Address(Guid memberId, AddressType type, Guid addressGuid, string address, string suburbCity, string state, int postcode, string firstName, string lastName, string email, string phoneNumber = null, string companyName = null)
         {
             this.MemberGuid = memberId;
+            this.Type = type;
             this.Guid = addressGuid;
             this.Line1 = address;
             this.SuburbCity = suburbCity;
@@ -44,6 +50,8 @@ namespace Vintage.Rabbit.Membership.Entities
             this.Postcode = postcode;
             this.FirstName = firstName;
             this.LastName = lastName;
+            this.Email = email;
+            this.PhoneNumber = phoneNumber;
             this.CompanyName = companyName;
         }
     }

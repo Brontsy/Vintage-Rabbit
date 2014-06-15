@@ -72,11 +72,6 @@
                             @Html.TextBoxFor(o => o.State, new { placeholder = "State*" })
                             @Html.ValidationMessageFor(o => o.State)
                         </li>
-                        <li class="col-12">
-                            <input checked="checked" id="BillingAddressIsTheSame" name="BillingAddressIsTheSame" type="checkbox" value="true">
-                            <input name="BillingAddressIsTheSame" type="hidden" value="false">
-                            <label for="BillingAddressIsTheSame">Is your billing address the same as your shipping address?</label>
-                        </li>
                         <li class="col-5 offset-7">
                             <button type="submit" class="btn primary">Save & continue</button>
                         </li>
@@ -86,8 +81,5 @@
 
         </div>
 
-        <div class="col-6">
-            @{Html.RenderAction("Checkout", "ShoppingCart");}
-        </div>
     </div>
 </div>

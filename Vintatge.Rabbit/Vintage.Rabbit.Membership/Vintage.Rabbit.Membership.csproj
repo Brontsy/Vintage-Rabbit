@@ -46,15 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\RegisterGuestCommandHandler.cs" />
     <Compile Include="CommandHandlers\SaveAddressCommandHandler.cs" />
     <Compile Include="CommandHandlers\SaveMemberCommandHandler.cs" />
     <Compile Include="CommandHandlers\RegisterCommandHandler.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Member.cs" />
+    <Compile Include="Enums\AddressType.cs" />
     <Compile Include="Enums\Role.cs" />
     <Compile Include="Ioc\Bindings.cs" />
     <Compile Include="Messaging\Messages\SaveMemberMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryHandlers\GetAddressByGuidQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetMemberByIdQueryHandler.cs" />
     <Compile Include="QueryHandlers\ValidateLoginQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetMemberByEmailQueryHandler.cs" />

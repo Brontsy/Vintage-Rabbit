@@ -27,7 +27,10 @@ namespace Vintage.Rabbit.Orders.Ioc
             builder.RegisterType<SaveOrderCommandHandler>().As<ICommandHandler<SaveOrderCommand>>();
             builder.RegisterType<AddBillingAddressCommandHandler>().As<ICommandHandler<AddBillingAddressCommand>>();
             builder.RegisterType<AddShippingAddressCommandHandler>().As<ICommandHandler<AddShippingAddressCommand>>();
+            builder.RegisterType<AddDeliveryAddressCommandHandler>().As<ICommandHandler<AddDeliveryAddressCommand>>();
             builder.RegisterType<AddCartItemsToOrderCommandHandler>().As<ICommandHandler<AddCartItemsToOrderCommand>>();
+            builder.RegisterType<ChangeOrdersMemberGuidCommandHandler>().As<ICommandHandler<ChangeOrdersMemberGuidCommand>>();
+            builder.RegisterType<RemoveDeliveryAddressCommandHandler>().As<ICommandHandler<RemoveDeliveryAddressCommand>>();
 
             builder.RegisterType<OrderRepository>().As<IMessageHandler<SaveOrderMessage>>();
             builder.RegisterType<OrderRepository>().As<IOrderRepository>();

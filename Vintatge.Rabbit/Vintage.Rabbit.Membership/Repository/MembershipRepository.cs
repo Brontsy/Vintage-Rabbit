@@ -106,7 +106,7 @@ namespace Vintage.Rabbit.Membership.Repository
             else
             {
                 //update
-                string sql = @"Updated VintageRabbit.Members Set Email = @Email, Password = @Password, FirstName = @FirstName, LastName = @LastName, DateLastModified = @DateLastModified Where Guid = @Guid";
+                string sql = @"Update VintageRabbit.Members Set Email = @Email, Password = @Password, FirstName = @FirstName, LastName = @LastName, DateLastModified = @DateLastModified Where Guid = @Guid";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {

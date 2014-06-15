@@ -8,6 +8,7 @@ using Vintage.Rabbit.Carts.Entities;
 using Vintage.Rabbit.Carts.QueryHandlers;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Membership.Entities;
+using Vintage.Rabbit.Orders.Entities;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Products.QueryHandlers;
 using Vintage.Rabbit.Web.Models.ShoppingCart;
@@ -40,7 +41,7 @@ namespace Vintage.Rabbit.Web.Controllers
         }
 
 
-        public ActionResult Add(int productId, Member member, int qty = 1)
+        public ActionResult Add(int productId, Member member, Order order, int qty = 1)
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
@@ -48,16 +49,20 @@ namespace Vintage.Rabbit.Web.Controllers
 
             Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
 
+            this.ClearOrders(order);
+
             return this.Json(cart, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult AddHireProduct(int productId, Member member, DateTime startDate, DateTime endDate, int qty = 1)
+        public ActionResult AddHireProduct(int productId, Member member, Order order, DateTime startDate, DateTime endDate, int qty = 1)
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
             this._commandDispatcher.Dispatch(new AddHireProductToCartCommand(member.Guid, qty, product, startDate, endDate));
 
             Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
+
+            this.ClearOrders(order);
 
             return this.Json(cart, JsonRequestBehavior.AllowGet);
         }
@@ -69,6 +74,16 @@ namespace Vintage.Rabbit.Web.Controllers
             Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
 
             return this.Json(cart, JsonRequestBehavior.AllowGet);
+        }
+
+        private void ClearOrders(Order order)
+        {
+            if(this.Response.Cookies["OrderGuid"] != null)
+            {
+                HttpCookie myCookie = new HttpCookie("OrderGuid");
+                myCookie.Expires = DateTime.Now.AddDays(-1);
+                this.Response.Cookies.Add(myCookie);
+            }
         }
 	}
 }

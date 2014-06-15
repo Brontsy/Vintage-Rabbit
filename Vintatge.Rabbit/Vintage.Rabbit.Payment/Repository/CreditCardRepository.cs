@@ -40,7 +40,7 @@ namespace Vintage.Rabbit.Payment.Repository
         {
             foreach(KeyValuePair<Guid, CreditCardPayment> keyValue in _creditCardPayments)
             {
-                if(keyValue.Value.Order.Id == order.Id)
+                if(keyValue.Value.Order.Guid == order.Guid)
                 {
                     return keyValue.Value;
                 }

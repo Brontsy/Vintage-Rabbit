@@ -31,10 +31,29 @@ $(document).ready(function () {
 
 
     $('#paypal').on('change', function () {
-        
+
         if ($(this).is(':checked')) {
             $('.credit-card-form').addClass('hidden');
             $('.paypal-form').removeClass('hidden');
+        }
+    });
+
+
+
+    $('#deliver').on('change', function () {
+
+        if ($(this).is(':checked')) {
+            $('.deliver-address-form').removeClass('hidden');
+            $('.pickup-button').addClass('hidden');
+        }
+    });
+
+
+    $('#pickup').on('change', function () {
+
+        if ($(this).is(':checked')) {
+            $('.deliver-address-form').addClass('hidden');
+            $('.pickup-button').removeClass('hidden');
         }
     });
 

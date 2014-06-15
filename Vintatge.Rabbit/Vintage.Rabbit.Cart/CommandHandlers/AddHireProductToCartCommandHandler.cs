@@ -42,11 +42,13 @@ namespace Vintage.Rabbit.Carts.CommandHandlers
     {
         private IQueryDispatcher _queryDispatcher;
         private ICommandDispatcher _commandDispatcher;
+        private IMessageService _messageService;
 
-        public AddHireProductToCartCommandHandler(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
+        public AddHireProductToCartCommandHandler(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher, IMessageService messageService)
         {
             this._queryDispatcher = queryDispatcher;
             this._commandDispatcher = commandDispatcher;
+            this._messageService = messageService;
         }
 
         public void Handle(AddHireProductToCartCommand command)
@@ -58,6 +60,8 @@ namespace Vintage.Rabbit.Carts.CommandHandlers
             cart.AddProduct(command.Quantity, command.Product, command.StartDate, command.EndDate, inventory);
 
             this._commandDispatcher.Dispatch(new SaveCartCommand(cart));
+
+            this._messageService.AddMessage(new ProductAddedToCart(cart, command.Product));
         }
     }
 }

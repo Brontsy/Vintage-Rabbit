@@ -51,8 +51,8 @@ namespace Vintage.Rabbit.Membership.Repository
             if (this.GetAddress(address.Guid) == null)
             {
                 // insert
-                string sql = @"Insert Into VintageRabbit.Addresses (Guid, MemberGuid, FirstName, LastName, CompanyName, Line1, SuburbCity, Postcode, State, IsShippingAddress, DateCreated, DateLastModified) Values 
-                            (@Guid, @MemberGuid, @FirstName, @LastName, @CompanyName, @Line1, @SuburbCity, @Postcode, @State, @IsShippingAddress, @DateCreated, @DateLastModified)";
+                string sql = @"Insert Into VintageRabbit.Addresses (Guid, MemberGuid, FirstName, LastName, Email, CompanyName, Line1, SuburbCity, Postcode, State, Type, DateCreated, DateLastModified) Values 
+                            (@Guid, @MemberGuid, @FirstName, @LastName, @Email, @CompanyName, @Line1, @SuburbCity, @Postcode, @State, @Type, @DateCreated, @DateLastModified)";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
@@ -62,12 +62,13 @@ namespace Vintage.Rabbit.Membership.Repository
                         MemberGuid = address.MemberGuid,
                         FirstName = address.FirstName,
                         LastName = address.LastName,
+                        Email = address.Email,
                         CompanyName = address.CompanyName,
                         Line1 = address.Line1,
                         SuburbCity = address.SuburbCity,
                         Postcode = address.Postcode,
                         State = address.State.ToString(),
-                        IsShippingAddress = address.IsShippingAddress,
+                        Type = address.Type.ToString(),
                         DateCreated = DateTime.Now,
                         DateLastModified = DateTime.Now
 
@@ -78,8 +79,8 @@ namespace Vintage.Rabbit.Membership.Repository
             {
                 //update
                 string sql = @"Updated VintageRabbit.Addresses Set 
-                                MemberGuid = @MemberGuid, FirstName = @FirstName, LastName = @LastName,  CompanyName = @CompanyName, Line1 = @Line1, SuburbCity = @SuburbCity, 
-                                Postcode = @Postcode, State = @State, IsShippingAddress = @IsShippingAddress, DateLastModified = @DateLastModified Where Guid = @Guid";
+                                MemberGuid = @MemberGuid, FirstName = @FirstName, LastName = @LastName, Email = @Email,  CompanyName = @CompanyName, Line1 = @Line1, SuburbCity = @SuburbCity, 
+                                Postcode = @Postcode, State = @State, Type = @Type, DateLastModified = @DateLastModified Where Guid = @Guid";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
@@ -89,12 +90,13 @@ namespace Vintage.Rabbit.Membership.Repository
                         MemberGuid = address.MemberGuid,
                         FirstName = address.FirstName,
                         LastName = address.LastName,
+                        Email = address.Email,
                         CompanyName = address.CompanyName,
                         Line1 = address.Line1,
                         SuburbCity = address.SuburbCity,
                         Postcode = address.Postcode,
                         State = address.State.ToString(),
-                        IsShippingAddress = address.IsShippingAddress,
+                        Type = address.Type.ToString(),
                         DateLastModified = DateTime.Now
                     });
                 }

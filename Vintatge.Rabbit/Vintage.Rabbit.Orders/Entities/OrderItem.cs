@@ -12,22 +12,27 @@ namespace Vintage.Rabbit.Orders.Entities
 {
     public class OrderItem : IOrderItem
     {
-        public Guid Id { get; private set; }
+        public int Id { get; internal set; }
 
-        public IPurchaseable Product { get; private set; }
+        public Guid Guid { get; internal set; }
 
-        public int Quantity { get; private set; }
+        public IPurchaseable Product { get; internal set; }
+
+        public int Quantity { get; internal set; }
+
+        public DateTime DateCreated { get; internal set; }
 
         public decimal Total
         {
             get { return this.Product.Cost * this.Quantity; }
         }
 
-        public Dictionary<string, object> Properties { get; private set; }
+        public Dictionary<string, object> Properties { get; internal set; }
 
         public OrderItem()
         {
-            this.Id = Guid.NewGuid();
+            this.Guid = Guid.NewGuid();
+            this.DateCreated = DateTime.Now;
             this.Properties = new Dictionary<string, object>();
         }
 

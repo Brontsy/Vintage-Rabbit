@@ -14,23 +14,27 @@ namespace Vintage.Rabbit.Orders.Entities
 {
     public class Order : IOrder
     {
-        public Guid Id { get; private set; }
+        public int Id { get; internal set; }
 
-        public Guid MemberId { get; private set; }
+        public Guid Guid { get; internal set; }
 
-        public Address ShippingAddress { get; private set; }
+        public Guid MemberGuid { get; internal set; }
 
-        public Address BillingAddress { get; private set; }
+        public Guid? ShippingAddressId { get; internal set; }
 
-        public IList<IOrderItem> Items { get; private set; }
+        public Guid? BillingAddressId { get; internal set; }
 
-        public OrderStatus Status { get; private set; }
+        public Guid? DeliveryAddressId { get; internal set; }
 
-        public DateTime DatePaid { get; private set; }
+        public IList<IOrderItem> Items { get; internal set; }
 
-        public DateTime DateCreated { get; private set; }
+        public OrderStatus Status { get; internal set; }
 
-        public OrderWorkflowStatus? WorkflowStatus { get; private set; }
+        public DateTime? DatePaid { get; internal set; }
+
+        public DateTime DateCreated { get; internal set; }
+
+        public OrderWorkflowStatus? WorkflowStatus { get; internal set; }
 
         public decimal Total
         {
@@ -39,7 +43,7 @@ namespace Vintage.Rabbit.Orders.Entities
 
         public Order()
         {
-            this.Id = Guid.NewGuid();
+            this.Guid = Guid.NewGuid();
             this.Items = new List<IOrderItem>();
             this.Status = OrderStatus.Initialised;
             this.WorkflowStatus = OrderWorkflowStatus.AwaitingPayment;
@@ -48,7 +52,7 @@ namespace Vintage.Rabbit.Orders.Entities
 
         public Order(Guid memberId) : this()
         {
-            this.MemberId = memberId;
+            this.MemberGuid = memberId;
         }
 
         internal void AddProduct(CartItem cartItem)
@@ -63,7 +67,7 @@ namespace Vintage.Rabbit.Orders.Entities
 
         internal void RemoveProduct(Guid OrderItemId)
         {
-            IOrderItem OrderItem = this.Items.FirstOrDefault(o => o.Id == OrderItemId);
+            IOrderItem OrderItem = this.Items.FirstOrDefault(o => o.Guid == OrderItemId);
 
             if (OrderItem != null)
             {
@@ -78,12 +82,22 @@ namespace Vintage.Rabbit.Orders.Entities
 
         internal void AddShippingAddress(Address address)
         {
-            this.ShippingAddress = address;
+            this.ShippingAddressId = address.Guid;
         }
 
         internal void AddBillingAddress(Address address)
         {
-            this.BillingAddress = address;
+            this.BillingAddressId = address.Guid;
+        }
+
+        internal void AddDeliveryAddress(Address address)
+        {
+            this.DeliveryAddressId = address.Guid;
+        }
+
+        internal void RemoveDeliveryAddress()
+        {
+            this.DeliveryAddressId = null;
         }
 
         internal void Paid()

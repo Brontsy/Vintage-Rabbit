@@ -35,7 +35,7 @@ namespace Vintage.Rabbit.Orders.CommandHandlers
 
         public void Handle(SaveOrderCommand command)
         {
-            string cacheKey = CacheKeyHelper.Order.ById(command.Order.Id);
+            string cacheKey = CacheKeyHelper.Order.ById(command.Order.Guid);
 
             this._cacheService.Add(cacheKey, command.Order);
 

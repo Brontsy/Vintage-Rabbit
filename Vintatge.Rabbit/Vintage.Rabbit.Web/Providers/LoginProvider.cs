@@ -23,11 +23,13 @@ namespace Vintage.Rabbit.Web.Providers
 
         public bool Successful { get; private set; }
 
+        public Member Member { get; private set; }
+
         private LoginResult() { }
         
-        public static LoginResult Success()
+        public static LoginResult Success(Member member)
         {
-            return new LoginResult() { Successful = true };
+            return new LoginResult() { Successful = true, Member = member };
         }
         public static LoginResult InvalidUsernamePassword()
         {
@@ -64,7 +66,7 @@ namespace Vintage.Rabbit.Web.Providers
                     IsPersistent = rememberMe
                 }, identity);
 
-                return LoginResult.Success();
+                return LoginResult.Success(member);
             }
 
             return LoginResult.InvalidUsernamePassword();

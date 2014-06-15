@@ -185,12 +185,16 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ModelBinders\HireDatesModelBinder.cs" />
+    <Compile Include="ModelBinders\CartModelBinder.cs" />
     <Compile Include="ModelBinders\OrderModelBinder.cs" />
     <Compile Include="ModelBinders\MemberModelBinder.cs" />
     <Compile Include="Models\Breadcrumbs\BreadcrumbsViewModel.cs" />
     <Compile Include="Models\Hire\AvailabilityCheckViewModel.cs" />
     <Compile Include="Models\Orders\OrderItemViewModel.cs" />
     <Compile Include="Models\Orders\OrderViewModel.cs" />
+    <Compile Include="Models\Payment\BillingAddressViewModel.cs" />
+    <Compile Include="Models\Payment\DeliveryAddressViewModel.cs" />
+    <Compile Include="Models\Payment\GuestViewModel.cs" />
     <Compile Include="Models\Products\ProductListViewModel.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
     <Compile Include="Models\Hire\HireDatesViewModel.cs" />
@@ -445,6 +449,8 @@
     <Content Include="Views\Legal\PrivacyPolicy.cshtml" />
     <Content Include="Views\Order\Summary.cshtml" />
     <Content Include="Views\Product\Link.cshtml" />
+    <Content Include="Views\Payment\Delivery.cshtml" />
+    <Content Include="Views\Payment\Guest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

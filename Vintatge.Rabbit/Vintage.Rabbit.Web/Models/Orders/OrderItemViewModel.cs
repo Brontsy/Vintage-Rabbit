@@ -34,7 +34,7 @@ namespace Vintage.Rabbit.Web.Models.Orders
 
         public OrderItemViewModel(IOrderItem orderItem)
         {
-            this.Id = orderItem.Id.ToString();
+            this.Id = orderItem.Guid.ToString();
             this.Title = orderItem.Product.Title;
             this.Cost = orderItem.Product.Cost.ToString("C2");
             this.Total = orderItem.Total.ToString("C2");

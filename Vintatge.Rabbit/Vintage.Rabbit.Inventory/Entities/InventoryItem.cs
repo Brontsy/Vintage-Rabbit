@@ -38,7 +38,7 @@ namespace Vintage.Rabbit.Inventory.Entities
         {
             this.Status = InventoryStatus.Sold;
             this.DateSold = DateTime.Now;
-            this.OrderItemGuid = orderItem.Id;
+            this.OrderItemGuid = orderItem.Guid;
         }
 
         internal void Hired(DateTime startDate, DateTime endDate)

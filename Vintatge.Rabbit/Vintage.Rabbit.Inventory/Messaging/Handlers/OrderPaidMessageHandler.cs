@@ -46,7 +46,7 @@ namespace Vintage.Rabbit.Inventory.Messaging.Handlers
                         this._commandDispatcher.Dispatch(new SaveInventoryCommand(inventoryItem));
                         inventorySold.Add(inventoryItem);
                     }
-                    else
+                    else if (orderItem.Product.Type == Common.Enums.ProductType.Hire)
                     {
                         DateTime startDate = DateTime.Parse(orderItem.Properties["StartDate"].ToString());
                         DateTime endDate = DateTime.Parse(orderItem.Properties["EndDate"].ToString());

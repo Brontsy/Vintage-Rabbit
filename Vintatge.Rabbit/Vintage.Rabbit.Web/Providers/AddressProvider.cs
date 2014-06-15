@@ -8,7 +8,9 @@ using System.Web;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Membership.CommandHandlers;
 using Vintage.Rabbit.Membership.Entities;
+using Vintage.Rabbit.Membership.Enums;
 using Vintage.Rabbit.Membership.QueryHandlers;
+using Vintage.Rabbit.Orders.Entities;
 using Vintage.Rabbit.Web.Models.Payment;
 
 namespace Vintage.Rabbit.Web.Providers
@@ -17,7 +19,9 @@ namespace Vintage.Rabbit.Web.Providers
     {
         Address SaveShippingAddress(Member member, AddressViewModel viewModel);
 
-        Address SaveBillingAddress(Member member, AddressViewModel viewModel);
+        Address SaveBillingAddress(Member member, BillingAddressViewModel viewModel);
+
+        Address SaveDeliveryAddress(Member member, DeliveryAddressViewModel viewModel);
     }
 
 
@@ -36,19 +40,29 @@ namespace Vintage.Rabbit.Web.Providers
         {
             Guid addressId = Guid.NewGuid();
 
-            Address address = new Address(member.Guid, addressId, viewModel.Address, viewModel.SuburbCity, viewModel.State, viewModel.Postcode.Value, viewModel.FirstName, viewModel.LastName, viewModel.CompanyName);
-            address.IsShippingAddress = true;
+            Address address = new Address(member.Guid, AddressType.Shipping, addressId, viewModel.Address, viewModel.SuburbCity, viewModel.State, viewModel.Postcode.Value, viewModel.FirstName, viewModel.LastName, null, null, viewModel.CompanyName);
 
             this._commandDispatcher.Dispatch<SaveAddressCommand>(new SaveAddressCommand(address));
 
             return address;
         }
 
-        public Address SaveBillingAddress(Member member, AddressViewModel viewModel)
+        public Address SaveBillingAddress(Member member, BillingAddressViewModel viewModel)
         {
             Guid addressId = Guid.NewGuid();
 
-            Address address = new Address(member.Guid, addressId, viewModel.Address, viewModel.SuburbCity, viewModel.State, viewModel.Postcode.Value, viewModel.FirstName, viewModel.LastName, viewModel.CompanyName);
+            Address address = new Address(member.Guid, AddressType.Billing, addressId, viewModel.Address, viewModel.SuburbCity, viewModel.State, viewModel.Postcode.Value, viewModel.FirstName, viewModel.LastName, viewModel.Email, null, viewModel.CompanyName);
+
+            this._commandDispatcher.Dispatch<SaveAddressCommand>(new SaveAddressCommand(address));
+
+            return address;
+        }
+
+        public Address SaveDeliveryAddress(Member member, DeliveryAddressViewModel viewModel)
+        {
+            Guid addressId = Guid.NewGuid();
+
+            Address address = new Address(member.Guid, AddressType.Delivery, addressId, viewModel.Address, viewModel.SuburbCity, viewModel.State, viewModel.Postcode.Value, viewModel.FirstName, viewModel.LastName, null, viewModel.PhoneNumber, viewModel.CompanyName);
 
             this._commandDispatcher.Dispatch<SaveAddressCommand>(new SaveAddressCommand(address));
 

@@ -1,0 +1,14 @@
+﻿@model Vintage.Rabbit.Web.Models.Payment.GuestViewModel
+
+@using (Html.BeginRouteForm(Routes.Checkout.Guest, new { }, FormMethod.Post, new { @class = "guest-form" }))
+{
+    <fieldset>
+        <ol>
+            <li class="submit">
+                <button type="submit" class="btn primary">Continue</button>
+            </li>
+        </ol>
+    </fieldset>
+}
+
+    

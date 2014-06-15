@@ -1,4 +1,4 @@
-﻿@model Vintage.Rabbit.Web.Models.Payment.BillingInformationViewModel
+﻿@model Vintage.Rabbit.Web.Models.Payment.BillingAddressViewModel
 @{
     ViewBag.Title = "Checkout - Billing";
 }
@@ -15,6 +15,10 @@
             {
                 <fieldset>
                     <ol class="row">
+                        <li class="col-12">
+                            @Html.TextBoxFor(o => o.Email, new { placeholder = "Email" })
+                            @Html.ValidationMessageFor(o => o.Email)
+                        </li>
                         <li class="col-6">
                             @Html.TextBoxFor(o => o.FirstName, new { placeholder = "First name" })
                             @Html.ValidationMessageFor(o => o.FirstName)
@@ -43,7 +47,12 @@
                             @Html.TextBoxFor(o => o.State, new { placeholder = "State" })
                             @Html.ValidationMessageFor(o => o.State)
                         </li>
-                        <li class="col-4 offset-8">
+                        <li class="col-12">
+                            <input checked="checked" id="ShippingAddressIsTheSame" name="ShippingAddressIsTheSame" type="checkbox" value="true">
+                            <input name="ShippingAddressIsTheSame" type="hidden" value="false">
+                            <label for="ShippingAddressIsTheSame">Is your shipping address the same as your billing address?</label>
+                        </li>
+                        <li class="col-5 offset-7">
                             <div class=" text-right">
                                 <button type="submit" class="btn primary">Save & continue</button>
                             </div>
@@ -54,8 +63,5 @@
 
         </div>
 
-        <div class="col-6">
-            @{Html.RenderAction("Checkout", "ShoppingCart");}
-        </div>
     </div>
 </div>

@@ -8,10 +8,14 @@ using System.Security;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
+using Vintage.Rabbit.Carts.CommandHandlers;
+using Vintage.Rabbit.Carts.Entities;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Membership.CommandHandlers;
 using Vintage.Rabbit.Membership.Entities;
 using Vintage.Rabbit.Membership.QueryHandlers;
+using Vintage.Rabbit.Orders.CommandHandlers;
+using Vintage.Rabbit.Orders.Entities;
 using Vintage.Rabbit.Web.Models.Membership;
 using Vintage.Rabbit.Web.Providers;
 
@@ -72,7 +76,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
 
         [HttpPost]
-        public ActionResult Login(LoginViewModel login)
+        public ActionResult Login(LoginViewModel login, Cart cart, Order order)
         {
             if (this.ModelState.IsValid)
             {
@@ -80,6 +84,18 @@ namespace Vintage.Rabbit.Web.Controllers
 
                 if(result.Successful)
                 {
+                    if(cart != null && cart.MemberId != result.Member.Guid)
+                    {
+                        // convert cart
+                        this._commandDispatcher.Dispatch(new ChangeCartsMemberGuidCommand(cart, result.Member.Guid));
+                    }
+
+                    if (order != null && cart.MemberId != result.Member.Guid)
+                    {
+                        // convert order
+                        this._commandDispatcher.Dispatch(new ChangeOrdersMemberGuidCommand(order, result.Member.Guid));
+                    }
+
                     if (string.IsNullOrEmpty(login.ReturnUrl))
                     {
                         return this.RedirectToRoute(Routes.Home);

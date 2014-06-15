@@ -1,0 +1,106 @@
+﻿@model Vintage.Rabbit.Web.Models.Payment.DeliveryAddressViewModel
+@{
+    ViewBag.Title = "Checkout - Devliery";
+}
+
+
+<div class="checkout shipping-information">
+
+    <ol class="float-container checkout-breadcrumb">
+
+        <li class="checkout">
+            <div class="triangle-left"></div>
+            <div class="triangle"></div>
+            <h3>Checkout</h3>
+        </li>
+        <li class="login-register completed">
+            <div class="triangle-left"></div>
+            <div class="triangle"></div>
+            <h3>Login / Register</h3>
+        </li>
+        <li class="address active">
+            <div class="triangle-left"></div>
+            <div class="triangle"></div>
+            <h3>Address</h3>
+        </li>
+        <li class="payment">
+            <div class="triangle-left"></div>
+            <div class="triangle"></div>
+            <h3>Payment</h3>
+        </li>
+        <li class="confirmation">
+            <div class="triangle-left"></div>
+            <div class="triangle"></div>
+            <h3>Confirmation</h3>
+        </li>
+
+    </ol>
+
+    <div class="row">
+
+        <div class="col-6">
+            <h2>Hire Delivery Information</h2>
+            <p>
+                We offer to deliver and pickup your hired items for only $25 or if you would like to pick them up yourself we are located in Bentleigh East.
+            </p>
+
+            <div class="row">
+            <div class="col-6">
+                <div class="radiobuttons">
+                    <input type="radio" value="deliver" name="deliver-hire-products" id="deliver" /> <label for="deliver">Delivered ($25)</label>
+                </div>
+            </div>
+                <div class="col-6">
+                    <div class="radiobuttons">
+                        <input type="radio" value="pickup" name="deliver-hire-products" id="pickup" />
+                        <label for="pickup">Pickup from Bentleigh East</label>
+                    </div>
+                </div>
+            </div>
+
+            @using (Html.BeginRouteForm(Routes.Checkout.Devliery, new { }, FormMethod.Post, new { @class = "deliver-address-form hidden" }))
+            {
+                <fieldset>
+                    <ol class="row">
+                        <li class="col-6">
+                            @Html.TextBoxFor(o => o.FirstName, new { placeholder = "First name*" })
+                            @Html.ValidationMessageFor(o => o.FirstName)
+                        </li>
+                        <li class="col-6">
+                            @Html.TextBoxFor(o => o.LastName, new { placeholder = "Last name*" })
+                            @Html.ValidationMessageFor(o => o.LastName)
+                        </li>
+                        <li class="col-12">
+                            @Html.TextBoxFor(o => o.PhoneNumber, new { placeholder = "Phone number*" })
+                            @Html.ValidationMessageFor(o => o.PhoneNumber)
+                        </li>
+                        <li class="col-12">
+                            @Html.TextBoxFor(o => o.Address, new { placeholder = "Address*" })
+                            @Html.ValidationMessageFor(o => o.Address)
+                        </li>
+                        <li class="col-12">
+                            @Html.TextBoxFor(o => o.SuburbCity, new { placeholder = "Suburb / city*" })
+                            @Html.ValidationMessageFor(o => o.SuburbCity)
+                        </li>
+                        <li class="col-12">
+                            @Html.TextBoxFor(o => o.Postcode, new { placeholder = "Postcode*" })
+                            @Html.ValidationMessageFor(o => o.Postcode)
+                        </li>
+                        <li class="col-12">
+                            @Html.TextBoxFor(o => o.State, new { placeholder = "State*" })
+                            @Html.ValidationMessageFor(o => o.State)
+                        </li>
+
+                        <li class="col-5 offset-7">
+                            <button type="submit" class="btn primary">Save & continue</button>
+                        </li>
+                    </ol>
+                </fieldset>
+            }
+
+            @Html.RouteLink("Continue", Routes.Checkout.PickupHiredProducts, new { }, new { @class = "btn primary right pickup-button hidden component" })
+
+        </div>
+
+    </div>
+</div>

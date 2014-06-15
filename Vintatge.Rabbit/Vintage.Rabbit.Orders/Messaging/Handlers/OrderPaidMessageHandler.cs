@@ -30,7 +30,7 @@ namespace Vintage.Rabbit.Orders.Messaging.Handlers
 
         public void Handle(PaymentCompleteMessage message)
         {
-            Order order = this._queryDispatcher.Dispatch<Order, GetOrderQuery>(new GetOrderQuery(message.Order.Id));
+            Order order = this._queryDispatcher.Dispatch<Order, GetOrderQuery>(new GetOrderQuery(message.Order.Guid));
             order.Paid();
 
             this._commandDispatcher.Dispatch(new SaveOrderCommand(order));

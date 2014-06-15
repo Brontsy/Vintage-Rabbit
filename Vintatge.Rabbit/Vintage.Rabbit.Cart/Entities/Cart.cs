@@ -107,5 +107,10 @@ namespace Vintage.Rabbit.Carts.Entities
         {
             this.Items = new List<CartItem>();
         }
+
+        internal void ChangeMemberGuid(Guid memberGuid)
+        {
+            this.MemberId = memberGuid;
+        }
     }
 }

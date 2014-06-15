@@ -10,11 +10,13 @@
     <div class="row">
         <div class="col-5 col-12-m">
             <div class="image-container">
-                @if(Model.Images.Any())
-                { 
-                <img src="@Model.Images.First().Url" />
+                @if (Model.Images.Any())
+                {
+                <div class="large-image">
+                    <img  src="@Model.Images.First().Url" />
+                </div>
                 <ul class="thumbnails">
-                    @foreach(var image in Model.Images)
+                    @foreach (var image in Model.Images)
                     { 
                     <li>
                         <img data-full-source="@image.Url" src="@image.Thumbnail" />

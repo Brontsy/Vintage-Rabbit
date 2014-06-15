@@ -9,6 +9,7 @@ namespace Vintage.Rabbit.Membership.Enums
     public enum Role
     {
         Admin,
-        Member
+        Member,
+        Guest
     }
 }
