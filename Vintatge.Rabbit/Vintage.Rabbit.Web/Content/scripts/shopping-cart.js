@@ -53,48 +53,57 @@ function AddClickEvents()
             $(this).removeClass('valid');
         }
     });
+
+
+    $('a.add-to-cart').on('click', function (event) {
+
+        event.preventDefault();
+        $.ajax({
+            url: $(this).attr('href'),
+            type: 'POST',
+            complete: function (json) {
+                $(window).trigger('AddToCart', json)
+            }
+        })
+    });
+
+    $('button.add-to-cart').on('click', function (event) {
+
+        event.preventDefault();
+        var $this = $(this);
+
+        var form = $(this).parents('form');
+        $(this).data('button-text', $(this).html());
+        $(this).html('Adding');
+
+        $.ajax({
+            url: form.attr('action'),
+            data: form.serialize(),
+            type: 'POST',
+            complete: function (json) {
+                $this.html($this.data('button-text'));
+
+                $(window).trigger('AddToCart', json)
+            }
+        })
+    });
 }
 
 
 
-$('a.add-to-cart').on('click', function (event) {
-
-    event.preventDefault();
-    $.ajax({
-        url: $(this).attr('href'),
-        type: 'POST',
-        complete: function (json) {
-            $(window).trigger('AddToCart', json)
-        }
-    })
-});
-
-$('button.add-to-cart').on('click', function (event) {
-
-    event.preventDefault();
-    var $this = $(this);
-
-    var form = $(this).parents('form');
-    $(this).data('button-text', $(this).html());
-    $(this).html('Adding');
-
-    $.ajax({
-        url: form.attr('action'),
-        data: form.serialize(),
-        type: 'POST',
-        complete: function (json) {
-            $this.html($this.data('button-text'));
-            
-            $(window).trigger('AddToCart', json)
-        }
-    })
-});
 
 $(document).ready(function () {
 
 AddClickEvents();
 
 });
+
+
+$(window).on('lightbox.ajax-content-loaded', function () {
+
+    AddClickEvents();
+});
+
 
 $(window).on('AddToCart RemovedFromCart', function (json) {
 

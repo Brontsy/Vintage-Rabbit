@@ -12,8 +12,8 @@
 .hire-product-detail {
     margin-top: 20px;
     .page-content();
-    background: #fff; 
-    position:relative;
+    background: #fff;
+    position: relative;
 
     .image-container {
         img {
@@ -46,14 +46,20 @@
     }
 
     .description {
-        margin-top: 20px; white-space: pre-wrap;
+        p {
+            margin: 10px 0px 20px 0px;
+            white-space: pre-wrap;
+        }
     }
 
     .check-availability {
         .add-to-cart {
             display: none;
         }
-        .added-to-cart { display: none; }
+
+        .added-to-cart {
+            display: none;
+        }
 
         .unavailable-text {
             display: none;
@@ -83,27 +89,31 @@
             }
         }
 
-        &.in-cart
-            {
-        .add-to-cart {
-            display: none;
-        }
-        .available-text {
-            display: none;
-        }
-            
-        .added-to-cart { display: block; }
+        &.in-cart {
+            .add-to-cart {
+                display: none;
+            }
+
+            .available-text {
+                display: none;
+            }
+
+            .added-to-cart {
+                display: block;
+            }
         }
     }
 
-    
+
     .available-text {
         margin-top: 10px;
     }
+
     .unavailable-text {
         margin-top: 10px;
     }
-    .added-to-cart{
+
+    .added-to-cart {
         margin-top: 10px;
     }
 
@@ -123,7 +133,7 @@
     .price {
         font-size: 36px;
         position: relative;
-        margin-top: 20px;
+        margin-top: 25px;
 
         span {
             position: absolute;

@@ -16,6 +16,8 @@ $(document).ready(function () {
             {
 
                 AddClickEvents();
+                
+                $(window).trigger('lightbox.ajax-content-loaded');
             }
         });
 

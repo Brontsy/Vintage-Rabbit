@@ -3,14 +3,7 @@
 
 
 
-
-$(document).ready(function () {
-
-    $('.product-list-item').on('mouseover', function (event) {
-
-
-    });
-
+function AddThumbnailClickEvents() {
     $('.thumbnails img').on('click', function (event) {
         var url = $(this).data('full-source');
 
@@ -32,6 +25,23 @@ $(document).ready(function () {
 
         })
     });
+}
+
+$(document).ready(function () {
+
+    $('.product-list-item').on('mouseover', function (event) {
 
 
+    });
+
+
+    AddThumbnailClickEvents();
+
+});
+
+
+
+$(window).on('lightbox.ajax-content-loaded', function () {
+
+    AddThumbnailClickEvents();
 });

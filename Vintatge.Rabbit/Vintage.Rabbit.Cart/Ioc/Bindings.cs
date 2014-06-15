@@ -6,11 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Vintage.Rabbit.Carts.CommandHandlers;
 using Vintage.Rabbit.Carts.Entities;
+using Vintage.Rabbit.Carts.Messaging.Handlers;
 using Vintage.Rabbit.Carts.Messaging.Messages;
 using Vintage.Rabbit.Carts.QueryHandlers;
 using Vintage.Rabbit.Carts.Repository;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Interfaces.Messaging;
+using Vintage.Rabbit.Interfaces.Orders;
 
 namespace Vintage.Rabbit.Carts.Ioc
 {
@@ -32,6 +34,8 @@ namespace Vintage.Rabbit.Carts.Ioc
             builder.RegisterType<CartRepository>().As<IMessageHandler<SaveCartMessage>>();
 
             builder.RegisterType<CartRepository>().As<ICartRepository>();
+
+            builder.RegisterType<OrderPaidMessageHandler>().As<IMessageHandler<IOrderPaidMessage>>();
         }
     }
 }
