@@ -7,17 +7,25 @@
 
     li {
         margin-bottom: 20px;
+
         a {
+            color: #333333;
+            transition: all 0.15s linear 0s;
+
             img {
                 width: 100%;
             }
 
             span {
-                color: #333333;
                 text-align: center;
                 font-size: 26px;
                 display: block;
                 font-family: 'TypicalWriter', Arial;
+            }
+
+            &:hover {
+                text-decoration: none;
+                color: @green;
             }
         }
     }
