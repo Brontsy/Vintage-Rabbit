@@ -11,7 +11,7 @@ namespace Vintage.Rabbit.Common.Extensions
     {
         public static string ToUrl(this string value)
         {
-            return value.Replace(" ", "-").ToLower();
+            return value.Replace(" ", "-").Replace("\"", string.Empty).ToLower();
         }
     }
 }

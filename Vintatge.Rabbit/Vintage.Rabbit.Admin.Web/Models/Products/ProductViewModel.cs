@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using Vintage.Rabbit.Admin.Web.Models.Categories;
 using Vintage.Rabbit.Common.Enums;
+using Vintage.Rabbit.Common.Extensions;
 using Vintage.Rabbit.Products.Entities;
 
 namespace Vintage.Rabbit.Admin.Web.Models.Products
@@ -51,7 +52,7 @@ namespace Vintage.Rabbit.Admin.Web.Models.Products
 
         public string UrlTitle
         {
-            get { return this.Title.Replace(" ", "-").ToLower(); }
+            get { return this.Title.ToUrl(); }
         }
 
         public IList<SelectListItem> Types

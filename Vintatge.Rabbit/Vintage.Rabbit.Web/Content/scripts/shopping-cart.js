@@ -16,23 +16,28 @@ function AddClickEvents()
             }
         })
     });
-
+    
+    $('.cart-content').off('click');
     $('.cart-content').on('click', function (event) {
 
         event.stopPropagation();
     });
 
+    $('header .shopping-cart .container').off('click');
     $('header .shopping-cart .container').on('click', function (event) {
 
         event.stopPropagation();
         $(this).toggleClass('active');
         $('.cart-content').toggleClass('hidden');
     });
-
+    
+    $('.shopping-cart').off('mouseover');
     $('.shopping-cart').on('mouseover', function (event) {
 
         $(this).parents('.row').addClass('shopping-cart-hover');
     });
+
+    $('.shopping-cart').off('mouseleave');
     $('.shopping-cart').on('mouseleave', function (event) {
         $(this).parents('.row').removeClass('shopping-cart-hover');
     });
@@ -121,6 +126,10 @@ $(window).on('AddToCart RemovedFromCart', function (json) {
 
                 $(element).replaceWith($(html));
                 AddClickEvents()
+                if (open)
+                {
+                    $('header .shopping-cart .container').addClass('active');
+                }
             }
         })
     });

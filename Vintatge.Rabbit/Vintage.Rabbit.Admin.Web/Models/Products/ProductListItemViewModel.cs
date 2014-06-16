@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Vintage.Rabbit.Products.Entities;
+using Vintage.Rabbit.Common.Extensions;
 
 namespace Vintage.Rabbit.Admin.Web.Models.Products
 {
@@ -20,7 +21,7 @@ namespace Vintage.Rabbit.Admin.Web.Models.Products
 
         public string UrlTitle
         {
-            get { return this.Title.Replace(" ", "-").ToLower(); }
+            get { return this.Title.ToUrl(); }
         }
 
         public ProductListItemViewModel(Product product)
