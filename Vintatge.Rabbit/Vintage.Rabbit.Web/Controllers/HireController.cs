@@ -38,6 +38,28 @@ namespace Vintage.Rabbit.Web.Controllers
             return View("Index", viewModel);
         }
 
+        public ActionResult Category(string categoryName)
+        {
+            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName));
+            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByCategoryQuery>(new GetProductsByCategoryQuery(category, Common.Enums.ProductType.Hire));
+
+            BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
+            breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
+            breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Index), "Hire");
+            breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Category, new { categoryName = categoryName }), category.DisplayName);
+
+            ProductListViewModel viewModel = new ProductListViewModel(products, breadCrumbs);
+
+            return View("Index", viewModel);
+        }
+
+        public ActionResult Categories(string categoryName)
+        {
+            IList<Category> categories = this._queryDispatcher.Dispatch<IList<Category>, GetCategoriesQuery>(new GetCategoriesQuery()).Where(o => o.ProductTypes.Contains(ProductType.Hire)).ToList();
+
+            return this.PartialView("CategoryList", categories.Select(o => new CategoryViewModel(o)).ToList());
+        }
+
         public ActionResult Preview(int productId, string name)
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));

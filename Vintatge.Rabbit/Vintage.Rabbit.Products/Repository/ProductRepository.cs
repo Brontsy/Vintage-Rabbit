@@ -21,7 +21,7 @@ namespace Vintage.Rabbit.Products.Repository
 
         IList<Product> GetProducts(int page);
 
-        IList<Product> GetProductsByCategory(Category category);
+        IList<Product> GetProductsByCategory(Category category, ProductType productType);
 
         Product GetProductByGuid(Guid productGuid);
 
@@ -163,9 +163,9 @@ namespace Vintage.Rabbit.Products.Repository
             return this.GetProducts().ToList();
         }
 
-        public IList<Product> GetProductsByCategory(Category category)
+        public IList<Product> GetProductsByCategory(Category category, ProductType productType)
         {
-            return this.GetProducts().Where(o => o.Categories.Any(x => x.Name == category.Name)).ToList();
+            return this.GetProducts().Where(o => o.Type == productType && o.Categories.Any(x => x.Name == category.Name)).ToList();
         }
 
         private IList<Product> GetProducts()

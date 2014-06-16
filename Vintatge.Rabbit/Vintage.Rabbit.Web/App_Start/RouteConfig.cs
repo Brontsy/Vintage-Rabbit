@@ -58,6 +58,7 @@ namespace Vintage.Rabbit.Web
         public static class Hire
         {
             public static string Index = "Hire";
+            public static string Category = "Hire - Category";
             public static string Product = "HireProduct";
             public static string Preview = "HirePreview";
             public static string CheckProductAvailability = "CheckProductAvailability";
@@ -87,6 +88,7 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.Hire.Product, url: "hire/{name}/{productId}", defaults: new { controller = "Hire", action = "Product" });
             routes.MapRoute(Routes.Hire.Preview, url: "hire/preview/{name}/{productId}", defaults: new { controller = "Hire", action = "Preview" });
             routes.MapRoute(Routes.Hire.CheckProductAvailability, url: "hire/availability/{name}/{productGuid}", defaults: new { controller = "Hire", action = "CheckProductAvailability" });
+            routes.MapRoute(Routes.Hire.Category, url: "hire/{categoryName}", defaults: new { controller = "Hire", action = "Category" });
 
             routes.MapRoute(Routes.Checkout.Index, url: "checkout", defaults: new { controller = "Payment", action = "Index" });
             routes.MapRoute(Routes.Checkout.LoginRegister, url: "checkout/register", defaults: new { controller = "Payment", action = "LoginRegister" });

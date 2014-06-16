@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vintage.Rabbit.Common.Enums;
 
 namespace Vintage.Rabbit.Products.Entities
 {
@@ -13,5 +14,12 @@ namespace Vintage.Rabbit.Products.Entities
         public string Name { get; set; }
 
         public string DisplayName { get; set; }
+
+        public IList<ProductType> ProductTypes { get; set; }
+
+        public Category()
+        {
+            this.ProductTypes = new List<ProductType>();
+        }
     }
 }
