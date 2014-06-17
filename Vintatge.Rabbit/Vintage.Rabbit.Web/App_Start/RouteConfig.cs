@@ -94,7 +94,7 @@ namespace Vintage.Rabbit.Web
 
             routes.MapRoute(Routes.Hire.Index, url: "hire", defaults: new { controller = "Hire", action = "Index" });
             routes.MapRoute(Routes.Hire.Product, url: "hire/{categoryName}/{name}/{productId}", defaults: new { controller = "Hire", action = "Product" });
-            routes.MapRoute(Routes.Hire.Preview, url: "hire/preview/{name}/{productId}", defaults: new { controller = "Hire", action = "Preview" });
+            routes.MapRoute(Routes.Hire.Preview, url: "hire/preview/{categoryName}/{name}/{productId}", defaults: new { controller = "Hire", action = "Preview" });
             routes.MapRoute(Routes.Hire.CheckProductAvailability, url: "hire/availability/{name}/{productGuid}", defaults: new { controller = "Hire", action = "CheckProductAvailability" });
             routes.MapRoute(Routes.Hire.Category, url: "hire/{categoryName}", defaults: new { controller = "Hire", action = "Category" });
 
