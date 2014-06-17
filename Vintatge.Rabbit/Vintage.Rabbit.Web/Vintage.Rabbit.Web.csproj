@@ -422,6 +422,8 @@
     <Content Include="Content\less\pages\privacy-policy.less" />
     <Content Include="Content\less\components\order-summary.less" />
     <Content Include="Content\less\pages\styles.less" />
+    <Content Include="Content\less\components\category-list.less" />
+    <Content Include="Content\less\pages\theme.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -487,6 +489,7 @@
     <Content Include="Views\Style\BuyProduct.cshtml" />
     <Content Include="Views\Style\HireProduct.cshtml" />
     <Content Include="Views\Product\PreviewLink.cshtml" />
+    <Content Include="Views\Style\Carnival.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
