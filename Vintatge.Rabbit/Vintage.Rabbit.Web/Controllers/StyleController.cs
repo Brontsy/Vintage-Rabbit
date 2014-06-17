@@ -28,6 +28,11 @@ namespace Vintage.Rabbit.Web.Controllers
             return View();
         }
 
+        public ActionResult Carnival()
+        {
+            return View();
+        }
+
         public ActionResult Product(string name, int productId)
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
