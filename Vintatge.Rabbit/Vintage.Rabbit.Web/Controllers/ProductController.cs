@@ -19,11 +19,16 @@ namespace Vintage.Rabbit.Web.Controllers
             this._queryDispatcher = queryDispatcher;
         }
 
-        public ActionResult ProductLink(Guid productGuid)
+        public ActionResult ProductLink(Guid productGuid, Category category)
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(productGuid));
 
-            return this.PartialView("Link", new ProductViewModel(product, null));
+            if(category == null)
+            {
+                category = product.Categories.First();
+            }
+
+            return this.PartialView("Link", new ProductLinkViewModel(product, category));
         }
 	}
 }

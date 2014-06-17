@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="CacheKeyHelper.cs" />
     <Compile Include="Ioc\Bindings.cs" />
+    <Compile Include="RequestCache.cs" />
     <Compile Include="MemoryCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

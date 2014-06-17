@@ -12,7 +12,7 @@ namespace Vintage.Rabbit.Caching.Ioc
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<MemoryCache>().As<ICacheService>().SingleInstance();
+            builder.RegisterType<RequestCache>().As<ICacheService>().InstancePerRequest();
         }
     }
 }

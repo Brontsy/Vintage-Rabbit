@@ -185,6 +185,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="ModelBinders\CategoryModelBinder.cs" />
     <Compile Include="ModelBinders\HireDatesModelBinder.cs" />
     <Compile Include="ModelBinders\CartModelBinder.cs" />
     <Compile Include="ModelBinders\OrderModelBinder.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="Models\Payment\AddressViewModel.cs" />
     <Compile Include="Models\Products\ProductImageViewModel.cs" />
     <Compile Include="Models\Products\ProductListItemViewModel.cs" />
+    <Compile Include="Models\Products\ProductLinkViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartItemViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

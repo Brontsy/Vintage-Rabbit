@@ -34,10 +34,10 @@ namespace Vintage.Rabbit.Web.Controllers
 
             if (product.Type == Common.Enums.ProductType.Buy)
             {
-                return this.PartialView("BuyProduct", new ProductViewModel(product, null));
+                return this.PartialView("BuyProduct", new ProductViewModel(product));
             }
 
-            return this.PartialView("HireProduct", new ProductViewModel(product, null));
+            return this.PartialView("HireProduct", new ProductViewModel(product));
         }
 	}
 }

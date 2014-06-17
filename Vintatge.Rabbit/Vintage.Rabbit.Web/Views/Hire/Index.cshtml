@@ -2,8 +2,8 @@
 
 
 <div class="hire-page">    
-    
-    @{Html.RenderPartial("breadcrumbs", Model.Breadcrumbs);}
+
+    @{Html.RenderAction("ListBreadcrumbs", "Hire");}
 
     <div class="row">
 
@@ -26,7 +26,9 @@
                         <div class="details">
 
                             <div class="container">
-                                <h4>@Html.RouteLink(product.Title, Routes.Hire.Product, new { productId = product.Id, name = product.UrlTitle }, new { })</h4>
+                                <h4>
+                                    @{Html.RenderAction("ProductLink", "Product", new { productGuid = product.Guid });}
+                                </h4>
                                 <div class="price">
                                     @product.Cost
                                 </div>

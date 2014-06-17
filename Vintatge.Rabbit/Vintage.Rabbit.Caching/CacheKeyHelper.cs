@@ -26,6 +26,10 @@ namespace Vintage.Rabbit.Caching
             {
                 return string.Format("Product-ById-{0}", productId);
             }
+            public static string ByGuid(Guid guid)
+            {
+                return string.Format("Product-ByGuid-{0}", guid);
+            }
         }
 
         public static class Order

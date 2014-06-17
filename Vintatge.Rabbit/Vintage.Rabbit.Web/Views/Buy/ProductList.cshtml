@@ -2,7 +2,7 @@
 
 
 <div class="buy-page">
-    @{Html.RenderPartial("breadcrumbs", Model.Breadcrumbs);}
+    @{Html.RenderAction("ListBreadcrumbs", "Buy");}
 
     <ul class="row product-list">
         @foreach (var product in Model.Products)

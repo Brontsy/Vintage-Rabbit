@@ -33,7 +33,7 @@ namespace Vintage.Rabbit.Web.Controllers
             breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
             breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Index), "Hire");
 
-            ProductListViewModel viewModel = new ProductListViewModel(products, breadCrumbs);
+            ProductListViewModel viewModel = new ProductListViewModel(products);
 
             return View("Index", viewModel);
         }
@@ -48,7 +48,7 @@ namespace Vintage.Rabbit.Web.Controllers
             breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Index), "Hire");
             breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Category, new { categoryName = categoryName }), category.DisplayName);
 
-            ProductListViewModel viewModel = new ProductListViewModel(products, breadCrumbs);
+            ProductListViewModel viewModel = new ProductListViewModel(products);
 
             return View("Index", viewModel);
         }
@@ -64,24 +64,14 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
-            BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
-            breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
-            breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Index), "Hire");
-            breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Product, new { productId = product.Id, name = product.Title.ToUrl() }), product.Title, true);
-
-            return this.PartialView("Product", new ProductViewModel(product, breadCrumbs));
+            return this.PartialView("Product", new ProductViewModel(product));
         }
 
         public ActionResult Product(int productId, string name)
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
-            BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
-            breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
-            breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Index), "Hire");
-            breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Product, new { productId = product.Id, name = product.Title.ToUrl() }), product.Title, true);
-
-            return this.View("Product", new ProductViewModel(product, breadCrumbs));
+            return this.View("Product", new ProductViewModel(product));
         }
 
         public ActionResult CheckProductAvailability(Guid productGuid, HireDatesViewModel hireDates)
@@ -107,9 +97,41 @@ namespace Vintage.Rabbit.Web.Controllers
                 available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(product.Guid, 1, hireDates.StartDate.Value, hireDates.EndDate.Value));
             }
 
-            AvailabilityCheckViewModel viewModel = new AvailabilityCheckViewModel(new ProductViewModel(product, null), available, hireDates);
+            AvailabilityCheckViewModel viewModel = new AvailabilityCheckViewModel(new ProductViewModel(product), available, hireDates);
 
             return this.PartialView("AvailabilityCheck", viewModel);
+        }
+
+        public ActionResult ListBreadcrumbs(Category category)
+        {
+            BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
+            breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
+            breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Index), "Hire");
+
+            if (category != null)
+            {
+                breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Category, new { categoryName = category.Name }), category.DisplayName, true);
+            }
+
+            return this.PartialView("Breadcrumbs", breadCrumbs);
+        }
+
+        public ActionResult DetailsBreadcrumbs(int productId, Category category)
+        {
+            Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
+
+            if (category == null)
+            {
+                category = product.Categories.First();
+            }
+
+            BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
+            breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
+            breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Index), "Hire");
+            breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Category, new { categoryName = category.Name }), category.DisplayName);
+            breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Product, new { productId = product.Id, name = product.Title.ToUrl() }), product.Title, true);
+
+            return this.PartialView("Breadcrumbs", breadCrumbs);
         }
 	}
 }

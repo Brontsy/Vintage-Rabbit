@@ -12,6 +12,8 @@ namespace Vintage.Rabbit.Web.Models.Products
     {
         public int Id { get; private set; }
 
+        public Guid Guid { get; private set; }
+
         public ProductImageViewModel Image { get; private set; }
 
         public string Cost { get; private set; }
@@ -28,6 +30,7 @@ namespace Vintage.Rabbit.Web.Models.Products
         public ProductListItemViewModel(Product product)
         {
             this.Id = product.Id;
+            this.Guid = product.Guid;
             if (product.Images.Any())
             {
                 this.Image = new ProductImageViewModel(product.Images.First());

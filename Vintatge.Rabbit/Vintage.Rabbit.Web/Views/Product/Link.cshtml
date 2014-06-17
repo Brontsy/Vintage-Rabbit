@@ -1,11 +1,11 @@
-﻿@model Vintage.Rabbit.Web.Models.Products.ProductViewModel
+﻿@model Vintage.Rabbit.Web.Models.Products.ProductLinkViewModel
 
 @if(Model.Type == Vintage.Rabbit.Common.Enums.ProductType.Buy)
 { 
-    @Html.RouteLink(Model.Title, Routes.Buy.Product, new { categoryName = Model.Categories.First().Name, name = Model.UrlTitle, productId = Model.Id }, new { })
+    @Html.RouteLink(Model.Title, Routes.Buy.Product, new { categoryName = Model.Category.Name, name = Model.UrlTitle, productId = Model.Id }, new { })
 }
 @if(Model.Type == Vintage.Rabbit.Common.Enums.ProductType.Hire)
 {
-    @Html.RouteLink(Model.Title, Routes.Hire.Product, new { name = Model.UrlTitle, productId = Model.Id }, new { })
+    @Html.RouteLink(Model.Title, Routes.Hire.Product, new { categoryName = Model.Category.Name, name = Model.UrlTitle, productId = Model.Id }, new { })
 }
                               

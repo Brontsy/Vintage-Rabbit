@@ -22,27 +22,12 @@ namespace Vintage.Rabbit.Web.Controllers
             this._queryDispatcher = queryDispatcher;
         }
 
-        public ActionResult Index(int? page)
-        {
-            IList<Category> categories = this._queryDispatcher.Dispatch<IList<Category>, GetCategoriesQuery>(new GetCategoriesQuery());
-
-            IList<CategoryViewModel> viewModel = categories.Select(o => new CategoryViewModel(o)).ToList();
-
-            return View("Index", viewModel);
-        }
-
         public ActionResult Preview(int productId, string name, string categoryName)
         {
             Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName));
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
-            BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
-            breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
-            breadCrumbs.Add(Url.RouteUrl(Routes.Buy.Category, new { categoryName = category.Name }), category.DisplayName);
-            breadCrumbs.Add(Url.RouteUrl(Routes.Buy.Product, new { productId = product.Id, name = product.Title.ToUrl() }), product.Title, true);
-
-
-            return this.PartialView("Product", new ProductViewModel(product, breadCrumbs));
+            return this.PartialView("Product", new ProductViewModel(product));
         }
 
         public ActionResult Category(string categoryName)
@@ -50,11 +35,7 @@ namespace Vintage.Rabbit.Web.Controllers
             Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName));
             IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByCategoryQuery>(new GetProductsByCategoryQuery(category, Common.Enums.ProductType.Buy));
 
-            BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
-            breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
-            breadCrumbs.Add(Url.RouteUrl(Routes.Buy.Category, new { categoryName = categoryName }), category.DisplayName);
-
-            ProductListViewModel viewModel = new ProductListViewModel(products, breadCrumbs);
+            ProductListViewModel viewModel = new ProductListViewModel(products);
 
             return View("ProductList", viewModel);
         }
@@ -64,13 +45,39 @@ namespace Vintage.Rabbit.Web.Controllers
             Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName));
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
+            return View("Product", new ProductViewModel(product));
+        }
+
+        public ActionResult ListBreadcrumbs(Category category)
+        {
             BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
             breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
+            breadCrumbs.Add(Url.RouteUrl(Routes.Buy.Index), "Buy");
+
+            if (category != null)
+            {
+                breadCrumbs.Add(Url.RouteUrl(Routes.Buy.Category, new { categoryName = category.Name }), category.DisplayName, true);
+            }
+
+            return this.PartialView("Breadcrumbs", breadCrumbs);
+        }
+
+        public ActionResult DetailsBreadcrumbs(int productId, Category category)
+        {
+            Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
+
+            if(category == null)
+            {
+                category = product.Categories.First();
+            }
+
+            BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
+            breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
+            breadCrumbs.Add(Url.RouteUrl(Routes.Buy.Index), "Buy");
             breadCrumbs.Add(Url.RouteUrl(Routes.Buy.Category, new { categoryName = category.Name }), category.DisplayName);
             breadCrumbs.Add(Url.RouteUrl(Routes.Buy.Product, new { productId = product.Id, name = product.Title.ToUrl() }), product.Title, true);
 
-
-            return View("Product", new ProductViewModel(product, breadCrumbs));
+            return this.PartialView("Breadcrumbs", breadCrumbs);
         }
 	}
 }

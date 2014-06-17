@@ -40,11 +40,9 @@ namespace Vintage.Rabbit.Web.Models.Products
             get { return this.Title.ToUrl(); }
         }
 
-        public BreadcrumbsViewModel Breadcrumbs { get; private set; }
-
         public IList<CategoryViewModel> Categories { get; private set; }
 
-        public ProductViewModel(Product product, BreadcrumbsViewModel breadcrumbs) 
+        public ProductViewModel(Product product)
         {
             this.Id = product.Id;
             this.Guid = product.Guid;
@@ -52,14 +50,13 @@ namespace Vintage.Rabbit.Web.Models.Products
             this.Cost = product.Cost.ToString("C");
             this.Title = product.Title;
             this.Description = product.Description;
-            this.Breadcrumbs = breadcrumbs;
             this.IsAvailable = product.Inventory > 0;
             this.Categories = product.Categories.Select(o => new CategoryViewModel(o)).ToList();
             this.Type = product.Type;
 
             this.Qty = 1;
             this.InventoryCount = new List<SelectListItem>();
-            for(int i = 1; i <= product.Inventory; i++)
+            for (int i = 1; i <= product.Inventory; i++)
             {
                 this.InventoryCount.Add(new SelectListItem() { Text = i.ToString(), Value = i.ToString() });
             }

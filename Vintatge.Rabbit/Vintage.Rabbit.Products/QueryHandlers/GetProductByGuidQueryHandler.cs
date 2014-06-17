@@ -23,16 +23,30 @@ namespace Vintage.Rabbit.Products.QueryHandlers
 
     internal class GetProductByGuidQueryHandler : IQueryHandler<Product, GetProductByGuidQuery>
     {
+        private ICacheService _cacheService;
         private IProductRepository _productRepository;
 
-        public GetProductByGuidQueryHandler(IProductRepository productRepository)
+        public GetProductByGuidQueryHandler(ICacheService cacheService, IProductRepository productRepository)
         {
+            this._cacheService = cacheService;
             this._productRepository = productRepository;
         }
 
         public Product Handle(GetProductByGuidQuery query)
         {
-            return this._productRepository.GetProductByGuid(query.ProductGuid);
+            string cacheKey = CacheKeyHelper.Product.ByGuid(query.ProductGuid);
+
+            if (this._cacheService.Exists(cacheKey))
+            {
+                return this._cacheService.Get<Product>(cacheKey);
+            }
+
+            Product product = this._productRepository.GetProductByGuid(query.ProductGuid);
+
+            this._cacheService.Add(CacheKeyHelper.Product.ById(product.Id), product);
+            this._cacheService.Add(CacheKeyHelper.Product.ByGuid(product.Guid), product);
+
+            return product;
         }
     }
 }
