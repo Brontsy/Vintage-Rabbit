@@ -419,7 +419,6 @@
     <Content Include="Content\less\pages\terms-and-conditions.less" />
     <Content Include="Content\less\pages\privacy-policy.less" />
     <Content Include="Content\less\components\order-summary.less" />
-    <Content Include="Content\less\site - Copy.less" />
     <Content Include="Content\less\pages\styles.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
@@ -482,6 +481,9 @@
     <Content Include="Views\Payment\Guest.cshtml" />
     <Content Include="Views\Hire\CategoryList.cshtml" />
     <Content Include="Views\Style\Index.cshtml" />
+    <Content Include="Views\Style\WizardOfOz.cshtml" />
+    <Content Include="Views\Style\BuyProduct.cshtml" />
+    <Content Include="Views\Style\HireProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

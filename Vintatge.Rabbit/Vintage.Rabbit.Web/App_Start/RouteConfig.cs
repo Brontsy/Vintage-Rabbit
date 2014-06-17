@@ -10,7 +10,6 @@ namespace Vintage.Rabbit.Web
     public class Routes
     {
         public static string Home = "Home";
-        public static string Themes = "Themes";
         public static string ContactUs = "ContactUs";
         public static string FAQ = "FAQ";
         public static string Blog = "Blog";
@@ -18,6 +17,13 @@ namespace Vintage.Rabbit.Web
         public static string PrivacyPolicy = "PrivacyPolicy";
 
         public static string StyleProduct = "StyleProduct";
+
+        public static class Themes
+        {
+            public static string Index = "Themes Index";
+            public static string WizardOfOz = "Themes Wizard Of Oz";
+            public static string Product = "Themes Product";
+        }
 
         public static class ShoppingCart
         {
@@ -75,7 +81,6 @@ namespace Vintage.Rabbit.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(Routes.Themes, url: "style", defaults: new { controller = "Style", action = "Index" });
             routes.MapRoute(Routes.ContactUs, url: "contact-us", defaults: new { controller = "ContactUs", action = "Index" });
             routes.MapRoute(Routes.FAQ, url: "faq", defaults: new { controller = "FAQ", action = "Index" });
             routes.MapRoute(Routes.Blog, url: "blog", defaults: new { controller = "Blog", action = "Index" });
@@ -83,6 +88,9 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.PrivacyPolicy, url: "privacy-policy", defaults: new { controller = "Legal", action = "PrivacyPolicy" });
 
 
+            routes.MapRoute(Routes.Themes.Index, url: "style", defaults: new { controller = "Style", action = "Index" });
+            routes.MapRoute(Routes.Themes.WizardOfOz, url: "style/wizard-of-oz", defaults: new { controller = "Style", action = "WizardOfOz" });
+            routes.MapRoute(Routes.Themes.Product, url: "style/{name}/{productId}", defaults: new { controller = "Style", action = "Product" });
 
             routes.MapRoute(Routes.Hire.Index, url: "hire", defaults: new { controller = "Hire", action = "Index" });
             routes.MapRoute(Routes.Hire.Product, url: "hire/{name}/{productId}", defaults: new { controller = "Hire", action = "Product" });
