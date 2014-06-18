@@ -48,7 +48,7 @@ namespace Vintage.Rabbit.Web.Controllers
             breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Index), "Hire");
             breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Category, new { categoryName = categoryName }), category.DisplayName);
 
-            ProductListViewModel viewModel = new ProductListViewModel(products);
+            ProductListViewModel viewModel = new ProductListViewModel(products, category);
 
             return View("Index", viewModel);
         }
@@ -57,7 +57,14 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             IList<Category> categories = this._queryDispatcher.Dispatch<IList<Category>, GetCategoriesQuery>(new GetCategoriesQuery()).Where(o => o.ProductTypes.Contains(ProductType.Hire)).ToList();
 
-            return this.PartialView("CategoryList", categories.Select(o => new CategoryViewModel(o)).ToList());
+            var viewModel = categories.Select(o => new CategoryViewModel(o)).ToList();
+
+            if (!string.IsNullOrEmpty(categoryName))
+            {
+                viewModel.First(o => o.Name == categoryName).Selected = true;
+            }
+
+            return this.PartialView("CategoryList", viewModel);
         }
 
         public ActionResult Preview(int productId, string name)

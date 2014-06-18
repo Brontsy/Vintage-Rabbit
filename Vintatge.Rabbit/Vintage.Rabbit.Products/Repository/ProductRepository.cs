@@ -165,7 +165,7 @@ namespace Vintage.Rabbit.Products.Repository
 
         public IList<Product> GetProductsByCategory(Category category, ProductType productType)
         {
-            return this.GetProducts().Where(o => o.Type == productType && o.Categories.Any(x => x.Name == category.Name)).ToList();
+            return this.GetProducts().Where(o => o.Type == productType && o.Categories.Any(x => x.Name == category.Name || x.Children.Any(y => y.Name == category.Name))).ToList();
         }
 
         private IList<Product> GetProducts()

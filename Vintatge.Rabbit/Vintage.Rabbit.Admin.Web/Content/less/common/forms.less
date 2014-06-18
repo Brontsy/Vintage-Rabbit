@@ -13,6 +13,15 @@ form {
     .checkbox-container
     {
         label { display: inline-block; cursor: pointer; }
+        .child-checkboxes
+        {
+            margin-top: 5px;
+            .checkbox-container
+            {
+                margin: 3px 0px 3px 0px;
+                input { margin-left: 15px; }
+            }
+        }
     }
 
     input[type="text"], input[type="datetime"] {

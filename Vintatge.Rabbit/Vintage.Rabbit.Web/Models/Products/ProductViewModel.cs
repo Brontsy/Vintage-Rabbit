@@ -35,6 +35,8 @@ namespace Vintage.Rabbit.Web.Models.Products
 
         public IList<SelectListItem> InventoryCount { get; private set; }
 
+        public string SeoKeywords { get; private set; }
+
         public string UrlTitle
         {
             get { return this.Title.ToUrl(); }
@@ -53,6 +55,7 @@ namespace Vintage.Rabbit.Web.Models.Products
             this.IsAvailable = product.Inventory > 0;
             this.Categories = product.Categories.Select(o => new CategoryViewModel(o)).ToList();
             this.Type = product.Type;
+            this.SeoKeywords = product.Keywords;
 
             this.Qty = 1;
             this.InventoryCount = new List<SelectListItem>();

@@ -1,15 +1,28 @@
 ﻿@model Vintage.Rabbit.Web.Models.Products.ProductListViewModel
 
+@{
+    ViewBag.Title = Model.SelectedCategory.DisplayName + " - Vintage Rabbit";
+}
+
+
 
 <div class="buy-page">
     @{Html.RenderAction("ListBreadcrumbs", "Buy");}
 
-    <ul class="row product-list">
-        @foreach (var product in Model.Products)
-        {
-            <li class="col-2">
-                @{Html.RenderPartial("product-list-item", product);}
-            </li>
-        }
-    </ul>
+    <div class="row">
+    @{Html.RenderAction("Categories", "Buy");}
+
+
+        <div class="col-10 product-list">
+
+            <ul class="row product-list">
+                @foreach (var product in Model.Products)
+                {
+                    <li class="col-3">
+                        @{Html.RenderPartial("product-list-item", product);}
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>    
 </div>

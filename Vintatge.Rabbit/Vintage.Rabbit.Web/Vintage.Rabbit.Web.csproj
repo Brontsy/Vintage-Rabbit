@@ -169,6 +169,8 @@
     <Compile Include="Attributes\HasOrderAttribute.cs" />
     <Compile Include="Attributes\CheckoutRegisterAttribute.cs" />
     <Compile Include="Attributes\Validation\EmailAttribute.cs" />
+    <Compile Include="Controllers\FAQController.cs" />
+    <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
     <Compile Include="Controllers\HireController.cs" />
     <Compile Include="Controllers\BuyController.cs" />
@@ -424,6 +426,8 @@
     <Content Include="Content\less\pages\styles.less" />
     <Content Include="Content\less\components\category-list.less" />
     <Content Include="Content\less\pages\theme.less" />
+    <Content Include="Content\less\pages\blog.less" />
+    <Content Include="Content\less\pages\faq.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -490,6 +494,9 @@
     <Content Include="Views\Style\HireProduct.cshtml" />
     <Content Include="Views\Product\PreviewLink.cshtml" />
     <Content Include="Views\Style\Carnival.cshtml" />
+    <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\FAQ\Index.cshtml" />
+    <Content Include="Views\Buy\CategoryList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

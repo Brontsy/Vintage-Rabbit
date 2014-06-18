@@ -5,7 +5,9 @@
     <li class="header">Categories</li>
     @foreach(var category in Model)
     { 
-    <li>@Html.RouteLink(category.DisplayName, Routes.Hire.Category, new { categoryName = category.Name }, new {})</li>
+    <li@(category.Selected ? " class=selected" : "")>
+    @Html.RouteLink(category.DisplayName, Routes.Hire.Category, new { categoryName = category.Name }, new {})
+    </li>
     }
 </ul>
        

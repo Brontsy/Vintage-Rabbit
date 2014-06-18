@@ -89,10 +89,29 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
                 product.Type = viewModel.Type.Value;
                 product.IsFeatured = viewModel.IsFeatured;
                 product.Inventory = viewModel.Inventory.Value;
+                product.Categories = new List<Category>();
 
-                IEnumerable<int> categoryIds = viewModel.Categories.Where(o => o.Selected).Select(o => o.Id);
+                foreach(var category in viewModel.Categories)
+                {
+                    var cat = categories.First(o => o.Id == category.Id);
+                    var children = cat.Children.ToList();
+                    cat.Children = new List<Category>();
 
-                product.Categories = categories.Where(o => categoryIds.Contains(o.Id)).ToList();
+                    if(category.Selected)
+                    {
+                        product.Categories.Add(cat);
+                    }
+
+                    if(category.Children.Any(o => o.Selected))
+                    {
+                        foreach(var child in category.Children.Where(o => o.Selected))
+                        {
+                            cat.Children.Add(children.First(o => o.Id == child.Id));
+                        }
+                    }
+                }
+
+                //product.Categories = categories.Where(o => categoryIds.Contains(o.Id)).ToList();
 
                 this._commandDispatcher.Dispatch(new SaveProductCommand(product, member));
                   

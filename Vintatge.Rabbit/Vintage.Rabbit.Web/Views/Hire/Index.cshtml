@@ -1,7 +1,7 @@
 ﻿@model Vintage.Rabbit.Web.Models.Products.ProductListViewModel
 
 @{
-    ViewBag.Title = "Hire - Vintage Rabbit";
+    ViewBag.Title = (Model.SelectedCategory == null ? "Hire - Vintage Rabbit" : string.Format("{0} - Vintage Rabbit", Model.SelectedCategory.DisplayName));
 }
 
 <div class="hire-page">    

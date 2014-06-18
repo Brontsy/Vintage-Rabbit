@@ -82,6 +82,21 @@
                                                     @Html.CheckBoxFor(o => o.Categories[i].Selected)
                                                     @Html.LabelFor(o => o.Categories[i].Selected, Model.Categories[i].DisplayName)
                                                     @Html.HiddenFor(o => Model.Categories[i].Id)
+
+                                                    @if (Model.Categories[i].Children.Any())
+                                                    {
+                                                        <div class="row child-checkboxes">
+                                                            @for (int j = 0; j < Model.Categories[i].Children.Count; j++)
+                                                            {
+                                                                <div class="checkbox-container col-6">
+                                                                    @Html.CheckBoxFor(o => o.Categories[i].Children[j].Selected)
+                                                                    @Html.LabelFor(o => o.Categories[i].Children[j].Selected, Model.Categories[i].Children[j].DisplayName)
+                                                                    @Html.HiddenFor(o => Model.Categories[i].Children[j].Id)
+                                                                </div>
+
+                                                            }
+                                                        </div>
+                                                    }
                                                 </li>
                                             }
 

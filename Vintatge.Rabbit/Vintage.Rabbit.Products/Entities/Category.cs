@@ -17,9 +17,12 @@ namespace Vintage.Rabbit.Products.Entities
 
         public IList<ProductType> ProductTypes { get; set; }
 
+        public IList<Category> Children { get; set; }
+
         public Category()
         {
             this.ProductTypes = new List<ProductType>();
+            this.Children = new List<Category>();
         }
     }
 }

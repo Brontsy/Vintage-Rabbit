@@ -55,6 +55,7 @@ namespace Vintage.Rabbit.Web
         {
             public static string Index = "Buy";
             public static string Category = "Buy-Category";
+            public static string CategoryChild = "Buy-Category-Child";
             public static string PartySupplies = "Buy-PartySupplies";
             public static string Gifts = "Buy-Gifts";
             public static string Games = "Buy-Games";
@@ -134,6 +135,7 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.Buy.Product, url: "{categoryName}/{name}/{productId}", defaults: new { controller = "Buy", action = "Product" });
             routes.MapRoute(Routes.Buy.Preview, url: "{categoryName}/preview/{name}/{productId}", defaults: new { controller = "Buy", action = "Preview" });
             routes.MapRoute(Routes.Buy.Category, url: "{categoryName}", defaults: new { controller = "Buy", action = "Category" });
+            routes.MapRoute(Routes.Buy.CategoryChild, url: "{categoryName}/{childCategoryName}", defaults: new { controller = "Buy", action = "Category" });
 
             routes.MapRoute(name: Routes.Home, url: "", defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
 

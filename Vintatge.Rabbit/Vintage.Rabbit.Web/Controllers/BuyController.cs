@@ -30,14 +30,30 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.PartialView("Product", new ProductViewModel(product));
         }
 
-        public ActionResult Category(string categoryName)
+        public ActionResult Category(Category category, string childCategoryName)
         {
-            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName));
+            if(!string.IsNullOrEmpty(childCategoryName))
+            {
+                category = category.Children.First(o => o.Name == childCategoryName);
+            }
+
             IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByCategoryQuery>(new GetProductsByCategoryQuery(category, Common.Enums.ProductType.Buy));
 
-            ProductListViewModel viewModel = new ProductListViewModel(products);
+            ProductListViewModel viewModel = new ProductListViewModel(products, category);
 
             return View("ProductList", viewModel);
+        }
+
+        public ActionResult Categories(Category category, string childCategoryName)
+        {
+            var viewModel = new CategoryViewModel(category);
+
+            if (!string.IsNullOrEmpty(childCategoryName))
+            {
+                viewModel.Children.First(o => o.Name == childCategoryName).Selected = true;
+            }
+
+            return this.PartialView("CategoryList", viewModel);
         }
 
         public ActionResult Product(int productId, string name, string categoryName)
@@ -48,7 +64,7 @@ namespace Vintage.Rabbit.Web.Controllers
             return View("Product", new ProductViewModel(product));
         }
 
-        public ActionResult ListBreadcrumbs(Category category)
+        public ActionResult ListBreadcrumbs(Category category, string childCategoryName)
         {
             BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
             breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
@@ -56,7 +72,13 @@ namespace Vintage.Rabbit.Web.Controllers
 
             if (category != null)
             {
-                breadCrumbs.Add(Url.RouteUrl(Routes.Buy.Category, new { categoryName = category.Name }), category.DisplayName, true);
+                breadCrumbs.Add(Url.RouteUrl(Routes.Buy.Category, new { categoryName = category.Name }), category.DisplayName, (string.IsNullOrEmpty(childCategoryName)? true : false));
+            }
+
+            if (!string.IsNullOrEmpty(childCategoryName))
+            {
+                Category childCategory = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(childCategoryName));
+                breadCrumbs.Add(Url.RouteUrl(Routes.Buy.Category, new { categoryName = childCategory.Name }), childCategory.DisplayName, true);
             }
 
             return this.PartialView("Breadcrumbs", breadCrumbs);

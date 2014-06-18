@@ -1,0 +1,16 @@
+﻿@model Vintage.Rabbit.Web.Models.Categories.CategoryViewModel
+
+
+@if(Model.Children.Any())
+{ 
+<ul class="col-2 category-list">
+    <li class="header">Categories</li>
+    @foreach(var category in Model.Children)
+    { 
+        
+    <li @(category.Selected ? " class=selected" : "")>
+        @Html.RouteLink(category.DisplayName, Routes.Buy.CategoryChild, new { categoryName = Model.Name, childCategoryName = category.Name }, new { })
+    </li>
+    }
+</ul>
+}

@@ -15,14 +15,20 @@ namespace Vintage.Rabbit.Admin.Web.Models.Categories
         public string DisplayName { get; set; }
 
         public bool Selected { get; set; }
+
+        public IList<CategoryViewModel> Children { get; private set; }
         
-        public CategoryViewModel() { }
+        public CategoryViewModel() 
+        {
+            this.Children = new List<CategoryViewModel>();
+        }
 
         public CategoryViewModel(Category category)
         {
             this.Id = category.Id;
             this.Name = category.Name;
             this.DisplayName = category.DisplayName;
+            this.Children = category.Children.Select(o => new CategoryViewModel(o)).ToList();
         }
     }
 }

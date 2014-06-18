@@ -90,9 +90,11 @@ namespace Vintage.Rabbit.Admin.Web.Models.Products
             foreach (Category category in categories.OrderBy(o => o.DisplayName))
             {
                 CategoryViewModel categoryViewModel = new CategoryViewModel(category);
-                if (product.Categories.Any(o => o.Id == category.Id))
+                categoryViewModel.Selected = product.Categories.Any(o => o.Id == category.Id);
+
+                foreach(var child in category.Children)
                 {
-                    categoryViewModel.Selected = true;
+                    categoryViewModel.Children.First(o => o.Id == child.Id).Selected = product.Categories.Any(o => o.Id == category.Id && o.Children.Any(x => x.Id == child.Id));
                 }
 
                 this.Categories.Add(categoryViewModel);
