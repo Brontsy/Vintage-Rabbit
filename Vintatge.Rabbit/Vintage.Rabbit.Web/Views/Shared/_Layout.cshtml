@@ -46,15 +46,16 @@
 
 
                 <div class="search">
-
-                    <input type="text" class="left" name="search" placeholder="Search" value="">
-                    <div class="submit-container">
+                    @using (Html.BeginRouteForm(Routes.Search.Index, FormMethod.Get, new { }))
+                    {
+                        <input type="text" class="left" id="query" name="query" placeholder="Search" value="">
+                                        <div class="submit-container">
                         <div class="triangle left"></div>
                         <button type="submit" class="btn left">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
-
+                }
                 </div>
 
             </div>

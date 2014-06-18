@@ -182,6 +182,7 @@
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\StyleController.cs" />
     <Compile Include="Global.asax.cs">
@@ -497,6 +498,7 @@
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\FAQ\Index.cshtml" />
     <Content Include="Views\Buy\CategoryList.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -551,6 +553,10 @@
     <ProjectReference Include="..\Vintage.Rabbit.Products\Vintage.Rabbit.Products.csproj">
       <Project>{2ee117ed-6ab6-478d-93e7-1c695fc57b0a}</Project>
       <Name>Vintage.Rabbit.Products</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Search\Vintage.Rabbit.Search.csproj">
+      <Project>{543a3e22-4b5f-4455-a884-71464e7fea96}</Project>
+      <Name>Vintage.Rabbit.Search</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -1,16 +1,6 @@
 ﻿@model IList<Vintage.Rabbit.Web.Models.Categories.CategoryViewModel>
 
 <div class="row buy-page">    
-    
-    @{Html.RenderPartial("breadcrumbs", Model.Breadcrumbs);}
-
-    @foreach(var category in Model)
-    { 
-    <div class="col-4">
-        <a href="@Url.RouteUrl(Routes.Buy.Category, new { categoryName = category.Name })" class="@category.Name tile-image">
-            @category.DisplayName
-        </a>
-    </div>
-    }
+   <h2>TODO</h2>
 </div>
 

@@ -79,6 +79,12 @@ namespace Vintage.Rabbit.Web
             public static string Logout = "Membership - Logout";
         }
 
+        public static class Search
+        {
+            public static string Index = "Search - Index";
+            public static string RebuildIndex = "Search - RebuildIndex";
+        }
+
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -118,6 +124,9 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.Membership.Login, url: "login", defaults: new { controller = "Membership", action = "Login" });
             routes.MapRoute(Routes.Membership.Logout, url: "logout", defaults: new { controller = "Membership", action = "Logout" });
 
+            routes.MapRoute(Routes.Search.Index, url: "search", defaults: new { controller = "Search", action = "Index" });
+            routes.MapRoute(Routes.Search.RebuildIndex, url: "search/rebuild/index", defaults: new { controller = "Search", action = "RebuildIndex" });
+
 
             routes.MapRoute(Routes.StyleProduct, url: "styles/{name}/{styleId}", defaults: new { controller = "Style", action = "Style" });
 
@@ -136,6 +145,8 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.Buy.Preview, url: "{categoryName}/preview/{name}/{productId}", defaults: new { controller = "Buy", action = "Preview" });
             routes.MapRoute(Routes.Buy.Category, url: "{categoryName}", defaults: new { controller = "Buy", action = "Category" });
             routes.MapRoute(Routes.Buy.CategoryChild, url: "{categoryName}/{childCategoryName}", defaults: new { controller = "Buy", action = "Category" });
+
+
 
             routes.MapRoute(name: Routes.Home, url: "", defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
 

@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Payment", "V
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Inventory", "Vintage.Rabbit.Inventory\Vintage.Rabbit.Inventory.csproj", "{7F2A5F29-08D3-476D-9881-F88B6B5260D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Search", "Vintage.Rabbit.Search\Vintage.Rabbit.Search.csproj", "{543A3E22-4B5F-4455-A884-71464E7FEA96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureDirectory", "AzureDirectory\AzureDirectory.csproj", "{6D8758A7-F910-4BA0-B382-D535CA1FF958}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -93,6 +97,14 @@ Global
 		{7F2A5F29-08D3-476D-9881-F88B6B5260D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F2A5F29-08D3-476D-9881-F88B6B5260D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F2A5F29-08D3-476D-9881-F88B6B5260D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{543A3E22-4B5F-4455-A884-71464E7FEA96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{543A3E22-4B5F-4455-A884-71464E7FEA96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{543A3E22-4B5F-4455-A884-71464E7FEA96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{543A3E22-4B5F-4455-A884-71464E7FEA96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D8758A7-F910-4BA0-B382-D535CA1FF958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D8758A7-F910-4BA0-B382-D535CA1FF958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D8758A7-F910-4BA0-B382-D535CA1FF958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D8758A7-F910-4BA0-B382-D535CA1FF958}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
