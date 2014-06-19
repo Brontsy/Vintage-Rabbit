@@ -11,16 +11,21 @@
     <div class="details">
 
         <div class="container">
-            <h4>@Html.RouteLink(Model.Title, Routes.Buy.Product, new { productId = Model.Id, name = Model.UrlTitle, categoryName = Model.Categories.First().Name }, new { })</h4>
+            <h4>
+                @{Html.RenderAction("ProductLink", "Product", new { productGuid = Model.Guid });}
+            </h4>
             <div class="price">
                 @Model.Cost
             </div>
 
             <div class="product-controls">
+                @if(Model.Type == Vintage.Rabbit.Common.Enums.ProductType.Buy)
+                { 
                 <a class="left add-to-cart" href="@Url.RouteUrl(Routes.ShoppingCart.Add, new { productId = Model.Id, name = Model.UrlTitle })">
                     <i class="fa fa-shopping-cart"></i>
                     Add
                 </a>
+                }
                 <a class="right ajax-lightbox" href="@Url.RouteUrl(Routes.Buy.Preview, new { productId = Model.Id, name = Model.UrlTitle, categoryName = Model.Categories.First().Name })">
                     <i class="fa fa-search"></i>
                     Preview

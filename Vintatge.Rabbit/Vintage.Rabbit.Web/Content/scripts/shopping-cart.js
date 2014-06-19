@@ -7,6 +7,7 @@ function AddClickEvents()
     $('a.remove-from-cart').off('click');
     $('a.remove-from-cart').on('click', function (event) {
 
+        $(this).parents('li').css('opacity', 0.3).find('.col-5').html('removing');
         event.preventDefault();
         $.ajax({
             url: $(this).attr('href'),

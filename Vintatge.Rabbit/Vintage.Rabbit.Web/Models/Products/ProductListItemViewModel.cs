@@ -5,6 +5,7 @@ using System.Web;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Common.Extensions;
 using Vintage.Rabbit.Web.Models.Categories;
+using Vintage.Rabbit.Common.Enums;
 
 namespace Vintage.Rabbit.Web.Models.Products
 {
@@ -19,6 +20,8 @@ namespace Vintage.Rabbit.Web.Models.Products
         public string Cost { get; private set; }
 
         public string Title { get; private set; }
+
+        public ProductType Type { get; private set; }
 
         public IList<CategoryViewModel> Categories { get; private set; }
 
@@ -37,6 +40,7 @@ namespace Vintage.Rabbit.Web.Models.Products
             }
             this.Cost = product.Cost.ToString("C");
             this.Title = product.Title;
+            this.Type = product.Type;
             this.Categories = product.Categories.Select(o => new CategoryViewModel(o)).ToList();
         }
     }

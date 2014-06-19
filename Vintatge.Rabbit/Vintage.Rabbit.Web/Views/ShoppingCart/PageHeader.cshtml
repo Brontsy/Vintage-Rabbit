@@ -64,6 +64,8 @@
                 }
             }
 
+            @if(Model.Items.Any())
+            { 
             <li class="total">
                 <div class="row">
                     <div class="col-6">&nbsp;</div>
@@ -80,6 +82,11 @@
                     </div>
                 </div>
             </li>
+            }
+            else
+            {
+                <p class="text-right">You shopping cart is currently empty</p>
+            }
         </ul>
     </div>
 
