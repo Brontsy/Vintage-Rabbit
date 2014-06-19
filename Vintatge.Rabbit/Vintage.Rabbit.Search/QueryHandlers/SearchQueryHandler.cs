@@ -14,6 +14,7 @@ using Lucene.Net.Analysis.Standard;
 using Lucene.Net.QueryParsers;
 using System.Configuration;
 using Vintage.Rabbit.Products.QueryHandlers;
+using Lucene.Net.Store;
 
 namespace Vintage.Rabbit.Search.QueryHandlers
 {
@@ -38,39 +39,46 @@ namespace Vintage.Rabbit.Search.QueryHandlers
 
         public IList<Product> Handle(SearchQuery query)
         {
-            var analyzer = new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_CURRENT);
-            var azureDirectory = new AzureDirectory(this.GetCloudBlobStorage(), "products");
-
-            var searcher = new IndexSearcher(azureDirectory);
-
-            var parser2 = new MultiFieldQueryParser(Lucene.Net.Util.Version.LUCENE_CURRENT, new string[] { "Code", "Title", "Description", "Keywords", "Price", "Type", "id" }, analyzer);
-            
-            var luceneQuery = parser2.Parse(query.Text);
-
-            var hits = searcher.Search(luceneQuery, 20);
-
-            IList<int> productIds = new List<int>();
-
-            foreach(var hit in hits.ScoreDocs)
+            try
             {
-                var doc = searcher.Doc(hit.Doc);
+                var analyzer = new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_CURRENT);
+                var azureDirectory = new AzureDirectory(this.GetCloudBlobStorage(), "products", new RAMDirectory());
 
-                string id = doc.GetField("id").StringValue;
-                productIds.Add(Int32.Parse(id));
-            }
+                var searcher = new IndexSearcher(azureDirectory);
 
-            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByIdsQuery>(new GetProductsByIdsQuery(productIds));
-            IList<Product> returnProducts = new List<Product>();
+                var parser2 = new MultiFieldQueryParser(Lucene.Net.Util.Version.LUCENE_CURRENT, new string[] { "Code", "Title", "Description", "Keywords", "Price", "Type", "id" }, analyzer);
 
-            foreach(int productId in productIds)
-            {
-                if(products.Any(o => o.Id == productId))
+                var luceneQuery = parser2.Parse(query.Text);
+
+                var hits = searcher.Search(luceneQuery, 20);
+
+                IList<int> productIds = new List<int>();
+
+                foreach (var hit in hits.ScoreDocs)
                 {
-                    returnProducts.Add(products.First(o => o.Id == productId));
-                }
-            }
+                    var doc = searcher.Doc(hit.Doc);
 
-            return returnProducts;
+                    string id = doc.GetField("id").StringValue;
+                    productIds.Add(Int32.Parse(id));
+                }
+
+                IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByIdsQuery>(new GetProductsByIdsQuery(productIds));
+                IList<Product> returnProducts = new List<Product>();
+
+                foreach (int productId in productIds)
+                {
+                    if (products.Any(o => o.Id == productId))
+                    {
+                        returnProducts.Add(products.First(o => o.Id == productId));
+                    }
+                }
+
+                return returnProducts;
+            }
+            catch(Exception exception)
+            {
+                return new List<Product>();
+            }
         }
 
         private CloudStorageAccount GetCloudBlobStorage()
