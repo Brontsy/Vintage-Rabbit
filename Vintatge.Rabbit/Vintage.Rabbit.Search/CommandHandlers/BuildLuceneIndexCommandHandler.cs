@@ -1,6 +1,7 @@
 ﻿using Lucene.Net.Analysis.Standard;
 using Lucene.Net.Documents;
 using Lucene.Net.Index;
+using Lucene.Net.Store;
 using Lucene.Net.Store.Azure;
 using Microsoft.WindowsAzure.Storage;
 using System;
@@ -37,7 +38,7 @@ namespace Vintage.Rabbit.Search.CommandHandlers
 
             var analyzer = new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_CURRENT);
 
-            var azureDirectory = new AzureDirectory(this.GetCloudBlobStorage(), "products");
+            var azureDirectory = new AzureDirectory(this.GetCloudBlobStorage(), "products", new RAMDirectory());
             var indexWriter = new IndexWriter(azureDirectory, analyzer, true, new IndexWriter.MaxFieldLength(IndexWriter.DEFAULT_MAX_FIELD_LENGTH));
 
             foreach(var product in products)
