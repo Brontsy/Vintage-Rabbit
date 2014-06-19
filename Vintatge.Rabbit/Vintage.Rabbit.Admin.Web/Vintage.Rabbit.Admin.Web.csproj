@@ -191,6 +191,7 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\images\login-background.jpg" />
     <Content Include="Content\scripts\bootstrap\dropdown.js" />
+    <Content Include="Content\scripts\edit-product.js" />
     <Content Include="Content\scripts\datepicker\datepicker.source.js" />
     <Content Include="Content\less\common\alerts.less" />
     <Content Include="Content\less\common\buttons.less" />
@@ -233,6 +234,7 @@
     <Content Include="Content\less\components\product-list.less" />
     <Content Include="Content\less\common\tabs.less" />
     <Content Include="Content\less\pages\inventory-list.less" />
+    <Content Include="Content\less\pages\edit-product.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
