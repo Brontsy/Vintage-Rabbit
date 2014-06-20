@@ -1,0 +1,21 @@
+﻿@model string
+
+
+
+<ul class="col-3 category-list">
+    <li @(Model == "how-it-works" ? "class=selected" : "")>
+        @Html.RouteLink("how it works", Routes.HowItWorks)
+    </li>
+    <li @(Model == "about-us" ? "class=selected" : "")>
+        @Html.RouteLink("about us", Routes.AboutUs)
+    </li>
+    <li @(Model == "contact-us" ? "class=selected" : "")>
+        @Html.RouteLink("contact us", Routes.ContactUs)
+    </li>
+    <li @(Model == "terms-and-conditions" ? "class=selected" : "")>
+        @Html.RouteLink("terms and conditions", Routes.TermsAndConditions)
+    </li>
+    <li @(Model == "privacy-policy" ? "class=selected" : "")>
+        @Html.RouteLink("privacy policy", Routes.PrivacyPolicy)
+    </li>
+</ul>

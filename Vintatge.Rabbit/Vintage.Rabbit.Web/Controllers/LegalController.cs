@@ -8,14 +8,5 @@ namespace Vintage.Rabbit.Web.Controllers
 {
     public class LegalController : Controller
     {
-        public ActionResult TermsAndConditions()
-        {
-            return View("TermsAndConditions");
-        }
-
-        public ActionResult PrivacyPolicy()
-        {
-            return View("PrivacyPolicy");
-        }
 	}
 }

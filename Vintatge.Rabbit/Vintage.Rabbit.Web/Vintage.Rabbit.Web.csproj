@@ -224,10 +224,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\fonts\a-little-sunshine\a-little-sunshine-webfont.svg" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\fonts\honey-script\HoneyScriptSemiBold.png" />
-    <Content Include="Content\fonts\smudgie-crayon\License - READ THIS.txt" />
-    <Content Include="Content\fonts\typical-writer\Readme.txt" />
+    <Content Include="Content\fonts\typical-writer\typiw___-webfont.svg" />
     <Content Include="Content\images\BUNTING-06.png" />
     <Content Include="Content\images\footer\footer1.jpg" />
     <Content Include="Content\images\footer\footer2.jpg" />
@@ -406,23 +405,12 @@
     <Content Include="Content\less\components\jquery-ui.less" />
     <Content Include="Content\less\common\alerts.less" />
     <Content Include="Content\less\components\breadcrumbs.less" />
-    <Content Include="Content\less\pages\contact-us.less" />
     <Content Include="Content\less\pages\login-register.less" />
     <Content Include="Content\less\pages\checkout-register.less" />
     <Content Include="Content\less\pages\checkout-shipping.less" />
-    <Content Include="Content\fonts\honey-script\HoneyScriptSemiBold.eot" />
-    <Content Include="Content\fonts\honey-script\HoneyScriptSemiBold.ttf" />
-    <Content Include="Content\fonts\honey-script\HoneyScriptSemiBold.woff" />
     <Content Include="Content\less\common\lightbox.less" />
-    <Content Include="Content\fonts\typical-writer\carl-johanson_typical-writer.zip" />
-    <Content Include="Content\fonts\typical-writer\TYPIW___.TTF" />
-    <Content Include="Content\fonts\journal\JOURNAL.TTF" />
     <Content Include="Content\less\pages\checkout-billing.less" />
     <Content Include="Content\less\pages\checkout-payment.less" />
-    <Content Include="Content\fonts\smudgie-crayon\Smudgie-Crayon.ttf" />
-    <Content Include="Content\fonts\a-little-sunshine\a-little-sunshine.ttf" />
-    <Content Include="Content\less\pages\terms-and-conditions.less" />
-    <Content Include="Content\less\pages\privacy-policy.less" />
     <Content Include="Content\less\components\order-summary.less" />
     <Content Include="Content\less\pages\styles.less" />
     <Content Include="Content\less\components\category-list.less" />
@@ -430,6 +418,12 @@
     <Content Include="Content\less\pages\blog.less" />
     <Content Include="Content\less\pages\faq.less" />
     <Content Include="Content\less\pages\search-results.less" />
+    <Content Include="Content\fonts\a-little-sunshine\a-little-sunshine-webfont.eot" />
+    <Content Include="Content\fonts\a-little-sunshine\a-little-sunshine-webfont.ttf" />
+    <Content Include="Content\fonts\a-little-sunshine\a-little-sunshine-webfont.woff" />
+    <Content Include="Content\fonts\typical-writer\typiw___-webfont.eot" />
+    <Content Include="Content\fonts\typical-writer\typiw___-webfont.ttf" />
+    <Content Include="Content\fonts\typical-writer\typiw___-webfont.woff" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -469,7 +463,7 @@
     <Content Include="Views\Hire\Product.cshtml" />
     <Content Include="Views\Shared\breadcrumbs.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
-    <Content Include="Views\ContactUs\Index.cshtml" />
+    <Content Include="Views\FAQ\ContactUs.cshtml" />
     <Content Include="Views\Membership\Index.cshtml" />
     <Content Include="Views\Membership\Login.cshtml" />
     <Content Include="Views\Membership\Register.cshtml" />
@@ -483,8 +477,8 @@
     <Content Include="Views\Payment\Complete.cshtml" />
     <Content Include="Views\Hire\AvailabilityCheck.cshtml" />
     <Content Include="Views\Payment\OrderAvailability.cshtml" />
-    <Content Include="Views\Legal\TermsAndConditions.cshtml" />
-    <Content Include="Views\Legal\PrivacyPolicy.cshtml" />
+    <Content Include="Views\FAQ\TermsAndConditions.cshtml" />
+    <Content Include="Views\FAQ\PrivacyPolicy.cshtml" />
     <Content Include="Views\Order\Summary.cshtml" />
     <Content Include="Views\Product\Link.cshtml" />
     <Content Include="Views\Payment\Delivery.cshtml" />
@@ -500,11 +494,14 @@
     <Content Include="Views\FAQ\Index.cshtml" />
     <Content Include="Views\Buy\CategoryList.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\FAQ\CategoryList.cshtml" />
+    <Content Include="Views\FAQ\AboutUs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\Buy\" />
     <Folder Include="Models\Product\" />
+    <Folder Include="Views\ContactUs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -1,12 +1,12 @@
 ﻿@model IList<Vintage.Rabbit.Web.Models.Categories.CategoryViewModel>
 
 
-<ul class="col-2 hire-categories">
+<ul class="col-2 hire-categories category-list">
     <li class="header">Categories</li>
     @foreach(var category in Model)
     { 
     <li@(category.Selected ? " class=selected" : "")>
-    @Html.RouteLink(category.DisplayName, Routes.Hire.Category, new { categoryName = category.Name }, new {})
+    @Html.RouteLink(category.DisplayName.ToLower(), Routes.Hire.Category, new { categoryName = category.Name }, new {})
     </li>
     }
 </ul>

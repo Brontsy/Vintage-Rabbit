@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "Contact us";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<style>
+    #map_canvas { width: 100%; height: 500px; }
+</style>
+
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+<div class="faq">
+    <div class="row">
+        @{Html.RenderPartial("CategoryList", "contact-us");}
+
+        <div class="col-9 contact-us">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="map">
+                            <div id="map_canvas"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <h3>Contact Us</h3>
+
+                        <form>
+                            <ol>
+                                <li>
+                                    <div class="input-icon">
+                                        <i class="fa fa-user"></i>
+                                        <input type="text" placeholder="Name">
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="input-icon">
+                                        <i class="fa fa-envelope"></i>
+                                        <input type="text" placeholder="Email">
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <label>Comment</label>
+                                    <textarea></textarea>
+                                </li>
+
+                                <li class="submit">
+                                    <div class="btn primary right">Submit</div>
+                                </li>
+                            </ol>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+        <script>
+
+            function initialize() {
+                var map_canvas = document.getElementById('map_canvas');
+                var map_options = {
+                    center: new google.maps.LatLng(-37.830936, 145.042407),
+                    zoom: 15,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                var map = new google.maps.Map(map_canvas, map_options)
+                this.addMarker(map);
+            }
+
+
+            function addMarker(map) {
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(-37.830936, 145.042407),
+                    map: map
+                });
+            }
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+        </script>

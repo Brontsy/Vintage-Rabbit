@@ -9,7 +9,7 @@
     { 
         
     <li @(category.Selected ? " class=selected" : "")>
-        @Html.RouteLink(category.DisplayName, Routes.Buy.CategoryChild, new { categoryName = Model.Name, childCategoryName = category.Name }, new { })
+        @Html.RouteLink(category.DisplayName.ToLower(), Routes.Buy.CategoryChild, new { categoryName = Model.Name, childCategoryName = category.Name }, new { })
     </li>
     }
 </ul>

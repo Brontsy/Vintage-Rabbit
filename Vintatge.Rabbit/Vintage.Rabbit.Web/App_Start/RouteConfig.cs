@@ -15,6 +15,8 @@ namespace Vintage.Rabbit.Web
         public static string Blog = "Blog";
         public static string TermsAndConditions = "TermsAndConditions";
         public static string PrivacyPolicy = "PrivacyPolicy";
+        public static string AboutUs = "AboutUs";
+        public static string HowItWorks = "HowItWorks";
 
         public static string StyleProduct = "StyleProduct";
 
@@ -89,11 +91,13 @@ namespace Vintage.Rabbit.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(Routes.ContactUs, url: "contact-us", defaults: new { controller = "ContactUs", action = "Index" });
+            routes.MapRoute(Routes.ContactUs, url: "contact-us", defaults: new { controller = "FAQ", action = "ContactUs" });
             routes.MapRoute(Routes.FAQ, url: "faq", defaults: new { controller = "FAQ", action = "Index" });
             routes.MapRoute(Routes.Blog, url: "blog", defaults: new { controller = "Blog", action = "Index" });
-            routes.MapRoute(Routes.TermsAndConditions, url: "terms-and-conditions", defaults: new { controller = "Legal", action = "TermsAndConditions" });
-            routes.MapRoute(Routes.PrivacyPolicy, url: "privacy-policy", defaults: new { controller = "Legal", action = "PrivacyPolicy" });
+            routes.MapRoute(Routes.TermsAndConditions, url: "terms-and-conditions", defaults: new { controller = "FAQ", action = "TermsAndConditions" });
+            routes.MapRoute(Routes.PrivacyPolicy, url: "privacy-policy", defaults: new { controller = "FAQ", action = "PrivacyPolicy" });
+            routes.MapRoute(Routes.AboutUs, url: "about-us", defaults: new { controller = "FAQ", action = "AboutUs" });
+            routes.MapRoute(Routes.HowItWorks, url: "how-it-works", defaults: new { controller = "FAQ", action = "HowItWorks" });
 
 
             routes.MapRoute(Routes.Themes.Index, url: "style", defaults: new { controller = "Style", action = "Index" });

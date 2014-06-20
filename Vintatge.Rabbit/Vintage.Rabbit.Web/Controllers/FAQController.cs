@@ -12,5 +12,30 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult HowItWorks()
+        {
+            return View("Index");
+        }
+
+        public ActionResult TermsAndConditions()
+        {
+            return View("TermsAndConditions");
+        }
+
+        public ActionResult PrivacyPolicy()
+        {
+            return View("PrivacyPolicy");
+        }
+
+        public ActionResult ContactUs()
+        {
+            return View("ContactUs");
+        }
+
+        public ActionResult AboutUs()
+        {
+            return View("AboutUs");
+        }
 	}
 }
