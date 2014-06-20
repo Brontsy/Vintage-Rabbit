@@ -10,7 +10,7 @@
                             <fieldset>
 
                                 <div class="row">
-                                    <div class="col-6">
+                                    @*<div class="col-6">
                                         <div class="input-icon">
                                             <i class="fa fa-calendar"></i>
                                             @Html.EditorFor(o => o.StartDate, new { htmlAttributes = new { @placeholder = "Start Date", @class = "datepicker-trigger" } })
@@ -21,18 +21,16 @@
                                             <i class="fa fa-calendar"></i>
                                             @Html.EditorFor(o => o.EndDate, new { htmlAttributes = new { @placeholder = "End Date", @class = "datepicker-trigger" }})
                                         </div>
-                                    </div>
-
-                                    <div class="col-7">
-                                        <div class="unavailable-text alert negative icon">
-                                            <i class="fa fa-times"></i>Sorry this product is currently unavailable for those dates. Please call us on 131313
-                                        </div>
-                                        <div class="available-text alert positive icon">
-                                            <i class="fa fa-check"></i>@Model.Product.Title is currently available for your selected dates.
+                                    </div>*@
+                                    <div class="col-6">
+                                        <div class="input-icon">
+                                            <i class="fa fa-calendar"></i>
+                                            @Html.EditorFor(o => o.PartyDate, new { htmlAttributes = new { @placeholder = "Party Date", @class = "datepicker-trigger" } })
                                         </div>
                                     </div>
 
-                                    <div class="col-5">
+
+                                    <div class="col-6">
                                         <button type="submit" class="btn primary check-availability-button">
                                             <i class="fa fa-refresh"></i>
                                             Check availability
@@ -42,6 +40,15 @@
                                             Add to cart
                                         </button>
                                     </div>
+                                    <div class="col-12">
+                                        <div class="unavailable-text alert negative icon">
+                                            <i class="fa fa-times"></i>Sorry this product is currently unavailable for those dates. Please call us on 131313
+                                        </div>
+                                        <div class="available-text alert positive icon">
+                                            <i class="fa fa-check"></i>@Model.Product.Title is currently available for your selected party date.
+                                        </div>
+                                    </div>
+
                                     <div class="col-12 added-to-cart">
                                         <div class="alert positive icon">
                                             <i class="fa fa-check-circle"></i> <strong>@Model.Product.Title</strong> has been added to your cart

@@ -54,11 +54,11 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.Json(cart, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult AddHireProduct(int productId, Member member, Order order, DateTime startDate, DateTime endDate, int qty = 1)
+        public ActionResult AddHireProduct(int productId, Member member, Order order, DateTime partyDate, int qty = 1)
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
-            this._commandDispatcher.Dispatch(new AddHireProductToCartCommand(member.Guid, qty, product, startDate, endDate));
+            this._commandDispatcher.Dispatch(new AddHireProductToCartCommand(member.Guid, qty, product, this.GetHireStartDate(partyDate), this.GetHireEndDate(partyDate)));
 
             Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
 
@@ -84,6 +84,27 @@ namespace Vintage.Rabbit.Web.Controllers
                 myCookie.Expires = DateTime.Now.AddDays(-1);
                 this.Response.Cookies.Add(myCookie);
             }
+        }
+
+        private DateTime GetHireStartDate(DateTime partyDate)
+        {
+            DateTime date = partyDate;
+            while (date.DayOfWeek != DayOfWeek.Friday)
+            {
+                date = date.AddDays(-1);
+            }
+
+            return date;
+        }
+        private DateTime GetHireEndDate(DateTime partyDate)
+        {
+            DateTime date = partyDate;
+            while (date.DayOfWeek != DayOfWeek.Monday)
+            {
+                date = date.AddDays(1);
+            }
+
+            return date;
         }
 	}
 }

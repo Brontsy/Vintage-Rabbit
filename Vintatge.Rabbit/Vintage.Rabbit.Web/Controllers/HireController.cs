@@ -83,9 +83,9 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult CheckProductAvailability(Guid productGuid, HireDatesViewModel hireDates)
         {
-            if (hireDates.StartDate.HasValue && hireDates.EndDate.HasValue)
+            if (hireDates.PartyDate.HasValue)// hireDates.StartDate.HasValue && hireDates.EndDate.HasValue)
             {
-                bool available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(productGuid, 1, hireDates.StartDate.Value, hireDates.EndDate.Value));
+                bool available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(productGuid, 1, this.GetHireStartDate(hireDates.PartyDate.Value), this.GetHireEndDate(hireDates.PartyDate.Value)));
 
                 return this.Json(new { Available = available }, JsonRequestBehavior.AllowGet);
             }
@@ -94,14 +94,14 @@ namespace Vintage.Rabbit.Web.Controllers
         }
 
         [ChildActionOnly]
-        public ActionResult AvailabilityCheck(int productId, HireDatesViewModel hireDates)
+        public ActionResult AvailabilityCheck(Guid productGuid, HireDatesViewModel hireDates)
         {
-            Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
+            Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(productGuid));
             bool? available = null;
 
-            if (hireDates.StartDate.HasValue && hireDates.EndDate.HasValue)
+            if (hireDates.PartyDate.HasValue) //hireDates.StartDate.HasValue && hireDates.EndDate.HasValue)
             {
-                available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(product.Guid, 1, hireDates.StartDate.Value, hireDates.EndDate.Value));
+                available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(product.Guid, 1, this.GetHireStartDate(hireDates.PartyDate.Value), this.GetHireEndDate(hireDates.PartyDate.Value)));
             }
 
             AvailabilityCheckViewModel viewModel = new AvailabilityCheckViewModel(new ProductViewModel(product), available, hireDates);
@@ -139,6 +139,28 @@ namespace Vintage.Rabbit.Web.Controllers
             breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Product, new { productId = product.Id, name = product.Title.ToUrl() }), product.Title, true);
 
             return this.PartialView("Breadcrumbs", breadCrumbs);
+        }
+
+
+        private DateTime GetHireStartDate(DateTime partyDate)
+        {
+            DateTime date = partyDate;
+            while (date.DayOfWeek != DayOfWeek.Friday)
+            {
+                date = date.AddDays(-1);
+            }
+
+            return date;
+        }
+        private DateTime GetHireEndDate(DateTime partyDate)
+        {
+            DateTime date = partyDate;
+            while (date.DayOfWeek != DayOfWeek.Monday)
+            {
+                date = date.AddDays(1);
+            }
+
+            return date;
         }
 	}
 }

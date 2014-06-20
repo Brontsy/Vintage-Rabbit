@@ -8,6 +8,8 @@ function AddDatePickerEvents()
 
     $('.datepicker-trigger').datepicker({
         format: 'dd MM yyyy',
+        daysOfWeekDisabled: '1,2,3,4,5',
+        startDate: new Date(),
         autoclose: true
     }).on('changeDate', function (ev) {
 

@@ -18,23 +18,25 @@ namespace Vintage.Rabbit.Web.ModelBinders
 
             ValueProviderResult startResult = controllerContext.Controller.ValueProvider.GetValue("startDate");
             ValueProviderResult endResult = controllerContext.Controller.ValueProvider.GetValue("endDate");
+            ValueProviderResult partyDateResult = controllerContext.Controller.ValueProvider.GetValue("partyDate");
 
-            if (startResult != null && endResult != null)
+            if (partyDateResult != null)//startResult != null && endResult != null)
             {
                 DateTime startDate;
                 DateTime endDate;
-                if (DateTime.TryParse(startResult.AttemptedValue, out startDate) && DateTime.TryParse(endResult.AttemptedValue, out endDate))
+                DateTime partyDate;
+                if (DateTime.TryParse(partyDateResult.AttemptedValue, out partyDate)) //DateTime.TryParse(startResult.AttemptedValue, out startDate) && DateTime.TryParse(endResult.AttemptedValue, out endDate))
                 {
                     HttpCookie myCookie = new HttpCookie("HireDatesViewModel");
 
                     // Set the cookie value.
-                    myCookie.Value = startDate.ToString() + "|" + endDate.ToString();
+                    myCookie.Value = partyDateResult.ToString();// startDate.ToString() + "|" + endDate.ToString();
                     // Set the cookie expiration date.
                     myCookie.Expires = DateTime.Now.AddDays(14);
 
                     controllerContext.HttpContext.Response.Cookies.Add(myCookie);
 
-                    return new HireDatesViewModel(startDate, endDate);
+                    return new HireDatesViewModel(partyDate);
                 }
             }
             else
@@ -43,17 +45,19 @@ namespace Vintage.Rabbit.Web.ModelBinders
 
                 if (cookie != null)
                 {
-                    string[] dates = cookie.Value.Split('|');
+                    //string[] dates = cookie.Value.Split('|');
                     DateTime startDate;
                     DateTime endDate;
-                    if (DateTime.TryParse(dates[0], out startDate) && DateTime.TryParse(dates[1], out endDate))
+                    DateTime partyDate;
+
+                    if (DateTime.TryParse(cookie.Value, out partyDate)) //DateTime.TryParse(dates[0], out startDate) && DateTime.TryParse(dates[1], out endDate))
                     {
-                        return new HireDatesViewModel(startDate, endDate);
+                        return new HireDatesViewModel(partyDate);
                     }
                 }
             }
                 
-            return new HireDatesViewModel(null, null);
+            return new HireDatesViewModel(null);
         }
     }
 }
