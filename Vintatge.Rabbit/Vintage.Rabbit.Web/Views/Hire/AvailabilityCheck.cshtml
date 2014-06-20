@@ -35,11 +35,16 @@
                                             <i class="fa fa-refresh"></i>
                                             Check availability
                                         </button>
-                                        <button type="submit" class="btn primary add-to-cart">
-                                            <i class="fa fa-shopping-cart"></i>
-                                            Add to cart
-                                        </button>
-                                    </div>
+                                        <div class="add-to-cart-container">
+                                            Qty &nbsp;
+                                            @Html.DropDownListFor(o => o.Qty, Model.InventoryCount)
+                                            &nbsp; &nbsp;
+                                            <button type="submit" class="btn primary add-to-cart right">
+                                                <i class="fa fa-shopping-cart"></i>
+                                                Add to cart
+                                            </button>
+                                        </div>
+                                        </div>
                                     <div class="col-12">
                                         <div class="unavailable-text alert negative icon">
                                             <i class="fa fa-times"></i>Sorry this product is currently unavailable for those dates. Please call us on 131313

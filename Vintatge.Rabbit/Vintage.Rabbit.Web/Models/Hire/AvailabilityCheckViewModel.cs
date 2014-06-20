@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Vintage.Rabbit.Web.Models.Products;
 
 namespace Vintage.Rabbit.Web.Models.Hire
@@ -21,13 +22,17 @@ namespace Vintage.Rabbit.Web.Models.Hire
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime? PartyDate { get; private set; }
 
+        public IList<SelectListItem> InventoryCount { get; private set; }
+
+        public int Qty { get; private set; }
+
         public AvailabilityCheckViewModel(ProductViewModel product, bool? isAvailable, HireDatesViewModel hireDates)
         {
             this.Product = product;
             this.IsAvailable = isAvailable;
-            //this.StartDate = hireDates.StartDate;
-            //this.EndDate = hireDates.EndDate;
             this.PartyDate = hireDates.PartyDate;
+            this.Qty = 1;
+            this.InventoryCount = product.InventoryCount;
         }
     }
 }

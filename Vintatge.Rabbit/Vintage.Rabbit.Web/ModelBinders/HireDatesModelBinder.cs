@@ -30,7 +30,7 @@ namespace Vintage.Rabbit.Web.ModelBinders
                     HttpCookie myCookie = new HttpCookie("HireDatesViewModel");
 
                     // Set the cookie value.
-                    myCookie.Value = partyDateResult.ToString();// startDate.ToString() + "|" + endDate.ToString();
+                    myCookie.Value = partyDate.ToString();// startDate.ToString() + "|" + endDate.ToString();
                     // Set the cookie expiration date.
                     myCookie.Expires = DateTime.Now.AddDays(14);
 
