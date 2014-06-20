@@ -88,7 +88,6 @@ function AddClickEvents()
             type: 'POST',
             complete: function (json) {
                 $this.html($this.data('button-text'));
-
                 $(window).trigger('AddToCart', json)
             }
         })
@@ -113,7 +112,7 @@ $(window).on('lightbox.ajax-content-loaded', function () {
 
 $(window).on('AddToCart RemovedFromCart', function (json) {
 
-    $('.added-to-cart').removeClas
+    //$('.added-to-cart').removeClas
     $.each($('.shopping-cart'), function (index, element) {
 
         var open = $(this).find('.container').hasClass('active');
