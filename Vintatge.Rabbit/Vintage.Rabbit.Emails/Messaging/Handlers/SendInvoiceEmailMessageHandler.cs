@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -31,8 +32,8 @@ namespace Vintage.Rabbit.Emails.Messaging.Handlers
 
         public void Handle(IOrderPaidMessage message)
         {
-            var username = "azure_d9400eed0eab0750ed35123aa76a6c1c@azure.com";
-            var pswd = "ip7UL1H6poM8ioA";
+            var username = ConfigurationManager.AppSettings["SendGrid.Username"].ToString();
+            var pswd = ConfigurationManager.AppSettings["SendGrid.Password"].ToString();
 
             var credentials = new NetworkCredential(username, pswd);
 
@@ -41,11 +42,8 @@ namespace Vintage.Rabbit.Emails.Messaging.Handlers
             // Create the email object first, then add the properties.
             //SendGrid myMessage = SendGrid.GetInstance();
             myMessage.AddTo("brontsy@gmail.com");
-            myMessage.From = new MailAddress("test@vintagerabbit.com.ai", "Vintage Rabbit");
-            myMessage.Subject = "Testing the SendGrid Library";
-            myMessage.Html = "<p>TEst</p>";
-            myMessage.Text = "Hello World!";
-
+            myMessage.From = new MailAddress("invoices@vintagerabbit.com.au", "Vintage Rabbit");
+            myMessage.Subject = "Vintage Rabbit - Invoice";
 
             string url = string.Format("http://dev.vintage-rabbit.com.au/email/invoice/{0}/{1}", message.Order.Guid, message.Order.Id);
             var response = this._httpWebUtility.Get<string>(url, 5000);
