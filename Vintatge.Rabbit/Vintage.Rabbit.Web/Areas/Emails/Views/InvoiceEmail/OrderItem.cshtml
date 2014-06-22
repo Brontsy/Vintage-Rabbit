@@ -1,0 +1,47 @@
+﻿@model Vintage.Rabbit.Web.Areas.Emails.Models.InvoiceEmail.InvoiceEmailViewModel
+@{
+    ViewBag.Title = "EmailInvoice";
+    Layout = "~/Areas/Emails/Views/Shared/_Layout.cshtml";
+}
+
+
+
+                <!-- content -->
+<div class="content">
+
+    <table bgcolor="">
+        <tr>
+            <td>
+                @{Html.RenderPartial("Success", new Vintage.Rabbit.Web.Areas.Emails.Models.AlertViewModel(string.Empty, "Thank you for your Credit Card payment."));}
+            </td>
+        </tr>
+        <tr><td height="20"></td></tr>
+        <tr>
+            <td>
+                <table width="580" border="0" cellpadding="0" cellspacing="0" align="center" class="scaleForMobile">
+                    <tr>
+                        <td valign="center" height="30" style=""><strong>Description</strong></td>
+                        <td valign="center" height="30" style=""><strong>Qty</strong></td>
+                        <td valign="center" height="30" style="" align="right"><strong>Amount</strong></td>
+                    </tr>
+                    @foreach (var orderItem in Model.OrderItems)
+                    {
+                        <tr>
+                            <td valign="center" height="30" style=" border-top: 1px solid #cccccc;">@orderItem.Title</td>
+                            <td valign="center" height="30" style=" border-top: 1px solid #cccccc;">@orderItem.Quantity</td>
+                            <td valign="center" height="30" style=" border-top: 1px solid #cccccc;" align="right">@orderItem.Total</td>
+                        </tr>
+                    }
+                    <tr>
+                        <td valign="center" height="30" style="border-top: 1px solid #cccccc;">&nbsp;</td>
+                        <td valign="center" height="30" style="border-top: 1px solid #cccccc;">&nbsp;</td>
+                        <td valign="center" height="30" style=" border-top: 1px solid #cccccc;" align="right"><strong>Total: @Model.Total (incl GST)</strong></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+</div><!-- /content -->
+
+

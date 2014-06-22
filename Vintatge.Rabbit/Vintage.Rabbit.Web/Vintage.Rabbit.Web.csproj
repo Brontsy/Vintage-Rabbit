@@ -166,6 +166,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Emails\EmailsAreaRegistration.cs" />
+    <Compile Include="Areas\Emails\Models\AlertViewModel.cs" />
+    <Compile Include="Areas\Emails\Models\InvoiceEmail\InvoiceEmailViewModel.cs" />
+    <Compile Include="Areas\Emails\Controllers\InvoiceEmailController.cs" />
+    <Compile Include="Areas\Emails\Styles.cs" />
     <Compile Include="Attributes\HasOrderAttribute.cs" />
     <Compile Include="Attributes\CheckoutRegisterAttribute.cs" />
     <Compile Include="Attributes\Validation\EmailAttribute.cs" />
@@ -424,6 +429,11 @@
     <Content Include="Content\fonts\typical-writer\typiw___-webfont.eot" />
     <Content Include="Content\fonts\typical-writer\typiw___-webfont.ttf" />
     <Content Include="Content\fonts\typical-writer\typiw___-webfont.woff" />
+    <Content Include="Areas\Emails\Views\web.config" />
+    <Content Include="Areas\Emails\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Emails\Views\InvoiceEmail\InvoiceEmail.cshtml" />
+    <Content Include="Areas\Emails\Views\Shared\Success.cshtml" />
+    <Content Include="Areas\Emails\Views\InvoiceEmail\OrderItem.cshtml" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -502,6 +512,7 @@
     <Folder Include="Models\Buy\" />
     <Folder Include="Models\Product\" />
     <Folder Include="Views\ContactUs\" />
+    <Folder Include="Views\InvoiceEmail\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -523,6 +534,10 @@
     <ProjectReference Include="..\Vintage.Rabbit.CQRS\Vintage.Rabbit.CQRS.csproj">
       <Project>{2665e4f5-684b-4f0b-9368-801f11b78eb7}</Project>
       <Name>Vintage.Rabbit.CQRS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Emails\Vintage.Rabbit.Emails.csproj">
+      <Project>{31104ec3-e610-4fb0-af99-3d86663037cd}</Project>
+      <Name>Vintage.Rabbit.Emails</Name>
     </ProjectReference>
     <ProjectReference Include="..\Vintage.Rabbit.Interfaces\Vintage.Rabbit.Interfaces.csproj">
       <Project>{93bcba0e-cfff-4963-a237-4be306ec0d2b}</Project>

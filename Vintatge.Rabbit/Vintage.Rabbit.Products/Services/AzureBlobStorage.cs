@@ -10,6 +10,7 @@ using System.Reflection;
 using Vintage.Rabbit.Products.Result;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Microsoft.WindowsAzure.Storage;
+using Vintage.Rabbit.Common.Extensions;
 
 namespace Vintage.Rabbit.Products.Services
 {
@@ -99,7 +100,7 @@ namespace Vintage.Rabbit.Products.Services
             //// Create or overwrite the "myblob" blob with contents from a local file
             //blob.UploadFromStream(file);
 
-            CloudBlockBlob blob = blobContainer.GetBlockBlobReference(path + fileName);
+            CloudBlockBlob blob = blobContainer.GetBlockBlobReference(path + fileName.ToUrl());
             blob.Properties.ContentType = this.GetContentType(fileName);
             blob.UploadFromStream(file);
 

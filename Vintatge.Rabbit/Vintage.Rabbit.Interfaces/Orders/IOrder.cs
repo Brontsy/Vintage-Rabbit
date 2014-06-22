@@ -9,6 +9,8 @@ namespace Vintage.Rabbit.Interfaces.Orders
 {
     public interface IOrder
     {
+        int Id { get; }
+
         Guid Guid { get; }
 
         Guid MemberGuid { get; }

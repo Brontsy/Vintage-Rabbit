@@ -35,5 +35,6 @@ namespace Vintage.Rabbit.Interfaces.Products
         int Inventory { get; }
 
         decimal Cost { get; }
+
     }
 }

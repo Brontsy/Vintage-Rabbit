@@ -1,0 +1,32 @@
+﻿@model Vintage.Rabbit.Web.Areas.Emails.Models.AlertViewModel
+
+
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="scaleForMobile">
+    <tr>
+        <td height="15"></td>
+    </tr>
+    <tr>
+
+        <td bgcolor="#d9edf7" style="border: 1px solid #d6e9c6; padding: 10px; background: #dff0d8;">
+
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="scaleForMobile">
+                <tr>
+                    <td width="45">
+                        <img src="http://vintagerabbit.azurewebsites.net/content/images/email/success-tick.png" />
+                    </td>
+                    <td>
+                        <div style="@Styles.Alert.Positive">
+                            @if(!string.IsNullOrEmpty(Model.Heading))
+                            {
+                                <strong>@Model.Heading</strong>
+                            }
+                            @Model.Text
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

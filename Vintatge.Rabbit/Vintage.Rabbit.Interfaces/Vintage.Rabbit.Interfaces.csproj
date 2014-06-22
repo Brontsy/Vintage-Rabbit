@@ -54,6 +54,7 @@
     <Compile Include="Messaging\IMessageService.cs" />
     <Compile Include="Orders\IOrderPaidMessage.cs" />
     <Compile Include="Orders\IOrder.cs" />
+    <Compile Include="Products\IProductImage.cs" />
     <Compile Include="Products\IProduct.cs" />
     <Compile Include="Products\IProductCreatedMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

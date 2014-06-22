@@ -49,6 +49,12 @@
     <Compile Include="Encryption\SimpleHash.cs" />
     <Compile Include="Enums\ProductType.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Http\AcceptType.cs" />
+    <Compile Include="Http\ContentType.cs" />
+    <Compile Include="Http\HttpWebResponseWrapper.cs" />
+    <Compile Include="Http\HttpWebUtility.cs" />
+    <Compile Include="Http\IHttpWebResponse.cs" />
+    <Compile Include="Http\IHttpWebUtility.cs" />
     <Compile Include="Ioc\AutoFacBindings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\ISerializer.cs" />
