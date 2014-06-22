@@ -11,6 +11,8 @@ using Vintage.Rabbit.Common.Http;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Interfaces.Messaging;
 using Vintage.Rabbit.Interfaces.Orders;
+using Vintage.Rabbit.Membership.Entities;
+using Vintage.Rabbit.Membership.QueryHandlers;
 
 
 namespace Vintage.Rabbit.Emails.Messaging.Handlers
@@ -39,21 +41,29 @@ namespace Vintage.Rabbit.Emails.Messaging.Handlers
 
             SendGrid.ISendGrid myMessage = new SendGrid.SendGridMessage();
 
-            // Create the email object first, then add the properties.
-            //SendGrid myMessage = SendGrid.GetInstance();
-            myMessage.AddTo("brontsy@gmail.com");
-            myMessage.From = new MailAddress("invoices@vintagerabbit.com.au", "Vintage Rabbit");
-            myMessage.Subject = "Vintage Rabbit - Invoice";
-
-            string url = string.Format("http://vintagerabbit.azurewebsites.net/email/invoice/{0}/{1}", message.Order.Guid, message.Order.Id);
-            var response = this._httpWebUtility.Get<string>(url, 5000);
-            if(response.StatusCode == HttpStatusCode.OK)
+            if (message.Order.BillingAddressId.HasValue)
             {
-                myMessage.Html = response.Body;
-                var web = new SendGrid.Web(credentials);
+                Address billingAddress = this._queryDispatcher.Dispatch<Address, GetAddressByGuidQuery>(new GetAddressByGuidQuery(message.Order.BillingAddressId.Value));
+                if(billingAddress != null && !string.IsNullOrEmpty(billingAddress.Email))
+                {
+                    // Create the email object first, then add the properties.
+                    //SendGrid myMessage = SendGrid.GetInstance();
+                    myMessage.AddTo(billingAddress.Email);
+                    myMessage.From = new MailAddress("invoices@vintagerabbit.com.au", "Vintage Rabbit");
+                    myMessage.Subject = "Vintage Rabbit - Invoice";
 
-                web.Deliver(myMessage);
+                    string url = string.Format("http://vintagerabbit.azurewebsites.net/email/invoice/{0}/{1}", message.Order.Guid, message.Order.Id);
+                    var response = this._httpWebUtility.Get<string>(url, 5000);
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        myMessage.Html = response.Body;
+                        var web = new SendGrid.Web(credentials);
+
+                        web.Deliver(myMessage);
+                    }
+                }
             }
+
 
         }
     }

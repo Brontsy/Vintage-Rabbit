@@ -18,6 +18,8 @@ namespace Vintage.Rabbit.Interfaces.Orders
         IList<IOrderItem> Items { get; }
 
         decimal Total { get; }
+
+        Guid? BillingAddressId { get; }
     }
 
     public interface IOrderItem
