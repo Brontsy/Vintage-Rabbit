@@ -45,7 +45,7 @@ namespace Vintage.Rabbit.Emails.Messaging.Handlers
             myMessage.From = new MailAddress("invoices@vintagerabbit.com.au", "Vintage Rabbit");
             myMessage.Subject = "Vintage Rabbit - Invoice";
 
-            string url = string.Format("http://dev.vintage-rabbit.com.au/email/invoice/{0}/{1}", message.Order.Guid, message.Order.Id);
+            string url = string.Format("http://vintagerabbit.azurewebsites.net/email/invoice/{0}/{1}", message.Order.Guid, message.Order.Id);
             var response = this._httpWebUtility.Get<string>(url, 5000);
             if(response.StatusCode == HttpStatusCode.OK)
             {
