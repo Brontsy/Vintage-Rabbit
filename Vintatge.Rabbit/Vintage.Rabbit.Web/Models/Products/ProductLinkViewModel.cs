@@ -22,14 +22,17 @@ namespace Vintage.Rabbit.Web.Models.Products
             get { return this.Title.ToUrl(); }
         }
 
+        public bool IncludeHostName { get; private set; }
+
         public CategoryViewModel Category { get; private set; }
 
-        public ProductLinkViewModel(Product product, Category category)
+        public ProductLinkViewModel(Product product, Category category, bool includeHostName)
         {
             this.Id = product.Id;
             this.Title = product.Title;
             this.Category = new CategoryViewModel(category);
             this.Type = product.Type;
+            this.IncludeHostName = includeHostName;
         }
     }
 }

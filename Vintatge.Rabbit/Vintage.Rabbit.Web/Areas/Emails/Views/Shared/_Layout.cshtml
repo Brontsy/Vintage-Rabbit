@@ -299,8 +299,8 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 
                                             <p class="@Styles.Small">
                                                 Copyright 2014 Vintage Rabbit. All rights reserved. <br />
-                                                @Html.RouteLink("Terms and Conditions", Routes.TermsAndConditions, new { }, new { style = "color: #333333" }) &nbsp; | &nbsp;
-                                                @Html.RouteLink("Privacy Policy", Routes.PrivacyPolicy, new { }, new { style = "color: #333333" })
+                                                @Html.RouteLink("Terms and Conditions", Routes.TermsAndConditions, "http", Request.Url.Host, string.Empty, new { }, new { style = "color: #333333" }) &nbsp; | &nbsp;
+                                                @Html.RouteLink("Privacy Policy", Routes.PrivacyPolicy, "http", Request.Url.Host, string.Empty, new { }, new { style = "color: #333333" })
                                             </p>
 
                                         </td>

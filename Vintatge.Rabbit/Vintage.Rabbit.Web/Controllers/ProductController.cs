@@ -19,7 +19,7 @@ namespace Vintage.Rabbit.Web.Controllers
             this._queryDispatcher = queryDispatcher;
         }
 
-        public ActionResult ProductLink(Guid productGuid, Category category)
+        public ActionResult ProductLink(Guid productGuid, Category category, bool includeHostName = false)
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(productGuid));
 
@@ -28,7 +28,7 @@ namespace Vintage.Rabbit.Web.Controllers
                 category = product.Categories.First();
             }
 
-            return this.PartialView("Link", new ProductLinkViewModel(product, category));
+            return this.PartialView("Link", new ProductLinkViewModel(product, category, includeHostName));
         }
 
         public ActionResult ProductPreviewLink(Guid productGuid, Category category)
@@ -40,7 +40,7 @@ namespace Vintage.Rabbit.Web.Controllers
                 category = product.Categories.First();
             }
 
-            return this.PartialView("PreviewLink", new ProductLinkViewModel(product, category));
+            return this.PartialView("PreviewLink", new ProductLinkViewModel(product, category, false));
         }
 	}
 }

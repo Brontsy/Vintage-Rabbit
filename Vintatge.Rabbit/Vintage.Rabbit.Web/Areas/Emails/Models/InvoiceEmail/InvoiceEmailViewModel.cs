@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Vintage.Rabbit.Common.Enums;
 using Vintage.Rabbit.Interfaces.Orders;
 using Vintage.Rabbit.Orders.Entities;
 using Vintage.Rabbit.Products.Entities;
@@ -36,6 +37,8 @@ namespace Vintage.Rabbit.Web.Areas.Emails.Models.InvoiceEmail
 
         public Guid ProductGuid { get; private set; }
 
+        public ProductType ProductType { get; private set; }
+
         public OrderItemViewModel(IOrderItem orderItem, Product product)
         {
             this.Title = orderItem.Product.Title;
@@ -43,6 +46,7 @@ namespace Vintage.Rabbit.Web.Areas.Emails.Models.InvoiceEmail
             this.Total = orderItem.Total.ToString("C");
             this.Thumbnail = product.Images.First().Thumbnail;
             this.ProductGuid = product.Guid;
+            this.ProductType = product.Type;
             this.Description = (product.Description.Length > 120 ? product.Description.Substring(0, 120) : product.Description);
         }
     }
