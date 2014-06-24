@@ -34,9 +34,9 @@ namespace Vintage.Rabbit.Web.Controllers
             return View("Carnival", new ThemeViewModel());
         }
 
-        public ActionResult TeddyBearsPinic()
+        public ActionResult TeddyBearsPicnic()
         {
-            return View("TeddyBearsPinic", new ThemeViewModel());
+            return View("TeddyBearsPicnic", new ThemeViewModel());
         }
 
         public ActionResult Product(string name, int productId)
