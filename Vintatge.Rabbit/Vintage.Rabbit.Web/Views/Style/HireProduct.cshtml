@@ -37,7 +37,7 @@
             
                 <div class="row">
 
-                    @{Html.RenderAction("AvailabilityCheck", "Hire");}
+                    @{Html.RenderAction("AvailabilityCheck", "Hire", new { productGuid = Model.Guid });}
 
                     <div class="col-4">
                     </div>

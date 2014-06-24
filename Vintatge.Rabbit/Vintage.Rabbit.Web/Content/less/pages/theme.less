@@ -6,15 +6,29 @@
     margin-top: 20px;
 
 
-    .theme-categories
-    {
-
+    img {
+        width: 100%;
     }
 
-    img { width: 100%; }
+    h2 {
+        font-size: 28px;
+        font-family: 'TypicalWriter', Arial;
+    }
 
-    h2.price { 
-    font-weight: normal;    
+    .description {
+        p {
+            font-size: 24px;
+            line-height: 32px;
+            font-family: 'a-little-sunshine', Arial;
+      
+            i {
+                font-size: 18px;color: #333;
+            }
+        }
+    }
+
+    h2.price {
+        font-weight: normal;
     }
 
     .main-image-container {
@@ -52,25 +66,56 @@
                 transition: all 0s linear .1s;
                 display: block;
             }
-            
+
             &.balloon {
-            top: 25%;
-            left: 30%;
+                top: 25%;
+                left: 30%;
             }
+
             &.soft-drinks {
-            top: 72%;
-            left: 14%;
+                top: 72%;
+                left: 14%;
             }
-            &.blackboard{
-            top: 54%;
-            left: 68%;
+
+            &.blackboard {
+                top: 54%;
+                left: 68%;
             }
         }
     }
 
-    .add-theme
-    {
-        line-height:36px;
-        .btn { float: right; margin-left: 20px;}
+    .add-theme {
+        line-height: 36px;
+
+        .btn {
+            float: right;
+            margin-left: 20px;
+        }
+    }
+
+
+
+    .price {
+        font-size: 36px;
+        position: relative;
+        margin-top: 25px;
+
+        span {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+    }
+
+
+    .check-theme-availability {
+        margin-right: 20px;
+        margin-top: 15px;
+
+
+        .check-availability-button {
+            width: 100%;
+            margin-top: 10px;
+        }
     }
 }

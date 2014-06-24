@@ -7,6 +7,7 @@ using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Products.QueryHandlers;
 using Vintage.Rabbit.Web.Models.Products;
+using Vintage.Rabbit.Web.Models.Themes;
 
 namespace Vintage.Rabbit.Web.Controllers
 {
@@ -30,7 +31,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult Carnival()
         {
-            return View();
+            return View("Carnival", new ThemeViewModel());
         }
 
         public ActionResult Product(string name, int productId)

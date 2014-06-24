@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Emails", "Vi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Blogs", "Vintage.Rabbit.Blogs\Vintage.Rabbit.Blogs.csproj", "{82937004-CF0C-4D05-8C22-314487E95722}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Themes", "Vintage.Rabbit.Themes\Vintage.Rabbit.Themes.csproj", "{3AAD6A07-EAB5-4715-B3AB-45C2E6B100E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -117,6 +119,10 @@ Global
 		{82937004-CF0C-4D05-8C22-314487E95722}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82937004-CF0C-4D05-8C22-314487E95722}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82937004-CF0C-4D05-8C22-314487E95722}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AAD6A07-EAB5-4715-B3AB-45C2E6B100E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AAD6A07-EAB5-4715-B3AB-45C2E6B100E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AAD6A07-EAB5-4715-B3AB-45C2E6B100E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AAD6A07-EAB5-4715-B3AB-45C2E6B100E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

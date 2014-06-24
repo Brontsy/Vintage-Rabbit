@@ -224,6 +224,7 @@
     <Compile Include="Models\Products\ProductLinkViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartItemViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartViewModel.cs" />
+    <Compile Include="Models\Themes\ThemeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\CreateOrderProvider.cs" />
     <Compile Include="Providers\AddressProvider.cs" />
