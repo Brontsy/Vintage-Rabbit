@@ -36,7 +36,7 @@ namespace Vintage.Rabbit.Blogs.QueryHandlers
 
             string url = "http://public-api.wordpress.com/rest/v1/sites/vintagerabbitblog.wordpress.com/posts?status=any&number=5&pretty=1";
 
-            var response = this._httpWebUtility.Get<WordpressBlog>(url, 1000);
+            var response = this._httpWebUtility.Get<WordpressBlog>(url, 3000);
 
             foreach (var post in response.Response.Posts)
             {
