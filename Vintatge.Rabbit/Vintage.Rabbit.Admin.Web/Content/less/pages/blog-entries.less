@@ -1,0 +1,38 @@
+﻿
+
+
+.blog-entries {
+    margin-top: 20px;
+
+    .item {
+        padding: 15px;
+        background: #ffffff;
+        border-top: 1px solid #cccccc;
+        width: 100%;
+        overflow: hidden;
+        
+        h4 {
+            font-size: 14px;
+            font-weight: 600;
+
+            a {
+                color: #555555;
+            }
+        }
+
+        p {
+            font-size: 12px;
+            margin-top: 7px;
+        }
+
+        &:hover {
+            background: #f5f5f5;
+            cursor: pointer;
+        }
+
+        &:nth-child(2n+2) {
+            background: #fafafa;
+        }
+        &:last-child { border-bottom: 1px solid #cccccc; }
+    }
+}

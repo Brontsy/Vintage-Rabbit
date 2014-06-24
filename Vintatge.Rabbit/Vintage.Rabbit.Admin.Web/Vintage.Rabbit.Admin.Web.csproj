@@ -176,7 +176,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ModelBinders\MemberModelBinder.cs" />
-    <Compile Include="Models\Blogs\BlogImageViewModel.cs" />
     <Compile Include="Models\Blogs\BlogViewModel.cs" />
     <Compile Include="Models\Inventory\InventoryItemViewModel.cs" />
     <Compile Include="Models\Inventory\InventoryPageViewModel.cs" />

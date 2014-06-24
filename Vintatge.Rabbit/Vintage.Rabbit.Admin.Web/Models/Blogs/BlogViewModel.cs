@@ -32,7 +32,6 @@ namespace Vintage.Rabbit.Admin.Web.Models.Blogs
         public BlogViewModel(Blog blog)
         {
             this.Id = blog.Id;
-            this.Guid = blog.Guid;
             this.Key = blog.Key;
             this.Title = blog.Title;
             this.Summary = blog.Summary;
