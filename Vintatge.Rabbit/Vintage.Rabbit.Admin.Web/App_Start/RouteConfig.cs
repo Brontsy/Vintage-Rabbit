@@ -22,6 +22,16 @@ namespace Vintage.Rabbit.Admin.Web
             public static string Inventory = "Product - Inventory";
         }
 
+        public static class Blog
+        {
+            public static string Index = "Blog Index";
+            public static string Add = "Blog Add";
+            public static string Edit = "Blog Edit";
+            public static string Save = "Blog Save";
+            public static string UploadPhoto = "Blog - Upload Photo";
+            public static string RemovePhoto = "Blog - Remove Photo";
+        }
+
         public static class Membership
         {
             public static string Login = "Member Login";
@@ -44,6 +54,15 @@ namespace Vintage.Rabbit.Admin.Web
 
             routes.MapRoute(Routes.Membership.Login, url: "login", defaults: new { controller = "Membership", action = "Login" });
             routes.MapRoute(Routes.Membership.Logout, url: "logout", defaults: new { controller = "Membership", action = "Logout" });
+
+
+            routes.MapRoute(Routes.Blog.Index, url: "blog", defaults: new { controller = "Blog", action = "Index" });
+            routes.MapRoute(Routes.Blog.Add, url: "blog/add", defaults: new { controller = "Blog", action = "Add" });
+            routes.MapRoute(Routes.Blog.Edit, url: "blog/edit/{key}/{blogId}", defaults: new { controller = "Blog", action = "Edit" });
+            routes.MapRoute(Routes.Blog.Save, url: "blog/save/{blogId}", defaults: new { controller = "Blog", action = "Save" });
+            routes.MapRoute(Routes.Blog.UploadPhoto, url: "blog/upload-photo/{key}/{blogId}", defaults: new { controller = "Blog", action = "UploadPhoto" });
+            routes.MapRoute(Routes.Blog.RemovePhoto, url: "blog/{key}/{blogId}/remove-photo/{photoId}", defaults: new { controller = "Blog", action = "RemovePhoto" });
+
 
             routes.MapRoute(name: Routes.Home, url: "", defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
 

@@ -1,10 +1,22 @@
-﻿@{
-    ViewBag.Title = "Blog - Vintage Rabbit";
+﻿@model IList<Vintage.Rabbit.Web.Models.Blogs.BlogViewModel>
+@{
+    ViewBag.Title = "Blog";
 }
 
 
+
 <div class="blog">
-    
-    <h2>Blog</h2>
+
+    <div class="row">
+        <div class="col-8 blog-entries">
+            @foreach (var blog in Model)
+            {
+                <div class="item">
+                    <h2>@blog.Title</h2>
+                <p class="msg">@Html.Raw(blog.Content)</p>
+            </div>
+            }
+        </div>
+    </div>
 
 </div>

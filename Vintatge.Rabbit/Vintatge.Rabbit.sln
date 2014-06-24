@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureDirectory", "AzureDire
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Emails", "Vintage.Rabbit.Emails\Vintage.Rabbit.Emails.csproj", "{31104EC3-E610-4FB0-AF99-3D86663037CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Blogs", "Vintage.Rabbit.Blogs\Vintage.Rabbit.Blogs.csproj", "{82937004-CF0C-4D05-8C22-314487E95722}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,10 @@ Global
 		{31104EC3-E610-4FB0-AF99-3D86663037CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31104EC3-E610-4FB0-AF99-3D86663037CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31104EC3-E610-4FB0-AF99-3D86663037CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82937004-CF0C-4D05-8C22-314487E95722}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82937004-CF0C-4D05-8C22-314487E95722}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82937004-CF0C-4D05-8C22-314487E95722}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82937004-CF0C-4D05-8C22-314487E95722}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -198,6 +198,8 @@
     <Compile Include="ModelBinders\CartModelBinder.cs" />
     <Compile Include="ModelBinders\OrderModelBinder.cs" />
     <Compile Include="ModelBinders\MemberModelBinder.cs" />
+    <Compile Include="Models\Blogs\BlogImageViewModel.cs" />
+    <Compile Include="Models\Blogs\BlogViewModel.cs" />
     <Compile Include="Models\Breadcrumbs\BreadcrumbsViewModel.cs" />
     <Compile Include="Models\Hire\AvailabilityCheckViewModel.cs" />
     <Compile Include="Models\Orders\OrderItemViewModel.cs" />
@@ -520,6 +522,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Vintage.Rabbit.Blogs\Vintage.Rabbit.Blogs.csproj">
+      <Project>{82937004-cf0c-4d05-8c22-314487e95722}</Project>
+      <Name>Vintage.Rabbit.Blogs</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Vintage.Rabbit.Caching\Vintage.Rabbit.Caching.csproj">
       <Project>{93ee8576-6e36-4fef-ad10-0ec71fa9aaa4}</Project>
       <Name>Vintage.Rabbit.Caching</Name>

@@ -1,0 +1,52 @@
+﻿@model IList<Vintage.Rabbit.Admin.Web.Models.Blogs.BlogViewModel>
+@{
+    ViewBag.Title = "Blogs";
+}
+
+<div class="page-head">
+
+    @Html.RouteLink("Add Blog Entry", Routes.Blog.Add, new { }, new { @class = "btn primary right" })
+    <h2>Blog Entries</h2>
+    <ol class="breadcrumbs">
+        <li><a href="#">Home</a></li>
+        <li class="active">Blog entries</li>
+    </ol>
+</div>
+
+
+
+    <div class="main-app">
+
+     
+        <div class="items blog-entries">
+            @foreach (var blog in Model)
+            {
+                <div class="item">
+                    <div class="blog-image">
+                        @if(blog.Images.Any())
+                        { 
+                        <img src="@blog.Images.First().Thumbnail">
+                        }
+                    </div>
+                    <h4>
+                        @Html.RouteLink(blog.Title, Routes.Blog.Edit, new { key = blog.Key, blogId = blog.Id }, new { })
+                    </h4>
+                    <p class="msg">@Html.Raw(blog.Content)</p>
+                </div>
+            }
+        </div>
+    </div>
+
+<div class="test"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('.item').on('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            window.location = $(this).find('a').attr('href');
+        });
+    });
+</script>
+

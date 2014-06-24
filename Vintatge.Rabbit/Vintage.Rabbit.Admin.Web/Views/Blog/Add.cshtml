@@ -1,0 +1,84 @@
+﻿@model Vintage.Rabbit.Admin.Web.Models.Blogs.BlogViewModel
+@using Vintage.Rabbit.Common.Enums;
+@{
+    ViewBag.Title = "Add blog entry";
+}
+
+<div class="page-head">
+
+    <h2>Add Product</h2>
+    <ol class="breadcrumbs">
+        <li>@Html.RouteLink("Home", Routes.Home)</li>
+        <li>@Html.RouteLink("Products", Routes.Products.List)</li>
+        <li class="active">Add</li>
+    </ol>
+</div>
+<div class="body-content edit-product">
+    <div class="tab-container">
+        <ul class="nav nav-tabs">
+            <li class="active">@Html.RouteLink("Blog", Routes.Blog.Edit)</li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active cont" id="details">
+                <div class="row">
+                    <div class="col-5">
+                        @using (Html.BeginRouteForm(Routes.Blog.Save, new { blogId = Model.Id }, FormMethod.Post, new {  }))
+                        {
+                            <fieldset>
+                                <ol class="row">
+                                    <li class="col-12">
+                                        @Html.LabelFor(o => o.Title)
+                                        @Html.TextBoxFor(o => o.Title, new { placeholder = "Title*" })
+                                        @Html.ValidationMessageFor(o => o.Title)
+                                    </li>
+                                    <li class="col-12">
+                                        @Html.LabelFor(o => o.Content)
+                                        @Html.TextAreaFor(o => o.Content, new { placeholder = "Content" })
+                                        @Html.ValidationMessageFor(o => o.Content)
+                                    </li>
+                                    <li class="col-12">
+                                        @Html.LabelFor(o => o.Author)
+                                        @Html.TextBoxFor(o => o.Author, new { placeholder = "Author*" })
+                                        @Html.ValidationMessageFor(o => o.Author)
+                                    </li>
+
+
+                                    <li class="col-4 offset-8">
+                                        <button type="submit" class="btn primary">Save & continue</button>
+                                    </li>
+                                </ol>
+                            </fieldset>
+                        }
+                    </div>
+
+                    @if (Model.Id != 0)
+                    {
+                        <div class="col-6 offset-1 photo-uploader">
+                            <div class="upload-photos">
+
+                                <button class="btn primary" id="pickfiles">Upload Photos</button>
+
+                                <ol class="photo-list row">
+                                    @foreach (var image in Model.Images)
+                                    {
+                                        Html.RenderPartial("Photo", image);
+                                    }
+                                </ol>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script type="text/javascript">
+
+    $('.upload-photos').photoUploader(
+        {
+            uploadUrl: '@Url.RouteUrl(Routes.Blog.UploadPhoto, new {  productId = Model.Id })'
+        });
+
+</script>

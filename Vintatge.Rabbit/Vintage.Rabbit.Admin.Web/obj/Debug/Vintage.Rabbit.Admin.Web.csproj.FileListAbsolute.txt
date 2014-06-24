@@ -29,6 +29,7 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.W
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\System.Web.WebPages.Deployment.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\System.Web.WebPages.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\System.Web.WebPages.Razor.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Vintage.Rabbit.Blogs.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Vintage.Rabbit.Caching.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Vintage.Rabbit.Carts.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Vintage.Rabbit.Common.dll
@@ -48,6 +49,7 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.W
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.Data.Services.Client.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.Data.OData.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\System.Spatial.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Vintage.Rabbit.Blogs.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Vintage.Rabbit.Caching.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Vintage.Rabbit.Carts.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Vintage.Rabbit.Common.pdb
