@@ -237,6 +237,7 @@
     <Content Include="Content\less\common\tabs.less" />
     <Content Include="Content\less\pages\inventory-list.less" />
     <Content Include="Content\less\pages\edit-product.less" />
+    <Content Include="Content\less\pages\blog-entries.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
