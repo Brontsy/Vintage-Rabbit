@@ -28,10 +28,15 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             return View();
         }
-
+        
         public ActionResult Carnival()
         {
             return View("Carnival", new ThemeViewModel());
+        }
+
+        public ActionResult TeddyBearsPinic()
+        {
+            return View("TeddyBearsPinic", new ThemeViewModel());
         }
 
         public ActionResult Product(string name, int productId)

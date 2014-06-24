@@ -510,6 +510,7 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\FAQ\CategoryList.cshtml" />
     <Content Include="Views\FAQ\AboutUs.cshtml" />
+    <Content Include="Views\Style\TeddyBearsPicnic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

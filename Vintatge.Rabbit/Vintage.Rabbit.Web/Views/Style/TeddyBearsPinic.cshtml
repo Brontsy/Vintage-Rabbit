@@ -1,0 +1,144 @@
+﻿@model Vintage.Rabbit.Web.Models.Themes.ThemeViewModel
+@{
+    ViewBag.Title = "Carnival - Vintage Rabbit";
+}
+
+
+<div class="theme">
+
+    <div class="row">
+
+        <ul class="col-2 theme-categories category-list">
+            <li class="header">Themes</li>
+            <li>
+                <a href="/style/wizard-of-oz">
+                    <span>Wizard of Oz</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="/style/teddy-bears-picnic">
+                    <span>Teddy Bears Picnic</span>
+                </a>
+
+            </li>
+            <li>
+                <a href="/style/tea-party">
+                    <span>Tea Party</span>
+                </a>
+            </li>
+            <li>
+                <a href="/style/mary-poppins">
+                    <span>Mary Poppins</span>
+                </a>
+            </li>
+            <li>
+                <a href="/style/cinderella">
+                    <span>Cinderella</span>
+                </a>
+            </li>
+            <li>
+                <a href="/style/carnival">
+                    <span>Carnival</span>
+                </a>
+            </li>
+        </ul>
+
+        <div class="col-10">
+
+
+            <div class="row">
+                <div class="col-8 description">
+
+                    <h2>Carnival</h2>
+                    <p>
+                        <i class="fa fa-quote-left"></i>
+                        Roll up, roll up, the coolest bids party is about to head to town. Kids love a carnival, full of bright colours, lots of fun and easy playful food. Recreate this exciting carnival for your child’s next party with these party supplies and props for hire from Vintage Rabbit.
+                    </p>
+                    <p>
+                        To see more of this stunning party package along with some great tips and recipes, check out our blog or click here
+                        <i class="fa fa-quote-right"></i>
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-8">
+                    <ol class="row">
+                        <li class="col-12 main-image-container">
+
+                            <img src="/content/images/themes/carnival/Carnival Theme Package 5171 (1 of 1).jpg" />
+
+                            <a href="/style/model-hot-air-balloon-prop/21" class="marker balloon ajax-lightbox">
+                                <span class="inner-circle"></span>
+                            </a>
+                            <a href="/style/mini-glass-milk-bottles-(set-of-12)/16" class="marker soft-drinks ajax-lightbox">
+                                <span class="inner-circle"></span>
+                            </a>
+                            <a href="/style/white-a-frame-blackboard/5" class="marker blackboard ajax-lightbox">
+                                <span class="inner-circle"></span>
+                            </a>
+
+                        </li>
+                        <li class="col-3">
+                            <a href="/style/teddy-bears-picnic">
+                                <img src="/content/images/themes/carnival/Carnival Theme Package 5156 (1 of 1).jpg" />
+                            </a>
+                        </li>
+                        <li class="col-3">
+                            <a href="/style/teddy-bears-picnic">
+                                <img src="/content/images/themes/carnival/carnival theme package 5142 (1 of 1).jpg" />
+                            </a>
+                        </li>
+                        <li class="col-3">
+                            <a href="/style/teddy-bears-picnic">
+                                <img src="/content/images/themes/carnival/carnival theme package 5226 (1 of 1).jpg" />
+                            </a>
+                        </li>
+                        <li class="col-3">
+                            <a href="/style/teddy-bears-picnic">
+                                <img src="/content/images/themes/carnival/carnival theme package 5205 (1 of 1).jpg" />
+                            </a>
+                        </li>
+
+                    </ol>
+
+                </div>
+
+                <div class="col-4">
+                    <p>
+                        Scroll over the icon on an image to add party supply products or hire items to your cart or click on the buy all button to recreate the scene below. Everything is delivered to your door without the expense of a stylist.
+                    </p>
+                    <p>
+                        Additional options are available for delivery, setup and food packages or contact us if you need a tailored event.
+                    </p>
+
+                    <div class="price">
+                        $250.00
+                    </div>
+                    @using (Html.BeginRouteForm(Routes.Themes.Carnival, new { }, FormMethod.Post, new { @class = "check-availability-form" }))
+                    {
+                        <div class="row check-theme-availability">
+
+                            <div class="col-12">
+                                <div class="input-icon">
+                                    <i class="fa fa-calendar"></i>
+                                    @Html.EditorFor(o => o.PartyDate, new { htmlAttributes = new { @placeholder = "Party Date", @class = "datepicker-trigger" } })
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn primary check-availability-button">
+                                    <i class="fa fa-refresh"></i>
+                                    Check availability
+                                </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
