@@ -19,19 +19,24 @@
 
      
         <div class="items products product-list">
-            @foreach (var product in Model.Products)
-            {
-                <div class="item">
-                    <span class="price right">@product.Cost</span>
-                    <div class="product-image">
-                        <img src="@product.Image.Thumbnail">
+            <ol class="row">
+                @foreach (var product in Model.Products)
+                {
+                    <div class="col-2">
+                        <div class="item">
+                            <div class="product-image">
+                                <div class="container">
+                                    <img src="@product.Image.Thumbnail">
+                                </div>
+                            </div>
+                            <h4>
+                                @Html.RouteLink(product.Title, Routes.Products.Edit, new { name = product.UrlTitle, productId = product.Id }, new { })
+                            </h4>
+                            <p class="price">@product.Cost</p>
+                        </div>
                     </div>
-                    <h4>
-                        @Html.RouteLink(product.Title, Routes.Products.Edit, new { name = product.UrlTitle, productId = product.Id }, new { })
-                    </h4>
-                    <p class="msg">@product.Description</p>
-                </div>
-            }
+                }
+            </ol>
         </div>
     </div>
 

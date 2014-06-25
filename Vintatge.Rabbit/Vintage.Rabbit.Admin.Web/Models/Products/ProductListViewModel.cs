@@ -13,7 +13,7 @@ namespace Vintage.Rabbit.Admin.Web.Models.Products
 
         public ProductListViewModel(IList<Product> products)
         {
-            this.Products = products.Select(o => new ProductListItemViewModel(o)).ToList();
+            this.Products = products.Select(o => new ProductListItemViewModel(o)).OrderBy(o => o.UrlTitle).ToList();
         }
     }
 }

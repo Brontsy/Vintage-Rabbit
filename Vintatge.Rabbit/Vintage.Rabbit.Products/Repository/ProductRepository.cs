@@ -174,7 +174,7 @@ namespace Vintage.Rabbit.Products.Repository
 
             using (SqlConnection connection = new SqlConnection(this._connectionString))
             {
-                var productResults = connection.Query<ProductDb>("Select * From VintageRabbit.Products Order By DateCreated Desc");
+                var productResults = connection.Query<ProductDb>("Select * From VintageRabbit.Products Order By Title Desc");
 
                 foreach (var product in productResults)
                 {
