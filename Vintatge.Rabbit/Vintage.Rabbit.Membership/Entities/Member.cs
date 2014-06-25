@@ -24,15 +24,18 @@ namespace Vintage.Rabbit.Membership.Entities
 
         public IList<Role> Roles { get; internal set; }
 
-        public IList<Address> ShippingAddresses { get; private set; }
+        public IList<Address> ShippingAddresses { get; internal set; }
 
-        public IList<Address> BillingAddresses { get; private set; }
+        public IList<Address> BillingAddresses { get; internal set; }
+
+        public IList<Address> DeliveryAddresses { get; internal set; }
 
         public Member(Guid guid)
         {
             this.Guid = guid;
             this.ShippingAddresses = new List<Address>();
             this.BillingAddresses = new List<Address>();
+            this.DeliveryAddresses = new List<Address>();
             this.Roles = new List<Role>();
         }
 

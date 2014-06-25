@@ -51,8 +51,8 @@ namespace Vintage.Rabbit.Membership.Repository
             if (this.GetAddress(address.Guid) == null)
             {
                 // insert
-                string sql = @"Insert Into VintageRabbit.Addresses (Guid, MemberGuid, FirstName, LastName, Email, CompanyName, Line1, SuburbCity, Postcode, State, Type, DateCreated, DateLastModified) Values 
-                            (@Guid, @MemberGuid, @FirstName, @LastName, @Email, @CompanyName, @Line1, @SuburbCity, @Postcode, @State, @Type, @DateCreated, @DateLastModified)";
+                string sql = @"Insert Into VintageRabbit.Addresses (Guid, MemberGuid, FirstName, LastName, Email, CompanyName, Line1, SuburbCity, Postcode, State, Type, PhoneNumber, DateCreated, DateLastModified) Values 
+                            (@Guid, @MemberGuid, @FirstName, @LastName, @Email, @CompanyName, @Line1, @SuburbCity, @Postcode, @State, @Type, @PhoneNumber, @DateCreated, @DateLastModified)";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
@@ -69,6 +69,7 @@ namespace Vintage.Rabbit.Membership.Repository
                         Postcode = address.Postcode,
                         State = address.State.ToString(),
                         Type = address.Type.ToString(),
+                        PhoneNumber = address.PhoneNumber,
                         DateCreated = DateTime.Now,
                         DateLastModified = DateTime.Now
 
@@ -78,9 +79,9 @@ namespace Vintage.Rabbit.Membership.Repository
             else
             {
                 //update
-                string sql = @"Updated VintageRabbit.Addresses Set 
+                string sql = @"Update VintageRabbit.Addresses Set 
                                 MemberGuid = @MemberGuid, FirstName = @FirstName, LastName = @LastName, Email = @Email,  CompanyName = @CompanyName, Line1 = @Line1, SuburbCity = @SuburbCity, 
-                                Postcode = @Postcode, State = @State, Type = @Type, DateLastModified = @DateLastModified Where Guid = @Guid";
+                                Postcode = @Postcode, State = @State, Type = @Type, PhoneNumber = @PhoneNumber, DateLastModified = @DateLastModified Where Guid = @Guid";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
@@ -97,6 +98,7 @@ namespace Vintage.Rabbit.Membership.Repository
                         Postcode = address.Postcode,
                         State = address.State.ToString(),
                         Type = address.Type.ToString(),
+                        PhoneNumber = address.PhoneNumber,
                         DateLastModified = DateTime.Now
                     });
                 }

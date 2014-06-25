@@ -38,7 +38,7 @@ namespace Vintage.Rabbit.Web.Providers
 
         public Address SaveShippingAddress(Member member, AddressViewModel viewModel)
         {
-            Guid addressId = Guid.NewGuid();
+            Guid addressId = viewModel.Guid;
 
             Address address = new Address(member.Guid, AddressType.Shipping, addressId, viewModel.Address, viewModel.SuburbCity, viewModel.State, viewModel.Postcode.Value, viewModel.FirstName, viewModel.LastName, null, null, viewModel.CompanyName);
 
@@ -49,7 +49,7 @@ namespace Vintage.Rabbit.Web.Providers
 
         public Address SaveBillingAddress(Member member, BillingAddressViewModel viewModel)
         {
-            Guid addressId = Guid.NewGuid();
+            Guid addressId = viewModel.Guid;
 
             Address address = new Address(member.Guid, AddressType.Billing, addressId, viewModel.Address, viewModel.SuburbCity, viewModel.State, viewModel.Postcode.Value, viewModel.FirstName, viewModel.LastName, viewModel.Email, null, viewModel.CompanyName);
 
@@ -60,7 +60,7 @@ namespace Vintage.Rabbit.Web.Providers
 
         public Address SaveDeliveryAddress(Member member, DeliveryAddressViewModel viewModel)
         {
-            Guid addressId = Guid.NewGuid();
+            Guid addressId = viewModel.Guid;
 
             Address address = new Address(member.Guid, AddressType.Delivery, addressId, viewModel.Address, viewModel.SuburbCity, viewModel.State, viewModel.Postcode.Value, viewModel.FirstName, viewModel.LastName, null, viewModel.PhoneNumber, viewModel.CompanyName);
 

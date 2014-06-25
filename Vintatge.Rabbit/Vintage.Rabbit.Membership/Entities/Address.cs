@@ -35,6 +35,10 @@ namespace Vintage.Rabbit.Membership.Entities
 
         public AddressType Type { get; set; }
 
+        public DateTime DateCreated { get; set; }
+
+        public DateTime DateLastModified { get; set; }
+
         public Address()
         {
             this.Guid = Guid.NewGuid();

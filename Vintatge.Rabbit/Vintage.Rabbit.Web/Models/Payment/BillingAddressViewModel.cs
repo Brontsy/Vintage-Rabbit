@@ -16,23 +16,21 @@ namespace Vintage.Rabbit.Web.Models.Payment
         [Display(Name = "Please enter your email below.")]
         public string Email { get; set; }
 
+        public bool OrderContainsBuyItems { get; private set; }
+
         public BillingAddressViewModel() { }
 
-        public BillingAddressViewModel(Member member)
+        public BillingAddressViewModel(Member member, Order order) : base()
         {
-            if (member != null)
-            {
-                this.Email = member.Email;
-            }
+            this.Email = member.Email;
+            this.OrderContainsBuyItems = order.ContainsBuyProducts();
         }
 
-        public BillingAddressViewModel(Address address)
+        public BillingAddressViewModel(Address address, Order order)
             :base (address)
         {
-            if (address != null)
-            {
-                this.Email = address.Email;
-            }
+            this.Email = address.Email;
+            this.OrderContainsBuyItems = order.ContainsBuyProducts();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Vintage.Rabbit.Web.Models.Payment
         }
 
         public DeliveryAddressViewModel(Address address)
-            :base (address)
+            : base(address)
         {
             this.PhoneNumber = address.PhoneNumber;
         }

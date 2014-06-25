@@ -30,6 +30,10 @@ namespace Vintage.Rabbit.Web.Models.Orders
 
         public bool IsHire { get; private set; }
 
+        public bool IsBuy { get; private set; }
+
+        public bool IsDelivery { get; private set; }
+
         public ProductType Type { get; private set; }
 
         public OrderItemViewModel(IOrderItem orderItem)
@@ -42,6 +46,8 @@ namespace Vintage.Rabbit.Web.Models.Orders
             this.Key = orderItem.Product.Title.ToUrl();
             this.ProductGuid = orderItem.Product.Guid;
             this.IsHire = orderItem.Product.Type == ProductType.Hire;
+            this.IsBuy = orderItem.Product.Type == ProductType.Buy;
+            this.IsDelivery = orderItem.Product.Type == ProductType.Delivery;
             this.Type = orderItem.Product.Type;
 
         }

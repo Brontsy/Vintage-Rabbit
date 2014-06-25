@@ -35,7 +35,8 @@ namespace Vintage.Rabbit.Membership.Repository
         public Member GetMember(Guid memberGuid)
         {
             string sql = @"Select * From VintageRabbit.Members Where Guid = @MemberGuid;
-                           Select Role From VintageRabbit.MemberRoles Where MemberGuid = @MemberGuid";
+                           Select Role From VintageRabbit.MemberRoles Where MemberGuid = @MemberGuid;
+                           Select * From VintageRabbit.Addresses Where MemberGuid = @MemberGuid";
 
             using (SqlConnection connection = new SqlConnection(this._connectionString))
             {
@@ -50,6 +51,11 @@ namespace Vintage.Rabbit.Membership.Repository
                         IList<string> roles = multi.Read<string>().ToList();
 
                         member.Roles = roles.Select(o => (Role)Enum.Parse(typeof(Role), o)).ToList();
+
+                        IList<Address> address = multi.Read<Address>().ToList();
+                        member.BillingAddresses = address.Where(o => o.Type == AddressType.Billing).ToList();
+                        member.ShippingAddresses = address.Where(o => o.Type == AddressType.Shipping).ToList();
+                        member.DeliveryAddresses = address.Where(o => o.Type == AddressType.Delivery).ToList();
 
                         return member;
                     }
@@ -71,6 +77,11 @@ namespace Vintage.Rabbit.Membership.Repository
 
                     var roles = connection.Query<string>("Select Role From VintageRabbit.MemberRoles Where MemberGuid = @MemberGuid", new { MemberGuid = member.Guid });
                     member.Roles = roles.Select(o => (Role)Enum.Parse(typeof(Role), o)).ToList();
+
+                    var address = connection.Query<Address>("Select * From VintageRabbit.Addresses Where MemberGuid = @MemberGuid", new { MemberGuid = member.Guid });
+                    member.BillingAddresses = address.Where(o => o.Type == AddressType.Billing).ToList();
+                    member.ShippingAddresses = address.Where(o => o.Type == AddressType.Shipping).ToList();
+                    member.DeliveryAddresses = address.Where(o => o.Type == AddressType.Delivery).ToList();
 
                     return member;
                 }

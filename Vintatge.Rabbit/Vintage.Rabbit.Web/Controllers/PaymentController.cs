@@ -77,15 +77,22 @@ namespace Vintage.Rabbit.Web.Controllers
 
         [HasOrder]
         [HttpGet]
-        public ActionResult ShippingInformation(Order order)
+        public ActionResult ShippingInformation(Order order, Member member)
         {
-            if(order.ShippingAddressId.HasValue)
+            var viewModel = new AddressViewModel();
+
+            if (order.ShippingAddressId.HasValue)
             {
-                Address shippingAddress = this._queryDispatcher.Dispatch<Address, GetAddressByGuidQuery>(new GetAddressByGuidQuery(order.ShippingAddressId.Value));
-                return this.View("ShippingInformation", new AddressViewModel(shippingAddress));
+                Address address = this._queryDispatcher.Dispatch<Address, GetAddressByGuidQuery>(new GetAddressByGuidQuery(order.ShippingAddressId.Value));
+                viewModel = new AddressViewModel(address);
+            }
+            else if (member.ShippingAddresses.Any())
+            {
+                Address address = member.ShippingAddresses.OrderByDescending(o => o.DateCreated).First();
+                viewModel = new AddressViewModel(address);
             }
 
-            return this.View("ShippingInformation", new AddressViewModel());
+            return this.View("ShippingInformation", viewModel);
         }
 
         [HasOrder]
@@ -99,7 +106,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
                 if(order.Items.Any(o => o.Product.Type == ProductType.Hire))
                 {
-                    return this.RedirectToRoute(Routes.Checkout.Devliery);
+                    return this.RedirectToRoute(Routes.Checkout.Devliery, new { guid = string.Empty });
                 }
 
                 return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
@@ -111,15 +118,22 @@ namespace Vintage.Rabbit.Web.Controllers
 
         [HasOrder]
         [HttpGet]
-        public ActionResult Delivery(Order order)
+        public ActionResult Delivery(Order order, Member member)
         {
+            var viewModel = new DeliveryAddressViewModel();
+
             if (order.DeliveryAddressId.HasValue)
             {
-                Address deliveryAddress = this._queryDispatcher.Dispatch<Address, GetAddressByGuidQuery>(new GetAddressByGuidQuery(order.DeliveryAddressId.Value));
-                return this.View("Delivery", new DeliveryAddressViewModel(deliveryAddress));
+                Address address = this._queryDispatcher.Dispatch<Address, GetAddressByGuidQuery>(new GetAddressByGuidQuery(order.DeliveryAddressId.Value));
+                viewModel = new DeliveryAddressViewModel(address);
+            }
+            else if (member.DeliveryAddresses.Any())
+            {
+                Address address = member.DeliveryAddresses.OrderByDescending(o => o.DateCreated).First();
+                viewModel = new DeliveryAddressViewModel(address);
             }
 
-            return this.View("Delivery", new DeliveryAddressViewModel());
+            return this.View("Delivery", viewModel);
         }
 
         [HasOrder]
@@ -150,37 +164,52 @@ namespace Vintage.Rabbit.Web.Controllers
         [HttpGet]
         public ActionResult BillingInformation(Order order, Member member)
         {
+            var viewModel = new BillingAddressViewModel(member, order);
+
             if (order.BillingAddressId.HasValue)
             {
-                Address billingAddress = this._queryDispatcher.Dispatch<Address, GetAddressByGuidQuery>(new GetAddressByGuidQuery(order.BillingAddressId.Value));
-                return this.View("BillingInformation", new BillingAddressViewModel(billingAddress));
+                Address address = this._queryDispatcher.Dispatch<Address, GetAddressByGuidQuery>(new GetAddressByGuidQuery(order.BillingAddressId.Value));
+                viewModel = new BillingAddressViewModel(address, order);
+            }
+            else if (member.BillingAddresses.Any())
+            {
+                Address address = member.BillingAddresses.OrderByDescending(o => o.DateCreated).First();
+                viewModel = new BillingAddressViewModel(address, order);
             }
 
-            return this.View("BillingInformation", new BillingAddressViewModel(member));
+            return this.View("BillingInformation", viewModel);
         }
 
         [HttpPost]
-        public ActionResult BillingInformation(BillingAddressViewModel viewModel, Order order, Member member, bool shippingAddressIsTheSame)
+        public ActionResult BillingInformation(BillingAddressViewModel viewModel, Order order, Member member, bool? shippingAddressIsTheSame)
         {
             if (this.ModelState.IsValid)
             {
                 Address billingAddress = this._addressProvider.SaveBillingAddress(member, viewModel);
                 this._commandDispatcher.Dispatch<AddBillingAddressCommand>(new AddBillingAddressCommand(order, billingAddress));
 
-                if(shippingAddressIsTheSame)
+                if(shippingAddressIsTheSame.HasValue && shippingAddressIsTheSame.Value)
                 {
+                    viewModel.Guid = Guid.NewGuid();
                     Address shippingAddress = this._addressProvider.SaveShippingAddress(member, viewModel);
                     this._commandDispatcher.Dispatch<AddShippingAddressCommand>(new AddShippingAddressCommand(order, shippingAddress));
 
-                    if (order.Items.Any(o => o.Product.Type == ProductType.Hire))
+                    if (order.ContainsHireProducts())
                     {
-                        return this.RedirectToRoute(Routes.Checkout.Devliery);
+                        return this.RedirectToRoute(Routes.Checkout.Devliery, new { guid = string.Empty });
                     }
 
                     return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
                 }
 
-                return this.RedirectToRoute(Routes.Checkout.ShippingInformation);
+                if (order.ContainsBuyProducts())
+                {
+                    return this.RedirectToRoute(Routes.Checkout.ShippingInformation, new { guid = string.Empty });
+                }
+                else
+                {
+                    return this.RedirectToRoute(Routes.Checkout.Devliery, new { guid = string.Empty });
+                }
             }
 
             return this.View("BillingInformation", viewModel);

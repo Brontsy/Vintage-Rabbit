@@ -4,7 +4,7 @@
 }
 
 
-<div class="checkout shipping-information">
+<div class="checkout delivery-information">
 
     <ol class="float-container checkout-breadcrumb">
 
@@ -41,8 +41,10 @@
         <div class="col-6">
             <h2>Hire Delivery Information</h2>
             <p>
-                We offer to deliver and pickup your hired items for only $25 or if you would like to pick them up yourself we are located in Bentleigh East.
+                We offer to deliver and pickup your hired items for only $25 or if you would like to pick them up yourself we are located in McKinnon.
             </p>
+            @using (Html.BeginRouteForm(Routes.Checkout.Devliery, new { }, FormMethod.Post, new { @class = "" }))
+            {
 
             <div class="row">
             <div class="col-6">
@@ -53,12 +55,14 @@
                 <div class="col-6">
                     <div class="radiobuttons">
                         <input type="radio" value="pickup" name="deliver-hire-products" id="pickup" />
-                        <label for="pickup">Pickup from Bentleigh East</label>
+                        <label for="pickup">Pickup from McKinnon</label>
                     </div>
+                    @Html.RouteLink("Continue", Routes.Checkout.PickupHiredProducts, new { }, new { @class = "btn primary pickup-button hidden component" })
                 </div>
             </div>
+            }
 
-            @using (Html.BeginRouteForm(Routes.Checkout.Devliery, new { }, FormMethod.Post, new { @class = "deliver-address-form hidden" }))
+            @using (Html.BeginRouteForm(Routes.Checkout.Devliery, new { guid = Model.Guid }, FormMethod.Post, new { @class = "deliver-address-form hidden" }))
             {
                 <fieldset>
                     <ol class="row">
@@ -91,14 +95,14 @@
                             @Html.ValidationMessageFor(o => o.State)
                         </li>
 
-                        <li class="col-5 offset-7">
-                            <button type="submit" class="btn primary">Save & continue</button>
+                        <li class="col-12">
+                            <div class="float-container">
+                                <button type="submit" class="btn right primary">Save & continue</button>
+                            </div>
                         </li>
                     </ol>
                 </fieldset>
             }
-
-            @Html.RouteLink("Continue", Routes.Checkout.PickupHiredProducts, new { }, new { @class = "btn primary right pickup-button hidden component" })
 
         </div>
 

@@ -106,5 +106,15 @@ namespace Vintage.Rabbit.Orders.Entities
             this.WorkflowStatus = OrderWorkflowStatus.AwaitingShipment;
             this.DatePaid = DateTime.Now;
         }
+
+        public bool ContainsBuyProducts()
+        {
+            return this.Items.Any(o => o.Product.Type == Common.Enums.ProductType.Buy);
+        }
+
+        public bool ContainsHireProducts()
+        {
+            return this.Items.Any(o => o.Product.Type == Common.Enums.ProductType.Hire);
+        }
     }
 }

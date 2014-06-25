@@ -29,6 +29,10 @@ namespace Vintage.Rabbit.Web.Models.ShoppingCart
 
         public bool IsHire { get; private set; }
 
+        public bool IsBuy { get; private set; }
+
+        public bool IsDelivery { get; private set; }
+
         public IList<CategoryViewModel> Categories { get; private set; }
 
         public CartItemViewModel(CartItem item)
@@ -42,6 +46,8 @@ namespace Vintage.Rabbit.Web.Models.ShoppingCart
             this.ProductId = item.Product.Id;
             this.ProductGuid = item.Product.Guid;
             this.IsHire = item.Product.Type == ProductType.Hire;
+            this.IsBuy = item.Product.Type == ProductType.Buy;
+            this.IsDelivery = item.Product.Type == ProductType.Delivery;
             this.Categories = item.Product.Categories.Select(o => new CategoryViewModel(o)).ToList();
         }
     }

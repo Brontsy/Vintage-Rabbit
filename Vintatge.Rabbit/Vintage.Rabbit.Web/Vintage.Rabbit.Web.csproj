@@ -438,6 +438,7 @@
     <Content Include="Areas\Emails\Views\InvoiceEmail\InvoiceEmail.cshtml" />
     <Content Include="Areas\Emails\Views\Shared\Success.cshtml" />
     <Content Include="Areas\Emails\Views\InvoiceEmail\OrderItem.cshtml" />
+    <Content Include="Content\less\pages\checkout-delivery.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />

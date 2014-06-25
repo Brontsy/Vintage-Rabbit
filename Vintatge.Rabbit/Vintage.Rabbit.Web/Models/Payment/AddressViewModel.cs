@@ -10,6 +10,8 @@ namespace Vintage.Rabbit.Web.Models.Payment
 {
     public class AddressViewModel
     {
+        public Guid Guid { get; set; }
+
         [Display(Name = "Address")]
         [Required(ErrorMessage = "Please enter your address")]
         public string Address { get; set; }
@@ -39,12 +41,14 @@ namespace Vintage.Rabbit.Web.Models.Payment
 
         public AddressViewModel()
         {
+            this.Guid = Guid.NewGuid();
         }
 
-        public AddressViewModel(Address address)
+        public AddressViewModel(Address address) : this()
         {
             if (address != null)
             {
+                this.Guid = address.Guid;
                 this.FirstName = address.FirstName;
                 this.LastName = address.LastName;
                 this.CompanyName = address.CompanyName;
