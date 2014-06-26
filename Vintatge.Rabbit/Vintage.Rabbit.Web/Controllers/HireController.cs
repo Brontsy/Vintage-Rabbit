@@ -38,6 +38,13 @@ namespace Vintage.Rabbit.Web.Controllers
             return View("Index", viewModel);
         }
 
+        public ActionResult Subnav()
+        {
+            IList<Category> categories = this._queryDispatcher.Dispatch<IList<Category>, GetCategoriesQuery>(new GetCategoriesQuery()).Where(o => o.ProductTypes.Contains(ProductType.Hire)).ToList();
+
+            return this.PartialView("Subnav", categories.Select(o => new CategoryViewModel(o)).ToList());
+        }
+
         public ActionResult Category(string categoryName)
         {
             Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName));

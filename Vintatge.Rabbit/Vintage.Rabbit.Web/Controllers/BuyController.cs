@@ -21,6 +21,12 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             this._queryDispatcher = queryDispatcher;
         }
+        public ActionResult PartySuppliesSubnav()
+        {
+            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery("party-supplies"));
+
+            return this.PartialView("PartySuppliesSubnav", category.Children.Select(o => new CategoryViewModel(o)).ToList());
+        }
 
         public ActionResult Preview(int productId, string name, string categoryName)
         {

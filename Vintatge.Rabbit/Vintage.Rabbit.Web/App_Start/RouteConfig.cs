@@ -26,6 +26,9 @@ namespace Vintage.Rabbit.Web
             public static string WizardOfOz = "Themes Wizard Of Oz";
             public static string Carnival = "Themes Carnival";
             public static string TeddyBearsPicnic = "Themes TeddyBearsPicnic";
+            public static string TeaParty = "Themes TeaParty";
+            public static string MaryPoppins = "Themes MaryPoppins";
+            public static string Cinderella = "Themes Cinderella";
             public static string Product = "Themes Product";
         }
 
@@ -105,6 +108,9 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.Themes.WizardOfOz, url: "style/wizard-of-oz", defaults: new { controller = "Style", action = "WizardOfOz" });
             routes.MapRoute(Routes.Themes.Carnival, url: "style/carnival", defaults: new { controller = "Style", action = "Carnival" });
             routes.MapRoute(Routes.Themes.TeddyBearsPicnic, url: "style/teddy-bears-picnic", defaults: new { controller = "Style", action = "TeddyBearsPicnic" });
+            routes.MapRoute(Routes.Themes.TeaParty, url: "style/tea-party", defaults: new { controller = "Style", action = "TeaParty" });
+            routes.MapRoute(Routes.Themes.MaryPoppins, url: "style/mary-poppins", defaults: new { controller = "Style", action = "MaryPoppins" });
+            routes.MapRoute(Routes.Themes.Cinderella, url: "style/cinderella", defaults: new { controller = "Style", action = "Cinderella" });
             routes.MapRoute(Routes.Themes.Product, url: "style/{name}/{productId}", defaults: new { controller = "Style", action = "Product" });
 
             routes.MapRoute(Routes.Hire.Index, url: "hire", defaults: new { controller = "Hire", action = "Index" });

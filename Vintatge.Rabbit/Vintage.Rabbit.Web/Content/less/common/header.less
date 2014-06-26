@@ -76,13 +76,25 @@ nav {
     margin-top: 5px;
     border-top: 1px dotted #666666;
     border-bottom: 1px dotted #666666;
+
     ol {
+        height: 48px;
+
         > li {
             text-align: center;
             position: relative;
-            float: left; padding-left: 35px; padding-right: 30px;
-            &:first-child {padding-left: 25px;}
-            &:last-child {padding-right: 15px;}
+            float: left;
+            padding-left: 35px;
+            padding-right: 30px;
+
+            &:first-child {
+                padding-left: 25px;
+            }
+
+            &:last-child {
+                padding-right: 15px;
+            }
+
             > a {
                 color: #555555;
                 text-transform: lowercase;
@@ -91,7 +103,8 @@ nav {
                 transition: all 0.15s linear .1s;
                 font-family: 'TypicalWriter', 'FontleroyBrown', Arial, sans-serif;
                 font-size: 20px;
-                height: 48px; line-height: 48px;
+                height: 48px;
+                line-height: 48px;
             }
 
             ul {
@@ -99,16 +112,19 @@ nav {
                 position: absolute;
                 z-index: 10;
                 background: #ffffff;
-                width: 143px;
+                width: 180px;
                 border: 1px solid #bbbbbb;
                 border-top: none;
-                top: 41px;
+                top: 48px;
                 left: 0px;
                 background: #ffffff;
                 z-index: 20;
                 display: none;
-                margin-left: 20px;
 
+                &.themes-subnav { left: -20px }
+                &.hire-subnav { left: 0px }
+                &.party-supplies-subnav { left: 28px }
+                &.faq-subnav { left: -54px }
 
                 li {
                     a {
@@ -119,6 +135,8 @@ nav {
                         border-top: 1px solid #cccccc;
                         color: #333333;
                         display: block;
+                        font-family: 'a-little-sunshine', Arial;
+                        font-size: 18px;
 
                         &:hover {
                             color: @blue;
@@ -131,12 +149,17 @@ nav {
                     &.selected {
                         color: @blue;
                     }
+
+                    &:first-child {
+                        a {
+                            border-top: none;
+                        }
+                    }
                 }
             }
 
             &:hover {
                 > a {
-                
                     color: @green;
                     text-decoration: none;
                 }
@@ -144,7 +167,9 @@ nav {
 
 
             &.active {
-                ul { display: block; }
+                ul {
+                    display: block;
+                }
             }
         }
     }

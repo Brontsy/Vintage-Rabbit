@@ -66,18 +66,28 @@
     
 
         <nav>
-            <ol class="float-container">
+            <ol>
                 <li>
                     @Html.RouteLink("Hire", Routes.Hire.Index)
+                    @{Html.RenderAction("Subnav", "Hire");}
                 </li>
                 <li>
                     @Html.RouteLink("Themes", Routes.Themes.Index)
+                    <ul class="themes-subnav">
+                        <li>@Html.RouteLink("Carnival", Routes.Themes.Carnival)</li>
+                        <li>@Html.RouteLink("Wizard of Oz", Routes.Themes.WizardOfOz)</li>
+                        <li>@Html.RouteLink("Teddy Bears Picnic", Routes.Themes.TeddyBearsPicnic)</li>
+                        <li>@Html.RouteLink("Tea Party", Routes.Themes.TeaParty)</li>
+                        <li>@Html.RouteLink("Mary Poppins", Routes.Themes.MaryPoppins)</li>
+                        <li>@Html.RouteLink("Cinderella", Routes.Themes.Cinderella)</li>
+                    </ul>
                 </li>
                 <li>
                     @Html.RouteLink("Party Supplies", Routes.Buy.PartySupplies)
+                    @{Html.RenderAction("PartySuppliesSubnav", "Buy");}
                 </li>
                 <li>
-                    @Html.RouteLink("Gifts", Routes.Buy.Gifts)
+                                  @Html.RouteLink("Gifts", Routes.Buy.Gifts)
                 </li>
                 <li>
                     @Html.RouteLink("Games", Routes.Buy.Games)
@@ -87,6 +97,13 @@
                 </li>
                 <li>
                     @Html.RouteLink("FAQ", Routes.FAQ)
+                    <ul class="faq-subnav">
+                        <li>@Html.RouteLink("How it works", Routes.HowItWorks)</li>
+                        <li>@Html.RouteLink("About us", Routes.AboutUs)</li>
+                        <li>@Html.RouteLink("Contact us", Routes.ContactUs)</li>
+                        <li>@Html.RouteLink("Terms and conditions", Routes.TermsAndConditions)</li>
+                        <li>@Html.RouteLink("Privacy policy", Routes.PrivacyPolicy)</li>
+                    </ul>
                 </li>
             </ol>
         </nav>
@@ -106,7 +123,7 @@
     @Scripts.Render("~/bundles/scripts")
     @RenderSection("scripts", required: false)
 
-    @*<script type="text/javascript">
+    <script type="text/javascript">
 
         $('nav > ol > li ul').fadeOut();
 
@@ -124,7 +141,7 @@
             setTimeout(function () { $this.removeClass('active'); }, 100);
         });
 
-    </script>*@
+    </script>
 
     <script type="text/javascript">
         //(function () {
