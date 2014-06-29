@@ -22,7 +22,7 @@
             <div class="tab-pane active cont" id="details">
                 <div class="row">
                     <div class="col-5">
-                        @using (Html.BeginRouteForm(Routes.Themes.Save, new { themeGuid = Model.Guid }, FormMethod.Post, new { }))
+                        @using (Html.BeginRouteForm(Routes.Themes.Save, new { guid = Model.Guid }, FormMethod.Post, new { }))
                         {
                             <fieldset>
                                 <ol class="row">

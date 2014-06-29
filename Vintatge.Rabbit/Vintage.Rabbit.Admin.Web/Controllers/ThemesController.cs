@@ -36,9 +36,9 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
             return this.View("Add", new ThemeViewModel());
         }
 
-        public ActionResult Edit(Guid themeGuid)
+        public ActionResult Edit(Guid guid)
         {
-            Theme theme = this._queryDispatcher.Dispatch<Theme, GetThemeByGuidQuery>(new GetThemeByGuidQuery(themeGuid));
+            Theme theme = this._queryDispatcher.Dispatch<Theme, GetThemeByGuidQuery>(new GetThemeByGuidQuery(guid));
 
             return this.View("Add", new ThemeViewModel(theme));
         }

@@ -69,8 +69,8 @@ namespace Vintage.Rabbit.Admin.Web
 
             routes.MapRoute(Routes.Themes.Index, url: "themes", defaults: new { controller = "Themes", action = "Index" });
             routes.MapRoute(Routes.Themes.Add, url: "themes/add", defaults: new { controller = "Themes", action = "Add" });
-            routes.MapRoute(Routes.Themes.Edit, url: "themes/edit/{themeGuid}", defaults: new { controller = "Themes", action = "Edit" });
-            routes.MapRoute(Routes.Themes.Save, url: "themes/save/{themeGuid}", defaults: new { controller = "Themes", action = "Save" });
+            routes.MapRoute(Routes.Themes.Edit, url: "themes/edit/{guid}", defaults: new { controller = "Themes", action = "Edit" });
+            routes.MapRoute(Routes.Themes.Save, url: "themes/save/{guid}", defaults: new { controller = "Themes", action = "Save" });
 
 
             routes.MapRoute(name: Routes.Home, url: "", defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
