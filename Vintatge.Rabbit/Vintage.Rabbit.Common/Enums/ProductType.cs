@@ -10,6 +10,7 @@ namespace Vintage.Rabbit.Common.Enums
     {
         Buy,
         Hire,
-        Delivery
+        Delivery,
+        Theme
     }
 }
