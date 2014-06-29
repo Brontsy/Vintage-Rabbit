@@ -15,6 +15,8 @@ namespace Vintage.Rabbit.Themes.Repository
     {
         IList<Theme> GetThemes();
 
+        Theme GetThemeByGuid(Guid theme);
+
         Theme SaveTheme(Theme theme);
     }
 
@@ -39,14 +41,15 @@ namespace Vintage.Rabbit.Themes.Repository
 
                 foreach (var theme in themeResults)
                 {
-                    themes.Add(this.ConvertToTheme(theme));
+                    Theme themeItem = this.ConvertToTheme(theme);
+                    themes.Add(themeItem);
                 }
 
             }
 
             return themes;
         }
-        public Theme GetThemesByGuid(Guid guid)
+        public Theme GetThemeByGuid(Guid guid)
         {
             using (SqlConnection connection = new SqlConnection(this._connectionString))
             {
@@ -64,19 +67,25 @@ namespace Vintage.Rabbit.Themes.Repository
 
         public Theme SaveTheme(Theme theme)
         {
-            if (this.GetThemesByGuid(theme.Guid) == null)
+            if (this.GetThemeByGuid(theme.Guid) == null)
             {
                 string sql = "Insert Into VintageRabbit.Themes (Guid, Title, Description, Cost, MainImage, Images, Products, DateCreated, DateLastModified) Values (@Guid, @Title, @Description, @Cost, @MainImage, @Images, @Products, @DateCreated, @DateLastModified)";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
-                    connection.Query(sql, new
+                    string mainImage = null;
+                    if(theme.MainImage != null)
+                    {
+                        mainImage = this._serializer.Serialize(theme.MainImage);
+                    }
+
+                    connection.Execute(sql, new
                     {
                         Guid = theme.Guid,
                         Title = theme.Title,
                         Description = theme.Description,
                         Cost = theme.Cost,
-                        MainImage = this._serializer.Serialize(theme.MainImage),
+                        MainImage = mainImage,
                         Images = this._serializer.Serialize(theme.Images),
                         Products = this._serializer.Serialize(theme.Products),
                         DateCreated = DateTime.Now,
@@ -90,13 +99,19 @@ namespace Vintage.Rabbit.Themes.Repository
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
-                    connection.Query(sql, new
+                    string mainImage = null;
+                    if (theme.MainImage != null)
+                    {
+                        mainImage = this._serializer.Serialize(theme.MainImage);
+                    }
+
+                    connection.Execute(sql, new
                     {
                         Guid = theme.Guid,
                         Title = theme.Title,
                         Description = theme.Description,
                         Cost = theme.Cost,
-                        MainImage = this._serializer.Serialize(theme.MainImage),
+                        MainImage = mainImage,
                         Images = this._serializer.Serialize(theme.Images),
                         Products = this._serializer.Serialize(theme.Products),
                         DateLastModified = DateTime.Now,
@@ -109,15 +124,18 @@ namespace Vintage.Rabbit.Themes.Repository
 
         public Theme ConvertToTheme(dynamic item)
         {
-            Theme theme = new Theme();
+            Theme theme = new Theme(item.Guid);
 
             theme.Id = item.Id;
-            theme.Guid = item.Guid;
             theme.Cost = item.Cost;
             theme.Title = item.Title;
             theme.Description = item.Description;
 
-            theme.MainImage = this._serializer.Deserialize<ThemeImage>(item.MainImage);
+            if (item.MainImage != null)
+            {
+                theme.MainImage = this._serializer.Deserialize<ThemeImage>(item.MainImage);
+            }
+
             theme.Images = this._serializer.Deserialize<IList<ThemeImage>>(item.Images);
             theme.Products = this._serializer.Deserialize<IList<ThemeProduct>>(item.Products);
 

@@ -1,0 +1,75 @@
+﻿@model Vintage.Rabbit.Admin.Web.Models.Themes.ThemeViewModel
+@using Vintage.Rabbit.Common.Enums;
+@{
+    ViewBag.Title = "Add Theme";
+}
+
+<div class="page-head">
+
+    <h2>Add Theme</h2>
+    <ol class="breadcrumbs">
+        <li>@Html.RouteLink("Home", Routes.Home)</li>
+        <li>@Html.RouteLink("Themes", Routes.Themes.Index)</li>
+        <li class="active">Add</li>
+    </ol>
+</div>
+<div class="body-content edit-product">
+    <div class="tab-container">
+        <ul class="nav nav-tabs">
+            <li class="active">@Html.RouteLink("Details", Routes.Themes.Edit)</li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active cont" id="details">
+                <div class="row">
+                    <div class="col-5">
+                        @using (Html.BeginRouteForm(Routes.Themes.Save, new { themeGuid = Model.Guid }, FormMethod.Post, new { }))
+                        {
+                            <fieldset>
+                                <ol class="row">
+                                    <li class="col-12">
+                                        @Html.LabelFor(o => o.Title)
+                                        @Html.TextBoxFor(o => o.Title, new { placeholder = "Title*" })
+                                        @Html.ValidationMessageFor(o => o.Title)
+                                    </li>
+                                    <li class="col-12">
+                                        @Html.LabelFor(o => o.Description)
+                                        @Html.TextAreaFor(o => o.Description, new { placeholder = "Description" })
+                                        @Html.ValidationMessageFor(o => o.Description)
+                                    </li>
+                                    <li class="col-12">
+                                        @Html.LabelFor(o => o.Cost)
+                                        @Html.TextBoxFor(o => o.Cost, new { placeholder = "Cost*" })
+                                        @Html.ValidationMessageFor(o => o.Cost)
+                                    </li>
+
+                                    <li class="col-4 offset-8">
+                                        <button type="submit" class="btn primary">Save</button>
+                                    </li>
+                                </ol>
+                            </fieldset>
+                        }
+                    </div>
+
+                    @if (Model.MainImage != null)
+                    {
+                        <div class="col-6 offset-1 photo-uploader">
+
+                            <img src="@Model.MainImage.Url" />
+
+                            <ol class="photo-list row">
+                                @foreach (var image in Model.Images)
+                                {
+                                    <li class="col-3">
+                                        <img src="@image.ThumbnailUrl" />
+                                    </li>
+                                }
+                            </ol>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

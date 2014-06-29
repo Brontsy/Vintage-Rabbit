@@ -47,10 +47,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="CommandHandlers\SaveThemeCommandHandler.cs" />
     <Compile Include="Entities\Theme.cs" />
     <Compile Include="Entities\ThemeImage.cs" />
     <Compile Include="Entities\ThemeProduct.cs" />
+    <Compile Include="Ioc\Bindings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryHandlers\GetThemeByGuidQueryHandler.cs" />
+    <Compile Include="QueryHandlers\GetThemesQueryHandler.cs" />
     <Compile Include="Repository\ThemeRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,10 +74,7 @@
       <Name>Vintage.Rabbit.Products</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Ioc\" />
-    <Folder Include="QueryHandlers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

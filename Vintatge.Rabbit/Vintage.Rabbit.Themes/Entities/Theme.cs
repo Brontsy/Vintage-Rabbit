@@ -31,5 +31,12 @@ namespace Vintage.Rabbit.Themes.Entities
         {
             get { return ProductType.Theme; }
         }
+
+        public Theme(Guid guid)
+        {
+            this.Guid = guid;
+            this.Products = new List<ThemeProduct>();
+            this.Images = new List<ThemeImage>();
+        }
     }
 }

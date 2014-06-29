@@ -172,6 +172,7 @@
     <Compile Include="Controllers\MembershipController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ThemesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -189,6 +190,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\LoginProvider.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Models\Themes\ThemeProductViewModel.cs" />
+    <Compile Include="Models\Themes\ThemeImageViewModel.cs" />
+    <Compile Include="Models\Themes\ThemeViewModel.cs" />
+    <Compile Include="Models\Themes\ThemesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
@@ -291,6 +296,8 @@
     <Content Include="Views\Blog\Add.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Products\AddInventory.cshtml" />
+    <Content Include="Views\Themes\Index.cshtml" />
+    <Content Include="Views\Themes\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -344,6 +351,10 @@
     <ProjectReference Include="..\Vintage.Rabbit.Products\Vintage.Rabbit.Products.csproj">
       <Project>{2ee117ed-6ab6-478d-93e7-1c695fc57b0a}</Project>
       <Name>Vintage.Rabbit.Products</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Themes\Vintage.Rabbit.Themes.csproj">
+      <Project>{3aad6a07-eab5-4715-b3ab-45c2e6b100e3}</Project>
+      <Name>Vintage.Rabbit.Themes</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -36,6 +36,14 @@ namespace Vintage.Rabbit.Admin.Web
             public static string Logout = "Member Logout";
         }
 
+        public static class Themes
+        {
+            public static string Index = "Themes - Index";
+            public static string Add = "Themes - Add";
+            public static string Edit = "Themes - Edit";
+            public static string Save = "Themes - Save";
+        }
+
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -58,6 +66,11 @@ namespace Vintage.Rabbit.Admin.Web
 
             routes.MapRoute(Routes.Blog.Index, url: "blog", defaults: new { controller = "Blog", action = "Index" });
             routes.MapRoute(Routes.Blog.View, url: "blog/{blogId}", defaults: new { controller = "Blog", action = "View" });
+
+            routes.MapRoute(Routes.Themes.Index, url: "themes", defaults: new { controller = "Themes", action = "Index" });
+            routes.MapRoute(Routes.Themes.Add, url: "themes/add", defaults: new { controller = "Themes", action = "Add" });
+            routes.MapRoute(Routes.Themes.Edit, url: "themes/edit/{themeGuid}", defaults: new { controller = "Themes", action = "Edit" });
+            routes.MapRoute(Routes.Themes.Save, url: "themes/save/{themeGuid}", defaults: new { controller = "Themes", action = "Save" });
 
 
             routes.MapRoute(name: Routes.Home, url: "", defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });

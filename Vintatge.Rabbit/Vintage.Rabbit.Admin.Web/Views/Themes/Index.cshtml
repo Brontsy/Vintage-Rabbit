@@ -1,0 +1,57 @@
+﻿@model Vintage.Rabbit.Admin.Web.Models.Themes.ThemesViewModel
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="page-head">
+
+    @Html.RouteLink("Add Theme", Routes.Themes.Add, new { }, new { @class = "btn primary right" })
+    <h2>Themes</h2>
+    <ol class="breadcrumbs">
+        <li><a href="#">Home</a></li>
+        <li class="active">Themes</li>
+    </ol>
+</div>
+
+
+
+    <div class="main-app">
+
+     
+        <div class="items products product-list">
+            <ol class="row">
+                @foreach (var theme in Model.Themes)
+                {
+                    <div class="col-4">
+                        <div class="item">
+                            <div class="product-image">
+                                <div class="container">
+                                    @if(theme.MainImage != null)
+                                    { 
+                                    <img src="@theme.MainImage.Url">
+                                    }
+                                </div>
+                            </div>
+                            <h4>
+                                @Html.RouteLink(theme.Title, Routes.Themes.Edit, new { themeGuid = theme.Guid }, new { })
+                            </h4>
+                        </div>
+                    </div>
+                }
+            </ol>
+        </div>
+    </div>
+
+<div class="test"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('.item').on('click', function (event) {
+            event.preventDefault();
+            event.stopPropagation();
+            window.location = $(this).find('a').attr('href');
+        });
+    });
+</script>
+

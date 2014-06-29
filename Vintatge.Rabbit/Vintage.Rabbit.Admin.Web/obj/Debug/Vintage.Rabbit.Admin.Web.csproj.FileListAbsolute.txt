@@ -96,3 +96,5 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.W
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\obj\Debug\Vintage.Rabbit.Admin.Web.csprojResolveAssemblyReference.cache
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\obj\Debug\Vintage.Rabbit.Admin.Web.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\obj\Debug\Vintage.Rabbit.Admin.Web.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Vintage.Rabbit.Themes.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Vintage.Rabbit.Themes.pdb
