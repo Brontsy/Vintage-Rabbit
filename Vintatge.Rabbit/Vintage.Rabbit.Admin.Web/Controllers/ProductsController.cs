@@ -16,6 +16,7 @@ using Vintage.Rabbit.Inventory.QueryHandlers;
 using Vintage.Rabbit.Interfaces.Inventory;
 using Vintage.Rabbit.Admin.Web.Models.Inventory;
 using Vintage.Rabbit.Inventory.Entities;
+using Vintage.Rabbit.Inventory.CommandHandlers;
 
 namespace Vintage.Rabbit.Admin.Web.Controllers
 {
@@ -151,7 +152,31 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
             IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductQuery>(new GetInventoryForProductQuery(product.Guid));
 
+            if (TempData.ContainsKey("SuccessMessage"))
+            {
+                ViewBag.SuccessMessage = TempData["SuccessMessage"].ToString();
+            }
+
             return this.View("Inventory", new InventoryPageViewModel(product, inventory));
+        }
+
+        public ActionResult InventoryAdd(int productId, int qty)
+        {
+            Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
+            this._commandDispatcher.Dispatch(new AddInventoryCommand(product.Guid, qty));
+
+            TempData["SuccessMessage"] = string.Format("{0} piece{1} of inventory have been added to {2}", qty, (qty > 1 ? "s" : string.Empty), product.Title);
+
+            return this.RedirectToRoute(Routes.Products.Inventory);
+        }
+
+        public ActionResult InventoryDelete(Guid inventoryGuid)
+        {
+            this._commandDispatcher.Dispatch(new DeleteInventoryCommand(inventoryGuid));
+
+            TempData["SuccessMessage"] = "Inventory has been deleted";
+
+            return this.RedirectToRoute(Routes.Products.Inventory);
         }
 	}
 }

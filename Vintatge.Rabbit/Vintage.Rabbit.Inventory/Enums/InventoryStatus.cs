@@ -9,6 +9,7 @@ namespace Vintage.Rabbit.Inventory.Enums
     public enum InventoryStatus
     {
         Available,
-        Sold
+        Sold,
+        Deleted
     }
 }

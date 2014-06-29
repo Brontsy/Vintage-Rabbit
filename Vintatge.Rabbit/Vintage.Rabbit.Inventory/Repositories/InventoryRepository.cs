@@ -17,6 +17,8 @@ namespace Vintage.Rabbit.Inventory.Repository
     {
         IList<InventoryItem> GetInventoryByProductGuid(Guid productGuid);
 
+        InventoryItem GetInventoryByGuid(Guid guid);
+
         InventoryItem SaveInventory(InventoryItem inventory);
     }
 
@@ -29,6 +31,21 @@ namespace Vintage.Rabbit.Inventory.Repository
         {
             this._connectionString = ConfigurationManager.ConnectionStrings["VintageRabbit"].ConnectionString;
             this._serializer = serializer;
+        }
+
+        public InventoryItem GetInventoryByGuid(Guid guid)
+        {
+            using (SqlConnection connection = new SqlConnection(this._connectionString))
+            {
+                var inventoryResults = connection.Query<dynamic>("Select * From VintageRabbit.Inventory Where Guid = @Guid", new { Guid = guid });
+
+                if (inventoryResults.Any())
+                {
+                    return this.ConvertToInventory(inventoryResults.First());
+                }
+            }
+
+            return null;
         }
 
         public IList<InventoryItem> GetInventoryByProductGuid(Guid productGuid)
@@ -48,21 +65,6 @@ namespace Vintage.Rabbit.Inventory.Repository
             }
 
             return inventoryItems;
-        }
-
-        private InventoryItem GetInventoryByGuid(Guid inventoryGuid)
-        {
-            using (SqlConnection connection = new SqlConnection(this._connectionString))
-            {
-                var inventoryResults = connection.Query<dynamic>("Select * From VintageRabbit.Inventory Where Guid = @Guid", new { Guid = inventoryGuid });
-
-                if(inventoryResults.Any())
-                {
-                    return this.ConvertToInventory(inventoryResults.First());
-                }
-            }
-
-            return null;
         }
 
         private InventoryItem ConvertToInventory(dynamic inventory)

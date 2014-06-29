@@ -20,6 +20,8 @@ namespace Vintage.Rabbit.Admin.Web
             public static string UploadPhoto = "Product - Upload Photo";
             public static string RemovePhoto = "Product - Remove Photo";
             public static string Inventory = "Product - Inventory";
+            public static string InventoryAdd = "Product - Inventory Add";
+            public static string InventoryDelete = "Product - Inventory Delete";
         }
 
         public static class Blog
@@ -47,6 +49,8 @@ namespace Vintage.Rabbit.Admin.Web
             routes.MapRoute(Routes.Products.UploadPhoto, url: "products/upload-photo/{productId}", defaults: new { controller = "Products", action = "UploadPhoto" });
             routes.MapRoute(Routes.Products.RemovePhoto, url: "products/{productId}/remove-photo/{photoId}", defaults: new { controller = "Products", action = "RemovePhoto" });
             routes.MapRoute(Routes.Products.Inventory, url: "products/{productId}/inventory", defaults: new { controller = "Products", action = "Inventory" });
+            routes.MapRoute(Routes.Products.InventoryAdd, url: "products/{productId}/inventory/add", defaults: new { controller = "Products", action = "InventoryAdd" });
+            routes.MapRoute(Routes.Products.InventoryDelete, url: "products/{productId}/inventory/delete/{inventoryGuid}", defaults: new { controller = "Products", action = "InventoryDelete" });
 
             routes.MapRoute(Routes.Membership.Login, url: "login", defaults: new { controller = "Membership", action = "Login" });
             routes.MapRoute(Routes.Membership.Logout, url: "logout", defaults: new { controller = "Membership", action = "Logout" });

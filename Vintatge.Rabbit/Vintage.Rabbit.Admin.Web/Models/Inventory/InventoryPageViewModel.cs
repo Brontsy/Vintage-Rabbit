@@ -15,10 +15,13 @@ namespace Vintage.Rabbit.Admin.Web.Models.Inventory
 
         public ProductViewModel Product { get; private set; }
 
+        public AddInventoryViewModel AddInventory { get; private set; }
+
         public InventoryPageViewModel(Product product, IList<InventoryItem> inventory)
         {
             this.Product = new ProductViewModel(product, new List<Category>());
             this.Inventory = inventory.Select(o => new InventoryItemViewModel(o)).ToList();
+            this.AddInventory = new AddInventoryViewModel();
         }
     }
 }

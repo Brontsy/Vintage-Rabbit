@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\DeleteInventoryCommandHandler.cs" />
+    <Compile Include="CommandHandlers\AddInventoryCommandHandler.cs" />
     <Compile Include="CommandHandlers\SaveInventoryCommandHandler.cs" />
     <Compile Include="Entities\InventoryItem.cs" />
     <Compile Include="Enums\InventoryStatus.cs" />
@@ -55,6 +57,7 @@
     <Compile Include="Messaging\Handlers\ProductCreatedMessageHandler.cs" />
     <Compile Include="Messaging\Messages\InventorySoldMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryHandlers\GetInventoryByGuidQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetInventoryForProductQueryHandler.cs" />
     <Compile Include="QueryHandlers\IsProductAvailableQueryHandler.cs" />
     <Compile Include="QueryHandlers\IsProductAvailableForHireQueryHandler.cs" />

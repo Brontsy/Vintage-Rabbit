@@ -177,6 +177,7 @@
     </Compile>
     <Compile Include="ModelBinders\MemberModelBinder.cs" />
     <Compile Include="Models\Blogs\BlogViewModel.cs" />
+    <Compile Include="Models\Inventory\AddInventoryViewModel.cs" />
     <Compile Include="Models\Inventory\InventoryItemViewModel.cs" />
     <Compile Include="Models\Inventory\InventoryPageViewModel.cs" />
     <Compile Include="Models\Products\ProductListViewModel.cs" />
@@ -289,6 +290,7 @@
     <Content Include="Views\Products\Inventory.cshtml" />
     <Content Include="Views\Blog\Add.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
+    <Content Include="Views\Products\AddInventory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

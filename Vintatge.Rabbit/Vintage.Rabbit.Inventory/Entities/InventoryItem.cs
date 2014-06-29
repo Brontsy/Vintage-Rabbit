@@ -76,5 +76,10 @@ namespace Vintage.Rabbit.Inventory.Entities
         {
             return this.Status == InventoryStatus.Available;
         }
+
+        public void Deleted()
+        {
+            this.Status = InventoryStatus.Deleted;
+        }
     }
 }

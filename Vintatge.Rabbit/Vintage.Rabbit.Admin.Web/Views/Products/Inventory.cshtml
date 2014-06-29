@@ -6,6 +6,7 @@
 <div class="page-head">
 
     <h2>Add Product</h2>
+
     <ol class="breadcrumbs">
         <li>@Html.RouteLink("Home", Routes.Home)</li>
         <li>@Html.RouteLink("Products", Routes.Products.List)</li>
@@ -21,8 +22,17 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane active cont" id="details">
+                @{Html.RenderPartial("AddInventory", Model.AddInventory);}
+                <h2>@Model.Product.Title</h2>               
 
-                <h2>@Model.Product.Title</h2>
+                @if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+                {
+                    <div class="row">
+                        <div class="alert positive icon col-4">
+                            <i class="fa fa-check-circle"></i> @ViewBag.SuccessMessage
+                        </div>
+                    </div>
+                }
 
                 <ul class="inventory">
                     <li class="inventory-header row">
@@ -30,6 +40,7 @@
                             <div class="col-3 guid">Inventory Id</div>
                             <div class="col-2 date-created">DateCreated</div>
                             <div class="col-2 status">Status</div>
+                            <div class="col-2 status">&nbsp;</div>
                    
                     </li>
                     @foreach (var inventory in Model.Inventory) 
@@ -38,7 +49,17 @@
                        
                                 <div class="col-3 guid">@inventory.Guid</div>
                                 <div class="col-2 date-created">@inventory.DateCreated.ToString("dd MMM yyyy")</div>
-                                <div class="col-2 status">@inventory.Status.ToString()</div>
+                            <div class="col-2 status">@inventory.Status.ToString()</div>
+                                <div class="col-2 delete">
+                                    @if(inventory.Status == Vintage.Rabbit.Inventory.Enums.InventoryStatus.Available)
+                                    { 
+                                    @Html.RouteLink("delete", Routes.Products.InventoryDelete, new { inventoryGuid = inventory.Guid }, new {})
+                                    }
+                                    else
+                                    {
+                                        <text>&nbsp;</text>
+                                    }
+                                </div>
                             
                         </li>
                     }

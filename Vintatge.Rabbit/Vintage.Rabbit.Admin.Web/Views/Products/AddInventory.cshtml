@@ -1,0 +1,13 @@
+﻿@model Vintage.Rabbit.Admin.Web.Models.Inventory.AddInventoryViewModel
+
+    @using (Html.BeginRouteForm(Routes.Products.InventoryAdd, new { }, FormMethod.Post, new { @class = "right add-inventory-form" }))
+    {
+        <fieldset>
+           
+                    @Html.LabelFor(o => o.Qty)
+                    @Html.TextBoxFor(o => o.Qty, new { placeholder = "Qty*" })
+                    @Html.ValidationMessageFor(o => o.Qty)
+              
+                    <button type="submit" class="btn primary">Save</button>
+        </fieldset>
+    }
