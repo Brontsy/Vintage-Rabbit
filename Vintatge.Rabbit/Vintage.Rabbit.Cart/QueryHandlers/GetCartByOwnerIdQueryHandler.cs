@@ -43,12 +43,12 @@ namespace Vintage.Rabbit.Carts.QueryHandlers
 
             Cart cart = this._cartRepository.GetCartByOwnerId(query.OwnerId);
 
-            if(cart == null)
+            if (cart == null)
             {
                 cart = new Cart(query.OwnerId);
-
-                this._cacheService.Add(cacheKey, cart);
             }
+             
+            this._cacheService.Add(cacheKey, cart);
 
             return cart;
         }
