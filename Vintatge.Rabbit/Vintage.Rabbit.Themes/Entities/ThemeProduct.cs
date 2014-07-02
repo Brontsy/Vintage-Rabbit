@@ -9,16 +9,30 @@ namespace Vintage.Rabbit.Themes.Entities
 {
     public class ThemeProduct
     {
+        public Guid Guid { get; set; }
         /// <summary>
         /// The X position this product sits on the main image of the theme
         /// </summary>
-        public int X { get; set; }
+        public decimal X { get; set; }
 
         /// <summary>
         /// The Y position this product sits on the main image of the theme
         /// </summary>
-        public int Y { get; set; }
+        public decimal Y { get; set; }
 
         public Guid ProductGuid { get; set; }
+
+        public ThemeProduct() 
+        {
+            this.Guid = Guid.NewGuid();
+        }
+
+        public ThemeProduct(Guid guid, Guid productGuid, decimal x, decimal y)
+        {
+            this.Guid = guid;
+            this.ProductGuid = productGuid;
+            this.X = x;
+            this.Y = y;
+        }
     }
 }

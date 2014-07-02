@@ -1,0 +1,37 @@
+﻿@model Vintage.Rabbit.Admin.Web.Models.Themes.ThemeProductViewModel
+
+
+
+
+@using (Html.BeginRouteForm(Routes.Themes.SaveProduct, new { themeProductGuid = Model.ThemeProductGuid }, FormMethod.Post, new { @class = "add-product-to-theme-form" }))
+{
+    @Html.HiddenFor(o => o.ProductGuid)
+    @Html.HiddenFor(o => o.X)
+    @Html.HiddenFor(o => o.Y)
+    
+    
+    <div class="row">
+        <div class="col-3">
+            <h2>Add Product</h2>
+        </div>
+        <div class="col-4">
+            <input type="text" id="product-search" name="product-search" value="@ViewBag.Search" class="search" data-search-url="@Url.RouteUrl(Routes.Products.Search)" placeholder="Search" />
+        </div>
+        <div class="col-3">
+            <button type="submit" class="btn primary">Save</button>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-3"></div>
+
+        <div class="col-2">
+            @Html.ValidationMessageFor(o => o.X)
+            @Html.ValidationMessageFor(o => o.Y)
+        </div>
+
+            <div class="col-12">
+                @{Html.RenderAction("MainImage", "Themes", new { themeProductGuid = Model.ThemeProductGuid });}
+            </div>
+
+            <div class="col-2"></div>
+    </div>
+}

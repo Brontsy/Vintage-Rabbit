@@ -21,6 +21,8 @@ namespace Vintage.Rabbit.Products.Repository
 
         IList<Product> GetProducts(int page);
 
+        IList<Product> GetProductsById(IList<int> productIds);
+
         IList<Product> GetProductsByCategory(Category category, ProductType productType);
 
         Product GetProductByGuid(Guid productGuid);
@@ -48,6 +50,24 @@ namespace Vintage.Rabbit.Products.Repository
             using (SqlConnection connection = new SqlConnection(this._connectionString))
             {
                 var productResults = connection.Query<ProductDb>("Select * From VintageRabbit.Products Where [Type] = @Type Order By DateCreated Desc", new { Type = type.ToString() });
+
+                foreach (var product in productResults)
+                {
+                    products.Add(this.ConvertToProduct(product));
+                }
+
+            }
+
+            return products;
+        }
+
+        public IList<Product> GetProductsById(IList<int> productIds)
+        {
+            IList<Product> products = new List<Product>();
+
+            using (SqlConnection connection = new SqlConnection(this._connectionString))
+            {
+                var productResults = connection.Query<ProductDb>("Select * From VintageRabbit.Products Where Id In @Ids Order By DateCreated Desc", new { Ids = productIds });
 
                 foreach (var product in productResults)
                 {

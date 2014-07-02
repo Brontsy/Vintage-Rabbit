@@ -23,16 +23,45 @@ namespace Vintage.Rabbit.Products.QueryHandlers
 
     internal class GetProductsByIdsQueryHandler : IQueryHandler<IList<Product>, GetProductsByIdsQuery>
     {
+        private ICacheService _cacheService;
         private IProductRepository _productRepository;
 
-        public GetProductsByIdsQueryHandler(IProductRepository productRepository)
+        public GetProductsByIdsQueryHandler(ICacheService cacheService, IProductRepository productRepository)
         {
+            this._cacheService = cacheService;
             this._productRepository = productRepository;
         }
 
         public IList<Product> Handle(GetProductsByIdsQuery query)
         {
-            return this._productRepository.GetProducts(1).Where(o => query.ProductIds.Contains(o.Id)).ToList();
+            IList<Product> foundProducts = new List<Product>();
+            IList<int> notFoundProducts = new List<int>();
+
+            foreach(var id in query.ProductIds)
+            {
+                string cacheKey = CacheKeyHelper.Product.ById(id);
+
+                if (this._cacheService.Exists(cacheKey))
+                {
+                    foundProducts.Add(this._cacheService.Get<Product>(cacheKey));
+                }
+                else
+                {
+                    notFoundProducts.Add(id);
+                }
+            }
+
+            IList<Product> products = this._productRepository.GetProductsById(notFoundProducts);
+
+            foreach (Product product in products)
+            {
+                this._cacheService.Add(CacheKeyHelper.Product.ById(product.Id), product);
+                this._cacheService.Add(CacheKeyHelper.Product.ByGuid(product.Guid), product);
+
+                foundProducts.Add(product);
+            }
+
+            return foundProducts;
         }
     }
 }

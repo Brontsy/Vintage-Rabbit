@@ -31,3 +31,7 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bi
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\obj\Debug\Vintage.Rabbit.Carts.csprojResolveAssemblyReference.cache
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\obj\Debug\Vintage.Rabbit.Carts.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\obj\Debug\Vintage.Rabbit.Carts.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Carts.dll.config
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\StackExchange.Redis.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\StackExchange.Redis.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\StackExchange.Redis.xml

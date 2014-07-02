@@ -1,0 +1,24 @@
+﻿@model IList<Vintage.Rabbit.Admin.Web.Models.Themes.ThemeProductListItemViewModel>
+@{
+    ViewBag.Title = "List";
+}
+
+<ol class="row">
+    @foreach (var product in Model)
+    {
+        <li class="col-2">
+            <div class="item">
+                <div class="product-image">
+                    <div class="container">
+                        <img src="@product.Thumbnail">
+                    </div>
+                </div>
+                <h4>
+                    @Html.RouteLink(product.Title, Routes.Themes.EditProduct, new { themeProductGuid = product.ThemeProductGuid }, new { @class="ajax-lightbox" })
+                </h4>
+                <p class="price">@product.Cost</p>
+            </div>
+        </li>
+    }
+</ol>
+  

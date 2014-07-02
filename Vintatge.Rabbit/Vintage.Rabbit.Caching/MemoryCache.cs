@@ -18,19 +18,17 @@ namespace Vintage.Rabbit.Caching
 
         public bool Exists(string cacheKey)
         {
-            return false;
-            //return this._cache[cacheKey] != null;
+            return this._cache[cacheKey] != null;
         }
 
         public T Get<T>(string cacheKey)
         {
-            return default(T);
-            //return (T)this._cache[cacheKey];
+            return (T)this._cache[cacheKey];
         }
 
         public void Add(string cacheKey, object obj)
         {
-            //this._cache.Add(cacheKey, obj, new CacheItemPolicy() { SlidingExpiration = TimeSpan.FromDays(7) });
+            this._cache.Add(cacheKey, obj, new CacheItemPolicy() { SlidingExpiration = TimeSpan.FromDays(7) });
         }
     }
 }

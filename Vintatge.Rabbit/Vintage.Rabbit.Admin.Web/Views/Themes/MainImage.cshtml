@@ -1,0 +1,11 @@
+﻿@model Vintage.Rabbit.Admin.Web.Models.Themes.ThemeMainImageViewModel
+
+
+<img class="main-image" src="@Model.Theme.MainImage.Url" />
+
+@foreach(var product in Model.Theme.Products)
+{
+    <div class="marker@(Model.SelectedProductGuid.HasValue && Model.SelectedProductGuid == product.ThemeProductGuid ? " selected" : string.Empty)" style="left: @(product.X)%; top: @(product.Y)%">
+        <span class="inner-circle"></span>
+    </div>
+}

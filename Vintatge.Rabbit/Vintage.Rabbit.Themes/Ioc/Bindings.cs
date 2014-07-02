@@ -18,6 +18,7 @@ namespace Vintage.Rabbit.Themes.Ioc
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<SaveThemeCommandHandler>().As<ICommandHandler<SaveThemeCommand>>();
+            builder.RegisterType<AddProductToThemeCommandHandler>().As<ICommandHandler<AddProductToThemeCommand>>();
 
 
             builder.RegisterType<GetThemesQueryHandler>().As<IQueryHandler<IList<Theme>, GetThemesQuery>>();

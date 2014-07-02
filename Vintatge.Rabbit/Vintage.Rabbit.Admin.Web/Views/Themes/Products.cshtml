@@ -1,0 +1,36 @@
+﻿@model Vintage.Rabbit.Admin.Web.Models.Themes.ThemeViewModel
+@using Vintage.Rabbit.Common.Enums;
+@{
+    ViewBag.Title = "Add / Edit Products";
+}
+
+<div class="page-head">
+    <h2>Add / Edit Products</h2>
+    <ol class="breadcrumbs">
+        <li>@Html.RouteLink("Home", Routes.Home)</li>
+        <li>@Html.RouteLink("Themes", Routes.Themes.Index)</li>
+        <li>@Html.RouteLink("Edit", Routes.Themes.Edit)</li>
+        <li class="active">Products</li>
+    </ol>
+</div>
+<div class="body-content theme">
+    <div class="tab-container add-products-to-theme">       
+    
+        @Html.RouteLink("Add Product", Routes.Themes.AddProduct, new { }, new { @class = "btn primary right ajax-lightbox" })
+        <ul class="nav nav-tabs">
+            <li>@Html.RouteLink("Details", Routes.Themes.Edit)</li>
+            <li class="active">@Html.RouteLink("Products", Routes.Themes.Products)</li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active cont" id="details">
+
+
+
+                <div class="product-list">
+                    @{Html.RenderAction("ProductList", "Themes");}
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

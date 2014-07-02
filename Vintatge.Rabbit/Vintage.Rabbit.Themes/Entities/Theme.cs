@@ -38,5 +38,17 @@ namespace Vintage.Rabbit.Themes.Entities
             this.Products = new List<ThemeProduct>();
             this.Images = new List<ThemeImage>();
         }
+
+        internal void AddProduct(Guid guid, Guid productGuid, decimal x, decimal y)
+        {
+            var existingProducts = this.Products.Where(o => o.Guid == guid).ToList();
+
+            foreach(var existingProduct in existingProducts)
+            {
+                var themeProduct = this.Products.Remove(existingProduct);
+            }
+         
+            this.Products.Add(new ThemeProduct(guid, productGuid, x, y));
+        }
     }
 }

@@ -17,6 +17,7 @@ using Vintage.Rabbit.Interfaces.Inventory;
 using Vintage.Rabbit.Admin.Web.Models.Inventory;
 using Vintage.Rabbit.Inventory.Entities;
 using Vintage.Rabbit.Inventory.CommandHandlers;
+using Vintage.Rabbit.Search.QueryHandlers;
 
 namespace Vintage.Rabbit.Admin.Web.Controllers
 {
@@ -32,6 +33,15 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
             this._queryDispatcher = queryDispatcher;
             this._commandDispatcher = commandDispatcher;
             this._uploadPhotoService = uploadPhotoService;
+        }
+
+        public ActionResult Search(string term)
+        {
+            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, SearchQuery>(new SearchQuery(term));
+
+            var viewModel = products.Select(o => new SearchResultViewModel(o.Title, o.Guid));
+
+            return this.Json(viewModel, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult List()

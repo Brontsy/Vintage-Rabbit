@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="CommandHandlers\AddProductToThemeCommandHandler.cs" />
     <Compile Include="CommandHandlers\SaveThemeCommandHandler.cs" />
     <Compile Include="Entities\Theme.cs" />
     <Compile Include="Entities\ThemeImage.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Repository\ThemeRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

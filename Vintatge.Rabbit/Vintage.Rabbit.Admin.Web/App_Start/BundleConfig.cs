@@ -19,6 +19,7 @@ namespace Vintage.Rabbit.Admin.Web
                 .Include("~/Content/scripts/bootstrap/*.js")
                 .Include("~/Content/scripts/datepicker/*.js")
                 .Include("~/Content/scripts/photo-uploader/*.js")
+                .Include("~/Content/scripts/lightbox/*.js")
                 .Include("~/Content/scripts/*.js"));
 
 

@@ -187,6 +187,10 @@
     <Compile Include="Models\Products\ProductImageViewModel.cs" />
     <Compile Include="Models\Products\ProductListItemViewModel.cs" />
     <Compile Include="Models\Products\ProductViewModel.cs" />
+    <Compile Include="Models\Products\SearchResultViewModel.cs" />
+    <Compile Include="Models\Themes\AddProductsToThemeViewModel.cs" />
+    <Compile Include="Models\Themes\ThemeMainImageViewModel.cs" />
+    <Compile Include="Models\Themes\ThemeProductListItemViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\LoginProvider.cs" />
     <Compile Include="Startup.cs" />
@@ -244,6 +248,7 @@
     <Content Include="Content\less\pages\inventory-list.less" />
     <Content Include="Content\less\pages\edit-product.less" />
     <Content Include="Content\less\pages\blog-entries.less" />
+    <Content Include="Content\less\pages\theme.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -255,6 +260,9 @@
     <Content Include="Content\scripts\jquery\respond.js" />
     <Content Include="Content\scripts\jquery\respond.min.js" />
     <None Include="Content\scripts\jquery\_references.js" />
+    <Content Include="Content\scripts\addProductToTheme.js" />
+    <Content Include="Content\scripts\lightbox.js" />
+    <Content Include="Content\scripts\lightbox\feather-light.js" />
     <Content Include="Content\scripts\modernizr\modernizr-2.6.2.js" />
     <Content Include="Content\scripts\photo-uploader\moxie.js" />
     <Content Include="Content\scripts\photo-uploader\Moxie.swf" />
@@ -298,6 +306,10 @@
     <Content Include="Views\Products\AddInventory.cshtml" />
     <Content Include="Views\Themes\Index.cshtml" />
     <Content Include="Views\Themes\Add.cshtml" />
+    <Content Include="Views\Themes\Products.cshtml" />
+    <Content Include="Views\Themes\ProductList.cshtml" />
+    <Content Include="Views\Themes\AddProduct.cshtml" />
+    <Content Include="Views\Themes\MainImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -351,6 +363,10 @@
     <ProjectReference Include="..\Vintage.Rabbit.Products\Vintage.Rabbit.Products.csproj">
       <Project>{2ee117ed-6ab6-478d-93e7-1c695fc57b0a}</Project>
       <Name>Vintage.Rabbit.Products</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Search\Vintage.Rabbit.Search.csproj">
+      <Project>{543a3e22-4b5f-4455-a884-71464e7fea96}</Project>
+      <Name>Vintage.Rabbit.Search</Name>
     </ProjectReference>
     <ProjectReference Include="..\Vintage.Rabbit.Themes\Vintage.Rabbit.Themes.csproj">
       <Project>{3aad6a07-eab5-4715-b3ab-45c2e6b100e3}</Project>

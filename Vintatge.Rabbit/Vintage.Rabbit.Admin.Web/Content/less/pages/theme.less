@@ -1,0 +1,82 @@
+﻿
+
+.add-product-to-theme-form {
+    width: 1024px;
+
+    h3 {
+        line-height: 36px;
+        font-size: 18px;
+    }
+
+    label {
+        float: left;
+        line-height: 36px;
+        margin-right: 5px;
+    }
+
+    input[type="text"] {
+        float: left;
+        width: 60px;
+        text-align: center;
+        margin-right: 20px;
+
+        &.search {
+            width: 100%;
+            text-align: left;
+            margin-right: 0px;
+        }
+    }
+
+    img {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .marker {
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        background: #ffffff;
+        border: 2px solid #333333;
+        border-radius: 8px;
+        padding: 3px;
+        cursor: pointer;
+        transition: all 0s linear .1s;
+        display: block;
+        z-index: 110;
+        opacity: 0.5;
+
+        &.selected
+            {
+            opacity: 1;
+        }
+
+        &:hover {
+            border: 2px solid darken(#333333, 10%);
+
+            .inner-circle {
+                background: darken(#333333, 10%);
+            }
+        }
+
+        .inner-circle {
+            width: 6px;
+            height: 6px;
+            background: #333333;
+            border-radius: 3px;
+            transition: all 0s linear .1s;
+            display: block;
+        }
+    }
+}
+
+.ui-autocomplete
+{
+    background: #ffffff; z-index: 100;
+    border-left: 1px solid #cccccc; border-right: 1px solid #cccccc; width: 370px;
+    li
+    {
+        padding: 8px 20px 8px 20px; border-bottom: 1px solid #cccccc; cursor: pointer;
+        &:hover { background: #f1f1f1; }
+    }
+}

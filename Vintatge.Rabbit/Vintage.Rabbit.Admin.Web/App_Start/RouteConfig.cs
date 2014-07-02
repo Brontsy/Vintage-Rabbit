@@ -12,6 +12,7 @@ namespace Vintage.Rabbit.Admin.Web
         public static string Home = "Home";
         public static class Products
         {
+            public static string Search = "Product Search";
             public static string List = "Product List";
             public static string Type = "Product Type";
             public static string Edit = "Product - Edit";
@@ -42,6 +43,10 @@ namespace Vintage.Rabbit.Admin.Web
             public static string Add = "Themes - Add";
             public static string Edit = "Themes - Edit";
             public static string Save = "Themes - Save";
+            public static string Products = "Themes - Products";
+            public static string AddProduct = "Themes - AddProduct";
+            public static string SaveProduct = "Themes - SaveProduct";
+            public static string EditProduct = "Themes - EditProduct";
         }
 
         public static void RegisterRoutes(RouteCollection routes)
@@ -49,6 +54,7 @@ namespace Vintage.Rabbit.Admin.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
 
+            routes.MapRoute(Routes.Products.Search, url: "products/search", defaults: new { controller = "Products", action = "Search" });
             routes.MapRoute(Routes.Products.AddProduct, url: "products/add", defaults: new { controller = "Products", action = "Add" });
             routes.MapRoute(Routes.Products.List, url: "products", defaults: new { controller = "Products", action = "List" });
             routes.MapRoute(Routes.Products.Type, url: "products/{productType}", defaults: new { controller = "Products", action = "List" });
@@ -71,6 +77,10 @@ namespace Vintage.Rabbit.Admin.Web
             routes.MapRoute(Routes.Themes.Add, url: "themes/add", defaults: new { controller = "Themes", action = "Add" });
             routes.MapRoute(Routes.Themes.Edit, url: "themes/edit/{guid}", defaults: new { controller = "Themes", action = "Edit" });
             routes.MapRoute(Routes.Themes.Save, url: "themes/save/{guid}", defaults: new { controller = "Themes", action = "Save" });
+            routes.MapRoute(Routes.Themes.Products, url: "themes/edit/{guid}/products", defaults: new { controller = "Themes", action = "Products" });
+            routes.MapRoute(Routes.Themes.AddProduct, url: "themes/edit/{guid}/products/add", defaults: new { controller = "Themes", action = "AddProduct" });
+            routes.MapRoute(Routes.Themes.SaveProduct, url: "themes/edit/{guid}/products/save/{themeProductGuid}", defaults: new { controller = "Themes", action = "SaveProduct" });
+            routes.MapRoute(Routes.Themes.EditProduct, url: "themes/edit/{guid}/products/edit/{themeProductGuid}", defaults: new { controller = "Themes", action = "EditProduct" });
 
 
             routes.MapRoute(name: Routes.Home, url: "", defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
