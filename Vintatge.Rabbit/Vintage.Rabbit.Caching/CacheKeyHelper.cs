@@ -50,6 +50,7 @@ namespace Vintage.Rabbit.Caching
                 keys.Add(ById(product.Id));
                 keys.Add(ByGuid(product.Guid));
                 keys.Add(ByType(product.Type));
+                keys.Add(All());
 
                 return keys;
             }
