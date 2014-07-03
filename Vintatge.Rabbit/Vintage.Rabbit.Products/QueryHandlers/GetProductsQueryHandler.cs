@@ -34,7 +34,7 @@ namespace Vintage.Rabbit.Products.QueryHandlers
 
         public IList<Product> Handle(GetProductsQuery query)
         {
-            string cacheKey = string.Format("Products");
+            string cacheKey = CacheKeyHelper.Product.All();
 
             if (this._cacheService.Exists(cacheKey))
             {

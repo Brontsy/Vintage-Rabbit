@@ -23,7 +23,7 @@ namespace Vintage.Rabbit.Products.Ioc
             builder.RegisterType<RemovePhotoCommandHandler>().As<ICommandHandler<RemovePhotoCommand>>();
             builder.RegisterType<CreateProductCommandHandler>().As<ICommandHandler<CreateProductCommand>>();
 
-            builder.RegisterType<ProductRepository>().As<IMessageHandler<SaveProductMessage>>();
+            //builder.RegisterType<ProductRepository>().As<IMessageHandler<SaveProductMessage>>();
 
             builder.RegisterType<GetFeaturedProductsQueryHandler>().As<IQueryHandler<IList<Product>, GetFeaturedProductsQuery>>();
 

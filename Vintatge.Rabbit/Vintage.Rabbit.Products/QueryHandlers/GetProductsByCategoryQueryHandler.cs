@@ -29,32 +29,20 @@ namespace Vintage.Rabbit.Products.QueryHandlers
     {
         private ICacheService _cacheService;
         private IProductRepository _productRepository;
+        private IQueryDispatcher _queryDispatcher;
 
-        public GetProductsByCategoryQueryHandler(ICacheService cacheService, IProductRepository productRepository)
+        public GetProductsByCategoryQueryHandler(ICacheService cacheService, IQueryDispatcher queryDispatcher, IProductRepository productRepository)
         {
             this._cacheService = cacheService;
             this._productRepository = productRepository;
+            this._queryDispatcher = queryDispatcher;
         }
 
         public IList<Product> Handle(GetProductsByCategoryQuery query)
         {
-            string cacheKey = string.Format("Products-{0}-{1}", query.Category.Name, query.ProductType.ToString());
+            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByTypeQuery>(new GetProductsByTypeQuery(query.ProductType));
 
-            if(this._cacheService.Exists(cacheKey))
-            {
-                return this._cacheService.Get<IList<Product>>(cacheKey);
-            }
-
-            IList<Product> products = this._productRepository.GetProductsByCategory(query.Category, query.ProductType);
-
-            this._cacheService.Add(cacheKey, products);
-            foreach(Product product in products)
-            {
-                this._cacheService.Add(CacheKeyHelper.Product.ById(product.Id), product);
-                this._cacheService.Add(CacheKeyHelper.Product.ByGuid(product.Guid), product);
-            }
-
-            return products;
+            return products.Where(o => o.Categories.Any(x => x.Name == query.Category.Name || x.Children.Any(y => y.Name == query.Category.Name))).ToList();
         }
     }
 }

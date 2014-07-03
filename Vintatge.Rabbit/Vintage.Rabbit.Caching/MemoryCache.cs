@@ -30,5 +30,10 @@ namespace Vintage.Rabbit.Caching
         {
             this._cache.Add(cacheKey, obj, new CacheItemPolicy() { SlidingExpiration = TimeSpan.FromDays(7) });
         }
+
+        public void Remove(string cacheKey)
+        {
+            this._cache.Remove(cacheKey);
+        }
     }
 }

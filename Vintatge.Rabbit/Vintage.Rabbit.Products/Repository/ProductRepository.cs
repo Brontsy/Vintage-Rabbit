@@ -12,6 +12,7 @@ using Vintage.Rabbit.Products.Repository.Entities;
 using System.Configuration;
 using Vintage.Rabbit.Common.Enums;
 using Vintage.Rabbit.Common.Serialization;
+using Vintage.Rabbit.Interfaces.Membership;
 
 namespace Vintage.Rabbit.Products.Repository
 {
@@ -23,16 +24,16 @@ namespace Vintage.Rabbit.Products.Repository
 
         IList<Product> GetProductsById(IList<int> productIds);
 
-        IList<Product> GetProductsByCategory(Category category, ProductType productType);
-
         Product GetProductByGuid(Guid productGuid);
 
         Product GetProductById(int productId);
 
         IList<Product> GetProductsByType(ProductType type);
+
+        Product SaveProduct(Product product, IActionBy actionBy);
     }
 
-    internal class ProductRepository : IProductRepository, IMessageHandler<SaveProductMessage>
+    internal class ProductRepository : IProductRepository
     {
         private ISerializer _serializer;
         private string _connectionString;
@@ -109,23 +110,22 @@ namespace Vintage.Rabbit.Products.Repository
             return null;
         }
 
-        public void Handle(SaveProductMessage message)
+        public Product SaveProduct(Product product, IActionBy actionBy)
         {
-            var product = message.Product;
             string categories = this._serializer.Serialize(product.Categories);
             string images = this._serializer.Serialize(product.Images);
 
-            if (message.Product.Id == 0)
+            if (product.Id == 0)
             {
                 string sql = @"Insert Into VintageRabbit.Products
                                 ([Guid], Code, [Type], Title, Description, Price, Keywords, Inventory, IsFeatured, DateCreated, DateLastModified, UpdatedBy, Categories, Images)
                                 Values
                                 (@Guid, @Code, @Type, @Title, @Description, @Price, @Keywords, @Inventory, @IsFeatured, @DateCreated, @DateLastModified, @UpdatedBy, @Categories, @Images);
-                                Select SCOPE_IDENTITY() as ProductId";
+                                Select cast(SCOPE_IDENTITY() as int)";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
-                    connection.Query(sql, new
+                    IEnumerable<int> productIds = connection.Query<int>(sql, new
                     {
                         Guid = product.Guid,
                         Code = product.Code,
@@ -137,11 +137,16 @@ namespace Vintage.Rabbit.Products.Repository
                         IsFeatured = product.IsFeatured,
                         DateCreated = DateTime.Now,
                         DateLastModified = DateTime.Now,
-                        UpdatedBy = message.ActionBy.Email,
+                        UpdatedBy = actionBy.Email,
                         Categories = categories,
                         Inventory = product.Inventory,
                         Images = images
                     });
+
+                    if(productIds.Any())
+                    {
+                        product.Id = productIds.First();
+                    }
                 }
             }
             else
@@ -163,7 +168,7 @@ namespace Vintage.Rabbit.Products.Repository
                         Keywords = product.Keywords,
                         IsFeatured = product.IsFeatured,
                         DateLastModified = DateTime.Now,
-                        UpdatedBy = message.ActionBy.Email,
+                        UpdatedBy = actionBy.Email,
                         Categories = categories,
                         Inventory = product.Inventory,
                         Images = images,
@@ -171,6 +176,8 @@ namespace Vintage.Rabbit.Products.Repository
                     });
                 }
             }
+
+            return product;
         }
 
         public IList<Product> GetFeaturedProducts()
@@ -181,11 +188,6 @@ namespace Vintage.Rabbit.Products.Repository
         public IList<Product> GetProducts(int page)
         {
             return this.GetProducts().ToList();
-        }
-
-        public IList<Product> GetProductsByCategory(Category category, ProductType productType)
-        {
-            return this.GetProducts().Where(o => o.Type == productType && o.Categories.Any(x => x.Name == category.Name || x.Children.Any(y => y.Name == category.Name))).ToList();
         }
 
         private IList<Product> GetProducts()

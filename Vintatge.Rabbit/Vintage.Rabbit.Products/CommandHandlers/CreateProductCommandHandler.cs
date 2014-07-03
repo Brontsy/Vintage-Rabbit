@@ -33,11 +33,13 @@ namespace Vintage.Rabbit.Products.CommandHandlers
     internal class CreateProductCommandHandler : ICommandHandler<CreateProductCommand>
     {
         private ICacheService _cacheService;
+        private ICommandDispatcher _commandDispatcher;
         private IMessageService _messageService;
 
-        public CreateProductCommandHandler(ICacheService cacheService, IMessageService messageService)
+        public CreateProductCommandHandler(ICacheService cacheService, ICommandDispatcher commandDispatcher, IMessageService messageService)
         {
             this._cacheService = cacheService;
+            this._commandDispatcher = commandDispatcher;
             this._messageService = messageService;
         }
 
@@ -45,9 +47,7 @@ namespace Vintage.Rabbit.Products.CommandHandlers
         {
             Product product = new Product(command.ProductGuid, command.InventoryCount);
 
-            SaveProductMessage message = new SaveProductMessage(product, command.ActionBy);
-
-            this._messageService.AddMessage(message);
+            this._commandDispatcher.Dispatch(new SaveProductCommand(product, command.ActionBy));
 
             IProductCreatedMessage createdMessage = new ProductCreatedMessage(product);
 

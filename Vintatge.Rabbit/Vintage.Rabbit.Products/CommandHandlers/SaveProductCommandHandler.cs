@@ -10,6 +10,7 @@ using Vintage.Rabbit.Interfaces.Membership;
 using Vintage.Rabbit.Interfaces.Messaging;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Products.Messaging.Messages;
+using Vintage.Rabbit.Products.Repository;
 
 namespace Vintage.Rabbit.Products.CommandHandlers
 {
@@ -29,26 +30,24 @@ namespace Vintage.Rabbit.Products.CommandHandlers
     internal class SaveProductCommandHandler : ICommandHandler<SaveProductCommand>
     {
         private ICacheService _cacheService;
-        private IMessageService _messageService;
+        private IProductRepository _productRepository;
 
-        public SaveProductCommandHandler(ICacheService cacheService, IMessageService messageService)
+        public SaveProductCommandHandler(ICacheService cacheService, IProductRepository productRepository)
         {
             this._cacheService = cacheService;
-            this._messageService = messageService;
+            this._productRepository = productRepository;
         }
 
         public void Handle(SaveProductCommand command)
         {
-            if (command.Product.Id != 0)
+            Product product = this._productRepository.SaveProduct(command.Product, command.ActionBy);
+
+            IList<string> keys = CacheKeyHelper.Product.Keys(product);
+
+            foreach(string key in keys)
             {
-                string cacheKey = CacheKeyHelper.Product.ById(command.Product.Id);
-
-                this._cacheService.Add(cacheKey, command.Product);
+                this._cacheService.Remove(key);
             }
-
-            SaveProductMessage message = new SaveProductMessage(command.Product, command.ActionBy);
-
-            this._messageService.AddMessage(message);
         }
     }
 }

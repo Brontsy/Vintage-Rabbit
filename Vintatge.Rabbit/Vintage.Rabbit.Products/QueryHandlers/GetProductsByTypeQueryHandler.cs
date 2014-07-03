@@ -35,7 +35,7 @@ namespace Vintage.Rabbit.Products.QueryHandlers
 
         public IList<Product> Handle(GetProductsByTypeQuery query)
         {
-            string cacheKey = string.Format("Products-{0}", query.Type.ToString());
+            string cacheKey = CacheKeyHelper.Product.ByType(query.Type);
 
             if (this._cacheService.Exists(cacheKey))
             {

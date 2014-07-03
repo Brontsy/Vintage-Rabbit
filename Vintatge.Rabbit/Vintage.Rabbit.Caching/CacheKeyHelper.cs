@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vintage.Rabbit.Common.Enums;
+using Vintage.Rabbit.Interfaces.Products;
 
 namespace Vintage.Rabbit.Caching
 {
@@ -29,6 +31,27 @@ namespace Vintage.Rabbit.Caching
             public static string ByGuid(Guid guid)
             {
                 return string.Format("Product-ByGuid-{0}", guid);
+            }
+
+            public static string ByType(ProductType type)
+            {
+                return string.Format("Products-{0}", type);
+            }
+
+            public static string All()
+            {
+                return "Products";
+            }
+
+            public static IList<string> Keys(IProduct product)
+            {
+                IList<string> keys = new List<string>();
+
+                keys.Add(ById(product.Id));
+                keys.Add(ByGuid(product.Guid));
+                keys.Add(ByType(product.Type));
+
+                return keys;
             }
         }
 

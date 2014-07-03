@@ -13,5 +13,7 @@ namespace Vintage.Rabbit.Interfaces.Cache
         T Get<T>(string cacheKey);
 
         void Add(string cacheKey, object obj);
+
+        void Remove(string cacheKey);
     }
 }

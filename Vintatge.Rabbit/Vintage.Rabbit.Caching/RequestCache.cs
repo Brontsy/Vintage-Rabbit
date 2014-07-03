@@ -48,5 +48,10 @@ namespace Vintage.Rabbit.Caching
                 _cache.Add(cacheKey, obj);
             }
         }
+
+        public void Remove(string cacheKey)
+        {
+            _cache.Remove(cacheKey);
+        }
     }
 }
