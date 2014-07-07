@@ -1,5 +1,4 @@
 ﻿
-using Microsoft.TeamFoundation.Client;
 using PayPal.PayPalAPIInterfaceService;
 using PayPal.PayPalAPIInterfaceService.Model;
 using System;
