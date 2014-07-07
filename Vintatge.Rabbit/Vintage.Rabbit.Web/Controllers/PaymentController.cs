@@ -35,14 +35,16 @@ namespace Vintage.Rabbit.Web.Controllers
         private ICreateOrderProvider _createOrderProvider;
         private IAddressProvider _addressProvider;
         private ICreditCardService _creditCardService;
+        private IPayPalService _paypalService;
 
-        public PaymentController(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher, ICreateOrderProvider createOrderProvider, IAddressProvider addressProvider, ICreditCardService creditCardService)
+        public PaymentController(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher, ICreateOrderProvider createOrderProvider, IAddressProvider addressProvider, ICreditCardService creditCardService, IPayPalService paypalService)
         {
             this._queryDispatcher = queryDispatcher;
             this._commandDispatcher = commandDispatcher;
             this._createOrderProvider = createOrderProvider;
             this._addressProvider = addressProvider;
             this._creditCardService = creditCardService;
+            this._paypalService = paypalService;
         }
 
         public ActionResult Index(Member member, Order order, Cart cart)
@@ -251,6 +253,27 @@ namespace Vintage.Rabbit.Web.Controllers
         public ActionResult Complete()
         {
             return this.View("Complete");
+        }
+
+        public ActionResult PayPal(Order order)
+        {
+            string url = this._paypalService.Checkout(order);
+
+            return this.Redirect(url);
+        }
+
+        public ActionResult PayPalSuccess(Order order, Guid paypalPaymentGuid, string token)
+        {
+            this._paypalService.Success(order, paypalPaymentGuid, token);
+
+            return this.RedirectToRoute(Routes.Checkout.Complete, new { orderId = order.Guid });
+        }
+
+        public ActionResult PayPalCancel(Order order, Guid paypalPaymentGuid, string token)
+        {
+            this._paypalService.Cancel(order, paypalPaymentGuid, token);
+
+            return this.RedirectToRoute(Routes.Checkout.PaymentInfo, new { orderId = order.Guid });
         }
 
         public ActionResult CheckOrderAvailability(Order order)

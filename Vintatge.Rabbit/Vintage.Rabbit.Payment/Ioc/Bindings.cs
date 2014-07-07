@@ -19,14 +19,19 @@ namespace Vintage.Rabbit.Payment.Ioc
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<GetCreditCardPaymentByOrderQueryHandler>().As<IQueryHandler<CreditCardPayment, GetCreditCardPaymentByOrderQuery>>();
+            builder.RegisterType<GetPayPalPaymentByGuidQueryHandler>().As<IQueryHandler<PayPalPayment, GetPayPalPaymentByGuidQuery>>();
 
             builder.RegisterType<SaveCreditCardPaymentCommandHandler>().As<ICommandHandler<SaveCreditCardPaymentCommand>>();
+            builder.RegisterType<SavePayPalPaymentCommandHandler>().As<ICommandHandler<SavePayPalPaymentCommand>>();
 
             builder.RegisterType<CreditCardRepository>().As<ICreditCardRepository>();
+            builder.RegisterType<PayPalRepository>().As<IPayPalRepository>();
 
 
             builder.RegisterType<EwayPaymentService>().As<IPaymentGateway>();
             builder.RegisterType<CreditCardService>().As<ICreditCardService>();
+            builder.RegisterType<PayPalService>().As<IPayPalService>();
+
         }
     }
 }

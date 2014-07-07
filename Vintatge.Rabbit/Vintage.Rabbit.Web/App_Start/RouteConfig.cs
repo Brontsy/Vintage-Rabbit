@@ -53,6 +53,8 @@ namespace Vintage.Rabbit.Web
             public static string PaymentInfo = "Checkout - PaymentInfo";
             public static string CreditCard = "Checkout - CreditCard";
             public static string PayPal = "Checkout - PayPal";
+            public static string PayPalSuccess = "Checkout - PayPalSuccess";
+            public static string PayPalCancel = "Checkout - PayPalCancel";
             public static string Complete = "Checkout - Complete";
 
         }
@@ -129,6 +131,8 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.Checkout.PaymentInfo, url: "checkout/payment", defaults: new { controller = "Payment", action = "PaymentInfo" });
             routes.MapRoute(Routes.Checkout.CreditCard, url: "checkout/credit-card", defaults: new { controller = "Payment", action = "CreditCard" });
             routes.MapRoute(Routes.Checkout.PayPal, url: "checkout/paypal", defaults: new { controller = "Payment", action = "PayPal" });
+            routes.MapRoute(Routes.Checkout.PayPalSuccess, url: "checkout-{orderGuid}/paypal/success/{paypalPaymentGuid}", defaults: new { controller = "Payment", action = "PayPalSuccess" });
+            routes.MapRoute(Routes.Checkout.PayPalCancel, url: "checkout-{orderGuid}/paypal/cancel/{paypalPaymentGuid}", defaults: new { controller = "Payment", action = "PayPalCancel" });
             routes.MapRoute(Routes.Checkout.Complete, url: "checkout/complete", defaults: new { controller = "Payment", action = "Complete" });
 
 
