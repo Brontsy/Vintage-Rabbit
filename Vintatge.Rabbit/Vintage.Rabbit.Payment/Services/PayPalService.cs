@@ -30,7 +30,6 @@ namespace Vintage.Rabbit.Payment.Services
 
     internal class PayPalService : IPayPalService
     {
-        private string _restApiUrl;
         private string _username;
         private string _password;
         private string _key;
@@ -43,7 +42,6 @@ namespace Vintage.Rabbit.Payment.Services
 
         public PayPalService(IPaymentGateway paymentGateway, ICommandDispatcher commandDispatcher, IMessageService messageService, IQueryDispatcher queryDispatcher)
         {
-            this._restApiUrl = ConfigurationManager.AppSettings["PayPal_RestApiUrl"];
             this._username = ConfigurationManager.AppSettings["PayPayl_Username"];
             this._password = ConfigurationManager.AppSettings["PayPayl_Password"];
             this._key = ConfigurationManager.AppSettings["PayPayl_Key"];
@@ -53,13 +51,6 @@ namespace Vintage.Rabbit.Payment.Services
             this._commandDispatcher = commandDispatcher;
             this._messageService = messageService;
             this._queryDispatcher = queryDispatcher;
-        }
-
-        public void OAuth()
-        {
-            Dictionary<string, string> sdkConfig = new Dictionary<string, string>();
-            sdkConfig.Add("mode", "sandbox");
-            //string accessToken = new OAuthTokenCredential("AQkquBDf1zctJOWGKWUEtKXm6qVhueUEMvXO_-MCI4DQQ4-LWvkDLIN2fGsd", "EL1tVxAjhT7cJimnz5-Nsx9k2reTKSVfErNQF-CmrwJgxRtylkGTKlU4RvrX", sdkConfig).GetAccessToken();
         }
 
         public string Checkout(IOrder order)
