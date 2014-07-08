@@ -12,6 +12,7 @@
         </div>
     </div>
     <div class="cart-content@(Model.IsOpen ? string.Empty : " hidden")">
+        <h2>Shopping Cart</h2>
         <ul>
             @if (Model.Items.Any(o => !o.IsHire))
             {

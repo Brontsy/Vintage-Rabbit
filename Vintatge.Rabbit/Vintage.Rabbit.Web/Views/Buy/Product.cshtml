@@ -55,7 +55,7 @@
                     <div class="col-12">
 
                         <div class="alert positive icon hidden added-to-cart">
-                            <i class="fa fa-check-circle"></i> @Model.Title has been added to your cart
+                            <i class="fa fa-check-circle"></i> @Model.Title has been added to your @Html.RouteLink("shopping cart", Routes.ShoppingCart.PageHeader, new { }, new { @class = "ajax-lightbox" })
                         </div>
                     </div>
                 </div>
