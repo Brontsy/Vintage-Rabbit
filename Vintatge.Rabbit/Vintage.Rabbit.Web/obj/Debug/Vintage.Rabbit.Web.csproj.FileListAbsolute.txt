@@ -1,3 +1,4 @@
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\NLog.config
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Web.dll.config
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Web.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Web.pdb
@@ -18,6 +19,8 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Microsoft.Owin.Security.Twitter.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Microsoft.Web.Infrastructure.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Newtonsoft.Json.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\NLog.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\NLog.Extended.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Owin.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\System.Web.Helpers.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\System.Web.Mvc.dll
@@ -26,6 +29,7 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\System.Web.WebPages.Deployment.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\System.Web.WebPages.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\System.Web.WebPages.Razor.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Blogs.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Caching.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Carts.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Common.dll
@@ -33,6 +37,7 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Emails.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Interfaces.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Inventory.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Logging.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Membership.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Messaging.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Orders.dll
@@ -40,18 +45,22 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Products.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Search.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\WebGrease.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\StackExchange.Redis.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Dapper.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\SendGridMail.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\PayPalMerchantSDK.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Microsoft.WindowsAzure.Storage.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\ImageProcessor.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Lucene.Net.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\AzureDirectory.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\SendGrid.SmtpApi.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Microsoft.Threading.Tasks.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\PayPalCoreSDK.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Microsoft.Data.Edm.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Microsoft.Data.Services.Client.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Microsoft.Data.OData.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\System.Spatial.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Blogs.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Caching.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Carts.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Common.pdb
@@ -59,6 +68,7 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Emails.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Interfaces.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Inventory.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Logging.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Membership.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Messaging.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Orders.pdb
@@ -73,6 +83,8 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Microsoft.Owin.Security.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Microsoft.Owin.Security.Cookies.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\NLog.xml
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\NLog.Extended.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\System.Web.Helpers.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\System.Web.Mvc.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\System.Web.Razor.xml
@@ -87,6 +99,8 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Microsoft.Owin.Security.Google.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\StackExchange.Redis.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\StackExchange.Redis.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Dapper.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Dapper.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Microsoft.WindowsAzure.Storage.xml
@@ -137,16 +151,3 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\obj\Debug\Vintage.Rabbit.Web.csprojResolveAssemblyReference.cache
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\obj\Debug\Vintage.Rabbit.Web.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\obj\Debug\Vintage.Rabbit.Web.pdb
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Blogs.dll
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Blogs.pdb
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\StackExchange.Redis.dll
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\StackExchange.Redis.pdb
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\StackExchange.Redis.xml
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\PayPalMerchantSDK.dll
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\NLog.dll
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\NLog.xml
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Nlog.config
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Logging.dll
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Logging.pdb
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\NLog.Extended.dll
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\NLog.Extended.xml
