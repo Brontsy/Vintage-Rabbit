@@ -44,7 +44,7 @@ namespace Vintage.Rabbit.Web.Areas.Emails.Models.InvoiceEmail
             this.Title = orderItem.Product.Title;
             this.Quantity = orderItem.Quantity;
             this.Total = orderItem.Total.ToString("C");
-            this.Thumbnail = product.Images.First().Thumbnail;
+            this.Thumbnail = product.Images.Any() ? product.Images.First().Thumbnail : string.Empty;
             this.ProductGuid = product.Guid;
             this.ProductType = product.Type;
             this.Description = (product.Description.Length > 120 ? product.Description.Substring(0, 120) : product.Description);

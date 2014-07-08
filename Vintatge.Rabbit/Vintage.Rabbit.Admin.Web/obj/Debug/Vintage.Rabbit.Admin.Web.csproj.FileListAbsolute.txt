@@ -5,10 +5,7 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.W
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Autofac.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Autofac.Integration.Mvc.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\dotless.Core.dll
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\EntityFramework.dll
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\EntityFramework.SqlServer.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.AspNet.Identity.Core.dll
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.AspNet.Identity.Owin.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.Owin.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.Owin.Host.SystemWeb.dll
@@ -85,11 +82,8 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.W
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\System.Web.Optimization.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Newtonsoft.Json.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Antlr3.Runtime.pdb
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\EntityFramework.xml
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\EntityFramework.SqlServer.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.AspNet.Identity.Core.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.AspNet.Identity.Owin.xml
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.Owin.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.Owin.Host.SystemWeb.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.Owin.Security.xml
