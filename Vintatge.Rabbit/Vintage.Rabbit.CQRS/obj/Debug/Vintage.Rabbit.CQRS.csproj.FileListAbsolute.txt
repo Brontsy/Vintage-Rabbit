@@ -11,3 +11,7 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.CQRS\bi
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.CQRS\obj\Debug\Vintage.Rabbit.CQRS.csprojResolveAssemblyReference.cache
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.CQRS\obj\Debug\Vintage.Rabbit.CQRS.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.CQRS\obj\Debug\Vintage.Rabbit.CQRS.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.CQRS\bin\Debug\NLog.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.CQRS\bin\Debug\NLog.xml
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.CQRS\bin\Debug\NLog.Extended.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.CQRS\bin\Debug\NLog.Extended.xml

@@ -11,6 +11,7 @@ using Vintage.Rabbit.Common.Http;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Interfaces.Messaging;
 using Vintage.Rabbit.Interfaces.Orders;
+using Vintage.Rabbit.Logging;
 using Vintage.Rabbit.Payment.CommandHandlers;
 using Vintage.Rabbit.Payment.Entities;
 using Vintage.Rabbit.Payment.Messaging.Messages;
@@ -39,8 +40,9 @@ namespace Vintage.Rabbit.Payment.Services
         private ICommandDispatcher _commandDispatcher;
         private IMessageService _messageService;
         private IQueryDispatcher _queryDispatcher;
+        private ILogger _logger;
 
-        public PayPalService(IPaymentGateway paymentGateway, ICommandDispatcher commandDispatcher, IMessageService messageService, IQueryDispatcher queryDispatcher)
+        public PayPalService(IPaymentGateway paymentGateway, ICommandDispatcher commandDispatcher, IMessageService messageService, IQueryDispatcher queryDispatcher, ILogger logger)
         {
             this._username = ConfigurationManager.AppSettings["PayPayl_Username"];
             this._password = ConfigurationManager.AppSettings["PayPayl_Password"];
@@ -51,58 +53,68 @@ namespace Vintage.Rabbit.Payment.Services
             this._commandDispatcher = commandDispatcher;
             this._messageService = messageService;
             this._queryDispatcher = queryDispatcher;
+            this._logger = logger;
         }
 
         public string Checkout(IOrder order)
         {
-            Guid paypalPaymentGuid = Guid.NewGuid();
-
-            List<PaymentDetailsItemType> paymentItems = new List<PaymentDetailsItemType>();
-
-            foreach(var orderItem in order.Items)
+            try
             {
-                PaymentDetailsItemType paymentItem = new PaymentDetailsItemType();
-                paymentItem.Amount = new BasicAmountType(CurrencyCodeType.AUD, orderItem.Product.Cost.ToString());
-                paymentItem.Quantity = orderItem.Quantity;
-                paymentItem.ItemCategory = ItemCategoryType.PHYSICAL;
-                paymentItem.Name = orderItem.Product.Title;
+                Guid paypalPaymentGuid = Guid.NewGuid();
 
-                paymentItems.Add(paymentItem);
+                List<PaymentDetailsItemType> paymentItems = new List<PaymentDetailsItemType>();
+
+                foreach (var orderItem in order.Items)
+                {
+                    PaymentDetailsItemType paymentItem = new PaymentDetailsItemType();
+                    paymentItem.Amount = new BasicAmountType(CurrencyCodeType.AUD, orderItem.Product.Cost.ToString());
+                    paymentItem.Quantity = orderItem.Quantity;
+                    paymentItem.ItemCategory = ItemCategoryType.PHYSICAL;
+                    paymentItem.Name = orderItem.Product.Title;
+
+                    paymentItems.Add(paymentItem);
+                }
+
+
+                PaymentDetailsType paymentDetail = new PaymentDetailsType();
+                paymentDetail.PaymentDetailsItem = paymentItems;
+
+                paymentDetail.PaymentAction = (PaymentActionCodeType)EnumUtils.GetValue("Sale", typeof(PaymentActionCodeType));
+                paymentDetail.OrderTotal = new BasicAmountType(CurrencyCodeType.AUD, (order.Total).ToString());
+                List<PaymentDetailsType> paymentDetails = new List<PaymentDetailsType>();
+                paymentDetails.Add(paymentDetail);
+
+                SetExpressCheckoutRequestDetailsType ecDetails = new SetExpressCheckoutRequestDetailsType();
+                ecDetails.ReturnURL = string.Format("{0}/checkout-{1}/paypal/success/{2}", this._websiteUrl, order.Guid, paypalPaymentGuid);
+                ecDetails.CancelURL = string.Format("{0}/checkout-{1}/paypal/cancel/{2}", this._websiteUrl, order.Guid, paypalPaymentGuid);
+                ecDetails.PaymentDetails = paymentDetails;
+
+                SetExpressCheckoutRequestType request = new SetExpressCheckoutRequestType();
+                request.Version = "104.0";
+                request.SetExpressCheckoutRequestDetails = ecDetails;
+
+                SetExpressCheckoutReq wrapper = new SetExpressCheckoutReq();
+                wrapper.SetExpressCheckoutRequest = request;
+                Dictionary<string, string> sdkConfig = new Dictionary<string, string>();
+                sdkConfig.Add("mode", "sandbox");
+                sdkConfig.Add("account1.apiUsername", this._username);
+                sdkConfig.Add("account1.apiPassword", this._password);
+                sdkConfig.Add("account1.apiSignature", this._key);
+                PayPalAPIInterfaceServiceService service = new PayPalAPIInterfaceServiceService(sdkConfig);
+                SetExpressCheckoutResponseType setECResponse = service.SetExpressCheckout(wrapper);
+
+                PayPalPayment payment = new PayPalPayment(paypalPaymentGuid, order.Guid, setECResponse.Token, (setECResponse.Ack.HasValue ? setECResponse.Ack.Value.ToString() : null), setECResponse.CorrelationID);
+
+                this._commandDispatcher.Dispatch(new SavePayPalPaymentCommand(payment));
+
+                return string.Format("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token={0}", setECResponse.Token);
+            }
+            catch(Exception exception)
+            {
+                this._logger.Error(exception, "Unable to get paypal express checkout url");
             }
 
-
-            PaymentDetailsType paymentDetail = new PaymentDetailsType();
-            paymentDetail.PaymentDetailsItem = paymentItems;
-
-            paymentDetail.PaymentAction = (PaymentActionCodeType)EnumUtils.GetValue("Sale", typeof(PaymentActionCodeType));
-            paymentDetail.OrderTotal = new BasicAmountType(CurrencyCodeType.AUD, (order.Total).ToString()); 
-            List<PaymentDetailsType> paymentDetails = new List<PaymentDetailsType>();
-            paymentDetails.Add(paymentDetail);
-
-            SetExpressCheckoutRequestDetailsType ecDetails = new SetExpressCheckoutRequestDetailsType();
-            ecDetails.ReturnURL = string.Format("{0}/checkout-{1}/paypal/success/{2}", this._websiteUrl, order.Guid, paypalPaymentGuid);
-            ecDetails.CancelURL = string.Format("{0}/checkout-{1}/paypal/cancel/{2}", this._websiteUrl, order.Guid, paypalPaymentGuid);
-            ecDetails.PaymentDetails = paymentDetails;
-
-            SetExpressCheckoutRequestType request = new SetExpressCheckoutRequestType();
-            request.Version = "104.0";
-            request.SetExpressCheckoutRequestDetails = ecDetails;
-
-            SetExpressCheckoutReq wrapper = new SetExpressCheckoutReq();
-            wrapper.SetExpressCheckoutRequest = request;
-            Dictionary<string, string> sdkConfig = new Dictionary<string, string>();
-            sdkConfig.Add("mode", "sandbox");
-            sdkConfig.Add("account1.apiUsername", this._username);
-            sdkConfig.Add("account1.apiPassword", this._password);
-            sdkConfig.Add("account1.apiSignature", this._key);
-            PayPalAPIInterfaceServiceService service = new  PayPalAPIInterfaceServiceService(sdkConfig); 
-            SetExpressCheckoutResponseType setECResponse = service.SetExpressCheckout(wrapper);
-
-            PayPalPayment payment = new PayPalPayment(paypalPaymentGuid, order.Guid, setECResponse.Token, (setECResponse.Ack.HasValue ? setECResponse.Ack.Value.ToString() : null), setECResponse.CorrelationID);
-
-            this._commandDispatcher.Dispatch(new SavePayPalPaymentCommand(payment));
-
-            return string.Format("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token={0}", setECResponse.Token);
+            return null;
         }
 
         public void Success(IOrder order, Guid paypalGuid, string token)

@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Blogs", "Vin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Themes", "Vintage.Rabbit.Themes\Vintage.Rabbit.Themes.csproj", "{3AAD6A07-EAB5-4715-B3AB-45C2E6B100E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Logging", "Vintage.Rabbit.Logging\Vintage.Rabbit.Logging.csproj", "{B493A5DF-6E14-4281-95E4-76C919FA2AA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,10 @@ Global
 		{3AAD6A07-EAB5-4715-B3AB-45C2E6B100E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AAD6A07-EAB5-4715-B3AB-45C2E6B100E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AAD6A07-EAB5-4715-B3AB-45C2E6B100E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B493A5DF-6E14-4281-95E4-76C919FA2AA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B493A5DF-6E14-4281-95E4-76C919FA2AA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B493A5DF-6E14-4281-95E4-76C919FA2AA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B493A5DF-6E14-4281-95E4-76C919FA2AA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,6 +7,5 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.Messag
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\bin\Debug\Autofac.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\bin\Debug\Microsoft.ServiceBus.xml
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\bin\Debug\Microsoft.WindowsAzure.Configuration.xml
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\obj\Debug\Vintatge.Rabbit.MessageHandler.csprojResolveAssemblyReference.cache
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\obj\Debug\Vintatge.Rabbit.MessageHandler.exe
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\obj\Debug\Vintatge.Rabbit.MessageHandler.pdb

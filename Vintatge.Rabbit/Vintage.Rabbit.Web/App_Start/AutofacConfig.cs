@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using Vintage.Rabbit.Web.Attributes;
 using Vintage.Rabbit.Web.Providers;
 
 namespace Vintage.Rabbit.Web.App_Start
@@ -33,6 +34,7 @@ namespace Vintage.Rabbit.Web.App_Start
             builder.RegisterModule(new Vintage.Rabbit.Search.Ioc.Bindings());
             builder.RegisterModule(new Vintage.Rabbit.Emails.Ioc.Bindings());
             builder.RegisterModule(new Vintage.Rabbit.Blogs.Ioc.Bindings());
+            builder.RegisterModule(new Vintage.Rabbit.Logging.Ioc.Bindings());
 
 
             builder.RegisterType<LoginProvider>().As<ILoginProvider>();
@@ -43,6 +45,7 @@ namespace Vintage.Rabbit.Web.App_Start
             builder.RegisterModelBinderProvider();
 
             builder.RegisterFilterProvider();
+            builder.RegisterType<HandleExceptionAttribute>().AsExceptionFilterFor<Controller>().InstancePerHttpRequest().PropertiesAutowired();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

@@ -1,11 +1,15 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using Vintage.Rabbit.Carts.Entities;
 using Vintage.Rabbit.Carts.QueryHandlers;
 using Vintage.Rabbit.Interfaces.CQRS;
+using Vintage.Rabbit.Logging;
+using Vintage.Rabbit.Web.Attributes;
 
 namespace Vintage.Rabbit.Web.Controllers
 {
@@ -20,7 +24,6 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult Index()
         {
-            var cart = this._queryDispatcher.Dispatch<Cart, GetCartQuery>(new GetCartQuery(Guid.NewGuid()));
             return View();
         }
     }
