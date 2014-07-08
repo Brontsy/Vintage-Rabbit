@@ -49,14 +49,14 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult Index(Member member, Order order, Cart cart)
         {
-            if(order == null)
-            {
-                order = this._createOrderProvider.CreateOrder(member, cart);
-            }
-
             if (this.HttpContext.User.Identity.IsAuthenticated)
             {
-                return this.RedirectToRoute(Routes.Checkout.BillingInformation);
+                if (order == null)
+                {
+                    order = this._createOrderProvider.CreateOrder(member, cart);
+                }
+
+                return this.RedirectToRoute(Routes.Checkout.BillingInformation, new { orderGuid = order.Guid });
             }
 
             return this.LoginRegister(null);
@@ -70,11 +70,16 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.View("LoginRegister", viewModel);
         }
 
-        public ActionResult Guest(Member member)
+        public ActionResult Guest(Member member, Order order, Cart cart)
         {
             this._commandDispatcher.Dispatch(new RegisterGuestCommand(member.Guid));
 
-            return this.RedirectToRoute(Routes.Checkout.BillingInformation);
+            if (order == null)
+            {
+                order = this._createOrderProvider.CreateOrder(member, cart);
+            }
+
+            return this.RedirectToRoute(Routes.Checkout.BillingInformation, new { orderGuid = order.Guid });
         }
 
         [HasOrder]
@@ -273,7 +278,7 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             this._paypalService.Cancel(order, paypalPaymentGuid, token);
 
-            return this.RedirectToRoute(Routes.Checkout.PaymentInfo, new { orderId = order.Guid });
+            return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
         }
 
         public ActionResult CheckOrderAvailability(Order order)

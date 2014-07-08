@@ -24,7 +24,7 @@ namespace Vintage.Rabbit.Web.ModelBinders
 
         public object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            var orderIdValue = controllerContext.Controller.ValueProvider.GetValue("orderId");
+            var orderIdValue = controllerContext.Controller.ValueProvider.GetValue("orderGuid");
             if(orderIdValue != null)
             {
                 Guid orderId = new Guid(orderIdValue.AttemptedValue);
@@ -32,14 +32,14 @@ namespace Vintage.Rabbit.Web.ModelBinders
                 return this._queryDispatcher.Dispatch<Order, GetOrderQuery>(new GetOrderQuery(orderId));
             }
 
-            var cookie = controllerContext.RequestContext.HttpContext.Request.Cookies["OrderGuid"];
+            //var cookie = controllerContext.RequestContext.HttpContext.Request.Cookies["OrderGuid"];
 
-            if (cookie != null)
-            {
-                Guid orderId = new Guid(cookie.Value);
+            //if (cookie != null)
+            //{
+            //    Guid orderId = new Guid(cookie.Value);
 
-                return this._queryDispatcher.Dispatch<Order, GetOrderQuery>(new GetOrderQuery(orderId));
-            }
+            //    return this._queryDispatcher.Dispatch<Order, GetOrderQuery>(new GetOrderQuery(orderId));
+            //}
 
             return null;
         }

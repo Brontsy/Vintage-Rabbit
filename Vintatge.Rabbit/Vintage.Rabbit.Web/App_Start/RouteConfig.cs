@@ -124,16 +124,16 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.Checkout.Index, url: "checkout", defaults: new { controller = "Payment", action = "Index" });
             routes.MapRoute(Routes.Checkout.LoginRegister, url: "checkout/register", defaults: new { controller = "Payment", action = "LoginRegister" });
             routes.MapRoute(Routes.Checkout.Guest, url: "checkout/guest", defaults: new { controller = "Payment", action = "Guest" });
-            routes.MapRoute(Routes.Checkout.Devliery, url: "checkout/hire/delivery-address/{guid}", defaults: new { controller = "Payment", action = "Delivery", guid = UrlParameter.Optional });
-            routes.MapRoute(Routes.Checkout.PickupHiredProducts, url: "checkout/hire/pickup", defaults: new { controller = "Payment", action = "PickupHiredProducts" });
-            routes.MapRoute(Routes.Checkout.ShippingInformation, url: "checkout/buy/shipping-address/{guid}", defaults: new { controller = "Payment", action = "ShippingInformation", guid = UrlParameter.Optional});
-            routes.MapRoute(Routes.Checkout.BillingInformation, url: "checkout/billing/address/{guid}", defaults: new { controller = "Payment", action = "BillingInformation", guid = UrlParameter.Optional });
-            routes.MapRoute(Routes.Checkout.PaymentInfo, url: "checkout/payment", defaults: new { controller = "Payment", action = "PaymentInfo" });
-            routes.MapRoute(Routes.Checkout.CreditCard, url: "checkout/credit-card", defaults: new { controller = "Payment", action = "CreditCard" });
-            routes.MapRoute(Routes.Checkout.PayPal, url: "checkout/paypal", defaults: new { controller = "Payment", action = "PayPal" });
+            routes.MapRoute(Routes.Checkout.Devliery, url: "checkout-{orderGuid}/hire/delivery-address/{guid}", defaults: new { controller = "Payment", action = "Delivery", guid = UrlParameter.Optional });
+            routes.MapRoute(Routes.Checkout.PickupHiredProducts, url: "checkout-{orderGuid}/hire/pickup", defaults: new { controller = "Payment", action = "PickupHiredProducts" });
+            routes.MapRoute(Routes.Checkout.ShippingInformation, url: "checkout-{orderGuid}/buy/shipping-address/{guid}", defaults: new { controller = "Payment", action = "ShippingInformation", guid = UrlParameter.Optional });
+            routes.MapRoute(Routes.Checkout.BillingInformation, url: "checkout-{orderGuid}/billing/address/{guid}", defaults: new { controller = "Payment", action = "BillingInformation", guid = UrlParameter.Optional });
+            routes.MapRoute(Routes.Checkout.PaymentInfo, url: "checkout-{orderGuid}/payment", defaults: new { controller = "Payment", action = "PaymentInfo" });
+            routes.MapRoute(Routes.Checkout.CreditCard, url: "checkout-{orderGuid}/credit-card", defaults: new { controller = "Payment", action = "CreditCard" });
+            routes.MapRoute(Routes.Checkout.PayPal, url: "checkout-{orderGuid}/paypal", defaults: new { controller = "Payment", action = "PayPal" });
             routes.MapRoute(Routes.Checkout.PayPalSuccess, url: "checkout-{orderGuid}/paypal/success/{paypalPaymentGuid}", defaults: new { controller = "Payment", action = "PayPalSuccess" });
             routes.MapRoute(Routes.Checkout.PayPalCancel, url: "checkout-{orderGuid}/paypal/cancel/{paypalPaymentGuid}", defaults: new { controller = "Payment", action = "PayPalCancel" });
-            routes.MapRoute(Routes.Checkout.Complete, url: "checkout/complete", defaults: new { controller = "Payment", action = "Complete" });
+            routes.MapRoute(Routes.Checkout.Complete, url: "checkout-{orderGuid}/complete", defaults: new { controller = "Payment", action = "Complete" });
 
 
             routes.MapRoute(Routes.Membership.Register, url: "register", defaults: new { controller = "Membership", action = "Register" });
