@@ -164,6 +164,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Attributes\HandleExceptionAttribute.cs" />
     <Compile Include="Attributes\Validation\EmailAttribute.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\MembershipController.cs" />
@@ -314,6 +315,9 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.map" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
@@ -344,6 +348,10 @@
     <ProjectReference Include="..\Vintage.Rabbit.Inventory\Vintage.Rabbit.Inventory.csproj">
       <Project>{7f2a5f29-08d3-476d-9881-f88b6b5260d8}</Project>
       <Name>Vintage.Rabbit.Inventory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Logging\Vintage.Rabbit.Logging.csproj">
+      <Project>{b493a5df-6e14-4281-95e4-76c919fa2aa6}</Project>
+      <Name>Vintage.Rabbit.Logging</Name>
     </ProjectReference>
     <ProjectReference Include="..\Vintage.Rabbit.Membership\Vintage.Rabbit.Membership.csproj">
       <Project>{1b494888-3127-473d-9769-7e31d55ba2eb}</Project>

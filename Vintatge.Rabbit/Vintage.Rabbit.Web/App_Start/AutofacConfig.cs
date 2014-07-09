@@ -45,7 +45,7 @@ namespace Vintage.Rabbit.Web.App_Start
             builder.RegisterModelBinderProvider();
 
             builder.RegisterFilterProvider();
-            builder.RegisterType<HandleExceptionAttribute>().AsExceptionFilterFor<Controller>().InstancePerHttpRequest().PropertiesAutowired();
+            builder.RegisterType<HandleExceptionAttribute>().AsExceptionFilterFor<Controller>().InstancePerRequest().PropertiesAutowired();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
