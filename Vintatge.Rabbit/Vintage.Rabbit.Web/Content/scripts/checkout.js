@@ -44,9 +44,11 @@ $(document).ready(function () {
         
         if ($('#IsDropoff').is(':checked') || $('#IsPickup').is(':checked')) {
             $('.deliver-field').removeClass('hidden');
+            $('.pickup-dropoff-yourself').addClass('hidden');
         }
         else {
             $('.deliver-field').addClass('hidden');
+            $('.pickup-dropoff-yourself').removeClass('hidden');
         }
     });
 

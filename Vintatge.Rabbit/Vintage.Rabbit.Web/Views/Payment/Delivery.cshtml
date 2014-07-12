@@ -41,7 +41,7 @@
         <div class="col-8">
             <h2>Hire Delivery Information</h2>
             <p>
-                We offer to delivery and pickup for your items that your are hiring for @Model.DeliveryCost each way. If you would like to pick up and / or drop off the items yourself you are more then welcome to, we are located in McKinnon.
+                We offer delivery and pickup for the items that your are hiring for @Model.DeliveryCost each way. If you would like to pick up and / or drop off the items yourself you are more then welcome to, we are located in McKinnon.
             </p>
             @using (Html.BeginRouteForm(Routes.Checkout.Devliery, new { }, FormMethod.Post, new { @class = "" }))
             {
@@ -61,6 +61,10 @@
                             @Html.CheckBoxFor(o => o.IsPickup)
                             @Html.LabelFor(o => o.IsPickup)
                         </div>
+                    </li>
+
+                    <li class="col-12 pickup-dropoff-yourself@(Model.IsDropoff || Model.IsPickup ? " hidden" : string.Empty)">
+                        <strong>If you would like to pickup and deliver the items yourself, simply click "Save &amp; continue"</strong>
                     </li>
 
                     <li class="col-6 deliver-field@(Model.IsDropoff || Model.IsPickup ? string.Empty : " hidden")">
