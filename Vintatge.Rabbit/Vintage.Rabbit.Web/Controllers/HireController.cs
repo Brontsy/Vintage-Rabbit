@@ -90,7 +90,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult CheckProductAvailability(Guid productGuid, HireDatesViewModel hireDates)
         {
-            if (hireDates.PartyDate.HasValue)// hireDates.StartDate.HasValue && hireDates.EndDate.HasValue)
+            if (hireDates.PartyDate.HasValue)
             {
                 bool available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(productGuid, 1, this.GetHireStartDate(hireDates.PartyDate.Value), this.GetHireEndDate(hireDates.PartyDate.Value)));
 
@@ -100,20 +100,35 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.Json(new { Available = false }, JsonRequestBehavior.AllowGet);
         }
 
-        [ChildActionOnly]
-        public ActionResult AvailabilityCheck(Guid productGuid, HireDatesViewModel hireDates)
+        public ActionResult AvailabilityCheck(Guid productGuid, HireDatesViewModel hireDates, HireAvailabilityViewModel hireAvailability, bool postcodeChecked = false)
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(productGuid));
-            bool? available = null;
 
-            if (hireDates.PartyDate.HasValue) //hireDates.StartDate.HasValue && hireDates.EndDate.HasValue)
+            if (!hireAvailability.IsValidPostcode)
             {
-                available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(product.Guid, 1, this.GetHireStartDate(hireDates.PartyDate.Value), this.GetHireEndDate(hireDates.PartyDate.Value)));
+                if (string.IsNullOrEmpty(hireAvailability.Postcode))
+                {
+                    return this.PartialView("PostcodeCheck", new PostcodeCheckViewModel(product));
+                }
+
+                return this.PartialView("HireUnavailable");
             }
 
-            AvailabilityCheckViewModel viewModel = new AvailabilityCheckViewModel(new ProductViewModel(product), available, hireDates);
+            if (hireDates.PartyDate.HasValue) 
+            {
+                bool available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(product.Guid, 1, this.GetHireStartDate(hireDates.PartyDate.Value), this.GetHireEndDate(hireDates.PartyDate.Value)));
 
-            return this.PartialView("AvailabilityCheck", viewModel);
+                AvailabilityCheckViewModel viewModel = new AvailabilityCheckViewModel(new ProductViewModel(product), available, hireDates);
+
+                if(available)
+                {
+                    return this.PartialView("AddToCart", viewModel);
+                }
+            }
+
+            ViewBag.PostcodeChecked = postcodeChecked;
+
+            return this.PartialView("AvailabilityCheck", new AvailabilityCheckViewModel(new ProductViewModel(product), null, hireDates));
         }
 
         public ActionResult ListBreadcrumbs(Category category)

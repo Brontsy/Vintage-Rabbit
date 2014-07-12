@@ -38,70 +38,73 @@
 
     <div class="row">
 
-        <div class="col-6">
+        <div class="col-8">
             <h2>Hire Delivery Information</h2>
             <p>
-                We offer to deliver and pickup your hired items for only $25 or if you would like to pick them up yourself we are located in McKinnon.
+                We offer to delivery and pickup for your items that your are hiring for @Model.DeliveryCost each way. If you would like to pick up and / or drop off the items yourself you are more then welcome to, we are located in McKinnon.
             </p>
             @using (Html.BeginRouteForm(Routes.Checkout.Devliery, new { }, FormMethod.Post, new { @class = "" }))
             {
+                
 
-            <div class="row">
-            <div class="col-6">
-                <div class="radiobuttons">
-                    <input type="radio" value="deliver" name="deliver-hire-products" id="deliver" /> <label for="deliver">Delivered ($25)</label>
+                <ol class="row">
+
+                    <li class="col-6">
+                        <div class="checkboxes">
+                            @Html.CheckBoxFor(o => o.IsDropoff)
+                            @Html.LabelFor(o => o.IsDropoff)
+                        </div>
+                    </li>
+
+                    <li class="col-6">
+                        <div class="checkboxes">
+                            @Html.CheckBoxFor(o => o.IsPickup)
+                            @Html.LabelFor(o => o.IsPickup)
+                        </div>
+                    </li>
+
+                    <li class="col-6 deliver-field@(Model.IsDropoff || Model.IsPickup ? string.Empty : " hidden")">
+                        @Html.TextBoxFor(o => o.FirstName, new { placeholder = "First name*" })
+                        @Html.ValidationMessageFor(o => o.FirstName)
+                    </li>
+                    <li class="col-6 deliver-field@(Model.IsDropoff || Model.IsPickup ? string.Empty : " hidden")">
+                        @Html.TextBoxFor(o => o.LastName, new { placeholder = "Last name*" })
+                        @Html.ValidationMessageFor(o => o.LastName)
+                    </li>
+                    <li class="col-12 deliver-field@(Model.IsDropoff || Model.IsPickup ? string.Empty : " hidden")">
+                        @Html.TextBoxFor(o => o.PhoneNumber, new { placeholder = "Phone number*" })
+                        @Html.ValidationMessageFor(o => o.PhoneNumber)
+                    </li>
+                    <li class="col-12 deliver-field@(Model.IsDropoff || Model.IsPickup ? string.Empty : " hidden")">
+                        @Html.TextBoxFor(o => o.Address, new { placeholder = "Address*" })
+                        @Html.ValidationMessageFor(o => o.Address)
+                    </li>
+                    <li class="col-12 deliver-field@(Model.IsDropoff || Model.IsPickup ? string.Empty : " hidden")">
+                        @Html.TextBoxFor(o => o.SuburbCity, new { placeholder = "Suburb / city*" })
+                        @Html.ValidationMessageFor(o => o.SuburbCity)
+                    </li>
+                    <li class="col-12 deliver-field@(Model.IsDropoff || Model.IsPickup ? string.Empty : " hidden")">
+                        @Html.TextBoxFor(o => o.Postcode, new { placeholder = "Postcode*" })
+                        @Html.ValidationMessageFor(o => o.Postcode)
+                    </li>
+                    <li class="col-12 deliver-field@(Model.IsDropoff || Model.IsPickup ? string.Empty : " hidden")">
+                        @Html.DropDownListFor(o => o.State, Model.States, "State...", new { })
+                        @Html.ValidationMessageFor(o => o.State)
+                    </li>
+
+                    <li class="col-12">
+                        <div class="float-container">
+                            <button type="submit" class="btn left primary">Save & continue</button>
+                        </div>
+                    </li>
+                </ol>
+
+                <div class="col-12 hidden">
+                    <p class="hidden">If you would like to pickup and / or drop off the items you can do so from McKinnon</p>
+                    @Html.RouteLink("Continue", Routes.Checkout.PickupHiredProducts, new { }, new { @class = "btn primary left pickup-button component" })
                 </div>
-            </div>
-                <div class="col-6">
-                    <div class="radiobuttons">
-                        <input type="radio" value="pickup" name="deliver-hire-products" id="pickup" />
-                        <label for="pickup">Pickup from McKinnon</label>
-                    </div>
-                    @Html.RouteLink("Continue", Routes.Checkout.PickupHiredProducts, new { }, new { @class = "btn primary pickup-button hidden component" })
-                </div>
-            </div>
-            }
-
-            @using (Html.BeginRouteForm(Routes.Checkout.Devliery, new { guid = Model.Guid }, FormMethod.Post, new { @class = "deliver-address-form hidden" }))
-            {
-                <fieldset>
-                    <ol class="row">
-                        <li class="col-6">
-                            @Html.TextBoxFor(o => o.FirstName, new { placeholder = "First name*" })
-                            @Html.ValidationMessageFor(o => o.FirstName)
-                        </li>
-                        <li class="col-6">
-                            @Html.TextBoxFor(o => o.LastName, new { placeholder = "Last name*" })
-                            @Html.ValidationMessageFor(o => o.LastName)
-                        </li>
-                        <li class="col-12">
-                            @Html.TextBoxFor(o => o.PhoneNumber, new { placeholder = "Phone number*" })
-                            @Html.ValidationMessageFor(o => o.PhoneNumber)
-                        </li>
-                        <li class="col-12">
-                            @Html.TextBoxFor(o => o.Address, new { placeholder = "Address*" })
-                            @Html.ValidationMessageFor(o => o.Address)
-                        </li>
-                        <li class="col-12">
-                            @Html.TextBoxFor(o => o.SuburbCity, new { placeholder = "Suburb / city*" })
-                            @Html.ValidationMessageFor(o => o.SuburbCity)
-                        </li>
-                        <li class="col-12">
-                            @Html.TextBoxFor(o => o.Postcode, new { placeholder = "Postcode*" })
-                            @Html.ValidationMessageFor(o => o.Postcode)
-                        </li>
-                        <li class="col-12">
-                            @Html.TextBoxFor(o => o.State, new { placeholder = "State*" })
-                            @Html.ValidationMessageFor(o => o.State)
-                        </li>
-
-                        <li class="col-12">
-                            <div class="float-container">
-                                <button type="submit" class="btn right primary">Save & continue</button>
-                            </div>
-                        </li>
-                    </ol>
-                </fieldset>
+    
+            
             }
 
         </div>

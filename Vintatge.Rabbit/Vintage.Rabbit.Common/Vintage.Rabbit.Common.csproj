@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\Class1.cs" />
     <Compile Include="Encryption\SimpleHash.cs" />
     <Compile Include="Enums\ProductType.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />

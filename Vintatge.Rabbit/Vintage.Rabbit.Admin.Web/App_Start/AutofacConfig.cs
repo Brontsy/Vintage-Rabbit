@@ -42,6 +42,7 @@ namespace Vintage.Rabbit.Admin.Web.App_Start
             builder.RegisterModelBinderProvider();
 
             builder.RegisterFilterProvider();
+
             builder.RegisterType<HandleExceptionAttribute>().AsExceptionFilterFor<Controller>().InstancePerRequest().PropertiesAutowired();
 
             var container = builder.Build();

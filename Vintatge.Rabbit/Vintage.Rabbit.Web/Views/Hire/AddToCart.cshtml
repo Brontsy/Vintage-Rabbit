@@ -1,0 +1,41 @@
+﻿@model Vintage.Rabbit.Web.Models.Hire.AvailabilityCheckViewModel
+
+    <div class="col-12 hire-add-to-cart">
+
+        @using (Html.BeginRouteForm(Routes.ShoppingCart.AddHireProduct, new { productId = Model.Product.Id, name = Model.Product.UrlTitle }, FormMethod.Post, new { @class = "add-to-cart-form hire-form" }))
+        {
+            <fieldset>
+                @Html.HiddenFor(o => o.PartyDate)
+                <ol class="row">
+
+                    <li class="col-12 available-text help-text">
+                        <div class="alert positive icon">
+                            <i class="fa fa-check"></i>@Model.Product.Title is currently available for your selected party date.
+                        </div>
+                    </li>
+
+                    <li class="col-12 added-to-cart help-text">
+                        <div class="alert positive icon">
+                            <i class="fa fa-check-circle"></i> <strong>@Model.Product.Title</strong> has been added to your @Html.RouteLink("shopping cart", Routes.ShoppingCart.PageHeader, new { }, new { @class = "ajax-lightbox" })
+                        </div>
+                    </li>
+
+                    <li class="col-3">
+                        <div class="add-to-cart-container">
+                            Qty &nbsp; &nbsp;
+                            @Html.DropDownListFor(o => o.Qty, Model.InventoryCount)
+                        </div>
+                    </li>
+                    <li class="col-4">
+                        <button type="submit" class="btn primary add-to-cart">
+                            <i class="fa fa-shopping-cart"></i>
+                            Add to cart
+                        </button>
+                    </li>
+                </ol>
+            </fieldset>
+        }
+
+                      
+    </div>
+               

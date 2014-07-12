@@ -78,6 +78,8 @@ namespace Vintage.Rabbit.Web
             public static string Product = "HireProduct";
             public static string Preview = "HirePreview";
             public static string CheckProductAvailability = "CheckProductAvailability";
+            public static string PostcodeCheck = "PostcodeCheck";
+            public static string AvailabilityCheck = "AvailabilityCheck";
         }
 
         public static class Membership
@@ -116,6 +118,8 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.Themes.Product, url: "style/{name}/{productId}", defaults: new { controller = "Style", action = "Product" });
 
             routes.MapRoute(Routes.Hire.Index, url: "hire", defaults: new { controller = "Hire", action = "Index" });
+            routes.MapRoute(Routes.Hire.PostcodeCheck, url: "hire/postcode-check", defaults: new { controller = "Hire", action = "AvailabilityCheck", postcodeChecked = true });
+            routes.MapRoute(Routes.Hire.AvailabilityCheck, url: "hire/availability-check/{productGuid}", defaults: new { controller = "Hire", action = "AvailabilityCheck" });
             routes.MapRoute(Routes.Hire.CheckProductAvailability, url: "hire/availability/{name}/{productGuid}", defaults: new { controller = "Hire", action = "CheckProductAvailability" });
             routes.MapRoute(Routes.Hire.Product, url: "hire/{categoryName}/{name}/{productId}", defaults: new { controller = "Hire", action = "Product" });
             routes.MapRoute(Routes.Hire.Preview, url: "hire/preview/{categoryName}/{name}/{productId}", defaults: new { controller = "Hire", action = "Preview" });

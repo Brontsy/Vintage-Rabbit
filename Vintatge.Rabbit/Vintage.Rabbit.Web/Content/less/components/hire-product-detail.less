@@ -88,56 +88,22 @@
     }
 }
 
+.hire-form
+{
+    .help-text { min-height: 40px; }
+}
 
 
-    .check-availability {
-        margin-right: 20px;
-        margin-top: 15px;
+.postcode-check {
+}
 
-        input {
-        }
-        
-        .check-availability-button {
-            width: 100%;
-        }
-
-        .add-to-cart-container {
-            display: none;
+    .add-to-cart-form {
+        .available-text {
+            display: block;
         }
 
         .added-to-cart {
             display: none;
-            margin-top: 10px;
-        }
-
-        .unavailable-text {
-            display: none;
-            margin-top: 10px;
-        }
-
-        .available-text {
-            display: none;
-            margin-top: 10px;
-        }
-
-        &.available {
-            .add-to-cart-container {
-                display: block;
-            }
-
-            .check-availability-button {
-                display: none;
-            }
-
-            .available-text {
-                display: block;
-            }
-        }
-
-        &.unavailable {
-            .unavailable-text {
-                display: block;
-            }
         }
 
         &.in-cart {
@@ -146,17 +112,100 @@
                 display: none;
             }
 
-            .add-to-cart-container {
-                display: block;
-            }
-
             .added-to-cart {
                 display: block;
             }
         }
-        
+
+        .add-to-cart-container {
+
+            select {
+                height: 36px;
+                width: 55px;
+                text-align: center;
+                font-size: 18px;
+                line-height: 36px;
+                text-align: center;
+                padding-left: 5px;
+            }
+        }
+    }
+
+.check-availability {
+
+
+    .hire-available {
+    }
+
+    .unavailable-text {
+        display: none;
+    }
+
+    &.unavailable {
+        .unavailable-text {
+            display: block;
+        }
+    }
+    /*
+    input {
+    }
+
+    .check-availability-button {
+        width: 100%;
+    }
+
     .add-to-cart-container {
-        padding-left: 15px;
-        select { height: 36px; width: 55px; text-align: center; font-size: 18px; line-height: 36px; text-align: center; padding-left: 5px; }
+        display: none;
     }
+
+    .added-to-cart {
+        display: none;
+        margin-top: 10px;
     }
+
+    .unavailable-text {
+        display: none;
+        margin-top: 10px;
+    }
+
+    .available-text {
+        display: none;
+        margin-top: 10px;
+    }
+
+    &.available {
+        .add-to-cart-container {
+            display: block;
+        }
+
+        .check-availability-button {
+            display: none;
+        }
+
+        .available-text {
+            display: block;
+        }
+    }
+
+    &.unavailable {
+        .unavailable-text {
+            display: block;
+        }
+    }
+
+    &.in-cart {
+
+        .available-text {
+            display: none;
+        }
+
+        .add-to-cart-container {
+            display: block;
+        }
+
+        .added-to-cart {
+            display: block;
+        }
+    }
+    */
+}

@@ -73,7 +73,7 @@
                             @Html.ValidationMessageFor(o => o.Postcode)
                         </li>
                         <li class="col-12">
-                            @Html.TextBoxFor(o => o.State, new { placeholder = "State" })
+                            @Html.DropDownListFor(o => o.State, Model.States, "State...", new { })
                             @Html.ValidationMessageFor(o => o.State)
                         </li>
 

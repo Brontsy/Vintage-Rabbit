@@ -104,6 +104,7 @@
     <Compile Include="QueryHandlers\GetProductsByIdsQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetProductsQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetFeaturedProductsQueryHandler.cs" />
+    <Compile Include="QueryHandlers\IsValidHirePostcodeQueryHandler.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\Entities\ProductDb.cs" />
     <Compile Include="Repository\ProductRepository.cs" />

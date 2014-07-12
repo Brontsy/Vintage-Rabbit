@@ -201,6 +201,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="ModelBinders\CategoryModelBinder.cs" />
+    <Compile Include="ModelBinders\HireAvailabilityViewModelModelBinder.cs" />
     <Compile Include="ModelBinders\HireDatesModelBinder.cs" />
     <Compile Include="ModelBinders\CartModelBinder.cs" />
     <Compile Include="ModelBinders\OrderModelBinder.cs" />
@@ -209,6 +210,8 @@
     <Compile Include="Models\Blogs\BlogViewModel.cs" />
     <Compile Include="Models\Breadcrumbs\BreadcrumbsViewModel.cs" />
     <Compile Include="Models\Hire\AvailabilityCheckViewModel.cs" />
+    <Compile Include="Models\Hire\HireAvailabilityViewModel.cs" />
+    <Compile Include="Models\Hire\PostcodeCheckViewModel.cs" />
     <Compile Include="Models\Orders\OrderItemViewModel.cs" />
     <Compile Include="Models\Orders\OrderViewModel.cs" />
     <Compile Include="Models\Payment\BillingAddressViewModel.cs" />
@@ -364,6 +367,7 @@
     <Content Include="Content\images\themes\wizard-of-oz\Wizard of Oz Theme Package 5118 %281 of 1%29.jpg" />
     <Content Include="Content\scripts\lightbox\feather-light.js" />
     <Content Include="Content\scripts\placeholder.js" />
+    <Content Include="Content\scripts\PostcodeCheck.js" />
     <Content Include="Content\scripts\preload.js" />
     <Content Include="Content\scripts\lightbox.js" />
     <Content Include="Content\scripts\checkout.js" />
@@ -521,6 +525,8 @@
     <Content Include="Views\Style\TeddyBearsPicnic.cshtml" />
     <Content Include="Views\Hire\Subnav.cshtml" />
     <Content Include="Views\Buy\PartySuppliesSubnav.cshtml" />
+    <Content Include="Views\Hire\PostcodeCheck.cshtml" />
+    <Content Include="Views\Hire\AddToCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

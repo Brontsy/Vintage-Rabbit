@@ -21,42 +21,33 @@ function AddDatePickerEvents()
 
         event.preventDefault();
         var $this = $(this);
+            var button = $(this).find('.btn.check-availability-button');
 
-        var button = $(this).find('.btn.check-availability-button');
+            $(this).data('check-availability', $(this).attr('action'));
 
-        $(this).data('check-availability', $(this).attr('action'));
+            button.data('button-text', $(button).html());
+            $(button).html('Checking');
 
-        button.data('button-text', $(button).html());
-        $(button).html('Checking');
+            $.ajax({
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                type: 'GET',
+                success: function (response) {
 
-        $.ajax({
-            url: $(this).attr('action'),
-            data: $(this).serialize(),
-            type: 'GET',
-            dataType: 'json',
-            success: function (json) {
+                    $('.availability-check').html(response);
 
-                if (json.Available) {
-
-                    $this.attr('action', $this.data('addToCart'));
-                    $('.check-availability').addClass('available').removeClass('unavailable').removeClass('in-cart');
+                    $(window).trigger('availability-check');
                 }
-                else {
-                    $(this).attr('action', $this.data('checkAvailability'));
-                    $('.check-availability').addClass('unavailable').removeClass('available').removeClass('in-cart');
-                }
-
-                button.html(button.data('button-text'));
-            }
-        })
+            });
+      
     });
 
 
     $(window).on('AddToCart', function (json) {
-        $('.add-hire-product-to-cart').find('button').addClass('hidden');
-        $('.add-hire-product-to-cart').find('.available').addClass('hidden');
-        $('.add-hire-product-to-cart').find('.added-to-cart').removeClass('hidden');
-        $('.check-availability').addClass('in-cart');
+        //$('.add-hire-product-to-cart').find('button').addClass('hidden');
+        //$('.add-hire-product-to-cart').find('.available').addClass('hidden');
+        //$('.add-hire-product-to-cart').find('.added-to-cart').removeClass('hidden');
+        $('.add-to-cart-form').addClass('in-cart');
     });
 }
 
@@ -69,7 +60,7 @@ $(document).ready(function () {
 
 
 
-$(window).on('lightbox.ajax-content-loaded', function () {
+$(window).on('lightbox.ajax-content-loaded, availability-check', function () {
 
     AddDatePickerEvents();
 });

@@ -1,0 +1,29 @@
+﻿@model Vintage.Rabbit.Web.Models.Hire.PostcodeCheckViewModel
+
+                 
+
+
+
+<div class="col-12 postcode-check">
+    
+    @using (Html.BeginRouteForm(Routes.Hire.PostcodeCheck, new { productGuid = Model.Product.Guid }, FormMethod.Post, new { @class = "postcode-check-form hire-form" }))
+{
+    <ol class="row">
+        <li class="col-12 help-text">
+            <p>Please enter your postcode below to check if we can deliver to your area.</p>
+        </li>
+        <li class="col-6">
+            @Html.TextBoxFor(o => o.PostcodeCheck, new { @placeholder = "Postcode" })
+            @Html.ValidationMessageFor(o => o.PostcodeCheck)
+        </li>
+
+
+        <li class="col-6">
+            <button type="submit" class="btn primary check-availability-button">
+                <i class="fa fa-refresh"></i>
+                Check availability
+            </button>
+        </li>
+    </ol>
+}
+</div>

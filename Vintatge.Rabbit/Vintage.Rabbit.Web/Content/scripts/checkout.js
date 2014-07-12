@@ -40,22 +40,14 @@ $(document).ready(function () {
 
 
 
-    $('#deliver').on('change', function () {
-
-        if ($(this).is(':checked')) {
-            $('.deliver-address-form').removeClass('hidden');
-            $('.pickup-button').addClass('hidden');
+    $('#IsDropoff, #IsPickup').on('change', function () {
+        
+        if ($('#IsDropoff').is(':checked') || $('#IsPickup').is(':checked')) {
+            $('.deliver-field').removeClass('hidden');
+        }
+        else {
+            $('.deliver-field').addClass('hidden');
         }
     });
-
-
-    $('#pickup').on('change', function () {
-
-        if ($(this).is(':checked')) {
-            $('.deliver-address-form').addClass('hidden');
-            $('.pickup-button').removeClass('hidden');
-        }
-    });
-
 
 });

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using Vintage.Rabbit.Membership.Entities;
 using Vintage.Rabbit.Orders.Entities;
 
@@ -39,9 +40,21 @@ namespace Vintage.Rabbit.Web.Models.Payment
         [Required(ErrorMessage = "Please enter your last name")]
         public string LastName { get; set; }
 
+        public IList<SelectListItem> States { get; set; }
+
         public AddressViewModel()
         {
             this.Guid = Guid.NewGuid();
+
+            this.States = new List<SelectListItem>();
+            this.States.Add(new SelectListItem() { Value = "ACT", Text = "ACT" });
+            this.States.Add(new SelectListItem() { Value = "NSW", Text = "NSW" });
+            this.States.Add(new SelectListItem() { Value = "NT", Text = "NT" });
+            this.States.Add(new SelectListItem() { Value = "QLD", Text = "QLD" });
+            this.States.Add(new SelectListItem() { Value = "SA", Text = "SA" });
+            this.States.Add(new SelectListItem() { Value = "TAS", Text = "TAS" });
+            this.States.Add(new SelectListItem() { Value = "VIC", Text = "VIC" });
+            this.States.Add(new SelectListItem() { Value = "WA", Text = "WA" });
         }
 
         public AddressViewModel(Address address) : this()

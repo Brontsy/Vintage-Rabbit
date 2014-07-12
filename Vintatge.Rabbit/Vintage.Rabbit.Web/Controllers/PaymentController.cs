@@ -132,39 +132,44 @@ namespace Vintage.Rabbit.Web.Controllers
             if (order.DeliveryAddressId.HasValue)
             {
                 Address address = this._queryDispatcher.Dispatch<Address, GetAddressByGuidQuery>(new GetAddressByGuidQuery(order.DeliveryAddressId.Value));
-                viewModel = new DeliveryAddressViewModel(address);
+                viewModel = new DeliveryAddressViewModel(address, order);
             }
             else if (member.DeliveryAddresses.Any())
             {
                 Address address = member.DeliveryAddresses.OrderByDescending(o => o.DateCreated).First();
-                viewModel = new DeliveryAddressViewModel(address);
+                viewModel = new DeliveryAddressViewModel(address, order);
             }
 
             return this.View("Delivery", viewModel);
         }
 
-        [HasOrder]
-        [HttpGet]
-        public ActionResult PickupHiredProducts(Order order)
-        {
-            this._commandDispatcher.Dispatch<RemoveDeliveryAddressCommand>(new RemoveDeliveryAddressCommand(order));
+        //[HasOrder]
+        //[HttpGet]
+        //public ActionResult PickupHiredProducts(Order order)
+        //{
+        //    this._commandDispatcher.Dispatch<RemoveDeliveryAddressCommand>(new RemoveDeliveryAddressCommand(order));
 
-            return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
-        }
+        //    return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
+        //}
 
         [HasOrder]
         [HttpPost]
         public ActionResult Delivery(DeliveryAddressViewModel viewModel, Order order, Member member)
         {
-            if (this.ModelState.IsValid)
+            if (viewModel.IsDropoff || viewModel.IsPickup)
             {
-                Address deliveryAddress = this._addressProvider.SaveDeliveryAddress(member, viewModel);
-                this._commandDispatcher.Dispatch<AddDeliveryAddressCommand>(new AddDeliveryAddressCommand(order, deliveryAddress));
+                if (this.ModelState.IsValid)
+                {
+                    Address deliveryAddress = this._addressProvider.SaveDeliveryAddress(member, viewModel);
+                    this._commandDispatcher.Dispatch<AddDeliveryAddressCommand>(new AddDeliveryAddressCommand(order, deliveryAddress, viewModel.IsPickup, viewModel.IsDropoff));
 
-                return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
+                    return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
+                }
+
+                return this.Delivery(order, member);
             }
 
-            return this.View("ShippingInformation", viewModel);
+            return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
         }
 
 
