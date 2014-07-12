@@ -43,14 +43,17 @@ namespace Vintage.Rabbit.Products.CommandHandlers
 
         public void Handle(RemovePhotoCommand command)
         {
-            var photo = command.Product.Images.First(o => o.Id == command.PhotoId);
+            var photo = command.Product.Images.FirstOrDefault(o => o.Id == command.PhotoId);
 
-            this._fileStorage.DeleteFile(photo.Url);
-            this._fileStorage.DeleteFile(photo.Thumbnail);
+            if (photo != null)
+            {
+                this._fileStorage.DeleteFile(photo.Url);
+                this._fileStorage.DeleteFile(photo.Thumbnail);
 
-            command.Product.Images.Remove(photo);
+                command.Product.Images.Remove(photo);
 
-            this._commandDispatcher.Dispatch(new SaveProductCommand(command.Product, command.ActionBy));
+                this._commandDispatcher.Dispatch(new SaveProductCommand(command.Product, command.ActionBy));
+            }
         }
     }
 }

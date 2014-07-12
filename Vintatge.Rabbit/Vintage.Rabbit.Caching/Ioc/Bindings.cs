@@ -20,7 +20,7 @@ namespace Vintage.Rabbit.Caching.Ioc
             if (!string.IsNullOrEmpty(cache) && cache.ToLower() == "redis")
             {
 
-                builder.RegisterType<RedisCache>().As<ICacheService>().InstancePerRequest();
+                builder.RegisterType<RedisCache>().As<ICacheService>().SingleInstance();
             }
             else
             {
