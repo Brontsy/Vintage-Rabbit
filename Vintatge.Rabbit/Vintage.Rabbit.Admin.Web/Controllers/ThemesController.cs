@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Vintage.Rabbit.Admin.Web.Models.Products;
 using Vintage.Rabbit.Admin.Web.Models.Themes;
+using Vintage.Rabbit.Common.Entities;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Membership.Entities;
 using Vintage.Rabbit.Products.Entities;
@@ -114,7 +115,7 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
         {
             Theme theme = this._queryDispatcher.Dispatch<Theme, GetThemeByGuidQuery>(new GetThemeByGuidQuery(guid));
 
-            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsQuery>(new GetProductsQuery(1, 5000)).OrderBy(o => o.Title).ToList();
+            PagedResult<Product> products = this._queryDispatcher.Dispatch<PagedResult<Product>, GetProductsQuery>(new GetProductsQuery(1, 5000));
 
             IList<ThemeProductListItemViewModel> viewModel = new List<ThemeProductListItemViewModel>();
 
