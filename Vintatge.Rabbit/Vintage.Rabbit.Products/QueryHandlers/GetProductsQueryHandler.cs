@@ -50,8 +50,8 @@ namespace Vintage.Rabbit.Products.QueryHandlers
             //this._cacheService.Add(cacheKey, products);
             foreach (Product product in products)
             {
-                this._cacheService.Add(CacheKeyHelper.Product.ById(product.Id), product);
-                this._cacheService.Add(CacheKeyHelper.Product.ByGuid(product.Guid), product);
+                //this._cacheService.Add(CacheKeyHelper.Product.ById(product.Id), product);
+                //this._cacheService.Add(CacheKeyHelper.Product.ByGuid(product.Guid), product);
             }
 
             return products;
