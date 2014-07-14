@@ -8,6 +8,7 @@ using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Interfaces.Cache;
 using Vintage.Rabbit.Products.Repository;
 using Vintage.Rabbit.Caching;
+using Vintage.Rabbit.Common.Entities;
 
 namespace Vintage.Rabbit.Products.QueryHandlers
 {
@@ -15,13 +16,16 @@ namespace Vintage.Rabbit.Products.QueryHandlers
     {
         public int Page { get; private set; }
 
-        public GetProductsQuery(int page = 1)
+        public int ItemsPerPage { get; private set; }
+
+        public GetProductsQuery(int page, int itemsPerPage)
         {
             this.Page = page;
+            this.ItemsPerPage = itemsPerPage;
         }
     }
 
-    internal class GetProductsQueryHandler : IQueryHandler<IList<Product>, GetProductsQuery>
+    internal class GetProductsQueryHandler : IQueryHandler<PagedResult<Product>, GetProductsQuery>
     {
         private ICacheService _cacheService;
         private IProductRepository _productRepository;
@@ -32,18 +36,18 @@ namespace Vintage.Rabbit.Products.QueryHandlers
             this._productRepository = productRepository;
         }
 
-        public IList<Product> Handle(GetProductsQuery query)
+        public PagedResult<Product> Handle(GetProductsQuery query)
         {
             string cacheKey = CacheKeyHelper.Product.All();
 
             if (this._cacheService.Exists(cacheKey))
             {
-                return this._cacheService.Get<IList<Product>>(cacheKey);
+                //return this._cacheService.Get<IList<Product>>(cacheKey);
             }
 
-            IList<Product> products = this._productRepository.GetProducts(query.Page);
+            PagedResult<Product> products = this._productRepository.GetProducts(query.Page, query.ItemsPerPage);
 
-            this._cacheService.Add(cacheKey, products);
+            //this._cacheService.Add(cacheKey, products);
             foreach (Product product in products)
             {
                 this._cacheService.Add(CacheKeyHelper.Product.ById(product.Id), product);

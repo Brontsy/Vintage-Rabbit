@@ -179,6 +179,7 @@
     <Compile Include="Models\Inventory\AddInventoryViewModel.cs" />
     <Compile Include="Models\Inventory\InventoryItemViewModel.cs" />
     <Compile Include="Models\Inventory\InventoryPageViewModel.cs" />
+    <Compile Include="Models\Pagination\PaginationViewModel.cs" />
     <Compile Include="Models\Products\ProductListViewModel.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
     <Compile Include="Models\Membership\LoginViewModel.cs" />
@@ -247,6 +248,7 @@
     <Content Include="Content\less\pages\edit-product.less" />
     <Content Include="Content\less\pages\blog-entries.less" />
     <Content Include="Content\less\pages\theme.less" />
+    <Content Include="Content\less\components\pagination.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -308,6 +310,7 @@
     <Content Include="Views\Themes\ProductList.cshtml" />
     <Content Include="Views\Themes\AddProduct.cshtml" />
     <Content Include="Views\Themes\MainImage.cshtml" />
+    <Content Include="Views\Shared\Pagination.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

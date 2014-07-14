@@ -214,6 +214,7 @@
     <Compile Include="Models\Hire\PostcodeCheckViewModel.cs" />
     <Compile Include="Models\Orders\OrderItemViewModel.cs" />
     <Compile Include="Models\Orders\OrderViewModel.cs" />
+    <Compile Include="Models\Pagination\PaginationViewModel.cs" />
     <Compile Include="Models\Payment\BillingAddressViewModel.cs" />
     <Compile Include="Models\Payment\DeliveryAddressViewModel.cs" />
     <Compile Include="Models\Payment\GuestViewModel.cs" />
@@ -450,6 +451,7 @@
     <Content Include="Areas\Emails\Views\Shared\Success.cshtml" />
     <Content Include="Areas\Emails\Views\InvoiceEmail\OrderItem.cshtml" />
     <Content Include="Content\less\pages\checkout-delivery.less" />
+    <Content Include="Content\less\components\pagination.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -527,6 +529,7 @@
     <Content Include="Views\Buy\PartySuppliesSubnav.cshtml" />
     <Content Include="Views\Hire\PostcodeCheck.cshtml" />
     <Content Include="Views\Hire\AddToCart.cshtml" />
+    <Content Include="Views\Shared\Pagination.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

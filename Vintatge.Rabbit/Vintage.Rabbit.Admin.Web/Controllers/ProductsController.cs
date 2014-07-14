@@ -18,6 +18,8 @@ using Vintage.Rabbit.Admin.Web.Models.Inventory;
 using Vintage.Rabbit.Inventory.Entities;
 using Vintage.Rabbit.Inventory.CommandHandlers;
 using Vintage.Rabbit.Search.QueryHandlers;
+using Vintage.Rabbit.Common.Entities;
+using Vintage.Rabbit.Web.Admin.Models.Pagination;
 
 namespace Vintage.Rabbit.Admin.Web.Controllers
 {
@@ -44,11 +46,12 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
             return this.Json(viewModel, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult List()
+        public ActionResult List(Member member, int page = 1)
         {
-            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsQuery>(new GetProductsQuery()).OrderBy(o => o.Title).ToList();
+            PagedResult<Product> products = this._queryDispatcher.Dispatch<PagedResult<Product>, GetProductsQuery>(new GetProductsQuery(page, 36));
 
             ProductListViewModel viewModel = new ProductListViewModel(products);
+            viewModel.Pagination = new PaginationViewModel(products.PageNumber, products.TotalResults, products.ItemsPerPage, Routes.Products.ListPaged);
 
             return View("BuyList", viewModel);
         }

@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vintage.Rabbit.Common.Entities;
 using Vintage.Rabbit.Common.Extensions;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Products.QueryHandlers;
 using Vintage.Rabbit.Web.Models.Breadcrumbs;
 using Vintage.Rabbit.Web.Models.Categories;
+using Vintage.Rabbit.Web.Models.Pagination;
 using Vintage.Rabbit.Web.Models.Products;
 
 namespace Vintage.Rabbit.Web.Controllers
@@ -36,16 +38,19 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.PartialView("Product", new ProductViewModel(product));
         }
 
-        public ActionResult Category(Category category, string childCategoryName)
+        public ActionResult Category(Category category, string childCategoryName, int page = 1)
         {
+            bool isChildCategory = false;
             if(!string.IsNullOrEmpty(childCategoryName))
             {
+                isChildCategory = true;
                 category = category.Children.First(o => o.Name == childCategoryName);
             }
 
-            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByCategoryQuery>(new GetProductsByCategoryQuery(category, Common.Enums.ProductType.Buy));
+            PagedResult<Product> products = this._queryDispatcher.Dispatch<PagedResult<Product>, GetProductsByCategoryQuery>(new GetProductsByCategoryQuery(category, Common.Enums.ProductType.Buy, page, 20));
 
             ProductListViewModel viewModel = new ProductListViewModel(products, category);
+            viewModel.Pagination = new PaginationViewModel(products.PageNumber, products.TotalResults, products.ItemsPerPage, isChildCategory ? Routes.Buy.CategoryChildPaged : Routes.Buy.CategoryPaged);
 
             return View("ProductList", viewModel);
         }

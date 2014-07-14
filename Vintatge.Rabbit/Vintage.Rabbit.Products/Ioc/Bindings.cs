@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vintage.Rabbit.Common.Entities;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Interfaces.Messaging;
 using Vintage.Rabbit.Products.CommandHandlers;
@@ -30,9 +31,9 @@ namespace Vintage.Rabbit.Products.Ioc
 
             builder.RegisterType<GetProductByGuidQueryHandler>().As<IQueryHandler<Product, GetProductByGuidQuery>>();
             builder.RegisterType<GetProductByIdQueryHandler>().As<IQueryHandler<Product, GetProductByIdQuery>>();
-            builder.RegisterType<GetProductsQueryHandler>().As<IQueryHandler<IList<Product>, GetProductsQuery>>();
-            builder.RegisterType<GetProductsByCategoryQueryHandler>().As<IQueryHandler<IList<Product>, GetProductsByCategoryQuery>>();
-            builder.RegisterType<GetProductsByTypeQueryHandler>().As<IQueryHandler<IList<Product>, GetProductsByTypeQuery>>();
+            builder.RegisterType<GetProductsQueryHandler>().As<IQueryHandler<PagedResult<Product>, GetProductsQuery>>();
+            builder.RegisterType<GetProductsByCategoryQueryHandler>().As<IQueryHandler<PagedResult<Product>, GetProductsByCategoryQuery>>();
+            builder.RegisterType<GetProductsByTypeQueryHandler>().As<IQueryHandler<PagedResult<Product>, GetProductsByTypeQuery>>();
             builder.RegisterType<GetProductsByIdsQueryHandler>().As<IQueryHandler<IList<Product>, GetProductsByIdsQuery>>();
             builder.RegisterType<IsValidHirePostcodeQueryHandler>().As<IQueryHandler<bool, IsValidHirePostcodeQuery>>();
 

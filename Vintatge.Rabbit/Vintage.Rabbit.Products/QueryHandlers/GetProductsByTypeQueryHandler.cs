@@ -9,6 +9,7 @@ using Vintage.Rabbit.Interfaces.Cache;
 using Vintage.Rabbit.Products.Repository;
 using Vintage.Rabbit.Caching;
 using Vintage.Rabbit.Common.Enums;
+using Vintage.Rabbit.Common.Entities;
 
 namespace Vintage.Rabbit.Products.QueryHandlers
 {
@@ -16,13 +17,19 @@ namespace Vintage.Rabbit.Products.QueryHandlers
     {
         public ProductType Type { get; private set; }
 
-        public GetProductsByTypeQuery(ProductType type)
+        public int Page { get; private set; }
+
+        public int ItemsPerPage { get; private set; }
+
+        public GetProductsByTypeQuery(ProductType type, int page, int itemsPerPage)
         {
             this.Type = type;
+            this.Page = page;
+            this.ItemsPerPage = itemsPerPage;
         }
     }
 
-    internal class GetProductsByTypeQueryHandler : IQueryHandler<IList<Product>, GetProductsByTypeQuery>
+    internal class GetProductsByTypeQueryHandler : IQueryHandler<PagedResult<Product>, GetProductsByTypeQuery>
     {
         private ICacheService _cacheService;
         private IProductRepository _productRepository;
@@ -33,18 +40,18 @@ namespace Vintage.Rabbit.Products.QueryHandlers
             this._productRepository = productRepository;
         }
 
-        public IList<Product> Handle(GetProductsByTypeQuery query)
+        public PagedResult<Product> Handle(GetProductsByTypeQuery query)
         {
             string cacheKey = CacheKeyHelper.Product.ByType(query.Type);
 
             if (this._cacheService.Exists(cacheKey))
             {
-                return this._cacheService.Get<IList<Product>>(cacheKey);
+                //return this._cacheService.Get<IList<Product>>(cacheKey);
             }
 
-            IList<Product> products = this._productRepository.GetProductsByType(query.Type);
+            PagedResult<Product> products = this._productRepository.GetProductsByType(query.Type, query.Page, query.ItemsPerPage);
 
-            this._cacheService.Add(cacheKey, products);
+            //this._cacheService.Add(cacheKey, products);
             foreach (Product product in products)
             {
                 this._cacheService.Add(CacheKeyHelper.Product.ById(product.Id), product);

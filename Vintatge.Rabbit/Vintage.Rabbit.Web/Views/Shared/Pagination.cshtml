@@ -1,0 +1,38 @@
+﻿@model Vintage.Rabbit.Web.Models.Pagination.PaginationViewModel
+
+
+
+    @if (Model.TotalResults > 20)
+    {
+        <div class="row">
+            <div class="pagination">
+                <ul>
+                    @for (int i = 1; i <= Model.TotalPages; i++)
+                    {
+                        <li>
+                            @if (Model.Page == i)
+                            {
+                                <div class="selected">@i</div>
+                            }
+                            else
+                            {
+                                @Html.RouteLink(i.ToString(), Model.RouteName, new { page = i }, new { })
+                            }
+                        </li>
+                    }
+
+                    @if(Model.TotalPages != Model.Page)
+                    {
+                        <li>
+                            <div>...</div>
+                        </li>
+                        <li class="next">                            
+                            @Html.RouteLink("Next", Model.RouteName, new { page = Model.Page + 1 }, new { })
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+
+

@@ -15,6 +15,7 @@ using Lucene.Net.QueryParsers;
 using System.Configuration;
 using Vintage.Rabbit.Products.QueryHandlers;
 using Lucene.Net.Store;
+using Vintage.Rabbit.Common.Entities;
 
 namespace Vintage.Rabbit.Search.QueryHandlers
 {
@@ -28,7 +29,7 @@ namespace Vintage.Rabbit.Search.QueryHandlers
         }
     }
 
-    internal class SearchQueryHandler : IQueryHandler<IList<Product>, SearchQuery>
+    internal class SearchQueryHandler : IQueryHandler<PagedResult<Product>, SearchQuery>
     {
         private IQueryDispatcher _queryDispatcher;
 
@@ -37,7 +38,7 @@ namespace Vintage.Rabbit.Search.QueryHandlers
             this._queryDispatcher = queryDispatcher;
         }
 
-        public IList<Product> Handle(SearchQuery query)
+        public PagedResult<Product> Handle(SearchQuery query)
         {
             try
             {
@@ -73,11 +74,14 @@ namespace Vintage.Rabbit.Search.QueryHandlers
                     }
                 }
 
-                return returnProducts;
+                PagedResult<Product> result = new PagedResult<Product>();
+                result.AddRange(returnProducts);
+
+                return result;
             }
             catch(Exception exception)
             {
-                return new List<Product>();
+                return new PagedResult<Product>();
             }
         }
 

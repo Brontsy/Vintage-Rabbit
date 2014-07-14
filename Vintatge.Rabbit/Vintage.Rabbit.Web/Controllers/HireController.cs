@@ -13,6 +13,8 @@ using Vintage.Rabbit.Web.Models.Products;
 using Vintage.Rabbit.Common.Extensions;
 using Vintage.Rabbit.Inventory.QueryHandlers;
 using Vintage.Rabbit.Common.Enums;
+using Vintage.Rabbit.Common.Entities;
+using Vintage.Rabbit.Web.Models.Pagination;
 
 namespace Vintage.Rabbit.Web.Controllers
 {
@@ -25,15 +27,12 @@ namespace Vintage.Rabbit.Web.Controllers
             this._queryDispatcher = queryDispatcher;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByTypeQuery>(new GetProductsByTypeQuery(ProductType.Hire));
-
-            BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
-            breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
-            breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Index), "Hire");
+            PagedResult<Product> products = this._queryDispatcher.Dispatch<PagedResult<Product>, GetProductsByTypeQuery>(new GetProductsByTypeQuery(ProductType.Hire, page, 20));
 
             ProductListViewModel viewModel = new ProductListViewModel(products);
+            viewModel.Pagination = new PaginationViewModel(products.PageNumber, products.TotalResults, products.ItemsPerPage, Routes.Hire.IndexPaged);
 
             return View("Index", viewModel);
         }
@@ -45,17 +44,13 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.PartialView("Subnav", categories.Select(o => new CategoryViewModel(o)).ToList());
         }
 
-        public ActionResult Category(string categoryName)
+        public ActionResult Category(string categoryName, int page = 1)
         {
             Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName));
-            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByCategoryQuery>(new GetProductsByCategoryQuery(category, Common.Enums.ProductType.Hire));
-
-            BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
-            breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
-            breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Index), "Hire");
-            breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Category, new { categoryName = categoryName }), category.DisplayName);
+            PagedResult<Product> products = this._queryDispatcher.Dispatch<PagedResult<Product>, GetProductsByCategoryQuery>(new GetProductsByCategoryQuery(category, Common.Enums.ProductType.Hire, page, 20));
 
             ProductListViewModel viewModel = new ProductListViewModel(products, category);
+            viewModel.Pagination = new PaginationViewModel(products.PageNumber, products.TotalResults, products.ItemsPerPage, Routes.Hire.CategoryPaged);
 
             return View("Index", viewModel);
         }

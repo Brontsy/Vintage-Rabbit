@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vintage.Rabbit.Common.Entities;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Search.CommandHandlers;
@@ -24,7 +25,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult Index(string query)
         {
-            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, SearchQuery>(new SearchQuery(query));
+            PagedResult<Product> products = this._queryDispatcher.Dispatch<PagedResult<Product>, SearchQuery>(new SearchQuery(query));
 
             ProductListViewModel viewModel = new ProductListViewModel(products);
 

@@ -9,6 +9,7 @@ using Vintage.Rabbit.Interfaces.Cache;
 using Vintage.Rabbit.Products.Repository;
 using Vintage.Rabbit.Caching;
 using Vintage.Rabbit.Common.Enums;
+using Vintage.Rabbit.Common.Entities;
 
 namespace Vintage.Rabbit.Products.QueryHandlers
 {
@@ -18,14 +19,20 @@ namespace Vintage.Rabbit.Products.QueryHandlers
 
         public ProductType ProductType { get; private set; }
 
-        public GetProductsByCategoryQuery(Category category, ProductType productType)
+        public int Page { get; private set; }
+
+        public int ItemsPerPage { get; private set; }
+
+        public GetProductsByCategoryQuery(Category category, ProductType productType, int page, int itemsPerPage)
         {
             this.Category = category;
             this.ProductType = productType;
+            this.Page = page;
+            this.ItemsPerPage = itemsPerPage;
         }
     }
 
-    internal class GetProductsByCategoryQueryHandler : IQueryHandler<IList<Product>, GetProductsByCategoryQuery>
+    internal class GetProductsByCategoryQueryHandler : IQueryHandler<PagedResult<Product>, GetProductsByCategoryQuery>
     {
         private ICacheService _cacheService;
         private IProductRepository _productRepository;
@@ -38,11 +45,9 @@ namespace Vintage.Rabbit.Products.QueryHandlers
             this._queryDispatcher = queryDispatcher;
         }
 
-        public IList<Product> Handle(GetProductsByCategoryQuery query)
+        public PagedResult<Product> Handle(GetProductsByCategoryQuery query)
         {
-            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByTypeQuery>(new GetProductsByTypeQuery(query.ProductType));
-
-            return products.Where(o => o.Categories.Any(x => x.Name == query.Category.Name || x.Children.Any(y => y.Name == query.Category.Name))).ToList();
+            return this._productRepository.GetProductsByCategory(query.ProductType, query.Category, query.Page, query.ItemsPerPage);
         }
     }
 }

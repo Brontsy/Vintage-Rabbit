@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vintage.Rabbit.Common.Entities;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Search.CommandHandlers;
@@ -17,7 +18,7 @@ namespace Vintage.Rabbit.Search.Ioc
         {
             builder.RegisterType<BuildLuceneIndexCommandHandler>().As<ICommandHandler<BuildLuceneIndexCommand>>();
 
-            builder.RegisterType<SearchQueryHandler>().As<IQueryHandler<IList<Product>, SearchQuery>>();
+            builder.RegisterType<SearchQueryHandler>().As<IQueryHandler<PagedResult<Product>, SearchQuery>>();
         }
     }
 }

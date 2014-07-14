@@ -14,6 +14,7 @@ namespace Vintage.Rabbit.Admin.Web
         {
             public static string Search = "Product Search";
             public static string List = "Product List";
+            public static string ListPaged = "Product ListPaged";
             public static string Type = "Product Type";
             public static string Edit = "Product - Edit";
             public static string AddProduct = "Product - Add";
@@ -57,6 +58,7 @@ namespace Vintage.Rabbit.Admin.Web
             routes.MapRoute(Routes.Products.Search, url: "products/search", defaults: new { controller = "Products", action = "Search" });
             routes.MapRoute(Routes.Products.AddProduct, url: "products/add", defaults: new { controller = "Products", action = "Add" });
             routes.MapRoute(Routes.Products.List, url: "products", defaults: new { controller = "Products", action = "List" });
+            routes.MapRoute(Routes.Products.ListPaged, url: "products/page/{page}", defaults: new { controller = "Products", action = "List" });
             routes.MapRoute(Routes.Products.Type, url: "products/{productType}", defaults: new { controller = "Products", action = "List" });
             routes.MapRoute(Routes.Products.SaveProduct, url: "products/save/{productId}", defaults: new { controller = "Products", action = "Save" });
             routes.MapRoute(Routes.Products.Edit, url: "products/edit/{name}/{productId}", defaults: new { controller = "Products", action = "Edit" });

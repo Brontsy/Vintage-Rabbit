@@ -9,13 +9,26 @@
 <div class="buy-page">
     @{Html.RenderAction("ListBreadcrumbs", "Buy");}
 
-    <div class="row">
-    @{Html.RenderAction("Categories", "Buy");}
 
+    @if(Model.SelectedCategory.Name == "gifts" || Model.SelectedCategory.Name == "games")
+    {
+        <ul class="row product-list items-5">
+            @foreach (var product in Model.Products)
+            {
+                <li class="col-3">
+                    @{Html.RenderPartial("product-list-item", product);}
+                </li>
+            }
+        </ul>
+    }
+    else
+    { 
+        <div class="row">
+        @{Html.RenderAction("Categories", "Buy");}
 
-        <div class="col-10 product-list">
-
-            <ul class="row product-list">
+        <div class="col-10">
+            
+            <ul class="row product-list items-4">
                 @foreach (var product in Model.Products)
                 {
                     <li class="col-3">
@@ -24,5 +37,10 @@
                 }
             </ul>
         </div>
-    </div>    
+    </div> 
+    }
+   
+
+    @{Html.RenderPartial("Pagination", Model.Pagination);}
+
 </div>

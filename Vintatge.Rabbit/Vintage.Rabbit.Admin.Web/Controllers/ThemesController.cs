@@ -114,7 +114,7 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
         {
             Theme theme = this._queryDispatcher.Dispatch<Theme, GetThemeByGuidQuery>(new GetThemeByGuidQuery(guid));
 
-            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsQuery>(new GetProductsQuery()).OrderBy(o => o.Title).ToList();
+            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsQuery>(new GetProductsQuery(1, 5000)).OrderBy(o => o.Title).ToList();
 
             IList<ThemeProductListItemViewModel> viewModel = new List<ThemeProductListItemViewModel>();
 

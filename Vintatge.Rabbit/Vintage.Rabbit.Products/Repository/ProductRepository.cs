@@ -13,6 +13,7 @@ using System.Configuration;
 using Vintage.Rabbit.Common.Enums;
 using Vintage.Rabbit.Common.Serialization;
 using Vintage.Rabbit.Interfaces.Membership;
+using Vintage.Rabbit.Common.Entities;
 
 namespace Vintage.Rabbit.Products.Repository
 {
@@ -20,7 +21,7 @@ namespace Vintage.Rabbit.Products.Repository
     {
         IList<Product> GetFeaturedProducts();
 
-        IList<Product> GetProducts(int page);
+        PagedResult<Product> GetProducts(int page, int itemsPerPage);
 
         IList<Product> GetProductsById(IList<int> productIds);
 
@@ -28,7 +29,9 @@ namespace Vintage.Rabbit.Products.Repository
 
         Product GetProductById(int productId);
 
-        IList<Product> GetProductsByType(ProductType type);
+        PagedResult<Product> GetProductsByType(ProductType type, int page, int itemsPerPage);
+
+        PagedResult<Product> GetProductsByCategory(ProductType type, Category category, int page, int itemsPerPage);
 
         Product SaveProduct(Product product, IActionBy actionBy);
     }
@@ -44,22 +47,73 @@ namespace Vintage.Rabbit.Products.Repository
             this._serializer = serializer;
         }
 
-        public IList<Product> GetProductsByType(ProductType type)
+        public PagedResult<Product> GetProductsByCategory(ProductType type, Category category, int page, int itemsPerPage)
         {
-            IList<Product> products = new List<Product>();
+            PagedResult<Product> result = new PagedResult<Product>();
+            result.PageNumber = page;
+            result.ItemsPerPage = itemsPerPage;
+
+            IList<int> categoryIds = new List<int>() { category.Id };
+            foreach(var child in category.Children)
+            {
+                categoryIds.Add(child.Id);
+            }
+
+            string sql = @"Select * From VintageRabbit.Products
+                            Where [Type] = @Type And VintageRabbit.Products.Id In (Select Distinct ProductId From VintageRabbit.ProductCategories Where CategoryId In @CategoryIds)
+                            Order By DateCreated Desc 
+                            OFFSET @Offset ROWS FETCH NEXT @ResultsPerPage ROWS ONLY;
+                               Select Count(*) From VintageRabbit.Products Where [Type] = @Type And VintageRabbit.Products.Id In (Select Distinct ProductId From VintageRabbit.ProductCategories Where CategoryId In @CategoryIds);";
+
+            int offset = (page - 1) * itemsPerPage;
 
             using (SqlConnection connection = new SqlConnection(this._connectionString))
             {
-                var productResults = connection.Query<ProductDb>("Select * From VintageRabbit.Products Where [Type] = @Type Order By DateCreated Desc", new { Type = type.ToString() });
-
-                foreach (var product in productResults)
+                using (var multi = connection.QueryMultiple(sql, new { CategoryIds = categoryIds, Type = type.ToString(), Offset = offset, ResultsPerPage = itemsPerPage }))
                 {
-                    products.Add(this.ConvertToProduct(product));
+                    var productResults = multi.Read<ProductDb>();
+
+                    foreach (var product in productResults)
+                    {
+                        result.Add(this.ConvertToProduct(product));
+                    }
+
+                    result.TotalResults = multi.Read<int>().First();
                 }
 
             }
 
-            return products;
+
+            return result;
+        }
+
+        public PagedResult<Product> GetProductsByType(ProductType type, int page, int itemsPerPage)
+        {
+            PagedResult<Product> result = new PagedResult<Product>();
+            result.PageNumber = page;
+            result.ItemsPerPage = itemsPerPage;
+
+            using (SqlConnection connection = new SqlConnection(this._connectionString))
+            {
+                string sql = @"Select * From VintageRabbit.Products Where [Type] = @Type Order By DateCreated Desc OFFSET @Offset ROWS FETCH NEXT @ResultsPerPage ROWS ONLY;
+                               Select Count(*) From VintageRabbit.Products Where [Type] = @Type;";
+                int offset = (page - 1) * itemsPerPage;
+
+                using (var multi = connection.QueryMultiple(sql, new { Type = type.ToString(), Offset = offset, ResultsPerPage = itemsPerPage }))
+                {
+                    var productResults = multi.Read<ProductDb>();
+
+                    foreach (var product in productResults)
+                    {
+                        result.Add(this.ConvertToProduct(product));
+                    }
+
+                    result.TotalResults = multi.Read<int>().First();
+                }
+            }
+
+
+            return result;
         }
 
         public IList<Product> GetProductsById(IList<int> productIds)
@@ -177,26 +231,19 @@ namespace Vintage.Rabbit.Products.Repository
                 }
             }
 
+
+            this.SaveProductCategories(product);
+
             return product;
         }
 
         public IList<Product> GetFeaturedProducts()
         {
-            return this.GetProducts().Take(12).Select(o => o as Product).ToList();
-        }
-
-        public IList<Product> GetProducts(int page)
-        {
-            return this.GetProducts().ToList();
-        }
-
-        private IList<Product> GetProducts()
-        {
             IList<Product> products = new List<Product>();
 
             using (SqlConnection connection = new SqlConnection(this._connectionString))
             {
-                var productResults = connection.Query<ProductDb>("Select * From VintageRabbit.Products Order By Title Desc");
+                var productResults = connection.Query<ProductDb>("Select * From VintageRabbit.Products Where IsFeatured = 1 Order By Title Desc");
 
                 foreach (var product in productResults)
                 {
@@ -206,6 +253,62 @@ namespace Vintage.Rabbit.Products.Repository
             }
 
             return products;
+        }
+
+        public PagedResult<Product> GetProducts(int page, int itemsPerPage)
+        {
+            PagedResult<Product> result = new PagedResult<Product>();
+            result.PageNumber = page;
+            result.ItemsPerPage = itemsPerPage;
+
+            using (SqlConnection connection = new SqlConnection(this._connectionString))
+            {
+                string sql = @"Select * From VintageRabbit.Products Order By Title OFFSET @Offset ROWS FETCH NEXT @ResultsPerPage ROWS ONLY;
+                               Select Count(*) From VintageRabbit.Products;";
+                int offset = (page - 1) * itemsPerPage;
+
+                using (var multi = connection.QueryMultiple(sql, new { Offset = offset, ResultsPerPage = itemsPerPage }))
+                {
+                    var productResults = multi.Read<ProductDb>();
+
+                    foreach (var product in productResults)
+                    {
+                        result.Add(this.ConvertToProduct(product));
+                    }
+
+                    result.TotalResults = multi.Read<int>().First();
+                }
+            }
+
+
+            return result;
+        }
+
+        private void SaveProductCategories(Product product)
+        {
+            using (SqlConnection connection = new SqlConnection(this._connectionString))
+            {
+                connection.Execute("Delete From VintageRabbit.ProductCategories Where ProductId = @ProductId", new { ProductId = product.Id });
+            }
+
+            string sql = null;
+
+            foreach(var category in product.Categories)
+            {
+                sql += string.Format("Insert Into VintageRabbit.ProductCategories (CategoryId, ProductId) Values ({0}, {1});", category.Id, product.Id);
+                foreach(var childCategory in category.Children)
+                {
+                    sql += string.Format("Insert Into VintageRabbit.ProductCategories (CategoryId, ProductId) Values ({0}, {1});", childCategory.Id, product.Id);
+                }
+            }
+
+            if (!string.IsNullOrEmpty(sql))
+            {
+                using (SqlConnection connection = new SqlConnection(this._connectionString))
+                {
+                    connection.Execute(sql);
+                }
+            }
         }
 
         private Product ConvertToProduct(ProductDb productDb)
@@ -231,6 +334,5 @@ namespace Vintage.Rabbit.Products.Repository
 
             return product;
         }
-
     }
 }
