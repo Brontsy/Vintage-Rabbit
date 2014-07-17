@@ -11,6 +11,7 @@ namespace Vintage.Rabbit.Common.Enums
         Buy,
         Hire,
         Delivery,
-        Theme
+        Theme,
+        Discount
     }
 }

@@ -56,7 +56,13 @@ namespace Vintage.Rabbit.Web
             public static string PayPalSuccess = "Checkout - PayPalSuccess";
             public static string PayPalCancel = "Checkout - PayPalCancel";
             public static string Complete = "Checkout - Complete";
+        }
 
+        public static class Order
+        {
+            public static string ApplyDiscount = "Order - Apply Discount";
+            public static string Summary = "Order - Summary";
+            
         }
 
         public static class Buy
@@ -114,6 +120,8 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.AboutUs, url: "about-us", defaults: new { controller = "FAQ", action = "AboutUs" });
             routes.MapRoute(Routes.HowItWorks, url: "how-it-works", defaults: new { controller = "FAQ", action = "HowItWorks" });
 
+            routes.MapRoute(Routes.Order.ApplyDiscount, url: "order/{orderGuid}/apply-discount", defaults: new { controller = "Order", action = "ApplyDiscount" });
+            routes.MapRoute(Routes.Order.Summary, url: "order/{orderGuid}/summary", defaults: new { controller = "Order", action = "Summary" });
 
             routes.MapRoute(Routes.Themes.Index, url: "style", defaults: new { controller = "Style", action = "Index" });
             routes.MapRoute(Routes.Themes.WizardOfOz, url: "style/wizard-of-oz", defaults: new { controller = "Style", action = "WizardOfOz" });

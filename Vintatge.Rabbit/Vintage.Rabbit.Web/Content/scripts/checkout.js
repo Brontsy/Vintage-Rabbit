@@ -1,4 +1,51 @@
 ﻿
+function ReloadOrderSummary() {
+    var url = $('.order-summary').data('reload-url');
+    $.ajax({
+        url: url,
+        type: 'GET',
+        success: function (response) {
+            $('.order-summary').replaceWith(response);
+            $(window).trigger('order-summary-loaded');
+        }
+    });
+}
+
+function AddApplyDiscountEvents() {
+    $('.apply-discount-form').on('submit', function (event) {
+
+        event.preventDefault();
+        var $this = $(this);
+        $(this).find('button').html('Applying');
+        $.ajax({
+            url: $(this).attr('action'),
+            data: $(this).serialize(),
+            type: 'POST',
+            dataType: 'json',
+            success: function (response) {
+
+                if (response.Status == 'Not Found') {
+                    $this.find('.error').html('Sorry we were unable to find any loyalty card matching your discount number.').removeClass('hidden');
+                    $(this).find('button').html('Apply');
+                }
+
+                if (response.Status == 'Expired') {
+                    $this.find('.error').html('Sorry the loyalty card has expired.').removeClass('hidden');
+                    $(this).find('button').html('Apply');
+                }
+
+                if (response.Status == 'Used') {
+                    $this.find('.error').html('Sorry the loyalty card has already been used.').removeClass('hidden');
+                    $(this).find('button').html('Apply');
+                }
+
+                if (response.Status == 'Applied') {
+                    $(window).trigger('discount-applied');
+                }
+            }
+        });
+    });
+}
 
 
 
@@ -52,4 +99,15 @@ $(document).ready(function () {
         }
     });
 
+    $(window).on('discount-applied', function () {
+
+        ReloadOrderSummary();
+    });
+
+    $(window).on('order-summary-loaded', function () {
+
+        AddApplyDiscountEvents();
+    });
+
+    AddApplyDiscountEvents();
 });

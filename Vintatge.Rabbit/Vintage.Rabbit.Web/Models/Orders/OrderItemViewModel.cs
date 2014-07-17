@@ -34,6 +34,8 @@ namespace Vintage.Rabbit.Web.Models.Orders
 
         public bool IsDelivery { get; private set; }
 
+        public bool IsDiscount { get; private set; }
+
         public ProductType Type { get; private set; }
 
         public OrderItemViewModel(IOrderItem orderItem)
@@ -48,6 +50,7 @@ namespace Vintage.Rabbit.Web.Models.Orders
             this.IsHire = orderItem.Product.Type == ProductType.Hire;
             this.IsBuy = orderItem.Product.Type == ProductType.Buy;
             this.IsDelivery = orderItem.Product.Type == ProductType.Delivery;
+            this.IsDiscount = orderItem.Product.Type == ProductType.Discount;
             this.Type = orderItem.Product.Type;
 
         }

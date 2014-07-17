@@ -1,7 +1,7 @@
 ﻿@model Vintage.Rabbit.Web.Models.Orders.OrderViewModel
 
 
-<div class="order-summary">
+<div class="order-summary" data-reload-url="@Url.RouteUrl(Routes.Order.Summary)">
 
     <div class="float-container">
         <h2 class="right">Order Summary</h2>
@@ -83,6 +83,49 @@
                     </div>
                 </li>
             }
+        }
+                
+        @if (Model.OrderItems.Any(o => o.IsDiscount))
+        {
+            <li class="item-header">
+                <div class="row">
+                    <div class="col-6">Discount</div>
+                    <div class="col-2 text-right">Price</div>
+                    <div class="col-2 text-right">&nbsp;</div>
+                    <div class="col-2 text-right">Total</div>
+                </div>
+            </li>
+            foreach (var cartItem in Model.OrderItems.Where(o => o.IsDiscount))
+            {
+                <li>
+                    <div class="row">
+                        <div class="col-6">
+                            @cartItem.Title
+                        </div>
+                        <div class="col-2 text-right">@cartItem.Cost</div>
+                        <div class="col-2 text-right">&nbsp;</div>
+                        <div class="col-2 text-right">@cartItem.Total</div>
+                    </div>
+                </li>
+            }
+        }
+        else
+        { 
+        <li>
+            @using (Html.BeginRouteForm(Routes.Order.ApplyDiscount, new { }, FormMethod.Post, new { @class = "apply-discount-form" }))
+            {
+                        <h4>Apply Discount</h4>
+                        <div class="alert negative hidden error"></div>
+                        <div class="row">
+                            <div class="col-8">
+                                <input type="text" id="number" name="number" placeholder="Loyalty card number" />
+                            </div>
+                            <div class="col-4">
+                                <button class="btn primary">Apply</button>
+                            </div>
+                        </div>
+            }
+        </li>
         }
 
         <li class="total">

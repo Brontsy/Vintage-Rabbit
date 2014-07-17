@@ -22,6 +22,7 @@ namespace Vintage.Rabbit.Orders.Ioc
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<GetOrderQueryHandler>().As<IQueryHandler<Order, GetOrderQuery>>();
+            builder.RegisterType<GetLoyaltyCardQueryHandler>().As<IQueryHandler<LoyaltyCard, GetLoyaltyCardQuery>>();
             builder.RegisterType<GetUnavailableOrderItemsQueryHandler>().As<IQueryHandler<IList<IOrderItem>, GetUnavailableOrderItemsQuery>>();
 
             builder.RegisterType<SaveOrderCommandHandler>().As<ICommandHandler<SaveOrderCommand>>();
@@ -31,12 +32,16 @@ namespace Vintage.Rabbit.Orders.Ioc
             builder.RegisterType<AddCartItemsToOrderCommandHandler>().As<ICommandHandler<AddCartItemsToOrderCommand>>();
             builder.RegisterType<ChangeOrdersMemberGuidCommandHandler>().As<ICommandHandler<ChangeOrdersMemberGuidCommand>>();
             builder.RegisterType<RemoveDeliveryAddressCommandHandler>().As<ICommandHandler<RemoveDeliveryAddressCommand>>();
+            builder.RegisterType<ApplyDiscountCommandHandler>().As<ICommandHandler<ApplyDiscountCommand>>();
+            builder.RegisterType<SaveLoyaltyCardCommandHandler>().As<ICommandHandler<SaveLoyaltyCardCommand>>();
 
             builder.RegisterType<OrderRepository>().As<IMessageHandler<SaveOrderMessage>>();
             builder.RegisterType<OrderRepository>().As<IOrderRepository>();
+            builder.RegisterType<LoyaltyCardRepository>().As<ILoyaltyCardRepository>();
 
 
             builder.RegisterType<OrderPaidMessageHandler>().As<IMessageHandler<PaymentCompleteMessage>>();
+            builder.RegisterType<LoyaltyCardMessageHandler>().As<IMessageHandler<IOrderPaidMessage>>();
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vintage.Rabbit.Common.Entities;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Products.QueryHandlers;
@@ -34,7 +35,7 @@ namespace Vintage.Rabbit.Search.CommandHandlers
 
         public void Handle(BuildLuceneIndexCommand command)
         {
-            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsQuery>(new GetProductsQuery(1, 5000));
+            PagedResult<Product> products = this._queryDispatcher.Dispatch<PagedResult<Product>, GetProductsQuery>(new GetProductsQuery(1, 5000));
 
             var analyzer = new StandardAnalyzer(Lucene.Net.Util.Version.LUCENE_CURRENT);
 

@@ -65,6 +65,16 @@ namespace Vintage.Rabbit.Orders.Entities
             this.Items.Add(new OrderItem(delivery));
         }
 
+        internal void AddloyaltyCard(LoyaltyCard loyaltyCard)
+        {
+            if(this.Items.Any(o => o.Product.Type == Common.Enums.ProductType.Discount))
+            {
+                this.Items.Remove(this.Items.First(o => o.Product.Type == Common.Enums.ProductType.Discount));
+            }
+
+            this.Items.Add(new OrderItem(loyaltyCard));
+        }
+
         internal void RemoveProduct(Guid OrderItemId)
         {
             IOrderItem OrderItem = this.Items.FirstOrDefault(o => o.Guid == OrderItemId);

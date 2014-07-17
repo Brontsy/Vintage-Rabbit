@@ -50,5 +50,12 @@ namespace Vintage.Rabbit.Orders.Entities
             this.Product = delivery;
             this.Quantity = 1;
         }
+
+        public OrderItem(LoyaltyCard loyaltyCard)
+            : this()
+        {
+            this.Product = loyaltyCard;
+            this.Quantity = 1;
+        }
     }
 }
