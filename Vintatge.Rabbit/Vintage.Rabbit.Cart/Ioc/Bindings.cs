@@ -29,6 +29,7 @@ namespace Vintage.Rabbit.Carts.Ioc
             builder.RegisterType<RemoveCartItemCommandHandler>().As<ICommandHandler<RemoveCartItemCommand>>();
             builder.RegisterType<SaveCartCommandHandler>().As<ICommandHandler<SaveCartCommand>>();
             builder.RegisterType<ChangeCartsMemberGuidCommandHandler>().As<ICommandHandler<ChangeCartsMemberGuidCommand>>();
+            builder.RegisterType<UpdateQuantityCommandHandler>().As<ICommandHandler<UpdateQuantityCommand>>();
 
 
             builder.RegisterType<CartRepository>().As<IMessageHandler<SaveCartMessage>>();

@@ -40,6 +40,24 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.PartialView("Checkout", new CartViewModel(cart, true));
         }
 
+        public ActionResult UpdateQty(Member member, Guid cartItemId, int qty)
+        {
+            qty = (qty <= 1 ? 1 : qty);
+            Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
+            CartItem item = cart.Items.FirstOrDefault(o => o.Id == cartItemId);
+
+            if (item != null)
+            {
+                Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(item.Product.Guid));
+                if(product.Inventory >= qty)
+                {
+                    this._commandDispatcher.Dispatch(new UpdateQuantityCommand(cart, item, qty));
+                }
+            }
+
+            return null;
+        }
+
 
         public ActionResult Add(int productId, Member member, Order order, int qty = 1)
         {
@@ -49,8 +67,6 @@ namespace Vintage.Rabbit.Web.Controllers
 
             Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
 
-            this.ClearOrders(order);
-
             return this.Json(cart, JsonRequestBehavior.AllowGet);
         }
 
@@ -58,11 +74,9 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
-            this._commandDispatcher.Dispatch(new AddHireProductToCartCommand(member.Guid, qty, product, this.GetHireStartDate(partyDate), this.GetHireEndDate(partyDate)));
+            this._commandDispatcher.Dispatch(new AddHireProductToCartCommand(member.Guid, qty, product, partyDate));
 
             Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
-
-            this.ClearOrders(order);
 
             return this.Json(cart, JsonRequestBehavior.AllowGet);
         }
@@ -74,37 +88,6 @@ namespace Vintage.Rabbit.Web.Controllers
             Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
 
             return this.Json(cart, JsonRequestBehavior.AllowGet);
-        }
-
-        private void ClearOrders(Order order)
-        {
-            if(this.Response.Cookies["OrderGuid"] != null)
-            {
-                HttpCookie myCookie = new HttpCookie("OrderGuid");
-                myCookie.Expires = DateTime.Now.AddDays(-1);
-                this.Response.Cookies.Add(myCookie);
-            }
-        }
-
-        private DateTime GetHireStartDate(DateTime partyDate)
-        {
-            DateTime date = partyDate;
-            while (date.DayOfWeek != DayOfWeek.Friday)
-            {
-                date = date.AddDays(-1);
-            }
-
-            return date;
-        }
-        private DateTime GetHireEndDate(DateTime partyDate)
-        {
-            DateTime date = partyDate;
-            while (date.DayOfWeek != DayOfWeek.Monday)
-            {
-                date = date.AddDays(1);
-            }
-
-            return date;
         }
 	}
 }

@@ -60,6 +60,9 @@
                             @Html.TextBoxFor(o => o.CompanyName, new { placeholder = "Company name" })
                             @Html.ValidationMessageFor(o => o.CompanyName)
                         </li>
+                        <li class="col-12 hidden">
+                            <input id="autocomplete" placeholder="Billing address" type="text" value="@Model.Address, @Model.SuburbCity, @Model.State "></input>
+                        </li>
                         <li class="col-12">
                             @Html.TextBoxFor(o => o.Address, new { placeholder = "Address" })
                             @Html.ValidationMessageFor(o => o.Address)
@@ -77,7 +80,7 @@
                             @Html.ValidationMessageFor(o => o.State)
                         </li>
 
-                        @if(Model.OrderContainsBuyItems)
+                        @if (!Model.OrderContainsHireItems)
                         { 
                         <li class="col-12">
                             <input checked="checked" id="ShippingAddressIsTheSame" name="ShippingAddressIsTheSame" type="checkbox" value="true">
@@ -86,7 +89,7 @@
                         </li>
                         }
                         
-                        <li class="col-5 offset-7">
+                        <li class="col-7 offset-5">
                             <div class="float-container">
                                 <button type="submit" class="btn primary right">Save & continue</button>
                             </div>
@@ -96,6 +99,5 @@
             }
 
         </div>
-
     </div>
 </div>

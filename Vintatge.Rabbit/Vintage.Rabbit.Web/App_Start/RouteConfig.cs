@@ -38,6 +38,7 @@ namespace Vintage.Rabbit.Web
             public static string Add = "ShoppingCartAdd";
             public static string AddHireProduct = "ShoppingCartAddHireProduct";
             public static string Remove = "ShoppingCartRemove";
+            public static string UpdateQty = "ShoppingCart UpdateQty";
 
         }
 
@@ -137,7 +138,7 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.Hire.PostcodeCheck, url: "hire/postcode-check", defaults: new { controller = "Hire", action = "AvailabilityCheck", postcodeChecked = true });
             routes.MapRoute(Routes.Hire.AvailabilityCheck, url: "hire/availability-check/{productGuid}", defaults: new { controller = "Hire", action = "AvailabilityCheck" });
             routes.MapRoute(Routes.Hire.CheckProductAvailability, url: "hire/availability/{name}/{productGuid}", defaults: new { controller = "Hire", action = "CheckProductAvailability" });
-            routes.MapRoute(Routes.Hire.Preview, url: "hire/preview/{categoryName}/{name}/{productId}", defaults: new { controller = "Hire", action = "Preview" });
+            routes.MapRoute(Routes.Hire.Preview, url: "hire/preview/{categoryName}/{name}/{productId}", defaults: new { controller = "Hire", action = "Product" });
             routes.MapRoute(Routes.Hire.Category, url: "hire/{categoryName}", defaults: new { controller = "Hire", action = "Category" });
             routes.MapRoute(Routes.Hire.CategoryPaged, url: "hire/{categoryName}/page/{page}", defaults: new { controller = "Hire", action = "Category" });
             routes.MapRoute(Routes.Hire.Product, url: "hire/{categoryName}/{name}/{productId}", defaults: new { controller = "Hire", action = "Product" });
@@ -172,6 +173,7 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.ShoppingCart.AddHireProduct, url: "shopping-cart/hire/add/{name}/{productId}", defaults: new { controller = "ShoppingCart", action = "AddHireProduct" });
             routes.MapRoute(Routes.ShoppingCart.Remove, url: "shopping-cart/remove/{name}/{cartItemId}", defaults: new { controller = "ShoppingCart", action = "Remove" });
             routes.MapRoute(Routes.ShoppingCart.PageHeader, url: "shopping-cart/get/page-header", defaults: new { controller = "ShoppingCart", action = "PageHeader" });
+            routes.MapRoute(Routes.ShoppingCart.UpdateQty, url: "shopping-cart/{cartItemId}/update-quantity", defaults: new { controller = "ShoppingCart", action = "UpdateQty" });
 
 
             routes.MapRoute(Routes.Buy.Index, url: "buy", defaults: new { controller = "Buy", action = "Index" });

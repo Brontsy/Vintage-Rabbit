@@ -200,27 +200,24 @@ namespace Vintage.Rabbit.Web.Controllers
                 Address billingAddress = this._addressProvider.SaveBillingAddress(member, viewModel);
                 this._commandDispatcher.Dispatch<AddBillingAddressCommand>(new AddBillingAddressCommand(order, billingAddress));
 
-                if(shippingAddressIsTheSame.HasValue && shippingAddressIsTheSame.Value)
+                if (order.ContainsHireProducts())
                 {
-                    viewModel.Guid = Guid.NewGuid();
-                    Address shippingAddress = this._addressProvider.SaveShippingAddress(member, viewModel);
-                    this._commandDispatcher.Dispatch<AddShippingAddressCommand>(new AddShippingAddressCommand(order, shippingAddress));
-
-                    if (order.ContainsHireProducts())
-                    {
-                        return this.RedirectToRoute(Routes.Checkout.Devliery, new { guid = string.Empty });
-                    }
-
-                    return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
-                }
-
-                if (order.ContainsBuyProducts())
-                {
-                    return this.RedirectToRoute(Routes.Checkout.ShippingInformation, new { guid = string.Empty });
+                    return this.RedirectToRoute(Routes.Checkout.Devliery, new { guid = string.Empty });
                 }
                 else
                 {
-                    return this.RedirectToRoute(Routes.Checkout.Devliery, new { guid = string.Empty });
+                    if (shippingAddressIsTheSame.HasValue && shippingAddressIsTheSame.Value)
+                    {
+                        viewModel.Guid = Guid.NewGuid();
+                        Address shippingAddress = this._addressProvider.SaveShippingAddress(member, viewModel);
+                        this._commandDispatcher.Dispatch<AddShippingAddressCommand>(new AddShippingAddressCommand(order, shippingAddress));
+
+                        return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
+                    }
+                    else
+                    {
+                        return this.RedirectToRoute(Routes.Checkout.ShippingInformation, new { guid = string.Empty });
+                    }
                 }
             }
 

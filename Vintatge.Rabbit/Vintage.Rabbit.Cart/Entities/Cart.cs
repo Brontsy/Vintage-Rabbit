@@ -61,9 +61,9 @@ namespace Vintage.Rabbit.Carts.Entities
             }
         }
 
-        internal void AddProduct(int quantity, Product product, DateTime startDate, DateTime endDate, IList<InventoryItem> inventory)
+        internal void AddProduct(int quantity, Product product, DateTime partyDate, IList<InventoryItem> inventory)
         {
-            int availableInventory = inventory.Count(o => o.IsAvailable(startDate, endDate));
+            int availableInventory = inventory.Count(o => o.IsAvailable(partyDate));
 
             if (this.Items.Any(o => o.Product.Id == product.Id))
             {
@@ -78,8 +78,7 @@ namespace Vintage.Rabbit.Carts.Entities
 
                 cartItem.ChangeQuantity(quantity);
 
-                cartItem.Properties["StartDate"] = startDate;
-                cartItem.Properties["EndDate"] = endDate;
+                cartItem.Properties["PartyDate"] = partyDate;
             }
             else
             {
@@ -88,7 +87,7 @@ namespace Vintage.Rabbit.Carts.Entities
                     quantity = availableInventory;
                 }
 
-                this.Items.Add(new HireCartItem(quantity, product, startDate, endDate));
+                this.Items.Add(new HireCartItem(quantity, product, partyDate));
             }
         }
 
@@ -111,6 +110,15 @@ namespace Vintage.Rabbit.Carts.Entities
         internal void ChangeMemberGuid(Guid memberGuid)
         {
             this.MemberId = memberGuid;
+        }
+
+        internal void UpdateQuantity(Guid cartItemId, int quantity)
+        {
+            CartItem item = this.Items.FirstOrDefault(o => o.Id == cartItemId);
+            if(item != null)
+            {
+                item.ChangeQuantity(quantity);
+            }
         }
     }
 }

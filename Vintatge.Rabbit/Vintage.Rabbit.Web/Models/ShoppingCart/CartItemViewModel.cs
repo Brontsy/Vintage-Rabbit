@@ -13,6 +13,8 @@ namespace Vintage.Rabbit.Web.Models.ShoppingCart
     {
         public string Id { get; private set; }
 
+        public Guid Guid { get; private set; }
+
         public string Title { get; private set; }
 
         public string Key { get; private set; }
@@ -27,6 +29,8 @@ namespace Vintage.Rabbit.Web.Models.ShoppingCart
 
         public Guid ProductGuid { get; private set; }
 
+        public int AvailableInventory { get; private set; }
+
         public bool IsHire { get; private set; }
 
         public bool IsBuy { get; private set; }
@@ -38,6 +42,7 @@ namespace Vintage.Rabbit.Web.Models.ShoppingCart
         public CartItemViewModel(CartItem item)
         {
             this.Id = item.Id.ToString();
+            this.Guid = item.Id;
             this.Title = item.Product.Title;
             this.Cost = item.Product.Cost.ToString("C2");
             this.Total = item.Total.ToString("C2");
@@ -45,6 +50,7 @@ namespace Vintage.Rabbit.Web.Models.ShoppingCart
             this.Key = item.Product.Title.ToUrl();
             this.ProductId = item.Product.Id;
             this.ProductGuid = item.Product.Guid;
+            this.AvailableInventory = item.Product.Inventory;
             this.IsHire = item.Product.Type == ProductType.Hire;
             this.IsBuy = item.Product.Type == ProductType.Buy;
             this.IsDelivery = item.Product.Type == ProductType.Delivery;
