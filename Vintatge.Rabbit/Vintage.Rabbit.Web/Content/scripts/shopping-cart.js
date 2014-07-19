@@ -137,13 +137,13 @@ $(document).ready(function () {
 });
 
 
-$(window).on('lightbox.ajax-content-loaded, availability-check', function () {
+$(window).on('lightbox.ajax-content-loaded availability-check', function () {
 
     AddClickEvents();
 });
 
 
-$(window).on('AddToCart RemovedFromCart, QuantityUpdated', function (json) {
+$(window).on('AddToCart RemovedFromCart QuantityUpdated', function (json) {
 
     //$('.added-to-cart').removeClas
     $.each($('.shopping-cart'), function (index, element) {
