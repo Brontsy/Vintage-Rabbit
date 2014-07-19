@@ -49,9 +49,8 @@ namespace Vintage.Rabbit.Orders.QueryHandlers
                 }
                 else if(orderItem.Product.Type == ProductType.Hire)
                 {
-                    DateTime startDate = DateTime.Parse(orderItem.Properties["StartDate"].ToString());
-                    DateTime endDate = DateTime.Parse(orderItem.Properties["EndDate"].ToString());
-                    if (!this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(orderItem.Product.Guid, orderItem.Quantity, startDate, endDate)))
+                    DateTime partyDate = DateTime.Parse(orderItem.Properties["PartyDate"].ToString());
+                    if (!this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(orderItem.Product.Guid, orderItem.Quantity, partyDate)))
                     {
                         unavailableOrderItems.Add(orderItem);
                     }

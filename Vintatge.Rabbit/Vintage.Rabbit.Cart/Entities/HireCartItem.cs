@@ -9,17 +9,14 @@ namespace Vintage.Rabbit.Carts.Entities
 {
     public class HireCartItem : CartItem
     {
-        public DateTime StartDate { get; private set; }
-
-        public DateTime EndDate { get; private set; }
+        public DateTime PartyDate { get; private set; }
 
         public HireCartItem() { }
 
-        public HireCartItem(int quantity, Product product, DateTime startDate, DateTime endDate)
+        public HireCartItem(int quantity, Product product, DateTime partyDate)
             : base(quantity, product)
         {
-            this.Properties.Add("StartDate", startDate);
-            this.Properties.Add("EndDate", endDate);
+            this.Properties.Add("PartyDate", partyDate);
         }
     }
 }

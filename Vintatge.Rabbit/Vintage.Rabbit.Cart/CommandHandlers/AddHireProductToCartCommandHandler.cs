@@ -24,17 +24,16 @@ namespace Vintage.Rabbit.Carts.CommandHandlers
 
         public int Quantity { get; private set; }
 
-        public DateTime StartDate { get; private set; }
+        public DateTime PartyDate { get; private set; }
 
         public DateTime EndDate { get; private set; }
 
-        public AddHireProductToCartCommand(Guid ownerId, int quantity, Product product, DateTime startDate, DateTime endDate)
+        public AddHireProductToCartCommand(Guid ownerId, int quantity, Product product, DateTime partyDate)
         {
             this.OwnerId = ownerId;
             this.Product = product;
             this.Quantity = quantity;
-            this.StartDate = startDate;
-            this.EndDate = endDate;
+            this.PartyDate = partyDate;
         }
     }
 
@@ -57,7 +56,7 @@ namespace Vintage.Rabbit.Carts.CommandHandlers
 
             IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductQuery>(new GetInventoryForProductQuery(command.Product.Guid));
 
-            cart.AddProduct(command.Quantity, command.Product, command.StartDate, command.EndDate, inventory);
+            cart.AddProduct(command.Quantity, command.Product, command.PartyDate, inventory);
 
             this._commandDispatcher.Dispatch(new SaveCartCommand(cart));
 

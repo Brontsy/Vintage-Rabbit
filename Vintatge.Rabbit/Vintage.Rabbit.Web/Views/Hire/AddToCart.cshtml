@@ -1,8 +1,8 @@
-﻿@model Vintage.Rabbit.Web.Models.Hire.AvailabilityCheckViewModel
+﻿@model Vintage.Rabbit.Web.Models.Products.HireProductViewModel
 
     <div class="col-12 hire-add-to-cart">
 
-        @using (Html.BeginRouteForm(Routes.ShoppingCart.AddHireProduct, new { productId = Model.Product.Id, name = Model.Product.UrlTitle }, FormMethod.Post, new { @class = "add-to-cart-form hire-form" }))
+        @using (Html.BeginRouteForm(Routes.ShoppingCart.AddHireProduct, new { productId = Model.Id, name = Model.UrlTitle }, FormMethod.Post, new { @class = "add-to-cart-form hire-form" }))
         {
             <fieldset>
                 @Html.HiddenFor(o => o.PartyDate)
@@ -10,13 +10,13 @@
 
                     <li class="col-12 available-text help-text">
                         <div class="alert positive icon">
-                            <i class="fa fa-check"></i>@Model.Product.Title is currently available for your selected party date.
+                            <i class="fa fa-check"></i>@Model.Title is currently available for your selected party date.
                         </div>
                     </li>
 
                     <li class="col-12 added-to-cart help-text">
                         <div class="alert positive icon">
-                            <i class="fa fa-check-circle"></i> <strong>@Model.Product.Title</strong> has been added to your @Html.RouteLink("shopping cart", Routes.ShoppingCart.PageHeader, new { }, new { @class = "ajax-lightbox" })
+                            <i class="fa fa-check-circle"></i> <strong>@Model.Title</strong> has been added to your @Html.RouteLink("shopping cart", Routes.ShoppingCart.PageHeader, new { }, new { @class = "ajax-lightbox" })
                         </div>
                     </li>
 

@@ -13,12 +13,6 @@ namespace Vintage.Rabbit.Web.Models.Hire
         public ProductViewModel Product { get; private set; }
         public bool? IsAvailable { get; private set; }
 
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMM yyyy}")]
-        //public DateTime? StartDate { get; private set; }
-
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMM yyyy}")]
-        //public DateTime? EndDate { get; private set; }
-
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime? PartyDate { get; private set; }
 
@@ -26,7 +20,7 @@ namespace Vintage.Rabbit.Web.Models.Hire
 
         public int Qty { get; private set; }
 
-        public AvailabilityCheckViewModel(ProductViewModel product, bool? isAvailable, HireDatesViewModel hireDates)
+        public AvailabilityCheckViewModel(HireProductViewModel product, bool? isAvailable, HireDatesViewModel hireDates)
         {
             this.Product = product;
             this.IsAvailable = isAvailable;

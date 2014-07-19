@@ -33,13 +33,6 @@ namespace Vintage.Rabbit.Web.Providers
             Order order = new Order(member.Guid);
             this._commandDispatcher.Dispatch(new AddCartItemsToOrderCommand(order, cart));
 
-            HttpCookie myCookie = new HttpCookie("OrderGuid");
-
-            myCookie.Value = order.Guid.ToString();
-            myCookie.Expires = DateTime.Now.AddDays(3);
-
-            HttpContext.Current.Response.Cookies.Add(myCookie);
-
             return order;
         }
     }

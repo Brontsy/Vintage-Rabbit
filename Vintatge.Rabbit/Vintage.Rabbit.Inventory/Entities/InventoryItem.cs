@@ -41,9 +41,10 @@ namespace Vintage.Rabbit.Inventory.Entities
             this.OrderItemGuid = orderItem.Guid;
         }
 
-        internal void Hired(DateTime startDate, DateTime endDate)
+        internal void Hired(DateTime partyDate)
         {
-            DateTime currentDate = startDate.Date;
+            DateTime currentDate = this.GetHireStartDate(partyDate).Date;
+            DateTime endDate = this.GetHireEndDate(partyDate);
             while(currentDate <= endDate.Date)
             {
                 this.DatesUnavailable.Add(currentDate);
@@ -51,13 +52,16 @@ namespace Vintage.Rabbit.Inventory.Entities
             }
         }
 
-        public bool IsAvailable(DateTime startDate, DateTime endDate)
+        public bool IsAvailable(DateTime partyDate)
         {
             bool available = false;
             if (this.Status == InventoryStatus.Available)
             {
                 available = true;
-                DateTime currentDate = startDate.Date;
+
+                DateTime endDate = this.GetHireEndDate(partyDate);
+                DateTime currentDate = this.GetHireStartDate(partyDate).Date;
+
                 while (currentDate <= endDate.Date)
                 {
                     if (this.DatesUnavailable.Contains(currentDate))
@@ -80,6 +84,27 @@ namespace Vintage.Rabbit.Inventory.Entities
         public void Deleted()
         {
             this.Status = InventoryStatus.Deleted;
+        }
+        private DateTime GetHireStartDate(DateTime partyDate)
+        {
+            DateTime date = partyDate;
+            while (date.DayOfWeek != DayOfWeek.Friday)
+            {
+                date = date.AddDays(-1);
+            }
+
+            return date;
+        }
+
+        private DateTime GetHireEndDate(DateTime partyDate)
+        {
+            DateTime date = partyDate;
+            while (date.DayOfWeek != DayOfWeek.Monday)
+            {
+                date = date.AddDays(1);
+            }
+
+            return date;
         }
     }
 }

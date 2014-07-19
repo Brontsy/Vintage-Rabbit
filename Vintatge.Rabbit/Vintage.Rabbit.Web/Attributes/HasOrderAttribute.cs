@@ -15,21 +15,19 @@ namespace Vintage.Rabbit.Web.Attributes
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var cookie = filterContext.RequestContext.HttpContext.Request.Cookies["OrderGuid"];
-
-            if (cookie == null)
+            var orderIdValue = filterContext.Controller.ValueProvider.GetValue("orderGuid");
+            if (orderIdValue != null)
             {
-                filterContext.Result = new RedirectToRouteResult(Routes.Checkout.Index, new System.Web.Routing.RouteValueDictionary());
-            }
-            else
-            {
-                Guid orderId = new Guid(cookie.Value);
+                Guid orderId = new Guid(orderIdValue.AttemptedValue);
 
-                Order order = this.QueryDispatcher.Dispatch<Order, GetOrderQuery>(new GetOrderQuery(orderId));
-                if(order == null)
+                if (this.QueryDispatcher.Dispatch<Order, GetOrderQuery>(new GetOrderQuery(orderId)) == null)
                 {
                     filterContext.Result = new RedirectToRouteResult(Routes.Checkout.Index, new System.Web.Routing.RouteValueDictionary());
                 }
+            }
+            else
+            {
+                filterContext.Result = new RedirectToRouteResult(Routes.Checkout.Index, new System.Web.Routing.RouteValueDictionary());
             }
         }
     }

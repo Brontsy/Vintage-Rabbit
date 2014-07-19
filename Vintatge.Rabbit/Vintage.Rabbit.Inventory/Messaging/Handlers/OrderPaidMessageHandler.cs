@@ -48,11 +48,10 @@ namespace Vintage.Rabbit.Inventory.Messaging.Handlers
                     }
                     else if (orderItem.Product.Type == Common.Enums.ProductType.Hire)
                     {
-                        DateTime startDate = DateTime.Parse(orderItem.Properties["StartDate"].ToString());
-                        DateTime endDate = DateTime.Parse(orderItem.Properties["EndDate"].ToString());
+                        DateTime partyDate = DateTime.Parse(orderItem.Properties["PartyDate"].ToString());
 
-                        var inventoryItem = inventory.First(o => o.IsAvailable(startDate, endDate));
-                        inventoryItem.Hired(startDate, endDate);
+                        var inventoryItem = inventory.First(o => o.IsAvailable(partyDate));
+                        inventoryItem.Hired(partyDate);
 
                         this._commandDispatcher.Dispatch(new SaveInventoryCommand(inventoryItem));
                     }
@@ -63,6 +62,27 @@ namespace Vintage.Rabbit.Inventory.Messaging.Handlers
                     this._messageService.AddMessage<IInventorySoldMessage>(new InventorySoldMessage(inventorySold));
                 }
             }
+        }
+
+        private DateTime GetHireStartDate(DateTime partyDate)
+        {
+            DateTime date = partyDate;
+            while (date.DayOfWeek != DayOfWeek.Friday)
+            {
+                date = date.AddDays(-1);
+            }
+
+            return date;
+        }
+        private DateTime GetHireEndDate(DateTime partyDate)
+        {
+            DateTime date = partyDate;
+            while (date.DayOfWeek != DayOfWeek.Monday)
+            {
+                date = date.AddDays(1);
+            }
+
+            return date;
         }
     }
 }

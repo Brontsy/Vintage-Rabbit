@@ -10,6 +10,8 @@ using Vintage.Rabbit.Web.Models.Categories;
 using Vintage.Rabbit.Web.Models.Products;
 using Vintage.Rabbit.Common.Extensions;
 using Vintage.Rabbit.Common.Enums;
+using Vintage.Rabbit.Inventory.Entities;
+using Vintage.Rabbit.Web.Models.Hire;
 
 namespace Vintage.Rabbit.Web.Models.Products
 {
@@ -33,7 +35,7 @@ namespace Vintage.Rabbit.Web.Models.Products
 
         public ProductType Type { get; private set; }
 
-        public IList<SelectListItem> InventoryCount { get; private set; }
+        public IList<SelectListItem> InventoryCount { get; protected set; }
 
         public string SeoKeywords { get; private set; }
 

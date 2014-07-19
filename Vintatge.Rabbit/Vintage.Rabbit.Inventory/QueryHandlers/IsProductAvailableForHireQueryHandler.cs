@@ -15,16 +15,13 @@ namespace Vintage.Rabbit.Inventory.QueryHandlers
 
         public int Quantity { get; private set; }
 
-        public DateTime StartDate { get; private set; }
+        public DateTime PartyDate { get; private set; }
 
-        public DateTime EndDate { get; private set; }
-
-        public IsProductAvailableForHireQuery(Guid productGuid, int quantity, DateTime startDate, DateTime endDate)
+        public IsProductAvailableForHireQuery(Guid productGuid, int quantity, DateTime partyDate)
         {
             this.ProductGuid = productGuid;
             this.Quantity = quantity;
-            this.StartDate = startDate;
-            this.EndDate = endDate;
+            this.PartyDate = partyDate;
         }
     }
 
@@ -41,7 +38,7 @@ namespace Vintage.Rabbit.Inventory.QueryHandlers
         {
             IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductQuery>(new GetInventoryForProductQuery(query.ProductGuid));
 
-            return inventory.Count(o => o.IsAvailable(query.StartDate, query.EndDate)) >= query.Quantity;
+            return inventory.Count(o => o.IsAvailable(query.PartyDate)) >= query.Quantity;
         }
     }
 }

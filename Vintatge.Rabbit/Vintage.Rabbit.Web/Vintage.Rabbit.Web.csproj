@@ -222,6 +222,7 @@
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
     <Compile Include="Models\Hire\HireDatesViewModel.cs" />
     <Compile Include="Models\Hire\HireProductViewModel.cs" />
+    <Compile Include="Models\Products\HireProductViewModel.cs" />
     <Compile Include="Models\Products\ProductViewModel.cs" />
     <Compile Include="Models\Membership\LoginRegisterViewModel.cs" />
     <Compile Include="Models\Membership\LoginViewModel.cs" />
