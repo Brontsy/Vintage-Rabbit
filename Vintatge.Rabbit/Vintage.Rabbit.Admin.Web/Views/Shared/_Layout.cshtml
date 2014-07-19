@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Vintage.Rabbit.Orders.Enums
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -21,9 +23,6 @@
     @Scripts.Render("~/bundles/scripts")
         @RenderSection("scripts", required: false)
     <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
-
-@*@Styles.Render("~css")
-*@
 
 </head>
 <body>
@@ -57,7 +56,7 @@
                         <a href="@Url.RouteUrl(Routes.Themes.Index)"><i class="fa fa-picture-o"></i>Themes</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-pencil-square-o"></i>Orders</a>
+                        <a href="@Url.RouteUrl(Routes.Orders.Index, new { status = OrderStatus.Complete.ToString().ToLower() })"><i class="fa fa-pencil-square-o"></i>Orders</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-users"></i>Members</a>

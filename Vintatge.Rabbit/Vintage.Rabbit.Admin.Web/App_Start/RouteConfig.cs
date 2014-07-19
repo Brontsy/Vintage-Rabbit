@@ -50,6 +50,12 @@ namespace Vintage.Rabbit.Admin.Web
             public static string EditProduct = "Themes - EditProduct";
         }
 
+        public static class Orders
+        {
+            public static string Index = "Orders Index";
+            public static string IndexPaged = "Orders IndexPaged";
+        }
+
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
@@ -71,6 +77,8 @@ namespace Vintage.Rabbit.Admin.Web
             routes.MapRoute(Routes.Membership.Login, url: "login", defaults: new { controller = "Membership", action = "Login" });
             routes.MapRoute(Routes.Membership.Logout, url: "logout", defaults: new { controller = "Membership", action = "Logout" });
 
+            routes.MapRoute(Routes.Orders.Index, url: "orders/{status}", defaults: new { controller = "Orders", action = "Index" });
+            routes.MapRoute(Routes.Orders.IndexPaged, url: "orders/{status}/page/{page}", defaults: new { controller = "Orders", action = "Index" });
 
             routes.MapRoute(Routes.Blog.Index, url: "blog", defaults: new { controller = "Blog", action = "Index" });
             routes.MapRoute(Routes.Blog.View, url: "blog/{blogId}", defaults: new { controller = "Blog", action = "View" });

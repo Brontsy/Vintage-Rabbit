@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vintage.Rabbit.Common.Entities;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Interfaces.Messaging;
 using Vintage.Rabbit.Interfaces.Orders;
@@ -22,6 +23,7 @@ namespace Vintage.Rabbit.Orders.Ioc
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<GetOrderQueryHandler>().As<IQueryHandler<Order, GetOrderQuery>>();
+            builder.RegisterType<GetOrdersQueryHandler>().As<IQueryHandler<PagedResult<Order>, GetOrdersQuery>>();
             builder.RegisterType<GetLoyaltyCardQueryHandler>().As<IQueryHandler<LoyaltyCard, GetLoyaltyCardQuery>>();
             builder.RegisterType<GetUnavailableOrderItemsQueryHandler>().As<IQueryHandler<IList<IOrderItem>, GetUnavailableOrderItemsQuery>>();
 

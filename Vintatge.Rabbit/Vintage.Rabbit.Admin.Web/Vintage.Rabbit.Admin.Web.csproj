@@ -169,6 +169,7 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\MembershipController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ThemesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -179,6 +180,13 @@
     <Compile Include="Models\Inventory\AddInventoryViewModel.cs" />
     <Compile Include="Models\Inventory\InventoryItemViewModel.cs" />
     <Compile Include="Models\Inventory\InventoryPageViewModel.cs" />
+    <Compile Include="Models\Membership\AddressViewModel.cs" />
+    <Compile Include="Models\Membership\BillingAddressViewModel.cs" />
+    <Compile Include="Models\Membership\DeliveryAddressViewModel.cs" />
+    <Compile Include="Models\Membership\MemberViewModel.cs" />
+    <Compile Include="Models\Orders\OrderItemViewModel.cs" />
+    <Compile Include="Models\Orders\OrdersPageViewModel.cs" />
+    <Compile Include="Models\Orders\OrderViewModel.cs" />
     <Compile Include="Models\Pagination\PaginationViewModel.cs" />
     <Compile Include="Models\Products\ProductListViewModel.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
@@ -249,6 +257,7 @@
     <Content Include="Content\less\pages\blog-entries.less" />
     <Content Include="Content\less\pages\theme.less" />
     <Content Include="Content\less\components\pagination.less" />
+    <Content Include="Content\less\pages\order-list.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -311,6 +320,7 @@
     <Content Include="Views\Themes\AddProduct.cshtml" />
     <Content Include="Views\Themes\MainImage.cshtml" />
     <Content Include="Views\Shared\Pagination.cshtml" />
+    <Content Include="Views\Orders\Orders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,12 +12,16 @@ using Dapper;
 using System.Configuration;
 using Vintage.Rabbit.Interfaces.Orders;
 using Vintage.Rabbit.Interfaces.Products;
+using Vintage.Rabbit.Common.Entities;
+using Vintage.Rabbit.Orders.Enums;
 
 namespace Vintage.Rabbit.Orders.Repository
 {
     internal interface IOrderRepository
     {
         Order GetOrder(Guid Orderid);
+
+        PagedResult<Order> GetOrders(OrderStatus status, int page, int resultsPerPage);
     }
 
     internal class OrderRepository : IOrderRepository, IMessageHandler<SaveOrderMessage>
@@ -28,6 +32,32 @@ namespace Vintage.Rabbit.Orders.Repository
         {
             this._connectionString = ConfigurationManager.ConnectionStrings["VintageRabbit"].ConnectionString;
             this._serializer = serializer;
+        }
+
+        public PagedResult<Order> GetOrders(OrderStatus status, int page, int resultsPerPage)
+        {
+            PagedResult<Order> result = new PagedResult<Order>();
+            result.PageNumber = page;
+            result.ItemsPerPage = resultsPerPage;
+
+            string sql = @"Select * From VintageRabbit.Orders
+                            Where [Status] = @Status
+                            Order By DateCreated Desc 
+                            OFFSET @Offset ROWS FETCH NEXT @ResultsPerPage ROWS ONLY;
+                            Select Count(*) From VintageRabbit.Orders Where [Status] = @Status;";
+
+            int offset = (page - 1) * resultsPerPage;
+
+            using (SqlConnection connection = new SqlConnection(this._connectionString))
+            {
+                using (var multi = connection.QueryMultiple(sql, new { Status = status.ToString(), Offset = offset, ResultsPerPage = resultsPerPage }))
+                {
+                    result.AddRange(multi.Read<Order>());
+                    result.TotalResults = multi.Read<int>().First();
+                }
+            }
+
+            return result;
         }
 
         public Order GetOrder(Guid orderId)
@@ -88,8 +118,8 @@ namespace Vintage.Rabbit.Orders.Repository
             if (this.GetOrder(order.Guid) == null)
             {
                 // insert
-                string sql = @"Insert Into VintageRabbit.Orders (Guid, MemberGuid, ShippingAddressId, BillingAddressId, DeliveryAddressId, Total, Status, WorkflowStatus, DateCreated, DateLastModified, DatePaid) Values 
-                            (@Guid, @MemberGuid, @ShippingAddressId, @BillingAddressId, @DeliveryAddressId, @Total, @Status, @WorkflowStatus, @DateCreated, @DateLastModified, @DatePaid)";
+                string sql = @"Insert Into VintageRabbit.Orders (Guid, MemberGuid, ShippingAddressId, BillingAddressId, DeliveryAddressId, Total, Status, DateCreated, PartyDate, ItemsReturnDate, DateLastModified, DatePaid) Values 
+                            (@Guid, @MemberGuid, @ShippingAddressId, @BillingAddressId, @DeliveryAddressId, @Total, @Status, @DateCreated, @PartyDate, @ItemsReturnDate, @DateLastModified, @DatePaid)";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
@@ -102,8 +132,9 @@ namespace Vintage.Rabbit.Orders.Repository
                         DeliveryAddressId = order.DeliveryAddressId,
                         Total = order.Total,
                         Status = order.Status.ToString(),
-                        WorkflowStatus = order.WorkflowStatus.HasValue ? order.WorkflowStatus.Value.ToString() : null,
                         DateCreated = order.DateCreated,
+                        PartyDate = order.PartyDate,
+                        ItemsReturnDate = order.ItemsReturnDate,
                         DateLastModified = DateTime.Now,
                         DatePaid = order.DatePaid
 
@@ -114,8 +145,9 @@ namespace Vintage.Rabbit.Orders.Repository
             {
                 //update
                 string sql = @"Update VintageRabbit.Orders Set 
-                                MemberGuid = @MemberGuid, ShippingAddressId = @ShippingAddressId, BillingAddressId = @BillingAddressId,  DeliveryAddressId = @DeliveryAddressId,
-                                Total = @Total, Status = @Status, WorkflowStatus = @WorkflowStatus, DateLastModified = @DateLastModified, DatePaid = @DatePaid Where Guid = @Guid";
+                                MemberGuid = @MemberGuid, ShippingAddressId = @ShippingAddressId, BillingAddressId = @BillingAddressId,  DeliveryAddressId = @DeliveryAddressId, Total = @Total, 
+                                Status = @Status, DateLastModified = @DateLastModified, DatePaid = @DatePaid, PartyDate = @PartyDate, ItemsReturnDate = @ItemsReturnDate 
+                                Where Guid = @Guid";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
@@ -128,7 +160,8 @@ namespace Vintage.Rabbit.Orders.Repository
                         DeliveryAddressId = order.DeliveryAddressId,
                         Total = order.Total,
                         Status = order.Status.ToString(),
-                        WorkflowStatus = order.WorkflowStatus.HasValue ? order.WorkflowStatus.Value.ToString() : null,
+                        PartyDate = order.PartyDate,
+                        ItemsReturnDate = order.ItemsReturnDate,
                         DateLastModified = DateTime.Now,
                         DatePaid = order.DatePaid
                     });
