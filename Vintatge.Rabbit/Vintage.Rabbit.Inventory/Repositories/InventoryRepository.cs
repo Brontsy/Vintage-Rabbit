@@ -110,7 +110,7 @@ namespace Vintage.Rabbit.Inventory.Repository
             else
             {
                 //update
-                string sql = @"Update VintageRabbit.Inventory Set ProductGuid = @ProductGuid, Status = @Status, DatesUnavailable = @DatesUnavailable, DateLastModified = @DateLastModified Where Guid = @Guid";
+                string sql = @"Update VintageRabbit.Inventory Set ProductGuid = @ProductGuid, Status = @Status, OrderItemGuid = @OrderItemGuid, DateSold = @DateSold, DatesUnavailable = @DatesUnavailable, DateLastModified = @DateLastModified Where Guid = @Guid";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
@@ -121,7 +121,9 @@ namespace Vintage.Rabbit.Inventory.Repository
                         Status = inventory.Status.ToString(),
                         DatesUnavailable = this._serializer.Serialize(inventory.DatesUnavailable),
                         DateCreated = DateTime.Now,
-                        DateLastModified = DateTime.Now
+                        DateLastModified = DateTime.Now,
+                        OrderItemGuid = inventory.OrderItemGuid,
+                        DateSold = inventory.DateSold
                     });
                 }
             }

@@ -53,12 +53,6 @@ namespace Vintage.Rabbit.Orders.CommandHandlers
                 order.AddDelivery(new Delivery("Delivery", 9.95M));
             }
 
-            if (command.Cart.Items.Any(o => o.Product.Type == Common.Enums.ProductType.Hire))
-            {
-                order.PartyDate = (DateTime)command.Cart.Items.First(o => o.Product.Type == Common.Enums.ProductType.Hire).Properties["PartyDate"];
-            }
-
-
             this._commandDispatcher.Dispatch<SaveOrderCommand>(new SaveOrderCommand(order));
         }
     }

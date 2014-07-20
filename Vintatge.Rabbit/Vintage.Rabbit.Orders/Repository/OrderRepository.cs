@@ -118,8 +118,8 @@ namespace Vintage.Rabbit.Orders.Repository
             if (this.GetOrder(order.Guid) == null)
             {
                 // insert
-                string sql = @"Insert Into VintageRabbit.Orders (Guid, MemberGuid, ShippingAddressId, BillingAddressId, DeliveryAddressId, Total, Status, DateCreated, PartyDate, ItemsReturnDate, DateLastModified, DatePaid) Values 
-                            (@Guid, @MemberGuid, @ShippingAddressId, @BillingAddressId, @DeliveryAddressId, @Total, @Status, @DateCreated, @PartyDate, @ItemsReturnDate, @DateLastModified, @DatePaid)";
+                string sql = @"Insert Into VintageRabbit.Orders (Guid, MemberGuid, ShippingAddressId, BillingAddressId, DeliveryAddressId, Total, Status, DateCreated, DateLastModified, DatePaid) Values 
+                            (@Guid, @MemberGuid, @ShippingAddressId, @BillingAddressId, @DeliveryAddressId, @Total, @Status, @DateCreated, @DateLastModified, @DatePaid)";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
@@ -133,8 +133,6 @@ namespace Vintage.Rabbit.Orders.Repository
                         Total = order.Total,
                         Status = order.Status.ToString(),
                         DateCreated = order.DateCreated,
-                        PartyDate = order.PartyDate,
-                        ItemsReturnDate = order.ItemsReturnDate,
                         DateLastModified = DateTime.Now,
                         DatePaid = order.DatePaid
 
@@ -146,7 +144,7 @@ namespace Vintage.Rabbit.Orders.Repository
                 //update
                 string sql = @"Update VintageRabbit.Orders Set 
                                 MemberGuid = @MemberGuid, ShippingAddressId = @ShippingAddressId, BillingAddressId = @BillingAddressId,  DeliveryAddressId = @DeliveryAddressId, Total = @Total, 
-                                Status = @Status, DateLastModified = @DateLastModified, DatePaid = @DatePaid, PartyDate = @PartyDate, ItemsReturnDate = @ItemsReturnDate 
+                                Status = @Status, DateLastModified = @DateLastModified, DatePaid = @DatePaid
                                 Where Guid = @Guid";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
@@ -160,8 +158,6 @@ namespace Vintage.Rabbit.Orders.Repository
                         DeliveryAddressId = order.DeliveryAddressId,
                         Total = order.Total,
                         Status = order.Status.ToString(),
-                        PartyDate = order.PartyDate,
-                        ItemsReturnDate = order.ItemsReturnDate,
                         DateLastModified = DateTime.Now,
                         DatePaid = order.DatePaid
                     });

@@ -8,9 +8,7 @@ namespace Vintage.Rabbit.Orders.Enums
 {
     public enum OrderStatus
     {
-        Initialised,
-        AwaitingHireDelivery,
-        AwaitingHirePickup,
+        Unpaid,
         AwaitingShipment,
         Complete
     }

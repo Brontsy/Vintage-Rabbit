@@ -18,10 +18,8 @@
     <div class="tab-container">
         <ul class="nav nav-tabs">
             <li @(Model.SelectedStatus == OrderStatus.Complete ? " class=active" : string.Empty)>@Html.RouteLink("Complete", Routes.Orders.Index, new { status = OrderStatus.Complete.ToString().ToLower() }, new { })</li>
-            <li @(Model.SelectedStatus == OrderStatus.AwaitingHirePickup ? " class=active" : string.Empty)>@Html.RouteLink("Awaiting Hire pickup", Routes.Orders.Index, new { status = OrderStatus.AwaitingHirePickup.ToString().ToLower() }, new { })</li>
-            <li @(Model.SelectedStatus == OrderStatus.AwaitingHireDelivery ? " class=active" : string.Empty)>@Html.RouteLink("Awaiting Hire delivery", Routes.Orders.Index, new { status = OrderStatus.AwaitingHireDelivery.ToString().ToLower() }, new { })</li>
             <li @(Model.SelectedStatus == OrderStatus.AwaitingShipment ? " class=active" : string.Empty)>@Html.RouteLink("Awaiting Shipment", Routes.Orders.Index, new { status = OrderStatus.AwaitingShipment.ToString().ToLower() }, new { })</li>
-            <li @(Model.SelectedStatus == OrderStatus.Initialised ? " class=active" : string.Empty)>@Html.RouteLink("Unpaid", Routes.Orders.Index, new { status = OrderStatus.Initialised.ToString().ToLower() }, new { })</li>
+            <li @(Model.SelectedStatus == OrderStatus.Unpaid ? " class=active" : string.Empty)>@Html.RouteLink("Unpaid", Routes.Orders.Index, new { status = OrderStatus.Unpaid.ToString().ToLower() }, new { })</li>
         </ul>
         <div class="tab-content">
 
@@ -31,9 +29,10 @@
 
                     <div class="col-1 guid">Order Id</div>
                     <div class="col-2 date-created">DateCreated</div>
-                    <div class="col-1 status">Status</div>
+                    <div class="col-2 status">Status</div>
                     <div class="col-2 status">Date Paid</div>
                     <div class="col-2 status">&nbsp;</div>
+                    <div class="col-2 actions">&nbsp;</div>
 
                 </li>
                 @foreach (var order in Model.Orders)
@@ -42,13 +41,24 @@
 
                         <div class="col-1 guid">@order.Id</div>
                         <div class="col-2 date-created">@order.DateCreated.ToString("dd MMM yyyy")</div>
-                        <div class="col-1 status">@order.Status.ToString()</div>
+                        <div class="col-2 status">@order.Status.ToString()</div>
                         <div class="col-2 datepaid">@(order.DatePaid.HasValue ? Html.Raw(order.DatePaid.Value.ToString("dd MMM yyyy")) : Html.Raw("&nbsp;"))</div>
                         <div class="col-2">
                             @if(order.BillingAddress != null)
                             {
-                                @order.BillingAddress.FirstName @order.BillingAddress.LastName
+                                @order.BillingAddress.FirstName <text>&nbsp;</text> @order.BillingAddress.LastName
                             }
+                        </div>
+                        <div class="col-2">
+                            <div class="float-container">
+                                @Html.RouteLink("View", Routes.Orders.Details, new { orderGuid = order.Guid }, new { @class = "btn primary left" })
+
+                                @if (order.Status == OrderStatus.AwaitingShipment)
+                                {
+                                    @Html.RouteLink("Shipped", Routes.Orders.Shipped, new { orderGuid = order.Guid }, new { @class = "btn primary left" })
+                                }
+
+                            </div>
                         </div>
                     </li>
                 }

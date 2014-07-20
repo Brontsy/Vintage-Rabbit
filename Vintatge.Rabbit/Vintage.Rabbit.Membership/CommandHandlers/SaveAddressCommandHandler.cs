@@ -25,15 +25,19 @@ namespace Vintage.Rabbit.Membership.CommandHandlers
     internal class SaveAddressCommandHandler : ICommandHandler<SaveAddressCommand>
     {
         private IAddressRepository _addressRepository;
+        private IMessageService _messageService;
 
-        public SaveAddressCommandHandler(IAddressRepository addressRepository)
+        public SaveAddressCommandHandler(IAddressRepository addressRepository, IMessageService messageService)
         {
             this._addressRepository = addressRepository;
+            this._messageService = messageService;
         }
 
         public void Handle(SaveAddressCommand command)
         {
             this._addressRepository.SaveAddress(command.Address);
+
+            this._messageService.AddMessage(new AddressAddedMessage(command.Address));
         }
     }
 }

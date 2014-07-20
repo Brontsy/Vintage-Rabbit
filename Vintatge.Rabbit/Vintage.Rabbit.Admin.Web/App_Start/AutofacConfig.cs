@@ -34,6 +34,7 @@ namespace Vintage.Rabbit.Admin.Web.App_Start
             builder.RegisterModule(new Vintage.Rabbit.Themes.Ioc.Bindings());
             builder.RegisterModule(new Vintage.Rabbit.Search.Ioc.Bindings());
             builder.RegisterModule(new Vintage.Rabbit.Logging.Ioc.Bindings());
+            builder.RegisterModule(new Vintage.Rabbit.Parties.Ioc.Bindings());
 
 
             builder.RegisterType<LoginProvider>().As<ILoginProvider>();

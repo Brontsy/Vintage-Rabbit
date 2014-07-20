@@ -610,6 +610,10 @@
       <Project>{543a3e22-4b5f-4455-a884-71464e7fea96}</Project>
       <Name>Vintage.Rabbit.Search</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VintageRabbit.Parties\Vintage.Rabbit.Parties.csproj">
+      <Project>{3e1f077c-00fc-4898-b8ca-1fb217d5fea1}</Project>
+      <Name>Vintage.Rabbit.Parties</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

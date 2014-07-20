@@ -23,7 +23,7 @@ namespace Vintage.Rabbit.Inventory.Entities
 
         public IList<DateTime> DatesUnavailable { get; set; }
 
-        public DateTime DateSold { get; set; }
+        public DateTime? DateSold { get; set; }
 
         public Guid? OrderItemGuid { get; set; }
 

@@ -33,16 +33,6 @@ namespace Vintage.Rabbit.Orders.Entities
 
         public DateTime? DatePaid { get; internal set; }
 
-        /// <summary>
-        /// The date of the party
-        /// </summary>
-        public DateTime? PartyDate { get; set; }
-
-        /// <summary>
-        /// The date that the hire items are expected to be returned by
-        /// </summary>
-        public DateTime? ItemsReturnDate { get; internal set; }
-
         public DateTime DateCreated { get; internal set; }
 
         public decimal Total
@@ -54,7 +44,7 @@ namespace Vintage.Rabbit.Orders.Entities
         {
             this.Guid = Guid.NewGuid();
             this.Items = new List<IOrderItem>();
-            this.Status = OrderStatus.Initialised;
+            this.Status = OrderStatus.Unpaid;
             this.DateCreated = DateTime.Now;
         }
 
@@ -120,22 +110,7 @@ namespace Vintage.Rabbit.Orders.Entities
 
         internal void Paid()
         {
-            if(this.ContainsHireProducts())
-            {
-                if(this.IsDropoff())
-                {
-                    this.Status = OrderStatus.AwaitingHireDelivery;
-                }
-                else
-                {
-                    this.Status = OrderStatus.AwaitingHirePickup;
-                }
-            }
-            else
-            {
-                this.Status = OrderStatus.AwaitingShipment;
-            }
-
+            this.Status = this.ContainsHireProducts() ? OrderStatus.Complete : OrderStatus.AwaitingShipment;
             this.DatePaid = DateTime.Now;
         }
 
@@ -147,24 +122,6 @@ namespace Vintage.Rabbit.Orders.Entities
         public bool ContainsHireProducts()
         {
             return this.Items.Any(o => o.Product.Type == Common.Enums.ProductType.Hire);
-        }
-
-        /// <summary>
-        /// Does Vintage Rabbit have to go to the house to pickup the hire items
-        /// </summary>
-        /// <returns></returns>
-        public bool IsPickup()
-        {
-            return this.Items.Any(o => o.Product.Type == ProductType.Delivery && o.Product.Title == "Pickup Hire Delivery");
-        }
-
-        /// <summary>
-        /// Does Vintage Rabbit need to drop off the hire items at the customers house?
-        /// </summary>
-        /// <returns></returns>
-        public bool IsDropoff()
-        {
-            return this.Items.Any(o => o.Product.Type == ProductType.Delivery && o.Product.Title == "Dropoff Hire Delivery");
         }
     }
 }

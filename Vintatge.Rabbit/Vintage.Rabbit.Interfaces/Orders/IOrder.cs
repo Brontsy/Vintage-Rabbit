@@ -20,6 +20,10 @@ namespace Vintage.Rabbit.Interfaces.Orders
         decimal Total { get; }
 
         Guid? BillingAddressId { get; }
+
+        Guid? ShippingAddressId { get; }
+
+        Guid? DeliveryAddressId { get; }
     }
 
     public interface IOrderItem

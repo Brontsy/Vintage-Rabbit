@@ -8,6 +8,7 @@ using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Interfaces.Messaging;
 using Vintage.Rabbit.Membership.CommandHandlers;
 using Vintage.Rabbit.Membership.Entities;
+using Vintage.Rabbit.Membership.Messaging.Handlers;
 using Vintage.Rabbit.Membership.Messaging.Messages;
 using Vintage.Rabbit.Membership.QueryHandlers;
 using Vintage.Rabbit.Membership.Repository;
@@ -29,6 +30,7 @@ namespace Vintage.Rabbit.Membership.Ioc
             builder.RegisterType<RegisterGuestCommandHandler>().As<ICommandHandler<RegisterGuestCommand>>();
 
             builder.RegisterType<MembershipRepository>().As<IMessageHandler<SaveMemberMessage>>();
+            builder.RegisterType<AddressAddeddMessageHandler>().As<IMessageHandler<AddressAddedMessage>>();
             builder.RegisterType<MembershipRepository>().As<IMembershipRepository>();
             builder.RegisterType<AddressRepository>().As<IAddressRepository>();
         }
