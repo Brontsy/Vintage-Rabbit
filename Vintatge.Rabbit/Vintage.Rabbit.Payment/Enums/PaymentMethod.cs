@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Vintage.Rabbit.Payment.Enums
 {
-    public enum PayPalPaymentStatus
+    public enum PaymentMethod
     {
-        Initialised,
-        Completed,
-        Error,
-        Cancelled
+        CreditCard,
+        PayPal
     }
 }

@@ -36,6 +36,7 @@ namespace Vintage.Rabbit.Payment.Services
             creditCardPayment.AddCreditCardDetails(name, creditCardNumber, expiryMonth, expiryYear, ccv);
 
             this._commandDispatcher.Dispatch(new SaveCreditCardPaymentCommand(creditCardPayment));
+            this._messageService.AddMessage(new CreditCardPaymentCreatedMessage(creditCardPayment));
 
             CreditCardPaymentResult result = this._paymentGateway.Pay(creditCardPayment);
 
@@ -44,7 +45,7 @@ namespace Vintage.Rabbit.Payment.Services
                 creditCardPayment.Completed();
                 this._commandDispatcher.Dispatch(new SaveCreditCardPaymentCommand(creditCardPayment));
 
-                this._messageService.AddMessage(new PaymentCompleteMessage(order));
+                this._messageService.AddMessage(new PaymentCompleteMessage(order, Enums.PaymentMethod.CreditCard));
 
                 return PaymentResult.Success();
             }

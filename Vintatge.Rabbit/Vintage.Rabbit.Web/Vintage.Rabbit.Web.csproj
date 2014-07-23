@@ -228,7 +228,6 @@
     <Compile Include="Models\Membership\LoginViewModel.cs" />
     <Compile Include="Models\Membership\PageHeaderViewModel.cs" />
     <Compile Include="Models\Membership\RegisterViewModel.cs" />
-    <Compile Include="Models\Payment\CreditCardPaymentViewModel.cs" />
     <Compile Include="Models\Payment\PaymentInformationViewModel.cs" />
     <Compile Include="Models\Payment\AddressViewModel.cs" />
     <Compile Include="Models\Products\ProductImageViewModel.cs" />

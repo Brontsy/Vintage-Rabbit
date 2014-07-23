@@ -9,6 +9,7 @@ using Vintage.Rabbit.Interfaces.Data;
 using Vintage.Rabbit.Interfaces.Orders;
 using Vintage.Rabbit.Membership.Entities;
 using Vintage.Rabbit.Orders.Enums;
+using Vintage.Rabbit.Payment.Enums;
 using Vintage.Rabbit.Products.Entities;
 
 namespace Vintage.Rabbit.Orders.Entities
@@ -20,6 +21,8 @@ namespace Vintage.Rabbit.Orders.Entities
         public Guid Guid { get; internal set; }
 
         public Guid MemberGuid { get; internal set; }
+
+        public PaymentMethod PaymentMethod { get; internal set; }
 
         public Guid? ShippingAddressId { get; internal set; }
 
@@ -108,10 +111,16 @@ namespace Vintage.Rabbit.Orders.Entities
             this.DeliveryAddressId = null;
         }
 
-        internal void Paid()
+        internal void Paid(PaymentMethod paymentMethod)
         {
             this.Status = this.ContainsHireProducts() ? OrderStatus.Complete : OrderStatus.AwaitingShipment;
             this.DatePaid = DateTime.Now;
+            this.PaymentMethod = paymentMethod;
+        }
+
+        internal void Error()
+        {
+            this.Status = OrderStatus.Error;
         }
 
         public bool ContainsBuyProducts()

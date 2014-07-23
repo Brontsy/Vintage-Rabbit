@@ -40,7 +40,7 @@ namespace Vintage.Rabbit.Payment.Repository
         {
             foreach(KeyValuePair<Guid, CreditCardPayment> keyValue in _creditCardPayments)
             {
-                if(keyValue.Value.Order.Guid == order.Guid)
+                if(keyValue.Value.OrderGuid == order.Guid)
                 {
                     return keyValue.Value;
                 }
@@ -51,13 +51,13 @@ namespace Vintage.Rabbit.Payment.Repository
 
         public CreditCardPayment SaveCreditCardPayment(CreditCardPayment creditCardPayment)
         {
-            if (_creditCardPayments.ContainsKey(creditCardPayment.Id))
+            if (_creditCardPayments.ContainsKey(creditCardPayment.Guid))
             {
-                _creditCardPayments[creditCardPayment.Id] = creditCardPayment;
+                _creditCardPayments[creditCardPayment.Guid] = creditCardPayment;
             }
             else
             {
-                _creditCardPayments.Add(creditCardPayment.Id, creditCardPayment);
+                _creditCardPayments.Add(creditCardPayment.Guid, creditCardPayment);
             }
 
             return creditCardPayment;

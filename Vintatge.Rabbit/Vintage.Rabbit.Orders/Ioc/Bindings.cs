@@ -44,6 +44,9 @@ namespace Vintage.Rabbit.Orders.Ioc
 
             builder.RegisterType<OrderPaidMessageHandler>().As<IMessageHandler<PaymentCompleteMessage>>();
             builder.RegisterType<LoyaltyCardMessageHandler>().As<IMessageHandler<IOrderPaidMessage>>();
+            builder.RegisterType<PayPalErrorMessageHandler>().As<IMessageHandler<PayPalErrorMessage>>();
+            builder.RegisterType<CreditCardPaymentCreatedHandler>().As<IMessageHandler<CreditCardPaymentCreatedMessage>>();
+            builder.RegisterType<PayPalPaymentCreatedHandler>().As<IMessageHandler<PayPalPaymentCreatedMessage>>();
         }
     }
 }

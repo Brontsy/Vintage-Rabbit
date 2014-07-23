@@ -15,27 +15,23 @@ using Vintage.Rabbit.Payment.Messaging.Messages;
 
 namespace Vintage.Rabbit.Orders.Messaging.Handlers
 {
-    internal class OrderPaidMessageHandler : IMessageHandler<PaymentCompleteMessage>
+    internal class CreditCardPaymentCreatedHandler : IMessageHandler<CreditCardPaymentCreatedMessage>
     {
         private ICommandDispatcher _commandDispatcher;
-        private IMessageService _messageService;
         private IQueryDispatcher _queryDispatcher;
 
-        public OrderPaidMessageHandler(IMessageService messageService, IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
+        public CreditCardPaymentCreatedHandler(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
         {
             this._commandDispatcher = commandDispatcher;
-            this._messageService = messageService;
             this._queryDispatcher = queryDispatcher;
         }
 
-        public void Handle(PaymentCompleteMessage message)
+        public void Handle(CreditCardPaymentCreatedMessage message)
         {
-            Order order = this._queryDispatcher.Dispatch<Order, GetOrderQuery>(new GetOrderQuery(message.Order.Guid));
-            order.Paid(message.PaymentMethod);
+            Order order = this._queryDispatcher.Dispatch<Order, GetOrderQuery>(new GetOrderQuery(message.CreditCardPayment.OrderGuid));
+            order.PaymentMethod = Payment.Enums.PaymentMethod.CreditCard;
 
             this._commandDispatcher.Dispatch(new SaveOrderCommand(order));
-
-            this._messageService.AddMessage<IOrderPaidMessage>(new OrderPaidMessage(order));
         }
     }
 }

@@ -10,7 +10,11 @@ namespace Vintage.Rabbit.Payment.Entities
 {
     public class CreditCardPayment
     {
-        public Guid Id { get; private set; }
+        public int Id { get; private set; }
+
+        public Guid Guid { get; private set; }
+
+        public Guid OrderGuid { get; internal set; }
 
         public string CreditCardNumber { get; internal set; }
 
@@ -22,16 +26,14 @@ namespace Vintage.Rabbit.Payment.Entities
 
         public string CCV { get; internal set; }
 
-        public IOrder Order { get; internal set; }
-
         public CreditCardPaymentStatus Status { get; internal set; }
 
         public string ErrorMessage { get; internal set; }
 
         public CreditCardPayment(IOrder order)
         {
-            this.Id = Guid.NewGuid();
-            this.Order = order;
+            this.Guid = Guid.NewGuid();
+            this.OrderGuid = order.Guid;
         }
 
         internal void Error(string errorMessage)

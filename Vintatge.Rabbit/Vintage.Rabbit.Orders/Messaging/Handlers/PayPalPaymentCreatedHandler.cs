@@ -15,27 +15,23 @@ using Vintage.Rabbit.Payment.Messaging.Messages;
 
 namespace Vintage.Rabbit.Orders.Messaging.Handlers
 {
-    internal class OrderPaidMessageHandler : IMessageHandler<PaymentCompleteMessage>
+    internal class PayPalPaymentCreatedHandler : IMessageHandler<PayPalPaymentCreatedMessage>
     {
         private ICommandDispatcher _commandDispatcher;
-        private IMessageService _messageService;
         private IQueryDispatcher _queryDispatcher;
 
-        public OrderPaidMessageHandler(IMessageService messageService, IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
+        public PayPalPaymentCreatedHandler(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
         {
             this._commandDispatcher = commandDispatcher;
-            this._messageService = messageService;
             this._queryDispatcher = queryDispatcher;
         }
 
-        public void Handle(PaymentCompleteMessage message)
+        public void Handle(PayPalPaymentCreatedMessage message)
         {
-            Order order = this._queryDispatcher.Dispatch<Order, GetOrderQuery>(new GetOrderQuery(message.Order.Guid));
-            order.Paid(message.PaymentMethod);
+            Order order = this._queryDispatcher.Dispatch<Order, GetOrderQuery>(new GetOrderQuery(message.PayPalPayment.OrderGuid));
+            order.PaymentMethod = Payment.Enums.PaymentMethod.PayPal;
 
             this._commandDispatcher.Dispatch(new SaveOrderCommand(order));
-
-            this._messageService.AddMessage<IOrderPaidMessage>(new OrderPaidMessage(order));
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Vintage.Rabbit.Common.Serialization;
 using Vintage.Rabbit.Payment.Entities;
+using Vintage.Rabbit.Payment.Enums;
 
 namespace Vintage.Rabbit.Payment.Repository
 {
@@ -33,11 +34,11 @@ namespace Vintage.Rabbit.Payment.Repository
         {
             using (SqlConnection connection = new SqlConnection(this._connectionString))
             {
-                var payments = connection.Query<PayPalPayment>("Select * From VintageRabbit.PayPalPayment Where Guid = @Guid", new { Guid = guid });
+                var payments = connection.Query<dynamic>("Select * From VintageRabbit.PayPalPayment Where Guid = @Guid Order By Id Desc", new { Guid = guid });
 
                 if (payments.Any())
                 {
-                    return payments.First();
+                    return this.ConvertToPayPalPayment(payments.First());
                 }
             }
 
@@ -49,7 +50,8 @@ namespace Vintage.Rabbit.Payment.Repository
             if (this.GetPayPalPayment(payment.Guid) == null)
             {
                 // insert
-                string sql = "Insert Into VintageRabbit.PayPalPayment (Guid, OrderGuid, Status, Token, Ack, CorrelationID, DateCreated, DateLastModified) Values (@Guid, @OrderGuid, @Status, @Token, @Ack, @CorrelationID, @DateCreated, @DateLastModified)";
+                string sql = @"Insert Into VintageRabbit.PayPalPayment (Guid, OrderGuid, Status, Token, Ack, TransactionId, CorrelationID, Errors, DateCreated, DateLastModified) 
+                Values (@Guid, @OrderGuid, @Status, @Token, @Ack, @TransactionId, @CorrelationID, @Errors, @DateCreated, @DateLastModified)";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
@@ -60,7 +62,9 @@ namespace Vintage.Rabbit.Payment.Repository
                         Status = payment.Status.ToString(),
                         Token = payment.Token,
                         Ack = payment.Ack,
+                        TransactionId = payment.TransactionId,
                         CorrelationID = payment.CorrelationID,
+                        Errors = this._serializer.Serialize(payment.Errors),
                         DateCreated = DateTime.Now,
                         DateLastModified = DateTime.Now
 
@@ -70,7 +74,7 @@ namespace Vintage.Rabbit.Payment.Repository
             else
             {
                 //update
-                string sql = @"Update VintageRabbit.PayPalPayment Set OrderGuid = @OrderGuid, Status = @Status, Token = @Token, Ack = @Ack, CorrelationID = @CorrelationID, DateLastModified = @DateLastModified Where Guid = @Guid";
+                string sql = @"Update VintageRabbit.PayPalPayment Set OrderGuid = @OrderGuid, Status = @Status, Token = @Token, Ack = @Ack, TransactionId = @TransactionId, Errors = @Errors, CorrelationID = @CorrelationID, DateLastModified = @DateLastModified Where Guid = @Guid";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
@@ -81,12 +85,38 @@ namespace Vintage.Rabbit.Payment.Repository
                         Status = payment.Status.ToString(),
                         Token = payment.Token,
                         Ack = payment.Ack,
+                        TransactionId = payment.TransactionId,
+                        Errors = payment.Errors.Any() ? this._serializer.Serialize(payment.Errors) : null,
                         CorrelationID = payment.CorrelationID,
                         DateLastModified = DateTime.Now
 
                     });
                 }
             }
+        }
+
+        private PayPalPayment ConvertToPayPalPayment(dynamic payment)
+        {
+            PayPalPayment payPalPayment = new PayPalPayment()
+            {
+                Id = payment.Id,
+                Guid = payment.Guid,
+                OrderGuid = payment.OrderGuid,
+                Status = (PayPalPaymentStatus)Enum.Parse(typeof(PayPalPaymentStatus), payment.Status),
+                Token = payment.Token,
+                Ack = payment.Ack,
+                TransactionId = payment.TransactionId,
+                CorrelationID = payment.CorrelationID,
+                DateCreated = payment.DateCreated,
+                DateLastModified = payment.DateLastModified
+            };
+
+            if(payment.Errors != null)
+            {
+                payPalPayment.Errors = this._serializer.Deserialize<IList<PayPalError>>(payment.Errors);
+            }
+
+            return payPalPayment;
         }
     }
 }

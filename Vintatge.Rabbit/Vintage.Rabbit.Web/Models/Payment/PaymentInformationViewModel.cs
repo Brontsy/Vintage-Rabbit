@@ -35,6 +35,8 @@ namespace Vintage.Rabbit.Web.Models.Payment
 
         public IList<SelectListItem> ExpiryYears { get; set; }
 
+        public string Error { get; set; }
+
         public PaymentInformationViewModel()
         {
             IList<int> months = new List<int>() { 01, 02, 03, 04, 05, 06, 07, 08, 09, 10, 11, 12 };

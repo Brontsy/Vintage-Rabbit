@@ -9,6 +9,7 @@ namespace Vintage.Rabbit.Orders.Enums
     public enum OrderStatus
     {
         Unpaid,
+        Error,
         AwaitingShipment,
         Complete
     }

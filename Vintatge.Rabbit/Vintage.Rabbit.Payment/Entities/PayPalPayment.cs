@@ -20,6 +20,10 @@ namespace Vintage.Rabbit.Payment.Entities
         public string Token { get; set; }
 
         public string Ack { get; set; }
+
+        public string TransactionId { get; set; }
+
+        public IList<PayPalError> Errors { get; set; }
         
         public string CorrelationID { get; set; }
 
@@ -27,7 +31,10 @@ namespace Vintage.Rabbit.Payment.Entities
 
         public DateTime DateLastModified { get; set; }
 
-        public PayPalPayment() { }
+        public PayPalPayment()
+        {
+            this.Errors = new List<PayPalError>();
+        }
 
         public PayPalPayment(Guid guid, Guid orderGuid, string token, string ack, string correlationID)
         {
@@ -38,6 +45,7 @@ namespace Vintage.Rabbit.Payment.Entities
             this.CorrelationID = correlationID;
             this.DateCreated = DateTime.Now;
             this.Status = PayPalPaymentStatus.Initialised;
+            this.Errors = new List<PayPalError>();
         }
 
         public void Completed()
@@ -48,6 +56,26 @@ namespace Vintage.Rabbit.Payment.Entities
         public void Cancelled()
         {
             this.Status = PayPalPaymentStatus.Cancelled;
+        }
+
+        public void AddError(PayPalError error)
+        {
+            this.Errors.Add(error);
+
+            this.Status = PayPalPaymentStatus.Error;
+        }
+    }
+
+    public class PayPalError
+    {
+        public string ErrorCode { get; set; }
+
+        public string ErrorMessage { get; set; }
+
+        public PayPalError(string errorCode, string errorMessage)
+        {
+            this.ErrorCode = errorCode;
+            this.ErrorMessage = errorMessage;
         }
     }
 }

@@ -118,8 +118,8 @@ namespace Vintage.Rabbit.Orders.Repository
             if (this.GetOrder(order.Guid) == null)
             {
                 // insert
-                string sql = @"Insert Into VintageRabbit.Orders (Guid, MemberGuid, ShippingAddressId, BillingAddressId, DeliveryAddressId, Total, Status, DateCreated, DateLastModified, DatePaid) Values 
-                            (@Guid, @MemberGuid, @ShippingAddressId, @BillingAddressId, @DeliveryAddressId, @Total, @Status, @DateCreated, @DateLastModified, @DatePaid)";
+                string sql = @"Insert Into VintageRabbit.Orders (Guid, MemberGuid, PaymentMethod, ShippingAddressId, BillingAddressId, DeliveryAddressId, Total, Status, DateCreated, DateLastModified, DatePaid) Values 
+                            (@Guid, @MemberGuid, @PaymentMethod, @ShippingAddressId, @BillingAddressId, @DeliveryAddressId, @Total, @Status, @DateCreated, @DateLastModified, @DatePaid)";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
@@ -127,6 +127,7 @@ namespace Vintage.Rabbit.Orders.Repository
                     {
                         Guid = order.Guid,
                         MemberGuid = order.MemberGuid,
+                        PaymentMethod = order.PaymentMethod.ToString(),
                         ShippingAddressId = order.ShippingAddressId,
                         BillingAddressId = order.BillingAddressId,
                         DeliveryAddressId = order.DeliveryAddressId,
@@ -143,8 +144,8 @@ namespace Vintage.Rabbit.Orders.Repository
             {
                 //update
                 string sql = @"Update VintageRabbit.Orders Set 
-                                MemberGuid = @MemberGuid, ShippingAddressId = @ShippingAddressId, BillingAddressId = @BillingAddressId,  DeliveryAddressId = @DeliveryAddressId, Total = @Total, 
-                                Status = @Status, DateLastModified = @DateLastModified, DatePaid = @DatePaid
+                                MemberGuid = @MemberGuid, PaymentMethod = @PaymentMethod, ShippingAddressId = @ShippingAddressId, BillingAddressId = @BillingAddressId, 
+                                DeliveryAddressId = @DeliveryAddressId, Total = @Total, Status = @Status, DateLastModified = @DateLastModified, DatePaid = @DatePaid
                                 Where Guid = @Guid";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
@@ -153,6 +154,7 @@ namespace Vintage.Rabbit.Orders.Repository
                     {
                         Guid = order.Guid,
                         MemberGuid = order.MemberGuid,
+                        PaymentMethod = order.PaymentMethod.ToString(),
                         ShippingAddressId = order.ShippingAddressId,
                         BillingAddressId = order.BillingAddressId,
                         DeliveryAddressId = order.DeliveryAddressId,

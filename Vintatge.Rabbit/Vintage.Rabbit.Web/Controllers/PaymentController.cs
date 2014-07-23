@@ -230,6 +230,11 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             PaymentInformationViewModel viewModel = new PaymentInformationViewModel();
 
+            if(order.Status == Orders.Enums.OrderStatus.Error)
+            {
+                viewModel.Error = "Sorry we are unable to process your payment. Please try again";
+            }
+
             return this.View("PaymentInfo", viewModel);
         }
 
@@ -269,11 +274,16 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.Redirect(url);
         }
 
-        public ActionResult PayPalSuccess(Order order, Guid paypalPaymentGuid, string token)
+        public ActionResult PayPalSuccess(Order order, Guid paypalPaymentGuid, string token, string PayerID)
         {
-            this._paypalService.Success(order, paypalPaymentGuid, token);
+            PayPalPayment payment = this._paypalService.Success(order, paypalPaymentGuid, token, PayerID);
 
-            return this.RedirectToRoute(Routes.Checkout.Complete, new { orderId = order.Guid });
+            if(payment.Status == Payment.Enums.PayPalPaymentStatus.Completed)
+            {
+                return this.RedirectToRoute(Routes.Checkout.Complete, new { orderId = order.Guid });
+            }
+
+            return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
         }
 
         public ActionResult PayPalCancel(Order order, Guid paypalPaymentGuid, string token)

@@ -48,6 +48,14 @@
 
 
             <h2>Payment Information</h2>
+
+            @if (!string.IsNullOrEmpty(Model.Error))
+            {
+                <div class="alert negative icon">
+                    <i class="fa fa-times"></i>@Model.Error
+                </div>
+            }
+
             <p>
                 Please choost a payment method
             </p>
