@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Vintage.Rabbit.Interfaces.Products;
 using Vintage.Rabbit.Products.Entities;
 
 namespace Vintage.Rabbit.Admin.Web.Models.Products
@@ -13,7 +14,7 @@ namespace Vintage.Rabbit.Admin.Web.Models.Products
 
         public string Thumbnail { get; private set; }
 
-        public ProductImageViewModel(ProductImage image)
+        public ProductImageViewModel(IProductImage image)
         {
             this.Id = image.Id;
             this.Url = image.Url;

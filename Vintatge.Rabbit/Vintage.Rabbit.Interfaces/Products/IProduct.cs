@@ -36,5 +36,7 @@ namespace Vintage.Rabbit.Interfaces.Products
 
         decimal Cost { get; }
 
+        IList<IProductImage> Images { get; }
+
     }
 }

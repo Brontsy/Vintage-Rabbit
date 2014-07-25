@@ -28,7 +28,7 @@ namespace Vintage.Rabbit.Products.Entities
 
         public bool IsFeatured { get; set; }
 
-        public IList<ProductImage> Images { get; set; }
+        public IList<IProductImage> Images { get; set; }
 
         public IList<Category> Categories { get; set; }
 
@@ -36,7 +36,7 @@ namespace Vintage.Rabbit.Products.Entities
 
         public Product()
         {
-            this.Images = new List<ProductImage>();
+            this.Images = new List<IProductImage>();
             this.Categories = new List<Category>();
         }
         public Product(Guid guid, int inventoryCount) : this()

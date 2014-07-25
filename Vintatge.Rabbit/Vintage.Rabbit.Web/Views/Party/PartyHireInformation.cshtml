@@ -1,0 +1,93 @@
+﻿@model Vintage.Rabbit.Web.Models.Party.PartyViewModel
+
+
+<style>
+    #map_canvas { width: 100%; height: 500px; }
+</style>
+
+<div class="party-hire-information">
+
+    <div class="row">
+        <div class="col-6">
+            <h2>Party Hire Information</h2>
+
+            <h3>Party Date: @Model.PartyDate.ToString("dd MMM yyyy") </h3>
+            @if (Model.DropoffAddress != null)
+            {
+            <p>
+                Vintage rabbit will deliver your hire items on @Model.HireDate.ToString("dd MMM yyyy")
+                to: <br />
+                @Model.DropoffAddress.FirstName @Model.DropoffAddress.LastName<br />
+                @Model.DropoffAddress.Address<br />
+                @Model.DropoffAddress.SuburbCity, @Model.DropoffAddress.State @Model.DropoffAddress.Postcode
+                
+            </p>
+            }
+            else
+            {
+            <p>
+                You have elected to pickup your hire items. You may pick everything up on or after @Model.HireDate.ToString("dd MMM yyyy") from:
+                7b Chalmers St<br />
+                Mckinnon, Victoria,
+                3204, Australia
+            </p>
+            }
+
+           
+            @if (Model.PickupAddress != null)
+            {
+                <p>
+                    Vintage rabbit will pickup your hire items on @Model.ReturnDate.ToString("dd MMM yyyy") from: <br />                    
+                    @Model.PickupAddress.FirstName @Model.PickupAddress.LastName<br />
+                    @Model.PickupAddress.Address<br />                   
+                    @Model.PickupAddress.SuburbCity, @Model.PickupAddress.State @Model.PickupAddress.Postcode
+
+                </p>
+            }
+            else
+            {
+                <p>
+                    You have elected to dropoff the hire items. You must return everything by @Model.HireDate.ToString("dd MMM yyyy") to:<br />
+                    7b Chalmers St<br />
+                    Mckinnon, Victoria,
+                    3204, Australia
+                </p>
+            }
+
+        </div>
+        @if (Model.DropoffAddress == null || Model.PickupAddress == null)
+        {
+            <div class="col-6">
+                <div class="map">
+                    <div id="map_canvas"></div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+<script>
+
+    function initialize() {
+        var map_canvas = document.getElementById('map_canvas');
+        var map_options = {
+            center: new google.maps.LatLng(-37.909180, 145.044538),
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(map_canvas, map_options)
+        this.addMarker(map);
+    }
+
+
+    function addMarker(map) {
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(-37.909180, 145.044538),
+            map: map
+        });
+    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>

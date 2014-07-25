@@ -172,6 +172,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Emails\Controllers\ContactUsEmailController.cs" />
     <Compile Include="Areas\Emails\EmailsAreaRegistration.cs" />
     <Compile Include="Areas\Emails\Models\AlertViewModel.cs" />
     <Compile Include="Areas\Emails\Models\InvoiceEmail\InvoiceEmailViewModel.cs" />
@@ -191,6 +192,7 @@
     <Compile Include="Controllers\LegalController.cs" />
     <Compile Include="Controllers\MembershipController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\PartyController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -209,12 +211,14 @@
     <Compile Include="Models\Blogs\BlogImageViewModel.cs" />
     <Compile Include="Models\Blogs\BlogViewModel.cs" />
     <Compile Include="Models\Breadcrumbs\BreadcrumbsViewModel.cs" />
+    <Compile Include="Models\ContactUs\ContactUsViewModel.cs" />
     <Compile Include="Models\Hire\AvailabilityCheckViewModel.cs" />
     <Compile Include="Models\Hire\HireAvailabilityViewModel.cs" />
     <Compile Include="Models\Hire\PostcodeCheckViewModel.cs" />
     <Compile Include="Models\Orders\OrderItemViewModel.cs" />
     <Compile Include="Models\Orders\OrderViewModel.cs" />
     <Compile Include="Models\Pagination\PaginationViewModel.cs" />
+    <Compile Include="Models\Party\PartyViewModel.cs" />
     <Compile Include="Models\Payment\BillingAddressViewModel.cs" />
     <Compile Include="Models\Payment\DeliveryAddressViewModel.cs" />
     <Compile Include="Models\Payment\GuestViewModel.cs" />
@@ -452,6 +456,8 @@
     <Content Include="Areas\Emails\Views\InvoiceEmail\OrderItem.cshtml" />
     <Content Include="Content\less\pages\checkout-delivery.less" />
     <Content Include="Content\less\components\pagination.less" />
+    <Content Include="Content\less\components\party-hire-information.less" />
+    <Content Include="Areas\Emails\Views\ContactUsEmail\ContactUsEmail.cshtml" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -530,6 +536,7 @@
     <Content Include="Views\Hire\PostcodeCheck.cshtml" />
     <Content Include="Views\Hire\AddToCart.cshtml" />
     <Content Include="Views\Shared\Pagination.cshtml" />
+    <Content Include="Views\Party\PartyHireInformation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

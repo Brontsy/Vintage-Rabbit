@@ -24,6 +24,7 @@ namespace Vintage.Rabbit.Parties.Ioc
 
             builder.RegisterType<GetPartiesQueryHandler>().As<IQueryHandler<PagedResult<Party>, GetPartiesQuery>>();
             builder.RegisterType<GetPartyByGuidQueryHandler>().As<IQueryHandler<Party, GetPartyByGuidQuery>>();
+            builder.RegisterType<GetPartyByOrderGuidQueryHandler>().As<IQueryHandler<Party, GetPartyByOrderGuidQuery>>();
 
             builder.RegisterType<PartyRepository>().As<IPartyRepository>();
 

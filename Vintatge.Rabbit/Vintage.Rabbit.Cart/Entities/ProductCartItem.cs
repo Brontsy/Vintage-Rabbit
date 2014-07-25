@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vintage.Rabbit.Interfaces.Products;
 using Vintage.Rabbit.Products.Entities;
 
 namespace Vintage.Rabbit.Carts.Entities
@@ -17,7 +18,7 @@ namespace Vintage.Rabbit.Carts.Entities
 
         public decimal Cost { get; internal set; }
 
-        public IList<ProductImage> Images { get; internal set; }
+        public IList<IProductImage> Images { get; internal set; }
 
         public IList<Category> Categories { get; internal set; }
 

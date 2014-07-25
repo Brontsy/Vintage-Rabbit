@@ -14,6 +14,7 @@ using Vintage.Rabbit.Common.Enums;
 using Vintage.Rabbit.Common.Serialization;
 using Vintage.Rabbit.Interfaces.Membership;
 using Vintage.Rabbit.Common.Entities;
+using Vintage.Rabbit.Interfaces.Products;
 
 namespace Vintage.Rabbit.Products.Repository
 {
@@ -314,7 +315,7 @@ namespace Vintage.Rabbit.Products.Repository
         private Product ConvertToProduct(ProductDb productDb)
         {
             IList<Category> categories = this._serializer.Deserialize<List<Category>>(productDb.Categories);
-            IList<ProductImage> images = this._serializer.Deserialize<List<ProductImage>>(productDb.Images);
+            IList<IProductImage> images = this._serializer.Deserialize<List<IProductImage>>(productDb.Images);
 
             Product product = new Product()
             {

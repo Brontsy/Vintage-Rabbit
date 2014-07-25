@@ -7,6 +7,7 @@ using Vintage.Rabbit.Orders.Entities;
 using Vintage.Rabbit.Common.Extensions;
 using Vintage.Rabbit.Common.Enums;
 using Vintage.Rabbit.Web.Models.Categories;
+using Vintage.Rabbit.Interfaces.Products;
 
 namespace Vintage.Rabbit.Web.Models.Orders
 {
@@ -38,6 +39,8 @@ namespace Vintage.Rabbit.Web.Models.Orders
 
         public ProductType Type { get; private set; }
 
+        public string Thumbnail { get; private set; }
+
         public OrderItemViewModel(IOrderItem orderItem)
         {
             this.Id = orderItem.Guid.ToString();
@@ -53,6 +56,15 @@ namespace Vintage.Rabbit.Web.Models.Orders
             this.IsDiscount = orderItem.Product.Type == ProductType.Discount;
             this.Type = orderItem.Product.Type;
 
+            if (orderItem.Product is IProduct)
+            {
+                IProduct product = orderItem.Product as IProduct;
+
+                if (product.Images.Any())
+                {
+                    this.Thumbnail = product.Images.First().Thumbnail;
+                }
+            }
         }
     }
 }

@@ -250,7 +250,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
                     if (result.Successful)
                     {
-                        return this.RedirectToRoute(Routes.Checkout.Complete, new { orderId = order.Guid });
+                        return this.RedirectToRoute(Routes.Checkout.Complete);
                     }
                     else
                     {
@@ -262,9 +262,11 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.View("PaymentInfo", viewModel);
         }
 
-        public ActionResult Complete()
+        public ActionResult Complete(Order order)
         {
-            return this.View("Complete");
+            OrderViewModel viewModel = new OrderViewModel(order);
+
+            return this.View("Complete", viewModel);
         }
 
         public ActionResult PayPal(Order order)
@@ -280,7 +282,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
             if(payment.Status == Payment.Enums.PayPalPaymentStatus.Completed)
             {
-                return this.RedirectToRoute(Routes.Checkout.Complete, new { orderId = order.Guid });
+                return this.RedirectToRoute(Routes.Checkout.Complete);
             }
 
             return this.RedirectToRoute(Routes.Checkout.PaymentInfo);

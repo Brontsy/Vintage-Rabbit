@@ -53,6 +53,7 @@
     <Compile Include="Ioc\Bindings.cs" />
     <Compile Include="Messaging\Handlers\OrderPaidMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryHandlers\GetPartyByOrderGuidQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetPartyByGuidQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetPartiesQueryHandler.cs" />
     <Compile Include="Repositories\PartyRepository.cs" />

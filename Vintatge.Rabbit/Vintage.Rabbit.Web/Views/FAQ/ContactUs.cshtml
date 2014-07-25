@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Vintage.Rabbit.Web.Models.ContactUs.ContactUsViewModel
+@{
     ViewBag.Title = "Contact us";
     Layout = "../Shared/_Layout.cshtml";
 }
@@ -7,7 +8,6 @@
     #map_canvas { width: 100%; height: 500px; }
 </style>
 
-<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
 <div class="faq">
     <div class="row">
@@ -24,34 +24,44 @@
                     <div class="col-6">
                         <h2>Contact Us</h2>
 
-                        <form>
+                        @if (ViewBag.EmailSent != null && ViewBag.EmailSent)
+                        {
+                            <div class="alert positive icon">
+                                <i class="fa fa-check-circle"></i> Thank you for gettting in touch. We will try to get back to you as soon as possible.
+                            </div>
+                        }
+
+@using (Html.BeginRouteForm(Routes.ContactUs, new { }, FormMethod.Post, new { @class = "" }))
+            {
                             <ol>
                                 <li>
                                     <div class="input-icon">
-                                        <i class="fa fa-user"></i>
-                                        <input type="text" placeholder="Name">
+                                        <i class="fa fa-user"></i>                                        
+                                        @Html.TextBoxFor(o => o.Name, new { placeholder = "Name*" })
+                                        @Html.ValidationMessageFor(o => o.Name)
                                     </div>
                                 </li>
 
                                 <li>
                                     <div class="input-icon">
-                                        <i class="fa fa-envelope"></i>
-                                        <input type="text" placeholder="Email">
+                                        <i class="fa fa-envelope"></i>                                        
+                                        @Html.TextBoxFor(o => o.Email, new { placeholder = "Email*" })
+                                        @Html.ValidationMessageFor(o => o.Email)
                                     </div>
                                 </li>
 
                                 <li>
-                                    <label>Comment</label>
-                                    <textarea></textarea>
+                                    @Html.TextAreaFor(o => o.Comments, new { Comments = "Name*" })
+                                    @Html.ValidationMessageFor(o => o.Comments)
                                 </li>
 
                                 <li class="submit">
                                     <div class="float-container">
-                                        <div class="btn primary right">Submit</div>
+                                        <button type="submit" class="btn primary right">Submit</button>
                                     </div>
                                 </li>
                             </ol>
-                        </form>
+}
                         <p class="text-right business-details text-small">
                             Vintage Rabbit <br />
                             ABN: 71829240355 <br />
@@ -70,7 +80,7 @@
             function initialize() {
                 var map_canvas = document.getElementById('map_canvas');
                 var map_options = {
-                    center: new google.maps.LatLng(-37.830936, 145.042407),
+                    center: new google.maps.LatLng(-37.909180, 145.044538),
                     zoom: 15,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 }
@@ -81,7 +91,7 @@
 
             function addMarker(map) {
                 var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(-37.830936, 145.042407),
+                    position: new google.maps.LatLng(-37.909180, 145.044538),
                     map: map
                 });
             }

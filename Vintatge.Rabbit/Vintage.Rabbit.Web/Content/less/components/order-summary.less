@@ -6,6 +6,12 @@
     z-index: 90;
     font-size: 14px;
 
+    h2 {font-size: 28px;
+            font-family: 'TypicalWriter', Arial;
+    }
+
+    .alert.positive { margin: 10px 0px 10px 0px;}
+
     ul {
         li.item-header {
             font-weight: bold;
@@ -15,8 +21,11 @@
 
         li.total {
             font-weight: bold;
+            font-size: 16px;
             padding-bottom: 5px;
+            padding-top: 10px;
             text-align: right;
+            border-top: 2px solid #333333;
         }
 
         li.checkout {
@@ -45,14 +54,14 @@
 
             h4 {
                 color: @blue;
-                font-size: 18px; margin-bottom: 10px;
+                font-size: 18px;
+                margin-bottom: 10px;
             }
 
             label {
                 font-size: 14px;
                 line-height: 34px;
             }
-
         }
     }
 }

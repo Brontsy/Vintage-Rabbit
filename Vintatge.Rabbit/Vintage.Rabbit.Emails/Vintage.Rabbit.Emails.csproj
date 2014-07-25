@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="CommandHandlers\SendContactUsEmailCommandHandler.cs" />
     <Compile Include="Ioc\Bindings.cs" />
     <Compile Include="Messaging\Handlers\SendInvoiceEmailMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -93,9 +94,7 @@
       <Name>Vintage.Rabbit.Membership</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CommandHandlers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

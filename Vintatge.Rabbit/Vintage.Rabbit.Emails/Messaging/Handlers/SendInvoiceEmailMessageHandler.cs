@@ -63,8 +63,6 @@ namespace Vintage.Rabbit.Emails.Messaging.Handlers
                     }
                 }
             }
-
-
         }
     }
 }

@@ -1,0 +1,38 @@
+﻿@model Vintage.Rabbit.Web.Areas.Emails.Models.InvoiceEmail.InvoiceEmailViewModel
+@{
+    ViewBag.Title = "EmailInvoice";
+    Layout = "~/Areas/Emails/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+
+                <!-- content -->
+<div class="content" style="padding:15px; max-width:600px; margin:0 auto; display:block;">
+
+    <table bgcolor="">
+        <tr>
+            <td>
+                <h2 style="@Styles.H2">Contact Us</h2>
+
+                <p>
+                    Name: @ViewBag.Name
+                </p>
+
+                <p>
+                    Email: @ViewBag.Email
+                </p>
+
+                <p>
+                    Comments: @ViewBag.Comments
+                </p>
+            </td>
+        </tr>
+        <tr><td height="20"></td></tr>
+    </table>
+
+</div><!-- /content -->
+
+

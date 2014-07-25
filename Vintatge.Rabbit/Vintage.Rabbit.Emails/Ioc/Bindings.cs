@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vintage.Rabbit.Emails.CommandHandlers;
 using Vintage.Rabbit.Emails.Messaging.Handlers;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Interfaces.Messaging;
@@ -17,6 +18,7 @@ namespace Vintage.Rabbit.Emails.Ioc
         {
 
             builder.RegisterType<SendInvoiceEmailMessageHandler>().As<IMessageHandler<IOrderPaidMessage>>();
+            builder.RegisterType<SendContactUsEmailCommandHandler>().As<ICommandHandler<SendContactUsEmailCommand>>();
         }
     }
 }

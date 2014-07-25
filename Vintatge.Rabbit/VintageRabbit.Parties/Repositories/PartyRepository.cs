@@ -19,6 +19,8 @@ namespace Vintage.Rabbit.Parties.Repositories
 
         Party GetPartyByGuid(Guid guid);
 
+        Party GetPartyByOrderGuid(Guid orderGuid);
+        
         void SaveParty(Party party, IActionBy actionBy);
     }
 
@@ -57,12 +59,27 @@ namespace Vintage.Rabbit.Parties.Repositories
 
             return parties;
         }
-        
+
         public Party GetPartyByGuid(Guid guid)
         {
             using (SqlConnection connection = new SqlConnection(this._connectionString))
             {
-                var parties = connection.Query<Party>("Select * From VintageRabbit.Themes Where Guid = @Guid", new { Guid = guid });
+                var parties = connection.Query<Party>("Select * From VintageRabbit.Parties Where Guid = @Guid", new { Guid = guid });
+
+                if (parties.Any())
+                {
+                    return parties.First();
+                }
+            }
+
+            return null;
+        }
+
+        public Party GetPartyByOrderGuid(Guid orderGuid)
+        {
+            using (SqlConnection connection = new SqlConnection(this._connectionString))
+            {
+                var parties = connection.Query<Party>("Select * From VintageRabbit.Parties Where OrderGuid = @OrderGuid", new { OrderGuid = orderGuid });
 
                 if (parties.Any())
                 {
