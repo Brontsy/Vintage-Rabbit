@@ -74,3 +74,5 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Product
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Products\obj\Debug\Vintage.Rabbit.Products.csprojResolveAssemblyReference.cache
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Products\obj\Debug\Vintage.Rabbit.Products.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Products\obj\Debug\Vintage.Rabbit.Products.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Products\bin\Debug\Vintage.Rabbit.Logging.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Products\bin\Debug\Vintage.Rabbit.Logging.pdb

@@ -5,40 +5,53 @@ using StackExchange.Redis;
 using System.Configuration;
 using Vintage.Rabbit.Common.Serialization;
 using Vintage.Rabbit.Interfaces.Cache;
+using Vintage.Rabbit.Logging;
 
 namespace Vintage.Rabbit.Caching
 {
     public class RedisCache : ICacheService
     {
         private ISerializer _serialzer;
+        private ILogger _logger;
+        private ConnectionMultiplexer _connection;
+        private string _redisConnectionString;
+        private const int db = 5;
 
- private ConnectionMultiplexer _connection;
-        private IDatabase _database;
-        private const int db = 4;
-        private bool isFucked = false;
+        private readonly object _lock = new object();
 
-        public RedisCache(ISerializer serialzer)
+        public RedisCache(ISerializer serialzer, ILogger logger)
         {
             this._serialzer = serialzer;
-            if (_connection == null || _connection.IsConnected == false)
+            this._logger = logger;
+            this._redisConnectionString = ConfigurationManager.AppSettings["SettingsClient_RedisConnection"];
+        }
+
+        private void EnsureConnection()
+        {
+            if(_connection == null || !_connection.IsConnected)
             {
-                var redisConnection = ConfigurationManager.AppSettings["SettingsClient_RedisConnection"];
-                _connection = ConnectionMultiplexer.Connect(redisConnection);
+                lock(_lock)
+                {
+                    if(_connection == null)
+                    {
+                        _connection = ConnectionMultiplexer.Connect(this._redisConnectionString);
+                    }
+                    else if(!_connection.IsConnected)
+                    {
+                        _connection.Dispose();
+                        _connection = ConnectionMultiplexer.Connect(this._redisConnectionString);
+                    }
+                }
             }
-            _database = _connection.GetDatabase();
-            
         }
 
         public T Get<T>(string key)
         {
-            if (isFucked)
-            {
-                return default(T);
-            }
-
             try
             {
-                string json = this._database.StringGet(key, CommandFlags.PreferSlave);
+                this.EnsureConnection();
+                var database = this._connection.GetDatabase(db);
+                string json = database.StringGet(key, CommandFlags.PreferSlave);
 
                 T myCachedObject = this._serialzer.Deserialize<T>(json);
 
@@ -46,7 +59,7 @@ namespace Vintage.Rabbit.Caching
             }
             catch (Exception e)
             {
-                isFucked = true;
+                this._logger.Error(e, "Unable to get item from cache: " + key);
             }
 
             return default(T);
@@ -54,95 +67,81 @@ namespace Vintage.Rabbit.Caching
 
         public void Add(string key, object objectToCache)
         {
-            if (isFucked)
-            {
-                return;
-            }
 
             try
             {
                 if (objectToCache != null)
                 {
+
+                    this.EnsureConnection();
+                    var database = this._connection.GetDatabase(db);
 
                     string json = this._serialzer.Serialize(objectToCache);
 
                     if (!string.IsNullOrEmpty(json))
                     {
-                        this._database.StringSet(key, json, null, When.Always, CommandFlags.PreferMaster | CommandFlags.FireAndForget);
+                        database.StringSet(key, json, TimeSpan.FromHours(24), When.Always, CommandFlags.PreferMaster | CommandFlags.FireAndForget);
                     }
                 }
             }
             catch (Exception e)
             {
-                isFucked = true;
+                this._logger.Error(e, "Unable to add item to cache: " + key);
             }
         }
 
         public bool Add(string key, object objectToCache, DateTime absoluteExpiration)
         {
-            if (isFucked)
-            {
-                return false;
-            }
-
             try
             {
                 if (objectToCache != null)
                 {
+                    this.EnsureConnection();
+                    var database = this._connection.GetDatabase(db);
+
                     string json = this._serialzer.Serialize(objectToCache);
 
                     if (!string.IsNullOrEmpty(json))
                     {
                         TimeSpan expiry = absoluteExpiration.Subtract(DateTime.Now);
 
-                        return this._database.StringSet(key, json, expiry, When.Always, CommandFlags.PreferMaster | CommandFlags.FireAndForget);
+                        database.StringSet(key, json, expiry, When.Always, CommandFlags.PreferMaster | CommandFlags.FireAndForget);
                     }
                 }
             }
             catch (Exception e)
             {
-                isFucked = true;
+                this._logger.Error(e, "Unable to add item to cache: " + key);
             }
 
-            return false;
-        }
-
-        public bool Add(string key, object objectToCache, CacheItemPolicy policy)
-        {
             return false;
         }
 
         public void Remove(string key)
         {
-            if (isFucked)
-            {
-                return;
-            }
-
             try
             {
-                this._database.KeyDelete(key, CommandFlags.PreferMaster);
+                this.EnsureConnection();
+                var database = this._connection.GetDatabase(db);
+                database.KeyDelete(key, CommandFlags.PreferMaster);
             }
             catch (Exception e)
             {
-                isFucked = true;
+                this._logger.Error(e, "Unable to remove item from cache: " + key);
             }
         }
 
         public bool Exists(string key)
         {
-            if (isFucked)
-            {
-                return false;
-            }
-            
             try
             {
-                return this._database.KeyExists(key);
+                this.EnsureConnection();
+                var database = this._connection.GetDatabase(db);
+                return database.KeyExists(key);
             }
             catch (Exception e)
             {
-                isFucked = true;
+                this._logger.Error(e, "Unable to check if item exists in cache: " + key);
             }
 
             return false;

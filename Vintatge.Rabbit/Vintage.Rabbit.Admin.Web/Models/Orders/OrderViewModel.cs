@@ -49,19 +49,19 @@ namespace Vintage.Rabbit.Admin.Web.Models.Orders
             this.DateCreated = order.DateCreated;
             this.Member = new MemberViewModel(member);
 
-            if (order.BillingAddressId.HasValue)
+            if (order.BillingAddressId.HasValue && member.BillingAddresses.Any(o => o.Guid == order.BillingAddressId.Value))
             {
                 var address = member.BillingAddresses.First(o => o.Guid == order.BillingAddressId.Value);
                 this.BillingAddress = new BillingAddressViewModel(address);
             }
 
-            if (order.ShippingAddressId.HasValue)
+            if (order.ShippingAddressId.HasValue && member.ShippingAddresses.Any(o => o.Guid == order.ShippingAddressId.Value))
             {
                 var address = member.ShippingAddresses.First(o => o.Guid == order.ShippingAddressId.Value);
                 this.ShippingAddress = new AddressViewModel(address);
             }
 
-            if (order.DeliveryAddressId.HasValue)
+            if (order.DeliveryAddressId.HasValue && member.DeliveryAddresses.Any(o => o.Guid == order.DeliveryAddressId.Value))
             {
                 var address = member.DeliveryAddresses.First(o => o.Guid == order.DeliveryAddressId.Value);
                 this.DeliveryAddress = new DeliveryAddressViewModel(address);

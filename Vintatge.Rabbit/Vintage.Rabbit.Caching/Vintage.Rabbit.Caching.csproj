@@ -70,6 +70,10 @@
       <Project>{93bcba0e-cfff-4963-a237-4be306ec0d2b}</Project>
       <Name>Vintage.Rabbit.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Logging\Vintage.Rabbit.Logging.csproj">
+      <Project>{b493a5df-6e14-4281-95e4-76c919fa2aa6}</Project>
+      <Name>Vintage.Rabbit.Logging</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
