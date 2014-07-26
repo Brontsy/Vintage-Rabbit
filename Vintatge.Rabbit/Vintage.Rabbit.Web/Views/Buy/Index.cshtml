@@ -18,30 +18,7 @@
                 @foreach (var product in Model.Products)
                 {
                     <li class="col-3">
-                        <div class="product-list-item">
-
-                            @if (product.Image != null)
-                            {
-                                <img src="@product.Image.Thumbnail" width="100%" />
-                            }
-
-                            <div class="details">
-
-                                <div class="container">
-                                    <h4>
-                                        @{Html.RenderAction("ProductLink", "Product", new { productGuid = product.Guid });}
-                                    </h4>
-                                    <div class="price">
-                                        @product.Cost
-                                    </div>
-
-                                    <div class="product-controls">
-                                        @{Html.RenderAction("ProductPreviewLink", "Product", new { productGuid = product.Guid });}
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                        @{Html.RenderPartial("product-list-item", product);}
                     </li>
                 }
             </ul>
