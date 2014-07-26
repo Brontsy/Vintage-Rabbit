@@ -1,7 +1,34 @@
-﻿@model Vintage.Rabbit.Web.Models.Categories.CategoryViewModel
+﻿@model IList<Vintage.Rabbit.Web.Models.Categories.CategoryViewModel>
 
 
-@if(Model.Children.Any())
+
+
+<ul class="col-2 hire-categories category-list">
+    <li class="header">Categories</li>
+    @foreach (var category in Model)
+    {
+        <li@(category.Selected ? " class=selected" : "")>
+            @Html.RouteLink(category.DisplayName.ToLower(), Routes.Buy.Category, new { categoryName = category.Name }, new { })
+
+            @if(category.Children.Any())
+            {
+                <ul class="children">
+                    @foreach (var child in category.Children)
+                    {
+
+                        <li @(child.Selected ? " class=selected" : "")>
+                            @Html.RouteLink(child.DisplayName.ToLower(), Routes.Buy.CategoryChild, new { categoryName = category.Name, childCategoryName = child.Name }, new { })
+                        </li>
+                    }
+                </ul>
+
+            }
+        </li>
+    }
+</ul>
+
+
+@*@if(Model.Children.Any())
 { 
 <ul class="col-2 category-list">
     <li class="header">Categories</li>
@@ -13,4 +40,4 @@
     </li>
     }
 </ul>
-}
+}*@

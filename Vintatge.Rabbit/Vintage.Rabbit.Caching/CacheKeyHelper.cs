@@ -43,6 +43,11 @@ namespace Vintage.Rabbit.Caching
                 return "Products";
             }
 
+            public static string Featured()
+            {
+                return "Products Featured";
+            }
+
             public static IList<string> Keys(IProduct product)
             {
                 IList<string> keys = new List<string>();
@@ -51,6 +56,7 @@ namespace Vintage.Rabbit.Caching
                 keys.Add(ByGuid(product.Guid));
                 keys.Add(ByType(product.Type));
                 keys.Add(All());
+                keys.Add(Featured());
 
                 return keys;
             }

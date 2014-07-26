@@ -2,8 +2,7 @@
 
 
 .category-list {
-
-    li {
+    > li {
         border-bottom: 1px solid #cccccc;
         font-family: 'a-little-sunshine', Arial;
 
@@ -28,8 +27,29 @@
         }
 
         &.selected {
-            a {
+            > a {
                 background: #eeeeee;
+            }
+        }
+
+        > ul.children {
+            background: #ffffff;
+
+            li {
+                a {
+                    font-size: 18px;
+                    padding-left: 20px;
+                    border-top: 1px solid #ffffff;
+                    border-bottom: 1px solid #ffffff;
+                }
+
+                &.selected {
+                    > a {
+                        border-top: 1px solid #cccccc;
+                        border-bottom: 1px solid #cccccc;
+                        background: #eeeeee;
+                    }
+                }
             }
         }
     }

@@ -1,6 +1,54 @@
-﻿@model IList<Vintage.Rabbit.Web.Models.Categories.CategoryViewModel>
+﻿@model Vintage.Rabbit.Web.Models.Products.ProductListViewModel
 
-<div class="row buy-page">    
-   <h2>TODO</h2>
+@{
+    ViewBag.Title = (Model.SelectedCategory == null ? "Buy - Vintage Rabbit" : string.Format("{0} - Vintage Rabbit", Model.SelectedCategory.DisplayName));
+}
+
+<div class="buy-page">
+    @{Html.RenderAction("ListBreadcrumbs", "Buy");}
+
+    <div class="row">
+
+        @{Html.RenderAction("Categories", "Buy");}
+
+
+        <div class="col-10 product-list">
+            <ul class="row ">
+
+                @foreach (var product in Model.Products)
+                {
+                    <li class="col-3">
+                        <div class="product-list-item">
+
+                            @if (product.Image != null)
+                            {
+                                <img src="@product.Image.Thumbnail" width="100%" />
+                            }
+
+                            <div class="details">
+
+                                <div class="container">
+                                    <h4>
+                                        @{Html.RenderAction("ProductLink", "Product", new { productGuid = product.Guid });}
+                                    </h4>
+                                    <div class="price">
+                                        @product.Cost
+                                    </div>
+
+                                    <div class="product-controls">
+                                        @{Html.RenderAction("ProductPreviewLink", "Product", new { productGuid = product.Guid });}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+
+
+    </div>
+    @{Html.RenderPartial("Pagination", Model.Pagination);}
+
 </div>
-

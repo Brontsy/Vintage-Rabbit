@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vintage.Rabbit.Common.Entities;
+using Vintage.Rabbit.Common.Enums;
 using Vintage.Rabbit.Common.Extensions;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Products.Entities;
@@ -23,6 +24,16 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             this._queryDispatcher = queryDispatcher;
         }
+        public ActionResult Index(int page = 1)
+        {
+            PagedResult<Product> products = this._queryDispatcher.Dispatch<PagedResult<Product>, GetProductsByTypeQuery>(new GetProductsByTypeQuery(ProductType.Buy, page, 20));
+
+            ProductListViewModel viewModel = new ProductListViewModel(products);
+            viewModel.Pagination = new PaginationViewModel(products.PageNumber, products.TotalResults, products.ItemsPerPage, Routes.Buy.IndexPaged);
+
+            return View("Index", viewModel);
+        }
+
         public ActionResult PartySuppliesSubnav()
         {
             Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery("party-supplies"));
@@ -52,16 +63,24 @@ namespace Vintage.Rabbit.Web.Controllers
             ProductListViewModel viewModel = new ProductListViewModel(products, category);
             viewModel.Pagination = new PaginationViewModel(products.PageNumber, products.TotalResults, products.ItemsPerPage, isChildCategory ? Routes.Buy.CategoryChildPaged : Routes.Buy.CategoryPaged);
 
-            return View("ProductList", viewModel);
+            return View("Index", viewModel);
         }
 
         public ActionResult Categories(Category category, string childCategoryName)
         {
-            var viewModel = new CategoryViewModel(category);
+            IList<Category> categories = this._queryDispatcher.Dispatch<IList<Category>, GetCategoriesQuery>(new GetCategoriesQuery()).Where(o => o.ProductTypes.Contains(ProductType.Buy)).ToList();
+
+            var viewModel = categories.Select(o => new CategoryViewModel(o)).ToList();
 
             if (!string.IsNullOrEmpty(childCategoryName))
             {
-                viewModel.Children.First(o => o.Name == childCategoryName).Selected = true;
+                var parent = viewModel.First(o => o.Name == category.Name);
+
+                parent.Children.First(x => x.Name == childCategoryName).Selected = true;
+            }
+            else if (category != null)
+            {
+                viewModel.First(o => o.Name == category.Name).Selected = true;
             }
 
             return this.PartialView("CategoryList", viewModel);

@@ -492,7 +492,6 @@
     <Content Include="Views\Buy\Product.cshtml" />
     <Content Include="Views\Buy\Index.cshtml" />
     <Content Include="Views\Categories\PageHeader.cshtml" />
-    <Content Include="Views\Buy\ProductList.cshtml" />
     <Content Include="Views\Hire\Index.cshtml" />
     <Content Include="Views\Hire\Product.cshtml" />
     <Content Include="Views\Shared\breadcrumbs.cshtml" />

@@ -108,7 +108,7 @@
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\Entities\ProductDb.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
-    <Compile Include="Result\UploadProductImageResult.cs" />
+    <Compile Include="Repository\Result\UploadProductImageResult.cs" />
     <Compile Include="Services\AzureBlobStorage.cs" />
     <Compile Include="Services\UploadProductImageService.cs" />
   </ItemGroup>

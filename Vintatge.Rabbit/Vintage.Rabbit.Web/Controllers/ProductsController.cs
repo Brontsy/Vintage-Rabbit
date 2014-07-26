@@ -27,7 +27,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult Featured()
         {
-            IList<Product> featuredProducts = this.GetFeaturedProducts().Take(12).ToList();// this._queryDispatcher.Dispatch<IList<Product>, GetFeaturedProductsQuery>(new GetFeaturedProductsQuery());
+            IList<Product> featuredProducts = this._queryDispatcher.Dispatch<IList<Product>, GetFeaturedProductsQuery>(new GetFeaturedProductsQuery());
 
             return this.PartialView("Featured", featuredProducts.Select(o => new ProductListItemViewModel(o)).ToList());
         }

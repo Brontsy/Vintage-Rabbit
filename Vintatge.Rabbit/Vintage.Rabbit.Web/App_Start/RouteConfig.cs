@@ -69,6 +69,7 @@ namespace Vintage.Rabbit.Web
         public static class Buy
         {
             public static string Index = "Buy";
+            public static string IndexPaged = "Buy-IndexPaged";
             public static string Category = "Buy-Category";
             public static string CategoryPaged = "Buy-CategoryPaged";
             public static string CategoryChild = "Buy-Category-Child";
@@ -177,6 +178,7 @@ namespace Vintage.Rabbit.Web
 
 
             routes.MapRoute(Routes.Buy.Index, url: "buy", defaults: new { controller = "Buy", action = "Index" });
+            routes.MapRoute(Routes.Buy.IndexPaged, url: "buy/page/{page}", defaults: new { controller = "Buy", action = "Index" });
             routes.MapRoute(Routes.Buy.PartySupplies, url: "party-supplies", defaults: new { controller = "Buy", action = "Category", categoryName = "party-supplies" });
             routes.MapRoute(Routes.Buy.PartySuppliesPaged, url: "party-supplies/page/{page}", defaults: new { controller = "Buy", action = "Category", categoryName = "party-supplies" });
             routes.MapRoute(Routes.Buy.Gifts, url: "gifts", defaults: new { controller = "Buy", action = "Category", categoryName = "gifts" });

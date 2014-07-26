@@ -18,15 +18,27 @@ namespace Vintage.Rabbit.Products.QueryHandlers
     internal class GetFeaturedProductsQueryHandler : IQueryHandler<IList<Product>, GetFeaturedProductsQuery>
     {
         private IProductRepository _productRepository;
+        private ICacheService _cacheService;
 
-        public GetFeaturedProductsQueryHandler(IProductRepository productRepository)
+        public GetFeaturedProductsQueryHandler(IProductRepository productRepository, ICacheService cacheService)
         {
             this._productRepository = productRepository;
+            this._cacheService = cacheService;
         }
 
         public IList<Product> Handle(GetFeaturedProductsQuery query)
         {
-            return this._productRepository.GetFeaturedProducts();
+            string key = CacheKeyHelper.Product.Featured();
+
+            if(this._cacheService.Exists(key))
+            {
+                return this._cacheService.Get<IList<Product>>(key);
+            }
+
+            IList<Product> products = this._productRepository.GetFeaturedProducts();
+            this._cacheService.Add(key, products);
+
+            return products;
         }
     }
 }
