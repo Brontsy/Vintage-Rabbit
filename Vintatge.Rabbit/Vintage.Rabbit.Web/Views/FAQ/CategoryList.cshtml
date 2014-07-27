@@ -18,4 +18,10 @@
     <li @(Model == "privacy-policy" ? "class=selected" : "")>
         @Html.RouteLink("privacy policy", Routes.PrivacyPolicy)
     </li>
+    <li @(Model == "media-and-press" ? "class=selected" : "")>
+        @Html.RouteLink("media and press", Routes.MediaAndPress)
+    </li>
+    <li @(Model == "suppliers" ? "class=selected" : "")>
+        @Html.RouteLink("suppliers", Routes.Suppliers)
+    </li>
 </ul>

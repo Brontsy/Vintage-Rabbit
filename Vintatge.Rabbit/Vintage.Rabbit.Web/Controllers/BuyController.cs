@@ -34,6 +34,11 @@ namespace Vintage.Rabbit.Web.Controllers
             return View("Index", viewModel);
         }
 
+        public ActionResult PartySupplies()
+        {
+            return this.View("PartySupplies");
+        }
+
         public ActionResult PartySuppliesSubnav()
         {
             Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery("party-supplies"));

@@ -339,6 +339,10 @@
     <Content Include="Content\images\social\facebook.gif" />
     <Content Include="Content\images\social\instagram.gif" />
     <Content Include="Content\images\social\pinterest.gif" />
+    <Content Include="Content\images\themes\balloons.png" />
+    <Content Include="Content\images\themes\bird.png" />
+    <Content Include="Content\images\themes\birds-and-bunting.png" />
+    <Content Include="Content\images\themes\buy-package.png" />
     <Content Include="Content\images\themes\carnival\carnival theme package 5142 %281 of 1%29.jpg" />
     <Content Include="Content\images\themes\carnival\Carnival Theme Package 5156 %281 of 1%29.jpg" />
     <Content Include="Content\images\themes\carnival\Carnival Theme Package 5171 %281 of 1%29.jpg" />
@@ -349,11 +353,15 @@
     <Content Include="Content\images\themes\cinderella\Theme pack - Cinderella 4802 %281 of 1%29.jpg" />
     <Content Include="Content\images\themes\cinderella\Theme pack - Cinderella 4809 %281 of 1%29.jpg" />
     <Content Include="Content\images\themes\cinderella\Theme pack - Cinderella 4813 %281 of 1%29.jpg" />
+    <Content Include="Content\images\themes\clown.png" />
+    <Content Include="Content\images\themes\cupcake.png" />
+    <Content Include="Content\images\themes\envelope.png" />
     <Content Include="Content\images\themes\mary-poppins\Mary Poppins theme package 4820 %281 of 1%29.jpg" />
     <Content Include="Content\images\themes\mary-poppins\Mary Poppins theme package 4828 %281 of 1%29.jpg" />
     <Content Include="Content\images\themes\mary-poppins\Mary Poppins theme package 4835 %281 of 1%29.jpg" />
     <Content Include="Content\images\themes\mary-poppins\Mary Poppins theme package 4840 %281 of 1%29.jpg" />
     <Content Include="Content\images\themes\mary-poppins\Mary Poppins theme package 4871 %281 of 1%29.jpg" />
+    <Content Include="Content\images\themes\party-hats.png" />
     <Content Include="Content\images\themes\tea-party\Theme pack - Tea party 4930 %281 of 1%29.jpg" />
     <Content Include="Content\images\themes\tea-party\Theme pack - Tea party 4947 %281 of 1%29.jpg" />
     <Content Include="Content\images\themes\tea-party\Theme pack - Tea party 4949 %281 of 1%29.jpg" />
@@ -536,6 +544,11 @@
     <Content Include="Views\Hire\AddToCart.cshtml" />
     <Content Include="Views\Shared\Pagination.cshtml" />
     <Content Include="Views\Party\PartyHireInformation.cshtml" />
+    <Content Include="Views\Buy\PartySupplies.cshtml" />
+    <Content Include="Views\FAQ\MediaAndPress.cshtml" />
+    <Content Include="Views\FAQ\Suppliers.cshtml" />
+    <Content Include="Views\Style\CustomStyling.cshtml" />
+    <Content Include="Views\Hire\Hire.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

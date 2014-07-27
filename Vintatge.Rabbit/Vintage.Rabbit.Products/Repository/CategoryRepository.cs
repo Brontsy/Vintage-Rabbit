@@ -34,6 +34,7 @@ namespace Vintage.Rabbit.Products.Repository
             Category decorations = new Category() { Id = 6, Name = "decorations", DisplayName = "Decorations", ProductTypes = new List<ProductType>() { ProductType.Hire } };
             Category glassware = new Category() { Id = 7, Name = "glassware-and-crockery", DisplayName = "Glassware & Crockery", ProductTypes = new List<ProductType>() { ProductType.Hire } };
             Category props = new Category() { Id = 8, Name = "props", DisplayName = "Props", ProductTypes = new List<ProductType>() { ProductType.Hire } };
+            Category backdrops = new Category() { Id = 14, Name = "backdrops", DisplayName = "Backdrops", ProductTypes = new List<ProductType>() { ProductType.Hire } };
 
 
             Category balloons = new Category() { Id = 9, Name = "balloons", DisplayName = "Balloons", ProductTypes = new List<ProductType>() { ProductType.Buy } };
@@ -57,7 +58,8 @@ namespace Vintage.Rabbit.Products.Repository
                 photoBooth,
                 decorations,
                 glassware,
-                props
+                props,
+                backdrops
             };
         }
         

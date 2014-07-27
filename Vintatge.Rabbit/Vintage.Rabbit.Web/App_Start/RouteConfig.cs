@@ -17,7 +17,9 @@ namespace Vintage.Rabbit.Web
         public static string PrivacyPolicy = "PrivacyPolicy";
         public static string AboutUs = "AboutUs";
         public static string HowItWorks = "HowItWorks";
-
+        public static string MediaAndPress = "MediaAndPress";
+        public static string Suppliers = "Suppliers";
+        
         public static string StyleProduct = "StyleProduct";
 
         public static class Themes
@@ -30,6 +32,7 @@ namespace Vintage.Rabbit.Web
             public static string MaryPoppins = "Themes MaryPoppins";
             public static string Cinderella = "Themes Cinderella";
             public static string Product = "Themes Product";
+            public static string CustomStyling = "Themes CustomStyling";
         }
 
         public static class ShoppingCart
@@ -121,6 +124,8 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.PrivacyPolicy, url: "privacy-policy", defaults: new { controller = "FAQ", action = "PrivacyPolicy" });
             routes.MapRoute(Routes.AboutUs, url: "about-us", defaults: new { controller = "FAQ", action = "AboutUs" });
             routes.MapRoute(Routes.HowItWorks, url: "how-it-works", defaults: new { controller = "FAQ", action = "HowItWorks" });
+            routes.MapRoute(Routes.MediaAndPress, url: "media-and-press", defaults: new { controller = "FAQ", action = "MediaAndPress" });
+            routes.MapRoute(Routes.Suppliers, url: "suppliers", defaults: new { controller = "FAQ", action = "Suppliers" });
 
             routes.MapRoute(Routes.Order.ApplyDiscount, url: "order/{orderGuid}/apply-discount", defaults: new { controller = "Order", action = "ApplyDiscount" });
             routes.MapRoute(Routes.Order.Summary, url: "order/{orderGuid}/summary", defaults: new { controller = "Order", action = "Summary" });
@@ -133,8 +138,10 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.Themes.MaryPoppins, url: "style/mary-poppins", defaults: new { controller = "Style", action = "MaryPoppins" });
             routes.MapRoute(Routes.Themes.Cinderella, url: "style/cinderella", defaults: new { controller = "Style", action = "Cinderella" });
             routes.MapRoute(Routes.Themes.Product, url: "style/{name}/{productId}", defaults: new { controller = "Style", action = "Product" });
+            routes.MapRoute(Routes.Themes.CustomStyling, url: "custom-styling", defaults: new { controller = "Style", action = "CustomStyling" });
 
-            routes.MapRoute(Routes.Hire.Index, url: "hire", defaults: new { controller = "Hire", action = "Index" });
+
+            routes.MapRoute(Routes.Hire.Index, url: "hire", defaults: new { controller = "Hire", action = "Hire" });
             routes.MapRoute(Routes.Hire.IndexPaged, url: "hire/page/{page}", defaults: new { controller = "Hire", action = "Index" });
             routes.MapRoute(Routes.Hire.PostcodeCheck, url: "hire/postcode-check", defaults: new { controller = "Hire", action = "AvailabilityCheck", postcodeChecked = true });
             routes.MapRoute(Routes.Hire.AvailabilityCheck, url: "hire/availability-check/{productGuid}", defaults: new { controller = "Hire", action = "AvailabilityCheck" });
@@ -179,7 +186,7 @@ namespace Vintage.Rabbit.Web
 
             routes.MapRoute(Routes.Buy.Index, url: "buy", defaults: new { controller = "Buy", action = "Index" });
             routes.MapRoute(Routes.Buy.IndexPaged, url: "buy/page/{page}", defaults: new { controller = "Buy", action = "Index" });
-            routes.MapRoute(Routes.Buy.PartySupplies, url: "party-supplies", defaults: new { controller = "Buy", action = "Category", categoryName = "party-supplies" });
+            routes.MapRoute(Routes.Buy.PartySupplies, url: "party-supplies", defaults: new { controller = "Buy", action = "PartySupplies", categoryName = "party-supplies" });
             routes.MapRoute(Routes.Buy.PartySuppliesPaged, url: "party-supplies/page/{page}", defaults: new { controller = "Buy", action = "Category", categoryName = "party-supplies" });
             routes.MapRoute(Routes.Buy.Gifts, url: "gifts", defaults: new { controller = "Buy", action = "Category", categoryName = "gifts" });
             routes.MapRoute(Routes.Buy.GiftsPaged, url: "gifts/page/{page}", defaults: new { controller = "Buy", action = "Category", categoryName = "gifts" });

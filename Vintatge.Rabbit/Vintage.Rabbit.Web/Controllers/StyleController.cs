@@ -39,6 +39,11 @@ namespace Vintage.Rabbit.Web.Controllers
             return View("TeddyBearsPicnic", new ThemeViewModel());
         }
 
+        public ActionResult CustomStyling()
+        {
+            return this.View("CustomStyling");
+        }
+
         public ActionResult Product(string name, int productId)
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));

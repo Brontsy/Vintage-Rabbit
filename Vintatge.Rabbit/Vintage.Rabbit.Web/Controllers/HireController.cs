@@ -28,6 +28,11 @@ namespace Vintage.Rabbit.Web.Controllers
             this._queryDispatcher = queryDispatcher;
         }
 
+        public ActionResult Hire()
+        {
+            return View("Hire");
+        }
+
         public ActionResult Index(int page = 1)
         {
             PagedResult<Product> products = this._queryDispatcher.Dispatch<PagedResult<Product>, GetProductsByTypeQuery>(new GetProductsByTypeQuery(ProductType.Hire, page, 20));

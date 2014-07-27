@@ -41,7 +41,7 @@
         <div class="col-8">
             <h2>Hire Delivery Information</h2>
             <p>
-                We offer delivery and pickup for the items that your are hiring for @Model.DeliveryCost each way. If you would like to pick up and / or drop off the items yourself you are more then welcome to, we are located in McKinnon.
+                We offer delivery and pickup for the items that your are hiring for @Model.DeliveryCost each way. If you would like to pick up and / or return the items yourself you are more then welcome to, we are located in McKinnon.
             </p>
             @using (Html.BeginRouteForm(Routes.Checkout.Devliery, new { }, FormMethod.Post, new { @class = "" }))
             {
@@ -49,7 +49,17 @@
 
                 <ol class="row">
 
+                    <li class="col-12 pickup-dropoff-yourself@(Model.IsDropoff || Model.IsPickup ? " hidden" : string.Empty)">
+                        <strong>If you would like to pickup and return the items at no cost, simply click "Save &amp; continue"</strong>
+                    </li>
+
                     <li class="col-6">
+                        <select class="hidden">
+                            <option>Collection...</option>
+                            <option>Vintage Rabbit delivers the items ($30)</option>
+                            <option>You pick the items up</option>
+                        </select>
+
                         <div class="checkboxes">
                             @Html.CheckBoxFor(o => o.IsDropoff)
                             @Html.LabelFor(o => o.IsDropoff)
@@ -57,14 +67,15 @@
                     </li>
 
                     <li class="col-6">
-                        <div class="checkboxes">
+                        <select class="hidden">
+                            <option>Return...</option>
+                            <option>Vintage Rabbit picks the items up ($30)</option>
+                            <option>You dropoff the items up</option>
+                        </select>
+                        <div class="checkboxes ">
                             @Html.CheckBoxFor(o => o.IsPickup)
                             @Html.LabelFor(o => o.IsPickup)
                         </div>
-                    </li>
-
-                    <li class="col-12 pickup-dropoff-yourself@(Model.IsDropoff || Model.IsPickup ? " hidden" : string.Empty)">
-                        <strong>If you would like to pickup and deliver the items yourself, simply click "Save &amp; continue"</strong>
                     </li>
 
                     <li class="col-6 deliver-field@(Model.IsDropoff || Model.IsPickup ? string.Empty : " hidden")">

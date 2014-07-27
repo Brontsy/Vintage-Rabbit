@@ -29,6 +29,16 @@ namespace Vintage.Rabbit.Parties.Entities
 
         public DateTime DateLastModified { get; internal set; }
 
+        public string ChildsName { get; private set; }
+
+        public string Age { get; private set; }
+
+        public string TimeDateLocation { get; private set; }
+
+        public string PartyAddress { get; private set; }
+
+        public string RSVPDetails { get; private set; }
+
         public DateTime HireDate
         {
             get

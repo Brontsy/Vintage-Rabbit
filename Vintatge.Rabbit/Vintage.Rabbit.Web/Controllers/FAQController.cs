@@ -38,6 +38,16 @@ namespace Vintage.Rabbit.Web.Controllers
             return View("PrivacyPolicy");
         }
 
+        public ActionResult MediaAndPress()
+        {
+            return View("MediaAndPress");
+        }
+
+        public ActionResult Suppliers()
+        {
+            return View("Suppliers");
+        }
+
         [HttpGet]
         public ActionResult ContactUs(bool sent = false)
         {

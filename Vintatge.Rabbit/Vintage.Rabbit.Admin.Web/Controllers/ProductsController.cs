@@ -39,7 +39,7 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
 
         public ActionResult Search(string term)
         {
-            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, SearchQuery>(new SearchQuery(term));
+            PagedResult<Product> products = this._queryDispatcher.Dispatch<PagedResult<Product>, SearchQuery>(new SearchQuery(term));
 
             var viewModel = products.Select(o => new SearchResultViewModel(o.Title, o.Guid));
 
