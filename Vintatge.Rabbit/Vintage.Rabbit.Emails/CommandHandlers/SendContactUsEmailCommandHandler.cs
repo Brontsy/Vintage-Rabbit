@@ -51,7 +51,7 @@ namespace Vintage.Rabbit.Emails.CommandHandlers
 
             SendGrid.ISendGrid myMessage = new SendGrid.SendGridMessage();
 
-            myMessage.AddTo("brontsy@gmail.com");
+            myMessage.AddTo("info@vintagerabbit.com.au");
             myMessage.From = new MailAddress("info@vintagerabbit.com.au", "Vintage Rabbit");
             myMessage.Subject = "Vintage Rabbit - Contact Us";
 

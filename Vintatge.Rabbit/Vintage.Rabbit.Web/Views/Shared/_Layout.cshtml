@@ -19,11 +19,29 @@
 
     <header>
         <div class="row">
-            <div class="col-4">
+            <div class="col-5">
                 <h1><a href="/">Vintage Rabbit</a></h1>
             </div>
 
-            <div class="col-3">
+            <div class="col-7">
+                <div class="right-header-container">
+                    @{Html.RenderAction("PageHeader", "ShoppingCart");}
+                    @{Html.RenderAction("PageHeader", "Membership");}
+
+
+                    <div class="search">
+                        @using (Html.BeginRouteForm(Routes.Search.Index, FormMethod.Get, new { }))
+                        {
+                            <input type="text" class="left" id="query" name="query" placeholder="Search" value="">
+                            <div class="submit-container">
+                                <div class="triangle left"></div>
+                                <button type="submit" class="btn left">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        }
+                    </div>
+                </div>
 
                 <div class="social">
                     <a href="http://www.facebook.com">
@@ -38,26 +56,6 @@
                     <a href="mailto:asd@asd.com">
                         <img src="/content/images/social/email.gif" />
                     </a>
-                </div>
-            </div>
-
-            <div class="col-5">
-
-                @{Html.RenderAction("PageHeader", "ShoppingCart");}
-                @{Html.RenderAction("PageHeader", "Membership");}
-
-
-                <div class="search">
-                    @using (Html.BeginRouteForm(Routes.Search.Index, FormMethod.Get, new { }))
-                    {
-                        <input type="text" class="left" id="query" name="query" placeholder="Search" value="">
-                                        <div class="submit-container">
-                        <div class="triangle left"></div>
-                        <button type="submit" class="btn left">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </div>
-                }
                 </div>
 
             </div>
@@ -105,6 +103,8 @@
                         <li>@Html.RouteLink("Contact us", Routes.ContactUs)</li>
                         <li>@Html.RouteLink("Terms and conditions", Routes.TermsAndConditions)</li>
                         <li>@Html.RouteLink("Privacy policy", Routes.PrivacyPolicy)</li>
+                        <li>@Html.RouteLink("media and press", Routes.MediaAndPress)</li>
+                        <li>@Html.RouteLink("suppliers", Routes.Suppliers)</li>
                     </ul>
                 </li>
             </ol>

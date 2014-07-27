@@ -48,14 +48,16 @@
         margin-top: 20px;
     }
 
-    .promotion {
-        width: 100%;
+    .promotions {
+        margin-top: 40px;
+        .promotion {
+            width: 100%;
+        }
     }
-    .bunting { width: 1100px; margin-left: -70px; height: 140px; }
-
 
     .featured {
         margin-top: 40px;
+
         li {
             margin-bottom: @gutter;
             width: 20%;
@@ -65,7 +67,8 @@
                 margin-bottom: 20px;
 
                 h4 {
-                    height: 171px; padding: 0px 10px 0px 20px;
+                    height: 171px;
+                    padding: 0px 10px 0px 20px;
                     background: #fefefe;
                     font-family: 'a-little-sunshine', Arial;
                     font-size: 26px;
@@ -74,12 +77,22 @@
                     text-align: center;
                     .box-shadow(2px 2px 3px 0px rgba(50, 50, 50, 0.25));
 
-                    &.supplies { padding-top: 30px; }
-                    &.gifts-and-games { padding-top: 30px; }
-                    &.furniture { padding-top: 30px; }
+                    &.supplies {
+                        padding-top: 30px;
+                    }
+
+                    &.gifts-and-games {
+                        padding-top: 30px;
+                    }
+
+                    &.furniture {
+                        padding-top: 30px;
+                    }
                 }
             }
     }
 
-    hr { margin-top: 20px; }
+    hr {
+        margin-top: 20px;
+    }
 }

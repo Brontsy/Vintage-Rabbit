@@ -12,16 +12,19 @@
     <div class="row">
         <div class="col-5 col-12-m">
             <div class="image-container">
-                <img src="@Model.Images.First().Url" />
+                <div class="large-image">
+                    <img src="@Model.Images.First().Url" />
+                </div>
                 <ul class="thumbnails">
-                    @foreach(var image in Model.Images)
-                    { 
-                    <li>
-                        <img data-full-source="@image.Url" src="@image.Thumbnail" />
-                    </li>
+                    @foreach (var image in Model.Images)
+                    {
+                        <li>
+                            <img data-full-source="@image.Url" src="@image.Thumbnail" />
+                        </li>
                     }
                 </ul>
             </div>
+
         </div>
 
         <div class="col-7  col-12-m">
