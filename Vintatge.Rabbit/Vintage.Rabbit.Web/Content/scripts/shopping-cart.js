@@ -32,16 +32,6 @@ function AddClickEvents()
         $('.cart-content').toggleClass('hidden');
     });
     
-    $('.shopping-cart').off('mouseover');
-    $('.shopping-cart').on('mouseover', function (event) {
-
-        $(this).parents('.row').addClass('shopping-cart-hover');
-    });
-
-    $('.shopping-cart').off('mouseleave');
-    $('.shopping-cart').on('mouseleave', function (event) {
-        $(this).parents('.row').removeClass('shopping-cart-hover');
-    });
 
     $('#qty').off('change');
     $('#qty').on('change', function () {
