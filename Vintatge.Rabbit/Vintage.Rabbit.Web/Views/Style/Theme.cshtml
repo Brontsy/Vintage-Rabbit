@@ -32,24 +32,24 @@
                     <div class="image-container">
 
                         <div class="main-image-container">
-                            <a class="ajax-lightbox" href="@Url.RouteUrl(Routes.Themes.Image, new { imageGuid = Model.Images.ElementAt(0).Guid })">
+                            <a class="ajax-lightbox-nopadding" href="@Url.RouteUrl(Routes.Themes.Image, new { imageGuid = Model.Images.ElementAt(0).Guid })">
                                 <img src="@Model.Images.First().Url" />
                             </a>
                         </div>
 
                         <div class="thumbnails">
                             <div class="left">
-                                <a class="ajax-lightbox" href="@Url.RouteUrl(Routes.Themes.Image, new { imageGuid = Model.Images.ElementAt(1).Guid })">
+                                <a class="ajax-lightbox-nopadding" href="@Url.RouteUrl(Routes.Themes.Image, new { imageGuid = Model.Images.ElementAt(1).Guid })">
                                     <img src="@Model.Images.ElementAt(1).ThumbnailUrl" />
                                 </a>
                             </div>
                             <div class="right">
-                                <a class="ajax-lightbox" href="@Url.RouteUrl(Routes.Themes.Image, new { imageGuid = Model.Images.ElementAt(2).Guid })">
+                                <a class="ajax-lightbox-nopadding" href="@Url.RouteUrl(Routes.Themes.Image, new { imageGuid = Model.Images.ElementAt(2).Guid })">
                                     <img src="@Model.Images.ElementAt(2).ThumbnailUrl" />
                                 </a>
                             </div>
                             <div class="left">
-                                <a class="ajax-lightbox" href="@Url.RouteUrl(Routes.Themes.Image, new { imageGuid = Model.Images.ElementAt(3).Guid })">
+                                <a class="ajax-lightbox-nopadding" href="@Url.RouteUrl(Routes.Themes.Image, new { imageGuid = Model.Images.ElementAt(3).Guid })">
                                     <img src="@Model.Images.ElementAt(3).ThumbnailUrl" />
                                 </a>
                             </div>
@@ -57,7 +57,7 @@
                             @if(Model.Images.Count == 5)
                             { 
                             <div class="right">
-                                <a class="ajax-lightbox" href="@Url.RouteUrl(Routes.Themes.Image, new { imageGuid = Model.Images.ElementAt(4).Guid })">
+                                <a class="ajax-lightbox-nopadding" href="@Url.RouteUrl(Routes.Themes.Image, new { imageGuid = Model.Images.ElementAt(4).Guid })">
                                     <img src="@Model.Images.ElementAt(4).ThumbnailUrl" />
                                 </a>
                             </div>

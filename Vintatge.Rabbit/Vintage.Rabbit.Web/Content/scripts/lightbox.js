@@ -7,6 +7,19 @@ function AddAjaxLighboxEvents()
     {
         targetAttr: 'href',
         type: 'ajax',
+        variant: 'lightbox-content',
+        afterOpen: function () {
+
+            AddClickEvents();
+
+            $(window).trigger('lightbox.ajax-content-loaded');
+        }
+    });
+
+    $('.ajax-lightbox-nopadding').featherlight(
+    {
+        targetAttr: 'href',
+        type: 'ajax',
         variant: 'lightbox-content image-content',
         afterOpen: function () {
 
