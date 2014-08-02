@@ -53,6 +53,15 @@
                                     <img src="@Model.Images.ElementAt(3).ThumbnailUrl" />
                                 </a>
                             </div>
+
+                            @if(Model.Images.Count == 5)
+                            { 
+                            <div class="right">
+                                <a class="ajax-lightbox" href="@Url.RouteUrl(Routes.Themes.Image, new { imageGuid = Model.Images.ElementAt(4).Guid })">
+                                    <img src="@Model.Images.ElementAt(4).ThumbnailUrl" />
+                                </a>
+                            </div>
+                            }
                         </div>
 
                     </div>
