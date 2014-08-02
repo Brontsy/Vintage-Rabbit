@@ -69,7 +69,7 @@ namespace Vintage.Rabbit.Themes.Repository
         {
             if (this.GetThemeByGuid(theme.Guid) == null)
             {
-                string sql = "Insert Into VintageRabbit.Themes (Guid, Title, Description, Cost, Images, DateCreated, DateLastModified) Values (@Guid, @Title, @Description, @Cost, @Images, @DateCreated, @DateLastModified)";
+                string sql = "Insert Into VintageRabbit.Themes (Guid, Title, Description, IncludedItems, Cost, Images, DateCreated, DateLastModified) Values (@Guid, @Title, @Description, @IncludedItems, @Cost, @Images, @DateCreated, @DateLastModified)";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
@@ -78,6 +78,7 @@ namespace Vintage.Rabbit.Themes.Repository
                         Guid = theme.Guid,
                         Title = theme.Title,
                         Description = theme.Description,
+                        IncludedItems = theme.IncludedItems,
                         Cost = theme.Cost,
                         Images = this._serializer.Serialize(theme.Images),
                         DateCreated = DateTime.Now,
@@ -87,7 +88,7 @@ namespace Vintage.Rabbit.Themes.Repository
             }
             else
             {
-                string sql = "Update VintageRabbit.Themes Set Title = @Title, Description = @Description, Cost = @Cost, Images = @Images, DateLastModified = @DateLastModified Where Guid = @Guid";
+                string sql = "Update VintageRabbit.Themes Set Title = @Title, Description = @Description, IncludedItems = @IncludedItems, Cost = @Cost, Images = @Images, DateLastModified = @DateLastModified Where Guid = @Guid";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
@@ -96,6 +97,7 @@ namespace Vintage.Rabbit.Themes.Repository
                         Guid = theme.Guid,
                         Title = theme.Title,
                         Description = theme.Description,
+                        IncludedItems = theme.IncludedItems,
                         Cost = theme.Cost,
                         Images = this._serializer.Serialize(theme.Images),
                         DateLastModified = DateTime.Now,
@@ -114,6 +116,7 @@ namespace Vintage.Rabbit.Themes.Repository
             theme.Cost = item.Cost;
             theme.Title = item.Title;
             theme.Description = item.Description;
+            theme.IncludedItems = item.IncludedItems;
             theme.Images = this._serializer.Deserialize<IList<ThemeImage>>(item.Images);
 
             return theme;

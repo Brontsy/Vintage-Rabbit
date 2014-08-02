@@ -238,6 +238,14 @@
     <Content Include="Content\images\themes\mary-poppins\03.jpg" />
     <Content Include="Content\images\themes\mary-poppins\04-thumb.jpg" />
     <Content Include="Content\images\themes\mary-poppins\04.jpg" />
+    <Content Include="Content\images\themes\tea-party\01-thumb.jpg" />
+    <Content Include="Content\images\themes\tea-party\01.jpg" />
+    <Content Include="Content\images\themes\tea-party\02-thumb.jpg" />
+    <Content Include="Content\images\themes\tea-party\02.jpg" />
+    <Content Include="Content\images\themes\tea-party\03-thumb.jpg" />
+    <Content Include="Content\images\themes\tea-party\03.jpg" />
+    <Content Include="Content\images\themes\tea-party\04-thumb.jpg" />
+    <Content Include="Content\images\themes\tea-party\04.jpg" />
     <Content Include="Content\images\themes\teddy-bears-picnic\01-thumb.jpg" />
     <Content Include="Content\images\themes\teddy-bears-picnic\01.jpg" />
     <Content Include="Content\images\themes\teddy-bears-picnic\02-thumb.jpg" />
@@ -306,6 +314,7 @@
     <Content Include="Content\less\pages\theme.less" />
     <Content Include="Content\less\components\pagination.less" />
     <Content Include="Content\less\pages\order-list.less" />
+    <Content Include="Content\less\components\theme-list.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -372,7 +381,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\images\themes\tea-party\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

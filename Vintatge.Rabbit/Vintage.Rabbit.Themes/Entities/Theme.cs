@@ -19,6 +19,8 @@ namespace Vintage.Rabbit.Themes.Entities
 
         public string Description { get; set; }
 
+        public string IncludedItems { get; set; }
+
         public IList<ThemeImage> Images { get; set; }
 
         public decimal Cost { get; set; }

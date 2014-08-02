@@ -19,6 +19,9 @@ namespace Vintage.Rabbit.Admin.Web.Models.Themes
         [Required(ErrorMessage = "Please enter a description for the theme")]
         public string Description { get; set; }
 
+        [Required(ErrorMessage = "Please enter the included items for the theme")]
+        public string IncludedItems { get; set; }
+
         public IList<ThemeImageViewModel> Images { get; set; }
 
         [Required(ErrorMessage = "Please enter the cost of the theme")]
@@ -40,6 +43,7 @@ namespace Vintage.Rabbit.Admin.Web.Models.Themes
             this.Guid = theme.Guid;
             this.Title = theme.Title;
             this.Description = theme.Description;
+            this.IncludedItems = theme.IncludedItems;
             this.Cost = theme.Cost;
             this.Images = theme.Images.Select(o => new ThemeImageViewModel(o, products)).ToList();
 

@@ -38,6 +38,11 @@
                                         @Html.ValidationMessageFor(o => o.Description)
                                     </li>
                                     <li class="col-12">
+                                        @Html.LabelFor(o => o.IncludedItems)
+                                        @Html.TextAreaFor(o => o.IncludedItems, new { placeholder = "Included in package" })
+                                        @Html.ValidationMessageFor(o => o.IncludedItems)
+                                    </li>
+                                    <li class="col-12">
                                         @Html.LabelFor(o => o.Cost)
                                         @Html.TextBoxFor(o => o.Cost, new { placeholder = "Cost*" })
                                         @Html.ValidationMessageFor(o => o.Cost)

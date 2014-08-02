@@ -16,6 +16,8 @@ namespace Vintage.Rabbit.Web.Models.Themes
 
         public string Description { get; set; }
 
+        public string IncludedItems { get; set; }
+
         public IList<ThemeImageViewModel> Images { get; set; }
 
         public decimal Cost { get; set; }
@@ -30,6 +32,7 @@ namespace Vintage.Rabbit.Web.Models.Themes
             this.Guid = theme.Guid;
             this.Title = theme.Title;
             this.Description = theme.Description;
+            this.IncludedItems = theme.IncludedItems;
             this.Cost = theme.Cost;
             this.Images = theme.Images.Select(o => new ThemeImageViewModel(o, products)).ToList();
 

@@ -30,7 +30,23 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult Hire()
         {
-            return View("Hire");
+            IList<Guid> guids = new List<Guid>()
+            {
+                new Guid("B95E1BB5-E2A7-4592-A498-354121F16C4C"),
+                new Guid("566E3B0B-9353-4551-A423-B0D92B21B840"),
+                new Guid("8F2E76D0-01AD-4AFD-8A50-585D145EC670"),
+                new Guid("9D782C02-8BD9-497A-BD5D-B2DFE9EBDDFC"),
+                new Guid("F3A1D970-08BE-43D3-91B8-927BF9B18D8F"),
+                new Guid("16ED5BD7-2554-428B-8265-24A63E0436E4"),
+                new Guid("CD6D2690-C199-4C01-9CF1-7C0DA50EA3AE"),
+                new Guid("76FD2692-24F7-408B-9B75-0334579FB2AB")
+            };
+
+            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByGuidsQuery>(new GetProductsByGuidsQuery(guids));
+
+            ProductListViewModel viewModel = new ProductListViewModel(products);
+
+            return View("Hire", viewModel);
         }
 
         public ActionResult Index(int page = 1)

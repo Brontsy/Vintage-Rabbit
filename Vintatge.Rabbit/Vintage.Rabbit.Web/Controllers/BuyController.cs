@@ -36,7 +36,23 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult PartySupplies()
         {
-            return this.View("PartySupplies");
+            IList<Guid> guids = new List<Guid>()
+            {
+                new Guid("F239E8BF-46FE-4024-8583-23D8C9AEFB36"),
+                new Guid("BFF8602A-5BD7-4974-A887-4D87823EC823"),
+                new Guid("661A7261-7037-4E1F-8364-CC62F12401D2"),
+                new Guid("34B46ABB-98FB-4E40-8EBC-30034419181F"),
+                new Guid("87F6D8B3-ABF6-4E6E-81B2-780A3BB7F9DC"),
+                new Guid("E51F547D-1471-4F95-84E1-907E8FABE50D"),
+                new Guid("62079AE2-40EF-4A81-B1FA-67C5EDDBFE23"),
+                new Guid("1628D929-14B4-4CEF-8456-C263BC3CD1EB"),
+            };
+
+            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByGuidsQuery>(new GetProductsByGuidsQuery(guids));
+
+            ProductListViewModel viewModel = new ProductListViewModel(products);
+
+            return View("PartySupplies", viewModel);
         }
 
         public ActionResult PartySuppliesSubnav()

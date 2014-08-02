@@ -22,7 +22,11 @@ namespace Vintage.Rabbit.Web.Models.Products
         public ProductListViewModel(PagedResult<Product> products)
         {
             this.Products = products.Select(o => new ProductListItemViewModel(o)).ToList();
+        }
 
+        public ProductListViewModel(IList<Product> products)
+        {
+            this.Products = products.Select(o => new ProductListItemViewModel(o)).ToList();
         }
 
         public ProductListViewModel(PagedResult<Product> products, Category category)
