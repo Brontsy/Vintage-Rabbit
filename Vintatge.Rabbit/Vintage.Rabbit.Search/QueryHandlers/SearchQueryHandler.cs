@@ -53,24 +53,24 @@ namespace Vintage.Rabbit.Search.QueryHandlers
 
                 var hits = searcher.Search(luceneQuery, 20);
 
-                IList<int> productIds = new List<int>();
+                IList<Guid> productGuids = new List<Guid>();
 
                 foreach (var hit in hits.ScoreDocs)
                 {
                     var doc = searcher.Doc(hit.Doc);
 
-                    string id = doc.GetField("id").StringValue;
-                    productIds.Add(Int32.Parse(id));
+                    Guid guid = new Guid(doc.GetField("guid").StringValue);
+                    productGuids.Add(guid);
                 }
 
-                IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByIdsQuery>(new GetProductsByIdsQuery(productIds));
+                IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByGuidsQuery>(new GetProductsByGuidsQuery(productGuids));
                 IList<Product> returnProducts = new List<Product>();
 
-                foreach (int productId in productIds)
+                foreach (Guid productGuid in productGuids)
                 {
-                    if (products.Any(o => o.Id == productId))
+                    if (products.Any(o => o.Guid == productGuid))
                     {
-                        returnProducts.Add(products.First(o => o.Id == productId));
+                        returnProducts.Add(products.First(o => o.Guid == productGuid));
                     }
                 }
 

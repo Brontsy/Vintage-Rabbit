@@ -1,7 +1,11 @@
 ﻿
 
 .add-product-to-theme-form {
-    width: 1024px;
+    width: 960px;
+
+    &.tall {
+        width: 640px;
+    }
 
     h3 {
         line-height: 36px;
@@ -27,9 +31,12 @@
         }
     }
 
-    img {
-        width: 100%;
+    .main-image-container {
+        position: relative;
         margin-top: 20px;
+        .main-image {
+            width: 100%;
+        }
     }
 
     .marker {
@@ -46,8 +53,7 @@
         z-index: 110;
         opacity: 0.5;
 
-        &.selected
-            {
+        &.selected {
             opacity: 1;
         }
 
@@ -79,4 +85,24 @@
         padding: 8px 20px 8px 20px; border-bottom: 1px solid #cccccc; cursor: pointer;
         &:hover { background: #f1f1f1; }
     }
+}
+
+.theme-images
+{
+    img { width: 100%; display: block; }
+}
+
+.selectable-theme-image
+
+{
+    cursor: pointer;
+    padding:2px; border: 1px solid #cccccc; margin-bottom: 20px;
+    &.selected { border: 1px solid @green; background: @green;}
+}
+
+.theme
+{
+    .product-list{ margin-top:0px; padding: 0px;}
+
+    .remove-product-from-theme { float: right; margin-top: 12px;}
 }

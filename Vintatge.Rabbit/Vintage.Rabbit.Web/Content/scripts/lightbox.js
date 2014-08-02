@@ -7,7 +7,7 @@ function AddAjaxLighboxEvents()
     {
         targetAttr: 'href',
         type: 'ajax',
-        variant: 'lightbox-content',
+        variant: 'lightbox-content image-content',
         afterOpen: function () {
 
             AddClickEvents();

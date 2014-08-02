@@ -47,6 +47,7 @@ namespace Vintage.Rabbit.Search.CommandHandlers
                 var doc = new Document();
 
                 doc.Add(new Field("id", product.Id.ToString(), Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.NO));
+                doc.Add(new Field("guid", product.Guid.ToString(), Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.NO));
                 doc.Add(new Field("Code", product.Code, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.NO));
                 doc.Add(new Field("Title", product.Title, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.NO));
                 doc.Add(new Field("Description", product.Description, Field.Store.YES, Field.Index.ANALYZED, Field.TermVector.NO));

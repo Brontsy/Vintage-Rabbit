@@ -1,33 +1,33 @@
 ﻿.pagination {
     position: relative;
     min-height: 40px;
+
     ul {
-        position: absolute; right: 0px;
+        position: absolute;
+        right: 0px;
         margin-top: 20px;
+
         li {
             float: left;
             margin-left: 0px;
-            
+
             div {
-                
                 line-height: 30px;
                 min-width: 30px;
                 text-align: center;
                 padding: 0px 7px 0px 7px;
-                color:@blue;
+                color: @blue;
                 font-weight: bold;
-                font-family: 'a-little-sunshine', Arial;
-            font-size: 22px;
+                font-size: 22px;
             }
-            
+
             a {
                 display: block;
                 line-height: 30px;
                 min-width: 30px;
                 text-align: center;
                 padding: 0px 7px 0px 7px;
-                font-family: 'a-little-sunshine', Arial;
-            font-size: 22px;
+                font-size: 22px;
 
                 &:hover {
                     background: @blue;
@@ -36,7 +36,9 @@
                 }
             }
 
-            &.next { padding-left: 5px; }
+            &.next {
+                padding-left: 5px;
+            }
         }
     }
 }

@@ -52,7 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="CommandHandlers\RemoveProductFromThemeCommandHandler.cs" />
     <Compile Include="CommandHandlers\AddProductToThemeCommandHandler.cs" />
     <Compile Include="CommandHandlers\SaveThemeCommandHandler.cs" />
     <Compile Include="Entities\Theme.cs" />

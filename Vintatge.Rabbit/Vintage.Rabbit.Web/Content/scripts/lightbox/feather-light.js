@@ -223,6 +223,9 @@
                 self.$instance.detach();
             });
             self.afterClose(event);
+            $('.lightbox-loading').fadeOut(self.closeSpeed, function () {
+                $('.lightbox-loading').remove();
+            });
         }
     };
 
@@ -262,8 +265,10 @@
                 process: function (url) {
                     var self = this,
 						deferred = $.Deferred();
+                    $('body').append('<div class="lightbox-loading">Loading</div>');
                     /* we are using load so one can specify a target with: url.html #targetelement */
                     var $container = $('<div></div>').load(url, function (response, status) {
+                        $('.lightbox-loading').html('');
                         if (status !== "error") {
                             deferred.resolve($container.contents());
                         }

@@ -16,6 +16,8 @@ namespace Vintage.Rabbit.Themes.CommandHandlers
 
         public Guid ThemeProductGuid { get; private set; }
 
+        public Guid ThemeImageGuid { get; private set; }
+
         public Guid ProductGuid { get; private set; }
 
         public decimal X { get; private set; }
@@ -24,9 +26,10 @@ namespace Vintage.Rabbit.Themes.CommandHandlers
 
         public IActionBy ActionBy { get; private set; }
 
-        public AddProductToThemeCommand(Guid themeGuid, Guid themeProductGuid, Guid productGuid, decimal x, decimal y, IActionBy actionBy)
+        public AddProductToThemeCommand(Guid themeGuid, Guid themeImageGuid, Guid themeProductGuid, Guid productGuid, decimal x, decimal y, IActionBy actionBy)
         {
             this.ThemeGuid = themeGuid;
+            this.ThemeImageGuid = themeImageGuid;
             this.ThemeProductGuid = themeProductGuid;
             this.ProductGuid = productGuid;
             this.X = x;
@@ -49,8 +52,9 @@ namespace Vintage.Rabbit.Themes.CommandHandlers
         public void Handle(AddProductToThemeCommand command)
         {
             Theme theme = this._queryDispatcher.Dispatch<Theme, GetThemeByGuidQuery>(new GetThemeByGuidQuery(command.ThemeGuid));
+            ThemeImage image = theme.Images.First(o => o.Guid == command.ThemeImageGuid);
 
-            theme.AddProduct(command.ThemeProductGuid, command.ProductGuid, command.X, command.Y);
+            image.AddProduct(command.ThemeProductGuid, command.ProductGuid, command.X, command.Y);
 
             this._commandDispatcher.Dispatch(new SaveThemeCommand(theme, command.ActionBy));
         }

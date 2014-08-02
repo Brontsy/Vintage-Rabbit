@@ -29,8 +29,9 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
 
         public ActionResult Index()
         {
-            IList<Theme> themes = this._queryDispatcher.Dispatch<IList<Theme>, GetThemesQuery>(new GetThemesQuery());
-            ThemesViewModel viewModel = new ThemesViewModel(themes);
+            var themes = this._queryDispatcher.Dispatch<IList<Theme>, GetThemesQuery>(new GetThemesQuery());
+
+            IList<ThemeListItemViewModel> viewModel = themes.Where(o => o.Images.Any()).Select(o => new ThemeListItemViewModel(o)).ToList();
 
             return View("Index", viewModel);
         }
@@ -42,9 +43,21 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
 
         public ActionResult Edit(Guid guid)
         {
-            Theme theme = this._queryDispatcher.Dispatch<Theme, GetThemeByGuidQuery>(new GetThemeByGuidQuery(guid));
+            var theme = this._queryDispatcher.Dispatch<Theme, GetThemeByGuidQuery>(new GetThemeByGuidQuery(guid));
 
-            return this.View("Add", new ThemeViewModel(theme));
+            IList<Guid> productGuids = new List<Guid>();
+
+            foreach (var image in theme.Images)
+            {
+                foreach (var product in image.Products)
+                {
+                    productGuids.Add(product.ProductGuid);
+                }
+            }
+
+            var products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByGuidsQuery>(new GetProductsByGuidsQuery(productGuids));
+
+            return this.View("Add", new ThemeViewModel(theme, products));
         }
 
         public ActionResult Save(ThemeViewModel viewModel, Member member)
@@ -72,72 +85,52 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
 
         public ActionResult Products(Guid guid)
         {
-            Theme theme = this._queryDispatcher.Dispatch<Theme, GetThemeByGuidQuery>(new GetThemeByGuidQuery(guid));
-            ThemeViewModel viewModel = new ThemeViewModel(theme);
+            var theme = this._queryDispatcher.Dispatch<Theme, GetThemeByGuidQuery>(new GetThemeByGuidQuery(guid));
 
-            return this.View("Products", viewModel);
-        }
+            IList<Guid> productGuids = new List<Guid>();
 
-        [HttpGet]
-        public ActionResult AddProduct(Guid guid)
-        {
-            Theme theme = this._queryDispatcher.Dispatch<Theme, GetThemeByGuidQuery>(new GetThemeByGuidQuery(guid));
-
-            ViewBag.MainImageUrl = theme.MainImage.Url;
-
-            return this.PartialView("AddProduct", new ThemeProductViewModel(new ThemeProduct()));
-        }
-
-        [HttpGet]
-        public ActionResult EditProduct(Guid guid, Guid themeProductGuid)
-        {
-            Theme theme = this._queryDispatcher.Dispatch<Theme, GetThemeByGuidQuery>(new GetThemeByGuidQuery(guid));
-            var product = theme.Products.FirstOrDefault(o => o.Guid == themeProductGuid);
-
-            if(product != null)
+            foreach (var image in theme.Images)
             {
-                var p = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(product.ProductGuid));
-                ViewBag.Search = p.Title;
+                foreach (var product in image.Products)
+                {
+                    productGuids.Add(product.ProductGuid);
+                }
             }
 
-            return this.PartialView("AddProduct", new ThemeProductViewModel(product));
+            var products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByGuidsQuery>(new GetProductsByGuidsQuery(productGuids));
+
+            return this.View("Products", new ThemeViewModel(theme, products));
         }
 
-        [HttpPost]
-        public ActionResult SaveProduct(Guid guid, ThemeProductViewModel viewModel, Member member)
+        [HttpGet]
+        public ActionResult AddProduct(Guid guid, Guid themeImageGuid)
         {
-            this._commandDispatcher.Dispatch(new AddProductToThemeCommand(guid, viewModel.ThemeProductGuid, viewModel.ProductGuid, viewModel.X.Value, viewModel.Y.Value, member));
+            Theme theme = this._queryDispatcher.Dispatch<Theme, GetThemeByGuidQuery>(new GetThemeByGuidQuery(guid));
+            ThemeImage themeImage = theme.Images.First(o => o.Guid == themeImageGuid);
+            IList<Guid> productGuids = themeImage.Products.Select(o => o.ProductGuid).ToList();
+
+            var products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByGuidsQuery>(new GetProductsByGuidsQuery(productGuids));
+
+            AddProductToThemeImageViewModel viewModel = new AddProductToThemeImageViewModel(themeImage, products);
+
+
+            return this.PartialView("AddProduct", viewModel);
+        }
+
+        [HttpGet]
+        public ActionResult RemoveProduct(Guid guid, Guid themeImageGuid, Guid themeProductGuid, Member member)
+        {
+            this._commandDispatcher.Dispatch(new RemoveProductFromThemeCommand(guid, themeImageGuid, themeProductGuid, member));
 
             return this.RedirectToRoute(Routes.Themes.Products);
         }
 
-        public ActionResult ProductList(Guid guid)
+        [HttpPost]
+        public ActionResult SaveProduct(Guid guid, AddProductToThemeImageViewModel viewModel, Member member)
         {
-            Theme theme = this._queryDispatcher.Dispatch<Theme, GetThemeByGuidQuery>(new GetThemeByGuidQuery(guid));
+            this._commandDispatcher.Dispatch(new AddProductToThemeCommand(guid, viewModel.ThemeImageGuid, viewModel.ThemeProductGuid, viewModel.ProductGuid, viewModel.X.Value, viewModel.Y.Value, member));
 
-            PagedResult<Product> products = this._queryDispatcher.Dispatch<PagedResult<Product>, GetProductsQuery>(new GetProductsQuery(1, 5000));
-
-            IList<ThemeProductListItemViewModel> viewModel = new List<ThemeProductListItemViewModel>();
-
-            foreach(var themeProduct in theme.Products)
-            {
-                var product = products.FirstOrDefault(o => o.Guid == themeProduct.ProductGuid);
-                if(product != null)
-                {
-                    viewModel.Add(new ThemeProductListItemViewModel(themeProduct, product));
-                }
-            }
-
-            return this.PartialView("ProductList", viewModel);
-        }
-
-        public ActionResult MainImage(Guid guid, Guid themeProductGuid)
-        {
-            Theme theme = this._queryDispatcher.Dispatch<Theme, GetThemeByGuidQuery>(new GetThemeByGuidQuery(guid));
-
-            ThemeMainImageViewModel viewModel = new ThemeMainImageViewModel(theme, themeProductGuid);
-
-            return this.PartialView("MainImage", viewModel);
+            return this.RedirectToRoute(Routes.Themes.Products);
         }
 	}
 }

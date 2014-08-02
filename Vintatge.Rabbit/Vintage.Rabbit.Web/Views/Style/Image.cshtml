@@ -1,0 +1,50 @@
+﻿@model Vintage.Rabbit.Web.Models.Themes.ThemeImageViewModel
+
+
+
+<div class="theme-image@(Model.IsTallImage ? " tall" : "" )">
+
+    <img src="@Model.Url" />
+
+    <div class="side-panel"></div>
+
+    <div class="hidden">
+        @foreach (var product in Model.Products)
+        {
+            <div class="panel @product.Guid product-@product.ProductId" id="@product.Guid">
+                <span class="close-product-info">Close</span>
+                <h2>@product.Title</h2>
+                <p>@product.Description</p>
+                <div class="price">@product.Cost</div>
+
+                <div class="row availability-check">
+                    @{Html.RenderAction("AvailabilityCheck", "Hire", new { productGuid = product.ProductGuid });}
+                </div>
+
+                <div class="images">
+                    <ul class="row">
+                        @foreach (var image in product.Images)
+                        {
+                            <li class="col-6">
+                                <div class="image-container">
+                                    <img src="@image.Url" />
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+
+            </div>
+        }
+    </div>
+
+
+    @foreach (var product in Model.Products)
+    {
+        <a href="@Url.RouteUrl(Routes.Themes.Product, new { name = product.UrlTitle, productGuid = product.ProductGuid })" data-product-id="@product.ProductId" data-product-guid="@product.ProductGuid" title="@product.Title" class="marker" style="top: @(product.Y)%; left: @(product.X)%;">
+            <span class="inner-circle"></span>
+        </a>
+    }
+
+</div>

@@ -69,25 +69,17 @@ namespace Vintage.Rabbit.Themes.Repository
         {
             if (this.GetThemeByGuid(theme.Guid) == null)
             {
-                string sql = "Insert Into VintageRabbit.Themes (Guid, Title, Description, Cost, MainImage, Images, Products, DateCreated, DateLastModified) Values (@Guid, @Title, @Description, @Cost, @MainImage, @Images, @Products, @DateCreated, @DateLastModified)";
+                string sql = "Insert Into VintageRabbit.Themes (Guid, Title, Description, Cost, Images, DateCreated, DateLastModified) Values (@Guid, @Title, @Description, @Cost, @Images, @DateCreated, @DateLastModified)";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
-                    string mainImage = null;
-                    if(theme.MainImage != null)
-                    {
-                        mainImage = this._serializer.Serialize(theme.MainImage);
-                    }
-
                     connection.Execute(sql, new
                     {
                         Guid = theme.Guid,
                         Title = theme.Title,
                         Description = theme.Description,
                         Cost = theme.Cost,
-                        MainImage = mainImage,
                         Images = this._serializer.Serialize(theme.Images),
-                        Products = this._serializer.Serialize(theme.Products),
                         DateCreated = DateTime.Now,
                         DateLastModified = DateTime.Now
                     });
@@ -95,25 +87,17 @@ namespace Vintage.Rabbit.Themes.Repository
             }
             else
             {
-                string sql = "Update VintageRabbit.Themes Set Title = @Title, Description = @Description, Cost = @Cost, MainImage = @MainImage, Images = @Images, Products = @Products, DateLastModified = @DateLastModified Where Guid = @Guid";
+                string sql = "Update VintageRabbit.Themes Set Title = @Title, Description = @Description, Cost = @Cost, Images = @Images, DateLastModified = @DateLastModified Where Guid = @Guid";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
-                    string mainImage = null;
-                    if (theme.MainImage != null)
-                    {
-                        mainImage = this._serializer.Serialize(theme.MainImage);
-                    }
-
                     connection.Execute(sql, new
                     {
                         Guid = theme.Guid,
                         Title = theme.Title,
                         Description = theme.Description,
                         Cost = theme.Cost,
-                        MainImage = mainImage,
                         Images = this._serializer.Serialize(theme.Images),
-                        Products = this._serializer.Serialize(theme.Products),
                         DateLastModified = DateTime.Now,
                     });
                 }
@@ -130,14 +114,7 @@ namespace Vintage.Rabbit.Themes.Repository
             theme.Cost = item.Cost;
             theme.Title = item.Title;
             theme.Description = item.Description;
-
-            if (item.MainImage != null)
-            {
-                theme.MainImage = this._serializer.Deserialize<ThemeImage>(item.MainImage);
-            }
-
             theme.Images = this._serializer.Deserialize<IList<ThemeImage>>(item.Images);
-            theme.Products = this._serializer.Deserialize<IList<ThemeProduct>>(item.Products);
 
             return theme;
         }

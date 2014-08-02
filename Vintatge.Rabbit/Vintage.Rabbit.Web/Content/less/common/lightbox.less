@@ -6,6 +6,14 @@
  * MIT Licensed.
 **/
 @media all {
+
+    .lightbox-loading {  color: #ffffff; left: 0px; right: 0px; top: 0px; bottom: 0px; text-align: center; padding-top: 240px;
+
+                        position: fixed;
+                        background: rgba(0, 0, 0, 0.8);
+
+    }
+
 	.featherlight {
 		display: none;
 
@@ -29,7 +37,6 @@
 
 	/* support for nested featherlights. Does not work in IE8 (use JS to fix) */
 	.featherlight {
-		background: rgba(0, 0, 0, 0.8);
 	}
 
 	.featherlight:before {
@@ -69,7 +76,18 @@
 
 		/* reset white-space wrapping */
 		white-space: normal;
+
+
 	}
+
+
+    
+        .featherlight.image-content .featherlight-content
+{
+    padding: 0px;
+    border-bottom: none;
+    max-height: inherit;
+}
 
 	/* contains the content */
 	.featherlight .featherlight-inner {
@@ -85,16 +103,20 @@
 		right: 0;
 
 		/* dimensions: 25px x 25px */
-		line-height: 25px;
-		width: 25px;
+		line-height: 30px;
+		width: 30px;
 
 		/* styling */
 		cursor: pointer;
 		text-align: center;
 		font: Arial, sans-serif;
 		background: #fff; /* Set the background in case it overlaps the content */
-		background: rgba(255, 255, 255, 0.3);
 		color: #000;
+        border-radius: 0px 0px 0px 5px;
+        border-left: 1px solid #dddddd;
+        border-bottom: 1px solid #dddddd;
+        background: #ffffff;
+        &:hover { background: #eeeeee; }
 	}
 
 

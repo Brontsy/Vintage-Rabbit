@@ -51,23 +51,18 @@
                         }
                     </div>
 
-                    @if (Model.MainImage != null)
-                    {
-                        <div class="col-6 offset-1 photo-uploader">
-
-                            <img src="@Model.MainImage.Url" />
+                        <div class="col-6 offset-1 theme-images">
 
                             <ol class="photo-list row">
                                 @foreach (var image in Model.Images)
                                 {
                                     <li class="col-3">
-                                        <img src="@image.ThumbnailUrl" />
+                                        <img src="@image.Url" />
                                     </li>
                                 }
                             </ol>
 
                         </div>
-                    }
                 </div>
             </div>
         </div>

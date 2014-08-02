@@ -66,11 +66,12 @@ function AddClickEvents()
     $('a.add-to-cart').on('click', function (event) {
 
         event.preventDefault();
+        var $this = $(this);
         $.ajax({
             url: $(this).attr('href'),
             type: 'POST',
             complete: function (json) {
-                $(window).trigger('AddToCart', json)
+                $(window).trigger('AddToCart', $this)
             }
         })
     });
@@ -92,7 +93,7 @@ function AddClickEvents()
             type: 'POST',
             complete: function (json) {
                 $this.html($this.data('button-text'));
-                $(window).trigger('AddToCart', json)
+                $(window).trigger('AddToCart', $this)
             }
         })
     });
@@ -169,9 +170,9 @@ $(window).on('AddToCart RemovedFromCart QuantityUpdated', function (json) {
 });
 
 
-$(window).on('AddToCart', function (json) {
+$(window).on('AddToCart', function (element) {
 
-    $('.added-to-cart').removeClass('hidden');
+    $(element).parents('form').find('.added-to-cart').removeClass('hidden');
 });
 
 $(window).on('RemovedFromCart', function (json) {

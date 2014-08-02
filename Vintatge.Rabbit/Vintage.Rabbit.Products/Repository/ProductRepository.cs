@@ -24,7 +24,7 @@ namespace Vintage.Rabbit.Products.Repository
 
         PagedResult<Product> GetProducts(int page, int itemsPerPage);
 
-        IList<Product> GetProductsById(IList<int> productIds);
+        IList<Product> GetProductsByGuid(IList<Guid> productIds);
 
         Product GetProductByGuid(Guid productGuid);
 
@@ -117,13 +117,13 @@ namespace Vintage.Rabbit.Products.Repository
             return result;
         }
 
-        public IList<Product> GetProductsById(IList<int> productIds)
+        public IList<Product> GetProductsByGuid(IList<Guid> productGuids)
         {
             IList<Product> products = new List<Product>();
 
             using (SqlConnection connection = new SqlConnection(this._connectionString))
             {
-                var productResults = connection.Query<ProductDb>("Select * From VintageRabbit.Products Where Id In @Ids Order By DateCreated Desc", new { Ids = productIds });
+                var productResults = connection.Query<ProductDb>("Select * From VintageRabbit.Products Where Guid In @Guids Order By DateCreated Desc", new { Guids = productGuids });
 
                 foreach (var product in productResults)
                 {

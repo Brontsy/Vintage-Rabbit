@@ -1,4 +1,4 @@
-﻿@model Vintage.Rabbit.Admin.Web.Models.Themes.ThemesViewModel
+﻿@model IList<Vintage.Rabbit.Admin.Web.Models.Themes.ThemeListItemViewModel>
 @{
     ViewBag.Title = "List";
 }
@@ -20,16 +20,13 @@
      
         <div class="items products product-list">
             <ol class="row">
-                @foreach (var theme in Model.Themes)
+                @foreach (var theme in Model)
                 {
                     <div class="col-4">
                         <div class="item">
                             <div class="product-image">
                                 <div class="container">
-                                    @if(theme.MainImage != null)
-                                    { 
-                                    <img src="@theme.MainImage.Url">
-                                    }
+                                    <img src="@theme.ImageUrl">
                                 </div>
                             </div>
                             <h4>

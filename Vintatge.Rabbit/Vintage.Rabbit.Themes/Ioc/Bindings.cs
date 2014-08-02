@@ -19,7 +19,8 @@ namespace Vintage.Rabbit.Themes.Ioc
         {
             builder.RegisterType<SaveThemeCommandHandler>().As<ICommandHandler<SaveThemeCommand>>();
             builder.RegisterType<AddProductToThemeCommandHandler>().As<ICommandHandler<AddProductToThemeCommand>>();
-
+            builder.RegisterType<RemoveProductFromThemeCommandHandler>().As<ICommandHandler<RemoveProductFromThemeCommand>>();
+            
 
             builder.RegisterType<GetThemesQueryHandler>().As<IQueryHandler<IList<Theme>, GetThemesQuery>>();
             builder.RegisterType<GetThemeByGuidQueryHandler>().As<IQueryHandler<Theme, GetThemeByGuidQuery>>();

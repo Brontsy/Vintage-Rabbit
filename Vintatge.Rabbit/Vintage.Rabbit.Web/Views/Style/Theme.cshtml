@@ -1,0 +1,97 @@
+﻿@model Vintage.Rabbit.Web.Models.Themes.ThemeViewModel
+@{
+    ViewBag.Title = Model.Title + " - Vintage Rabbit";
+}
+
+
+<div class="theme">
+
+    <div class="row">
+
+    
+
+
+        <div class="col-12">
+
+
+            <div class="description">
+
+                <h2>@Model.Title</h2>
+                <p>
+                    @Model.Description
+                </p>
+                <img class="party-hats" src="/content/images/themes/party-hats.png" />
+            </div>
+            
+
+            <img class="bunting" src="/content/images/themes/birds-and-bunting.png" />
+
+            <div class="row">
+                <div class="col-6">
+
+                    <div class="image-container">
+
+                        <div class="main-image-container">
+                            <a class="ajax-lightbox" href="@Url.RouteUrl(Routes.Themes.Image, new { imageGuid = Model.Images.ElementAt(0).Guid })">
+                                <img src="@Model.Images.First().Url" />
+                            </a>
+                        </div>
+
+                        <div class="thumbnails">
+                            <div class="left">
+                                <a class="ajax-lightbox" href="@Url.RouteUrl(Routes.Themes.Image, new { imageGuid = Model.Images.ElementAt(1).Guid })">
+                                    <img src="@Model.Images.ElementAt(1).ThumbnailUrl" />
+                                </a>
+                            </div>
+                            <div class="right">
+                                <a class="ajax-lightbox" href="@Url.RouteUrl(Routes.Themes.Image, new { imageGuid = Model.Images.ElementAt(2).Guid })">
+                                    <img src="@Model.Images.ElementAt(2).ThumbnailUrl" />
+                                </a>
+                            </div>
+                            <div class="left">
+                                <a class="ajax-lightbox" href="@Url.RouteUrl(Routes.Themes.Image, new { imageGuid = Model.Images.ElementAt(3).Guid })">
+                                    <img src="@Model.Images.ElementAt(3).ThumbnailUrl" />
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-6">
+                    <p>
+                        click on any image then scroll over any icon to add individual item to your cart or click the Buy Package button to recreate this theme receive a 25%
+                        reduction in price. Everything is delivered to your door without the expense of a stylist.
+                    </p>
+
+                    <img class="bird" src="/content/images/themes/bird.png" />
+                    <img class="balloons" src="/content/images/themes/balloons.png" />
+
+                    <div class="buy-package">
+
+                        <a class="ajax-lightbox" href="@Url.RouteUrl(Routes.Themes.Hire, new { })">
+                            <img src="/content/images/themes/buy-package.png" />
+                        </a>
+                        <p>or select individual items from the images</p>
+                    </div>
+
+                    <h2>Included in package</h2>
+                    <ul class="included-in-package">
+                        <li>Kids table and chair hire</li>
+                        <li>Candy buffet table hire</li>
+                        <li>Glassware and crockery</li>
+                        <li>Table settings for hire including mini milk bottles</li>
+                        <li>Disposable napkins, wooden plates and straws</li>
+                        <li>Table runners and bunting</li>
+                        <li>Photo booth package</li>
+                        <li>Props and wooden crates</li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

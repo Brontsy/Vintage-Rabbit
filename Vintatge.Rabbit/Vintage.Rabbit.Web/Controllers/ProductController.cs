@@ -23,7 +23,7 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(productGuid));
 
-            if (category == null)
+            if (category == null && product.Categories.Any())
             {
                 category = product.Categories.First();
             }
@@ -35,7 +35,7 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(productGuid));
 
-            if (category == null)
+            if (category == null && product.Categories.Any())
             {
                 category = product.Categories.First();
             }

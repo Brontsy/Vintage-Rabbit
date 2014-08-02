@@ -31,11 +31,17 @@
 
         $('img.main-image').on('click', function (e) {
 
-            var posX = $(this).offset().left;
-            var posY = $(this).offset().top;
+            var parentOffset = $(this).offset();
+            //or $(this).offset(); if you really just want the current element's offset
+            var x = e.pageX - parentOffset.left;
+            var y = e.pageY - parentOffset.top;
+            
 
-            var x = e.pageX - posX + 20;
-            var y = e.pageY - posY + 10;
+            //var posX = $(this).offset().left;
+            //var posY = $(this).offset().top;
+
+            //var x = e.pageX - posX + 20;
+            //var y = e.pageY - posY + 10;
 
             var percentX = x * 100 / $(this).width();
             var percentY = y * 100 / $(this).height();

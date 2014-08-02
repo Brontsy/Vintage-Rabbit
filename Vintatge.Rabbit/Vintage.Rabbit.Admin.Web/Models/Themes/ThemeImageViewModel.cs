@@ -1,8 +1,8 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Themes.Entities;
 
 namespace Vintage.Rabbit.Admin.Web.Models.Themes
@@ -15,11 +15,25 @@ namespace Vintage.Rabbit.Admin.Web.Models.Themes
 
         public string ThumbnailUrl { get; set; }
 
-        public ThemeImageViewModel(ThemeImage image)
+        public IList<ThemeProductViewModel> Products { get; set; }
+
+        public ThemeImageViewModel(ThemeImage themeImage, IList<Product> products)
         {
-            this.Guid = image.Guid;
-            this.Url = image.Url;
-            this.ThumbnailUrl = image.ThumbnailUrl;
+            this.Guid = themeImage.Guid;
+            this.Url = themeImage.Url;
+            this.ThumbnailUrl = themeImage.ThumbnailUrl;
+            this.Products = new List<ThemeProductViewModel>();
+
+
+            foreach (var themeProduct in themeImage.Products)
+            {
+                if (products.Any(o => o.Guid == themeProduct.ProductGuid))
+                {
+                    this.Products.Add(new ThemeProductViewModel(themeProduct, products.First(o => o.Guid == themeProduct.ProductGuid)));
+                }
+            }
+
         }
+        
     }
 }

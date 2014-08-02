@@ -10,7 +10,6 @@ function PostcodeCheckEvents() {
         event.preventDefault();
         var $this = $(this);
         
-
         if ($this.valid()) {
             var button = $(this).find('.btn.check-availability-button');
 

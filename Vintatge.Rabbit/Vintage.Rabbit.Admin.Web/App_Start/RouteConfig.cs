@@ -47,7 +47,7 @@ namespace Vintage.Rabbit.Admin.Web
             public static string Products = "Themes - Products";
             public static string AddProduct = "Themes - AddProduct";
             public static string SaveProduct = "Themes - SaveProduct";
-            public static string EditProduct = "Themes - EditProduct";
+            public static string RemoveProduct = "Themes - RemoveProduct";
         }
 
         public static class Orders
@@ -96,9 +96,9 @@ namespace Vintage.Rabbit.Admin.Web
             routes.MapRoute(Routes.Themes.Edit, url: "themes/edit/{guid}", defaults: new { controller = "Themes", action = "Edit" });
             routes.MapRoute(Routes.Themes.Save, url: "themes/save/{guid}", defaults: new { controller = "Themes", action = "Save" });
             routes.MapRoute(Routes.Themes.Products, url: "themes/edit/{guid}/products", defaults: new { controller = "Themes", action = "Products" });
-            routes.MapRoute(Routes.Themes.AddProduct, url: "themes/edit/{guid}/products/add", defaults: new { controller = "Themes", action = "AddProduct" });
-            routes.MapRoute(Routes.Themes.SaveProduct, url: "themes/edit/{guid}/products/save/{themeProductGuid}", defaults: new { controller = "Themes", action = "SaveProduct" });
-            routes.MapRoute(Routes.Themes.EditProduct, url: "themes/edit/{guid}/products/edit/{themeProductGuid}", defaults: new { controller = "Themes", action = "EditProduct" });
+            routes.MapRoute(Routes.Themes.AddProduct, url: "themes/edit/{guid}/products/add/image/{themeImageGuid}", defaults: new { controller = "Themes", action = "AddProduct" });
+            routes.MapRoute(Routes.Themes.SaveProduct, url: "themes/edit/{guid}/products/save/{themeImageGuid}/{themeProductGuid}", defaults: new { controller = "Themes", action = "SaveProduct" });
+            routes.MapRoute(Routes.Themes.RemoveProduct, url: "themes/edit/{guid}/products/remove/{themeImageGuid}/{themeProductGuid}", defaults: new { controller = "Themes", action = "RemoveProduct" });
 
 
             routes.MapRoute(name: Routes.Home, url: "", defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });

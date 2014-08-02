@@ -43,11 +43,9 @@ function AddDatePickerEvents()
     });
 
 
-    $(window).on('AddToCart', function (json) {
-        //$('.add-hire-product-to-cart').find('button').addClass('hidden');
-        //$('.add-hire-product-to-cart').find('.available').addClass('hidden');
-        //$('.add-hire-product-to-cart').find('.added-to-cart').removeClass('hidden');
-        $('.add-to-cart-form').addClass('in-cart');
+    $(window).on('AddToCart', function (event, element) {
+
+        $(element).parents('.add-to-cart-form').addClass('in-cart');
     });
 }
 

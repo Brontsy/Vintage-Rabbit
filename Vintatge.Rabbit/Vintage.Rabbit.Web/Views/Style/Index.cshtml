@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IList<Vintage.Rabbit.Web.Models.Themes.ThemeListItemViewModel>
+@{
     ViewBag.Title = "Style";
 }
 
@@ -8,42 +9,17 @@
     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishi</p>
     <p>&nbsp;</p>
     <ol class="row">
+
+        @foreach(var theme in Model)
+        {
         <li class="col-4">
-            <a href="/style/wizard-of-oz">
-                <img src="/content/images/themes/wizard-of-oz/Wizard of Oz Theme Package (1 of 1).jpg" />
-                <span>Wizard of Oz</span>
+            <a href="@Url.RouteUrl(Routes.Themes.Theme, new { themeName = theme.UrlTitle })">
+                <img src="@theme.ImageUrl" />
+                <span>@theme.Title</span>
             </a>
         </li>
-        <li class="col-4">
-            <a href="/style/teddy-bears-picnic">
-                <img src="/content/images/themes/teddy-bears-picnic/teddy bears picnic theme package 5332 (1 of 1).jpg" />
-                <span>Teddy Bears Picnic</span>
-            </a>
-        </li>
-        <li class="col-4">
-            <a href="/style/tea-party">
-                <img src="/content/images/themes/tea-party/Theme pack - Tea party 5016 (1 of 1).jpg" />
-                <span>Tea Party</span>
-            </a>
-        </li>
-        <li class="col-4">
-            <a href="/style/mary-poppins">
-                <img src="/content/images/themes/mary-poppins/Mary Poppins theme package 4820 (1 of 1).jpg" />
-                <span>Mary Poppins</span>
-            </a>
-        </li>
-        <li class="col-4">
-            <a href="/style/cinderella">
-                <img src="/content/images/themes/cinderella/Theme pack - Cinderella 4813 (1 of 1).jpg" />
-                <span>Cinderella</span>
-            </a>
-        </li>
-        <li class="col-4">
-            <a href="/style/carnival">
-                <img src="/content/images/themes/carnival/carnival theme package 5142 (1 of 1).jpg" />
-                <span>Carnival</span>
-            </a>
-        </li>
+        }
+
     </ol>
 
 </div>

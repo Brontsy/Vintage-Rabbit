@@ -153,3 +153,5 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\obj
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\obj\Debug\Vintage.Rabbit.Web.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Parties.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Parties.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Themes.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Themes.pdb

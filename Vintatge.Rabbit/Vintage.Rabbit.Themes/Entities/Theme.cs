@@ -19,10 +19,6 @@ namespace Vintage.Rabbit.Themes.Entities
 
         public string Description { get; set; }
 
-        public IList<ThemeProduct> Products { get; set; }
-
-        public ThemeImage MainImage { get; set; }
-
         public IList<ThemeImage> Images { get; set; }
 
         public decimal Cost { get; set; }
@@ -35,20 +31,7 @@ namespace Vintage.Rabbit.Themes.Entities
         public Theme(Guid guid)
         {
             this.Guid = guid;
-            this.Products = new List<ThemeProduct>();
             this.Images = new List<ThemeImage>();
-        }
-
-        internal void AddProduct(Guid guid, Guid productGuid, decimal x, decimal y)
-        {
-            var existingProducts = this.Products.Where(o => o.Guid == guid).ToList();
-
-            foreach(var existingProduct in existingProducts)
-            {
-                var themeProduct = this.Products.Remove(existingProduct);
-            }
-         
-            this.Products.Add(new ThemeProduct(guid, productGuid, x, y));
         }
     }
 }

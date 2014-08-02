@@ -239,6 +239,9 @@
     <Compile Include="Models\Products\ProductLinkViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartItemViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartViewModel.cs" />
+    <Compile Include="Models\Themes\ThemeImageViewModel.cs" />
+    <Compile Include="Models\Themes\ThemeProductViewModel.cs" />
+    <Compile Include="Models\Themes\ThemeListItemViewModel.cs" />
     <Compile Include="Models\Themes\ThemeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\CreateOrderProvider.cs" />
@@ -348,11 +351,14 @@
     <Content Include="Content\images\themes\carnival\Carnival Theme Package 5171 %281 of 1%29.jpg" />
     <Content Include="Content\images\themes\carnival\carnival theme package 5205 %281 of 1%29.jpg" />
     <Content Include="Content\images\themes\carnival\carnival theme package 5226 %281 of 1%29.jpg" />
-    <Content Include="Content\images\themes\cinderella\Theme pack - Cinderella 4780 %281 of 1%29.jpg" />
-    <Content Include="Content\images\themes\cinderella\Theme pack - Cinderella 4786 %281 of 1%29.jpg" />
-    <Content Include="Content\images\themes\cinderella\Theme pack - Cinderella 4802 %281 of 1%29.jpg" />
-    <Content Include="Content\images\themes\cinderella\Theme pack - Cinderella 4809 %281 of 1%29.jpg" />
-    <Content Include="Content\images\themes\cinderella\Theme pack - Cinderella 4813 %281 of 1%29.jpg" />
+    <Content Include="Content\images\themes\cinderella\01-thumb.jpg" />
+    <Content Include="Content\images\themes\cinderella\01.jpg" />
+    <Content Include="Content\images\themes\cinderella\02-thumb.jpg" />
+    <Content Include="Content\images\themes\cinderella\02.jpg" />
+    <Content Include="Content\images\themes\cinderella\03-thumb.jpg" />
+    <Content Include="Content\images\themes\cinderella\03.jpg" />
+    <Content Include="Content\images\themes\cinderella\04-thumb.jpg" />
+    <Content Include="Content\images\themes\cinderella\04.jpg" />
     <Content Include="Content\images\themes\clown.png" />
     <Content Include="Content\images\themes\cupcake.png" />
     <Content Include="Content\images\themes\envelope.png" />
@@ -362,11 +368,14 @@
     <Content Include="Content\images\themes\mary-poppins\Mary Poppins theme package 4840 %281 of 1%29.jpg" />
     <Content Include="Content\images\themes\mary-poppins\Mary Poppins theme package 4871 %281 of 1%29.jpg" />
     <Content Include="Content\images\themes\party-hats.png" />
-    <Content Include="Content\images\themes\tea-party\Theme pack - Tea party 4930 %281 of 1%29.jpg" />
-    <Content Include="Content\images\themes\tea-party\Theme pack - Tea party 4947 %281 of 1%29.jpg" />
-    <Content Include="Content\images\themes\tea-party\Theme pack - Tea party 4949 %281 of 1%29.jpg" />
-    <Content Include="Content\images\themes\tea-party\Theme pack - Tea party 4953 %281 of 1%29.jpg" />
-    <Content Include="Content\images\themes\tea-party\Theme pack - Tea party 5016 %281 of 1%29.jpg" />
+    <Content Include="Content\images\themes\tea-party\01-thumb.jpg" />
+    <Content Include="Content\images\themes\tea-party\01.jpg" />
+    <Content Include="Content\images\themes\tea-party\02-thumb.jpg" />
+    <Content Include="Content\images\themes\tea-party\02.jpg" />
+    <Content Include="Content\images\themes\tea-party\03-thumb.jpg" />
+    <Content Include="Content\images\themes\tea-party\03.jpg" />
+    <Content Include="Content\images\themes\tea-party\04-thumb.jpg" />
+    <Content Include="Content\images\themes\tea-party\04.jpg" />
     <Content Include="Content\images\themes\teddy-bears-picnic\teddy bears picnic theme package 5276 %281 of 1%29.jpg" />
     <Content Include="Content\images\themes\teddy-bears-picnic\teddy bears picnic theme package 5281 %281 of 1%29.jpg" />
     <Content Include="Content\images\themes\teddy-bears-picnic\teddy bears picnic theme package 5287 %281 of 1%29.jpg" />
@@ -378,6 +387,7 @@
     <Content Include="Content\images\themes\wizard-of-oz\Wizard of Oz Theme Package 5072 %281 of 1%29.jpg" />
     <Content Include="Content\images\themes\wizard-of-oz\Wizard of Oz Theme Package 5095 %281 of 1%29.jpg" />
     <Content Include="Content\images\themes\wizard-of-oz\Wizard of Oz Theme Package 5118 %281 of 1%29.jpg" />
+    <Content Include="Content\scripts\theme-image.js" />
     <Content Include="Content\scripts\lightbox\feather-light.js" />
     <Content Include="Content\scripts\placeholder.js" />
     <Content Include="Content\scripts\PostcodeCheck.js" />
@@ -549,11 +559,15 @@
     <Content Include="Views\FAQ\Suppliers.cshtml" />
     <Content Include="Views\Style\CustomStyling.cshtml" />
     <Content Include="Views\Hire\Hire.cshtml" />
+    <Content Include="Views\Style\Theme.cshtml" />
+    <Content Include="Views\Style\Image.cshtml" />
+    <Content Include="Views\Style\Hire.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\Buy\" />
     <Folder Include="Models\Product\" />
+    <Folder Include="Models\Style\" />
     <Folder Include="Views\ContactUs\" />
     <Folder Include="Views\InvoiceEmail\" />
   </ItemGroup>
@@ -627,6 +641,10 @@
     <ProjectReference Include="..\Vintage.Rabbit.Search\Vintage.Rabbit.Search.csproj">
       <Project>{543a3e22-4b5f-4455-a884-71464e7fea96}</Project>
       <Name>Vintage.Rabbit.Search</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Themes\Vintage.Rabbit.Themes.csproj">
+      <Project>{3aad6a07-eab5-4715-b3ab-45c2e6b100e3}</Project>
+      <Name>Vintage.Rabbit.Themes</Name>
     </ProjectReference>
     <ProjectReference Include="..\VintageRabbit.Parties\Vintage.Rabbit.Parties.csproj">
       <Project>{3e1f077c-00fc-4898-b8ca-1fb217d5fea1}</Project>

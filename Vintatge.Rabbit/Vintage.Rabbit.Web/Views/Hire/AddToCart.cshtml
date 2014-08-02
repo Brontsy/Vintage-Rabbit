@@ -20,13 +20,13 @@
                         </div>
                     </li>
 
-                    <li class="col-3">
-                        <div class="add-to-cart-container">
+                    <li class="col-3 qty-container">
+                     
                             Qty &nbsp; &nbsp;
                             @Html.DropDownListFor(o => o.Qty, Model.InventoryCount)
-                        </div>
+                        
                     </li>
-                    <li class="col-4">
+                    <li class="col-4 add-to-cart-container">
                         <button type="submit" class="btn primary add-to-cart">
                             <i class="fa fa-shopping-cart"></i>
                             Add to cart

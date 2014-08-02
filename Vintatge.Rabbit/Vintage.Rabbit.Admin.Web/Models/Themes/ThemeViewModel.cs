@@ -1,10 +1,11 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using Vintage.Rabbit.Themes.Entities;
+using Vintage.Rabbit.Common.Extensions;
+using Vintage.Rabbit.Products.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace Vintage.Rabbit.Admin.Web.Models.Themes
 {
@@ -18,35 +19,30 @@ namespace Vintage.Rabbit.Admin.Web.Models.Themes
         [Required(ErrorMessage = "Please enter a description for the theme")]
         public string Description { get; set; }
 
+        public IList<ThemeImageViewModel> Images { get; set; }
+
         [Required(ErrorMessage = "Please enter the cost of the theme")]
         public decimal? Cost { get; set; }
 
-        public IList<ThemeProductViewModel> Products { get; set; }
-
-        public ThemeImageViewModel MainImage { get; set; }
-
-        public IList<ThemeImageViewModel> Images { get; set; }
+        public string UrlTitle
+        {
+            get { return this.Title.ToUrl(); }
+        }
 
         public ThemeViewModel()
         {
             this.Guid = Guid.NewGuid();
-            this.Products = new List<ThemeProductViewModel>();
             this.Images = new List<ThemeImageViewModel>();
         }
 
-        public ThemeViewModel(Theme theme)
+        public ThemeViewModel(Theme theme, IList<Product> products)
         {
             this.Guid = theme.Guid;
             this.Title = theme.Title;
             this.Description = theme.Description;
             this.Cost = theme.Cost;
-            this.Products = theme.Products.Select(o => new ThemeProductViewModel(o)).ToList();
-            this.Images = theme.Images.Select(o => new ThemeImageViewModel(o)).ToList();
+            this.Images = theme.Images.Select(o => new ThemeImageViewModel(o, products)).ToList();
 
-            if(theme.MainImage != null)
-            {
-                this.MainImage = new ThemeImageViewModel(theme.MainImage);
-            }
         }
     }
 }

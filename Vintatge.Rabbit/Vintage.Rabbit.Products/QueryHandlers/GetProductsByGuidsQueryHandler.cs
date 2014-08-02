@@ -11,35 +11,35 @@ using Vintage.Rabbit.Caching;
 
 namespace Vintage.Rabbit.Products.QueryHandlers
 {
-    public class GetProductsByIdsQuery
+    public class GetProductsByGuidsQuery
     {
-        public IList<int> ProductIds { get; private set; }
+        public IList<Guid> ProductGuids { get; private set; }
 
-        public GetProductsByIdsQuery(IList<int> productIds)
+        public GetProductsByGuidsQuery(IList<Guid> productGuids)
         {
-            this.ProductIds = productIds;
+            this.ProductGuids = productGuids;
         }
     }
 
-    internal class GetProductsByIdsQueryHandler : IQueryHandler<IList<Product>, GetProductsByIdsQuery>
+    internal class GetProductsByGuidsQueryHandler : IQueryHandler<IList<Product>, GetProductsByGuidsQuery>
     {
         private ICacheService _cacheService;
         private IProductRepository _productRepository;
 
-        public GetProductsByIdsQueryHandler(ICacheService cacheService, IProductRepository productRepository)
+        public GetProductsByGuidsQueryHandler(ICacheService cacheService, IProductRepository productRepository)
         {
             this._cacheService = cacheService;
             this._productRepository = productRepository;
         }
 
-        public IList<Product> Handle(GetProductsByIdsQuery query)
+        public IList<Product> Handle(GetProductsByGuidsQuery query)
         {
             IList<Product> foundProducts = new List<Product>();
-            IList<int> notFoundProducts = new List<int>();
+            IList<Guid> notFoundProducts = new List<Guid>();
 
-            foreach(var id in query.ProductIds)
+            foreach(var id in query.ProductGuids)
             {
-                string cacheKey = CacheKeyHelper.Product.ById(id);
+                string cacheKey = CacheKeyHelper.Product.ByGuid(id);
 
                 if (this._cacheService.Exists(cacheKey))
                 {
@@ -51,7 +51,7 @@ namespace Vintage.Rabbit.Products.QueryHandlers
                 }
             }
 
-            IList<Product> products = this._productRepository.GetProductsById(notFoundProducts);
+            IList<Product> products = this._productRepository.GetProductsByGuid(notFoundProducts);
 
             foreach (Product product in products)
             {

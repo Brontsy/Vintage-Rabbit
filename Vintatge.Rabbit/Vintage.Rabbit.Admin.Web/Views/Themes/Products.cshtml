@@ -16,7 +16,6 @@
 <div class="body-content theme">
     <div class="tab-container add-products-to-theme">       
     
-        @Html.RouteLink("Add Product", Routes.Themes.AddProduct, new { }, new { @class = "btn primary right ajax-lightbox" })
         <ul class="nav nav-tabs">
             <li>@Html.RouteLink("Details", Routes.Themes.Edit)</li>
             <li class="active">@Html.RouteLink("Products", Routes.Themes.Products)</li>
@@ -24,10 +23,62 @@
         <div class="tab-content">
             <div class="tab-pane active cont" id="details">
 
+                <div class="row">
+                    <div class="theme-images col-2">
 
+                        <ol>                            
+                            @{int counter = 1;}
+                            @foreach (var image in Model.Images)
+                            {
+                                <li class="selectable-theme-image@(counter == 1? " selected" : "")" data-guid="@image.Guid">
+                                    <img src="@image.Url" />
+                                </li>
+                                counter++;
+                            }
+                        </ol>
+                    </div>
 
-                <div class="product-list">
-                    @{Html.RenderAction("ProductList", "Themes");}
+                    <div class="col-10">
+                        @{int i = 1;}
+                        @foreach (var image in Model.Images)
+                        {
+                            <div class="@image.Guid@(i == 1? "" : " hidden") theme-products">
+                                <div class="row">
+
+                                    <div class="col-10">
+                                        <div class="product-list">
+                                            <ol class="row">
+                                                @foreach (var product in image.Products)
+                                                {
+                                                    <li class="col-3">
+                                                        <div class="item">
+                                                            <div class="product-image">
+                                                                <div class="container">
+                                                                    <img src="@product.Product.ImageUrls.First().Thumbnail">
+                                                                </div>
+                                                            </div>
+                                                            <h4>
+                                                                product.Product.Title
+                                                            </h4>
+                                                            <p class="price">@product.Product.Cost</p>
+                                                            <div class="remove-product-from-theme">                                                                
+                                                                @Html.RouteLink("remove", Routes.Themes.RemoveProduct, new { themeImageGuid = image.Guid, themeProductGuid = product.Guid }, new {  })
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                }
+                                            </ol>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        @Html.RouteLink("Add Product", Routes.Themes.AddProduct, new { themeImageGuid = image.Guid }, new { @class = "btn primary right ajax-lightbox" })
+                                    </div>
+                                    
+                                </div>
+                            </div>
+        i++;
+                        }
+                    </div>
                 </div>
             </div>
         </div>

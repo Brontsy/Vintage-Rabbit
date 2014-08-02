@@ -25,13 +25,17 @@ namespace Vintage.Rabbit.Web
         public static class Themes
         {
             public static string Index = "Themes Index";
+            public static string Theme = "Theme";
+            public static string Hire = "Theme Hire";
+            public static string Image = "Theme Image";
+            public static string Product = "Theme Product";
+
             public static string WizardOfOz = "Themes Wizard Of Oz";
             public static string Carnival = "Themes Carnival";
             public static string TeddyBearsPicnic = "Themes TeddyBearsPicnic";
             public static string TeaParty = "Themes TeaParty";
             public static string MaryPoppins = "Themes MaryPoppins";
             public static string Cinderella = "Themes Cinderella";
-            public static string Product = "Themes Product";
             public static string CustomStyling = "Themes CustomStyling";
         }
 
@@ -131,13 +135,17 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.Order.Summary, url: "order/{orderGuid}/summary", defaults: new { controller = "Order", action = "Summary" });
 
             routes.MapRoute(Routes.Themes.Index, url: "style", defaults: new { controller = "Style", action = "Index" });
+            routes.MapRoute(Routes.Themes.Theme, url: "style/{themeName}", defaults: new { controller = "Style", action = "Theme" });
+            routes.MapRoute(Routes.Themes.Hire, url: "style/{themeName}/hire", defaults: new { controller = "Style", action = "Hire" });
+            routes.MapRoute(Routes.Themes.Image, url: "style/{themeName}/image/{imageGuid}", defaults: new { controller = "Style", action = "Image" });
+            routes.MapRoute(Routes.Themes.Product, url: "style/{name}/{productGuid}", defaults: new { controller = "Style", action = "Product" });
+
             routes.MapRoute(Routes.Themes.WizardOfOz, url: "style/wizard-of-oz", defaults: new { controller = "Style", action = "WizardOfOz" });
             routes.MapRoute(Routes.Themes.Carnival, url: "style/carnival", defaults: new { controller = "Style", action = "Carnival" });
             routes.MapRoute(Routes.Themes.TeddyBearsPicnic, url: "style/teddy-bears-picnic", defaults: new { controller = "Style", action = "TeddyBearsPicnic" });
             routes.MapRoute(Routes.Themes.TeaParty, url: "style/tea-party", defaults: new { controller = "Style", action = "TeaParty" });
             routes.MapRoute(Routes.Themes.MaryPoppins, url: "style/mary-poppins", defaults: new { controller = "Style", action = "MaryPoppins" });
             routes.MapRoute(Routes.Themes.Cinderella, url: "style/cinderella", defaults: new { controller = "Style", action = "Cinderella" });
-            routes.MapRoute(Routes.Themes.Product, url: "style/{name}/{productId}", defaults: new { controller = "Style", action = "Product" });
             routes.MapRoute(Routes.Themes.CustomStyling, url: "custom-styling", defaults: new { controller = "Style", action = "CustomStyling" });
 
 

@@ -4,7 +4,47 @@
 .theme {
     .page-content();
     margin-top: 20px;
+    padding-bottom: 120px;
+    img {
+        width: 100%; display: block;
+    }
 
+    .party-hats { position: absolute; width: 120px; top: -15px; right: 0px;}
+    .bird {  width: 100px; margin-left: 160px;}
+    .balloons { position: absolute; width: 120px; top: 65px; right: 0px;}
+.bunting { position: absolute; width: 450px; bottom: -130px; left: 0px;}
+    .buy-package { position: absolute; width: 150px; top: 330px; right: 0px; text-align: center; 
+                   p { margin-top: 0px;}
+
+    }
+    
+    
+
+    .description {padding-right: 100px;}
+
+    .main-image-container
+    {
+        margin-top: 20px;
+    }
+
+    .thumbnails
+    {
+        .left { width: 230px; margin-top: 5px; }
+        .right { width: 230px; margin-top: 5px; }
+    }
+
+    .included-in-package
+    {
+        padding-top: 10px;
+        li
+            {
+            line-height: 28px;
+        }
+    }
+
+
+
+    /*
 
     img {
         width: 100%;
@@ -17,10 +57,6 @@
 
     .description {
         p {
-            font-size: 24px;
-            line-height: 32px;
-            font-family: 'a-little-sunshine', Arial;
-      
             i {
                 font-size: 18px;color: #333;
             }
@@ -124,9 +160,167 @@
         li
             {
             
-            font-size: 20px;
-            line-height: 32px;
-            font-family: 'a-little-sunshine', Arial;
+        }
+    }
+        */
+}
+
+
+
+.theme-image {
+    width: 960px;
+    overflow: hidden;
+    position: relative;
+
+    &.tall { width: 640px;}
+
+    img {
+        display: block;
+    }
+
+    &.animate {
+        .side-panel {
+            transition: all 0.15s linear 0s;
+        }
+    }
+
+    .side-panel {
+        width: 45%;
+        background: #ffffff;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: -45%;
+        z-index: 10000;
+        padding: 30px 20px 20px 20px;
+
+        h2 {
+        }
+
+
+        .qty-container {
+            width: 30%;
+        }
+
+        .add-to-cart-container {
+            width: 60%;
+        }
+
+        .price {
+            font-size: 24px;
+            margin-top: 25px;
+        }
+
+        .close-product-info {
+            padding-left: 10px;
+            padding-right: 10px;
+            position: absolute;
+            z-index: 9999;
+            top: 0;
+            right: 0;
+            line-height: 30px;
+            cursor: pointer;
+            text-align: center;
+            color: #000;
+            border-radius: 0px 0px 0px 5px;
+            border-left: 1px solid #dddddd;
+            border-bottom: 1px solid #dddddd;
+            background: #ffffff;
+
+            &:hover {
+                background: #eeeeee;
+            }
+        }
+        .images
+        {
+            margin-top: 20px;
+            .image-container { border: 1px solid #cccccc; padding: 2px;}
+            img { width: 100%;}
+        }
+    }
+
+    &.show-left {
+        .side-panel {
+            left: -45%;
+            right: auto;
+
+            .close-product-info {
+               
+            }
+        }
+    }
+
+    &.show-right {
+        .side-panel {
+            right: -45%;
+            left: auto;
+        }
+    }
+
+    .side-panel-right {
+        width: 45%;
+        background: #ffffff;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        right: -45%;
+        transition: all 0.15s linear .1s;
+    }
+
+    &.show-product-left {
+        .side-panel {
+            left: 0px;
+        }
+    }
+
+    &.show-product-right {
+        .side-panel {
+            right: 0px;
+        }
+    }
+
+    .marker {
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        background: #ffffff;
+        border: 2px solid #333333;
+        border-radius: 8px;
+        padding: 3px;
+        cursor: pointer;
+        transition: all 0s linear .1s;
+        display: block;
+
+        &:hover {
+            border: 2px solid darken(#333333, 10%);
+
+            .inner-circle {
+                background: darken(#333333, 10%);
+            }
+        }
+
+        .inner-circle {
+            width: 6px;
+            height: 6px;
+            background: #333333;
+            border-radius: 3px;
+            transition: all 0s linear .1s;
+            display: block;
+        }
+
+        &.balloon {
+            top: 25%;
+            left: 30%;
+        }
+
+        &.soft-drinks {
+            top: 72%;
+            left: 14%;
+        }
+
+        &.blackboard {
+            top: 54%;
+            left: 68%;
         }
     }
 }

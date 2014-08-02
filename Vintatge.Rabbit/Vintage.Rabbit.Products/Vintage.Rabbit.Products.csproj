@@ -101,7 +101,7 @@
     <Compile Include="QueryHandlers\GetCategoriesQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetProductsByTypeQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetProductsByCategoryQueryHandler.cs" />
-    <Compile Include="QueryHandlers\GetProductsByIdsQueryHandler.cs" />
+    <Compile Include="QueryHandlers\GetProductsByGuidsQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetProductsQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetFeaturedProductsQueryHandler.cs" />
     <Compile Include="QueryHandlers\IsValidHirePostcodeQueryHandler.cs" />

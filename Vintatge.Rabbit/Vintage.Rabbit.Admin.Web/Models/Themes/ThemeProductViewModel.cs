@@ -1,34 +1,40 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Themes.Entities;
+using Vintage.Rabbit.Common.Extensions;
+using System.Web.Mvc;
+using Vintage.Rabbit.Admin.Web.Models.Products;
 
 namespace Vintage.Rabbit.Admin.Web.Models.Themes
 {
     public class ThemeProductViewModel
     {
-        public Guid ThemeProductGuid { get; set; }
+        public Guid Guid { get; set; }
+        /// <summary>
+        /// The X position this product sits on the main image of the theme
+        /// </summary>
+        public decimal X { get; set; }
 
-        [Required(ErrorMessage = "Please enter the X coordinate (%) for the location on the image")]
-        public decimal? X { get; set; }
+        /// <summary>
+        /// The Y position this product sits on the main image of the theme
+        /// </summary>
+        public decimal Y { get; set; }
 
-        [Required(ErrorMessage = "Please enter the Y coordinate (%) for the location on the image")]
-        public decimal? Y { get; set; }
-
-        [Required(ErrorMessage = "Please choose a product to add")]
         public Guid ProductGuid { get; set; }
 
-        public ThemeProductViewModel() { }
+        public ProductViewModel Product { get; set; }
 
-        public ThemeProductViewModel(ThemeProduct product)
+        public ThemeProductViewModel(ThemeProduct themeProduct, Product product)
         {
-            this.ThemeProductGuid = product.Guid;
-            this.X = product.X;
-            this.Y = product.Y;
-            this.ProductGuid = product.ProductGuid;
+            this.Guid = themeProduct.Guid;
+            this.X = themeProduct.X;
+            this.Y = themeProduct.Y;
+            this.ProductGuid = themeProduct.ProductGuid;
+
+            this.Product = new ProductViewModel(product, new List<Category>());
         }
     }
 }

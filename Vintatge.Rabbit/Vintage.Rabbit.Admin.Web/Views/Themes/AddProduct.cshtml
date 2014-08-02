@@ -1,9 +1,9 @@
-﻿@model Vintage.Rabbit.Admin.Web.Models.Themes.ThemeProductViewModel
+﻿@model Vintage.Rabbit.Admin.Web.Models.Themes.AddProductToThemeImageViewModel
 
 
 
 
-@using (Html.BeginRouteForm(Routes.Themes.SaveProduct, new { themeProductGuid = Model.ThemeProductGuid }, FormMethod.Post, new { @class = "add-product-to-theme-form" }))
+@using (Html.BeginRouteForm(Routes.Themes.SaveProduct, new { themeProductGuid = Model.ThemeProductGuid, themeImageGuid = Model.ThemeImageGuid }, FormMethod.Post, new { @class = "add-product-to-theme-form" + (Model.IsTallImage ? " tall" : "") }))
 {
     @Html.HiddenFor(o => o.ProductGuid)
     @Html.HiddenFor(o => o.X)
@@ -29,7 +29,16 @@
         </div>
 
             <div class="col-12">
-                @{Html.RenderAction("MainImage", "Themes", new { themeProductGuid = Model.ThemeProductGuid });}
+                <div class="main-image-container">
+                    <img class="main-image" src="@Model.Url" />
+                </div>
+
+                @foreach (var product in Model.Products)
+                {
+                    <div class="marker@(Model.SelectedProductGuid.HasValue && Model.SelectedProductGuid == product.ProductGuid ? " selected" : string.Empty)" style="left: @(product.X)%; top: @(product.Y)%">
+                        <span class="inner-circle"></span>
+                    </div>
+                }
             </div>
 
             <div class="col-2"></div>
