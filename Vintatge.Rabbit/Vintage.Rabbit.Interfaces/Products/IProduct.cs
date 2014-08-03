@@ -17,6 +17,8 @@ namespace Vintage.Rabbit.Interfaces.Products
         string Title { get; }
 
         decimal Cost { get; }
+
+        int Inventory { get; }
     }
 
     public interface IProduct : IMessage

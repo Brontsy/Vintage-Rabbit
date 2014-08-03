@@ -1,0 +1,36 @@
+﻿@model Vintage.Rabbit.Web.Models.Themes.PostcodeCheckViewModel
+
+                 
+
+
+<div class="theme-availability-check">
+    <div class="postcode-check availability-check">
+        <div class="row">
+            <div class="col-12">
+
+                <h2>@Model.ThemeTitle</h2>
+
+                @using (Html.BeginRouteForm(Routes.Themes.Hire, new { }, FormMethod.Post, new { @class = "postcode-check-form theme-form" }))
+                {
+                    <ol class="row">
+                        <li class="col-12 help-text">
+                            <p>Please enter your postcode below to check if we can deliver to your area.</p>
+                        </li>
+                        <li class="col-6">
+                            @Html.TextBoxFor(o => o.PostcodeCheck, new { @placeholder = "Postcode" })
+                            @Html.ValidationMessageFor(o => o.PostcodeCheck)
+                        </li>
+
+
+                        <li class="col-6">
+                            <button type="submit" class="btn primary check-availability-button">
+                                <i class="fa fa-refresh"></i>
+                                Check availability
+                            </button>
+                        </li>
+                    </ol>
+                }
+            </div>
+        </div>
+    </div>
+</div>

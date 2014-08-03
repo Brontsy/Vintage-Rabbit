@@ -25,6 +25,7 @@ namespace Vintage.Rabbit.Orders.Entities
 
         public LoyaltyCardStatus Status { get; set; }
 
+        public int Inventory { get { return 1; } }
 
         public ProductType Type
         {

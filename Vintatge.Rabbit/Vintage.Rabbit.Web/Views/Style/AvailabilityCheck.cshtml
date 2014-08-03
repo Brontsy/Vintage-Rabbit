@@ -1,0 +1,55 @@
+﻿@model Vintage.Rabbit.Web.Models.Themes.HireThemeViewModel
+
+
+<div class="theme-availability-check">
+    <div class="party-date-check availability-check">
+        <div class="row">
+            <div class="col-12">
+
+                <h2>@Model.Title</h2>
+
+                @using (Html.BeginRouteForm(Routes.Themes.Hire, new { }, FormMethod.Post, new { @class = "check-availability-form theme-form" }))
+                {
+                    <fieldset>
+
+                        <ol class="row">
+
+                            @if (ViewBag.PostcodeChecked)
+                            {
+                                <li class="col-12 help-text ">
+                                    <div class="hire-available alert positive icon">
+                                        <i class="fa fa-check-circle"></i>Hire is available in your area. Please choose a party date below.
+                                    </div>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="col-12 help-text ">
+                                    <p>
+                                        Please choose a party date below to see if @Model.Title is available.
+                                    </p>
+                                </li>
+                            }
+
+                            <li class="col-6">
+                                <div class="input-icon">
+                                    <i class="fa fa-calendar"></i>
+                                    @Html.EditorFor(o => o.PartyDate, new { htmlAttributes = new { @placeholder = "Party Date", @class = "datepicker-trigger" } })
+                                </div>
+                            </li>
+
+
+                            <li class="col-6">
+                                <button type="submit" class="btn primary check-availability-button">
+                                    <i class="fa fa-refresh"></i>
+                                    Check availability
+                                </button>
+
+                            </li>
+                        </ol>
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+</div>

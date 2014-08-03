@@ -25,8 +25,6 @@ namespace Vintage.Rabbit.Web.Models.ShoppingCart
 
         public string Total { get; private set; }
 
-        public int ProductId { get; private set; }
-
         public Guid ProductGuid { get; private set; }
 
         public int AvailableInventory { get; private set; }
@@ -37,7 +35,9 @@ namespace Vintage.Rabbit.Web.Models.ShoppingCart
 
         public bool IsDelivery { get; private set; }
 
-        public IList<CategoryViewModel> Categories { get; private set; }
+        public bool IsTheme { get; private set; }
+
+        public ProductType ProductType { get; private set; }
 
         public CartItemViewModel(CartItem item)
         {
@@ -48,13 +48,13 @@ namespace Vintage.Rabbit.Web.Models.ShoppingCart
             this.Total = item.Total.ToString("C2");
             this.Quantity = item.Quantity;
             this.Key = item.Product.Title.ToUrl();
-            this.ProductId = item.Product.Id;
             this.ProductGuid = item.Product.Guid;
             this.AvailableInventory = item.Product.Inventory;
             this.IsHire = item.Product.Type == ProductType.Hire;
             this.IsBuy = item.Product.Type == ProductType.Buy;
             this.IsDelivery = item.Product.Type == ProductType.Delivery;
-            this.Categories = item.Product.Categories.Select(o => new CategoryViewModel(o)).ToList();
+            this.IsTheme = item.Product.Type == ProductType.Theme;
+            this.ProductType = item.Product.Type;
         }
     }
 }

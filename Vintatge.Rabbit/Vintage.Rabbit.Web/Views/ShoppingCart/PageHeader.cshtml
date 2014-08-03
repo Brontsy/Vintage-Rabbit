@@ -14,8 +14,36 @@
     <div class="cart-content@(Model.IsOpen ? string.Empty : " hidden")">
         <h2>Shopping Cart</h2>
 
-        <ul>
-            @if (Model.Items.Any(o => !o.IsHire))
+        <ul>            
+            @if (Model.Items.Any(o => o.IsTheme))
+            {
+                <li class="item-header">
+                    <div class="row">
+                        <div class="col-6">Style</div>
+                        <div class="col-2 text-right">Price</div>
+                        <div class="col-2 text-right">Qty</div>
+                        <div class="col-2 text-right">Total</div>
+                    </div>
+                </li>
+                foreach (var cartItem in Model.Items.Where(o => o.IsTheme))
+                {
+                    <li data-update-qty-url="@Url.RouteUrl(Routes.ShoppingCart.UpdateQty, new { cartItemId = cartItem.Guid })">
+                        <div class="row">
+                            <div class="col-1"><a class="remove-from-cart" href="@Url.RouteUrl(Routes.ShoppingCart.Remove, new { cartItemId = cartItem.Id, name = cartItem.Key })"><i class="fa fa-times-circle"></i></a></div>
+                            <div class="col-5 product-name">
+                                @{Html.RenderAction("ThemeLink", "Style", new { themeGuid = cartItem.ProductGuid });}
+                            </div>
+                            <div class="col-2 text-right">@cartItem.Cost</div>
+                            <div class="col-2 text-right"><input type="text" class="qty" data-max="@cartItem.AvailableInventory" value="@cartItem.Quantity" /></div>
+                            <div class="col-2 text-right">@cartItem.Total</div>
+                            <div class="col-11 offset-1 error hidden">
+                                <div class="alert negative"></div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            }
+            @if (Model.Items.Any(o => o.IsBuy))
             {
                 <li class="item-header">
                     <div class="row">
@@ -25,7 +53,7 @@
                         <div class="col-2 text-right">Total</div>
                     </div>
                 </li>
-                foreach (var cartItem in Model.Items.Where(o => !o.IsHire))
+                foreach (var cartItem in Model.Items.Where(o => o.IsBuy))
                 {
                     <li data-update-qty-url="@Url.RouteUrl(Routes.ShoppingCart.UpdateQty, new { cartItemId = cartItem.Guid })">
                         <div class="row">

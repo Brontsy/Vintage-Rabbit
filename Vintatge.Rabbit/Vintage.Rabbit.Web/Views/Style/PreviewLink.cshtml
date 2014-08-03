@@ -1,0 +1,11 @@
+﻿@model Vintage.Rabbit.Web.Models.Products.ProductLinkViewModel
+
+
+@if (Model.IncludeHostName)
+{
+    @Html.RouteLink(Model.Title, Routes.Themes.Theme, "http", Request.Url.Host, string.Empty, new { themeName = Model.UrlTitle }, new { })
+}
+else
+{
+    @Html.RouteLink(Model.Title, Routes.Themes.Theme, new { themeName = Model.UrlTitle }, new { })
+}

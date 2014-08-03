@@ -21,6 +21,7 @@ namespace Vintage.Rabbit.Inventory.Ioc
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<GetInventoryForProductQueryHandler>().As<IQueryHandler<IList<InventoryItem>, GetInventoryForProductQuery>>();
+            builder.RegisterType<GetInventoryForProductsQueryHandler>().As<IQueryHandler<IList<InventoryItem>, GetInventoryForProductsQuery>>();
             builder.RegisterType<IsProductAvailableForHireQueryHandler>().As<IQueryHandler<bool, IsProductAvailableForHireQuery>>();
             builder.RegisterType<IsProductAvailableQueryHandler>().As<IQueryHandler<bool, IsProductAvailableQuery>>();
             builder.RegisterType<GetInventoryByGuidQueryHandler>().As<IQueryHandler<InventoryItem, GetInventoryByGuidQuery>>();

@@ -28,8 +28,8 @@
                     {
                         <li>
                             <div class="row">
-                                <div class="col-6">
-                                    @Html.RouteLink(cartItem.Title, Routes.Buy.Product, new { categoryName = cartItem.Categories.First().Name, name = cartItem.Key, productId = cartItem.ProductId }, new { })
+                                <div class="col-6">                                    
+                                    @{Html.RenderAction("ProductLink", "Product", new { productGuid = cartItem.ProductGuid });}
                                 </div>
                                 <div class="col-2 text-right">@cartItem.Cost</div>
                                 <div class="col-2 text-right">@cartItem.Quantity</div>
@@ -52,8 +52,8 @@
                     {
                         <li>
                             <div class="row">
-                                <div class="col-6">
-                                    @Html.RouteLink(cartItem.Title, Routes.Hire.Product, new { name = cartItem.Key, productId = cartItem.ProductId }, new { })
+                                <div class="col-6">                                    
+                                    @{Html.RenderAction("ProductLink", "Product", new { productGuid = cartItem.ProductGuid });}
                                 </div>
                                 <div class="col-2 text-right">@cartItem.Cost</div>
                                 <div class="col-2 text-right">@cartItem.Quantity</div>

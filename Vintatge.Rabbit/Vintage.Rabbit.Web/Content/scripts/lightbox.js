@@ -10,8 +10,6 @@ function AddAjaxLighboxEvents()
         variant: 'lightbox-content',
         afterOpen: function () {
 
-            AddClickEvents();
-
             $(window).trigger('lightbox.ajax-content-loaded');
         }
     });
@@ -22,8 +20,6 @@ function AddAjaxLighboxEvents()
         type: 'ajax',
         variant: 'lightbox-content image-content',
         afterOpen: function () {
-
-            AddClickEvents();
 
             $(window).trigger('lightbox.ajax-content-loaded');
         }

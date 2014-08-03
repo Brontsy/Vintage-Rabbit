@@ -41,3 +41,5 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\ob
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\obj\Debug\Vintage.Rabbit.Carts.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Logging.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Logging.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Themes.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Themes.pdb

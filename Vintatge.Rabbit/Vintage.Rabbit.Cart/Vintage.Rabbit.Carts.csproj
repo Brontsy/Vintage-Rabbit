@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\AddThemeToCartCommandHandler.cs" />
     <Compile Include="CommandHandlers\AddHireProductToCartCommandHandler.cs" />
     <Compile Include="CommandHandlers\RemoveCartItemCommandHandler.cs" />
     <Compile Include="CommandHandlers\AddBuyProductToCartCommandHandler.cs" />
@@ -95,6 +96,10 @@
     <ProjectReference Include="..\Vintage.Rabbit.Products\Vintage.Rabbit.Products.csproj">
       <Project>{2ee117ed-6ab6-478d-93e7-1c695fc57b0a}</Project>
       <Name>Vintage.Rabbit.Products</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Themes\Vintage.Rabbit.Themes.csproj">
+      <Project>{3aad6a07-eab5-4715-b3ab-45c2e6b100e3}</Project>
+      <Name>Vintage.Rabbit.Themes</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

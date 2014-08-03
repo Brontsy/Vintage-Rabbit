@@ -239,6 +239,9 @@
     <Compile Include="Models\Products\ProductLinkViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartItemViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartViewModel.cs" />
+    <Compile Include="Models\Themes\HireThemeViewModel.cs" />
+    <Compile Include="Models\Themes\PostcodeCheckViewModel.cs" />
+    <Compile Include="Models\Themes\ThemeLinkViewModel.cs" />
     <Compile Include="Models\Themes\ThemeImageViewModel.cs" />
     <Compile Include="Models\Themes\ThemeProductViewModel.cs" />
     <Compile Include="Models\Themes\ThemeListItemViewModel.cs" />
@@ -549,18 +552,15 @@
     <Content Include="Views\Payment\Guest.cshtml" />
     <Content Include="Views\Hire\CategoryList.cshtml" />
     <Content Include="Views\Style\Index.cshtml" />
-    <Content Include="Views\Style\WizardOfOz.cshtml" />
     <Content Include="Views\Style\BuyProduct.cshtml" />
     <Content Include="Views\Style\HireProduct.cshtml" />
     <Content Include="Views\Product\PreviewLink.cshtml" />
-    <Content Include="Views\Style\Carnival.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\FAQ\Index.cshtml" />
     <Content Include="Views\Buy\CategoryList.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\FAQ\CategoryList.cshtml" />
     <Content Include="Views\FAQ\AboutUs.cshtml" />
-    <Content Include="Views\Style\TeddyBearsPicnic.cshtml" />
     <Content Include="Views\Hire\Subnav.cshtml" />
     <Content Include="Views\Buy\PartySuppliesSubnav.cshtml" />
     <Content Include="Views\Hire\PostcodeCheck.cshtml" />
@@ -575,6 +575,11 @@
     <Content Include="Views\Style\Theme.cshtml" />
     <Content Include="Views\Style\Image.cshtml" />
     <Content Include="Views\Style\Hire.cshtml" />
+    <Content Include="Views\Style\PostcodeCheck.cshtml" />
+    <Content Include="Views\Style\AvailabilityCheck.cshtml" />
+    <Content Include="Views\Style\AddedToCart.cshtml" />
+    <Content Include="Views\Style\Link.cshtml" />
+    <Content Include="Views\Style\PreviewLink.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

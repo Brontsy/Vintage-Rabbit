@@ -17,6 +17,8 @@ namespace Vintage.Rabbit.Inventory.Repository
     {
         IList<InventoryItem> GetInventoryByProductGuid(Guid productGuid);
 
+        IList<InventoryItem> GetInventoryByProductGuid(IList<Guid> productGuids);
+
         InventoryItem GetInventoryByGuid(Guid guid);
 
         InventoryItem SaveInventory(InventoryItem inventory);
@@ -55,6 +57,25 @@ namespace Vintage.Rabbit.Inventory.Repository
             using (SqlConnection connection = new SqlConnection(this._connectionString))
             {
                 var inventoryResults = connection.Query<dynamic>("Select * From VintageRabbit.Inventory Where ProductGuid = @ProductGuid Order By DateCreated Desc", new { ProductGuid = productGuid });
+
+                foreach (var inventory in inventoryResults)
+                {
+                    InventoryItem item = this.ConvertToInventory(inventory);
+
+                    inventoryItems.Add(item);
+                }
+            }
+
+            return inventoryItems;
+        }
+
+        public IList<InventoryItem> GetInventoryByProductGuid(IList<Guid> productGuids)
+        {
+            IList<InventoryItem> inventoryItems = new List<InventoryItem>();
+
+            using (SqlConnection connection = new SqlConnection(this._connectionString))
+            {
+                var inventoryResults = connection.Query<dynamic>("Select * From VintageRabbit.Inventory Where ProductGuid In @ProductGuids", new { ProductGuids = productGuids });
 
                 foreach (var inventory in inventoryResults)
                 {

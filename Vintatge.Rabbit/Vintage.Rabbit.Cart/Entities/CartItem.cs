@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vintage.Rabbit.Interfaces.Products;
 using Vintage.Rabbit.Products.Entities;
+using Vintage.Rabbit.Themes.Entities;
 
 namespace Vintage.Rabbit.Carts.Entities
 {
@@ -11,7 +13,7 @@ namespace Vintage.Rabbit.Carts.Entities
     {
         public Guid Id { get; private set; }
 
-        public Product Product { get; private set; }
+        public IPurchaseable Product { get; private set; }
 
         public int Quantity { get; private set; }
 
@@ -33,6 +35,14 @@ namespace Vintage.Rabbit.Carts.Entities
         {
             this.Quantity = quantity;
             this.Product = product;
+        }
+
+        public CartItem(Theme theme, DateTime partyDate)
+            : this()
+        {
+            this.Quantity = 1;
+            this.Product = theme;
+            this.Properties["PartyDate"] = partyDate;
         }
 
         internal void ChangeQuantity(int quantity)

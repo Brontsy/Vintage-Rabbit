@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Vintage.Rabbit.Interfaces.Data;
 using Vintage.Rabbit.Inventory.Entities;
 using Vintage.Rabbit.Products.Entities;
+using Vintage.Rabbit.Themes.Entities;
 
 namespace Vintage.Rabbit.Carts.Entities
 {
@@ -37,9 +38,9 @@ namespace Vintage.Rabbit.Carts.Entities
         {
             int availableInventory = inventory.Count(o => o.IsAvailable());
 
-            if (this.Items.Any(o => o.Product.Id == product.Id))
+            if (this.Items.Any(o => o.Product.Guid == product.Guid))
             {
-                CartItem cartItem = this.Items.FirstOrDefault(o => o.Product.Id == product.Id);
+                CartItem cartItem = this.Items.FirstOrDefault(o => o.Product.Guid == product.Guid);
 
                 quantity += cartItem.Quantity;
 
@@ -65,9 +66,9 @@ namespace Vintage.Rabbit.Carts.Entities
         {
             int availableInventory = inventory.Count(o => o.IsAvailable(partyDate));
 
-            if (this.Items.Any(o => o.Product.Id == product.Id))
+            if (this.Items.Any(o => o.Product.Guid == product.Guid))
             {
-                CartItem cartItem = this.Items.FirstOrDefault(o => o.Product.Id == product.Id);
+                CartItem cartItem = this.Items.FirstOrDefault(o => o.Product.Guid == product.Guid);
 
                 quantity += cartItem.Quantity;
 
@@ -91,6 +92,13 @@ namespace Vintage.Rabbit.Carts.Entities
             }
         }
 
+        internal void AddTheme(Theme theme, DateTime partyDate)
+        {
+            if (!this.Items.Any(o => o.Product.Guid == theme.Guid))
+            {
+                this.Items.Add(new CartItem(theme, partyDate));
+            }
+        }
 
         internal void RemoveProduct(Guid cartItemId)
         {

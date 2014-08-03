@@ -25,6 +25,8 @@ namespace Vintage.Rabbit.Themes.Entities
 
         public decimal Cost { get; set; }
 
+        public int Inventory { get { return 1; } }
+
         public ProductType Type
         {
             get { return ProductType.Theme; }

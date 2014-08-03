@@ -8,24 +8,24 @@ using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Products.QueryHandlers;
 using Vintage.Rabbit.Themes.Entities;
 using Vintage.Rabbit.Themes.QueryHandlers;
-using Vintage.Rabbit.Web.Models.Products;
 using Vintage.Rabbit.Web.Models.Themes;
 using Vintage.Rabbit.Common.Extensions;
+using Vintage.Rabbit.Inventory.Entities;
+using Vintage.Rabbit.Inventory.QueryHandlers;
+using Vintage.Rabbit.Carts.CommandHandlers;
+using Vintage.Rabbit.Membership.Entities;
 
 namespace Vintage.Rabbit.Web.Controllers
 {
     public class StyleController : Controller
     {        
         private IQueryDispatcher _queryDispatcher;
+        private ICommandDispatcher _commandDispatcher;
 
-        public StyleController(IQueryDispatcher queryDispatcher)
+        public StyleController(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
         {
-            this._queryDispatcher = queryDispatcher;
-        }
-
-        public ActionResult Hire()
-        {
-            return PartialView("Hire");
+            this._queryDispatcher = queryDispatcher; 
+            this._commandDispatcher = commandDispatcher;
         }
 
         public ActionResult Index()
@@ -77,20 +77,39 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.PartialView("Image", viewModel);
         }
 
+        public ActionResult Hire(string themeName, Models.Hire.HireDatesViewModel hireDates, Models.Hire.HireAvailabilityViewModel hireAvailability, Member member, bool postcodeChecked = false)
+        {
+            Theme theme = this._queryDispatcher.Dispatch<IList<Theme>, GetThemesQuery>(new GetThemesQuery()).First(o => o.Title.ToUrl() == themeName);
 
-        public ActionResult WizardOfOz()
-        {
-            return View();
-        }
-        
-        public ActionResult Carnival()
-        {
-            return View("Carnival");//, new ThemeViewModel());
-        }
+            if (!hireAvailability.IsValidPostcode)
+            {
+                if (string.IsNullOrEmpty(hireAvailability.Postcode))
+                {
+                    return this.PartialView("PostcodeCheck", new PostcodeCheckViewModel(theme));
+                }
 
-        public ActionResult TeddyBearsPicnic()
-        {
-            return View("TeddyBearsPicnic");//, new ThemeViewModel());
+                return this.PartialView("HireUnavailable");
+            }
+
+            IList<Guid> productGuids = this.GetProductGuids(theme);
+            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByGuidsQuery>(new GetProductsByGuidsQuery(productGuids));
+            IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductsQuery>(new GetInventoryForProductsQuery(productGuids));
+            HireThemeViewModel viewModel = new HireThemeViewModel(theme, products, inventory, hireDates);
+
+            if (hireDates.PartyDate.HasValue)
+            {
+                if(viewModel.IsAvailable.HasValue && viewModel.IsAvailable.Value)
+                {
+                    this._commandDispatcher.Dispatch(new AddThemeToCartCommand(member.Guid, theme, hireDates.PartyDate.Value));
+                }
+                
+                
+                return this.PartialView("AddedToCart", viewModel);
+            }
+
+            ViewBag.PostcodeChecked = postcodeChecked;
+
+            return this.PartialView("AvailabilityCheck", viewModel);
         }
 
         public ActionResult CustomStyling()
@@ -98,16 +117,35 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.View("CustomStyling");
         }
 
-        public ActionResult Product(string name, int productId)
+        private IList<Guid> GetProductGuids(Theme theme)
         {
-            Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
+            IList<Guid> productGuids = new List<Guid>();
 
-            if (product.Type == Common.Enums.ProductType.Buy)
+            foreach (var image in theme.Images)
             {
-                return this.PartialView("BuyProduct", new ProductViewModel(product));
+                foreach (var product in image.Products)
+                {
+                    productGuids.Add(product.ProductGuid);
+                }
             }
 
-            return this.PartialView("HireProduct", new ProductViewModel(product));
+            return productGuids;
+        }
+
+
+
+        public ActionResult ThemeLink(Guid themeGuid, bool includeHostName = false)
+        {
+            Theme theme = this._queryDispatcher.Dispatch<Theme, GetThemeByGuidQuery>(new GetThemeByGuidQuery(themeGuid));
+
+            return this.PartialView("Link", new ThemeLinkViewModel(theme, includeHostName));
+        }
+
+        public ActionResult ThemePreviewLink(Guid themeGuid)
+        {
+            Theme theme = this._queryDispatcher.Dispatch<Theme, GetThemeByGuidQuery>(new GetThemeByGuidQuery(themeGuid));
+
+            return this.PartialView("PreviewLink", new ThemeLinkViewModel(theme, false));
         }
 	}
 }
