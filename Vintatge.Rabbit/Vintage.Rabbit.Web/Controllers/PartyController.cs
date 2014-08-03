@@ -25,7 +25,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult PartyHireInformation(Order order)
         {
-            if(order.ContainsHireProducts())
+            if(order.ContainsHireProducts() || order.ContainsTheme())
             {
                 Party party = this._queryDispatcher.Dispatch<Party, GetPartyByOrderGuidQuery>(new GetPartyByOrderGuidQuery(order.Guid));
                 if (party != null)

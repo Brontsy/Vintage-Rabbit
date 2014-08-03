@@ -162,7 +162,7 @@
 
             </div>
 
-            @if(Model.OrderItems.Any(o => o.IsHire))
+            @if (Model.OrderItems.Any(o => o.IsHire) || Model.OrderItems.Any(o => o.IsTheme))
             {
                 Html.RenderAction("PartyHireInformation", "Party");
             }
