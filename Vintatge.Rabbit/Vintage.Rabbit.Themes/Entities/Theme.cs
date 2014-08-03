@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vintage.Rabbit.Common.Enums;
+using Vintage.Rabbit.Interfaces.Inventory;
 using Vintage.Rabbit.Interfaces.Products;
 using Vintage.Rabbit.Products.Entities;
 
@@ -36,6 +37,22 @@ namespace Vintage.Rabbit.Themes.Entities
         {
             this.Guid = guid;
             this.Images = new List<ThemeImage>();
+        }
+
+        public bool IsAvailable(DateTime partyDate, IList<IInventoryItem> inventory)
+        {
+            foreach(var image in this.Images)
+            {
+                foreach(var product in image.Products)
+                {
+                    if(inventory.Where(o => o.ProductGuid == product.ProductGuid && o.IsAvailable(partyDate)).Count() < product.Qty)
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
     }
 }

@@ -20,6 +20,8 @@ namespace Vintage.Rabbit.Themes.Entities
         /// </summary>
         public decimal Y { get; set; }
 
+        public int Qty { get; set; }
+
         public Guid ProductGuid { get; set; }
 
         public ThemeProduct() 
@@ -27,10 +29,11 @@ namespace Vintage.Rabbit.Themes.Entities
             this.Guid = Guid.NewGuid();
         }
 
-        public ThemeProduct(Guid guid, Guid productGuid, decimal x, decimal y)
+        public ThemeProduct(Guid guid, Guid productGuid, int qty, decimal x, decimal y)
         {
             this.Guid = guid;
             this.ProductGuid = productGuid;
+            this.Qty = qty;
             this.X = x;
             this.Y = y;
         }

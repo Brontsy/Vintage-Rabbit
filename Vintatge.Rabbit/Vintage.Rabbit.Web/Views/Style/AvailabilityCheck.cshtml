@@ -1,4 +1,4 @@
-﻿@model Vintage.Rabbit.Web.Models.Themes.HireThemeViewModel
+﻿@model Vintage.Rabbit.Web.Models.Themes.PartyDatePickerViewModel
 
 
 <div class="theme-availability-check">
@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-12">
 
-                <h2>@Model.Title</h2>
+                <h2>@Model.ThemeTitle</h2>
 
                 @using (Html.BeginRouteForm(Routes.Themes.Hire, new { }, FormMethod.Post, new { @class = "check-availability-form theme-form" }))
                 {
@@ -14,22 +14,11 @@
 
                         <ol class="row">
 
-                            @if (ViewBag.PostcodeChecked)
-                            {
-                                <li class="col-12 help-text ">
-                                    <div class="hire-available alert positive icon">
-                                        <i class="fa fa-check-circle"></i>Hire is available in your area. Please choose a party date below.
-                                    </div>
-                                </li>
-                            }
-                            else
-                            {
-                                <li class="col-12 help-text ">
-                                    <p>
-                                        Please choose a party date below to see if @Model.Title is available.
-                                    </p>
-                                </li>
-                            }
+                            <li class="col-12 help-text ">
+                                <p>
+                                    Please choose a party date below to see if @Model.ThemeTitle is available.
+                                </p>
+                            </li>
 
                             <li class="col-6">
                                 <div class="input-icon">
@@ -37,7 +26,6 @@
                                     @Html.EditorFor(o => o.PartyDate, new { htmlAttributes = new { @placeholder = "Party Date", @class = "datepicker-trigger" } })
                                 </div>
                             </li>
-
 
                             <li class="col-6">
                                 <button type="submit" class="btn primary check-availability-button">

@@ -45,6 +45,8 @@
     <Compile Include="CQRS\IQueryDispatcher.cs" />
     <Compile Include="CQRS\IQueryHandler.cs" />
     <Compile Include="Data\IEntity.cs" />
+    <Compile Include="Inventory\IProductPurchasedMessage.cs" />
+    <Compile Include="Inventory\IInventoryHireMessage.cs" />
     <Compile Include="Inventory\IInventoryItem.cs" />
     <Compile Include="Inventory\IInventorySoldMessage.cs" />
     <Compile Include="Ioc\IResolver.cs" />

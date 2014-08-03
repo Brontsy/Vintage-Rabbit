@@ -240,6 +240,7 @@
     <Compile Include="Models\ShoppingCart\CartItemViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartViewModel.cs" />
     <Compile Include="Models\Themes\HireThemeViewModel.cs" />
+    <Compile Include="Models\Themes\PartyDatePickerViewModel.cs" />
     <Compile Include="Models\Themes\PostcodeCheckViewModel.cs" />
     <Compile Include="Models\Themes\ThemeLinkViewModel.cs" />
     <Compile Include="Models\Themes\ThemeImageViewModel.cs" />
@@ -258,14 +259,14 @@
     <Content Include="Content\fonts\typical-writer\typiw___-webfont.svg" />
     <Content Include="Content\images\BUNTING-06.png" />
     <Content Include="Content\images\email\success-tick.png" />
-    <Content Include="Content\images\footer\footer1.jpg" />
-    <Content Include="Content\images\footer\footer2.jpg" />
-    <Content Include="Content\images\footer\footer3.jpg" />
     <Content Include="Content\images\footer\mastercard.png" />
     <Content Include="Content\images\footer\paypal.png" />
     <Content Include="Content\images\footer\visa.png" />
     <Content Include="Content\images\home\buy.jpg" />
+    <Content Include="Content\images\home\car.jpg" />
+    <Content Include="Content\images\home\competition.jpg" />
     <Content Include="Content\images\home\hire.jpg" />
+    <Content Include="Content\images\home\phone.jpg" />
     <Content Include="Content\images\home\themes.jpg" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\images\products\20130226172444_1.jpg" />

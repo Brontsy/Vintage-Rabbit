@@ -80,7 +80,7 @@
                             @Html.ValidationMessageFor(o => o.State)
                         </li>
 
-                        @if (!Model.OrderContainsHireItems)
+                        @if (Model.OrderContainsBuyItems)
                         { 
                         <li class="col-12">
                             <input checked="checked" id="ShippingAddressIsTheSame" name="ShippingAddressIsTheSame" type="checkbox" value="true">

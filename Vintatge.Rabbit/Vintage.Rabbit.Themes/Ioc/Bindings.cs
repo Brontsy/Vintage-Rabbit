@@ -6,10 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Interfaces.Messaging;
+using Vintage.Rabbit.Interfaces.Orders;
 using Vintage.Rabbit.Themes.CommandHandlers;
 using Vintage.Rabbit.Themes.Entities;
 using Vintage.Rabbit.Themes.QueryHandlers;
 using Vintage.Rabbit.Themes.Repository;
+using Vintage.Rabbit.Themese.Messaging.Handlers;
 
 namespace Vintage.Rabbit.Themes.Ioc
 {
@@ -25,6 +27,7 @@ namespace Vintage.Rabbit.Themes.Ioc
             builder.RegisterType<GetThemesQueryHandler>().As<IQueryHandler<IList<Theme>, GetThemesQuery>>();
             builder.RegisterType<GetThemeByGuidQueryHandler>().As<IQueryHandler<Theme, GetThemeByGuidQuery>>();
 
+            builder.RegisterType<ThemeHiredMessageHandler>().As<IMessageHandler<IOrderPaidMessage>>();
 
             builder.RegisterType<ThemeRepository>().As<IThemeRepository>();
         }

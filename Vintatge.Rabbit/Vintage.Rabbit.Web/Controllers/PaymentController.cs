@@ -111,7 +111,7 @@ namespace Vintage.Rabbit.Web.Controllers
                 Address shippingAddress = this._addressProvider.SaveShippingAddress(member, viewModel);
                 this._commandDispatcher.Dispatch<AddShippingAddressCommand>(new AddShippingAddressCommand(order, shippingAddress));
 
-                if(order.Items.Any(o => o.Product.Type == ProductType.Hire))
+                if (order.ContainsHireProducts() || order.ContainsTheme())
                 {
                     return this.RedirectToRoute(Routes.Checkout.Devliery, new { guid = string.Empty });
                 }
@@ -142,15 +142,6 @@ namespace Vintage.Rabbit.Web.Controllers
 
             return this.View("Delivery", viewModel);
         }
-
-        //[HasOrder]
-        //[HttpGet]
-        //public ActionResult PickupHiredProducts(Order order)
-        //{
-        //    this._commandDispatcher.Dispatch<RemoveDeliveryAddressCommand>(new RemoveDeliveryAddressCommand(order));
-
-        //    return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
-        //}
 
         [HasOrder]
         [HttpPost]
@@ -200,7 +191,7 @@ namespace Vintage.Rabbit.Web.Controllers
                 Address billingAddress = this._addressProvider.SaveBillingAddress(member, viewModel);
                 this._commandDispatcher.Dispatch<AddBillingAddressCommand>(new AddBillingAddressCommand(order, billingAddress));
 
-                if (order.ContainsHireProducts())
+                if (order.ContainsHireProducts() || order.ContainsTheme())
                 {
                     return this.RedirectToRoute(Routes.Checkout.Devliery, new { guid = string.Empty });
                 }

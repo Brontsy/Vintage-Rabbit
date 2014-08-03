@@ -59,6 +59,8 @@
     <Compile Include="Entities\InventoryItem.cs" />
     <Compile Include="Enums\InventoryStatus.cs" />
     <Compile Include="Ioc\Bindings.cs" />
+    <Compile Include="Messaging\Handlers\ProductPurchasedMessageHandler.cs" />
+    <Compile Include="Messaging\Handlers\ProductHiredMessageHandler.cs" />
     <Compile Include="Messaging\Handlers\OrderPaidMessageHandler.cs" />
     <Compile Include="Messaging\Handlers\ProductCreatedMessageHandler.cs" />
     <Compile Include="Messaging\Messages\InventorySoldMessage.cs" />

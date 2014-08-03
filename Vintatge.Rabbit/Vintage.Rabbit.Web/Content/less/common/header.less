@@ -79,12 +79,12 @@ header {
 
 nav {
     .page-content();
-    margin-top: 5px;
-    border-top: 1px dotted #666666;
-    border-bottom: 1px dotted #666666;
 
     ol {
         height: 48px;
+        margin-top: 5px;
+        border-top: 1px dotted #666666;
+        border-bottom: 1px dotted #666666;
 
         > li {
             text-align: center;
@@ -121,16 +121,27 @@ nav {
                 width: 180px;
                 border: 1px solid #bbbbbb;
                 border-top: none;
-                top: 48px;
+                top: 46px;
                 left: 0px;
                 background: #ffffff;
                 z-index: 20;
                 display: none;
 
-                &.themes-subnav { left: -20px }
-                &.hire-subnav { left: 0px }
-                &.party-supplies-subnav { left: 28px }
-                &.faq-subnav { left: -54px }
+                &.themes-subnav {
+                    left: -20px;
+                }
+
+                &.hire-subnav {
+                    left: 0px;
+                }
+
+                &.party-supplies-subnav {
+                    left: 28px;
+                }
+
+                &.faq-subnav {
+                    left: -54px;
+                }
 
                 li {
                     a {
@@ -140,6 +151,7 @@ nav {
                         border-top: 1px solid #cccccc;
                         color: #333333;
                         display: block;
+                        font-family: 'TypicalWriter', 'FontleroyBrown', Arial, sans-serif;
 
                         &:hover {
                             color: @blue;

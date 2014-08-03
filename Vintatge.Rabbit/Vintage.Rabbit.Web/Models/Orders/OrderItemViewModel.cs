@@ -33,6 +33,8 @@ namespace Vintage.Rabbit.Web.Models.Orders
 
         public bool IsBuy { get; private set; }
 
+        public bool IsTheme { get; private set; }
+
         public bool IsDelivery { get; private set; }
 
         public bool IsDiscount { get; private set; }
@@ -54,6 +56,7 @@ namespace Vintage.Rabbit.Web.Models.Orders
             this.IsBuy = orderItem.Product.Type == ProductType.Buy;
             this.IsDelivery = orderItem.Product.Type == ProductType.Delivery;
             this.IsDiscount = orderItem.Product.Type == ProductType.Discount;
+            this.IsTheme = orderItem.Product.Type == ProductType.Theme;
             this.Type = orderItem.Product.Type;
 
             if (orderItem.Product is IProduct)

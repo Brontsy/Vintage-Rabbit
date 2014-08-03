@@ -11,6 +11,30 @@
 
 
     <ul class="order-items">
+        @if (Model.OrderItems.Any(o => o.IsTheme))
+        {
+            <li class="item-header">
+                <div class="row">
+                    <div class="col-6">Style</div>
+                    <div class="col-2 text-right">Price</div>
+                    <div class="col-2 text-right">Qty</div>
+                    <div class="col-2 text-right">Total</div>
+                </div>
+            </li>
+            foreach (var cartItem in Model.OrderItems.Where(o => o.IsTheme))
+            {
+                <li>
+                    <div class="row">
+                        <div class="col-6">                            
+                            @{Html.RenderAction("ThemeLink", "Style", new { themeGuid = cartItem.ProductGuid });}
+                        </div>
+                        <div class="col-2 text-right">@cartItem.Cost</div>
+                        <div class="col-2 text-right">@cartItem.Quantity</div>
+                        <div class="col-2 text-right">@cartItem.Total</div>
+                    </div>
+                </li>
+            }
+        }
         @if (Model.OrderItems.Any(o => o.IsBuy))
         {
             <li class="item-header">

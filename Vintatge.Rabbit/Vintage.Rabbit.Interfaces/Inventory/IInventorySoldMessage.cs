@@ -9,6 +9,6 @@ namespace Vintage.Rabbit.Interfaces.Inventory
 {
     public interface IInventorySoldMessage : IMessage
     {
-        IList<IInventoryItem> InventorySold { get; }
+        IInventoryItem InventorySold { get; }
     }
 }

@@ -59,6 +59,8 @@
     <Compile Include="Entities\ThemeImage.cs" />
     <Compile Include="Entities\ThemeProduct.cs" />
     <Compile Include="Ioc\Bindings.cs" />
+    <Compile Include="Messaging\Handlers\ThemeHiredMessageHandler.cs" />
+    <Compile Include="Messaging\Messages\ProductHiredMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryHandlers\GetThemeByGuidQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetThemesQueryHandler.cs" />

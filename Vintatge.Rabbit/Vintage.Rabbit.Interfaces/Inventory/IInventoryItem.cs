@@ -10,5 +10,9 @@ namespace Vintage.Rabbit.Interfaces.Inventory
     public interface IInventoryItem
     {
         Guid ProductGuid { get; }
+
+        bool IsAvailable(DateTime partyDate);
+       
+        bool IsAvailable();
     }
 }

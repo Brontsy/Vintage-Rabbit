@@ -28,8 +28,8 @@
                     {
                         <li>
                             <div class="row">
-                                <div class="col-6">                                    
-                                    @{Html.RenderAction("ProductLink", "Product", new { productGuid = cartItem.ProductGuid });}
+                                <div class="col-6">                                                                        
+                                    @{Html.RenderAction("ThemeLink", "Style", new { themeGuid = cartItem.ProductGuid });}
                                 </div>
                                 <div class="col-2 text-right">@cartItem.Cost</div>
                                 <div class="col-2 text-right">@cartItem.Quantity</div>

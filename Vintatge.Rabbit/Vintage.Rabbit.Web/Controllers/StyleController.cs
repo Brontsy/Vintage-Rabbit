@@ -14,6 +14,7 @@ using Vintage.Rabbit.Inventory.Entities;
 using Vintage.Rabbit.Inventory.QueryHandlers;
 using Vintage.Rabbit.Carts.CommandHandlers;
 using Vintage.Rabbit.Membership.Entities;
+using Vintage.Rabbit.Interfaces.Inventory;
 
 namespace Vintage.Rabbit.Web.Controllers
 {
@@ -91,25 +92,26 @@ namespace Vintage.Rabbit.Web.Controllers
                 return this.PartialView("HireUnavailable");
             }
 
-            IList<Guid> productGuids = this.GetProductGuids(theme);
-            IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByGuidsQuery>(new GetProductsByGuidsQuery(productGuids));
-            IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductsQuery>(new GetInventoryForProductsQuery(productGuids));
-            HireThemeViewModel viewModel = new HireThemeViewModel(theme, products, inventory, hireDates);
-
-            if (hireDates.PartyDate.HasValue)
+            if(!hireDates.PartyDate.HasValue)
             {
-                if(viewModel.IsAvailable.HasValue && viewModel.IsAvailable.Value)
+                return this.PartialView("AvailabilityCheck", new PartyDatePickerViewModel(theme));
+            }
+            else
+            {
+                IList<Guid> productGuids = this.GetProductGuids(theme);
+                IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByGuidsQuery>(new GetProductsByGuidsQuery(productGuids));
+                IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductsQuery>(new GetInventoryForProductsQuery(productGuids));
+                bool available = theme.IsAvailable(hireDates.PartyDate.Value, inventory.Select(o => o as IInventoryItem).ToList());
+
+                if(available)
                 {
                     this._commandDispatcher.Dispatch(new AddThemeToCartCommand(member.Guid, theme, hireDates.PartyDate.Value));
                 }
-                
+
+                HireThemeViewModel viewModel = new HireThemeViewModel(theme, products, available, hireDates);
                 
                 return this.PartialView("AddedToCart", viewModel);
             }
-
-            ViewBag.PostcodeChecked = postcodeChecked;
-
-            return this.PartialView("AvailabilityCheck", viewModel);
         }
 
         public ActionResult CustomStyling()

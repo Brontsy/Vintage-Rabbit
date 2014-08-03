@@ -5,11 +5,13 @@
 
 @using (Html.BeginRouteForm(Routes.Themes.SaveProduct, new { themeProductGuid = Model.ThemeProductGuid, themeImageGuid = Model.ThemeImageGuid }, FormMethod.Post, new { @class = "add-product-to-theme-form" + (Model.IsTallImage ? " tall" : "") }))
 {
-    @Html.HiddenFor(o => o.ProductGuid)
-    @Html.HiddenFor(o => o.X)
-    @Html.HiddenFor(o => o.Y)
-    
-    
+    <div style="position: absolute; top: -9999px; left: -9999px;">
+        @Html.TextBoxFor(o => o.ProductGuid)
+        @Html.TextBoxFor(o => o.X)
+        @Html.TextBoxFor(o => o.Y)
+    </div>
+
+
     <div class="row">
         <div class="col-3">
             <h2>Add Product</h2>
@@ -17,15 +19,17 @@
         <div class="col-4">
             <input type="text" id="product-search" name="product-search" value="@ViewBag.Search" class="search" data-search-url="@Url.RouteUrl(Routes.Products.Search)" placeholder="Search" />
         </div>
+        <div class="col-2">
+            @Html.TextBoxFor(o => o.Qty, new { placeholder = "Qty" })
+        </div>
         <div class="col-3">
             <button type="submit" class="btn primary">Save</button>
         </div>
-        <div class="col-2"></div>
-        <div class="col-3"></div>
 
-        <div class="col-2">
+        <div class="col-6 offset-3">
+            @Html.ValidationMessageFor(o => o.ProductGuid)
+            @Html.ValidationMessageFor(o => o.Qty)
             @Html.ValidationMessageFor(o => o.X)
-            @Html.ValidationMessageFor(o => o.Y)
         </div>
 
             <div class="col-12">

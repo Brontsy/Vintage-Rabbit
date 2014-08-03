@@ -23,7 +23,7 @@ namespace Vintage.Rabbit.Themes.Entities
             this.Products = new List<ThemeProduct>();
         }
 
-        internal void AddProduct(Guid themeProductGuid, Guid productGuid, decimal x, decimal y)
+        internal void AddProduct(Guid themeProductGuid, Guid productGuid, int qty, decimal x, decimal y)
         {
             var existingProducts = this.Products.Where(o => o.ProductGuid == productGuid).ToList();
 
@@ -32,7 +32,7 @@ namespace Vintage.Rabbit.Themes.Entities
                 var themeProduct = this.Products.Remove(existingProduct);
             }
 
-            this.Products.Add(new ThemeProduct(themeProductGuid, productGuid, x, y));
+            this.Products.Add(new ThemeProduct(themeProductGuid, productGuid, qty, x, y));
         }
     }
 }

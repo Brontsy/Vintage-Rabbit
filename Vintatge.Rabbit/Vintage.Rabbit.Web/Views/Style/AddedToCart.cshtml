@@ -1,22 +1,24 @@
 ﻿@model Vintage.Rabbit.Web.Models.Themes.HireThemeViewModel
 
-<div class="row">
-    <div class="col-12 hire-add-to-cart">
+<div class="theme-add-to-cart">
 
-        @if(Model.IsAvailable.HasValue && Model.IsAvailable.Value)
-        { 
-            <div class="alert positive icon theme-added-to-cart">
-                <i class="fa fa-check"></i>@Model.Title has been added to your @Html.RouteLink("shopping cart", Routes.ShoppingCart.PageHeader, new { }, new { @class = "ajax-lightbox" })
-            </div>
-        }
-        else
-        {
-            <div class="alert negative">
-                @Model.Title is not currently available for your selected party date. Please call us on [Need phone number] to see if we can help.
-            </div>
-        }
+    <div class="row">
+        <div class="col-12">
+
+            @if (Model.IsAvailable.HasValue && Model.IsAvailable.Value)
+            {
+                <div class="alert positive icon theme-added-to-cart">
+                    <i class="fa fa-check-circle"></i>@Model.Title has been added to your @Html.RouteLink("shopping cart", Routes.ShoppingCart.PageHeader, new { }, new { @class = "ajax-lightbox" })
+                </div>
+            }
+            else
+            {
+                <div class="alert negative">
+                    @Model.Title is not currently available for your selected party date. Please call us on [Need phone number] to see if we can help.
+                </div>
+            }
 
 
+        </div>
     </div>
 </div>
-               

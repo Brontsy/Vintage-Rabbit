@@ -29,13 +29,10 @@ namespace Vintage.Rabbit.Products.Messaging.Handlers
 
         public void Handle(IInventorySoldMessage message)
         {
-            foreach(var inventory in message.InventorySold)
-            {
-                Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(inventory.ProductGuid));
-                product.Inventory--;
+            Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(message.InventorySold.ProductGuid));
+            //product.Inventory--;
 
-                this._commandDispatcher.Dispatch(new SaveProductCommand(product, new InventoryUpdater()));
-            }
+            this._commandDispatcher.Dispatch(new SaveProductCommand(product, new InventoryUpdater()));
         }
     }
 

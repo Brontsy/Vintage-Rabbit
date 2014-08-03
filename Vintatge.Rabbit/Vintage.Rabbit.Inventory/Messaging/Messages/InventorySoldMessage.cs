@@ -9,11 +9,11 @@ namespace Vintage.Rabbit.Inventory.Messaging.Messages
 {
     internal class InventorySoldMessage : IInventorySoldMessage
     {
-        public IList<IInventoryItem> InventorySold { get; set; }
+        public IInventoryItem InventorySold { get; set; }
 
         public InventorySoldMessage() { }
 
-        public InventorySoldMessage(IList<IInventoryItem> inventory)
+        public InventorySoldMessage(IInventoryItem inventory)
         {
             this.InventorySold = inventory;
         }

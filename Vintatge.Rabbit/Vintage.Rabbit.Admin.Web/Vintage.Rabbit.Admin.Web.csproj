@@ -265,6 +265,7 @@
     <Content Include="Content\images\themes\wizard-of-oz\04-thumb.jpg" />
     <Content Include="Content\images\themes\wizard-of-oz\04.jpg" />
     <Content Include="Content\scripts\bootstrap\dropdown.js" />
+    <Content Include="Content\scripts\form.js" />
     <Content Include="Content\scripts\themes.js" />
     <Content Include="Content\scripts\edit-product.js" />
     <Content Include="Content\scripts\datepicker\datepicker.source.js" />

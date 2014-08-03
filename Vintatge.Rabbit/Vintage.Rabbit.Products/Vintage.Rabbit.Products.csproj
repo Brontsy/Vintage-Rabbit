@@ -92,7 +92,11 @@
     <Compile Include="Entities\ProductImage.cs" />
     <Compile Include="Ioc\Bindings.cs" />
     <Compile Include="Messaging\Handlers\InventorySoldMessageHandler.cs" />
+    <Compile Include="Messaging\Handlers\ProductHiredMessageHandler.cs" />
+    <Compile Include="Messaging\Handlers\ProductPurchasedMessageHandler.cs" />
     <Compile Include="Messaging\Messages\ProductCreatedMessage.cs" />
+    <Compile Include="Messaging\Messages\ProductPurchasedMessage.cs" />
+    <Compile Include="Messaging\Messages\ProductHiredMessage.cs" />
     <Compile Include="Messaging\Messages\SaveProductMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryHandlers\GetProductByIdQueryHandler.cs" />

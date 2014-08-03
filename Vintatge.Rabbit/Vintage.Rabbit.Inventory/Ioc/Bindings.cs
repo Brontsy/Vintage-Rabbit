@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vintage.Rabbit.Interfaces.CQRS;
+using Vintage.Rabbit.Interfaces.Inventory;
 using Vintage.Rabbit.Interfaces.Messaging;
 using Vintage.Rabbit.Interfaces.Orders;
 using Vintage.Rabbit.Interfaces.Products;
@@ -32,7 +33,8 @@ namespace Vintage.Rabbit.Inventory.Ioc
 
             builder.RegisterType<InventoryRepository>().As<IInventoryRepository>();
             builder.RegisterType<ProductCreatedMessageHandler>().As<IMessageHandler<IProductCreatedMessage>>();
-            builder.RegisterType<OrderPaidMessageHandler>().As<IMessageHandler<IOrderPaidMessage>>();
+            builder.RegisterType<ProductHiredMessageHandler>().As<IMessageHandler<IProductHiredMessage>>();
+            builder.RegisterType<ProductPurchasedMessageHandler>().As<IMessageHandler<IProductPurchasedMessage>>();
         }
     }
 }

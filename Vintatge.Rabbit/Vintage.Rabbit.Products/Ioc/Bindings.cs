@@ -6,9 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Vintage.Rabbit.Common.Entities;
 using Vintage.Rabbit.Interfaces.CQRS;
+using Vintage.Rabbit.Interfaces.Inventory;
 using Vintage.Rabbit.Interfaces.Messaging;
+using Vintage.Rabbit.Interfaces.Orders;
 using Vintage.Rabbit.Products.CommandHandlers;
 using Vintage.Rabbit.Products.Entities;
+using Vintage.Rabbit.Products.Messaging.Handlers;
 using Vintage.Rabbit.Products.Messaging.Messages;
 using Vintage.Rabbit.Products.QueryHandlers;
 using Vintage.Rabbit.Products.Repository;
@@ -24,7 +27,9 @@ namespace Vintage.Rabbit.Products.Ioc
             builder.RegisterType<RemovePhotoCommandHandler>().As<ICommandHandler<RemovePhotoCommand>>();
             builder.RegisterType<CreateProductCommandHandler>().As<ICommandHandler<CreateProductCommand>>();
 
-            //builder.RegisterType<ProductRepository>().As<IMessageHandler<SaveProductMessage>>();
+            builder.RegisterType<InventorySoldMessageHandler>().As<IMessageHandler<IInventorySoldMessage>>();
+            builder.RegisterType<ProductHiredMessageHandler>().As<IMessageHandler<IOrderPaidMessage>>();
+            builder.RegisterType<ProductPurchasedMessageHandler>().As<IMessageHandler<IOrderPaidMessage>>();
 
             builder.RegisterType<GetFeaturedProductsQueryHandler>().As<IQueryHandler<IList<Product>, GetFeaturedProductsQuery>>();
 

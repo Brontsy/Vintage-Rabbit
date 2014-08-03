@@ -22,19 +22,11 @@ namespace Vintage.Rabbit.Web.Models.Themes
 
         public DateTime? PartyDate { get; private set; }
 
-        public HireThemeViewModel(Theme theme, IList<Product> products, IList<InventoryItem> inventory, HireDatesViewModel hireDates)
+        public HireThemeViewModel(Theme theme, IList<Product> products, bool available, HireDatesViewModel hireDates)
             : base(theme, products)
         {
             this.PartyDate = hireDates.PartyDate;
-            this.IsAvailable = true;
-
-            if (hireDates.PartyDate.HasValue)
-            {
-                if (inventory.Count(o => o.IsAvailable(hireDates.PartyDate.Value)) == 0)
-                {
-                    this.IsAvailable = false;
-                }
-            }
+            this.IsAvailable = available;
         }
     }
 }

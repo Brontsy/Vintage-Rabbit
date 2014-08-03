@@ -14,14 +14,17 @@ namespace Vintage.Rabbit.Admin.Web.Models.Themes
 
         public Guid ThemeImageGuid { get; set; }
 
-        [Required(ErrorMessage = "Please enter the X coordinate (%) for the location on the image")]
+        [Required(ErrorMessage = "Please enter select the product on the image")]
         public decimal? X { get; set; }
 
         [Required(ErrorMessage = "Please enter the Y coordinate (%) for the location on the image")]
         public decimal? Y { get; set; }
 
         [Required(ErrorMessage = "Please choose a product to add")]
-        public Guid ProductGuid { get; set; }
+        public Guid? ProductGuid { get; set; }
+
+        [Required(ErrorMessage = "Please enter a quantity")]
+        public int? Qty { get; set; }
 
         public string Url { get; set; }
 

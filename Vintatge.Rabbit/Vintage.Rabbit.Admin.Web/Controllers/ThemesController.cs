@@ -129,7 +129,10 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
         [HttpPost]
         public ActionResult SaveProduct(Guid guid, AddProductToThemeImageViewModel viewModel, Member member)
         {
-            this._commandDispatcher.Dispatch(new AddProductToThemeCommand(guid, viewModel.ThemeImageGuid, viewModel.ThemeProductGuid, viewModel.ProductGuid, viewModel.X.Value, viewModel.Y.Value, member));
+            if (this.ModelState.IsValid)
+            {
+                this._commandDispatcher.Dispatch(new AddProductToThemeCommand(guid, viewModel.ThemeImageGuid, viewModel.ThemeProductGuid, viewModel.ProductGuid.Value, viewModel.Qty.Value, viewModel.X.Value, viewModel.Y.Value, member));
+            }
 
             return this.RedirectToRoute(Routes.Themes.Products);
         }

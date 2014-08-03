@@ -132,5 +132,10 @@ namespace Vintage.Rabbit.Orders.Entities
         {
             return this.Items.Any(o => o.Product.Type == Common.Enums.ProductType.Hire);
         }
+
+        public bool ContainsTheme()
+        {
+            return this.Items.Any(o => o.Product.Type == Common.Enums.ProductType.Theme);
+        }
     }
 }
