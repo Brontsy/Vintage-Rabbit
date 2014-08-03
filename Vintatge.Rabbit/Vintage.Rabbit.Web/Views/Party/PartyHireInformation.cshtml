@@ -7,45 +7,51 @@
 
 <div class="party-hire-information">
 
+    <h2>Party Hire Details</h2>
+    <p class="party-date">Party Date: @Model.PartyDate.ToString("dd MMM yyyy") </p>
     <div class="row">
         <div class="col-6">
-            <h2>Party Hire Information</h2>
 
-            <h3>Party Date: @Model.PartyDate.ToString("dd MMM yyyy") </h3>
             @if (Model.DropoffAddress != null)
             {
-            <p>
-                Vintage rabbit will deliver your hire items on @Model.HireDate.ToString("dd MMM yyyy")
-                to: <br />
-                @Model.DropoffAddress.FirstName @Model.DropoffAddress.LastName<br />
-                @Model.DropoffAddress.Address<br />
-                @Model.DropoffAddress.SuburbCity, @Model.DropoffAddress.State @Model.DropoffAddress.Postcode
-                
-            </p>
+                <p><strong>Delivery Address</strong></p>
+                <p>
+                    Vintage rabbit will deliver your hire items on @Model.HireDate.ToString("dd MMM yyyy")
+                    to: <br />
+                    @Model.DropoffAddress.FirstName @Model.DropoffAddress.LastName<br />
+                    @Model.DropoffAddress.Address<br />
+                    @Model.DropoffAddress.SuburbCity, @Model.DropoffAddress.State @Model.DropoffAddress.Postcode
+
+                </p>
             }
             else
             {
-            <p>
-                You have elected to pickup your hire items. You may pick everything up on or after @Model.HireDate.ToString("dd MMM yyyy") from:
-                7a Chalmers St<br />
-                Mckinnon, Victoria,
-                3204, Australia
-            </p>
+                <p><strong>Pickup Address</strong></p>
+                <p>
+                    You have elected to pickup your hire items. You may pick everything up on or after @Model.HireDate.ToString("dd MMM yyyy") from:
+                    7a Chalmers St<br />
+                    Mckinnon, Victoria,
+                    3204, Australia
+                </p>
             }
 
-           
+        </div>
+        <div class="col-6">
+
             @if (Model.PickupAddress != null)
             {
+                <p><strong>Pickup Address</strong></p>
                 <p>
-                    Vintage rabbit will pickup your hire items on @Model.ReturnDate.ToString("dd MMM yyyy") from: <br />                    
+                    Vintage rabbit will pickup your hire items on @Model.ReturnDate.ToString("dd MMM yyyy") from: <br />
                     @Model.PickupAddress.FirstName @Model.PickupAddress.LastName<br />
-                    @Model.PickupAddress.Address<br />                   
+                    @Model.PickupAddress.Address<br />
                     @Model.PickupAddress.SuburbCity, @Model.PickupAddress.State @Model.PickupAddress.Postcode
 
                 </p>
             }
             else
             {
+                <p><strong>Dropoff Address</strong></p>
                 <p>
                     You have elected to dropoff the hire items. You must return everything by @Model.HireDate.ToString("dd MMM yyyy") to:<br />
                     7a Chalmers St<br />
