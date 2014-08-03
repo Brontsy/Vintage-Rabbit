@@ -48,11 +48,6 @@ namespace Vintage.Rabbit.Orders.CommandHandlers
                 }
             }
 
-            if (order.Items.Any(o => o.Product.Type == ProductType.Buy))
-            {
-                order.AddDelivery(new Delivery("Delivery", 9.95M));
-            }
-
             this._commandDispatcher.Dispatch<SaveOrderCommand>(new SaveOrderCommand(order));
         }
     }

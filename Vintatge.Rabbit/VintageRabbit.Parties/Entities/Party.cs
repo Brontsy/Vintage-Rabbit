@@ -29,15 +29,15 @@ namespace Vintage.Rabbit.Parties.Entities
 
         public DateTime DateLastModified { get; internal set; }
 
-        public string ChildsName { get; private set; }
+        public string ChildsName { get; internal set; }
 
-        public string Age { get; private set; }
+        public string Age { get; internal set; }
 
-        public string TimeDateLocation { get; private set; }
+        public string PartyTime { get; internal set; }
 
-        public string PartyAddress { get; private set; }
+        public string PartyAddress { get; internal set; }
 
-        public string RSVPDetails { get; private set; }
+        public string RSVPDetails { get; internal set; }
 
         public DateTime HireDate
         {
@@ -69,22 +69,23 @@ namespace Vintage.Rabbit.Parties.Entities
 
         public Party() { }
 
-        public Party(IOrder order)
+        public Party(IOrder order, DateTime partyDate)
         {
             this.Guid = Guid.NewGuid();
             this.OrderGuid = order.Guid;
             this.Status = PartyStatus.New;
-            this.PartyDate = (DateTime)order.Items.First(o => o.Product.Type == ProductType.Hire).Properties["PartyDate"];
+            this.PartyDate = partyDate;
+            //this.PartyDate = (DateTime)order.Items.First(o => o.Product.Type == ProductType.Hire).Properties["PartyDate"];
 
-            if(order.Items.Any(o => o.Product.Type == ProductType.Delivery && o.Product.Title == "Dropoff Hire Delivery"))
-            {
-                this.DropoffAddress = order.DeliveryAddressId;
-            }
+            //if(order.Items.Any(o => o.Product.Type == ProductType.Delivery && o.Product.Title == "Dropoff Hire Delivery"))
+            //{
+            //    this.DropoffAddress = order.DeliveryAddressId;
+            //}
 
-            if(order.Items.Any(o => o.Product.Type == ProductType.Delivery && o.Product.Title == "Pickup Hire Delivery"))
-            {
-                this.PickupAddress = order.DeliveryAddressId;
-            }
+            //if(order.Items.Any(o => o.Product.Type == ProductType.Delivery && o.Product.Title == "Pickup Hire Delivery"))
+            //{
+            //    this.PickupAddress = order.DeliveryAddressId;
+            //}
         }
     }
 }

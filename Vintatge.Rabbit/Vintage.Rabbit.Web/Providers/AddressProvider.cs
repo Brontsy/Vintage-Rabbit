@@ -21,7 +21,7 @@ namespace Vintage.Rabbit.Web.Providers
 
         Address SaveBillingAddress(Member member, BillingAddressViewModel viewModel);
 
-        Address SaveDeliveryAddress(Member member, DeliveryAddressViewModel viewModel);
+        Address SaveDeliveryAddress(Member member, PartyHireInformationViewModel viewModel);
     }
 
 
@@ -58,7 +58,7 @@ namespace Vintage.Rabbit.Web.Providers
             return address;
         }
 
-        public Address SaveDeliveryAddress(Member member, DeliveryAddressViewModel viewModel)
+        public Address SaveDeliveryAddress(Member member, PartyHireInformationViewModel viewModel)
         {
             Guid addressId = viewModel.Guid;
 

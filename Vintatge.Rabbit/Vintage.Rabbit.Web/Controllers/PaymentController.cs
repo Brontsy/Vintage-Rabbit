@@ -15,6 +15,9 @@ using Vintage.Rabbit.Membership.QueryHandlers;
 using Vintage.Rabbit.Orders.CommandHandlers;
 using Vintage.Rabbit.Orders.Entities;
 using Vintage.Rabbit.Orders.QueryHandlers;
+using Vintage.Rabbit.Parties.CommandHandlers;
+using Vintage.Rabbit.Parties.Entities;
+using Vintage.Rabbit.Parties.QueryHandlers;
 using Vintage.Rabbit.Payment.CommandHandlers;
 using Vintage.Rabbit.Payment.Entities;
 using Vintage.Rabbit.Payment.QueryHandlers;
@@ -56,7 +59,7 @@ namespace Vintage.Rabbit.Web.Controllers
                     order = this._createOrderProvider.CreateOrder(member, cart);
                 }
 
-                return this.RedirectToRoute(Routes.Checkout.BillingInformation, new { orderGuid = order.Guid });
+                return this.RedirectToRoute(Routes.Checkout.PartyHireInformation, new { orderGuid = order.Guid });
             }
 
             return this.LoginRegister(null);
@@ -79,7 +82,60 @@ namespace Vintage.Rabbit.Web.Controllers
                 order = this._createOrderProvider.CreateOrder(member, cart);
             }
 
-            return this.RedirectToRoute(Routes.Checkout.BillingInformation, new { orderGuid = order.Guid });
+            return this.RedirectToRoute(Routes.Checkout.PartyHireInformation, new { orderGuid = order.Guid });
+        }
+
+        public ActionResult PartyHireInformation(Order order, Member member)
+        {
+            Party party = this._queryDispatcher.Dispatch<Party, GetPartyByOrderGuidQuery>(new GetPartyByOrderGuidQuery(order.Guid));
+
+            PartyHireInformationViewModel viewModel = new PartyHireInformationViewModel(order, party);
+
+            if (order.DeliveryAddressId.HasValue)
+            {
+                Address address = this._queryDispatcher.Dispatch<Address, GetAddressByGuidQuery>(new GetAddressByGuidQuery(order.DeliveryAddressId.Value));
+                viewModel = new PartyHireInformationViewModel(address, order, party);
+            }
+            else if (member.DeliveryAddresses.Any())
+            {
+                Address address = member.DeliveryAddresses.OrderByDescending(o => o.DateCreated).First();
+                viewModel = new PartyHireInformationViewModel(address, order, party);
+            }
+
+            return this.View("PartyHireInformation", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult PartyHireInformation(PartyHireInformationViewModel viewModel, Order order, Member member)
+        {
+            if(viewModel.IsDelivery && !this.ModelState.IsValid)
+            {
+                return this.PartyHireInformation(order, member);
+            }
+
+            CreatePartyCommand command = new CreatePartyCommand(order, viewModel.PartyDate, member);
+
+            command.ChildsName = viewModel.ChildsName;
+            command.Age = viewModel.Age;
+            command.PartyTime = viewModel.PartyTime;
+            command.PartyAddress = viewModel.PartyAddress;
+            command.RSVPDetails = viewModel.RSVPDetails;
+
+            if (viewModel.IsDelivery)
+            {
+                Address deliveryAddress = this._addressProvider.SaveDeliveryAddress(member, viewModel);
+                this._commandDispatcher.Dispatch<AddDeliveryAddressCommand>(new AddDeliveryAddressCommand(order, deliveryAddress, true, true));
+
+                command.Address = deliveryAddress;
+            }
+            else
+            {
+                this._commandDispatcher.Dispatch(new RemoveDeliveryAddressCommand(order));
+            }
+                
+            this._commandDispatcher.Dispatch(command);
+
+            return this.RedirectToRoute(Routes.Checkout.BillingInformation);
         }
 
         [HasOrder]
@@ -111,56 +167,10 @@ namespace Vintage.Rabbit.Web.Controllers
                 Address shippingAddress = this._addressProvider.SaveShippingAddress(member, viewModel);
                 this._commandDispatcher.Dispatch<AddShippingAddressCommand>(new AddShippingAddressCommand(order, shippingAddress));
 
-                if (order.ContainsHireProducts() || order.ContainsTheme())
-                {
-                    return this.RedirectToRoute(Routes.Checkout.Devliery, new { guid = string.Empty });
-                }
-
                 return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
             }
 
             return this.View("ShippingInformation", viewModel);
-        }
-
-
-        [HasOrder]
-        [HttpGet]
-        public ActionResult Delivery(Order order, Member member)
-        {
-            var viewModel = new DeliveryAddressViewModel();
-
-            if (order.DeliveryAddressId.HasValue)
-            {
-                Address address = this._queryDispatcher.Dispatch<Address, GetAddressByGuidQuery>(new GetAddressByGuidQuery(order.DeliveryAddressId.Value));
-                viewModel = new DeliveryAddressViewModel(address, order);
-            }
-            else if (member.DeliveryAddresses.Any())
-            {
-                Address address = member.DeliveryAddresses.OrderByDescending(o => o.DateCreated).First();
-                viewModel = new DeliveryAddressViewModel(address, order);
-            }
-
-            return this.View("Delivery", viewModel);
-        }
-
-        [HasOrder]
-        [HttpPost]
-        public ActionResult Delivery(DeliveryAddressViewModel viewModel, Order order, Member member)
-        {
-            if (viewModel.IsDropoff || viewModel.IsPickup)
-            {
-                if (this.ModelState.IsValid)
-                {
-                    Address deliveryAddress = this._addressProvider.SaveDeliveryAddress(member, viewModel);
-                    this._commandDispatcher.Dispatch<AddDeliveryAddressCommand>(new AddDeliveryAddressCommand(order, deliveryAddress, viewModel.IsPickup, viewModel.IsDropoff));
-
-                    return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
-                }
-
-                return this.Delivery(order, member);
-            }
-
-            return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
         }
 
 
@@ -190,25 +200,23 @@ namespace Vintage.Rabbit.Web.Controllers
             {
                 Address billingAddress = this._addressProvider.SaveBillingAddress(member, viewModel);
                 this._commandDispatcher.Dispatch<AddBillingAddressCommand>(new AddBillingAddressCommand(order, billingAddress));
-
-                if (order.ContainsHireProducts() || order.ContainsTheme())
+            
+                if ((shippingAddressIsTheSame.HasValue && shippingAddressIsTheSame.Value))
                 {
-                    return this.RedirectToRoute(Routes.Checkout.Devliery, new { guid = string.Empty });
+                    viewModel.Guid = Guid.NewGuid();
+                    Address shippingAddress = this._addressProvider.SaveShippingAddress(member, viewModel);
+                    this._commandDispatcher.Dispatch<AddShippingAddressCommand>(new AddShippingAddressCommand(order, shippingAddress));
+
+                    return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
                 }
                 else
                 {
-                    if (shippingAddressIsTheSame.HasValue && shippingAddressIsTheSame.Value)
-                    {
-                        viewModel.Guid = Guid.NewGuid();
-                        Address shippingAddress = this._addressProvider.SaveShippingAddress(member, viewModel);
-                        this._commandDispatcher.Dispatch<AddShippingAddressCommand>(new AddShippingAddressCommand(order, shippingAddress));
-
-                        return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
-                    }
-                    else
+                    if (order.ContainsBuyProducts())
                     {
                         return this.RedirectToRoute(Routes.Checkout.ShippingInformation, new { guid = string.Empty });
                     }
+
+                    return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
                 }
             }
 

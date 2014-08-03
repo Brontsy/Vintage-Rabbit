@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\CreatePartyCommandHandler.cs" />
     <Compile Include="Entities\Party.cs" />
     <Compile Include="CommandHandlers\SavePartyCommandHandler.cs" />
     <Compile Include="Entities\SystemUpdater.cs" />

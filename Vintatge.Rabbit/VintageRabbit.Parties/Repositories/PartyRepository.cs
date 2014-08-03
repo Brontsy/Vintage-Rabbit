@@ -94,8 +94,8 @@ namespace Vintage.Rabbit.Parties.Repositories
         {
             if(this.GetPartyByGuid(party.Guid) == null)
             {
-                string sql = @"Insert Into VintageRabbit.Parties (Guid, OrderGuid, Status, PartyDate, DropoffAddress, PickupAddress, DateCreated, DateLastModified, LastModifiedBy) 
-                                Values (@Guid, @OrderGuid, @Status, @PartyDate, @DropoffAddress, @PickupAddress, @DateCreated, @DateLastModified, @LastModifiedBy)";
+                string sql = @"Insert Into VintageRabbit.Parties (Guid, OrderGuid, Status, PartyDate, DropoffAddress, PickupAddress, ChildsName, Age, PartyTime, [PartyAddress], [RSVPDetails], DateCreated, DateLastModified, LastModifiedBy) 
+                                Values (@Guid, @OrderGuid, @Status, @PartyDate, @DropoffAddress, @PickupAddress, @ChildsName, @Age, @PartyTime, @PartyAddress, @RSVPDetails, @DateCreated, @DateLastModified, @LastModifiedBy)";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
@@ -107,6 +107,11 @@ namespace Vintage.Rabbit.Parties.Repositories
                         PartyDate = party.PartyDate,
                         DropoffAddress = party.DropoffAddress,
                         PickupAddress = party.PickupAddress,
+                        ChildsName = party.ChildsName,
+                        Age = party.Age,
+                        PartyTime = party.PartyTime,
+                        PartyAddress = party.PartyAddress,
+                        RSVPDetails = party.RSVPDetails,
                         DateCreated = DateTime.Now,
                         DateLastModified = DateTime.Now,
                         LastModifiedBy = actionBy.Email
@@ -115,8 +120,9 @@ namespace Vintage.Rabbit.Parties.Repositories
             }
             else
             {
-                string sql = @"Update VintageRabbit.Themes Set OrderGuid = @OrderGuid, Status = @Status, PartyDate = @PartyDate, DropoffAddress = @DropoffAddress, 
-                                PickupAddress = @PickupAddress, DateLastModified = @DateLastModified, LastModifiedBy = @LastModifiedBy Where Guid = @Guid";
+                string sql = @"Update VintageRabbit.Parties Set OrderGuid = @OrderGuid, Status = @Status, PartyDate = @PartyDate, DropoffAddress = @DropoffAddress, 
+                                PickupAddress = @PickupAddress, ChildsName = @ChildsName, Age = @Age, PartyTime = @PartyTime, [PartyAddress] = @PartyAddress, RSVPDetails = @RSVPDetails, 
+                                DateLastModified = @DateLastModified, LastModifiedBy = @LastModifiedBy Where Guid = @Guid";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
@@ -128,6 +134,11 @@ namespace Vintage.Rabbit.Parties.Repositories
                         PartyDate = party.PartyDate,
                         DropoffAddress = party.DropoffAddress,
                         PickupAddress = party.PickupAddress,
+                        ChildsName = party.ChildsName,
+                        Age = party.Age,
+                        PartyTime = party.PartyTime,
+                        PartyAddress = party.PartyAddress,
+                        RSVPDetails = party.RSVPDetails,
                         DateLastModified = DateTime.Now,
                         LastModifiedBy = actionBy.Email
                     });

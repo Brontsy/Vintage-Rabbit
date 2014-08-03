@@ -147,9 +147,9 @@ $(document).ready(function () {
 
 
 
-    $('#IsDropoff, #IsPickup').on('change', function () {
+    $('#IsDelivery').on('change', function () {
         
-        if ($('#IsDropoff').is(':checked') || $('#IsPickup').is(':checked')) {
+        if ($('#IsDelivery').is(':checked')) {
             $('.deliver-field').removeClass('hidden');
             $('.pickup-dropoff-yourself').addClass('hidden');
         }

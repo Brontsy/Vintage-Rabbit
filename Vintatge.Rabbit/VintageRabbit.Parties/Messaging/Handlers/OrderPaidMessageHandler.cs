@@ -30,9 +30,9 @@ namespace Vintage.Rabbit.Parties.Messaging.Handlers
         {
             if(message.Order.Items.Any(o => o.Product.Type == Common.Enums.ProductType.Hire))
             {
-                Party party = new Party(message.Order);
+                //Party party = new Party(message.Order);
 
-                this._commandDispatcher.Dispatch(new SavePartyCommand(party, new SystemUpdater()));
+                //this._commandDispatcher.Dispatch(new SavePartyCommand(party, new SystemUpdater()));
             }
         }
     }
