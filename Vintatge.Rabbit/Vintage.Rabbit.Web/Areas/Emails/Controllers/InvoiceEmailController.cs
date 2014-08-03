@@ -34,13 +34,6 @@ namespace Vintage.Rabbit.Web.Areas.Emails.Controllers
             }
 
             InvoiceEmailViewModel viewModel = new InvoiceEmailViewModel(order);
-
-            foreach(var orderItem in order.Items)
-            {
-                var product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(orderItem.Product.Guid));
-                viewModel.OrderItems.Add(new OrderItemViewModel(orderItem, product));
-            }
-
             ViewBag.WebsiteUrl = this._websiteUrl;
 
             return View("InvoiceEmail", viewModel);

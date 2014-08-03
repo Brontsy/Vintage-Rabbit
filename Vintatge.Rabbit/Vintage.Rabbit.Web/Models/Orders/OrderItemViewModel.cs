@@ -8,6 +8,7 @@ using Vintage.Rabbit.Common.Extensions;
 using Vintage.Rabbit.Common.Enums;
 using Vintage.Rabbit.Web.Models.Categories;
 using Vintage.Rabbit.Interfaces.Products;
+using Vintage.Rabbit.Themes.Entities;
 
 namespace Vintage.Rabbit.Web.Models.Orders
 {
@@ -67,6 +68,11 @@ namespace Vintage.Rabbit.Web.Models.Orders
                 {
                     this.Thumbnail = product.Images.First().Thumbnail;
                 }
+            }
+
+            if(orderItem.Product is Theme)
+            {
+                this.Thumbnail = (orderItem.Product as Theme).Images.First().ThumbnailUrl;
             }
         }
     }
