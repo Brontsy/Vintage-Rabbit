@@ -40,90 +40,62 @@
     <div class="row">
 
         <div class="col-6">
-            <h2>Party Hire Details</h2>
 
-            <p class="party-date">Party Date: @Model.PartyDate.ToString("dd MMMM yyyy")</p>
-            @Html.HiddenFor(o => o.PartyDate)
+                <h2>Party Hire Details</h2>
+                
+                <p class="party-date">Party Date: @Model.PartyDate.Value.ToString("dd MMMM yyyy")</p>
+                @Html.HiddenFor(o => o.PartyDate)
+                
+                <p>
+                    We offer delivery and pickup for the items that your are hiring for @Model.DeliveryCost each way. If you would like to pick up and return the items yourself you are more then welcome to, we are located at 7a Chalmers St Mckinnon.
+                </p>
 
-            <p>
-                We offer delivery and pickup for the items that your are hiring for @Model.DeliveryCost each way. If you would like to pick up and return the items yourself you are more then welcome to, we are located at 7a Chalmers St Mckinnon.
-            </p>
-
-            <ol class="row">
-                <li class="col-12">
-                    @Html.CheckBoxFor(o => o.IsDelivery)
-                    @Html.LabelFor(o => o.IsDelivery)
-                </li>
-            </ol>
-
-            <h3 class="deliver-field@(Model.IsDelivery ? string.Empty : " hidden")">Delivery Details</h3>
-
-            <ol class="row deliver-field@(Model.IsDelivery ? string.Empty : " hidden")">
-                <li class="col-6 deliver-field">
-                    @Html.TextBoxFor(o => o.FirstName, new { placeholder = "First name*" })
-                    @Html.ValidationMessageFor(o => o.FirstName)
-                </li>
-                <li class="col-6 deliver-field">
-                    @Html.TextBoxFor(o => o.LastName, new { placeholder = "Last name*" })
-                    @Html.ValidationMessageFor(o => o.LastName)
-                </li>
-                <li class="col-12 deliver-field">
-                    @Html.TextBoxFor(o => o.PhoneNumber, new { placeholder = "Phone number*" })
-                    @Html.ValidationMessageFor(o => o.PhoneNumber)
-                </li>
-                <li class="col-12 deliver-field">
-                    @Html.TextBoxFor(o => o.Address, new { placeholder = "Address*" })
-                    @Html.ValidationMessageFor(o => o.Address)
-                </li>
-                <li class="col-8 deliver-field">
-                    @Html.TextBoxFor(o => o.SuburbCity, new { placeholder = "Suburb / city*" })
-                    @Html.ValidationMessageFor(o => o.SuburbCity)
-                </li>
-                <li class="col-4 deliver-field">
-                    @Html.TextBoxFor(o => o.Postcode, new { placeholder = "Postcode*" })
-                    @Html.ValidationMessageFor(o => o.Postcode)
-                </li>
-                <li class="col-12 deliver-field">
-                    @Html.DropDownListFor(o => o.State, Model.States, "State...", new { })
-                    @Html.ValidationMessageFor(o => o.State)
-                </li>
-            </ol>
-
-            @if (Model.OrderContainsCustomInvitations)
-            {
-                <h3>Invitation details</h3>
                 <ol class="row">
-                    <li class="col-8">
-                        @Html.TextBoxFor(o => o.ChildsName, new { placeholder = "Childs name*" })
-                        @Html.ValidationMessageFor(o => o.ChildsName)
-                    </li>
-                    <li class="col-4">
-                        @Html.TextBoxFor(o => o.Age, new { placeholder = "Age*" })
-                        @Html.ValidationMessageFor(o => o.Age)
-                    </li>
-                    <li class="col-8">
-                        <p class="party-date">Party Date: @Model.PartyDate.ToString("dd MMMM yyyy")</p>
-                    </li>
-                    <li class="col-4">
-                        @Html.TextBoxFor(o => o.PartyTime, new { placeholder = "Party time*" })
-                        @Html.ValidationMessageFor(o => o.PartyTime)
-                    </li>
                     <li class="col-12">
-                        @Html.TextBoxFor(o => o.PartyAddress, new { placeholder = "Party address*" })
-                        @Html.ValidationMessageFor(o => o.PartyAddress)
-                    </li>
-                    <li class="col-12">
-                        @Html.TextAreaFor(o => o.RSVPDetails, new { placeholder = "RSVP details" })
-                        @Html.ValidationMessageFor(o => o.RSVPDetails)
+                        @Html.CheckBoxFor(o => o.IsDelivery)
+                        @Html.LabelFor(o => o.IsDelivery)
                     </li>
                 </ol>
-            }
-    
+
+                <h3 class="deliver-field@(Model.IsDelivery ? string.Empty : " hidden")">Delivery Details</h3>
+
+                <ol class="row deliver-field@(Model.IsDelivery ? string.Empty : " hidden")">
+                    <li class="col-6 deliver-field">
+                        @Html.TextBoxFor(o => o.FirstName, new { placeholder = "First name*" })
+                        @Html.ValidationMessageFor(o => o.FirstName)
+                    </li>
+                    <li class="col-6 deliver-field">
+                        @Html.TextBoxFor(o => o.LastName, new { placeholder = "Last name*" })
+                        @Html.ValidationMessageFor(o => o.LastName)
+                    </li>
+                    <li class="col-12 deliver-field">
+                        @Html.TextBoxFor(o => o.PhoneNumber, new { placeholder = "Phone number*" })
+                        @Html.ValidationMessageFor(o => o.PhoneNumber)
+                    </li>
+                    <li class="col-12 deliver-field">
+                        @Html.TextBoxFor(o => o.Address, new { placeholder = "Address*" })
+                        @Html.ValidationMessageFor(o => o.Address)
+                    </li>
+                    <li class="col-8 deliver-field">
+                        @Html.TextBoxFor(o => o.SuburbCity, new { placeholder = "Suburb / city*" })
+                        @Html.ValidationMessageFor(o => o.SuburbCity)
+                    </li>
+                    <li class="col-4 deliver-field">
+                        @Html.TextBoxFor(o => o.Postcode, new { placeholder = "Postcode*" })
+                        @Html.ValidationMessageFor(o => o.Postcode)
+                    </li>
+                    <li class="col-12 deliver-field">
+                        @Html.DropDownListFor(o => o.State, Model.States, "State...", new { })
+                        @Html.ValidationMessageFor(o => o.State)
+                    </li>
+                </ol>
+                
+          
 
             <ol class="row">
                 <li class="col-12">
                     <div class="float-container">
-                        <button type="submit" class="btn @(Model.OrderContainsCustomInvitations ? "right" : "left") primary">Save & continue</button>
+                        <button type="submit" class="btn left primary">Save & continue</button>
                     </div>
                 </li>
             </ol>

@@ -30,7 +30,7 @@ namespace Vintage.Rabbit.Web.Models.Payment
             :base (address)
         {
             this.Email = address.Email;
-            this.OrderContainsBuyItems = order.ContainsBuyProducts();
+            this.OrderContainsBuyItems = order.ContainsBuyProducts() && !order.ContainsHireProducts() && !order.ContainsTheme();
         }
     }
 }

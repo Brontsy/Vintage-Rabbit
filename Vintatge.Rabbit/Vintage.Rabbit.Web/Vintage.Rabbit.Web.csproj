@@ -222,6 +222,7 @@
     <Compile Include="Models\Payment\BillingAddressViewModel.cs" />
     <Compile Include="Models\Payment\DeliveryAddressViewModel.cs" />
     <Compile Include="Models\Payment\GuestViewModel.cs" />
+    <Compile Include="Models\Payment\InvitationViewModel.cs" />
     <Compile Include="Models\Payment\PartyHireInformationViewModel.cs" />
     <Compile Include="Models\Products\ProductListViewModel.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
@@ -583,6 +584,7 @@
     <Content Include="Views\Style\Link.cshtml" />
     <Content Include="Views\Style\PreviewLink.cshtml" />
     <Content Include="Views\Payment\PartyHireInformation.cshtml" />
+    <Content Include="Views\Payment\CustomisedInvitations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -12,44 +12,46 @@ using Vintage.Rabbit.Parties.Repositories;
 
 namespace Vintage.Rabbit.Parties.CommandHandlers
 {
-    public class CreatePartyCommand
+    public class AddPartyAddressCommand
     {
         public IOrder Order { get; private set; }
 
-        public DateTime PartyDate { get; private set; }
-
         public IActionBy ActionBy { get; private set; }
 
-        public CreatePartyCommand(IOrder order, DateTime partyDate, IActionBy actionBy)
+        public Address Address { get; set; }
+
+        public AddPartyAddressCommand(IOrder order, Address address, IActionBy actionBy)
         {
             this.Order = order;
-            this.PartyDate = partyDate;
+            this.Address = address;
             this.ActionBy = actionBy;
         }
     }
 
-    internal class CreatePartyCommandHandler : ICommandHandler<CreatePartyCommand>
+    internal class AddPartyAddressCommandHandler : ICommandHandler<AddPartyAddressCommand>
     {
         private ICommandDispatcher _commandDispatcher;
         private IQueryDispatcher _queryDispatcher;
 
-        public CreatePartyCommandHandler(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher)
+        public AddPartyAddressCommandHandler(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher)
         {
             this._commandDispatcher = commandDispatcher;
             this._queryDispatcher = queryDispatcher;
         }
 
-        public void Handle(CreatePartyCommand command)
+        public void Handle(AddPartyAddressCommand command)
         {
             Party party = this._queryDispatcher.Dispatch<Party, GetPartyByOrderGuidQuery>(new GetPartyByOrderGuidQuery(command.Order.Guid));
 
             if (party == null)
             {
-                party = new Party(command.Order, command.PartyDate);
-
-                this._commandDispatcher.Dispatch(new SavePartyCommand(party, command.ActionBy));
+                throw new Exception("Cannot find party to add address to");
             }
 
+            party.DropoffAddress = command.Address.Guid;
+            party.PickupAddress = command.Address.Guid;
+
+            this._commandDispatcher.Dispatch(new SavePartyCommand(party, command.ActionBy));
         }
     }
 }

@@ -21,6 +21,8 @@ namespace Vintage.Rabbit.Parties.Ioc
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<SavePartyCommandHandler>().As<ICommandHandler<SavePartyCommand>>();
+            builder.RegisterType<AddInvitationDetailsCommandHandler>().As<ICommandHandler<AddInvitationDetailsCommand>>();
+            builder.RegisterType<AddPartyAddressCommandHandler>().As<ICommandHandler<AddPartyAddressCommand>>();
             builder.RegisterType<CreatePartyCommandHandler>().As<ICommandHandler<CreatePartyCommand>>();
 
             builder.RegisterType<GetPartiesQueryHandler>().As<IQueryHandler<PagedResult<Party>, GetPartiesQuery>>();

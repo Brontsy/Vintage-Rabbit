@@ -12,6 +12,7 @@ using Vintage.Rabbit.Common.Extensions;
 using Vintage.Rabbit.Common.Enums;
 using Vintage.Rabbit.Inventory.Entities;
 using Vintage.Rabbit.Web.Models.Hire;
+using Vintage.Rabbit.Products.Helpers;
 
 namespace Vintage.Rabbit.Web.Models.Products
 {
@@ -39,6 +40,8 @@ namespace Vintage.Rabbit.Web.Models.Products
 
         public string SeoKeywords { get; private set; }
 
+        public bool IsCustomisableInvitation { get; private set; }
+
         public string UrlTitle
         {
             get { return this.Title.ToUrl(); }
@@ -58,6 +61,7 @@ namespace Vintage.Rabbit.Web.Models.Products
             this.Categories = product.Categories.Select(o => new CategoryViewModel(o)).ToList();
             this.Type = product.Type;
             this.SeoKeywords = product.Keywords;
+            this.IsCustomisableInvitation = ProductHelper.IsCustomisableInvitation(product);
 
             this.Qty = 1;
             this.InventoryCount = new List<SelectListItem>();

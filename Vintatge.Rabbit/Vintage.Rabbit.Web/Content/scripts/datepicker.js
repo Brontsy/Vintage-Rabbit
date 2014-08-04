@@ -18,6 +18,12 @@ function AddDatePickerEvents()
         $('.check-availability').removeClass('unavailable').removeClass('available').removeClass('in-cart');
     });
 
+    $('.checkout .party-date-picker').datepicker({
+        format: 'dd MM yyyy',
+        startDate: new Date(),
+        autoclose: true
+    });
+
     $('.check-availability-form').on('submit', function (event) {
 
         event.preventDefault();

@@ -55,6 +55,7 @@ namespace Vintage.Rabbit.Web
             public static string LoginRegister = "Checkout - LoginRegister";
             public static string Guest = "Checkout - Guest";
             public static string PartyHireInformation = "Checkout - PartyHireInformation";
+            public static string CustomisedInvitations = "Checkout - CustomisedInvitations";
             public static string ShippingInformation = "Checkout - ShippingInformation";
             public static string BillingInformation = "Checkout - BillingInformation";
             public static string PaymentInfo = "Checkout - PaymentInfo";
@@ -162,6 +163,7 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.Checkout.LoginRegister, url: "checkout/register", defaults: new { controller = "Payment", action = "LoginRegister" });
             routes.MapRoute(Routes.Checkout.Guest, url: "checkout/guest", defaults: new { controller = "Payment", action = "Guest" });
             routes.MapRoute(Routes.Checkout.PartyHireInformation, url: "checkout-{orderGuid}/party-hire", defaults: new { controller = "Payment", action = "PartyHireInformation" });
+            routes.MapRoute(Routes.Checkout.CustomisedInvitations, url: "checkout-{orderGuid}/customised-invitations", defaults: new { controller = "Payment", action = "CustomisedInvitations" });
             routes.MapRoute(Routes.Checkout.ShippingInformation, url: "checkout-{orderGuid}/buy/shipping-address/{guid}", defaults: new { controller = "Payment", action = "ShippingInformation", guid = UrlParameter.Optional });
             routes.MapRoute(Routes.Checkout.BillingInformation, url: "checkout-{orderGuid}/billing/address/{guid}", defaults: new { controller = "Payment", action = "BillingInformation", guid = UrlParameter.Optional });
             routes.MapRoute(Routes.Checkout.PaymentInfo, url: "checkout-{orderGuid}/payment", defaults: new { controller = "Payment", action = "PaymentInfo" });

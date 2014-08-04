@@ -6,6 +6,7 @@ using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Common.Extensions;
 using Vintage.Rabbit.Web.Models.Categories;
 using Vintage.Rabbit.Common.Enums;
+using Vintage.Rabbit.Products.Helpers;
 
 namespace Vintage.Rabbit.Web.Models.Products
 {
@@ -25,6 +26,8 @@ namespace Vintage.Rabbit.Web.Models.Products
 
         public IList<CategoryViewModel> Categories { get; private set; }
 
+        public bool IsCustomisableInvitation { get; private set; }
+
         public string UrlTitle
         {
             get { return this.Title.ToUrl(); }
@@ -42,6 +45,7 @@ namespace Vintage.Rabbit.Web.Models.Products
             this.Title = product.Title;
             this.Type = product.Type;
             this.Categories = product.Categories.Select(o => new CategoryViewModel(o)).ToList();
+            this.IsCustomisableInvitation = ProductHelper.IsCustomisableInvitation(product);
         }
     }
 }

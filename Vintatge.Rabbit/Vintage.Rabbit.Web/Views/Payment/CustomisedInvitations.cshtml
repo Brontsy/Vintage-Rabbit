@@ -1,0 +1,107 @@
+﻿@model Vintage.Rabbit.Web.Models.Payment.InvitationViewModel
+@{
+    ViewBag.Title = "Checkout - Devliery";
+}
+
+
+<div class="checkout delivery-information">
+
+    <ol class="float-container checkout-breadcrumb">
+
+        <li class="checkout">
+            <div class="triangle-left"></div>
+            <div class="triangle"></div>
+            <h3>Checkout</h3>
+        </li>
+        <li class="login-register completed">
+            <div class="triangle-left"></div>
+            <div class="triangle"></div>
+            <h3>Login / Register</h3>
+        </li>
+        <li class="address active">
+            <div class="triangle-left"></div>
+            <div class="triangle"></div>
+            <h3>Address</h3>
+        </li>
+        <li class="payment">
+            <div class="triangle-left"></div>
+            <div class="triangle"></div>
+            <h3>Payment</h3>
+        </li>
+        <li class="confirmation">
+            <div class="triangle-left"></div>
+            <div class="triangle"></div>
+            <h3>Complete</h3>
+        </li>
+
+    </ol>
+@using (Html.BeginRouteForm(Routes.Checkout.CustomisedInvitations, new { }, FormMethod.Post, new { @class = "party-details" }))
+            {
+    <div class="row">
+
+        <div class="col-6">
+                    @if(Model.PartyDate.HasValue)
+                    {
+                        @Html.HiddenFor(o => o.PartyDate)
+                    }
+
+          
+                <h2>Customised Invitation details</h2>
+            <p>Please enter the party details below for your custom invitations</p>
+                <ol class="row">
+                    <li class="col-8">
+                        @Html.TextBoxFor(o => o.ChildsName, new { placeholder = "Childs name*" })
+                        @Html.ValidationMessageFor(o => o.ChildsName)
+                    </li>
+                    <li class="col-4">
+                        @Html.TextBoxFor(o => o.Age, new { placeholder = "Age*" })
+                        @Html.ValidationMessageFor(o => o.Age)
+                    </li>
+                    <li class="col-8">
+                        @if (Model.PartyDate.HasValue)
+                        { 
+                        <p class="party-date">Party Date: @Model.PartyDate.Value.ToString("dd MMMM yyyy")</p>
+                        }
+                        else
+                        {
+                            @Html.EditorFor(o => o.PartyDate, new { htmlAttributes = new { @placeholder = "Party Date*", @class = "party-date-picker" } })
+                            @Html.ValidationMessageFor(o => o.PartyDate)
+                        }
+                    </li>
+                    <li class="col-4">
+                        @Html.TextBoxFor(o => o.PartyTime, new { placeholder = "Party time*" })
+                        @Html.ValidationMessageFor(o => o.PartyTime)
+                    </li>
+                    <li class="col-12">
+                        @Html.TextBoxFor(o => o.PartyAddress, new { placeholder = "Party address*" })
+                        @Html.ValidationMessageFor(o => o.PartyAddress)
+                    </li>
+                    <li class="col-12">
+                        @Html.TextAreaFor(o => o.RSVPDetails, new { placeholder = "RSVP details" })
+                        @Html.ValidationMessageFor(o => o.RSVPDetails)
+                    </li>
+                </ol>
+          
+
+            <ol class="row">
+                <li class="col-12">
+                    <div class="float-container">
+                        <button type="submit" class="btn right primary">Save & continue</button>
+                    </div>
+                </li>
+            </ol>
+
+        </div>
+        <div class="col-6">
+            @if(!string.IsNullOrEmpty(Model.InvitationImage))
+                {
+                <img width="100%" src="@Model.InvitationImage" />
+            }
+        </div>
+
+        <div class="col-6">
+        </div>
+
+    </div>
+            }
+</div>

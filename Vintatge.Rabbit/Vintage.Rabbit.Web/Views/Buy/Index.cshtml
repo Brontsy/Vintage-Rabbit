@@ -13,15 +13,40 @@
 
 
         <div class="col-10 product-list">
-            <ul class="row ">
 
-                @foreach (var product in Model.Products)
-                {
-                    <li class="col-3">
-                        @{Html.RenderPartial("product-list-item", product);}
-                    </li>
-                }
-            </ul>
+            @if (Model.SelectedCategory.Name == "invitations")
+            {
+                <h3 class="invitation-customised">Customised Invitations</h3>
+                <ul class="row ">
+                    @foreach (var product in Model.Products.Where(o => o.IsCustomisableInvitation))
+                    {
+                        <li class="col-3">
+                            @{Html.RenderPartial("product-list-item", product);}
+                        </li>
+                    }
+                </ul>
+
+                <h3 class="invitation-packs">Invitation packs</h3>
+                <ul class="row ">
+                    @foreach (var product in Model.Products.Where(o => !o.IsCustomisableInvitation))
+                    {
+                        <li class="col-3">
+                            @{Html.RenderPartial("product-list-item", product);}
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            { 
+                <ul class="row ">
+                    @foreach (var product in Model.Products)
+                    {
+                        <li class="col-3">
+                            @{Html.RenderPartial("product-list-item", product);}
+                        </li>
+                    }
+                </ul>
+            }
         </div>
 
 
@@ -29,3 +54,4 @@
     @{Html.RenderPartial("Pagination", Model.Pagination);}
 
 </div>
+

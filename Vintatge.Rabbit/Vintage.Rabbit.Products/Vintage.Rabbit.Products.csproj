@@ -90,6 +90,7 @@
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\ProductImage.cs" />
+    <Compile Include="Helpers\ProductHelper.cs" />
     <Compile Include="Ioc\Bindings.cs" />
     <Compile Include="Messaging\Handlers\InventorySoldMessageHandler.cs" />
     <Compile Include="Messaging\Handlers\ProductHiredMessageHandler.cs" />

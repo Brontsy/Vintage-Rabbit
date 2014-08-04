@@ -35,13 +35,13 @@ namespace Vintage.Rabbit.Web.Controllers
                     if(party.DropoffAddress.HasValue)
                     {
                         var address = this._queryDispatcher.Dispatch<Address, GetAddressByGuidQuery>(new GetAddressByGuidQuery(party.DropoffAddress.Value));
-                        viewModel.DropoffAddress = new DeliveryAddressViewModel(address, order);
+                        viewModel.DropoffAddress = new DeliveryAddressViewModel(address);
                     }
 
                     if(party.PickupAddress.HasValue)
                     {
                         var address = this._queryDispatcher.Dispatch<Address, GetAddressByGuidQuery>(new GetAddressByGuidQuery(party.PickupAddress.Value));
-                        viewModel.PickupAddress = new DeliveryAddressViewModel(address, order);
+                        viewModel.PickupAddress = new DeliveryAddressViewModel(address);
                     }
 
                     return this.PartialView("PartyHireInformation", viewModel);
