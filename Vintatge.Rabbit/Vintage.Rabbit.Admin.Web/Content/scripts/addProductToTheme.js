@@ -8,6 +8,9 @@
 
         $("#product-search").autocomplete({
             source: function (request, response) {
+
+                $('.input-icon i').removeClass('hidden');
+
                 $.ajax({
                     url: $("#product-search").data('search-url'),
                     dataType: "json",
@@ -16,6 +19,7 @@
                     },
                     success: function (data) {
 
+                        $('.input-icon i').addClass('hidden');
                         response(data);
                     }
                 });

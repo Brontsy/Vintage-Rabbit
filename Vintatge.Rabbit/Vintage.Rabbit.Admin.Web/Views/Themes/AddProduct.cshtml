@@ -17,7 +17,10 @@
             <h2>Add Product</h2>
         </div>
         <div class="col-4">
-            <input type="text" id="product-search" name="product-search" value="@ViewBag.Search" class="search" data-search-url="@Url.RouteUrl(Routes.Products.Search)" placeholder="Search" />
+            <div class="input-icon input-icon-right auto-size">
+                <i class="fa hidden">Searching</i>
+                <input type="text" id="product-search" name="product-search" value="@ViewBag.Search" class="search" data-search-url="@Url.RouteUrl(Routes.Products.Search)" placeholder="Search" />
+            </div>
         </div>
         <div class="col-2">
             @Html.TextBoxFor(o => o.Qty, new { placeholder = "Qty" })
