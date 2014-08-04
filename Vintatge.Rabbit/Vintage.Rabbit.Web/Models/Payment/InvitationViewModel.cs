@@ -49,7 +49,7 @@ namespace Vintage.Rabbit.Web.Models.Payment
             }
 
             var invitation = order.Items.FirstOrDefault(o => ProductHelper.IsCustomisableInvitation(o.Product));
-            if(invitation != null && invitation.Product is IProduct && (invitation as IProduct).Images.Any())
+            if(invitation != null && invitation.Product is IProduct && (invitation.Product as IProduct).Images.Any())
             {
                     this.InvitationImage = (invitation.Product as IProduct).Images.First().Url;
             }
