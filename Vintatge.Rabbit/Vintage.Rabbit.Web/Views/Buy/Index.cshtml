@@ -14,7 +14,7 @@
 
         <div class="col-10 product-list">
 
-            @if (Model.SelectedCategory.Name == "invitations")
+            @if (Model.SelectedCategory != null && Model.SelectedCategory.Name == "invitations")
             {
                 <h3 class="invitation-customised">Customised Invitations</h3>
                 <ul class="row ">
