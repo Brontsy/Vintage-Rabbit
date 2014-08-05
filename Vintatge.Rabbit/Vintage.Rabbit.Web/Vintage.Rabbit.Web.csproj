@@ -264,6 +264,7 @@
     <Content Include="Content\images\footer\mastercard.png" />
     <Content Include="Content\images\footer\paypal.png" />
     <Content Include="Content\images\footer\visa.png" />
+    <Content Include="Content\images\home\bunting.jpg" />
     <Content Include="Content\images\home\buy.jpg" />
     <Content Include="Content\images\home\car.jpg" />
     <Content Include="Content\images\home\competition.jpg" />
