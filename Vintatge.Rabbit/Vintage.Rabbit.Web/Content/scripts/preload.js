@@ -34,9 +34,9 @@ $(document).ready(function () {
 
     });
 
-    $('.product-list .product-list-item').on('click', function () {
+    $('.product-list .product-list-item').on('click', function (e) {
 
-        if ($(this).find('a').length > 0) {
+        if ($(e.target).prop("tagName") != 'A' && $(this).find('a').length > 0) {
             window.location = $(this).find('a').attr('href');
         }
     });
