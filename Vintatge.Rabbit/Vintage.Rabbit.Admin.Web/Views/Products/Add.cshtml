@@ -79,7 +79,7 @@
 
                                             @for (int i = 0; i < Model.Categories.Count; i++)
 {
-    <li class="checkbox-container col-6 @(Model.Categories[i].ProductTypes.Contains(ProductType.Buy) ? " buy" : string.Empty)@(Model.Categories[i].ProductTypes.Contains(ProductType.Hire) ? " hire" : string.Empty)">
+    <li class="checkbox-container col-6 @(Model.Categories[i].ProductType == ProductType.Buy ? " buy" : string.Empty)@(Model.Categories[i].ProductType == ProductType.Hire ? " hire" : string.Empty)">
         @Html.CheckBoxFor(o => o.Categories[i].Selected)
         @Html.LabelFor(o => o.Categories[i].Selected, Model.Categories[i].DisplayName)
         @Html.HiddenFor(o => Model.Categories[i].Id)
@@ -89,7 +89,7 @@
             <div class="row child-checkboxes">
                 @for (int j = 0; j < Model.Categories[i].Children.Count; j++)
 {
-    <div class="checkbox-container col-6@(Model.Categories[i].Children[j].ProductTypes.Contains(ProductType.Buy) ? " buy" : string.Empty)@(Model.Categories[i].Children[j].ProductTypes.Contains(ProductType.Hire) ? " hire" : string.Empty)">
+    <div class="checkbox-container col-6@(Model.Categories[i].Children[j].ProductType == ProductType.Buy ? " buy" : string.Empty)@(Model.Categories[i].Children[j].ProductType == ProductType.Hire ? " hire" : string.Empty)">
         @Html.CheckBoxFor(o => o.Categories[i].Children[j].Selected)
         @Html.LabelFor(o => o.Categories[i].Children[j].Selected, Model.Categories[i].Children[j].DisplayName)
         @Html.HiddenFor(o => Model.Categories[i].Children[j].Id)

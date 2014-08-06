@@ -9,6 +9,7 @@ using Vintage.Rabbit.Carts.Entities;
 using Vintage.Rabbit.Carts.QueryHandlers;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Logging;
+using Vintage.Rabbit.Products.Services;
 using Vintage.Rabbit.Web.Attributes;
 
 namespace Vintage.Rabbit.Web.Controllers

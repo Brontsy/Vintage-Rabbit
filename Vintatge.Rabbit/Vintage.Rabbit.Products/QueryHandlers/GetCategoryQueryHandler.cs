@@ -8,6 +8,7 @@ using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Interfaces.Cache;
 using Vintage.Rabbit.Products.Repository;
 using Vintage.Rabbit.Caching;
+using Vintage.Rabbit.Common.Enums;
 
 namespace Vintage.Rabbit.Products.QueryHandlers
 {
@@ -15,9 +16,12 @@ namespace Vintage.Rabbit.Products.QueryHandlers
     {
         public string Name { get; set; }
 
-        public GetCategoryQuery(string name)
+        public ProductType ProductType { get; set; }
+
+        public GetCategoryQuery(string name, ProductType productType)
         {
             this.Name = name;
+            this.ProductType = productType;
         }
     }
 
@@ -32,7 +36,7 @@ namespace Vintage.Rabbit.Products.QueryHandlers
 
         public Category Handle(GetCategoryQuery query)
         {
-            return this._categoryRepository.GetCategory(query.Name);
+            return this._categoryRepository.GetCategory(query.Name, query.ProductType);
         }
     }
 }

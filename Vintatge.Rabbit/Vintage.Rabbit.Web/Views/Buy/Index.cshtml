@@ -16,7 +16,7 @@
 
             @if (Model.SelectedCategory != null && Model.SelectedCategory.Name == "invitations")
             {
-                <h3 class="invitation-customised">Customised Invitations</h3>
+                <h2 class="invitation-customised">Customised Invitations</h2>
                 <ul class="row ">
                     @foreach (var product in Model.Products.Where(o => o.IsCustomisableInvitation))
                     {
@@ -26,7 +26,7 @@
                     }
                 </ul>
 
-                <h3 class="invitation-packs">Invitation packs</h3>
+                <h2 class="invitation-packs">Invitation packs</h2>
                 <ul class="row ">
                     @foreach (var product in Model.Products.Where(o => !o.IsCustomisableInvitation))
                     {
@@ -38,6 +38,11 @@
             }
             else
             { 
+                if(Model.SelectedCategory != null)
+                { 
+                    <h2>@Model.SelectedCategory.DisplayName</h2>
+                }
+
                 <ul class="row ">
                     @foreach (var product in Model.Products)
                     {
@@ -52,6 +57,18 @@
 
     </div>
     @{Html.RenderPartial("Pagination", Model.Pagination);}
+
+    @if(Model.SelectedCategory != null)
+    {
+        <div class="row">
+            <div class="col-10 offset-2">
+    <p class=" solid-box-container">
+                @Model.SelectedCategory.Description
+                </p>
+            </div>
+        </div>
+    }
+
 
 </div>
 

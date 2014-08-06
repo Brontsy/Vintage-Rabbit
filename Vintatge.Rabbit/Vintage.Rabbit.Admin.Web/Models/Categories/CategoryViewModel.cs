@@ -19,7 +19,7 @@ namespace Vintage.Rabbit.Admin.Web.Models.Categories
 
         public IList<CategoryViewModel> Children { get; private set; }
 
-        public IList<ProductType> ProductTypes { get; private set; }
+        public ProductType ProductType { get; private set; }
         
         public CategoryViewModel() 
         {
@@ -31,7 +31,7 @@ namespace Vintage.Rabbit.Admin.Web.Models.Categories
             this.Id = category.Id;
             this.Name = category.Name;
             this.DisplayName = category.DisplayName;
-            this.ProductTypes = category.ProductTypes;
+            this.ProductType = category.ProductType;
             this.Children = category.Children.Select(o => new CategoryViewModel(o)).ToList();
         }
     }

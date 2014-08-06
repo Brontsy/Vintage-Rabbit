@@ -61,14 +61,14 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult Subnav()
         {
-            IList<Category> categories = this._queryDispatcher.Dispatch<IList<Category>, GetCategoriesQuery>(new GetCategoriesQuery()).Where(o => o.ProductTypes.Contains(ProductType.Hire)).ToList();
+            IList<Category> categories = this._queryDispatcher.Dispatch<IList<Category>, GetCategoriesQuery>(new GetCategoriesQuery()).Where(o => o.ProductType == ProductType.Hire).ToList();
 
             return this.PartialView("Subnav", categories.Select(o => new CategoryViewModel(o)).ToList());
         }
 
         public ActionResult Category(string categoryName, int page = 1)
         {
-            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName));
+            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName, ProductType.Hire));
             PagedResult<Product> products = this._queryDispatcher.Dispatch<PagedResult<Product>, GetProductsByCategoryQuery>(new GetProductsByCategoryQuery(category, Common.Enums.ProductType.Hire, page, 20));
 
             ProductListViewModel viewModel = new ProductListViewModel(products, category);
@@ -79,7 +79,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult Categories(string categoryName)
         {
-            IList<Category> categories = this._queryDispatcher.Dispatch<IList<Category>, GetCategoriesQuery>(new GetCategoriesQuery()).Where(o => o.ProductTypes.Contains(ProductType.Hire)).ToList();
+            IList<Category> categories = this._queryDispatcher.Dispatch<IList<Category>, GetCategoriesQuery>(new GetCategoriesQuery()).Where(o => o.ProductType == ProductType.Hire).ToList();
 
             var viewModel = categories.Select(o => new CategoryViewModel(o)).ToList();
 
@@ -148,8 +148,10 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.PartialView("AvailabilityCheck", viewModel);
         }
 
-        public ActionResult ListBreadcrumbs(Category category)
+        public ActionResult ListBreadcrumbs(string categoryName)
         {
+            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName, ProductType.Hire));
+
             BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
             breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
             breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Index), "Hire");
@@ -162,8 +164,9 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.PartialView("Breadcrumbs", breadCrumbs);
         }
 
-        public ActionResult DetailsBreadcrumbs(int productId, Category category)
+        public ActionResult DetailsBreadcrumbs(int productId, string categoryName)
         {
+            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName, ProductType.Hire));
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
             if (category == null)

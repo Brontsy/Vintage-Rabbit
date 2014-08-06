@@ -34,6 +34,18 @@ $(document).ready(function () {
 
     });
 
+    $('.product-list .product-list-item').on('click', function () {
+
+        if ($(this).find('a').length > 0) {
+            window.location = $(this).find('a').attr('href');
+        }
+    });
+
+    $('.product-list .product-list-item').on('click', function (event) {
+
+        event.stopPropagation();
+    });
+
 
     AddThumbnailClickEvents();
 

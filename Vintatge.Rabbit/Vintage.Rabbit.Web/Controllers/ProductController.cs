@@ -19,9 +19,10 @@ namespace Vintage.Rabbit.Web.Controllers
             this._queryDispatcher = queryDispatcher;
         }
 
-        public ActionResult ProductLink(Guid productGuid, Category category, bool includeHostName = false)
+        public ActionResult ProductLink(Guid productGuid, string categoryName, bool includeHostName = false)
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(productGuid));
+            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName, product.Type));
 
             if (category == null && product.Categories.Any())
             {
@@ -31,9 +32,10 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.PartialView("Link", new ProductLinkViewModel(product, category, includeHostName));
         }
 
-        public ActionResult ProductPreviewLink(Guid productGuid, Category category)
+        public ActionResult ProductPreviewLink(Guid productGuid, string categoryName)
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(productGuid));
+            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName, product.Type));
 
             if (category == null && product.Categories.Any())
             {

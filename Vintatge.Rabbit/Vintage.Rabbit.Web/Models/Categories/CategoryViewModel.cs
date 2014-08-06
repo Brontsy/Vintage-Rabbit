@@ -18,11 +18,14 @@ namespace Vintage.Rabbit.Web.Models.Categories
 
         public bool Selected { get; set; }
 
+        public string Description { get; set; }
+
         public CategoryViewModel(Category category)
         {
             this.Id = category.Id;
             this.Name = category.Name;
             this.DisplayName = category.DisplayName;
+            this.Description = category.Description;
             this.Children = category.Children.Select(o => new CategoryViewModel(o)).ToList();
         }
     }

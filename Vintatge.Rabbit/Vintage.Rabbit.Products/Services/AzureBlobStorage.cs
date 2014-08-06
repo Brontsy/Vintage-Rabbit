@@ -25,6 +25,24 @@ namespace Vintage.Rabbit.Products.Services
 
     internal class AzureBlobStorage : IFileStorage
     {
+
+        private string GetShareAccessUri(string blobname, int validityPeriodInMinutes, CloudBlobContainer container)
+        {
+            var toDateTime = DateTime.Now.AddMinutes(validityPeriodInMinutes);
+
+            var policy = new SharedAccessBlobPolicy
+            {
+                Permissions = SharedAccessBlobPermissions.Read,
+                SharedAccessStartTime = null,
+                SharedAccessExpiryTime = new DateTimeOffset(toDateTime)
+            };
+
+            var blob = container.GetBlockBlobReference(blobname);
+            var sas = blob.GetSharedAccessSignature(policy);
+            return blob.Uri.AbsoluteUri + sas;
+        }
+
+
         public bool DeleteFile(string path)
         {
             if(path.Contains("http://vintagerabbit.blob.core.windows.net/vintage-rabbit/"))

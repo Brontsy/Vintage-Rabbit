@@ -14,6 +14,12 @@
 
          
     <div class="col-10 product-list">
+
+        <h2>@Model.SelectedCategory.DisplayName</h2>
+        <p>
+            @Model.SelectedCategory.Description
+        </p>
+
         <ul class="row ">
 
             @foreach (var product in Model.Products)

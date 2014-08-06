@@ -182,6 +182,7 @@
     <Compile Include="Attributes\HasOrderAttribute.cs" />
     <Compile Include="Attributes\CheckoutRegisterAttribute.cs" />
     <Compile Include="Attributes\Validation\EmailAttribute.cs" />
+    <Compile Include="Controllers\CreativeDirectorController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
@@ -496,6 +497,7 @@
     <Content Include="Content\less\components\pagination.less" />
     <Content Include="Content\less\components\party-hire-information.less" />
     <Content Include="Areas\Emails\Views\ContactUsEmail\ContactUsEmail.cshtml" />
+    <Content Include="Content\less\pages\creative-director.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -586,6 +588,7 @@
     <Content Include="Views\Style\PreviewLink.cshtml" />
     <Content Include="Views\Payment\PartyHireInformation.cshtml" />
     <Content Include="Views\Payment\CustomisedInvitations.cshtml" />
+    <Content Include="Views\CreativeDirector\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

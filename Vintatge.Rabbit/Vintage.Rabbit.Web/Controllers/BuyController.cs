@@ -57,21 +57,23 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult PartySuppliesSubnav()
         {
-            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery("party-supplies"));
+            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery("party-supplies", ProductType.Buy));
 
             return this.PartialView("PartySuppliesSubnav", category.Children.Select(o => new CategoryViewModel(o)).ToList());
         }
 
         public ActionResult Preview(int productId, string name, string categoryName)
         {
-            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName));
+            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName, ProductType.Buy));
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
             return this.PartialView("Product", new ProductViewModel(product));
         }
 
-        public ActionResult Category(Category category, string childCategoryName, int page = 1)
+        public ActionResult Category(string categoryName, string childCategoryName, int page = 1)
         {
+            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName, ProductType.Buy));
+
             bool isChildCategory = false;
             if(!string.IsNullOrEmpty(childCategoryName))
             {
@@ -87,9 +89,10 @@ namespace Vintage.Rabbit.Web.Controllers
             return View("Index", viewModel);
         }
 
-        public ActionResult Categories(Category category, string childCategoryName)
+        public ActionResult Categories(string categoryName, string childCategoryName)
         {
-            IList<Category> categories = this._queryDispatcher.Dispatch<IList<Category>, GetCategoriesQuery>(new GetCategoriesQuery()).Where(o => o.ProductTypes.Contains(ProductType.Buy)).ToList();
+            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName, ProductType.Buy));
+            IList<Category> categories = this._queryDispatcher.Dispatch<IList<Category>, GetCategoriesQuery>(new GetCategoriesQuery()).Where(o => o.ProductType == ProductType.Buy).ToList();
 
             var viewModel = categories.Select(o => new CategoryViewModel(o)).ToList();
 
@@ -109,14 +112,16 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult Product(int productId, string name, string categoryName)
         {
-            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName));
+            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName, ProductType.Buy));
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
             return View("Product", new ProductViewModel(product));
         }
 
-        public ActionResult ListBreadcrumbs(Category category, string childCategoryName)
+        public ActionResult ListBreadcrumbs(string categoryName, string childCategoryName)
         {
+            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName, ProductType.Buy));
+
             BreadcrumbsViewModel breadCrumbs = new BreadcrumbsViewModel();
             breadCrumbs.Add(Url.RouteUrl(Routes.Home), "Home");
             breadCrumbs.Add(Url.RouteUrl(Routes.Buy.Index), "Buy");
@@ -128,15 +133,16 @@ namespace Vintage.Rabbit.Web.Controllers
 
             if (!string.IsNullOrEmpty(childCategoryName))
             {
-                Category childCategory = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(childCategoryName));
+                Category childCategory = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(childCategoryName, ProductType.Buy));
                 breadCrumbs.Add(Url.RouteUrl(Routes.Buy.Category, new { categoryName = childCategory.Name }), childCategory.DisplayName, true);
             }
 
             return this.PartialView("Breadcrumbs", breadCrumbs);
         }
 
-        public ActionResult DetailsBreadcrumbs(int productId, Category category)
+        public ActionResult DetailsBreadcrumbs(int productId, string categoryName)
         {
+            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName, ProductType.Buy));
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
             if(category == null)

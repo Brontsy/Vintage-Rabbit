@@ -56,12 +56,19 @@ function AddClickEvents()
     $('a.add-to-cart').on('click', function (event) {
 
         event.preventDefault();
+        event.stopPropagation();
+
         var $this = $(this);
+
+        $(this).data('button-text', $(this).html());
+        $(this).html('Adding');
+
         $.ajax({
             url: $(this).attr('href'),
             type: 'POST',
             complete: function (json) {
                 $(window).trigger('AddToCart', $this)
+                $this.html($this.data('button-text'));
             }
         })
     });

@@ -15,13 +15,14 @@ namespace Vintage.Rabbit.Products.Entities
 
         public string DisplayName { get; set; }
 
-        public IList<ProductType> ProductTypes { get; set; }
+        public ProductType ProductType { get; set; }
 
         public IList<Category> Children { get; set; }
 
+        public string Description { get; set; }
+
         public Category()
         {
-            this.ProductTypes = new List<ProductType>();
             this.Children = new List<Category>();
         }
     }
