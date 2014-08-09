@@ -1,4 +1,4 @@
-﻿@model Vintage.Rabbit.Web.Models.Products.ProductListViewModel
+﻿@model IList<Vintage.Rabbit.Web.Models.Products.PurchasableItemViewModel>
 
 @{
     ViewBag.Title = "Vintage Rabbit";
@@ -14,18 +14,17 @@
     </div>
 
     <ul>
-        @foreach (var product in Model.Products)
+        @foreach (var product in Model)
         {
             <li>
-                <div class="row">
-                    <div class="col-2">
-                        <img src="@product.Image.Thumbnail" width="100%" />
-                    </div>
-                    <div class="col-10">                        
-                        @{Html.RenderAction("ProductLink", "Product", new { productGuid = product.Guid });}
-                        <p>@product.Description</p>
-                    </div>
-                </div>
+                @if(product.Type == Vintage.Rabbit.Common.Enums.ProductType.Theme)
+                {
+                    <text>@Html.RouteLink(product.Title, Routes.Themes.Theme, new { themeName = product.UrlTitle })</text>
+                }
+                else if (product.Type == Vintage.Rabbit.Common.Enums.ProductType.Hire)
+                {
+                    Html.RenderAction("ProductLink", "Product", new { productGuid = product.Guid });
+                }
             </li>
         }
     </ul>

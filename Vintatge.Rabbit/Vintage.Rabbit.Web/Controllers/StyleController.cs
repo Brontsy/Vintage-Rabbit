@@ -98,17 +98,15 @@ namespace Vintage.Rabbit.Web.Controllers
             }
             else
             {
-                IList<Guid> productGuids = this.GetProductGuids(theme);
-                IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByGuidsQuery>(new GetProductsByGuidsQuery(productGuids));
-                IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductsQuery>(new GetInventoryForProductsQuery(productGuids));
-                bool available = theme.IsAvailable(hireDates.PartyDate.Value, inventory.Select(o => o as IInventoryItem).ToList());
+                bool added = false;
 
-                if(available)
+                if(this._queryDispatcher.Dispatch<bool, IsThemeAvailableForHireQuery>(new IsThemeAvailableForHireQuery(themeName, hireDates.PartyDate.Value)))
                 {
                     this._commandDispatcher.Dispatch(new AddThemeToCartCommand(member.Guid, theme, hireDates.PartyDate.Value));
+                    added = true;
                 }
 
-                HireThemeViewModel viewModel = new HireThemeViewModel(theme, products, available, hireDates);
+                ThemeAddedToCartViewModel viewModel = new ThemeAddedToCartViewModel(theme, added);
                 
                 return this.PartialView("AddedToCart", viewModel);
             }

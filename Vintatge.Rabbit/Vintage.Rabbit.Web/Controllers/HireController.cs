@@ -18,6 +18,7 @@ using Vintage.Rabbit.Web.Models.Pagination;
 using Vintage.Rabbit.Inventory.Entities;
 using Vintage.Rabbit.Carts.Entities;
 using Vintage.Rabbit.Carts.CommandHandlers;
+using Vintage.Rabbit.Carts.QueryHandlers;
 
 namespace Vintage.Rabbit.Web.Controllers
 {
@@ -191,28 +192,18 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             // get unavailable products
             // submit command handler
-            if (this.ModelState.IsValid)
+            if (partyDate.PartyDate.HasValue)
             {
-                IList<Guid> unavailableProductGuids = new List<Guid>();
+                IList<CartItem> cartItems = this._queryDispatcher.Dispatch<IList<CartItem>, GetUnavailableCartItemsQuery>(new GetUnavailableCartItemsQuery(cart, partyDate.PartyDate.Value));
 
-                foreach (var cartItem in cart.Items)
+                if (cartItems.Any())
                 {
-                    if (!this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(cartItem.Product.Guid, cartItem.Quantity, partyDate.PartyDate.Value)))
+                    foreach (CartItem cartItem in cartItems)
                     {
-                        unavailableProductGuids.Add(cartItem.Product.Guid);
-                    }
-                }
-
-                if (unavailableProductGuids.Any())
-                {
-                    foreach(Guid productGuid in unavailableProductGuids)
-                    {
-                        this._commandDispatcher.Dispatch(new RemoveCartItemCommand(cart.MemberId, cart.Items.First(o => o.Product.Guid == productGuid).Id));
+                        this._commandDispatcher.Dispatch(new RemoveCartItemCommand(cart.MemberId, cartItem.Id));
                     }
 
-                    IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByGuidsQuery>(new GetProductsByGuidsQuery(unavailableProductGuids));
-
-                    ProductListViewModel viewModel = new ProductListViewModel(products);
+                    IList<PurchasableItemViewModel> viewModel = cartItems.Select(o => new PurchasableItemViewModel(o.Product)).ToList();
 
                     return this.View("ProductsRemoved", viewModel);
                 }

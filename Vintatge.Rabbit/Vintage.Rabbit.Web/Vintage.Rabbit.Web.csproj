@@ -240,8 +240,10 @@
     <Compile Include="Models\Products\ProductImageViewModel.cs" />
     <Compile Include="Models\Products\ProductListItemViewModel.cs" />
     <Compile Include="Models\Products\ProductLinkViewModel.cs" />
+    <Compile Include="Models\Products\PurchasableItemViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartItemViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartViewModel.cs" />
+    <Compile Include="Models\Themes\ThemeAddedToCartViewModel.cs" />
     <Compile Include="Models\Themes\HireThemeViewModel.cs" />
     <Compile Include="Models\Themes\PartyDatePickerViewModel.cs" />
     <Compile Include="Models\Themes\PostcodeCheckViewModel.cs" />

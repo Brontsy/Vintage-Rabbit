@@ -64,6 +64,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryHandlers\GetThemeByGuidQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetThemesQueryHandler.cs" />
+    <Compile Include="QueryHandlers\IsThemeAvailableForHireQueryHandler.cs" />
     <Compile Include="Repository\ThemeRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -78,6 +79,10 @@
     <ProjectReference Include="..\Vintage.Rabbit.Interfaces\Vintage.Rabbit.Interfaces.csproj">
       <Project>{93bcba0e-cfff-4963-a237-4be306ec0d2b}</Project>
       <Name>Vintage.Rabbit.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Inventory\Vintage.Rabbit.Inventory.csproj">
+      <Project>{7f2a5f29-08d3-476d-9881-f88b6b5260d8}</Project>
+      <Name>Vintage.Rabbit.Inventory</Name>
     </ProjectReference>
     <ProjectReference Include="..\Vintage.Rabbit.Products\Vintage.Rabbit.Products.csproj">
       <Project>{2ee117ed-6ab6-478d-93e7-1c695fc57b0a}</Project>

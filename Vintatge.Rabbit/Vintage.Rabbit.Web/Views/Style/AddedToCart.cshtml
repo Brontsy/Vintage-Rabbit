@@ -1,11 +1,11 @@
-﻿@model Vintage.Rabbit.Web.Models.Themes.HireThemeViewModel
+﻿@model Vintage.Rabbit.Web.Models.Themes.ThemeAddedToCartViewModel
 
 <div class="theme-add-to-cart">
 
     <div class="row">
         <div class="col-12">
 
-            @if (Model.IsAvailable.HasValue && Model.IsAvailable.Value)
+            @if (Model.AddedToCart)
             {
                 <div class="alert positive icon theme-added-to-cart">
                     <i class="fa fa-check-circle"></i>@Model.Title has been added to your @Html.RouteLink("shopping cart", Routes.ShoppingCart.PageHeader, new { }, new { @class = "ajax-lightbox" })
