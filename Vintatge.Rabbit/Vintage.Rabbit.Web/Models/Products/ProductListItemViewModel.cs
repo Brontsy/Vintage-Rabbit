@@ -22,6 +22,8 @@ namespace Vintage.Rabbit.Web.Models.Products
 
         public string Title { get; private set; }
 
+        public string Description { get; private set; }
+
         public ProductType Type { get; private set; }
 
         public IList<CategoryViewModel> Categories { get; private set; }
@@ -43,6 +45,7 @@ namespace Vintage.Rabbit.Web.Models.Products
             }
             this.Cost = product.Cost.ToString("C");
             this.Title = product.Title;
+            this.Description = product.Description;
             this.Type = product.Type;
             this.Categories = product.Categories.Select(o => new CategoryViewModel(o)).ToList();
             this.IsCustomisableInvitation = ProductHelper.IsCustomisableInvitation(product);

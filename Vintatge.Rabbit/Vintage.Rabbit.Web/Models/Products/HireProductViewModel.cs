@@ -19,6 +19,7 @@ namespace Vintage.Rabbit.Web.Models.Products
     {
         public bool? IsAvailable {get; private set;}
 
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime? PartyDate { get; private set; }
 
         public HireProductViewModel(Product product, IList<InventoryItem> inventory, HireDatesViewModel hireDates)

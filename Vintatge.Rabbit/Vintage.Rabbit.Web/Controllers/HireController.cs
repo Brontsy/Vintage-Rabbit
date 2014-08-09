@@ -16,16 +16,20 @@ using Vintage.Rabbit.Common.Enums;
 using Vintage.Rabbit.Common.Entities;
 using Vintage.Rabbit.Web.Models.Pagination;
 using Vintage.Rabbit.Inventory.Entities;
+using Vintage.Rabbit.Carts.Entities;
+using Vintage.Rabbit.Carts.CommandHandlers;
 
 namespace Vintage.Rabbit.Web.Controllers
 {
     public class HireController : Controller
     {
         private IQueryDispatcher _queryDispatcher;
+        private ICommandDispatcher _commandDispatcher;
 
-        public HireController(IQueryDispatcher queryDispatcher)
+        public HireController(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher)
         {
             this._queryDispatcher = queryDispatcher;
+            this._commandDispatcher = commandDispatcher;
         }
 
         public ActionResult Hire()
@@ -181,6 +185,40 @@ namespace Vintage.Rabbit.Web.Controllers
             breadCrumbs.Add(Url.RouteUrl(Routes.Hire.Product, new { productId = product.Id, name = product.Title.ToUrl() }), product.Title, true);
 
             return this.PartialView("Breadcrumbs", breadCrumbs);
+        }
+
+        public ActionResult ChangePartyDate(HireDatesViewModel partyDate, Cart cart)
+        {
+            // get unavailable products
+            // submit command handler
+            if (this.ModelState.IsValid)
+            {
+                IList<Guid> unavailableProductGuids = new List<Guid>();
+
+                foreach (var cartItem in cart.Items)
+                {
+                    if (!this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(cartItem.Product.Guid, cartItem.Quantity, partyDate.PartyDate.Value)))
+                    {
+                        unavailableProductGuids.Add(cartItem.Product.Guid);
+                    }
+                }
+
+                if (unavailableProductGuids.Any())
+                {
+                    foreach(Guid productGuid in unavailableProductGuids)
+                    {
+                        this._commandDispatcher.Dispatch(new RemoveCartItemCommand(cart.MemberId, cart.Items.First(o => o.Product.Guid == productGuid).Id));
+                    }
+
+                    IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByGuidsQuery>(new GetProductsByGuidsQuery(unavailableProductGuids));
+
+                    ProductListViewModel viewModel = new ProductListViewModel(products);
+
+                    return this.View("ProductsRemoved", viewModel);
+                }
+            }
+
+            return this.Redirect(this.Request.UrlReferrer.ToString());
         }
 	}
 }

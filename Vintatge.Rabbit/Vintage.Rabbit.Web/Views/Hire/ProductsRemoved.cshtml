@@ -1,0 +1,34 @@
+﻿@model Vintage.Rabbit.Web.Models.Products.ProductListViewModel
+
+@{
+    ViewBag.Title = "Vintage Rabbit";
+}
+
+
+<div class="hire-products-removed">
+    
+    <h2>Products unavailable</h2>
+
+    <div class="alert negative">
+        Unfortunately the following products are not available for your selected party date and have been removed from your shopping cart.
+    </div>
+
+    <ul>
+        @foreach (var product in Model.Products)
+        {
+            <li>
+                <div class="row">
+                    <div class="col-2">
+                        <img src="@product.Image.Thumbnail" width="100%" />
+                    </div>
+                    <div class="col-10">                        
+                        @{Html.RenderAction("ProductLink", "Product", new { productGuid = product.Guid });}
+                        <p>@product.Description</p>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+
+</div>
+

@@ -589,6 +589,7 @@
     <Content Include="Views\Payment\PartyHireInformation.cshtml" />
     <Content Include="Views\Payment\CustomisedInvitations.cshtml" />
     <Content Include="Views\CreativeDirector\Index.cshtml" />
+    <Content Include="Views\Hire\ProductsRemoved.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -25,6 +25,18 @@ function AddThumbnailClickEvents() {
 
         })
     });
+
+
+    $('.change-party-date').on('click', function (event) {
+        event.preventDefault();
+        $('.choose-party-date').removeClass('hidden');
+        $('.available-text').addClass('hidden');
+    });
+
+    $('.change-party-date-form').on('submit', function () {
+        $(this).find('.btn').html('Changing');
+        $(this).css('opacity', '0.5');
+    });
 }
 
 $(document).ready(function () {

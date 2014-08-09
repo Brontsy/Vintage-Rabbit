@@ -16,24 +16,17 @@ namespace Vintage.Rabbit.Payment.Entities
 
         public Guid OrderGuid { get; internal set; }
 
-        public string CreditCardNumber { get; internal set; }
-
-        public string Name { get; internal set; }
-
-        public int ExpiryMonth { get; internal set; }
-
-        public int ExpiryYear { get; internal set; }
-
-        public string CCV { get; internal set; }
-
         public CreditCardPaymentStatus Status { get; internal set; }
 
         public string ErrorMessage { get; internal set; }
+
+        public string AccessCode { get; internal set; }
 
         public CreditCardPayment(IOrder order)
         {
             this.Guid = Guid.NewGuid();
             this.OrderGuid = order.Guid;
+            this.Status = CreditCardPaymentStatus.Initialised;
         }
 
         internal void Error(string errorMessage)
@@ -46,15 +39,6 @@ namespace Vintage.Rabbit.Payment.Entities
         {
             this.Status = CreditCardPaymentStatus.Completed;
             this.ErrorMessage = null;
-        }
-
-        public void AddCreditCardDetails(string name, string creditCardNumber, int expiryMonth, int expiryYear, string ccv)
-        {
-            this.Name = name;
-            this.CreditCardNumber = creditCardNumber;
-            this.ExpiryMonth = expiryMonth;
-            this.ExpiryYear = expiryYear;
-            this.CCV = ccv;
         }
     }
 }

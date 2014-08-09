@@ -15,6 +15,10 @@ namespace Vintage.Rabbit.Payment.Repository
         CreditCardPayment GetCreditCardPaymentByOrder(IOrder order);
 
         CreditCardPayment SaveCreditCardPayment(CreditCardPayment creditCardPayment);
+
+        void SaveEwayPayment(EWayPayment ewayPayment);
+
+        EWayPayment GetEwayPaymentByAccessCode(string accessCode);
     }
 
     internal class CreditCardRepository : ICreditCardRepository
@@ -61,6 +65,16 @@ namespace Vintage.Rabbit.Payment.Repository
             }
 
             return creditCardPayment;
+        }
+
+        public void SaveEwayPayment(EWayPayment ewayPayment)
+        {
+
+        }
+
+        public EWayPayment GetEwayPaymentByAccessCode(string accessCode)
+        {
+            return null;
         }
     }
 }

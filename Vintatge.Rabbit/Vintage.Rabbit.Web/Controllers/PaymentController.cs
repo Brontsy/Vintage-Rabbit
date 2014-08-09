@@ -20,6 +20,7 @@ using Vintage.Rabbit.Parties.Entities;
 using Vintage.Rabbit.Parties.QueryHandlers;
 using Vintage.Rabbit.Payment.CommandHandlers;
 using Vintage.Rabbit.Payment.Entities;
+using Vintage.Rabbit.Payment.Enums;
 using Vintage.Rabbit.Payment.QueryHandlers;
 using Vintage.Rabbit.Payment.Services;
 using Vintage.Rabbit.Products.Entities;
@@ -147,25 +148,20 @@ namespace Vintage.Rabbit.Web.Controllers
                 return this.PartyHireInformation(order, member);
             }
 
-            if (this.ModelState.IsValid)
+            this._commandDispatcher.Dispatch(new CreatePartyCommand(order, viewModel.PartyDate.Value, member));
+
+            if (viewModel.IsDelivery)
             {
-                this._commandDispatcher.Dispatch(new CreatePartyCommand(order, viewModel.PartyDate.Value, member));
-
-                if (viewModel.IsDelivery)
-                {
-                    Address deliveryAddress = this._addressProvider.SaveDeliveryAddress(member, viewModel);
-                    this._commandDispatcher.Dispatch<AddDeliveryAddressCommand>(new AddDeliveryAddressCommand(order, deliveryAddress, true, true));
-                    this._commandDispatcher.Dispatch(new AddPartyAddressCommand(order, deliveryAddress, member));
-                }
-                else
-                {
-                    this._commandDispatcher.Dispatch(new RemoveDeliveryAddressCommand(order));
-                }
-
-                return this.RedirectToRoute(Routes.Checkout.BillingInformation);
+                Address deliveryAddress = this._addressProvider.SaveDeliveryAddress(member, viewModel);
+                this._commandDispatcher.Dispatch<AddDeliveryAddressCommand>(new AddDeliveryAddressCommand(order, deliveryAddress, true, true));
+                this._commandDispatcher.Dispatch(new AddPartyAddressCommand(order, deliveryAddress, member));
+            }
+            else
+            {
+                this._commandDispatcher.Dispatch(new RemoveDeliveryAddressCommand(order));
             }
 
-            return this.PartyHireInformation(order, member);
+            return this.RedirectToRoute(Routes.Checkout.BillingInformation);
         }
 
         [HasOrder]
@@ -255,9 +251,17 @@ namespace Vintage.Rabbit.Web.Controllers
 
 
         [HttpGet]
-        public ActionResult PaymentInfo(Order order, Member member)
+        public ActionResult PaymentInfo(Order order, Member member, PaymentMethod? paymentMethod = null)
         {
             PaymentInformationViewModel viewModel = new PaymentInformationViewModel();
+            viewModel.PaymentMethod = paymentMethod;
+            var ewayAccess = this._creditCardService.GetEwayAccessCode(order);
+
+            if(ewayAccess != null)
+            {
+                viewModel.EwayUrl = ewayAccess.FormActionUrl;
+                viewModel.EwayAccessCode = ewayAccess.AccessCode;
+            }
 
             if(order.Status == Orders.Enums.OrderStatus.Error)
             {
@@ -289,6 +293,22 @@ namespace Vintage.Rabbit.Web.Controllers
             }
 
             return this.View("PaymentInfo", viewModel);
+        }
+
+        public ActionResult CreditCardComplete(Order order, Member member, string AccessCode)
+        {
+            var result = this._creditCardService.CompletePayment(order, AccessCode);
+
+            if(result.Successful)
+            {
+                return this.RedirectToRoute(Routes.Checkout.Complete);
+            }
+            else
+            {
+                this.ModelState.AddModelError("Error", result.ErrorMessage);
+            }
+
+            return this.PaymentInfo(order, member, PaymentMethod.CreditCard);
         }
 
         public ActionResult Complete(Order order)

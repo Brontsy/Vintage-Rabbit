@@ -61,6 +61,7 @@ namespace Vintage.Rabbit.Web
             public static string BillingInformation = "Checkout - BillingInformation";
             public static string PaymentInfo = "Checkout - PaymentInfo";
             public static string CreditCard = "Checkout - CreditCard";
+            public static string CreditCardComplete = "Checkout - CreditCardComplete";
             public static string PayPal = "Checkout - PayPal";
             public static string PayPalSuccess = "Checkout - PayPalSuccess";
             public static string PayPalCancel = "Checkout - PayPalCancel";
@@ -103,6 +104,7 @@ namespace Vintage.Rabbit.Web
             public static string CheckProductAvailability = "CheckProductAvailability";
             public static string PostcodeCheck = "PostcodeCheck";
             public static string AvailabilityCheck = "AvailabilityCheck";
+            public static string ChangePartyDate = "ChangePartyDate";
         }
 
         public static class Membership
@@ -155,6 +157,7 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.Hire.IndexPaged, url: "hire/page/{page}", defaults: new { controller = "Hire", action = "Index" });
             routes.MapRoute(Routes.Hire.PostcodeCheck, url: "hire/postcode-check", defaults: new { controller = "Hire", action = "AvailabilityCheck", postcodeChecked = true });
             routes.MapRoute(Routes.Hire.AvailabilityCheck, url: "hire/availability-check/{productGuid}", defaults: new { controller = "Hire", action = "AvailabilityCheck" });
+            routes.MapRoute(Routes.Hire.ChangePartyDate, url: "hire/change-party-date", defaults: new { controller = "Hire", action = "ChangePartyDate" });
             routes.MapRoute(Routes.Hire.CheckProductAvailability, url: "hire/availability/{name}/{productGuid}", defaults: new { controller = "Hire", action = "CheckProductAvailability" });
             routes.MapRoute(Routes.Hire.Preview, url: "hire/preview/{categoryName}/{name}/{productId}", defaults: new { controller = "Hire", action = "Product" });
             routes.MapRoute(Routes.Hire.Category, url: "hire/{categoryName}", defaults: new { controller = "Hire", action = "Category" });
@@ -170,6 +173,7 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.Checkout.BillingInformation, url: "checkout-{orderGuid}/billing/address/{guid}", defaults: new { controller = "Payment", action = "BillingInformation", guid = UrlParameter.Optional });
             routes.MapRoute(Routes.Checkout.PaymentInfo, url: "checkout-{orderGuid}/payment", defaults: new { controller = "Payment", action = "PaymentInfo" });
             routes.MapRoute(Routes.Checkout.CreditCard, url: "checkout-{orderGuid}/credit-card", defaults: new { controller = "Payment", action = "CreditCard" });
+            routes.MapRoute(Routes.Checkout.CreditCardComplete, url: "checkout-{orderGuid}/credit-card/complete", defaults: new { controller = "Payment", action = "CreditCardComplete" });
             routes.MapRoute(Routes.Checkout.PayPal, url: "checkout-{orderGuid}/paypal", defaults: new { controller = "Payment", action = "PayPal" });
             routes.MapRoute(Routes.Checkout.PayPalSuccess, url: "checkout-{orderGuid}/paypal/success/{paypalPaymentGuid}", defaults: new { controller = "Payment", action = "PayPalSuccess" });
             routes.MapRoute(Routes.Checkout.PayPalCancel, url: "checkout-{orderGuid}/paypal/cancel/{paypalPaymentGuid}", defaults: new { controller = "Payment", action = "PayPalCancel" });

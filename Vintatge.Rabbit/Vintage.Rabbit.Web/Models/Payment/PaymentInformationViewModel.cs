@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vintage.Rabbit.Carts.Entities;
+using Vintage.Rabbit.Payment.Enums;
 using Vintage.Rabbit.Products.Entities;
 
 namespace Vintage.Rabbit.Web.Models.Payment
@@ -35,7 +36,33 @@ namespace Vintage.Rabbit.Web.Models.Payment
 
         public IList<SelectListItem> ExpiryYears { get; set; }
 
+        public string EwayUrl { get; set; }
+
+        public string EwayAccessCode { get; set; }
+
+        [Display(Name = "Credit card number")]
+        [Required(ErrorMessage = "Please enter your credit card number")]
+        public string EWAY_CARDNUMBER { get; set; }
+
+        [Display(Name = "Expiry Month")]
+        [Required(ErrorMessage = "Please enter your credit cards expiry month")]
+        public string EWAY_CARDEXPIRYMONTH { get; set; }
+
+        [Display(Name = "Expiry Year")]
+        [Required(ErrorMessage = "Please enter your credit cards expiry year")]
+        public string EWAY_CARDEXPIRYYEAR { get; set; }
+
+        [Display(Name = "CCV")]
+        [Required(ErrorMessage = "Please enter your ccv number")]
+        public string EWAY_CARDCVN { get; set; }
+
+        [Display(Name = "Name of card")]
+        [Required(ErrorMessage = "Please enter the name on your credit card")]
+        public string EWAY_CARDNAME { get; set; }
+
         public string Error { get; set; }
+
+        public PaymentMethod? PaymentMethod { get; set; }
 
         public PaymentInformationViewModel()
         {

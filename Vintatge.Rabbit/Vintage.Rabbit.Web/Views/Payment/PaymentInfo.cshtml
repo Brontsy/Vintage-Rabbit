@@ -1,4 +1,5 @@
 ﻿@model Vintage.Rabbit.Web.Models.Payment.PaymentInformationViewModel
+@using Vintage.Rabbit.Payment.Enums
 @{
     ViewBag.Title = "Checkout - Shipping";
 }
@@ -64,50 +65,67 @@
             {
                 <div class="col-6">
                     <div class="radiobuttons">
-                        <input type="radio" value="credit-card" name="payment-method" id="credit-card" /> <label for="credit-card">Credit card</label>
+                        <input type="radio" value="credit-card" name="payment-method" id="credit-card" @(Model.PaymentMethod.HasValue && Model.PaymentMethod == PaymentMethod.CreditCard ? " checked=checked" : "") /> 
+                        <label for="credit-card">Credit card</label>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="radiobuttons">
-                        <input type="radio" value="paypal" name="payment-method" id="paypal" />
+                        <input type="radio" value="paypal" name="payment-method" id="paypal" @(Model.PaymentMethod.HasValue && Model.PaymentMethod == PaymentMethod.PayPal ? " checked=checked" : "") />
                         <label for="paypal">PayPal</label>
                     </div>
                 </div>
             }
             </div>
 
-            @using (Html.BeginRouteForm(Routes.Checkout.CreditCard, new { }, FormMethod.Post, new { @class = "credit-card-form hidden" }))
+            @if (ViewData.ModelState.Keys.Contains("error"))
             {
+                <div class="alert negative payment-error">
+                    @Html.ValidationMessage("error")
+                </div>
+            }
+
+            <form method="POST" action="@Model.EwayUrl" class="credit-card-form@(Model.PaymentMethod.HasValue && Model.PaymentMethod == PaymentMethod.CreditCard ? "" : " hidden")">
+                <input type="hidden" name="EWAY_ACCESSCODE" value="@Model.EwayAccessCode" />
+                <input type="hidden" name="EWAY_PAYMENTTYPE" value="Credit Card" />
+                <input type="hidden" name="EWAY_CARDSTARTMONTH" />
+                <input type="hidden" name="EWAY_CARDSTARTYEAR" />
+                <input type="hidden" name="EWAY_CARDISSUENUMBER" />
+
+
                 <fieldset>
                     <ol class="row">
                         <li class="col-12">
-                            @Html.TextBoxFor(o => o.Name, new { placeholder = "Name on credit card" })
-                            @Html.ValidationMessageFor(o => o.Name)
+                            @Html.TextBoxFor(o => o.EWAY_CARDNAME, new { placeholder = "Name on credit card" })
+                            @Html.ValidationMessageFor(o => o.EWAY_CARDNAME)
                         </li>
                         <li class="col-12">
-                            @Html.TextBoxFor(o => o.CreditCardNumber, new { placeholder = "Credit card number" })
-                            @Html.ValidationMessageFor(o => o.CreditCardNumber)
+                            @Html.TextBoxFor(o => o.EWAY_CARDNUMBER, new { placeholder = "Credit card number" })
+                            @Html.ValidationMessageFor(o => o.EWAY_CARDNUMBER)
                         </li>
                         <li class="col-6">
-                            @Html.DropDownListFor(o => o.ExpiryMonth, Model.ExpiryMonths, "Expiry month...", new { })
-                            @Html.ValidationMessageFor(o => o.ExpiryMonth)
+                            @Html.DropDownListFor(o => o.EWAY_CARDEXPIRYMONTH, Model.ExpiryMonths, "Expiry month...", new { })
+                            @Html.ValidationMessageFor(o => o.EWAY_CARDEXPIRYMONTH)
                         </li>
                         <li class="col-6">
-                            @Html.DropDownListFor(o => o.ExpiryYear, Model.ExpiryYears, "Expiry year...", new { })
-                            @Html.ValidationMessageFor(o => o.ExpiryYear)
+                            @Html.DropDownListFor(o => o.EWAY_CARDEXPIRYYEAR, Model.ExpiryYears, "Expiry year...", new { })
+                            @Html.ValidationMessageFor(o => o.EWAY_CARDEXPIRYYEAR)
                         </li>
                         <li class="col-12">
-                            @Html.TextBoxFor(o => o.CCV, new { placeholder = "CCV" })
-                            @Html.ValidationMessageFor(o => o.CCV)
+                            @Html.TextBoxFor(o => o.EWAY_CARDCVN, new { placeholder = "CCV" })
+                            @Html.ValidationMessageFor(o => o.EWAY_CARDCVN)
                         </li>
                         <li class="col-5 offset-7">
                             <button type="submit" class="btn primary">Continue</button>
                         </li>
                     </ol>
                 </fieldset>
-            }
 
-            @using (Html.BeginRouteForm(Routes.Checkout.PayPal, new { }, FormMethod.Post, new { @class = "paypal-form hidden" }))
+            </form> 
+
+
+
+            @using (Html.BeginRouteForm(Routes.Checkout.PayPal, new { }, FormMethod.Post, new { @class = "paypal-form" + (Model.PaymentMethod.HasValue && Model.PaymentMethod == PaymentMethod.PayPal ? "" : " hidden") }))
             {
                 <fieldset>
                     <ol class="row">
