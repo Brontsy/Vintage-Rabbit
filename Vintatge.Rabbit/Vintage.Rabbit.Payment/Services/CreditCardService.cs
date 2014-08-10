@@ -66,7 +66,6 @@ namespace Vintage.Rabbit.Payment.Services
 
             if(response.StatusCode == HttpStatusCode.OK)
             {
-                this._commandDispatcher.Dispatch(new InitialiseEwayCreditCardPaymentCommand(order, response.Response));
                 return response.Response;
             }
             else

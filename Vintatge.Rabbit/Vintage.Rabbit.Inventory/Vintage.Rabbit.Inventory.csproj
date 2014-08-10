@@ -78,6 +78,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Vintage.Rabbit.Caching\Vintage.Rabbit.Caching.csproj">
+      <Project>{93ee8576-6e36-4fef-ad10-0ec71fa9aaa4}</Project>
+      <Name>Vintage.Rabbit.Caching</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Vintage.Rabbit.Common\Vintage.Rabbit.Common.csproj">
       <Project>{5aff0585-9864-4f50-b84a-c8ef1f5c85e3}</Project>
       <Name>Vintage.Rabbit.Common</Name>

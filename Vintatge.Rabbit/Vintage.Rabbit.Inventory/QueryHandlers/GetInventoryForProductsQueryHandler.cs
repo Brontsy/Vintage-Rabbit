@@ -22,16 +22,23 @@ namespace Vintage.Rabbit.Inventory.QueryHandlers
 
     internal class GetInventoryForProductsQueryHandler : IQueryHandler<IList<InventoryItem>, GetInventoryForProductsQuery>
     {
-        private IInventoryRepository _inventoryRepository;
+        private IQueryDispatcher _queryDispatcher;
 
-        public GetInventoryForProductsQueryHandler(IInventoryRepository inventoryRepository)
+        public GetInventoryForProductsQueryHandler(IQueryDispatcher queryDispatcher)
         {
-            this._inventoryRepository = inventoryRepository;
+            this._queryDispatcher = queryDispatcher;
         }
 
         public IList<InventoryItem> Handle(GetInventoryForProductsQuery query)
         {
-            return this._inventoryRepository.GetInventoryByProductGuid(query.ProductGuids);
+            List<InventoryItem> inventoryItems = new List<InventoryItem>();
+
+            foreach(var productGuid in query.ProductGuids)
+            {
+                inventoryItems.AddRange(this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductQuery>(new GetInventoryForProductQuery(productGuid)));
+            }
+
+            return inventoryItems;// this._inventoryRepository.GetInventoryByProductGuid(query.ProductGuids);
         }
     }
 }

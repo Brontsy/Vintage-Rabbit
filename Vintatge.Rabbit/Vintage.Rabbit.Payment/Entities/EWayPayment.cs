@@ -31,16 +31,13 @@ namespace Vintage.Rabbit.Payment.Entities
 
         public EWayPayment() { }
 
-        public EWayPayment(IOrder order, AccessCodeResponse accessCodeResponse)
+        public EWayPayment(IOrder order, EwayPaymentResponse response)
         {
             this.Guid = Guid.NewGuid();
             this.OrderGuid = order.Guid;
-            this.AccessCode = accessCodeResponse.AccessCode;
-            this.InvoiceNumber = accessCodeResponse.Payment.InvoiceNumber;
-        }
 
-        public void PaymentProcessed(EwayPaymentResponse response)
-        {
+            this.AccessCode = response.AccessCode;
+            this.InvoiceNumber = response.InvoiceNumber;
             this.AuthorisationCode = response.AuthorisationCode;
             this.ResponseCode = response.ResponseCode;
             this.ResponseMessage = response.ResponseMessage;

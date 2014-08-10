@@ -24,7 +24,6 @@ namespace Vintage.Rabbit.Payment.Ioc
             builder.RegisterType<SavePayPalPaymentCommandHandler>().As<ICommandHandler<SavePayPalPaymentCommand>>();
 
             builder.RegisterType<EwayPaymentProcessedCommandHandler>().As<ICommandHandler<EwayPaymentProcessedCommand>>();
-            builder.RegisterType<InitialiseEwayCreditCardPaymentCommandHandler>().As<ICommandHandler<InitialiseEwayCreditCardPaymentCommand>>();
             builder.RegisterType<SaveEwayPaymentCommandHandler>().As<ICommandHandler<SaveEwayPaymentCommand>>();
 
             builder.RegisterType<EWayPaymentRepository>().As<IEWayPaymentRepository>();

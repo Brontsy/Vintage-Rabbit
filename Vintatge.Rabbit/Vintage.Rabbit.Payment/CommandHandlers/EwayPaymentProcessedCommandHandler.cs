@@ -40,9 +40,7 @@ namespace Vintage.Rabbit.Payment.CommandHandlers
 
         public void Handle(EwayPaymentProcessedCommand command)
         {
-            EWayPayment payment =  this._queryDispatcher.Dispatch<EWayPayment, GetEwayPaymentByAccessCodeQuery>(new GetEwayPaymentByAccessCodeQuery(command.EwayPaymentResponse.AccessCode));
-
-            payment.PaymentProcessed(command.EwayPaymentResponse);
+            EWayPayment payment = new EWayPayment(command.Order, command.EwayPaymentResponse);
 
             this._commandDispatcher.Dispatch(new SaveEwayPaymentCommand(payment));
         }

@@ -81,5 +81,19 @@ namespace Vintage.Rabbit.Caching
                 return string.Format("Member-ByEmail-{0}", email);
             }
         }
+
+        public static class Inventory
+        {
+            public static string ByGuid(Guid inventoryGuid)
+            {
+                return string.Format("Inventory-ByGuid-{0}", inventoryGuid);
+            }
+
+            public static string ByProductGuid(Guid productGuid)
+            {
+                return string.Format("Inventory-ByProductGuid-{0}", productGuid);
+            }
+        }
+
     }
 }

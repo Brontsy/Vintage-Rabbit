@@ -7,6 +7,7 @@ using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Interfaces.Cache;
 using Vintage.Rabbit.Inventory.Entities;
 using Vintage.Rabbit.Inventory.Repository;
+using Vintage.Rabbit.Caching;
 
 namespace Vintage.Rabbit.Inventory.QueryHandlers
 {
@@ -22,16 +23,28 @@ namespace Vintage.Rabbit.Inventory.QueryHandlers
 
     internal class GetInventoryByGuidQueryHandler : IQueryHandler<InventoryItem, GetInventoryByGuidQuery>
     {
+        private ICacheService _cacheService;
         private IInventoryRepository _inventoryRepository;
 
-        public GetInventoryByGuidQueryHandler(IInventoryRepository inventoryRepository)
+        public GetInventoryByGuidQueryHandler(IInventoryRepository inventoryRepository, ICacheService cacheService)
         {
             this._inventoryRepository = inventoryRepository;
         }
 
         public InventoryItem Handle(GetInventoryByGuidQuery query)
         {
-            return this._inventoryRepository.GetInventoryByGuid(query.Guid);
+            string cacheKey = CacheKeyHelper.Inventory.ByGuid(query.Guid);
+
+            if (this._cacheService.Exists(cacheKey))
+            {
+                return this._cacheService.Get<InventoryItem>(cacheKey);
+            }
+
+            InventoryItem item = this._inventoryRepository.GetInventoryByGuid(query.Guid);
+
+            this._cacheService.Add(cacheKey, item);
+
+            return item;
         }
     }
 }

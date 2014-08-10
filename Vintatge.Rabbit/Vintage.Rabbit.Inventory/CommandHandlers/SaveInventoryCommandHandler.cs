@@ -8,6 +8,7 @@ using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Interfaces.Messaging;
 using Vintage.Rabbit.Inventory.Repository;
 using Vintage.Rabbit.Inventory.Entities;
+using Vintage.Rabbit.Caching;
 
 namespace Vintage.Rabbit.Inventory.CommandHandlers
 {
@@ -23,16 +24,21 @@ namespace Vintage.Rabbit.Inventory.CommandHandlers
 
     internal class SaveInventoryCommandHandler : ICommandHandler<SaveInventoryCommand>
     {
+        private ICacheService _cacheService;
         private IInventoryRepository _inventoryRepository;
 
-        public SaveInventoryCommandHandler(IInventoryRepository inventoryRepository)
+        public SaveInventoryCommandHandler(IInventoryRepository inventoryRepository, ICacheService cacheService)
         {
             this._inventoryRepository = inventoryRepository;
         }
 
         public void Handle(SaveInventoryCommand command)
         {
+            this._cacheService.Remove(CacheKeyHelper.Inventory.ByGuid(command.InventoryItem.Guid));
+            this._cacheService.Remove(CacheKeyHelper.Inventory.ByProductGuid(command.InventoryItem.ProductGuid));
+
             this._inventoryRepository.SaveInventory(command.InventoryItem);
         }
+
     }
 }

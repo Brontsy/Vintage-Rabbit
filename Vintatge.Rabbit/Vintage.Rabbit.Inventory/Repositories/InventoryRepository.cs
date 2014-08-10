@@ -17,7 +17,7 @@ namespace Vintage.Rabbit.Inventory.Repository
     {
         IList<InventoryItem> GetInventoryByProductGuid(Guid productGuid);
 
-        IList<InventoryItem> GetInventoryByProductGuid(IList<Guid> productGuids);
+        //IList<InventoryItem> GetInventoryByProductGuid(IList<Guid> productGuids);
 
         InventoryItem GetInventoryByGuid(Guid guid);
 
@@ -104,7 +104,6 @@ namespace Vintage.Rabbit.Inventory.Repository
 
             return inventoryItem;
         }
-
 
 
         public InventoryItem SaveInventory(InventoryItem inventory)
