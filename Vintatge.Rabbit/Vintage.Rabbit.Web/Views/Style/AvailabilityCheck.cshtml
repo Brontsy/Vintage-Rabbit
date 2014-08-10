@@ -10,15 +10,12 @@
 
                 @using (Html.BeginRouteForm(Routes.Themes.Hire, new { }, FormMethod.Post, new { @class = "check-availability-form theme-form" }))
                 {
+                    <p>
+                        Please choose a party date below to see if @Model.ThemeTitle is available.
+                    </p>
                     <fieldset>
 
                         <ol class="row">
-
-                            <li class="col-12 help-text ">
-                                <p>
-                                    Please choose a party date below to see if @Model.ThemeTitle is available.
-                                </p>
-                            </li>
 
                             <li class="col-6">
                                 <div class="input-icon">
