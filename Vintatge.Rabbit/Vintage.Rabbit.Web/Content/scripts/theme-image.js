@@ -59,10 +59,13 @@ $(window).on('lightbox.ajax-content-loaded', function () {
 
     AddThemeImageEvents();
 
-    if($('.theme-added-to-cart').length > 0)
-    {
-        $(window).trigger('AddToCart');
-    }
+    $(window).on('AddToCart', function () {
+
+        if($('.theme-add-to-cart').length > 0)
+        {
+            $('.theme-add-to-cart').addClass('in-cart');
+        }
+    })
 });
 
 

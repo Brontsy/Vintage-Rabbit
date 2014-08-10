@@ -78,7 +78,7 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.PartialView("Image", viewModel);
         }
 
-        public ActionResult Hire(string themeName, Models.Hire.HireDatesViewModel hireDates, Models.Hire.HireAvailabilityViewModel hireAvailability, Member member, bool postcodeChecked = false)
+        public ActionResult Hire(string themeName, Models.Hire.HireDatesViewModel hireDates, Models.Hire.HireAvailabilityViewModel hireAvailability, Member member, bool postcodeChecked = false, bool changePostcode = false)
         {
             Theme theme = this._queryDispatcher.Dispatch<IList<Theme>, GetThemesQuery>(new GetThemesQuery()).First(o => o.Title.ToUrl() == themeName);
 
@@ -92,25 +92,28 @@ namespace Vintage.Rabbit.Web.Controllers
                 return this.PartialView("HireUnavailable");
             }
 
-            if(!hireDates.PartyDate.HasValue)
+            if (!hireDates.PartyDate.HasValue || changePostcode)
             {
                 return this.PartialView("AvailabilityCheck", new PartyDatePickerViewModel(theme));
             }
             else
             {
-                bool added = false;
+                var products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByGuidsQuery>(new GetProductsByGuidsQuery(this.GetProductGuids(theme)));
+                ThemeViewModel viewModel = new ThemeViewModel(theme, products);
 
                 if(this._queryDispatcher.Dispatch<bool, IsThemeAvailableForHireQuery>(new IsThemeAvailableForHireQuery(themeName, hireDates.PartyDate.Value)))
                 {
-                    this._commandDispatcher.Dispatch(new AddThemeToCartCommand(member.Guid, theme, hireDates.PartyDate.Value));
-                    added = true;
+                    //this._commandDispatcher.Dispatch(new AddThemeToCartCommand(member.Guid, theme, hireDates.PartyDate.Value));
+                    ViewBag.PartyDate = hireDates.PartyDate.Value;
+
+                    return this.PartialView("AddToCart", viewModel);
                 }
 
-                ThemeAddedToCartViewModel viewModel = new ThemeAddedToCartViewModel(theme, added);
-                
-                return this.PartialView("AddedToCart", viewModel);
+                return this.PartialView("Unavailable", viewModel);
+
             }
         }
+        
 
         public ActionResult CustomStyling()
         {

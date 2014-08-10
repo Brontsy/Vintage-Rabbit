@@ -11,6 +11,9 @@ using Vintage.Rabbit.Membership.Entities;
 using Vintage.Rabbit.Orders.Entities;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Products.QueryHandlers;
+using Vintage.Rabbit.Themes.Entities;
+using Vintage.Rabbit.Themes.QueryHandlers;
+using Vintage.Rabbit.Web.Models.Hire;
 using Vintage.Rabbit.Web.Models.ShoppingCart;
 
 namespace Vintage.Rabbit.Web.Controllers
@@ -75,6 +78,19 @@ namespace Vintage.Rabbit.Web.Controllers
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
             this._commandDispatcher.Dispatch(new AddHireProductToCartCommand(member.Guid, qty, product, partyDate));
+
+            Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
+
+            return this.Json(cart, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult AddTheme(string name, Guid themeGuid, Member member, HireDatesViewModel dates)
+        {
+            if (dates.PartyDate.HasValue)
+            {
+                Theme theme = this._queryDispatcher.Dispatch<Theme, GetThemeByGuidQuery>(new GetThemeByGuidQuery(themeGuid));
+                this._commandDispatcher.Dispatch(new AddThemeToCartCommand(member.Guid, theme, dates.PartyDate.Value));
+            }
 
             Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
 

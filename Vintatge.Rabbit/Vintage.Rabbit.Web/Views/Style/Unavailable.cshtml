@@ -1,0 +1,15 @@
+﻿@model Vintage.Rabbit.Web.Models.Themes.ThemeViewModel
+
+<div class="theme-add-to-cart">
+
+    <div class="row">
+        <div class="col-12">
+         
+            <div class="alert negative">
+                Unfortunately @Model.Title is not currently available for your selected party date. Please call us on [Need phone number] to see if we can help.
+                @Html.RouteLink("change party date", Routes.Themes.Hire, new { changePostcode = true }, new { @class = "ajax-lightbox" })
+            </div>
+           
+        </div>
+    </div>
+</div>

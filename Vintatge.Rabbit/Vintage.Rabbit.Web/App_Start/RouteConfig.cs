@@ -45,6 +45,7 @@ namespace Vintage.Rabbit.Web
             public static string PageHeader = "ShoppingCartPageHeader";
             public static string Add = "ShoppingCartAdd";
             public static string AddHireProduct = "ShoppingCartAddHireProduct";
+            public static string AddTheme = "ShoppingCartAddTheme";
             public static string Remove = "ShoppingCartRemove";
             public static string UpdateQty = "ShoppingCart UpdateQty";
 
@@ -193,6 +194,7 @@ namespace Vintage.Rabbit.Web
 
             routes.MapRoute(Routes.ShoppingCart.Add, url: "shopping-cart/add/{name}/{productId}", defaults: new { controller = "ShoppingCart", action = "Add" });
             routes.MapRoute(Routes.ShoppingCart.AddHireProduct, url: "shopping-cart/hire/add/{name}/{productId}", defaults: new { controller = "ShoppingCart", action = "AddHireProduct" });
+            routes.MapRoute(Routes.ShoppingCart.AddTheme, url: "shopping-cart/theme/add/{name}/{themeGuid}", defaults: new { controller = "ShoppingCart", action = "AddTheme" });
             routes.MapRoute(Routes.ShoppingCart.Remove, url: "shopping-cart/remove/{name}/{cartItemId}", defaults: new { controller = "ShoppingCart", action = "Remove" });
             routes.MapRoute(Routes.ShoppingCart.PageHeader, url: "shopping-cart/get/page-header", defaults: new { controller = "ShoppingCart", action = "PageHeader" });
             routes.MapRoute(Routes.ShoppingCart.UpdateQty, url: "shopping-cart/{cartItemId}/update-quantity", defaults: new { controller = "ShoppingCart", action = "UpdateQty" });
