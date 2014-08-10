@@ -75,7 +75,6 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.View("LoginRegister", viewModel);
         }
 
-        [OrderIsValid]
         public ActionResult Guest(Member member, Order order, Cart cart)
         {
             this._commandDispatcher.Dispatch(new RegisterGuestCommand(member.Guid));
