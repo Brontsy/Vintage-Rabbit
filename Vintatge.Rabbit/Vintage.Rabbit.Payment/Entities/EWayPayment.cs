@@ -9,8 +9,11 @@ using Vintage.Rabbit.Payment.Enums;
 
 namespace Vintage.Rabbit.Payment.Entities
 {
-    public class EWayPayment : CreditCardPayment
+    public class EWayPayment
     {
+        public Guid Guid { get; internal set; }
+
+        public Guid OrderGuid { get; internal set; }
 
         public string AccessCode { get; internal set; }
 
@@ -26,18 +29,18 @@ namespace Vintage.Rabbit.Payment.Entities
 
         public string TransactionStatus { get; set; }
 
+        public EWayPayment() { }
+
         public EWayPayment(IOrder order, AccessCodeResponse accessCodeResponse)
-            :base(order)
         {
+            this.Guid = Guid.NewGuid();
+            this.OrderGuid = order.Guid;
             this.AccessCode = accessCodeResponse.AccessCode;
             this.InvoiceNumber = accessCodeResponse.Payment.InvoiceNumber;
         }
 
-        public EWayPayment(IOrder order, EwayPaymentResponse response)
-            :base(order)
+        public void PaymentProcessed(EwayPaymentResponse response)
         {
-            this.AccessCode = response.AccessCode;
-            this.InvoiceNumber = response.InvoiceNumber;
             this.AuthorisationCode = response.AuthorisationCode;
             this.ResponseCode = response.ResponseCode;
             this.ResponseMessage = response.ResponseMessage;

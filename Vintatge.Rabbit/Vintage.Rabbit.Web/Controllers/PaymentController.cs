@@ -52,6 +52,7 @@ namespace Vintage.Rabbit.Web.Controllers
             this._paypalService = paypalService;
         }
 
+        [OrderIsValid]
         public ActionResult Index(Member member, Order order, Cart cart)
         {
             if (this.HttpContext.User.Identity.IsAuthenticated)
@@ -75,6 +76,7 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.View("LoginRegister", viewModel);
         }
 
+        [OrderIsValid]
         public ActionResult Guest(Member member, Order order, Cart cart)
         {
             this._commandDispatcher.Dispatch(new RegisterGuestCommand(member.Guid));
@@ -87,6 +89,7 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.RedirectToRoute(Routes.Checkout.CustomisedInvitations, new { orderGuid = order.Guid });
         }
 
+        [OrderIsValid]
         public ActionResult CustomisedInvitations(Order order, Member member)
         {
             if (order.Items.Any(o => ProductHelper.IsCustomisableInvitation(o.Product)))
@@ -101,6 +104,7 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.RedirectToRoute(Routes.Checkout.PartyHireInformation);
         }
 
+        [OrderIsValid]
         [HttpPost]
         public ActionResult CustomisedInvitations(InvitationViewModel viewModel, Order order, Member member)
         {
@@ -115,6 +119,7 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.CustomisedInvitations(order, member);
         }
 
+        [OrderIsValid]
         public ActionResult PartyHireInformation(Order order, Member member)
         {
             if (order.ContainsHireProducts() || order.ContainsTheme())
@@ -140,6 +145,7 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.RedirectToRoute(Routes.Checkout.BillingInformation);
         }
 
+        [OrderIsValid]
         [HttpPost]
         public ActionResult PartyHireInformation(PartyHireInformationViewModel viewModel, Order order, Member member)
         {
@@ -164,7 +170,7 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.RedirectToRoute(Routes.Checkout.BillingInformation);
         }
 
-        [HasOrder]
+        [OrderIsValid]
         [HttpGet]
         public ActionResult ShippingInformation(Order order, Member member)
         {
@@ -184,7 +190,7 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.View("ShippingInformation", viewModel);
         }
 
-        [HasOrder]
+        [OrderIsValid]
         [HttpPost]
         public ActionResult ShippingInformation(AddressViewModel viewModel, Order order, Member member)
         {
@@ -201,6 +207,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
 
         [HttpGet]
+        [OrderIsValid]
         public ActionResult BillingInformation(Order order, Member member)
         {
             var viewModel = new BillingAddressViewModel(member, order);
@@ -220,6 +227,7 @@ namespace Vintage.Rabbit.Web.Controllers
         }
 
         [HttpPost]
+        [OrderIsValid]
         public ActionResult BillingInformation(BillingAddressViewModel viewModel, Order order, Member member, bool? shippingAddressIsTheSame)
         {
             if (this.ModelState.IsValid)
@@ -251,6 +259,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
 
         [HttpGet]
+        [OrderIsValid]
         public ActionResult PaymentInfo(Order order, Member member, PaymentMethod? paymentMethod = null)
         {
             PaymentInformationViewModel viewModel = new PaymentInformationViewModel();
@@ -271,30 +280,7 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.View("PaymentInfo", viewModel);
         }
 
-        [HttpPost]
-        public ActionResult CreditCard(PaymentInformationViewModel viewModel, Order order, Member member)
-        {
-            if (this.ModelState.IsValid)
-            {
-                IList<IOrderItem> unavailableOrderItems = this._queryDispatcher.Dispatch<IList<IOrderItem>, GetUnavailableOrderItemsQuery>(new GetUnavailableOrderItemsQuery(order));
-                if (unavailableOrderItems.Count == 0)
-                {
-                    PaymentResult result = this._creditCardService.PayForOrder(order, viewModel.Name, viewModel.CreditCardNumber, viewModel.ExpiryMonth, viewModel.ExpiryYear, viewModel.CCV);
-
-                    if (result.Successful)
-                    {
-                        return this.RedirectToRoute(Routes.Checkout.Complete);
-                    }
-                    else
-                    {
-                        this.ModelState.AddModelError("CreditCardNumber", result.ErrorMessage);
-                    }
-                }
-            }
-
-            return this.View("PaymentInfo", viewModel);
-        }
-
+        [OrderIsValid]
         public ActionResult CreditCardComplete(Order order, Member member, string AccessCode)
         {
             var result = this._creditCardService.CompletePayment(order, AccessCode);
@@ -318,6 +304,7 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.View("Complete", viewModel);
         }
 
+        [OrderIsValid]
         public ActionResult PayPal(Order order)
         {
             string url = this._paypalService.Checkout(order);
@@ -325,6 +312,7 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.Redirect(url);
         }
 
+        [OrderIsValid]
         public ActionResult PayPalSuccess(Order order, Guid paypalPaymentGuid, string token, string PayerID)
         {
             PayPalPayment payment = this._paypalService.Success(order, paypalPaymentGuid, token, PayerID);
@@ -337,6 +325,7 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
         }
 
+        [OrderIsValid]
         public ActionResult PayPalCancel(Order order, Guid paypalPaymentGuid, string token)
         {
             this._paypalService.Cancel(order, paypalPaymentGuid, token);

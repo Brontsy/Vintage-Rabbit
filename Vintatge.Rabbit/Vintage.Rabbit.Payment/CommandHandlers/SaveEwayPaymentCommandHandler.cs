@@ -24,10 +24,10 @@ namespace Vintage.Rabbit.Payment.CommandHandlers
 
     internal class SaveEwayPaymentCommandHandler : ICommandHandler<SaveEwayPaymentCommand>
     {
-        private ICreditCardRepository _creditCardRepository;
+        private IEWayPaymentRepository _creditCardRepository;
         private IMessageService _messageService;
 
-        public SaveEwayPaymentCommandHandler(ICreditCardRepository creditCardRepository, IMessageService messageService)
+        public SaveEwayPaymentCommandHandler(IEWayPaymentRepository creditCardRepository, IMessageService messageService)
         {
             this._creditCardRepository = creditCardRepository;
             this._messageService = messageService;

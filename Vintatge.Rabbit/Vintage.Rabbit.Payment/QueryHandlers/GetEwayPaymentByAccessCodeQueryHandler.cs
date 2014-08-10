@@ -23,9 +23,9 @@ namespace Vintage.Rabbit.Payment.QueryHandlers
 
     internal class GetEwayPaymentByAccessCodeQueryHandler : IQueryHandler<EWayPayment, GetEwayPaymentByAccessCodeQuery>
     {
-        private ICreditCardRepository _creditCardRepository;
+        private IEWayPaymentRepository _creditCardRepository;
 
-        public GetEwayPaymentByAccessCodeQueryHandler(ICreditCardRepository creditCardRepository)
+        public GetEwayPaymentByAccessCodeQueryHandler(IEWayPaymentRepository creditCardRepository)
         {
             this._creditCardRepository = creditCardRepository;
         }

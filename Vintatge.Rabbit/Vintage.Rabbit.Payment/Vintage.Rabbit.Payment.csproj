@@ -70,7 +70,6 @@
     <Compile Include="CommandHandlers\InitialiseEwayCreditCardPaymentCommandHandler.cs" />
     <Compile Include="CommandHandlers\SaveEwayPaymentCommandHandler.cs" />
     <Compile Include="CommandHandlers\SavePayPalPaymentCommandHandler.cs" />
-    <Compile Include="CommandHandlers\SaveCreditCardPaymentCommandHandler.cs" />
     <Compile Include="Entities\EWayPayment.cs" />
     <Compile Include="Entities\CreditCardPayment.cs" />
     <Compile Include="Entities\Eway\AccessCodeRequest.cs" />
@@ -90,7 +89,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryHandlers\GetEwayPaymentByAccessCodeQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetPayPalPaymentByGuidQueryHandler.cs" />
-    <Compile Include="QueryHandlers\GetCreditCardPaymentByOrderQueryHandler.cs" />
     <Compile Include="Repository\CreditCardRepository.cs" />
     <Compile Include="Repository\PayPalRepository.cs" />
     <Compile Include="Services\PayPalService.cs" />

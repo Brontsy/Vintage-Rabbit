@@ -9,7 +9,7 @@ using Vintage.Rabbit.Orders.QueryHandlers;
 
 namespace Vintage.Rabbit.Web.Attributes
 {
-    public class HasOrderAttribute : ActionFilterAttribute
+    public class OrderIsValidAttribute : ActionFilterAttribute
     {
         public IQueryDispatcher QueryDispatcher { get; set; }
 
@@ -20,15 +20,54 @@ namespace Vintage.Rabbit.Web.Attributes
             {
                 Guid orderId = new Guid(orderIdValue.AttemptedValue);
 
-                if (this.QueryDispatcher.Dispatch<Order, GetOrderQuery>(new GetOrderQuery(orderId)) == null)
+                Order order = this.QueryDispatcher.Dispatch<Order, GetOrderQuery>(new GetOrderQuery(orderId));
+
+                if (order == null)
                 {
                     filterContext.Result = new RedirectToRouteResult(Routes.Checkout.Index, new System.Web.Routing.RouteValueDictionary());
+                }
+                else
+                {
+                    Guid? memberGuid = this.GetMemberGuid(filterContext.HttpContext);
+
+                    if (memberGuid.HasValue && memberGuid.Value == order.MemberGuid)
+                    {
+                        if (order.Status == Orders.Enums.OrderStatus.Complete || order.Status == Orders.Enums.OrderStatus.AwaitingShipment)
+                        {
+                            var routeData = new System.Web.Routing.RouteValueDictionary();
+                            routeData.Add("orderGuid", orderId);
+                            filterContext.Result = new RedirectToRouteResult(Routes.Checkout.Complete, routeData);
+                        }
+                    }
+                    else
+                    {
+                        filterContext.Result = new RedirectToRouteResult(Routes.Checkout.Index, new System.Web.Routing.RouteValueDictionary());
+                    }
                 }
             }
             else
             {
                 filterContext.Result = new RedirectToRouteResult(Routes.Checkout.Index, new System.Web.Routing.RouteValueDictionary());
             }
+        }
+
+        private Guid? GetMemberGuid(HttpContextBase httpContext)
+        {
+            if (httpContext.User.Identity.IsAuthenticated)
+            {
+                return new Guid(httpContext.User.Identity.Name);
+            }
+            else
+            {
+                var cookie = httpContext.Request.Cookies["MemberGuid"];
+
+                if (cookie != null)
+                {
+                    return new Guid(cookie.Value);
+                }
+            }
+
+            return null;
         }
     }
 }

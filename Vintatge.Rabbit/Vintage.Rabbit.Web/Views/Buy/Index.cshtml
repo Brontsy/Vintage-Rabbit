@@ -42,6 +42,9 @@
                 { 
                     <h2>@Model.SelectedCategory.DisplayName</h2>
                 }
+                
+                if(Model.Products.Any())
+                { 
 
                 <ul class="row ">
                     @foreach (var product in Model.Products)
@@ -51,6 +54,11 @@
                         </li>
                     }
                 </ul>
+                }
+                else
+                {
+                    <p>Coming soon.</p>
+                }
             }
         </div>
 

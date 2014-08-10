@@ -14,14 +14,13 @@ using Vintage.Rabbit.Logging;
 using Vintage.Rabbit.Payment.CommandHandlers;
 using Vintage.Rabbit.Payment.Entities;
 using Vintage.Rabbit.Payment.Entities.Eway;
+using Vintage.Rabbit.Payment.Enums;
 using Vintage.Rabbit.Payment.Messaging.Messages;
 
 namespace Vintage.Rabbit.Payment.Services
 {
     public interface ICreditCardService
     {
-        PaymentResult PayForOrder(IOrder order, string name, string creditCardNumber, int expiryMonth, int expiryYear, string ccv);
-
         AccessCodeResponse GetEwayAccessCode(IOrder order);
 
         PaymentResult CompletePayment(IOrder order, string accessCode);
@@ -54,11 +53,6 @@ namespace Vintage.Rabbit.Payment.Services
             this._websiteUrl = ConfigurationManager.AppSettings["Website_Url"];
         }
 
-        public PaymentResult PayForOrder(IOrder order, string name, string creditCardNumber, int expiryMonth, int expiryYear, string ccv)
-        {
-            return PaymentResult.Error("delete me please");
-        }
-
         public AccessCodeResponse GetEwayAccessCode(IOrder order)
         {
             string url = string.Format("{0}/AccessCodes", this._ewayUrl);
@@ -72,6 +66,7 @@ namespace Vintage.Rabbit.Payment.Services
 
             if(response.StatusCode == HttpStatusCode.OK)
             {
+                this._commandDispatcher.Dispatch(new InitialiseEwayCreditCardPaymentCommand(order, response.Response));
                 return response.Response;
             }
             else
@@ -96,6 +91,8 @@ namespace Vintage.Rabbit.Payment.Services
 
                 if (response.Response.ResponseCode == "00")
                 {
+                    this._messageService.AddMessage(new PaymentCompleteMessage(order, PaymentMethod.CreditCard));
+
                     return PaymentResult.Success();
                 }
 

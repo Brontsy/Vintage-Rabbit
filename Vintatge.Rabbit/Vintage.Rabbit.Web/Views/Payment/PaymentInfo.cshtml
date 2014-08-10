@@ -61,14 +61,17 @@
                 Please choost a payment method
             </p>
             <div class="row payment-methods">
-                @using (Html.BeginRouteForm(Routes.Checkout.PaymentInfo, new { }, FormMethod.Post, new { @class = "" }))
+            @using (Html.BeginRouteForm(Routes.Checkout.PaymentInfo, new { }, FormMethod.Post, new { @class = "" }))
             {
+                if(!string.IsNullOrEmpty(Model.EwayAccessCode))
+                {
                 <div class="col-6">
                     <div class="radiobuttons">
                         <input type="radio" value="credit-card" name="payment-method" id="credit-card" @(Model.PaymentMethod.HasValue && Model.PaymentMethod == PaymentMethod.CreditCard ? " checked=checked" : "") /> 
                         <label for="credit-card">Credit card</label>
                     </div>
                 </div>
+                }
                 <div class="col-6">
                     <div class="radiobuttons">
                         <input type="radio" value="paypal" name="payment-method" id="paypal" @(Model.PaymentMethod.HasValue && Model.PaymentMethod == PaymentMethod.PayPal ? " checked=checked" : "") />
