@@ -16,6 +16,11 @@ namespace Vintage.Rabbit.Caching
             _cache = new System.Runtime.Caching.MemoryCache("VintageRabbit");
         }
 
+        public IList<string> Keys()
+        {
+            return this._cache.Select(o => o.Key).ToList();
+        }
+
         public bool Exists(string cacheKey)
         {
             return this._cache[cacheKey] != null;

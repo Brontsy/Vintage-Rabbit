@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.Runtime.Caching;
 using System.Threading.Tasks;
 using StackExchange.Redis;
@@ -6,6 +8,7 @@ using System.Configuration;
 using Vintage.Rabbit.Common.Serialization;
 using Vintage.Rabbit.Interfaces.Cache;
 using Vintage.Rabbit.Logging;
+using System.Collections.Generic;
 
 namespace Vintage.Rabbit.Caching
 {
@@ -15,6 +18,8 @@ namespace Vintage.Rabbit.Caching
         private ILogger _logger;
         private ConnectionMultiplexer _connection;
         private string _redisConnectionString;
+        private string _redisHost;
+        private string _redisPort;
         private const int db = 5;
 
         private readonly object _lock = new object();
@@ -24,6 +29,8 @@ namespace Vintage.Rabbit.Caching
             this._serialzer = serialzer;
             this._logger = logger;
             this._redisConnectionString = ConfigurationManager.AppSettings["SettingsClient_RedisConnection"];
+            this._redisHost = ConfigurationManager.AppSettings["SettingsClient_RedisHost"];
+            this._redisPort = ConfigurationManager.AppSettings["SettingsClient_RedisPort"];
         }
 
         private void EnsureConnection()
@@ -43,6 +50,13 @@ namespace Vintage.Rabbit.Caching
                     }
                 }
             }
+        }
+
+        public IList<string> Keys()
+        {
+            this.EnsureConnection();
+
+            return this._connection.GetServer(this._redisHost, this._redisPort).Keys().Select(o => o.ToString()).ToList();
         }
 
         public T Get<T>(string key)

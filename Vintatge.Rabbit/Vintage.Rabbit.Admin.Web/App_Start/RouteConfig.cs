@@ -59,6 +59,12 @@ namespace Vintage.Rabbit.Admin.Web
             public static string Delivered = "Order Delivered";
             public static string PickedUp = "Order PickedUp";
         }
+
+        public static class Cache
+        {
+            public static string Index = "Cache Index";
+            public static string RemoveKeys = "Cache RemoveKeys";
+        }
         
         public static void RegisterRoutes(RouteCollection routes)
         {
@@ -80,6 +86,9 @@ namespace Vintage.Rabbit.Admin.Web
 
             routes.MapRoute(Routes.Membership.Login, url: "login", defaults: new { controller = "Membership", action = "Login" });
             routes.MapRoute(Routes.Membership.Logout, url: "logout", defaults: new { controller = "Membership", action = "Logout" });
+
+            routes.MapRoute(Routes.Cache.Index, url: "cache", defaults: new { controller = "Cache", action = "Index" });
+            routes.MapRoute(Routes.Cache.RemoveKeys, url: "cache/remove-keys", defaults: new { controller = "Cache", action = "RemoveKeys" });
 
             routes.MapRoute(Routes.Orders.Index, url: "orders/{status}", defaults: new { controller = "Orders", action = "Index" });
             routes.MapRoute(Routes.Orders.IndexPaged, url: "orders/{status}/page/{page}", defaults: new { controller = "Orders", action = "Index" });

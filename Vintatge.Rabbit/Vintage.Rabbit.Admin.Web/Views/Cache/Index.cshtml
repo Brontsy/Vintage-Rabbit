@@ -1,0 +1,35 @@
+﻿@model IList<string>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="page-head">
+
+    <h2>Cache</h2>
+
+
+
+</div>
+
+<div class="body-content order-list">
+
+    @using (Html.BeginRouteForm(Routes.Cache.RemoveKeys, new { }, FormMethod.Post, new { }))
+    { 
+    <ul>
+        @foreach (string key in Model)
+        {
+            <li class="checkbox-container">
+
+                @Html.CheckBox("key", false, new { @value = key, id = key })
+                @Html.Label(key, key)
+        </li>
+        }
+
+        <li>
+            <input type="submit" class="btn primary left" value="Delete" />
+        </li>
+    </ul>
+    }
+
+</div>

@@ -22,6 +22,11 @@ namespace Vintage.Rabbit.Caching
             
         }
 
+        public IList<string> Keys()
+        {
+            return _cache.Keys.ToList();
+        }
+
         public bool Exists(string cacheKey)
         {
             return _cache.ContainsKey(cacheKey);

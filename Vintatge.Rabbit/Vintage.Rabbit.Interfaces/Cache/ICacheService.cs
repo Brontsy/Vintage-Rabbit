@@ -8,6 +8,8 @@ namespace Vintage.Rabbit.Interfaces.Cache
 {
     public interface ICacheService
     {
+        IList<string> Keys();
+
         bool Exists(string cacheKey);
 
         T Get<T>(string cacheKey);
