@@ -52,7 +52,6 @@ namespace Vintage.Rabbit.Web.Controllers
             this._paypalService = paypalService;
         }
 
-        [OrderIsValid]
         public ActionResult Index(Member member, Order order, Cart cart)
         {
             if (this.HttpContext.User.Identity.IsAuthenticated)
