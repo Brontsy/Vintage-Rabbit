@@ -55,8 +55,23 @@ namespace Vintage.Rabbit.Caching
         public IList<string> Keys()
         {
             this.EnsureConnection();
+            IList<string> cacheKeys = new List<string>();
 
-            return this._connection.GetServer(this._redisHost, this._redisPort).Keys().Select(o => o.ToString()).ToList();
+            var endpoints = this._connection.GetEndPoints();
+
+            foreach(var endpoint in endpoints)
+            {
+                var keys = this._connection.GetServer(endpoint).Keys();
+                foreach(var key in keys)
+                {
+                    if(!cacheKeys.Contains(key))
+                    {
+                        cacheKeys.Add(key);
+                    }
+                }
+            }
+
+            return cacheKeys;
         }
 
         public T Get<T>(string key)
