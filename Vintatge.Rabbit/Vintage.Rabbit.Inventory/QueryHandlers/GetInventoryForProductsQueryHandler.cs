@@ -38,7 +38,7 @@ namespace Vintage.Rabbit.Inventory.QueryHandlers
                 inventoryItems.AddRange(this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductQuery>(new GetInventoryForProductQuery(productGuid)));
             }
 
-            return inventoryItems;// this._inventoryRepository.GetInventoryByProductGuid(query.ProductGuids);
+            return inventoryItems;
         }
     }
 }

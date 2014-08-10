@@ -29,6 +29,7 @@ namespace Vintage.Rabbit.Inventory.QueryHandlers
         public GetInventoryForProductQueryHandler(IInventoryRepository inventoryRepository, ICacheService cacheService)
         {
             this._inventoryRepository = inventoryRepository;
+            this._cacheService = cacheService;
         }
 
         public IList<InventoryItem> Handle(GetInventoryForProductQuery query)

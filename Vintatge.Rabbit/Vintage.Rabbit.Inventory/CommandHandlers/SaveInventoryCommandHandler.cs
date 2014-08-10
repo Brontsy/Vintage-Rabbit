@@ -30,6 +30,7 @@ namespace Vintage.Rabbit.Inventory.CommandHandlers
         public SaveInventoryCommandHandler(IInventoryRepository inventoryRepository, ICacheService cacheService)
         {
             this._inventoryRepository = inventoryRepository;
+            this._cacheService = cacheService;
         }
 
         public void Handle(SaveInventoryCommand command)
