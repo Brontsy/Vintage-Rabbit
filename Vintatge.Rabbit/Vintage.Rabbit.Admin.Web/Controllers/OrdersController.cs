@@ -39,5 +39,14 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
 
             return View("Orders", new OrdersPageViewModel(viewModel, status));
         }
+
+
+        public ActionResult View(Guid orderGuid)
+        {
+            Order order = this._queryDispatcher.Dispatch<Order, GetOrderQuery>(new GetOrderQuery(orderGuid));
+            Member member = this._queryDispatcher.Dispatch<Member, GetMemberByIdQuery>(new GetMemberByIdQuery(order.MemberGuid));
+
+            return this.View("View", new OrderViewModel(order, member));
+        }
     }
 }

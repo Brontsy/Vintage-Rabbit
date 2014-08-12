@@ -1,0 +1,11 @@
+﻿@model Vintage.Rabbit.Admin.Web.Models.Membership.AddressViewModel
+
+
+
+
+
+@Model.FirstName @Model.LastName @(string.IsNullOrEmpty(Model.CompanyName) ? "" : "(" + Model.CompanyName+")")<br />
+@Model.Address @Model.SuburbCity <br />
+@Model.Postcode @Model.State
+
+

@@ -54,10 +54,8 @@ namespace Vintage.Rabbit.Admin.Web
         {
             public static string Index = "Orders Index";
             public static string IndexPaged = "Orders IndexPaged";
-            public static string Details = "Orders Details";
+            public static string View = "Orders Details";
             public static string Shipped = "Order Shipped";
-            public static string Delivered = "Order Delivered";
-            public static string PickedUp = "Order PickedUp";
         }
 
         public static class Cache
@@ -92,10 +90,8 @@ namespace Vintage.Rabbit.Admin.Web
 
             routes.MapRoute(Routes.Orders.Index, url: "orders/{status}", defaults: new { controller = "Orders", action = "Index" });
             routes.MapRoute(Routes.Orders.IndexPaged, url: "orders/{status}/page/{page}", defaults: new { controller = "Orders", action = "Index" });
-            routes.MapRoute(Routes.Orders.Details, url: "orders/view/{orderGuid}", defaults: new { controller = "Orders", action = "Details" });
+            routes.MapRoute(Routes.Orders.View, url: "orders/view/{orderGuid}", defaults: new { controller = "Orders", action = "View" });
             routes.MapRoute(Routes.Orders.Shipped, url: "orders/{orderGuid}/shipped", defaults: new { controller = "Orders", action = "Shipped" });
-            routes.MapRoute(Routes.Orders.Delivered, url: "orders/{orderGuid}/delivered", defaults: new { controller = "Orders", action = "Delivered" });
-            routes.MapRoute(Routes.Orders.PickedUp, url: "orders/{orderGuid}/picked-up", defaults: new { controller = "Orders", action = "PickedUp" });
 
             routes.MapRoute(Routes.Blog.Index, url: "blog", defaults: new { controller = "Blog", action = "Index" });
             routes.MapRoute(Routes.Blog.View, url: "blog/{blogId}", defaults: new { controller = "Blog", action = "View" });

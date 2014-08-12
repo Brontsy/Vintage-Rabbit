@@ -317,6 +317,7 @@
     <Content Include="Content\less\components\pagination.less" />
     <Content Include="Content\less\pages\order-list.less" />
     <Content Include="Content\less\components\theme-list.less" />
+    <Content Include="Content\less\pages\order-view.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -381,6 +382,8 @@
     <Content Include="Views\Shared\Pagination.cshtml" />
     <Content Include="Views\Orders\Orders.cshtml" />
     <Content Include="Views\Cache\Index.cshtml" />
+    <Content Include="Views\Orders\View.cshtml" />
+    <Content Include="Views\Orders\Address.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

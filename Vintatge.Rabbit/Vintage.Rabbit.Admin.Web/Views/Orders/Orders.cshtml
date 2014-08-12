@@ -51,7 +51,7 @@
                         </div>
                         <div class="col-2">
                             <div class="float-container">
-                                @Html.RouteLink("View", Routes.Orders.Details, new { orderGuid = order.Guid }, new { @class = "btn primary left" })
+                                @Html.RouteLink("View", Routes.Orders.View, new { orderGuid = order.Guid }, new { @class = "btn primary left" })
 
                                 @if (order.Status == OrderStatus.AwaitingShipment)
                                 {

@@ -1,0 +1,99 @@
+﻿@model Vintage.Rabbit.Admin.Web.Models.Orders.OrderViewModel
+@using Vintage.Rabbit.Orders.Enums
+@using Vintage.Rabbit.Common.Enums
+@{
+    ViewBag.Title = "Orders";
+}
+
+<div class="page-head">
+
+    <h2>Order Details</h2>
+    <ol class="breadcrumbs">
+        <li><a href="#">Home</a></li>
+        <li class="active">Orders</li>
+        <li class="active">@Model.Guid</li>
+    </ol>
+</div>
+
+
+<div class="body-content">
+    <div class="tab-container">
+        <ul class="nav nav-tabs">
+            <li @(Model.Status == OrderStatus.Complete ? " class=active" : string.Empty)>@Html.RouteLink("Complete", Routes.Orders.Index, new { status = OrderStatus.Complete.ToString().ToLower() }, new { })</li>
+            <li @(Model.Status == OrderStatus.AwaitingShipment ? " class=active" : string.Empty)>@Html.RouteLink("Awaiting Shipment", Routes.Orders.Index, new { status = OrderStatus.AwaitingShipment.ToString().ToLower() }, new { })</li>
+            <li @(Model.Status == OrderStatus.Unpaid ? " class=active" : string.Empty)>@Html.RouteLink("Unpaid", Routes.Orders.Index, new { status = OrderStatus.Unpaid.ToString().ToLower() }, new { })</li>
+        </ul>
+        <div class="tab-content order-view">
+            <div class="row">
+
+                <ul class="col-6">
+                    <li class="row">
+                        <div class="col-3 label">Invoice Id</div>
+                        <div class="col-6 value">@Model.OrderNumber</div>
+                    </li>
+                    <li class="row">
+                        <div class="col-3 label">Status</div>
+                        <div class="col-6 value">@Model.Status.ToString()</div>
+                    </li>
+                    <li class="row">
+                        <div class="col-3 label">Total</div>
+                        <div class="col-6 value">@Model.Total</div>
+                    </li>
+                    <li class="row">
+                        <div class="col-3 label">Date Created</div>
+                        <div class="col-6 value">@Model.DateCreated.ToString("dd MMMM yyyy")</div>
+                    </li>
+                    <li class="row">
+                        <div class="col-3 label">Date Paid</div>
+                        <div class="col-6 value">@(Model.DatePaid.HasValue ? Model.DatePaid.Value.ToString("dd MMMM yyyy") : "")</div>
+                    </li>
+                    <li class="row">
+                        <div class="col-3 label">Email</div>
+                        <div class="col-6 value">@(Model.BillingAddress != null ? Model.BillingAddress.Email : "")</div>
+                    </li>
+                    @if (Model.BillingAddress != null)
+                    {
+                        <li class="row">
+                            <div class="col-3 label">Billing Details</div>
+                            <div class="col-6 value">@{Html.RenderPartial("Address", Model.BillingAddress);}</div>
+                        </li>
+                    }
+                    <li class="row">
+                        <div class="col-3 label">Hire Delivery Details</div>
+                        <div class="col-6 value">
+                            @if (Model.DeliveryAddress != null)
+                            {
+                                Html.RenderPartial("Address", Model.DeliveryAddress);
+                            }
+                            else if (Model.OrderItems.Any(o => o.Type == ProductType.Hire) || Model.OrderItems.Any(o => o.Type == ProductType.Theme))
+                            {
+                                <text>Customer wants to pickup the hire items</text>
+                            }
+                        </div>
+                    </li>
+                    @if (Model.ShippingAddress != null)
+                    {
+                        <li class="row">
+                            <div class="col-3 label">Shipping Details</div>
+                            <div class="col-6 value">@{Html.RenderPartial("Address", Model.ShippingAddress);}</div>
+                        </li>
+                    }
+                </ul>
+
+                <ul class="col-6">
+                    @foreach (var orderItem in Model.OrderItems)
+                    {
+                        <li>
+                            @orderItem.Quantity x @orderItem.Title
+                        </li>
+                    }
+                </ul>
+            </div>
+
+        </div>
+    </div>
+            <div class="container">
+                
+            </div>
+        </div>
+

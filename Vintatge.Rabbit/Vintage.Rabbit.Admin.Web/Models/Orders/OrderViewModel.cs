@@ -15,6 +15,8 @@ namespace Vintage.Rabbit.Admin.Web.Models.Orders
 
         public Guid Guid { get; private set; }
 
+        public string OrderNumber { get; private set; }
+
         public MemberViewModel Member { get; private set; }
 
         public IList<OrderItemViewModel> OrderItems { get; private set; }
@@ -42,6 +44,7 @@ namespace Vintage.Rabbit.Admin.Web.Models.Orders
         {
             this.OrderItems = order.Items.Select(o => new OrderItemViewModel(o)).ToList();
             this.Total = order.Total.ToString("C2");
+            this.OrderNumber = order.Id.ToString("D5");
             this.Id = order.Id;
             this.Guid = order.Guid;
             this.Status = order.Status;
