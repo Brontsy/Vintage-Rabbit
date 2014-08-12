@@ -20,11 +20,15 @@ namespace Vintage.Rabbit.Web.Admin.Models.Pagination
             this.TotalResults = totalResults;
             this.Page = page;
             this.RouteName = routeName;
-            this.TotalPages = totalResults / itemsPerPage;
 
-            if (totalResults % itemsPerPage > 0)
+            if (itemsPerPage > 0)
             {
-                this.TotalPages++;
+                this.TotalPages = totalResults / itemsPerPage;
+
+                if (totalResults % itemsPerPage > 0)
+                {
+                    this.TotalPages++;
+                }
             }
         }
     }

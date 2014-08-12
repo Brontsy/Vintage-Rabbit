@@ -37,13 +37,23 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
             this._uploadPhotoService = uploadPhotoService;
         }
 
-        public ActionResult Search(string term)
+        public ActionResult AutoComplete(string term)
         {
             PagedResult<Product> products = this._queryDispatcher.Dispatch<PagedResult<Product>, SearchQuery>(new SearchQuery(term));
 
             var viewModel = products.Select(o => new SearchResultViewModel(o.Title, o.Guid));
 
             return this.Json(viewModel, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Search(string query)
+        {
+            PagedResult<Product> products = this._queryDispatcher.Dispatch<PagedResult<Product>, SearchQuery>(new SearchQuery(query));
+
+            ProductListViewModel viewModel = new ProductListViewModel(products);
+            viewModel.Pagination = new PaginationViewModel(products.PageNumber, products.TotalResults, products.ItemsPerPage, Routes.Products.ListPaged);
+
+            return View("BuyList", viewModel);
         }
 
         public ActionResult List(Member member, int page = 1)

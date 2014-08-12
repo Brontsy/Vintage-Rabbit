@@ -13,6 +13,7 @@ namespace Vintage.Rabbit.Admin.Web
         public static class Products
         {
             public static string Search = "Product Search";
+            public static string AutoComplete = "Product AutoComplete";
             public static string List = "Product List";
             public static string ListPaged = "Product ListPaged";
             public static string Type = "Product Type";
@@ -68,8 +69,9 @@ namespace Vintage.Rabbit.Admin.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-
+            
             routes.MapRoute(Routes.Products.Search, url: "products/search", defaults: new { controller = "Products", action = "Search" });
+            routes.MapRoute(Routes.Products.AutoComplete, url: "products/auto-complete", defaults: new { controller = "Products", action = "AutoComplete" });
             routes.MapRoute(Routes.Products.AddProduct, url: "products/add", defaults: new { controller = "Products", action = "Add" });
             routes.MapRoute(Routes.Products.List, url: "products", defaults: new { controller = "Products", action = "List" });
             routes.MapRoute(Routes.Products.ListPaged, url: "products/page/{page}", defaults: new { controller = "Products", action = "List" });

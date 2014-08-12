@@ -318,6 +318,7 @@
     <Content Include="Content\less\pages\order-list.less" />
     <Content Include="Content\less\components\theme-list.less" />
     <Content Include="Content\less\pages\order-view.less" />
+    <Content Include="Content\less\pages\product-list.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />

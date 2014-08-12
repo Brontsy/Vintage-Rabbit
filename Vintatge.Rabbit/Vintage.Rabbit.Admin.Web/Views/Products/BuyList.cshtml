@@ -4,13 +4,28 @@
 }
 
 <div class="page-head">
+    
+    <div class="row">
+        <div class="col-6">
+            <h2>Products available for <strong>purchase & hire</strong></h2>
+            <ol class="breadcrumbs">
+                <li><a href="#">Home</a></li>
+                <li class="active">Products</li>
+            </ol>
+        </div>
+        <div class="col-3">            
+            @using (Html.BeginRouteForm(Routes.Products.Search, new { }, FormMethod.Post, new { @class = "right search-products" }))
+            {
+                <input type="text" class="left" id="query" name="query" placeholder="search" />
+                <input type="submit" value="search" class="btn primary left" />
+            }
+        </div>
+        <div class="col-3">            @Html.RouteLink("Add Product", Routes.Products.AddProduct, new { }, new { @class = "btn primary right" })
+        </div>
+    </div>
 
-    @Html.RouteLink("Add Product", Routes.Products.AddProduct, new { }, new { @class = "btn primary right" })
-    <h2>Products available for <strong>purchase & hire</strong></h2>
-    <ol class="breadcrumbs">
-        <li><a href="#">Home</a></li>
-        <li class="active">Products</li>
-    </ol>
+
+
 </div>
 
 
