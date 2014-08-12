@@ -112,6 +112,7 @@
     <Compile Include="QueryHandlers\IsValidHirePostcodeQueryHandler.cs" />
     <Compile Include="Repository\CategoryRepository.cs" />
     <Compile Include="Repository\Entities\ProductDb.cs" />
+    <Compile Include="Repository\PostcodeRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
     <Compile Include="Repository\Result\UploadProductImageResult.cs" />
     <Compile Include="Services\AzureBlobStorage.cs" />

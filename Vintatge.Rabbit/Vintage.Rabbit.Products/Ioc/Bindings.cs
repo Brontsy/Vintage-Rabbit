@@ -49,6 +49,7 @@ namespace Vintage.Rabbit.Products.Ioc
 
             builder.RegisterType<ProductRepository>().As<IProductRepository>();
             builder.RegisterType<CategoryRepository>().As<ICategoryRepository>();
+            builder.RegisterType<PostcodeRepository>().As<IPostcodeRepository>();
 
 
             builder.RegisterType<AzureBlobStorage>().As<IFileStorage>();
