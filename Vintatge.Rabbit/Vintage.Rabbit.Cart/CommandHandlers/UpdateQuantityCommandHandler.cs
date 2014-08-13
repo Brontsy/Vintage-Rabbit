@@ -20,14 +20,14 @@ namespace Vintage.Rabbit.Carts.CommandHandlers
     {
         public Cart Cart { get; private set; }
 
-        public CartItem CartItem { get; private set; }
+        public Guid CartItemGuid { get; private set; }
 
         public int Quantity { get; private set; }
 
-        public UpdateQuantityCommand(Cart cart, CartItem cartItem, int quantity)
+        public UpdateQuantityCommand(Cart cart, Guid cartItemGuid, int quantity)
         {
             this.Cart = cart;
-            this.CartItem = cartItem;
+            this.CartItemGuid = cartItemGuid;
             this.Quantity = quantity;
         }
     }
@@ -45,29 +45,30 @@ namespace Vintage.Rabbit.Carts.CommandHandlers
 
         public void Handle(UpdateQuantityCommand command)
         {
-            Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(command.CartItem.Product.Guid));
+            CartItem cartItem = command.Cart.Items.FirstOrDefault(o => o.Id == command.CartItemGuid);
 
-            int quantity = command.Quantity;
-            int availableInventory = product.Inventory;
-
-            if (product.Type == Common.Enums.ProductType.Hire)
+            if (cartItem != null)
             {
-                var partyDate = (DateTime)command.CartItem.Properties["PartyDate"];
+                Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(cartItem.Product.Guid));
+                bool available = false;
 
-                IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductQuery>(new GetInventoryForProductQuery(product.Guid));
+                if (product.Type == Common.Enums.ProductType.Hire)
+                {
+                    var partyDate = (DateTime)cartItem.Properties["PartyDate"];
+                    available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(cartItem.Product.Guid, command.Quantity, partyDate));
+                }
+                else if (product.Type == Common.Enums.ProductType.Buy)
+                {
+                    available = this._queryDispatcher.Dispatch<bool, IsProductAvailableQuery>(new IsProductAvailableQuery(cartItem.Product.Guid, command.Quantity));
+                }
 
-                availableInventory = inventory.Count(o => o.IsAvailable(partyDate));
+                if (available)
+                {
+                    cartItem.ChangeQuantity(command.Quantity);
+                }
+
+                this._commandDispatcher.Dispatch(new SaveCartCommand(command.Cart));
             }
-
-            if (availableInventory <= command.Quantity)
-            {
-                quantity = availableInventory;
-            }
-           
-
-            command.CartItem.ChangeQuantity(quantity);
-
-            this._commandDispatcher.Dispatch(new SaveCartCommand(command.Cart));
         }
     }
 }

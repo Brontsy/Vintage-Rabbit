@@ -47,16 +47,8 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             qty = (qty <= 1 ? 1 : qty);
             Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
-            CartItem item = cart.Items.FirstOrDefault(o => o.Id == cartItemId);
-
-            if (item != null)
-            {
-                Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(item.Product.Guid));
-                if(product.Inventory >= qty)
-                {
-                    this._commandDispatcher.Dispatch(new UpdateQuantityCommand(cart, item, qty));
-                }
-            }
+            
+            this._commandDispatcher.Dispatch(new UpdateQuantityCommand(cart, cartItemId, qty));
 
             return null;
         }

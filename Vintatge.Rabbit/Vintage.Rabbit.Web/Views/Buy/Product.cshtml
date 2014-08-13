@@ -49,8 +49,8 @@
                         <div class="col-12 qty">
                    
                             <fieldset>
-                                Qty &nbsp; 
-                                @Html.DropDownListFor(o => o.Qty, Model.InventoryCount)
+                                Qty &nbsp;                                 
+                                @{Html.RenderAction("QuantityDropdown", "Product", new { productGuid = Model.Guid });}
                                     &nbsp;  &nbsp;
 
                                 <button type="submit" class="btn primary add-to-cart">

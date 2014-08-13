@@ -30,13 +30,9 @@ namespace Vintage.Rabbit.Web.Models.Products
 
         public string Description { get; private set; }
 
-        public bool IsAvailable { get; private set; }
-
-        public int Qty { get; private set; }
+        public bool IsAvailable { get; protected set; }
 
         public ProductType Type { get; private set; }
-
-        public IList<SelectListItem> InventoryCount { get; protected set; }
 
         public string SeoKeywords { get; private set; }
 
@@ -62,13 +58,6 @@ namespace Vintage.Rabbit.Web.Models.Products
             this.Type = product.Type;
             this.SeoKeywords = product.Keywords;
             this.IsCustomisableInvitation = ProductHelper.IsCustomisableInvitation(product);
-
-            this.Qty = 1;
-            this.InventoryCount = new List<SelectListItem>();
-            for (int i = 1; i <= product.Inventory; i++)
-            {
-                this.InventoryCount.Add(new SelectListItem() { Text = i.ToString(), Value = i.ToString() });
-            }
         }
     }
 }

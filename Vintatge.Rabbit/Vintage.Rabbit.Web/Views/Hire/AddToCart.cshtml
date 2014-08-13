@@ -50,7 +50,7 @@
                 <li class="col-3 qty-container">
 
                     Qty &nbsp; &nbsp;
-                    @Html.DropDownListFor(o => o.Qty, Model.InventoryCount)
+                    @{Html.RenderAction("QuantityDropdown", "Product", new { productGuid = Model.Guid });}
 
                 </li>
                 <li class="col-4 add-to-cart-container">

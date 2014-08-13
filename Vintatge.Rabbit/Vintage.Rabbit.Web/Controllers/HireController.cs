@@ -99,15 +99,14 @@ namespace Vintage.Rabbit.Web.Controllers
         public ActionResult Product(int productId, string name, HireDatesViewModel hireDates)
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
-            IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductQuery>(new GetInventoryForProductQuery(product.Guid));
 
-            HireProductViewModel viewModel = new HireProductViewModel(product, inventory, hireDates);
+            ProductViewModel viewModel = new ProductViewModel(product);
 
             if(this.Request.IsAjaxRequest())
             {
-
                 return this.PartialView("Product", viewModel);
             }
+
             return this.View("Product", viewModel);
         }
 
@@ -126,7 +125,6 @@ namespace Vintage.Rabbit.Web.Controllers
         public ActionResult AvailabilityCheck(Guid productGuid, HireDatesViewModel hireDates, HireAvailabilityViewModel hireAvailability, bool postcodeChecked = false)
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(productGuid));
-            IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductQuery>(new GetInventoryForProductQuery(product.Guid));
 
             if (!hireAvailability.IsValidPostcode)
             {
@@ -138,13 +136,17 @@ namespace Vintage.Rabbit.Web.Controllers
                 return this.PartialView("HireUnavailable");
             }
 
-            HireProductViewModel viewModel = new HireProductViewModel(product, inventory, hireDates);
+            HireProductViewModel viewModel = new HireProductViewModel(product, hireDates);
 
             if (hireDates.PartyDate.HasValue) 
             {
-                if(inventory.Any(o => o.IsAvailable(hireDates.PartyDate.Value)))
+                if (this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(productGuid, 1, hireDates.PartyDate.Value)))
                 {
                     return this.PartialView("AddToCart", viewModel);
+                }
+                else
+                {
+                    return this.PartialView("Unavailable", viewModel);
                 }
             }
 

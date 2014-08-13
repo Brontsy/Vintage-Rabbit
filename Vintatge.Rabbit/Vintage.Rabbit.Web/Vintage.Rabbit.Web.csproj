@@ -213,7 +213,6 @@
     <Compile Include="Models\Blogs\BlogViewModel.cs" />
     <Compile Include="Models\Breadcrumbs\BreadcrumbsViewModel.cs" />
     <Compile Include="Models\ContactUs\ContactUsViewModel.cs" />
-    <Compile Include="Models\Hire\AvailabilityCheckViewModel.cs" />
     <Compile Include="Models\Hire\HireAvailabilityViewModel.cs" />
     <Compile Include="Models\Hire\PostcodeCheckViewModel.cs" />
     <Compile Include="Models\Orders\OrderItemViewModel.cs" />
@@ -241,6 +240,7 @@
     <Compile Include="Models\Products\ProductListItemViewModel.cs" />
     <Compile Include="Models\Products\ProductLinkViewModel.cs" />
     <Compile Include="Models\Products\PurchasableItemViewModel.cs" />
+    <Compile Include="Models\Products\QuantityDropdownViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartItemViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartViewModel.cs" />
     <Compile Include="Models\Themes\ThemeAddedToCartViewModel.cs" />
@@ -560,8 +560,6 @@
     <Content Include="Views\Payment\Guest.cshtml" />
     <Content Include="Views\Hire\CategoryList.cshtml" />
     <Content Include="Views\Style\Index.cshtml" />
-    <Content Include="Views\Style\BuyProduct.cshtml" />
-    <Content Include="Views\Style\HireProduct.cshtml" />
     <Content Include="Views\Product\PreviewLink.cshtml" />
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\FAQ\Index.cshtml" />
@@ -582,7 +580,6 @@
     <Content Include="Views\Hire\Hire.cshtml" />
     <Content Include="Views\Style\Theme.cshtml" />
     <Content Include="Views\Style\Image.cshtml" />
-    <Content Include="Views\Style\Hire.cshtml" />
     <Content Include="Views\Style\PostcodeCheck.cshtml" />
     <Content Include="Views\Style\AvailabilityCheck.cshtml" />
     <Content Include="Views\Style\AddToCart.cshtml" />
@@ -594,6 +591,7 @@
     <Content Include="Views\Hire\ProductsRemoved.cshtml" />
     <Content Include="Views\Style\Unavailable.cshtml" />
     <Content Include="Views\Hire\HireUnavailable.cshtml" />
+    <Content Include="Views\Product\QuantityDropdown.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

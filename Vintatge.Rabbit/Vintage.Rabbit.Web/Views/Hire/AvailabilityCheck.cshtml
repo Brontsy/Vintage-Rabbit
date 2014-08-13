@@ -1,6 +1,6 @@
 ﻿@model Vintage.Rabbit.Web.Models.Products.HireProductViewModel
 
-    <div class="col-12 check-availability@(Model.IsAvailable.HasValue ? Model.IsAvailable.Value ? " available" : " unavailable" : string.Empty)">
+    <div class="col-12 check-availability">
         
 
         @using (Html.BeginRouteForm(Routes.Hire.AvailabilityCheck, new { productGuid = Model.Guid, name = Model.UrlTitle }, FormMethod.Post, new { @class = "check-availability-form hire-form" }))
@@ -24,15 +24,6 @@
                                 Please choose a party date below to see if @Model.Title is available.
                             </p>
                         </li>
-                    }
-
-                    @if(Model.IsAvailable.HasValue && !Model.IsAvailable.Value)
-                    { 
-                    <li class="col-12">
-                        <div class="unavailable-text alert negative icon">
-                            <i class="fa fa-times"></i>Sorry this product is currently unavailable for those dates. Please call us on 131313
-                        </div>
-                    </li>
                     }
 
                     <li class="col-6">
