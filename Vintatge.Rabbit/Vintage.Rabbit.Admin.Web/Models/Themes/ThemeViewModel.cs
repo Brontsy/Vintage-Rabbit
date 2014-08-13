@@ -6,6 +6,7 @@ using Vintage.Rabbit.Themes.Entities;
 using Vintage.Rabbit.Common.Extensions;
 using Vintage.Rabbit.Products.Entities;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace Vintage.Rabbit.Admin.Web.Models.Themes
 {
@@ -16,6 +17,7 @@ namespace Vintage.Rabbit.Admin.Web.Models.Themes
         [Required(ErrorMessage = "Please enter the title for the theme")]
         public string Title { get; set; }
 
+        [AllowHtml]
         [Required(ErrorMessage = "Please enter a description for the theme")]
         public string Description { get; set; }
 
