@@ -1,11 +1,13 @@
-﻿@model Vintage.Rabbit.Web.Models.Products.HireProductViewModel
+﻿@model Vintage.Rabbit.Web.Models.Hire.HireAddProductToCartViewModel
 
     <div class="col-12 hire-add-to-cart">
 
-
+        @if(Model.TotalInventoryAvailable > 0)
+        { 
         <div class="available-text help-text">
-            <p class="availble"><i class="fa fa-check"></i>&nbsp; @Model.Title is currently available for hire on <strong>@Model.PartyDate.Value.ToString("dd MMMM yyyy")</strong> (<a class="change-party-date" href="#">change</a>)</p>
+            <p class="availble"><i class="fa fa-check"></i>&nbsp; @Model.ProductTitle is currently available for hire on <strong>@Model.PartyDate.ToString("dd MMMM yyyy")</strong> (<a class="change-party-date" href="#">change</a>)</p>
         </div>
+        }
 
         <div class="choose-party-date hidden">
             @using (Html.BeginRouteForm(Routes.Hire.ChangePartyDate, new { }, FormMethod.Post, new { @class = "change-party-date-form" }))
@@ -34,7 +36,9 @@
             }
         </div>
 
-    @using (Html.BeginRouteForm(Routes.ShoppingCart.AddHireProduct, new { productId = Model.Id, name = Model.UrlTitle }, FormMethod.Post, new { @class = "add-to-cart-form hire-form" }))
+@if(Model.TotalInventoryAvailable > 0)
+    {
+    using (Html.BeginRouteForm(Routes.ShoppingCart.AddHireProduct, new { }, FormMethod.Post, new { @class = "add-to-cart-form hire-form" }))
     {
         <fieldset>
             @Html.HiddenFor(o => o.PartyDate)
@@ -42,15 +46,15 @@
 
                 <li class="col-12 added-to-cart help-text">
                     <div class="alert positive icon">
-                        <i class="fa fa-check-circle"></i> <strong>@Model.Title</strong> has been added to your @Html.RouteLink("shopping cart", Routes.ShoppingCart.PageHeader, new { }, new { @class = "ajax-lightbox" })
+                        <i class="fa fa-check-circle"></i> <strong>@Model.ProductTitle</strong> has been added to your @Html.RouteLink("shopping cart", Routes.ShoppingCart.PageHeader, new { }, new { @class = "ajax-lightbox" })
                     </div>
                 </li>
 
 
                 <li class="col-3 qty-container">
 
-                    Qty &nbsp; &nbsp;
-                    @{Html.RenderAction("QuantityDropdown", "Product", new { productGuid = Model.Guid });}
+                    Qty &nbsp; &nbsp;                    
+                    @Html.DropDownListFor(o => o.Qty, Model.InventoryCount)
 
                 </li>
                 <li class="col-4 add-to-cart-container">
@@ -61,6 +65,15 @@
                 </li>
             </ol>
         </fieldset>
+    }
+    }
+    else if(Model.InCart)
+    {
+    <p class="availble"><i class="fa fa-check"></i>&nbsp; You have currently added all of the available stock to your cart</p>
+    }
+    else
+    {
+    <p class="unavailable"><i class="fa fa-times"></i>&nbsp; This product is currently unavailable for your party date</p>
     }
 
 

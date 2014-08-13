@@ -209,7 +209,7 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.Buy.Games, url: "games", defaults: new { controller = "Buy", action = "Category", categoryName = "games" });
             routes.MapRoute(Routes.Buy.GamesPaged, url: "games/page/{page}", defaults: new { controller = "Buy", action = "Category", categoryName = "games" });
             routes.MapRoute(Routes.Buy.Product, url: "{categoryName}/{name}/{productId}", defaults: new { controller = "Buy", action = "Product" });
-            routes.MapRoute(Routes.Buy.Preview, url: "{categoryName}/preview/{name}/{productId}", defaults: new { controller = "Buy", action = "Preview" });
+            routes.MapRoute(Routes.Buy.Preview, url: "{categoryName}/preview/{name}/{productId}", defaults: new { controller = "Buy", action = "Product" });
             routes.MapRoute(Routes.Buy.Category, url: "{categoryName}", defaults: new { controller = "Buy", action = "Category" });
             routes.MapRoute(Routes.Buy.CategoryPaged, url: "{categoryName}/page/{page}", defaults: new { controller = "Buy", action = "Category" });
             routes.MapRoute(Routes.Buy.CategoryChild, url: "{categoryName}/{childCategoryName}", defaults: new { controller = "Buy", action = "Category" });

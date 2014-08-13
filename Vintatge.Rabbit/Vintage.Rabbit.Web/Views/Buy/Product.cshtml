@@ -35,51 +35,8 @@
             
                 <div class="price">@Model.Cost</div>
                 
-                @if(Model.IsAvailable)
-                {      
-                    using(Html.BeginRouteForm(Routes.ShoppingCart.Add, new { }, FormMethod.Post, new { @class="add-to-cart-form" }))
-                    {
-                    <p class="availble"><i class="fa fa-check"></i>&nbsp; This product is currently in stock</p>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="alert positive icon added-to-cart">
-                                <i class="fa fa-check-circle"></i> @Model.Title has been added to your @Html.RouteLink("shopping cart", Routes.ShoppingCart.PageHeader, new { }, new { @class = "ajax-lightbox" })
-                            </div>
-                        </div>
-                        <div class="col-12 qty">
-                   
-                            <fieldset>
-                                Qty &nbsp;                                 
-                                @{Html.RenderAction("QuantityDropdown", "Product", new { productGuid = Model.Guid });}
-                                    &nbsp;  &nbsp;
+                @{Html.RenderAction("AddToCartForm", "Buy", new { productGuid = Model.Guid });}
 
-                                <button type="submit" class="btn primary add-to-cart">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    Add to cart
-                                </button>
-
-                            </fieldset>
-                        
-                        </div>
-                    </div>
-                    }
-                    
-                    <div class="delivery box-container">
-                        <strong>Delivery</strong>
-
-                        <p>
-                            This item will be dispatched within 2-3 business days. Shipping options available at check out include:
-                        </p>
-                        <p>
-                            FREE Australia wide usually arrives in 3-7 working days <br />
-                            once dispatched. (Please check delivery note above.)
-                        </p>
-                    </div>
-                }
-                else
-                {
-                <p class="unavailable"><i class="fa fa-times"></i>&nbsp; This product is currently out of stock</p>
-                }
 
             </div>
         </div>

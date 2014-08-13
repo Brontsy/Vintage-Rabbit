@@ -38,15 +38,9 @@ namespace Vintage.Rabbit.Web.Models.Themes
 
         public string Cost { get; private set; }
 
-        public IList<ProductImageViewModel> Images { get; private set; }
-
-        public bool IsAvailable { get; private set; }
-
         public int Qty { get; private set; }
 
-        public IList<SelectListItem> InventoryCount { get; protected set; }
-
-        public ProductViewModel Product { get; set; }
+        public IList<ProductImageViewModel> Images { get; private set; }
 
         public ThemeProductViewModel(ThemeProduct themeProduct, Product product)
         {
@@ -58,17 +52,8 @@ namespace Vintage.Rabbit.Web.Models.Themes
             this.Title = product.Title;
             this.ProductId = product.Id;
             this.Description = product.Description;
+            this.Qty = themeProduct.Qty;
             this.Images = product.Images.Select(o => new ProductImageViewModel(o)).ToList();
-            this.IsAvailable = product.Inventory > 0;
-
-            this.Qty = 1;
-            this.InventoryCount = new List<SelectListItem>();
-            for (int i = 1; i <= product.Inventory; i++)
-            {
-                this.InventoryCount.Add(new SelectListItem() { Text = i.ToString(), Value = i.ToString() });
-            }
-
-            this.Product = new ProductViewModel(product);
         }
     }
 }

@@ -1,0 +1,52 @@
+﻿@model Vintage.Rabbit.Web.Models.Products.AddProductToCartViewModel
+
+
+    @if(Model.TotalInventoryAvailable > 0)
+    {      
+        using(Html.BeginRouteForm(Routes.ShoppingCart.Add, new { }, FormMethod.Post, new { @class="add-to-cart-form" }))
+        {
+        <p class="availble"><i class="fa fa-check"></i>&nbsp; This product is currently in stock</p>
+        <div class="row">
+            <div class="col-12">
+                <div class="alert positive icon added-to-cart">
+                    <i class="fa fa-check-circle"></i> @Model.ProductTitle has been added to your @Html.RouteLink("shopping cart", Routes.ShoppingCart.PageHeader, new { }, new { @class = "ajax-lightbox" })
+                </div>
+            </div>
+            <div class="col-12 qty">
+                   
+                <fieldset>
+                    Qty &nbsp;                                 
+                    @Html.DropDownListFor(o => o.Qty, Model.InventoryCount)
+                        &nbsp;  &nbsp;
+
+                    <button type="submit" class="btn primary add-to-cart">
+                        <i class="fa fa-shopping-cart"></i>
+                        Add to cart
+                    </button>
+
+                </fieldset>
+                        
+            </div>
+        </div>
+        }
+                    
+        <div class="delivery box-container">
+            <strong>Delivery</strong>
+
+            <p>
+                This item will be dispatched within 2-3 business days. Shipping options available at check out include:
+            </p>
+            <p>
+                FREE Australia wide usually arrives in 3-7 working days <br />
+                once dispatched. (Please check delivery note above.)
+            </p>
+        </div>
+    }
+    else if(Model.InCart)
+    {
+    <p class="availble"><i class="fa fa-check"></i>&nbsp; You have currently added all of the available stock to your cart</p>
+    }
+    else
+    {
+    <p class="unavailable"><i class="fa fa-times"></i>&nbsp; This product is currently out of stock</p>
+    }

@@ -54,5 +54,23 @@ namespace Vintage.Rabbit.Themes.Entities
 
             return true;
         }
+
+        public Dictionary<Guid, int> GetProductGuids()
+        {
+            Dictionary<Guid, int> products = new Dictionary<Guid, int>();
+
+            foreach (var image in this.Images)
+            {
+                foreach (var product in image.Products)
+                {
+                    if (!products.ContainsKey(product.Guid))
+                    {
+                        products.Add(product.ProductGuid, product.Qty);
+                    }
+                }
+            }
+
+            return products;
+        }
     }
 }

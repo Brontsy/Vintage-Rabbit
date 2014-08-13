@@ -72,6 +72,7 @@
     <Compile Include="Messaging\Messages\ProductAddedToCart.cs" />
     <Compile Include="Messaging\Messages\SaveCartMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryHandlers\GetInventoryCountCanAddToCartQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetCartByOwnerIdQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetUnavailableCartItemsQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetCartQueryHandler.cs" />

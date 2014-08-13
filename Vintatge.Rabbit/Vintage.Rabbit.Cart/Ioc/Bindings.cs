@@ -23,7 +23,7 @@ namespace Vintage.Rabbit.Carts.Ioc
             builder.RegisterType<GetCartQueryHandler>().As<IQueryHandler<Cart, GetCartQuery>>();
             builder.RegisterType<GetCartByOwnerIdQueryHandler>().As<IQueryHandler<Cart, GetCartByOwnerIdQuery>>();
             builder.RegisterType<GetUnavailableCartItemsQueryHandler>().As<IQueryHandler<IList<CartItem>, GetUnavailableCartItemsQuery>>();
-            //builder.RegisterType<GetUnavailableCartItemsQueryHandler>().As<IQueryHandler<IList<CartItem>, GetUnavailableCartItemsQuery>>();
+            builder.RegisterType<GetInventoryCountCanAddToCartQueryHandler>().As<IQueryHandler<int, GetInventoryCountCanAddToCartQuery>>();
 
             builder.RegisterType<AddBuyProductToCartCommandHandler>().As<ICommandHandler<AddBuyProductToCartCommand>>();
             builder.RegisterType<AddHireProductToCartCommandHandler>().As<ICommandHandler<AddHireProductToCartCommand>>();

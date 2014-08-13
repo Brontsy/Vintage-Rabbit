@@ -19,6 +19,7 @@ using Vintage.Rabbit.Inventory.Entities;
 using Vintage.Rabbit.Carts.Entities;
 using Vintage.Rabbit.Carts.CommandHandlers;
 using Vintage.Rabbit.Carts.QueryHandlers;
+using Vintage.Rabbit.Membership.Entities;
 
 namespace Vintage.Rabbit.Web.Controllers
 {
@@ -96,7 +97,7 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.PartialView("CategoryList", viewModel);
         }
 
-        public ActionResult Product(int productId, string name, HireDatesViewModel hireDates)
+        public ActionResult Product(int productId)
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
@@ -110,6 +111,7 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.View("Product", viewModel);
         }
 
+
         public ActionResult CheckProductAvailability(Guid productGuid, HireDatesViewModel hireDates)
         {
             if (hireDates.PartyDate.HasValue)
@@ -122,7 +124,7 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.Json(new { Available = false }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult AvailabilityCheck(Guid productGuid, HireDatesViewModel hireDates, HireAvailabilityViewModel hireAvailability, bool postcodeChecked = false)
+        public ActionResult AvailabilityCheck(Member member, Cart cart, Guid productGuid, HireDatesViewModel hireDates, HireAvailabilityViewModel hireAvailability, bool postcodeChecked = false)
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(productGuid));
 
@@ -136,23 +138,17 @@ namespace Vintage.Rabbit.Web.Controllers
                 return this.PartialView("HireUnavailable");
             }
 
-            HireProductViewModel viewModel = new HireProductViewModel(product, hireDates);
-
-            if (hireDates.PartyDate.HasValue) 
+            if (hireDates.PartyDate.HasValue)
             {
-                if (this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(productGuid, 1, hireDates.PartyDate.Value)))
-                {
-                    return this.PartialView("AddToCart", viewModel);
-                }
-                else
-                {
-                    return this.PartialView("Unavailable", viewModel);
-                }
+                int availableInventory = this._queryDispatcher.Dispatch<int, GetInventoryCountCanAddToCartQuery>(new GetInventoryCountCanAddToCartQuery(member.Guid, productGuid, hireDates.PartyDate.Value));
+                bool inCart = cart.Items.Any(o => o.Product.Guid == productGuid);
+
+                return this.PartialView("AddToCart", new HireAddProductToCartViewModel(product, availableInventory, inCart, hireDates.PartyDate.Value));
             }
 
             ViewBag.PostcodeChecked = postcodeChecked;
 
-            return this.PartialView("AvailabilityCheck", viewModel);
+            return this.PartialView("AvailabilityCheck", new HireProductViewModel(product, hireDates));
         }
 
         public ActionResult ListBreadcrumbs(string categoryName)

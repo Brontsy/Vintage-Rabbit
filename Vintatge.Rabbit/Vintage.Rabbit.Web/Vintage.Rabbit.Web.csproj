@@ -213,6 +213,7 @@
     <Compile Include="Models\Blogs\BlogViewModel.cs" />
     <Compile Include="Models\Breadcrumbs\BreadcrumbsViewModel.cs" />
     <Compile Include="Models\ContactUs\ContactUsViewModel.cs" />
+    <Compile Include="Models\Hire\HireAddProductToCartViewModel.cs" />
     <Compile Include="Models\Hire\HireAvailabilityViewModel.cs" />
     <Compile Include="Models\Hire\PostcodeCheckViewModel.cs" />
     <Compile Include="Models\Orders\OrderItemViewModel.cs" />
@@ -224,6 +225,7 @@
     <Compile Include="Models\Payment\GuestViewModel.cs" />
     <Compile Include="Models\Payment\InvitationViewModel.cs" />
     <Compile Include="Models\Payment\PartyHireInformationViewModel.cs" />
+    <Compile Include="Models\Products\AddProductToCartViewModel.cs" />
     <Compile Include="Models\Products\ProductListViewModel.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
     <Compile Include="Models\Hire\HireDatesViewModel.cs" />
@@ -592,6 +594,7 @@
     <Content Include="Views\Style\Unavailable.cshtml" />
     <Content Include="Views\Hire\HireUnavailable.cshtml" />
     <Content Include="Views\Product\QuantityDropdown.cshtml" />
+    <Content Include="Views\Buy\AddToCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

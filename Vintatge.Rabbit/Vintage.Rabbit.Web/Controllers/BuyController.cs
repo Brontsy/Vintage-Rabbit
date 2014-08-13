@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vintage.Rabbit.Carts.Entities;
+using Vintage.Rabbit.Carts.QueryHandlers;
 using Vintage.Rabbit.Common.Entities;
 using Vintage.Rabbit.Common.Enums;
 using Vintage.Rabbit.Common.Extensions;
 using Vintage.Rabbit.Interfaces.CQRS;
+using Vintage.Rabbit.Membership.Entities;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Products.QueryHandlers;
 using Vintage.Rabbit.Web.Models.Breadcrumbs;
@@ -62,14 +65,6 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.PartialView("PartySuppliesSubnav", category.Children.Select(o => new CategoryViewModel(o)).ToList());
         }
 
-        public ActionResult Preview(int productId, string name, string categoryName)
-        {
-            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName, ProductType.Buy));
-            Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
-
-            return this.PartialView("Product", new ProductViewModel(product));
-        }
-
         public ActionResult Category(string categoryName, string childCategoryName, int page = 1)
         {
             Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName, ProductType.Buy));
@@ -110,12 +105,29 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.PartialView("CategoryList", viewModel);
         }
 
-        public ActionResult Product(int productId, string name, string categoryName)
+        public ActionResult Product(int productId)
         {
-            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery(categoryName, ProductType.Buy));
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByIdQuery>(new GetProductByIdQuery(productId));
 
-            return View("Product", new ProductViewModel(product));
+            ProductViewModel viewModel = new ProductViewModel(product);
+
+            if (this.Request.IsAjaxRequest())
+            {
+                return this.PartialView("Product", viewModel);
+            }
+
+            return this.View("Product", viewModel);
+        }
+
+        public ActionResult AddToCartForm(Member member, Cart cart, Guid productGuid)
+        {
+            int availableInventory = this._queryDispatcher.Dispatch<int, GetInventoryCountCanAddToCartQuery>(new GetInventoryCountCanAddToCartQuery(member.Guid, productGuid));
+            bool inCart = cart.Items.Any(o => o.Product.Guid == productGuid);
+            Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(productGuid));
+
+            AddProductToCartViewModel viewModel = new AddProductToCartViewModel(product, availableInventory, inCart);
+
+            return this.PartialView("AddToCart", viewModel);
         }
 
         public ActionResult ListBreadcrumbs(string categoryName, string childCategoryName)

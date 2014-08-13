@@ -54,7 +54,7 @@ namespace Vintage.Rabbit.Themes.QueryHandlers
                 theme = this._queryDispatcher.Dispatch<IList<Theme>, GetThemesQuery>(new GetThemesQuery()).First(o => o.Title.ToUrl() == query.ThemeName);
             }
 
-            Dictionary<Guid, int> products = this.GetProductGuids(theme);
+            Dictionary<Guid, int> products = theme.GetProductGuids();
 
             foreach (var productGuid in products)
             {
@@ -65,25 +65,6 @@ namespace Vintage.Rabbit.Themes.QueryHandlers
             }
 
             return true;
-        }
-
-
-        private Dictionary<Guid, int> GetProductGuids(Theme theme)
-        {
-            Dictionary<Guid, int> products = new Dictionary<Guid, int>();
-
-            foreach (var image in theme.Images)
-            {
-                foreach (var product in image.Products)
-                {
-                    if (!products.ContainsKey(product.Guid))
-                    {
-                        products.Add(product.ProductGuid, product.Qty);
-                    }
-                }
-            }
-
-            return products;
         }
     }
 }
