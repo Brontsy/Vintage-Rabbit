@@ -26,10 +26,7 @@
                     Add
                 </a>
                 }
-                <a class="right ajax-lightbox" href="@Url.RouteUrl(Routes.Buy.Preview, new { productId = Model.Id, name = Model.UrlTitle, categoryName = Model.Categories.First().Name })">
-                    <i class="fa fa-search"></i>
-                    Preview
-                </a>
+                @{Html.RenderAction("ProductPreviewLink", "Product", new { productGuid = Model.Guid });}
             </div>
         </div>
     </div>
