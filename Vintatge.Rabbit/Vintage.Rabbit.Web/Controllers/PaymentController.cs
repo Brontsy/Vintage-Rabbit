@@ -65,7 +65,7 @@ namespace Vintage.Rabbit.Web.Controllers
                     orderGuid = order.Guid;
                 }
 
-                return this.RedirectToRoute(Routes.Checkout.CustomisedInvitations, new { orderGuid = order.Guid });
+                return this.RedirectToRoute(Routes.Checkout.CustomisedInvitations, new { orderGuid = orderGuid });
             }
 
             return this.LoginRegister(null);
@@ -93,7 +93,7 @@ namespace Vintage.Rabbit.Web.Controllers
                 orderGuid = order.Guid;
             }
 
-            return this.RedirectToRoute(Routes.Checkout.CustomisedInvitations, new { orderGuid = order.Guid });
+            return this.RedirectToRoute(Routes.Checkout.CustomisedInvitations, new { orderGuid = orderGuid });
         }
 
         [OrderIsValid]

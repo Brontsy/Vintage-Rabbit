@@ -8,6 +8,6 @@ namespace Vintage.Rabbit.Common.Constants
 {
     public class Constants
     {
-        public const decimal HireDeliveryCost = 30M;
+        public const decimal HireDeliveryCost = 40M;
     }
 }

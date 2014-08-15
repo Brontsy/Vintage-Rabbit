@@ -29,6 +29,7 @@ namespace Vintage.Rabbit.Orders.CommandHandlers
 
         public AddCartItemsToOrderCommand(Guid orderGuid, Member member, Cart cart, DateTime? partyDate = null)
         {
+            this.OrderGuid = orderGuid;
             this.Member = member;
             this.Cart = cart;
             this.PartyDate = partyDate;

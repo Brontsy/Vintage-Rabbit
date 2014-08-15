@@ -17,7 +17,7 @@ namespace Vintage.Rabbit.Web.Models.Payment
         /// <summary>
         /// Is the party hire items being delivered by Vintage Rabbit
         /// </summary>
-        [Display(Name = "I would like the items delivered and picked up ($30 each way)")]
+        [Display(Name = "I would like the items delivered and picked up ($40 each way)")]
         public bool IsDelivery { get; set; }
 
         [Required(ErrorMessage = "Plesae enter a contact phone number")]

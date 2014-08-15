@@ -32,6 +32,7 @@ namespace Vintage.Rabbit.Carts.QueryHandlers
             this.OwnerId = ownerId;
             this.ProductGuid = productGuid;
             this.PartyDate = partyDate;
+            this.Qty = qty;
         }
     }
 

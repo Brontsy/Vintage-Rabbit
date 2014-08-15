@@ -180,8 +180,8 @@ namespace Vintage.Rabbit.Orders.Repository
             {
 
                 // insert
-                string sql = @"Insert Into VintageRabbit.OrderItems (Guid, OrderGuid, ProductTitle, Product, Cost, Quantity, Properties, DateCreated, DateLastModified) Values 
-                            (@Guid, @OrderGuid, @ProductTitle, @Product, @Cost, @Quantity, @Properties, @DateCreated, @DateLastModified)";
+                string sql = @"Insert Into VintageRabbit.OrderItems (Guid, OrderGuid, ProductTitle, Product, Cost, Quantity, DateCreated, DateLastModified) Values 
+                            (@Guid, @OrderGuid, @ProductTitle, @Product, @Cost, @Quantity, @DateCreated, @DateLastModified)";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
