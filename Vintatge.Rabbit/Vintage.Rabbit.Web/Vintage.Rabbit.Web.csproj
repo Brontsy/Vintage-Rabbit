@@ -242,7 +242,6 @@
     <Compile Include="Models\Products\ProductListItemViewModel.cs" />
     <Compile Include="Models\Products\ProductLinkViewModel.cs" />
     <Compile Include="Models\Products\PurchasableItemViewModel.cs" />
-    <Compile Include="Models\Products\QuantityDropdownViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartItemViewModel.cs" />
     <Compile Include="Models\ShoppingCart\CartViewModel.cs" />
     <Compile Include="Models\Themes\ThemeAddedToCartViewModel.cs" />
@@ -255,7 +254,6 @@
     <Compile Include="Models\Themes\ThemeListItemViewModel.cs" />
     <Compile Include="Models\Themes\ThemeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\CreateOrderProvider.cs" />
     <Compile Include="Providers\AddressProvider.cs" />
     <Compile Include="Providers\LoginProvider.cs" />
     <Compile Include="Startup.cs" />
@@ -593,7 +591,6 @@
     <Content Include="Views\Hire\ProductsRemoved.cshtml" />
     <Content Include="Views\Style\Unavailable.cshtml" />
     <Content Include="Views\Hire\HireUnavailable.cshtml" />
-    <Content Include="Views\Product\QuantityDropdown.cshtml" />
     <Content Include="Views\Buy\AddToCart.cshtml" />
   </ItemGroup>
   <ItemGroup>

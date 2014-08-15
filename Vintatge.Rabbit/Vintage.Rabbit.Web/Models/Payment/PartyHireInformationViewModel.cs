@@ -29,27 +29,18 @@ namespace Vintage.Rabbit.Web.Models.Payment
 
         public PartyHireInformationViewModel() { }
 
-        public PartyHireInformationViewModel(Order order, Vintage.Rabbit.Parties.Entities.Party party)
-            :this(null, order, party)
-        {
-        }
-
         public PartyHireInformationViewModel(Address address, Order order, Vintage.Rabbit.Parties.Entities.Party party)
             :base(address)
         {
             this.DeliveryCost = Constants.HireDeliveryCost.ToString("C0");
 
-            if (order.Items.Any(o => o.Product.Type == ProductType.Hire))
-            {
-                this.PartyDate = (DateTime)order.Items.First(o => o.Product.Type == ProductType.Hire).Properties["PartyDate"];
-            }
-            else if (order.Items.Any(o => o.Product.Type == ProductType.Theme))
-            {
-                this.PartyDate = (DateTime)order.Items.First(o => o.Product.Type == ProductType.Theme).Properties["PartyDate"];
-            }
-
             this.IsDelivery = order.Items.Any(o => o.Product.Type == ProductType.Delivery && o.Product.Title == "Pickup Hire Delivery") ||
                               order.Items.Any(o => o.Product.Type == ProductType.Delivery && o.Product.Title == "Dropoff Hire Delivery");
+
+            if(party != null)
+            {
+                this.PartyDate = party.PartyDate;
+            }
 
             if (address != null)
             {

@@ -50,28 +50,5 @@ namespace Vintage.Rabbit.Web.Controllers
 
             return this.PartialView("PreviewLink", new ProductLinkViewModel(product, category, false));
         }
-
-        public ActionResult QuantityDropdown(Member member, HireDatesViewModel hireDates, Guid productGuid)
-        {
-            Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(productGuid));
-            Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
-
-            int quantityInCart = 0;
-            if(cart.Items.Any(o => o.Product.Guid == productGuid))
-            {
-                quantityInCart = cart.Items.Where(o => o.Product.Guid == productGuid).Sum(o => o.Quantity);
-            }
-
-            int totalInventoryAvailable = product.Inventory;
-
-            if(product.Type == ProductType.Hire && hireDates != null && hireDates.PartyDate.HasValue)
-            {
-                totalInventoryAvailable = this._queryDispatcher.Dispatch<int, CountInventoryAvailableForHireQuery>(new CountInventoryAvailableForHireQuery(productGuid, hireDates.PartyDate.Value));
-            }
-
-            QuantityDropdownViewModel viewModel = new QuantityDropdownViewModel(totalInventoryAvailable - quantityInCart);
-
-            return this.PartialView("QuantityDropdown", viewModel);
-        }
 	}
 }

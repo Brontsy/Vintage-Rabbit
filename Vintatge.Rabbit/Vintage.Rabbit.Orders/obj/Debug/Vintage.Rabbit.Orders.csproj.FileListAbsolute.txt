@@ -53,3 +53,5 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\obj\Debug\Vintage.Rabbit.Orders.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\Vintage.Rabbit.Themes.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\Vintage.Rabbit.Themes.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\Vintage.Rabbit.Parties.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\Vintage.Rabbit.Parties.pdb

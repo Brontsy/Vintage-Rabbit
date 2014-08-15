@@ -135,6 +135,10 @@
       <Project>{3e38b9c9-a416-474d-8829-4780b15573f8}</Project>
       <Name>Vintage.Rabbit.Messaging</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VintageRabbit.Parties\Vintage.Rabbit.Parties.csproj">
+      <Project>{3e1f077c-00fc-4898-b8ca-1fb217d5fea1}</Project>
+      <Name>Vintage.Rabbit.Parties</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

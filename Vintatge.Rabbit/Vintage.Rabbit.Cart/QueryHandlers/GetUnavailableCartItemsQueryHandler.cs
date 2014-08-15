@@ -43,14 +43,14 @@ namespace Vintage.Rabbit.Carts.QueryHandlers
             {
                 if (cartItem.Product.Type == Common.Enums.ProductType.Hire)
                 {
-                    if (!this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(cartItem.Product.Guid, cartItem.Quantity, query.PartyDate)))
+                    if (!this._queryDispatcher.Dispatch<bool, CanAddHireProductToCartQuery>(new CanAddHireProductToCartQuery(query.Cart.MemberId, cartItem.Product.Guid, query.PartyDate, cartItem.Quantity)))
                     {
                         unavailableCartItems.Add(cartItem);
                     }
                 }
                 else if (cartItem.Product.Type == Common.Enums.ProductType.Theme)
                 {
-                    if (!this._queryDispatcher.Dispatch<bool, IsThemeAvailableForHireQuery>(new IsThemeAvailableForHireQuery(cartItem.Product.Guid, query.PartyDate)))
+                    if (!this._queryDispatcher.Dispatch<bool, CanAddThemeToCartQuery>(new CanAddThemeToCartQuery(query.Cart.MemberId, cartItem.Product.Guid, query.PartyDate)))
                     {
                         unavailableCartItems.Add(cartItem);
                     }

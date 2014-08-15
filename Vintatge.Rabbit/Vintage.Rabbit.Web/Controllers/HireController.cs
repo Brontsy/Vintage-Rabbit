@@ -112,11 +112,11 @@ namespace Vintage.Rabbit.Web.Controllers
         }
 
 
-        public ActionResult CheckProductAvailability(Guid productGuid, HireDatesViewModel hireDates)
+        public ActionResult CheckProductAvailability(Member member, Guid productGuid, HireDatesViewModel hireDates)
         {
             if (hireDates.PartyDate.HasValue)
             {
-                bool available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(productGuid, 1, hireDates.PartyDate.Value));
+                bool available = this._queryDispatcher.Dispatch<int, GetInventoryCountCanAddToCartQuery>(new GetInventoryCountCanAddToCartQuery(member.Guid, productGuid, hireDates.PartyDate.Value)) > 0;
 
                 return this.Json(new { Available = available }, JsonRequestBehavior.AllowGet);
             }

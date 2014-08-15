@@ -39,25 +39,18 @@ namespace Vintage.Rabbit.Web.Models.Payment
 
         public InvitationViewModel(Order order, Vintage.Rabbit.Parties.Entities.Party party)
         {
-            if (order.Items.Any(o => o.Product.Type == ProductType.Hire))
-            {
-                this.PartyDate = (DateTime)order.Items.First(o => o.Product.Type == ProductType.Hire).Properties["PartyDate"];
-            }
-            else if (order.Items.Any(o => o.Product.Type == ProductType.Theme))
-            {
-                this.PartyDate = (DateTime)order.Items.First(o => o.Product.Type == ProductType.Theme).Properties["PartyDate"];
-            }
-
             var invitation = order.Items.FirstOrDefault(o => ProductHelper.IsCustomisableInvitation(o.Product));
+
             if(invitation != null && invitation.Product is IProduct && (invitation.Product as IProduct).Images.Any())
             {
-                    this.InvitationImage = (invitation.Product as IProduct).Images.First().Url;
+                this.InvitationImage = (invitation.Product as IProduct).Images.First().Url;
             }
 
             if(party != null)
             {
                 this.ChildsName = party.ChildsName;
                 this.Age = party.Age;
+                this.PartyDate = party.PartyDate;
                 this.PartyTime = party.PartyTime;
                 this.PartyAddress = party.PartyAddress;
                 this.RSVPDetails = party.RSVPDetails;

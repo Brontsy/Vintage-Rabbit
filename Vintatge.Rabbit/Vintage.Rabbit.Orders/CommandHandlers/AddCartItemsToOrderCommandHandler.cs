@@ -13,19 +13,25 @@ using Vintage.Rabbit.Membership.Entities;
 using Vintage.Rabbit.Orders.QueryHandlers;
 using Vintage.Rabbit.Carts.Entities;
 using Vintage.Rabbit.Common.Enums;
+using Vintage.Rabbit.Parties.CommandHandlers;
 
 namespace Vintage.Rabbit.Orders.CommandHandlers
 {
     public class AddCartItemsToOrderCommand
     {
-        public Order Order { get; private set; }
+        public Member Member { get; private set; }
+
+        public Guid OrderGuid { get; private set; }
 
         public Cart Cart { get; private set; }
 
-        public AddCartItemsToOrderCommand(Order order, Cart cart)
+        public DateTime? PartyDate { get; private set; }
+
+        public AddCartItemsToOrderCommand(Guid orderGuid, Member member, Cart cart, DateTime? partyDate = null)
         {
-            this.Order = order;
+            this.Member = member;
             this.Cart = cart;
+            this.PartyDate = partyDate;
         }
     }
 
@@ -40,7 +46,7 @@ namespace Vintage.Rabbit.Orders.CommandHandlers
 
         public void Handle(AddCartItemsToOrderCommand command)
         {
-            Order order = command.Order;
+            Order order = new Order(command.OrderGuid, command.Member.Guid);
 
             order.Clear();
             foreach(var cartItem in command.Cart.Items)
@@ -54,6 +60,18 @@ namespace Vintage.Rabbit.Orders.CommandHandlers
             }
 
             this._commandDispatcher.Dispatch<SaveOrderCommand>(new SaveOrderCommand(order));
+
+            if(order.Items.Any(o => o.Product.Type == ProductType.Hire) || order.Items.Any(o => o.Product.Type == ProductType.Theme))
+            {
+                if(command.PartyDate.HasValue)
+                {
+                    this._commandDispatcher.Dispatch(new CreatePartyCommand(order, command.PartyDate.Value, command.Member));
+                }
+                else
+                {
+                    // TODO: TRYING TO CREATE A ORDER WHEN NO PARTY DATE HAS BEEN SET
+                }
+            }
         }
     }
 }

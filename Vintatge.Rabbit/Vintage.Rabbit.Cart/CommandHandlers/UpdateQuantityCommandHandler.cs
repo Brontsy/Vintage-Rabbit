@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Vintage.Rabbit.Caching;
 using Vintage.Rabbit.Carts.Entities;
 using Vintage.Rabbit.Carts.Messaging.Messages;
+using Vintage.Rabbit.Carts.QueryHandlers;
 using Vintage.Rabbit.Interfaces.Cache;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Interfaces.Messaging;
@@ -24,11 +25,14 @@ namespace Vintage.Rabbit.Carts.CommandHandlers
 
         public int Quantity { get; private set; }
 
-        public UpdateQuantityCommand(Cart cart, Guid cartItemGuid, int quantity)
+        public DateTime? PartyDate { get; private set; }
+
+        public UpdateQuantityCommand(Cart cart, Guid cartItemGuid, int quantity, DateTime? partyDate = null)
         {
             this.Cart = cart;
             this.CartItemGuid = cartItemGuid;
             this.Quantity = quantity;
+            this.PartyDate = partyDate;
         }
     }
 
@@ -50,21 +54,19 @@ namespace Vintage.Rabbit.Carts.CommandHandlers
             if (cartItem != null)
             {
                 Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(cartItem.Product.Guid));
-                bool available = false;
 
-                if (product.Type == Common.Enums.ProductType.Hire)
-                {
-                    var partyDate = (DateTime)cartItem.Properties["PartyDate"];
-                    available = this._queryDispatcher.Dispatch<bool, IsProductAvailableForHireQuery>(new IsProductAvailableForHireQuery(cartItem.Product.Guid, command.Quantity, partyDate));
-                }
-                else if (product.Type == Common.Enums.ProductType.Buy)
-                {
-                    available = this._queryDispatcher.Dispatch<bool, IsProductAvailableQuery>(new IsProductAvailableQuery(cartItem.Product.Guid, command.Quantity));
-                }
+                // get the maximum number of inventory we can have
+                int inventoryCount = this._queryDispatcher.Dispatch<int, GetInventoryCountCanAddToCartQuery>(new GetInventoryCountCanAddToCartQuery(command.Cart.MemberId, product.Guid, command.PartyDate));
 
-                if (available)
+                if (inventoryCount > 0)
                 {
-                    cartItem.ChangeQuantity(command.Quantity);
+                    int quantity = command.Quantity;
+                    if (command.Quantity > inventoryCount)
+                    {
+                        quantity = inventoryCount;
+                    }
+
+                    cartItem.ChangeQuantity(quantity);
                 }
 
                 this._commandDispatcher.Dispatch(new SaveCartCommand(command.Cart));

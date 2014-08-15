@@ -26,8 +26,6 @@ namespace Vintage.Rabbit.Carts.CommandHandlers
 
         public DateTime PartyDate { get; private set; }
 
-        public DateTime EndDate { get; private set; }
-
         public AddHireProductToCartCommand(Guid ownerId, int quantity, Product product, DateTime partyDate)
         {
             this.OwnerId = ownerId;
@@ -54,9 +52,15 @@ namespace Vintage.Rabbit.Carts.CommandHandlers
         {
             Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(command.OwnerId));
 
-            IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductQuery>(new GetInventoryForProductQuery(command.Product.Guid));
+            int availableInventory = this._queryDispatcher.Dispatch<int, GetInventoryCountCanAddToCartQuery>(new GetInventoryCountCanAddToCartQuery(command.OwnerId, command.Product.Guid, command.PartyDate));
+            int quantity = command.Quantity;
 
-            cart.AddProduct(command.Quantity, command.Product, command.PartyDate, inventory);
+            if(availableInventory < command.Quantity)
+            {
+                quantity = availableInventory;
+            }
+
+            cart.AddProduct(quantity, command.Product);
 
             this._commandDispatcher.Dispatch(new SaveCartCommand(cart));
 

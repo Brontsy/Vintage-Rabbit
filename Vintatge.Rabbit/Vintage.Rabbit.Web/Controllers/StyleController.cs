@@ -15,6 +15,7 @@ using Vintage.Rabbit.Inventory.QueryHandlers;
 using Vintage.Rabbit.Carts.CommandHandlers;
 using Vintage.Rabbit.Membership.Entities;
 using Vintage.Rabbit.Interfaces.Inventory;
+using Vintage.Rabbit.Carts.QueryHandlers;
 
 namespace Vintage.Rabbit.Web.Controllers
 {
@@ -101,9 +102,8 @@ namespace Vintage.Rabbit.Web.Controllers
                 var products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByGuidsQuery>(new GetProductsByGuidsQuery(this.GetProductGuids(theme)));
                 ThemeViewModel viewModel = new ThemeViewModel(theme, products);
 
-                if(this._queryDispatcher.Dispatch<bool, IsThemeAvailableForHireQuery>(new IsThemeAvailableForHireQuery(themeName, hireDates.PartyDate.Value)))
+                if (this._queryDispatcher.Dispatch<bool, CanAddThemeToCartQuery>(new CanAddThemeToCartQuery(member.Guid, theme.Guid, hireDates.PartyDate.Value)))
                 {
-                    //this._commandDispatcher.Dispatch(new AddThemeToCartCommand(member.Guid, theme, hireDates.PartyDate.Value));
                     ViewBag.PartyDate = hireDates.PartyDate.Value;
 
                     return this.PartialView("AddToCart", viewModel);

@@ -34,61 +34,19 @@ namespace Vintage.Rabbit.Carts.Entities
             this.MemberId = memberId;
         }
 
-        internal void AddProduct(int quantity, Product product, IList<InventoryItem> inventory)
+        internal void AddProduct(int quantity, Product product)
         {
-            int availableInventory = inventory.Count(o => o.IsAvailable());
-
             if (this.Items.Any(o => o.Product.Guid == product.Guid))
             {
                 CartItem cartItem = this.Items.FirstOrDefault(o => o.Product.Guid == product.Guid);
 
                 quantity += cartItem.Quantity;
 
-                if(quantity > availableInventory)
-                {
-                    quantity = availableInventory;
-                }
-
                 cartItem.ChangeQuantity(quantity);
             }
             else
             {
-                if (quantity > availableInventory)
-                {
-                    quantity = availableInventory;
-                }
-
                 this.Items.Add(new CartItem(quantity, product));
-            }
-        }
-
-        internal void AddProduct(int quantity, Product product, DateTime partyDate, IList<InventoryItem> inventory)
-        {
-            int availableInventory = inventory.Count(o => o.IsAvailable(partyDate));
-
-            if (this.Items.Any(o => o.Product.Guid == product.Guid))
-            {
-                CartItem cartItem = this.Items.FirstOrDefault(o => o.Product.Guid == product.Guid);
-
-                quantity += cartItem.Quantity;
-
-                if (quantity > availableInventory)
-                {
-                    quantity = availableInventory;
-                }
-
-                cartItem.ChangeQuantity(quantity);
-
-                cartItem.Properties["PartyDate"] = partyDate;
-            }
-            else
-            {
-                if (quantity > availableInventory)
-                {
-                    quantity = availableInventory;
-                }
-
-                this.Items.Add(new HireCartItem(quantity, product, partyDate));
             }
         }
 

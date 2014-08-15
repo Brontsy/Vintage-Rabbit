@@ -27,20 +27,16 @@ namespace Vintage.Rabbit.Orders.Entities
             get { return this.Product.Cost * this.Quantity; }
         }
 
-        public Dictionary<string, object> Properties { get; internal set; }
-
         public OrderItem()
         {
             this.Guid = Guid.NewGuid();
             this.DateCreated = DateTime.Now;
-            this.Properties = new Dictionary<string, object>();
         }
 
         public OrderItem(CartItem cartItem)
             : this()
         {
             this.Product = cartItem.Product;
-            this.Properties = cartItem.Properties;
             this.Quantity = cartItem.Quantity;
         }
 

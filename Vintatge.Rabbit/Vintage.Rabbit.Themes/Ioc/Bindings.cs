@@ -26,7 +26,6 @@ namespace Vintage.Rabbit.Themes.Ioc
 
             builder.RegisterType<GetThemesQueryHandler>().As<IQueryHandler<IList<Theme>, GetThemesQuery>>();
             builder.RegisterType<GetThemeByGuidQueryHandler>().As<IQueryHandler<Theme, GetThemeByGuidQuery>>();
-            builder.RegisterType<IsThemeAvailableForHireQueryHandler>().As<IQueryHandler<bool, IsThemeAvailableForHireQuery>>();
 
             builder.RegisterType<ThemeHiredMessageHandler>().As<IMessageHandler<IOrderPaidMessage>>();
 

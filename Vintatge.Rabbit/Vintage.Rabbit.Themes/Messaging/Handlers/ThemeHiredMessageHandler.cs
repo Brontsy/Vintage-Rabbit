@@ -8,6 +8,8 @@ using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Interfaces.Inventory;
 using Vintage.Rabbit.Interfaces.Messaging;
 using Vintage.Rabbit.Interfaces.Orders;
+using Vintage.Rabbit.Parties.Entities;
+using Vintage.Rabbit.Parties.QueryHandlers;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Products.QueryHandlers;
 using Vintage.Rabbit.Themes.Entities;
@@ -48,12 +50,19 @@ namespace Vintage.Rabbit.Themese.Messaging.Handlers
                         }
                     }
                 }
-                
-                DateTime partyDate = DateTime.Parse(orderItem.Properties["PartyDate"].ToString());
 
-                foreach (var themeProduct in products)
+                Party party = this._queryDispatcher.Dispatch<Party, GetPartyByOrderGuidQuery>(new GetPartyByOrderGuidQuery(message.Order.Guid));
+
+                if (party == null)
                 {
-                    this._messageService.AddMessage<IProductHiredMessage>(new ProductHiredMessage() { ProductGuid = themeProduct.ProductGuid, Qty = themeProduct.Qty, PartyDate = partyDate });
+                    // TODO: HANDLE BIG PROBLEM BECAUSE WE HAVE HIRED A THEME BUT NO PARTY RECORD WAS CREATED
+                }
+                else
+                {
+                    foreach (var themeProduct in products)
+                    {
+                        this._messageService.AddMessage<IProductHiredMessage>(new ProductHiredMessage() { ProductGuid = themeProduct.ProductGuid, Qty = themeProduct.Qty, PartyDate = party.PartyDate });
+                    }
                 }
             }
         }

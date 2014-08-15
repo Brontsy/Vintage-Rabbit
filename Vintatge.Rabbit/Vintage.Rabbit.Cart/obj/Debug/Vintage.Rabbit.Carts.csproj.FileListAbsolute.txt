@@ -43,3 +43,7 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bi
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Logging.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Themes.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Themes.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Parties.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Membership.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Parties.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Cart\bin\Debug\Vintage.Rabbit.Membership.pdb

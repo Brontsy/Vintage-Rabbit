@@ -76,3 +76,7 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Product
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Products\obj\Debug\Vintage.Rabbit.Products.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Products\bin\Debug\Vintage.Rabbit.Logging.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Products\bin\Debug\Vintage.Rabbit.Logging.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Products\bin\Debug\Vintage.Rabbit.Parties.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Products\bin\Debug\Vintage.Rabbit.Membership.dll
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Products\bin\Debug\Vintage.Rabbit.Parties.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Products\bin\Debug\Vintage.Rabbit.Membership.pdb

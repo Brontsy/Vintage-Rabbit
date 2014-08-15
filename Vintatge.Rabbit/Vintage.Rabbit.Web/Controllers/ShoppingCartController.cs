@@ -43,12 +43,12 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.PartialView("Checkout", new CartViewModel(cart, true));
         }
 
-        public ActionResult UpdateQty(Member member, Guid cartItemId, int qty)
+        public ActionResult UpdateQty(Member member, Guid cartItemId, int qty, HireDatesViewModel hireDates)
         {
             qty = (qty <= 1 ? 1 : qty);
             Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(member.Guid));
             
-            this._commandDispatcher.Dispatch(new UpdateQuantityCommand(cart, cartItemId, qty));
+            this._commandDispatcher.Dispatch(new UpdateQuantityCommand(cart, cartItemId, qty, hireDates.PartyDate));
 
             return null;
         }

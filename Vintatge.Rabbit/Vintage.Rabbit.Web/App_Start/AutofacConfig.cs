@@ -40,7 +40,6 @@ namespace Vintage.Rabbit.Web.App_Start
 
 
             builder.RegisterType<LoginProvider>().As<ILoginProvider>();
-            builder.RegisterType<CreateOrderProvider>().As<ICreateOrderProvider>();
             builder.RegisterType<AddressProvider>().As<IAddressProvider>();
 
             builder.RegisterModelBinders(Assembly.GetExecutingAssembly());

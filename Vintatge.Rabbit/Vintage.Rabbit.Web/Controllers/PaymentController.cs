@@ -26,6 +26,7 @@ using Vintage.Rabbit.Payment.Services;
 using Vintage.Rabbit.Products.Entities;
 using Vintage.Rabbit.Products.Helpers;
 using Vintage.Rabbit.Web.Attributes;
+using Vintage.Rabbit.Web.Models.Hire;
 using Vintage.Rabbit.Web.Models.Membership;
 using Vintage.Rabbit.Web.Models.Orders;
 using Vintage.Rabbit.Web.Models.Payment;
@@ -37,28 +38,31 @@ namespace Vintage.Rabbit.Web.Controllers
     {
         private IQueryDispatcher _queryDispatcher;
         private ICommandDispatcher _commandDispatcher;
-        private ICreateOrderProvider _createOrderProvider;
         private IAddressProvider _addressProvider;
         private ICreditCardService _creditCardService;
         private IPayPalService _paypalService;
 
-        public PaymentController(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher, ICreateOrderProvider createOrderProvider, IAddressProvider addressProvider, ICreditCardService creditCardService, IPayPalService paypalService)
+        public PaymentController(IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher, IAddressProvider addressProvider, ICreditCardService creditCardService, IPayPalService paypalService)
         {
             this._queryDispatcher = queryDispatcher;
             this._commandDispatcher = commandDispatcher;
-            this._createOrderProvider = createOrderProvider;
             this._addressProvider = addressProvider;
             this._creditCardService = creditCardService;
             this._paypalService = paypalService;
         }
 
-        public ActionResult Index(Member member, Order order, Cart cart)
+        public ActionResult Index(Member member, Order order, Cart cart, HireDatesViewModel hireDates)
         {
             if (this.HttpContext.User.Identity.IsAuthenticated)
             {
+                Guid orderGuid = Guid.NewGuid();
                 if (order == null)
                 {
-                    order = this._createOrderProvider.CreateOrder(member, cart);
+                    this._commandDispatcher.Dispatch(new AddCartItemsToOrderCommand(orderGuid, member, cart, hireDates.PartyDate));
+                }
+                else
+                {
+                    orderGuid = order.Guid;
                 }
 
                 return this.RedirectToRoute(Routes.Checkout.CustomisedInvitations, new { orderGuid = order.Guid });
@@ -75,13 +79,18 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.View("LoginRegister", viewModel);
         }
 
-        public ActionResult Guest(Member member, Order order, Cart cart)
+        public ActionResult Guest(Member member, Order order, Cart cart, HireDatesViewModel hireDates)
         {
             this._commandDispatcher.Dispatch(new RegisterGuestCommand(member.Guid));
 
+            Guid orderGuid = Guid.NewGuid();
             if (order == null)
             {
-                order = this._createOrderProvider.CreateOrder(member, cart);
+                this._commandDispatcher.Dispatch(new AddCartItemsToOrderCommand(orderGuid, member, cart, hireDates.PartyDate));
+            }
+            else
+            {
+                orderGuid = order.Guid;
             }
 
             return this.RedirectToRoute(Routes.Checkout.CustomisedInvitations, new { orderGuid = order.Guid });
@@ -124,7 +133,7 @@ namespace Vintage.Rabbit.Web.Controllers
             {
                 Party party = this._queryDispatcher.Dispatch<Party, GetPartyByOrderGuidQuery>(new GetPartyByOrderGuidQuery(order.Guid));
 
-                PartyHireInformationViewModel viewModel = new PartyHireInformationViewModel(order, party);
+                PartyHireInformationViewModel viewModel = new PartyHireInformationViewModel(null, order, party);
 
                 if (order.DeliveryAddressId.HasValue)
                 {
@@ -157,7 +166,7 @@ namespace Vintage.Rabbit.Web.Controllers
             if (viewModel.IsDelivery)
             {
                 Address deliveryAddress = this._addressProvider.SaveDeliveryAddress(member, viewModel);
-                this._commandDispatcher.Dispatch<AddDeliveryAddressCommand>(new AddDeliveryAddressCommand(order, deliveryAddress, true, true));
+                this._commandDispatcher.Dispatch(new AddDeliveryAddressCommand(order, deliveryAddress, true, true));
                 this._commandDispatcher.Dispatch(new AddPartyAddressCommand(order, deliveryAddress, member));
             }
             else
@@ -331,9 +340,9 @@ namespace Vintage.Rabbit.Web.Controllers
             return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
         }
 
-        public ActionResult CheckOrderAvailability(Order order)
+        public ActionResult CheckOrderAvailability(Order order, HireDatesViewModel hireDates)
         {
-            IList<IOrderItem> unavailableOrderItems = this._queryDispatcher.Dispatch<IList<IOrderItem>, GetUnavailableOrderItemsQuery>(new GetUnavailableOrderItemsQuery(order));
+            IList<IOrderItem> unavailableOrderItems = this._queryDispatcher.Dispatch<IList<IOrderItem>, GetUnavailableOrderItemsQuery>(new GetUnavailableOrderItemsQuery(order, hireDates.PartyDate));
 
             IList<OrderItemViewModel> orderItems = unavailableOrderItems.Select(o => new OrderItemViewModel(o)).ToList();
 

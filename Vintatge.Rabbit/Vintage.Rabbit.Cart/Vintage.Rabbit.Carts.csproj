@@ -64,7 +64,6 @@
     <Compile Include="Entities\BuyProductCartItem.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\CartItem.cs" />
-    <Compile Include="Entities\HireCartItem.cs" />
     <Compile Include="Entities\ProductCartItem.cs" />
     <Compile Include="Entities\HireProductCartItem.cs" />
     <Compile Include="Ioc\Bindings.cs" />
@@ -72,6 +71,9 @@
     <Compile Include="Messaging\Messages\ProductAddedToCart.cs" />
     <Compile Include="Messaging\Messages\SaveCartMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryHandlers\CanAddThemeToCartQueryHandler.cs" />
+    <Compile Include="QueryHandlers\CanAddHireProductToCartQueryHandler.cs" />
+    <Compile Include="QueryHandlers\CanAddProductToCartQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetInventoryCountCanAddToCartQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetCartByOwnerIdQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetUnavailableCartItemsQueryHandler.cs" />

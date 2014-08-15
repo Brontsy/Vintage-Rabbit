@@ -68,9 +68,6 @@
     <Compile Include="QueryHandlers\GetInventoryByGuidQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetInventoryForProductsQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetInventoryForProductQueryHandler.cs" />
-    <Compile Include="QueryHandlers\CountInventoryAvailableForHireQueryHandler.cs" />
-    <Compile Include="QueryHandlers\IsProductAvailableQueryHandler.cs" />
-    <Compile Include="QueryHandlers\IsProductAvailableForHireQueryHandler.cs" />
     <Compile Include="Repositories\InventoryRepository.cs" />
   </ItemGroup>
   <ItemGroup>

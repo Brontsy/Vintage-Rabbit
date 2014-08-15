@@ -193,7 +193,6 @@ namespace Vintage.Rabbit.Orders.Repository
                         Product = this._serializer.Serialize(orderItem.Product),
                         Cost = orderItem.Product.Cost,
                         Quantity = orderItem.Quantity,
-                        Properties = this._serializer.Serialize(orderItem.Properties),
                         DateCreated = orderItem.DateCreated,
                         DateLastModified = DateTime.Now,
 
@@ -211,7 +210,6 @@ namespace Vintage.Rabbit.Orders.Repository
                 Guid = orderItem.Guid,
                 Quantity = orderItem.Quantity,
                 Product = this._serializer.Deserialize<IPurchaseable>(orderItem.Product),
-                Properties = this._serializer.Deserialize<Dictionary<string, object>>(orderItem.Properties),
                 DateCreated = orderItem.DateCreated
             };
 

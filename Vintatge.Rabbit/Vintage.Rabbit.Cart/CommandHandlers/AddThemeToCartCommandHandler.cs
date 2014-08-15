@@ -50,9 +50,12 @@ namespace Vintage.Rabbit.Carts.CommandHandlers
         {
             Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(command.OwnerId));
 
-            cart.AddTheme(command.Theme, command.PartyDate);
+            if (this._queryDispatcher.Dispatch<bool, CanAddThemeToCartQuery>(new CanAddThemeToCartQuery(command.OwnerId, command.Theme.Guid, command.PartyDate)))
+            {
+                cart.AddTheme(command.Theme, command.PartyDate);
 
-            this._commandDispatcher.Dispatch(new SaveCartCommand(cart));
+                this._commandDispatcher.Dispatch(new SaveCartCommand(cart));
+            }
         }
     }
 }

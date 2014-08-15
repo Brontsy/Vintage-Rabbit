@@ -17,8 +17,6 @@ namespace Vintage.Rabbit.Carts.Entities
 
         public int Quantity { get; private set; }
 
-        public Dictionary<string, object> Properties { get; private set; }
-
         public decimal Total
         {
             get { return this.Product.Cost * this.Quantity; }
@@ -27,7 +25,6 @@ namespace Vintage.Rabbit.Carts.Entities
         public CartItem()
         {
             this.Id = Guid.NewGuid();
-            this.Properties = new Dictionary<string, object>();
         }
 
         public CartItem(int quantity, Product product)
@@ -42,7 +39,6 @@ namespace Vintage.Rabbit.Carts.Entities
         {
             this.Quantity = 1;
             this.Product = theme;
-            this.Properties["PartyDate"] = partyDate;
         }
 
         internal void ChangeQuantity(int quantity)

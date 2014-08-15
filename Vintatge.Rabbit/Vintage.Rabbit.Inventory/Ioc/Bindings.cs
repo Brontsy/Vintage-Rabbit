@@ -23,10 +23,7 @@ namespace Vintage.Rabbit.Inventory.Ioc
         {
             builder.RegisterType<GetInventoryForProductQueryHandler>().As<IQueryHandler<IList<InventoryItem>, GetInventoryForProductQuery>>();
             builder.RegisterType<GetInventoryForProductsQueryHandler>().As<IQueryHandler<IList<InventoryItem>, GetInventoryForProductsQuery>>();
-            builder.RegisterType<IsProductAvailableForHireQueryHandler>().As<IQueryHandler<bool, IsProductAvailableForHireQuery>>();
-            builder.RegisterType<IsProductAvailableQueryHandler>().As<IQueryHandler<bool, IsProductAvailableQuery>>();
             builder.RegisterType<GetInventoryByGuidQueryHandler>().As<IQueryHandler<InventoryItem, GetInventoryByGuidQuery>>();
-            builder.RegisterType<CountInventoryAvailableForHireQueryHandler>().As<IQueryHandler<int, CountInventoryAvailableForHireQuery>>();
 
             builder.RegisterType<SaveInventoryCommandHandler>().As<ICommandHandler<SaveInventoryCommand>>();
             builder.RegisterType<AddInventoryCommandHandler>().As<ICommandHandler<AddInventoryCommand>>();

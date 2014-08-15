@@ -43,17 +43,15 @@ namespace Vintage.Rabbit.Orders.Entities
             get { return this.Items.Sum(o => o.Total); }
         }
 
-        public Order()
+        public Order() { }
+
+        public Order(Guid orderGuid, Guid memberId) : this()
         {
-            this.Guid = Guid.NewGuid();
+            this.Guid = orderGuid;
+            this.MemberGuid = memberId;
             this.Items = new List<IOrderItem>();
             this.Status = OrderStatus.Unpaid;
             this.DateCreated = DateTime.Now;
-        }
-
-        public Order(Guid memberId) : this()
-        {
-            this.MemberGuid = memberId;
         }
 
         internal void AddProduct(CartItem cartItem)

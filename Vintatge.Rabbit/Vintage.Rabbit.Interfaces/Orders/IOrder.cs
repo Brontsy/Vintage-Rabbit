@@ -37,7 +37,5 @@ namespace Vintage.Rabbit.Interfaces.Orders
         decimal Total { get; }
 
         DateTime DateCreated { get; }
-
-        Dictionary<string, object> Properties { get; }
     }
 }

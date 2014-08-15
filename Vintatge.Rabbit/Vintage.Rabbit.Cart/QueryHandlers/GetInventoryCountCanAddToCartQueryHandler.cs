@@ -14,6 +14,7 @@ using Vintage.Rabbit.Common.Enums;
 using Vintage.Rabbit.Inventory.QueryHandlers;
 using Vintage.Rabbit.Themes.Entities;
 using Vintage.Rabbit.Themes.QueryHandlers;
+using Vintage.Rabbit.Inventory.Entities;
 
 namespace Vintage.Rabbit.Carts.QueryHandlers
 {
@@ -48,16 +49,22 @@ namespace Vintage.Rabbit.Carts.QueryHandlers
             Cart cart = this._queryDispatcher.Dispatch<Cart, GetCartByOwnerIdQuery>(new GetCartByOwnerIdQuery(query.OwnerId));
 
             int quantityInCart = 0;
+            int totalInventoryAvailable = 0;
+
             if (cart.Items.Any(o => o.Product.Guid == query.ProductGuid))
             {
                 quantityInCart = cart.Items.Where(o => o.Product.Guid == query.ProductGuid).Sum(o => o.Quantity);
             }
 
-            int totalInventoryAvailable = product.Inventory;
+            IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductQuery>(new GetInventoryForProductQuery(query.ProductGuid));
 
-            if (product.Type == ProductType.Hire && query.PartyDate.HasValue)
+            if(product.Type == ProductType.Buy)
             {
-                totalInventoryAvailable = this._queryDispatcher.Dispatch<int, CountInventoryAvailableForHireQuery>(new CountInventoryAvailableForHireQuery(query.ProductGuid, query.PartyDate.Value));
+                totalInventoryAvailable = inventory.Count(o => o.IsAvailable());
+            }
+            else if (product.Type == ProductType.Hire && query.PartyDate.HasValue)
+            {
+                totalInventoryAvailable = inventory.Count(o => o.IsAvailable(query.PartyDate.Value));
             }
 
             if(cart.Items.Any(o => o.Product.Type == ProductType.Theme))
