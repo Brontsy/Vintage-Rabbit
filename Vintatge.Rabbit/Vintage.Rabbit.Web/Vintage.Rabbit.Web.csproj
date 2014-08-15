@@ -375,6 +375,15 @@
     <Content Include="Content\images\themes\clown.png" />
     <Content Include="Content\images\themes\cupcake.png" />
     <Content Include="Content\images\themes\envelope.png" />
+    <Content Include="Content\images\themes\frozen\01-thumb.jpg" />
+    <Content Include="Content\images\themes\frozen\01.jpg" />
+    <Content Include="Content\images\themes\frozen\02-thumb.jpg" />
+    <Content Include="Content\images\themes\frozen\02.jpg" />
+    <Content Include="Content\images\themes\frozen\03-thumb.jpg" />
+    <Content Include="Content\images\themes\frozen\03.jpg" />
+    <Content Include="Content\images\themes\frozen\04-thumb.jpg" />
+    <Content Include="Content\images\themes\frozen\04.jpg" />
+    <Content Include="Content\images\themes\frozen\header.jpg" />
     <Content Include="Content\images\themes\mary-poppins\01-thumb.jpg" />
     <Content Include="Content\images\themes\mary-poppins\01.jpg" />
     <Content Include="Content\images\themes\mary-poppins\02-thumb.jpg" />
@@ -410,6 +419,8 @@
     <Content Include="Content\images\themes\wizard-of-oz\03.jpg" />
     <Content Include="Content\images\themes\wizard-of-oz\04-thumb.jpg" />
     <Content Include="Content\images\themes\wizard-of-oz\04.jpg" />
+    <Content Include="Content\images\themes\wizard-of-oz\05-thumb.jpg" />
+    <Content Include="Content\images\themes\wizard-of-oz\05.jpg" />
     <Content Include="Content\scripts\theme-image.js" />
     <Content Include="Content\scripts\lightbox\feather-light.js" />
     <Content Include="Content\scripts\placeholder.js" />

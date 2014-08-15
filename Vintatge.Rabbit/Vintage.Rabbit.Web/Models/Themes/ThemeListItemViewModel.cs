@@ -13,6 +13,8 @@ namespace Vintage.Rabbit.Web.Models.Themes
 
         public string Title { get; set; }
 
+        public string Description { get; set; }
+
         public decimal Cost { get; set; }
 
         public string ImageUrl { get; set; }
@@ -26,6 +28,7 @@ namespace Vintage.Rabbit.Web.Models.Themes
         {
             this.Guid = theme.Guid;
             this.Title = theme.Title;
+            this.Description = theme.Description;
             this.Cost = theme.Cost;
             this.ImageUrl = theme.Images.First().Url;
         }

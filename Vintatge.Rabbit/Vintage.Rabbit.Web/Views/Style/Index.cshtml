@@ -16,19 +16,37 @@
         Looking for something completely different? We have our amazing Creative Director on hand to collaborate with you on any design you may have in mind. Click @Html.RouteLink("here", Routes.CreativeDirector) to read more
     </p>
 
-
-    <ol class="row">
-
-        @foreach(var theme in Model)
-        {
-        <li class="col-4">
-            <a href="@Url.RouteUrl(Routes.Themes.Theme, new { themeName = theme.UrlTitle })">
-                <img src="@theme.ImageUrl" />
-                <span>@theme.Title</span>
+    <div class="row frozen">        
+        @{var frozen = Model.First(o => o.UrlTitle == "frozen");}
+        <div class="col-8">
+            <a href="@Url.RouteUrl(Routes.Themes.Theme, new { themeName = frozen.UrlTitle })">
+                <img src="/content/images/themes/frozen/header.jpg" />
             </a>
-        </li>
-        }
+        </div>
+        <div class="col-4">            
 
-    </ol>
+            <a href="@Url.RouteUrl(Routes.Themes.Theme, new { themeName = frozen.UrlTitle })">
+                <span>@frozen.Title</span>
+            </a>
+            <p>Let it go, Let it Go! Many little girls are dreaming of recreating the glistening snow and magical characters of the movie frozen. Give your child the frozen party they have dreamt of with our custom made 2 metre square backdrop covered in silver glitter and snowflakes. </p>
+        </div>
+    </div>
+
+
+        <ol class="row">
+
+
+            @foreach (var theme in Model.Where(o => o.UrlTitle != "frozen"))
+            {
+                <li class="col-4">
+                    <a href="@Url.RouteUrl(Routes.Themes.Theme, new { themeName = theme.UrlTitle })">
+                        <img src="@theme.ImageUrl" />
+                        <span>@theme.Title</span>
+                    </a>
+                </li>
+            }
+
+        </ol>
+
 
 </div>

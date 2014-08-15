@@ -4,9 +4,12 @@
 .styles {
     .page-content();
     margin-top: 20px;
-
+    
+                img {
+                    width: 100%;
+                }
     ol {
-        margin-top: 20px;
+        margin-top: 30px;
         li {
             margin-bottom: 20px;
 
@@ -31,5 +34,31 @@
                 }
             }
         }
+    }
+
+    .frozen
+
+    {
+        margin-top: 20px;
+            a {
+                color: #333333;
+                transition: all 0.15s linear 0s;
+
+                img {
+                    width: 100%;
+                }
+
+                span {
+                    text-align: left;
+                    font-size: 32px;
+                    display: block;
+                    font-family: 'TypicalWriter', Arial;
+                }
+
+                &:hover {
+                    text-decoration: none;
+                    color: @green;
+                }
+            }
     }
 }

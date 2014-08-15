@@ -75,12 +75,13 @@
                 <li>
                     @Html.RouteLink("Themes", Routes.Themes.Index)
                     <ul class="themes-subnav">
-                        <li>@Html.RouteLink("Carnival", Routes.Themes.Carnival)</li>
-                        <li>@Html.RouteLink("Wizard of Oz", Routes.Themes.WizardOfOz)</li>
-                        <li>@Html.RouteLink("Teddy Bears Picnic", Routes.Themes.TeddyBearsPicnic)</li>
-                        <li>@Html.RouteLink("Tea Party", Routes.Themes.TeaParty)</li>
-                        <li>@Html.RouteLink("Mary Poppins", Routes.Themes.MaryPoppins)</li>
-                        <li>@Html.RouteLink("Cinderella", Routes.Themes.Cinderella)</li>
+                        <li>@Html.RouteLink("Frozen", Routes.Themes.Theme, new { themeName = "frozen" })</li>
+                        <li>@Html.RouteLink("Carnival", Routes.Themes.Theme, new { themeName = "carnival" })</li>
+                        <li>@Html.RouteLink("Wizard of Oz", Routes.Themes.Theme, new { themeName = "wizard-of-oz" })</li>
+                        <li>@Html.RouteLink("Teddy Bears Picnic", Routes.Themes.Theme, new { themeName = "teddy-bears-picnic" })</li>
+                        <li>@Html.RouteLink("Tea Party", Routes.Themes.Theme, new { themeName = "tea-party" })</li>
+                        <li>@Html.RouteLink("Mary Poppins", Routes.Themes.Theme, new { themeName = "mary-poppins" })</li>
+                        <li>@Html.RouteLink("Cinderella", Routes.Themes.Theme, new { themeName = "cinderella" })</li>
                     </ul>
                 </li>
                 <li>
