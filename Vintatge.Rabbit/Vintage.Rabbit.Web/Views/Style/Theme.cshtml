@@ -40,7 +40,7 @@
                                     <img src="@Model.Images.ElementAt(1).ThumbnailUrl" />
                                 </a>
                             </div>
-                            <div class="right">
+                            <div class="right @(Model.Images.ElementAt(2).IsTallImage ? "tall-image" : "")">
                                 <a class="ajax-lightbox-nopadding" href="@Url.RouteUrl(Routes.Themes.Image, new { imageGuid = Model.Images.ElementAt(2).Guid })">
                                     <img src="@Model.Images.ElementAt(2).ThumbnailUrl" />
                                 </a>
