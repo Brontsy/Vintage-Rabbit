@@ -58,12 +58,15 @@
                                                                 </div>
                                                             </div>
                                                             <h4>
-                                                                product.Product.Title
+                                                                @product.Qty x @product.Product.Title
                                                             </h4>
-                                                            <p class="price">@product.Product.Cost</p>
-                                                            <div class="remove-product-from-theme">                                                                
-                                                                @Html.RouteLink("remove", Routes.Themes.RemoveProduct, new { themeImageGuid = image.Guid, themeProductGuid = product.Guid }, new {  })
+                                                            <p class="price">@product.Product.Cost.Value.ToString("C2")</p>
+                                                            <div class="float-container">
+                                                                <div class="remove-product-from-theme">
+                                                                    @Html.RouteLink("remove", Routes.Themes.RemoveProduct, new { themeImageGuid = image.Guid, themeProductGuid = product.Guid }, new { })
+                                                                </div>
                                                             </div>
+
                                                         </div>
                                                     </li>
                                                 }

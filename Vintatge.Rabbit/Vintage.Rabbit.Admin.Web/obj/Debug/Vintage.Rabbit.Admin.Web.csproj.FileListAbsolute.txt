@@ -50,7 +50,6 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.W
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Lucene.Net.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\AzureDirectory.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Vintage.Rabbit.Logging.dll
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\PayPalMerchantSDK.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.Data.Edm.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.Data.Services.Client.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Microsoft.Data.OData.dll
@@ -149,3 +148,4 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.W
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\NLog.config
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Vintage.Rabbit.Parties.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\Vintage.Rabbit.Parties.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Admin.Web\bin\RestApiSDK.dll

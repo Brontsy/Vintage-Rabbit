@@ -17,7 +17,6 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\StackExchange.Redis.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\Newtonsoft.Json.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\Vintage.Rabbit.Logging.dll
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\PayPalMerchantSDK.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\Microsoft.WindowsAzure.Storage.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\ImageProcessor.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\PayPalCoreSDK.dll
@@ -55,3 +54,4 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\Vintage.Rabbit.Themes.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\Vintage.Rabbit.Parties.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\Vintage.Rabbit.Parties.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Orders\bin\Debug\RestApiSDK.dll

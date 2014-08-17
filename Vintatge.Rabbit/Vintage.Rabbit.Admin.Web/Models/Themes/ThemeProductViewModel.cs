@@ -25,6 +25,8 @@ namespace Vintage.Rabbit.Admin.Web.Models.Themes
 
         public Guid ProductGuid { get; set; }
 
+        public int Qty { get; set; }
+
         public ProductViewModel Product { get; set; }
 
         public ThemeProductViewModel(ThemeProduct themeProduct, Product product)
@@ -32,6 +34,7 @@ namespace Vintage.Rabbit.Admin.Web.Models.Themes
             this.Guid = themeProduct.Guid;
             this.X = themeProduct.X;
             this.Y = themeProduct.Y;
+            this.Qty = themeProduct.Qty;
             this.ProductGuid = themeProduct.ProductGuid;
 
             this.Product = new ProductViewModel(product, new List<Category>());

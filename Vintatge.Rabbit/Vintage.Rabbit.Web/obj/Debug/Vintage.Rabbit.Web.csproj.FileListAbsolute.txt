@@ -48,7 +48,6 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\StackExchange.Redis.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Dapper.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\SendGridMail.dll
-D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\PayPalMerchantSDK.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Microsoft.WindowsAzure.Storage.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\ImageProcessor.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Lucene.Net.dll
@@ -155,3 +154,4 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Parties.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Themes.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\Vintage.Rabbit.Themes.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Web\bin\RestApiSDK.dll

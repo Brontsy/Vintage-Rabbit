@@ -47,13 +47,16 @@
     <Reference Include="NLog.Extended">
       <HintPath>..\packages\NLog.Extended.3.1.0.0\lib\net45-full\NLog.Extended.dll</HintPath>
     </Reference>
-    <Reference Include="PayPalCoreSDK, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="PayPalCoreSDK, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\PayPalCoreSDK.1.4.1\lib\net45\PayPalCoreSDK.dll</HintPath>
+      <HintPath>..\packages\PayPalCoreSDK.1.4.2\lib\net45\PayPalCoreSDK.dll</HintPath>
     </Reference>
     <Reference Include="PayPalMerchantSDK, Version=2.7.109.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\PayPalMerchantSDK.2.7.109\lib\PayPalMerchantSDK.dll</HintPath>
+    </Reference>
+    <Reference Include="RestApiSDK">
+      <HintPath>..\packages\RestApiSDK.0.7.7\lib\net45\RestApiSDK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

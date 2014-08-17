@@ -25,3 +25,4 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Payment
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Payment\obj\Debug\Vintage.Rabbit.Payment.csprojResolveAssemblyReference.cache
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Payment\obj\Debug\Vintage.Rabbit.Payment.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Payment\obj\Debug\Vintage.Rabbit.Payment.pdb
+D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Payment\bin\Debug\RestApiSDK.dll

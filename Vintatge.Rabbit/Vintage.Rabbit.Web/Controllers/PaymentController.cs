@@ -320,7 +320,7 @@ namespace Vintage.Rabbit.Web.Controllers
         }
 
         [OrderIsValid]
-        public ActionResult PayPalSuccess(Order order, Guid paypalPaymentGuid, string token, string PayerID)
+        public ActionResult PayPalSuccess(Order order, Member member, Guid paypalPaymentGuid, string token, string PayerID)
         {
             PayPalPayment payment = this._paypalService.Success(order, paypalPaymentGuid, token, PayerID);
 
@@ -328,8 +328,12 @@ namespace Vintage.Rabbit.Web.Controllers
             {
                 return this.RedirectToRoute(Routes.Checkout.Complete);
             }
+            else if(payment.Status == PayPalPaymentStatus.Error)
+            {
+                this.ModelState.AddModelError("Error", payment.Errors.First().ErrorMessage);
+            }
 
-            return this.RedirectToRoute(Routes.Checkout.PaymentInfo);
+            return this.PaymentInfo(order, member, PaymentMethod.PayPal);
         }
 
         [OrderIsValid]

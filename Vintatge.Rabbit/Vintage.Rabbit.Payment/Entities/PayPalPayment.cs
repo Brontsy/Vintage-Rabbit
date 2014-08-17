@@ -19,7 +19,9 @@ namespace Vintage.Rabbit.Payment.Entities
 
         public string Token { get; set; }
 
-        public string Ack { get; set; }
+        public string PayPalId { get; set; }
+
+        public string PayPalPayerId { get; set; }
 
         public string TransactionId { get; set; }
 
@@ -36,20 +38,21 @@ namespace Vintage.Rabbit.Payment.Entities
             this.Errors = new List<PayPalError>();
         }
 
-        public PayPalPayment(Guid guid, Guid orderGuid, string token, string ack, string correlationID)
+        public PayPalPayment(Guid guid, Guid orderGuid, string payPalId)
         {
             this.Guid = guid;
             this.OrderGuid = orderGuid;
-            this.Token = token;
-            this.Ack = ack;
-            this.CorrelationID = correlationID;
+            //this.Token = token;
+            this.PayPalId = payPalId;
+            //this.CorrelationID = correlationID;
             this.DateCreated = DateTime.Now;
             this.Status = PayPalPaymentStatus.Initialised;
             this.Errors = new List<PayPalError>();
         }
 
-        public void Completed()
+        public void Completed(string payerId)
         {
+            this.PayPalPayerId = payerId;
             this.Status = PayPalPaymentStatus.Completed;
         }
 
