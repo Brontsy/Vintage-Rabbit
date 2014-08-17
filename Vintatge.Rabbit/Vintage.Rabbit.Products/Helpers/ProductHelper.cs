@@ -11,7 +11,7 @@ namespace Vintage.Rabbit.Products.Helpers
     {
         public static bool IsCustomisableInvitation(IPurchaseable product)
         {
-            return product.Title.ToLower().Contains("customised") && product.Title.ToLower().Contains("invitation");
+            return (product.Title.ToLower().Contains("customised") || product.Title.ToLower().Contains("custom")) && product.Title.ToLower().Contains("invitation");
         }
     }
 }
