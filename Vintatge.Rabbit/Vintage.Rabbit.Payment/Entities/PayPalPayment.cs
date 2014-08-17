@@ -17,18 +17,14 @@ namespace Vintage.Rabbit.Payment.Entities
 
         public PayPalPaymentStatus Status { get; set; }
 
-        public string Token { get; set; }
-
         public string PayPalId { get; set; }
 
         public string PayPalPayerId { get; set; }
 
-        public string TransactionId { get; set; }
+        public string PayPalResponse { get; set; }
 
         public IList<PayPalError> Errors { get; set; }
         
-        public string CorrelationID { get; set; }
-
         public DateTime DateCreated { get; set; }
 
         public DateTime DateLastModified { get; set; }
@@ -42,9 +38,7 @@ namespace Vintage.Rabbit.Payment.Entities
         {
             this.Guid = guid;
             this.OrderGuid = orderGuid;
-            //this.Token = token;
             this.PayPalId = payPalId;
-            //this.CorrelationID = correlationID;
             this.DateCreated = DateTime.Now;
             this.Status = PayPalPaymentStatus.Initialised;
             this.Errors = new List<PayPalError>();

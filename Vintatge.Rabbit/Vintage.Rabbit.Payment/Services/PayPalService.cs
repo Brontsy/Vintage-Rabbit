@@ -101,6 +101,8 @@ namespace Vintage.Rabbit.Payment.Services
                 if (payment.state == "created")
                 {
                     var result = payment.Execute(this.GetApiContext(), new PaymentExecution() { payer_id = payment.payer.payer_info.payer_id });
+                    payPalOrder.PayPalResponse = result.ConvertToJson();
+
                     if (result.state == "approved")
                     {
                         payPalOrder.Completed(payerId);
@@ -143,11 +145,9 @@ namespace Vintage.Rabbit.Payment.Services
         public void Cancel(IOrder order, Guid paypalGuid, string token)
         {
             var payPalOrder = this._queryDispatcher.Dispatch<PayPalPayment, GetPayPalPaymentByGuidQuery>(new GetPayPalPaymentByGuidQuery(paypalGuid));
-            if (payPalOrder.Token == token && payPalOrder.OrderGuid == order.Guid)
-            {
-                payPalOrder.Cancelled();
-                this._commandDispatcher.Dispatch(new SavePayPalPaymentCommand(payPalOrder));
-            }
+         
+            payPalOrder.Cancelled();
+            this._commandDispatcher.Dispatch(new SavePayPalPaymentCommand(payPalOrder));
         }
 
         public PayPal.Api.Payments.Payment CreatePayment(IOrder order, string returnUrl, string cancelUrl)

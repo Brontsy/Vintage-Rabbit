@@ -50,8 +50,8 @@ namespace Vintage.Rabbit.Payment.Repository
             if (this.GetPayPalPayment(payment.Guid) == null)
             {
                 // insert
-                string sql = @"Insert Into VintageRabbit.PayPalPayment (Guid, OrderGuid, Status, Token, PayPalId, Errors, DateCreated, DateLastModified) 
-                Values (@Guid, @OrderGuid, @Status, @Token, @PayPalId, @Errors, @DateCreated, @DateLastModified)";
+                string sql = @"Insert Into VintageRabbit.PayPalPayment (Guid, OrderGuid, Status, PayPalResponse, PayPalId, Errors, DateCreated, DateLastModified) 
+                Values (@Guid, @OrderGuid, @Status, @PayPalResponse, @PayPalId, @Errors, @DateCreated, @DateLastModified)";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
@@ -60,7 +60,7 @@ namespace Vintage.Rabbit.Payment.Repository
                         Guid = payment.Guid,
                         OrderGuid = payment.OrderGuid,
                         Status = payment.Status.ToString(),
-                        Token = payment.Token,
+                        PayPalResponse = payment.PayPalResponse,
                         PayPalId = payment.PayPalId,
                         Errors = this._serializer.Serialize(payment.Errors),
                         DateCreated = DateTime.Now,
@@ -72,7 +72,7 @@ namespace Vintage.Rabbit.Payment.Repository
             else
             {
                 //update
-                string sql = @"Update VintageRabbit.PayPalPayment Set OrderGuid = @OrderGuid, Status = @Status, Token = @Token, PayPalId = @PayPalId, Errors = @Errors, DateLastModified = @DateLastModified Where Guid = @Guid";
+                string sql = @"Update VintageRabbit.PayPalPayment Set OrderGuid = @OrderGuid, Status = @Status, PayPalResponse = @PayPalResponse, PayPalId = @PayPalId, Errors = @Errors, DateLastModified = @DateLastModified Where Guid = @Guid";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
@@ -81,7 +81,7 @@ namespace Vintage.Rabbit.Payment.Repository
                         Guid = payment.Guid,
                         OrderGuid = payment.OrderGuid,
                         Status = payment.Status.ToString(),
-                        Token = payment.Token,
+                        PayPalResponse = payment.PayPalResponse,
                         PayPalId = payment.PayPalId,
                         Errors = payment.Errors.Any() ? this._serializer.Serialize(payment.Errors) : null,
                         DateLastModified = DateTime.Now
@@ -99,7 +99,7 @@ namespace Vintage.Rabbit.Payment.Repository
                 Guid = payment.Guid,
                 OrderGuid = payment.OrderGuid,
                 Status = (PayPalPaymentStatus)Enum.Parse(typeof(PayPalPaymentStatus), payment.Status),
-                Token = payment.Token,
+                PayPalResponse = payment.PayPalResponse,
                 PayPalId = payment.PayPalId,
                 DateCreated = payment.DateCreated,
                 DateLastModified = payment.DateLastModified
