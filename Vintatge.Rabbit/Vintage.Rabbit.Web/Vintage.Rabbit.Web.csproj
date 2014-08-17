@@ -262,6 +262,8 @@
     <Content Include="Content\fonts\a-little-sunshine\a-little-sunshine-webfont.svg" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\typical-writer\typiw___-webfont.svg" />
+    <Content Include="Content\images\blog\contact-us.jpg" />
+    <Content Include="Content\images\blog\photobooth.jpg" />
     <Content Include="Content\images\BUNTING-06.png" />
     <Content Include="Content\images\dale.jpg" />
     <Content Include="Content\images\email\success-tick.png" />
