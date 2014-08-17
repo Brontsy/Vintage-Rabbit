@@ -23,6 +23,7 @@
 
                 @Html.CheckBox("key", false, new { @value = key, id = key })
                 @Html.Label(key, key)
+                @Html.RouteLink("remove", Routes.Cache.RemoveKey, new { key = key }, new { @class = "remove-key" })
         </li>
         }
 
@@ -33,3 +34,21 @@
     }
 
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('.remove-key').on('click', function (event) {
+            event.preventDefault();
+            var $this = $(this);
+            $(this).html('removing');
+            $.ajax({
+                url: $(this).attr('href'),
+                success: function (data) {
+                    $this.parents('li').remove();
+                }
+            });
+        });
+    });
+</script>
+

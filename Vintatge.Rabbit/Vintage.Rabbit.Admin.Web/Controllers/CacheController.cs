@@ -23,6 +23,12 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
             return View("Index", keys);
         }
 
+        public ActionResult RemoveKey(string key)
+        {
+            this._cacheService.Remove(key);
+            return null;
+        }
+
         public ActionResult RemoveKeys(string[] key)
         {
             foreach (var k in key.Where(o => o != "false"))

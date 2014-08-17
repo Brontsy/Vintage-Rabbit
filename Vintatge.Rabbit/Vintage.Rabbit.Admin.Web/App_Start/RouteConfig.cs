@@ -62,6 +62,7 @@ namespace Vintage.Rabbit.Admin.Web
         public static class Cache
         {
             public static string Index = "Cache Index";
+            public static string RemoveKey = "Cache RemoveKey";
             public static string RemoveKeys = "Cache RemoveKeys";
         }
         
@@ -88,6 +89,7 @@ namespace Vintage.Rabbit.Admin.Web
             routes.MapRoute(Routes.Membership.Logout, url: "logout", defaults: new { controller = "Membership", action = "Logout" });
 
             routes.MapRoute(Routes.Cache.Index, url: "cache", defaults: new { controller = "Cache", action = "Index" });
+            routes.MapRoute(Routes.Cache.RemoveKey, url: "cache/remove-key/{key}", defaults: new { controller = "Cache", action = "RemoveKey" });
             routes.MapRoute(Routes.Cache.RemoveKeys, url: "cache/remove-keys", defaults: new { controller = "Cache", action = "RemoveKeys" });
 
             routes.MapRoute(Routes.Orders.Index, url: "orders/{status}", defaults: new { controller = "Orders", action = "Index" });
