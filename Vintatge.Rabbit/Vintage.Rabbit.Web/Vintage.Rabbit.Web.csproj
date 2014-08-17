@@ -605,6 +605,7 @@
     <Content Include="Views\Hire\HireUnavailable.cshtml" />
     <Content Include="Views\Buy\AddToCart.cshtml" />
     <Content Include="Views\Style\HireUnavailable.cshtml" />
+    <Content Include="Views\Home\ComingSoon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

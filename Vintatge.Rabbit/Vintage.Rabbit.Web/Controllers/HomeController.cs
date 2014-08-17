@@ -1,6 +1,7 @@
 ﻿using NLog;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading;
 using System.Web;
@@ -25,7 +26,19 @@ namespace Vintage.Rabbit.Web.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            bool isLive = false;
+
+            if(ConfigurationManager.AppSettings["IsLive"] != null)
+            {
+                bool.TryParse(ConfigurationManager.AppSettings["IsLive"], out isLive);
+            }
+
+            if (isLive || this.Request.Cookies["IsLive"] != null)
+            {
+                return View();
+            }
+
+            return View("ComingSoon");
         }
     }
 }
