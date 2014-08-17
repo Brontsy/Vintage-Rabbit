@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vintage.Rabbit.Common.Enums;
+using Vintage.Rabbit.Common.Extensions;
 using Vintage.Rabbit.Products.Entities;
 
 namespace Vintage.Rabbit.Web.Models.Hire
@@ -20,6 +21,15 @@ namespace Vintage.Rabbit.Web.Models.Hire
 
         public string ProductTitle { get; set; }
 
+        public Guid ProductGuid { get; set; }
+
+        public int ProductId { get; set; }
+
+        public string UrlTitle
+        {
+            get { return this.ProductTitle.ToUrl(); }
+        }
+
         public DateTime PartyDate { get; set; }
 
         public HireAddProductToCartViewModel(Product product, int totalInventoryAvailable, bool inCart, DateTime partyDate)
@@ -27,6 +37,8 @@ namespace Vintage.Rabbit.Web.Models.Hire
             this.TotalInventoryAvailable = totalInventoryAvailable;
             this.InCart = inCart;
             this.ProductTitle = product.Title;
+            this.ProductGuid = product.Guid;
+            this.ProductId = product.Id;
             this.PartyDate = partyDate;
 
             this.InventoryCount = new List<SelectListItem>();

@@ -37,8 +37,8 @@
         </div>
 
 @if(Model.TotalInventoryAvailable > 0)
-    {
-    using (Html.BeginRouteForm(Routes.ShoppingCart.AddHireProduct, new { }, FormMethod.Post, new { @class = "add-to-cart-form hire-form" }))
+{
+    using (Html.BeginRouteForm(Routes.ShoppingCart.AddHireProduct, new { name = Model.UrlTitle, productId = Model.ProductId }, FormMethod.Post, new { @class = "add-to-cart-form hire-form" }))
     {
         <fieldset>
             @Html.HiddenFor(o => o.PartyDate)
