@@ -66,7 +66,7 @@ namespace Vintage.Rabbit.Web.Models.Orders
 
                 if (product.Images.Any())
                 {
-                    this.Thumbnail = product.Images.First().Thumbnail;
+                    this.Thumbnail = product.Images.First().SecureThumbnail;
                 }
             }
 

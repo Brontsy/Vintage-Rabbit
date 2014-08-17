@@ -17,8 +17,8 @@ namespace Vintage.Rabbit.Admin.Web.Models.Products
         public ProductImageViewModel(IProductImage image)
         {
             this.Id = image.Id;
-            this.Url = image.Url;
-            this.Thumbnail = image.Thumbnail;
+            this.Url = image.SecureUrl;
+            this.Thumbnail = image.SecureThumbnail;
         }
 
         public ProductImageViewModel() { }

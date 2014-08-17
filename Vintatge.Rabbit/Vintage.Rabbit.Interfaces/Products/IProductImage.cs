@@ -12,9 +12,9 @@ namespace Vintage.Rabbit.Interfaces.Products
     {
         Guid Id { get; }
 
-        string Url { get; }
+        string SecureUrl { get; }
 
-        string Thumbnail { get; }
+        string SecureThumbnail { get; }
     }
 
 }

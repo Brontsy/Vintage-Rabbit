@@ -47,8 +47,8 @@ namespace Vintage.Rabbit.Products.CommandHandlers
 
             if (photo != null)
             {
-                this._fileStorage.DeleteFile(photo.Url);
-                this._fileStorage.DeleteFile(photo.Thumbnail);
+                this._fileStorage.DeleteFile(photo.SecureUrl);
+                this._fileStorage.DeleteFile(photo.SecureThumbnail);
 
                 command.Product.Images.Remove(photo);
 

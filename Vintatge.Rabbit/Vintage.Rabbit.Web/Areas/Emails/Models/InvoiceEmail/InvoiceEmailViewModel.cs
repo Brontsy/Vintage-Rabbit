@@ -86,7 +86,7 @@ namespace Vintage.Rabbit.Web.Areas.Emails.Models.InvoiceEmail
                 this.Description = product.Description;
                 if (product.Images.Any())
                 {
-                    this.Thumbnail = product.Images.First().Thumbnail;
+                    this.Thumbnail = product.Images.First().SecureThumbnail;
                 }
             }
 

@@ -43,7 +43,7 @@ namespace Vintage.Rabbit.Web.Models.Payment
 
             if(invitation != null && invitation.Product is IProduct && (invitation.Product as IProduct).Images.Any())
             {
-                this.InvitationImage = (invitation.Product as IProduct).Images.First().Url;
+                this.InvitationImage = (invitation.Product as IProduct).Images.First().SecureUrl;
             }
 
             if(party != null)

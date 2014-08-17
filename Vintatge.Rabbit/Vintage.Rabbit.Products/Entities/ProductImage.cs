@@ -13,7 +13,33 @@ namespace Vintage.Rabbit.Products.Entities
 
         public string Url { get; set; }
 
+        public string SecureUrl
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(this.Url))
+                {
+                    return this.Url.Replace("http://", "https://");
+                }
+
+                return null;
+            }
+        }
+
         public string Thumbnail { get; set; }
+
+        public string SecureThumbnail
+        {
+            get
+            {
+                if (!string.IsNullOrEmpty(this.Thumbnail))
+                {
+                    return this.Thumbnail.Replace("http://", "https://");
+                }
+
+                return null;
+            }
+        }
 
         public ProductImage()
         {
