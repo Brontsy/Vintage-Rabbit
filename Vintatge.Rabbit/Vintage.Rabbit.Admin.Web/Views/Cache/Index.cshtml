@@ -17,7 +17,7 @@
     @using (Html.BeginRouteForm(Routes.Cache.RemoveKeys, new { }, FormMethod.Post, new { }))
     { 
     <ul>
-        @foreach (string key in Model)
+        @foreach (string key in Model.OrderBy(o => o))
         {
             <li class="checkbox-container">
 

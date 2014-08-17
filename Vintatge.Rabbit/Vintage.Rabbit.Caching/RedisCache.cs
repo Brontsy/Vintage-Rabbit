@@ -152,7 +152,7 @@ namespace Vintage.Rabbit.Caching
             {
                 this.EnsureConnection();
                 var database = this._connection.GetDatabase(db);
-                database.KeyDelete(key, CommandFlags.PreferMaster);
+                database.KeyDelete(key);
             }
             catch (Exception e)
             {

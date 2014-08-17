@@ -25,7 +25,7 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
 
         public ActionResult RemoveKeys(string[] key)
         {
-            foreach (var k in key)
+            foreach (var k in key.Where(o => o != "false"))
             {
                 this._cacheService.Remove(k);
             }
