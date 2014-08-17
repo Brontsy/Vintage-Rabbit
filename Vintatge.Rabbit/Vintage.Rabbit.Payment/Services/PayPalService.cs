@@ -198,6 +198,10 @@ namespace Vintage.Rabbit.Payment.Services
             {
                 payPalConfig.Add("mode", "sandbox");
             }
+            else
+            {
+                payPalConfig.Add("endpoint", this._payPalUrl);
+            }
 
             OAuthTokenCredential tokenCredential = new OAuthTokenCredential(this._payPalClientId, this._payPalSecret, payPalConfig);
             string accessToken = tokenCredential.GetAccessToken();
