@@ -122,8 +122,18 @@ namespace Vintage.Rabbit.Payment.Services
                     }
                 }
             }
-            catch(Exception exception)
+            catch (PayPal.Exception.PayPalException exception)
             {
+                payPalOrder.AddError(new PayPalError(string.Empty, "Sorry there was a problem processing your payment details. Please try again."));
+                this._messageService.AddMessage(new PayPalErrorMessage(payPalOrder));
+
+                this._logger.Error(exception, "PayPal Payment: execute: " + payPalOrder.Guid);
+            }
+            catch (Exception exception)
+            {
+                payPalOrder.AddError(new PayPalError(string.Empty, "Sorry there was a problem processing your payment details. Please try again."));
+                this._messageService.AddMessage(new PayPalErrorMessage(payPalOrder));
+
                 this._logger.Error(exception, "PayPal Payment: execute: " + payPalOrder.Guid);
             }
 
