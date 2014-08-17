@@ -41,6 +41,9 @@
                 if(Model.SelectedCategory != null)
                 { 
                     <h2>@Model.SelectedCategory.DisplayName</h2>
+                    <p>
+                        @Model.SelectedCategory.Description
+                    </p>
                 }
                 
                 if(Model.Products.Any())
@@ -65,18 +68,6 @@
 
     </div>
     @{Html.RenderPartial("Pagination", Model.Pagination);}
-
-    @if(Model.SelectedCategory != null)
-    {
-        <div class="row">
-            <div class="col-10 offset-2">
-    <p class=" solid-box-container">
-                @Model.SelectedCategory.Description
-                </p>
-            </div>
-        </div>
-    }
-
 
 </div>
 
