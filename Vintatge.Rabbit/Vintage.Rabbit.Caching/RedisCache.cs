@@ -61,7 +61,7 @@ namespace Vintage.Rabbit.Caching
 
             foreach(var endpoint in endpoints)
             {
-                var keys = this._connection.GetServer(endpoint).Keys();
+                var keys = this._connection.GetServer(endpoint).Keys(db);
                 foreach(var key in keys)
                 {
                     if(!cacheKeys.Contains(key))
@@ -153,8 +153,6 @@ namespace Vintage.Rabbit.Caching
                 this.EnsureConnection();
                 var database = this._connection.GetDatabase(db);
                 database.KeyDelete(key);
-
-                this._connection.GetDatabase(0).KeyDelete(key);
             }
             catch (Exception e)
             {
