@@ -18,7 +18,7 @@
 
     <div class="row frozen">        
         @{var frozen = Model.First(o => o.UrlTitle == "frozen");}
-        <div class="col-8">
+        <div class="col-12">
             <a href="@Url.RouteUrl(Routes.Themes.Theme, new { themeName = frozen.UrlTitle })">
                 <img src="/content/images/themes/frozen/header.jpg" />
             </a>
