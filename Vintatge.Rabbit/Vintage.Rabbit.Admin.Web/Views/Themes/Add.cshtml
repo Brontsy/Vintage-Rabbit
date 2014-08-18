@@ -13,7 +13,7 @@
         <li class="active">Add</li>
     </ol>
 </div>
-<div class="body-content edit-product">
+<div class="body-content theme">
     <div class="tab-container">
         <ul class="nav nav-tabs">
             <li class="active">@Html.RouteLink("Details", Routes.Themes.Edit)</li>
@@ -64,6 +64,22 @@
                                     <li class="col-3">
                                         <img src="@image.Url" />
                                     </li>
+                                }
+                            </ol>
+
+                            <ol class="package-items">
+                                <li class="package-items-header"><strong>Included items</strong></li>
+                                @{IList<Guid> productGuids = new List<Guid>();}
+                                @foreach(var image in Model.Images)
+                                {
+                                    foreach(var product in image.Products)
+                                    {
+                                        if(!productGuids.Contains(product.Guid))
+                                        {
+                                        <li>@product.Qty X @product.Product.Title</li>
+                                        }
+                                        productGuids.Add(product.Guid);
+                                    }
                                 }
                             </ol>
 
