@@ -355,6 +355,7 @@
     <Content Include="Content\images\social\facebook.gif" />
     <Content Include="Content\images\social\instagram.gif" />
     <Content Include="Content\images\social\pinterest.gif" />
+    <Content Include="Content\images\social\twitter.png" />
     <Content Include="Content\images\themes\balloons.png" />
     <Content Include="Content\images\themes\bird.png" />
     <Content Include="Content\images\themes\birds-and-bunting.png" />
