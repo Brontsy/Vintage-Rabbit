@@ -15,7 +15,7 @@
     <table bgcolor="">
         <tr>
             <td>
-                @{Html.RenderPartial("Success", new Vintage.Rabbit.Web.Areas.Emails.Models.AlertViewModel(string.Empty, "Thank you for your " + Model.PaymentMethod +" payment."));}
+                @{Html.RenderPartial("Success", new Vintage.Rabbit.Web.Areas.Emails.Models.AlertViewModel(string.Empty, "Thank you for your " + Model.PaymentMethod + " payment."));}
             </td>
         </tr>
         <tr><td height="20"></td></tr>
@@ -75,7 +75,7 @@
                         foreach (var orderItem in Model.OrderItems.Where(o => o.IsBuy))
                         {
                             <tr>
-                                <td width="12%" rowspan="2">
+                                <td width="12%" rowspan="2" valign="top">
                                     <div style="padding-top: 10px; padding-bottom: 10px; padding-right: 20px; border-top: 1px solid #cccccc;">
                                         <img src="@orderItem.Thumbnail" style="display: block;" />
                                     </div>
@@ -103,9 +103,9 @@
                             </tr>
                         }
                     }
-                    
-                    @if(Model.OrderItems.Any(o => o.IsHire))
-                    { 
+
+                    @if (Model.OrderItems.Any(o => o.IsHire))
+                    {
                         <tr>
                             <td colspan="4" height="20"></td>
                         </tr>
@@ -118,7 +118,7 @@
                         foreach (var orderItem in Model.OrderItems.Where(o => o.IsHire))
                         {
                             <tr>
-                                <td width="12%" rowspan="2">
+                                <td width="12%" rowspan="2" valign="top">
                                     <div style="padding-top: 10px; padding-bottom: 10px; padding-right: 20px; border-top: 1px solid #cccccc;">
                                         <img src="@orderItem.Thumbnail" style="display: block;" />
                                     </div>
@@ -154,13 +154,13 @@
                         <tr>
                             <td valign="center" height="30" style=""><strong></strong></td>
                             <td valign="center" height="30" style=""><strong>Delivery</strong></td>
-                            <td valign="center" height="30" style=""><strong></strong></td>
+                            <td valign="center" height="30" style=""><strong>Qty</strong></td>
                             <td valign="center" height="30" style="" align="right"><strong>Amount</strong></td>
                         </tr>
                         foreach (var orderItem in Model.OrderItems.Where(o => o.IsDelivery))
                         {
                             <tr>
-                                <td width="12%" rowspan="2">
+                                <td width="12%" rowspan="2" valign="top">
                                     <div style="padding-top: 10px; padding-bottom: 10px; padding-right: 20px; border-top: 1px solid #cccccc;">
                                         &nbsp;
                                     </div>
@@ -192,6 +192,13 @@
                         <td valign="center" height="30" style=" border-top: 1px solid #cccccc;" colspan="4" align="right"><strong>Total: @Model.Total (incl GST)</strong></td>
                     </tr>
                 </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                
+                @{Html.RenderAction("PartyHireInformation", "InvoiceEmail");}
+                
             </td>
         </tr>
     </table>

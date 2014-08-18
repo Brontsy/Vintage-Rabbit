@@ -177,6 +177,7 @@
     <Compile Include="Areas\Emails\Models\AlertViewModel.cs" />
     <Compile Include="Areas\Emails\Models\InvoiceEmail\InvoiceEmailViewModel.cs" />
     <Compile Include="Areas\Emails\Controllers\InvoiceEmailController.cs" />
+    <Compile Include="Areas\Emails\Models\InvoiceEmail\PartyViewModel.cs" />
     <Compile Include="Areas\Emails\Styles.cs" />
     <Compile Include="Attributes\HandleExceptionAttribute.cs" />
     <Compile Include="Attributes\HasOrderAttribute.cs" />
@@ -515,6 +516,7 @@
     <Content Include="Content\less\components\party-hire-information.less" />
     <Content Include="Areas\Emails\Views\ContactUsEmail\ContactUsEmail.cshtml" />
     <Content Include="Content\less\pages\creative-director.less" />
+    <Content Include="Areas\Emails\Views\InvoiceEmail\PartyHireInformation.cshtml" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />

@@ -1,0 +1,81 @@
+﻿@model Vintage.Rabbit.Web.Areas.Emails.Models.InvoiceEmail.PartyViewModel
+
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" class="scaleForMobile">
+    <tr>
+        <td valign="left">
+            <h2 style="@Styles.H2">Party Hire Details</h2>
+            <p style="@Styles.P">Party Date: @Model.PartyDate.ToString("dd MMM yyyy") </p>
+        </td>
+    </tr>
+    <tr>
+        <td>            
+            @if (Model.DropoffAddress != null)
+            {
+                <p style="@Styles.P"><strong>Delivery Address</strong></p>
+                <p style="@Styles.P">
+                    Vintage rabbit will deliver your hire items on @Model.HireDate.ToString("dd MMM yyyy")
+                    to: <br />
+                    @Model.DropoffAddress.FirstName @Model.DropoffAddress.LastName<br />
+                    @Model.DropoffAddress.Address<br />
+                    @Model.DropoffAddress.SuburbCity, @Model.DropoffAddress.State @Model.DropoffAddress.Postcode
+
+                </p>
+            }
+            else
+            {
+                <p style="@Styles.P"><strong>Pickup Address</strong></p>
+                <p style="@Styles.P">
+                    You have elected to pickup your hire items. You may pick everything up on or after @Model.HireDate.ToString("dd MMM yyyy") from:
+                    7a Chalmers St<br />
+                    Mckinnon, Victoria,
+                    3204, Australia
+                </p>
+            }
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            @if (Model.PickupAddress != null)
+            {
+                <p style="@Styles.P"><strong>Pickup Address</strong></p>
+                <p style="@Styles.P">
+                    Vintage rabbit will pickup your hire items on @Model.ReturnDate.ToString("dd MMM yyyy") from: <br />
+                    @Model.PickupAddress.FirstName @Model.PickupAddress.LastName<br />
+                    @Model.PickupAddress.Address<br />
+                    @Model.PickupAddress.SuburbCity, @Model.PickupAddress.State @Model.PickupAddress.Postcode
+
+                </p>
+            }
+            else
+            {
+                <p style="@Styles.P"><strong>Dropoff Address</strong></p>
+                <p style="@Styles.P">
+                    You have elected to dropoff the hire items. You must return everything by @Model.HireDate.ToString("dd MMM yyyy") to:<br />
+                    7a Chalmers St<br />
+                    Mckinnon, Victoria,
+                    3204, Australia
+                </p>
+            }
+
+        </td>
+    </tr>
+    @if (!string.IsNullOrEmpty(Model.ChildsName))
+    {
+        <tr>
+            <td>
+                <p style="@Styles.P"><strong>Invitation Details</strong></p>
+                <p style="@Styles.P">
+                    Childs Name: @Model.ChildsName<br />
+                    Age: @Model.Age<br />
+                    Party Time: @Model.PartyTime<br />
+                    Party Address: @Model.PartyAddress<br />
+                    RSVP Detials: @Model.RSVPDetails<br />
+                </p>
+            </td>
+        </tr>
+    }
+
+
+</table>
