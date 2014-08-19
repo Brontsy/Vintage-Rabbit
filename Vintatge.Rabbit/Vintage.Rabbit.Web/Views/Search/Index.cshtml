@@ -10,6 +10,8 @@
 
     <h2>Search results</h2>
 
+    @if(Model.Products.Any())
+    { 
     <ul class="row product-list">
         @foreach (var product in Model.Products)
         {
@@ -18,4 +20,9 @@
             </li>
         }
     </ul>
+    }
+    else
+    {
+        <p>Unfortunatly we could not find any results for your search.</p>
+    }
 </div>
