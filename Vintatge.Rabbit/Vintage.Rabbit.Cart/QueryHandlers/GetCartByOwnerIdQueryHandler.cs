@@ -47,8 +47,10 @@ namespace Vintage.Rabbit.Carts.QueryHandlers
             {
                 cart = new Cart(query.OwnerId);
             }
-             
-            this._cacheService.Add(cacheKey, cart);
+            else
+            {
+                this._cacheService.Add(cacheKey, cart);
+            }
 
             return cart;
         }
