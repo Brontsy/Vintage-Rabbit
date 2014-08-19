@@ -111,7 +111,7 @@ namespace Vintage.Rabbit.Orders.Entities
 
         internal void Paid(PaymentMethod paymentMethod)
         {
-            this.Status = this.ContainsBuyProducts() ? OrderStatus.AwaitingShipment : OrderStatus.Complete;
+            this.Status = this.ContainsHireProducts() || this.ContainsTheme() ? OrderStatus.Complete : OrderStatus.AwaitingShipment;
             this.DatePaid = DateTime.Now;
             this.PaymentMethod = paymentMethod;
         }
