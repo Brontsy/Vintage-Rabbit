@@ -57,6 +57,11 @@ namespace Vintage.Rabbit.Orders.Repository
                 }
             }
 
+            foreach(var order in result)
+            {
+                order.Items = this.GetOrderItems(order.Guid);
+            }
+
             return result;
         }
 
