@@ -27,5 +27,14 @@ namespace Vintage.Rabbit.Web.Controllers
 
             return View("Index", viewModel);
         }
+
+        public ActionResult Categories()
+        {
+            IList<Category> categories = this._queryDispatcher.Dispatch<IList<Category>, GetBlogCategoriesQuery>(new GetBlogCategoriesQuery());
+
+            IList<CategoryViewModel> viewModel = categories.Select(o => new CategoryViewModel(o)).ToList();
+
+            return this.PartialView("Categories", viewModel);
+        }
 	}
 }

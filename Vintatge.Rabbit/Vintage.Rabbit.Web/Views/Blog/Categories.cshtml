@@ -1,0 +1,16 @@
+﻿@model IList<Vintage.Rabbit.Web.Models.Blogs.CategoryViewModel>
+@{
+    ViewBag.Title = "Blog";
+}
+
+
+<ul class="blog-categories category-list hidden">
+    <li class="header">Categories</li>
+    @foreach (var category in Model)
+    {
+        <li>
+            @Html.RouteLink(category.Name.ToLower() + "("+category.PostCount+")", Routes.Hire.Category, new { categoryName = category.Name }, new { })
+        </li>
+    }
+</ul>
+

@@ -17,6 +17,7 @@ namespace Vintage.Rabbit.Blogs.Ioc
         {
             builder.RegisterType<GetBlogsQueryHandler>().As<IQueryHandler<IList<Blog>, GetBlogsQuery>>();
             builder.RegisterType<GetBlogByIdQueryHandler>().As<IQueryHandler<Blog, GetBlogByIdQuery>>();
+            builder.RegisterType<GetBlogCategoriesQueryHandler>().As<IQueryHandler<IList<Category>, GetBlogCategoriesQuery>>();
         }
     }
 }
