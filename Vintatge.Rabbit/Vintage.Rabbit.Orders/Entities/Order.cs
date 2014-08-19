@@ -22,7 +22,7 @@ namespace Vintage.Rabbit.Orders.Entities
 
         public Guid MemberGuid { get; internal set; }
 
-        public PaymentMethod PaymentMethod { get; internal set; }
+        public PaymentMethod? PaymentMethod { get; internal set; }
 
         public Guid? ShippingAddressId { get; internal set; }
 

@@ -182,7 +182,10 @@
     <Compile Include="Attributes\HandleExceptionAttribute.cs" />
     <Compile Include="Attributes\HasOrderAttribute.cs" />
     <Compile Include="Attributes\CheckoutRegisterAttribute.cs" />
+    <Compile Include="Attributes\Validation\CreditCardNumberAttribute.cs" />
     <Compile Include="Attributes\Validation\EmailAttribute.cs" />
+    <Compile Include="Attributes\Validation\CCVAttribute.cs" />
+    <Compile Include="Attributes\Validation\ValidExpiryAttribute.cs" />
     <Compile Include="Controllers\CateringPartnersController.cs" />
     <Compile Include="Controllers\EntertainmentController.cs" />
     <Compile Include="Controllers\CreativeDirectorController.cs" />
@@ -428,6 +431,7 @@
     <Content Include="Content\images\themes\wizard-of-oz\04.jpg" />
     <Content Include="Content\images\themes\wizard-of-oz\05-thumb.jpg" />
     <Content Include="Content\images\themes\wizard-of-oz\05.jpg" />
+    <Content Include="Content\scripts\validators.js" />
     <Content Include="Content\scripts\theme-image.js" />
     <Content Include="Content\scripts\lightbox\feather-light.js" />
     <Content Include="Content\scripts\placeholder.js" />

@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Vintage.Rabbit.Carts.Entities;
 using Vintage.Rabbit.Payment.Enums;
 using Vintage.Rabbit.Products.Entities;
+using Vintage.Rabbit.Web.Attributes.Validation;
 
 namespace Vintage.Rabbit.Web.Models.Payment
 {
@@ -22,10 +23,12 @@ namespace Vintage.Rabbit.Web.Models.Payment
 
         [Display(Name = "Expiry Month")]
         [Required(ErrorMessage = "Please enter your credit cards expiry month")]
+        [ValidExpiry("ExpiryMonth", "ExpiryYear", ErrorMessage = " ")]
         public int ExpiryMonth { get; set; }
 
         [Display(Name = "Expiry Year")]
         [Required(ErrorMessage = "Please enter your credit cards expiry year")]
+        [ValidExpiry("ExpiryMonth", "ExpiryYear", ErrorMessage = "Please enter a valid expiry date")]
         public int ExpiryYear { get; set; }
 
         [Display(Name = "CCV")]
@@ -42,18 +45,22 @@ namespace Vintage.Rabbit.Web.Models.Payment
 
         [Display(Name = "Credit card number")]
         [Required(ErrorMessage = "Please enter your credit card number")]
+        [CreditCardNumber(ErrorMessage = "Please enter a valid credit card number")]
         public string EWAY_CARDNUMBER { get; set; }
 
         [Display(Name = "Expiry Month")]
         [Required(ErrorMessage = "Please enter your credit cards expiry month")]
+        [ValidExpiry("EWAY_CARDEXPIRYMONTH", "EWAY_CARDEXPIRYYEAR", ErrorMessage = "Please enter a valid expiry date")]
         public string EWAY_CARDEXPIRYMONTH { get; set; }
 
         [Display(Name = "Expiry Year")]
         [Required(ErrorMessage = "Please enter your credit cards expiry year")]
+        [ValidExpiry("EWAY_CARDEXPIRYMONTH", "EWAY_CARDEXPIRYYEAR", ErrorMessage = "Please enter a valid expiry date")]
         public string EWAY_CARDEXPIRYYEAR { get; set; }
 
         [Display(Name = "CCV")]
         [Required(ErrorMessage = "Please enter your ccv number")]
+        [CCV(ErrorMessage = "Please enter a valid CCV number")]
         public string EWAY_CARDCVN { get; set; }
 
         [Display(Name = "Name of card")]

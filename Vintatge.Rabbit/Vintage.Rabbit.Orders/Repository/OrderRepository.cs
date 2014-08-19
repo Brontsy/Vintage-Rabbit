@@ -127,7 +127,7 @@ namespace Vintage.Rabbit.Orders.Repository
                     {
                         Guid = order.Guid,
                         MemberGuid = order.MemberGuid,
-                        PaymentMethod = order.PaymentMethod.ToString(),
+                        PaymentMethod = order.PaymentMethod.HasValue ? order.PaymentMethod.Value.ToString() : null,
                         ShippingAddressId = order.ShippingAddressId,
                         BillingAddressId = order.BillingAddressId,
                         DeliveryAddressId = order.DeliveryAddressId,
@@ -154,7 +154,7 @@ namespace Vintage.Rabbit.Orders.Repository
                     {
                         Guid = order.Guid,
                         MemberGuid = order.MemberGuid,
-                        PaymentMethod = order.PaymentMethod.ToString(),
+                        PaymentMethod = order.PaymentMethod.HasValue ? order.PaymentMethod.Value.ToString() : null,
                         ShippingAddressId = order.ShippingAddressId,
                         BillingAddressId = order.BillingAddressId,
                         DeliveryAddressId = order.DeliveryAddressId,
