@@ -115,7 +115,7 @@ namespace Vintage.Rabbit.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(RegisterViewModel register, Member existingMemberRecord)
+        public ActionResult Register(RegisterViewModel register, Member existingMemberRecord, Cart cart)
         {
             if(this.ModelState.IsValid)
             {
@@ -125,15 +125,24 @@ namespace Vintage.Rabbit.Web.Controllers
                 Member member = this._queryDispatcher.Dispatch<Member, GetMemberByEmailQuery>(new GetMemberByEmailQuery(register.RegisterEmail));
 
                 // TODO: Update carts memberId
-                this._loginProvider.Login(this.Request.GetOwinContext().Authentication, register.RegisterEmail, register.Password, false);
+                var result = this._loginProvider.Login(this.Request.GetOwinContext().Authentication, register.RegisterEmail, register.Password, false);
 
-                if (string.IsNullOrEmpty(register.ReturnUrl))
+                if (result.Successful)
                 {
-                    return this.RedirectToRoute(Routes.Home);
-                }
-                else
-                {
-                    return this.Redirect(register.ReturnUrl);
+                    if (cart != null && cart.MemberId != result.Member.Guid)
+                    {
+                        // convert cart
+                        this._commandDispatcher.Dispatch(new ChangeCartsMemberGuidCommand(cart, result.Member.Guid));
+                    }
+
+                    if (string.IsNullOrEmpty(register.ReturnUrl))
+                    {
+                        return this.RedirectToRoute(Routes.Home);
+                    }
+                    else
+                    {
+                        return this.Redirect(register.ReturnUrl);
+                    }
                 }
 
             }
