@@ -232,6 +232,7 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
 	}
 
 }
+@@media only screen and (min-width: 600px) { .maxW { width:600px !important; } }
     </style>
 
 </head>
@@ -241,108 +242,118 @@ ul.sidebar li a h1,ul.sidebar li a h2,ul.sidebar li a h3,ul.sidebar li a h4,ul.s
     <table class="head-wrap" bgcolor="#333333" width="100%">
         <tr>
             <td></td>
-            <td class="header container" height="5" style="height: 5px;">
-
-            </td>
+            <td class="header container" height="5" style="height: 5px;"></td>
             <td></td>
         </tr>
     </table><!-- /HEADER -->
     <!-- BODY -->
-    <table class="body-wrap" bgcolor="">
-        <tr>
-            <td></td>
-            <td class="container" align="" bgcolor="#FFFFFF">
+    <!--[if (gte mso 9)|(IE)]><table width="600" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
+    <div class="maxW" style="max-width:600px;">
 
+        <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+            <tr>
+                <td>
 
-                <!-- content -->
-                <div class="content" style="padding:15px; max-width:600px; margin:0 auto; display:block;">
-                    <table>
+                    <table class="body-wrap" bgcolor="">
                         <tr>
-                            <td align="center">
-                                <a href="@ViewBag.WebsiteUrl">
-                                    <img style="display:block;" src="@ViewBag.WebsiteUrl/content/images/logo.png" />
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
-                </div><!-- /content -->
+                            <td></td>
+                            <td class="container" align="" bgcolor="#FFFFFF">
 
-                @RenderBody()
 
-                <!-- content -->
-                <div class="content" style="padding:15px; max-width:600px; margin:0 auto; display:block;">
-
-                    <table bgcolor="">
-                        <tr>
-                            <td>
-                                <p style="@Styles.P">
-                                    If you have any further questions, please don't hesitate to contact us at
-                                    <span class="link">info@vintagerabbit.com.au</span>.
-                                </p>
-                            </td>
-                        </tr>
-                    </table>
-
-                </div><!-- /content -->
-             <!-- content -->
-                <div class="content" style="padding:15px; max-width:600px; margin:0 auto; display:block;">
-
-                    <table width="100%">
-                        <tr>
-                            <td height="10" style="background:#eeeeee;"></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <table bgcolor="" width="100%">
-                                    <tr>
-                                        <td width="60%">
-
-                                            <p class="@Styles.Small">
-                                                Copyright 2014 Vintage Rabbit. All rights reserved. <br />
-                                                @Html.RouteLink("Terms and Conditions", Routes.TermsAndConditions, "http", Request.Url.Host, string.Empty, new { }, new { style = "color: #333333" }) &nbsp; | &nbsp;
-                                                @Html.RouteLink("Privacy Policy", Routes.PrivacyPolicy, "http", Request.Url.Host, string.Empty, new { }, new { style = "color: #333333" })
-                                            </p>
-
-                                        </td>
-
-                                        <td width="10%" align="right">
-                                            <div class="social">
-                                                <a href="http://www.facebook.com">
-                                                    <img style="display: block;" width="100%" src="@ViewBag.WebsiteUrl/content/images/social/facebook.gif" />
+                                <!-- content -->
+                                <div class="content" style="padding:15px; max-width:600px; margin:0 auto; display:block;">
+                                    <table>
+                                        <tr>
+                                            <td align="center">
+                                                <a href="@ViewBag.WebsiteUrl">
+                                                    <img style="display:block;" src="@ViewBag.WebsiteUrl/content/images/logo.png" />
                                                 </a>
-                                            </div>
-                                        </td>
-                                        <td width="10%" align="right">
-                                            <a href="http://www.instagram.com">
-                                                <img style="display: block;" width="100%" src="@ViewBag.WebsiteUrl/content/images/social/instagram.gif" />
-                                            </a>
-                                        </td>
-                                        <td width="10%" align="right">
-                                            <a href="http://www.pinterest.com">
-                                                <img style="display: block;" width="100%" src="@ViewBag.WebsiteUrl/content/images/social/pinterest.gif" />
-                                            </a>
-                                        </td>
-                                        <td width="10%" align="right">
-                                            <a href="mailto:asd@asd.com">
-                                                <img style="display: block;" width="100%" src="@ViewBag.WebsiteUrl/content/images/social/email.gif" />
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div><!-- /content -->
+                                @RenderBody()
+
+                                <!-- content -->
+                                <div class="content" style="padding:15px; max-width:600px; margin:0 auto; display:block;">
+
+                                    <table bgcolor="">
+                                        <tr>
+                                            <td>
+                                                <p style="@Styles.P">
+                                                    If you have any further questions, please don't hesitate to contact us at
+                                                    <span class="link">info@vintagerabbit.com.au</span>.
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div><!-- /content -->
+                                <!-- content -->
+                                <div class="content" style="padding:15px; max-width:600px; margin:0 auto; display:block;">
+
+                                    <table width="100%">
+                                        <tr>
+                                            <td height="10" style="background:#eeeeee;"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <table bgcolor="" width="100%">
+                                                    <tr>
+                                                        <td width="60%">
+
+                                                            <p class="@Styles.Small">
+                                                                Copyright 2014 Vintage Rabbit. All rights reserved. <br />
+                                                                @Html.RouteLink("Terms and Conditions", Routes.TermsAndConditions, "http", Request.Url.Host, string.Empty, new { }, new { style = "color: #333333" }) &nbsp; | &nbsp;
+                                                                @Html.RouteLink("Privacy Policy", Routes.PrivacyPolicy, "http", Request.Url.Host, string.Empty, new { }, new { style = "color: #333333" })
+                                                            </p>
+
+                                                        </td>
+
+                                                        <td width="10%" align="right">
+                                                            <div class="social">
+                                                                <a href="http://www.facebook.com">
+                                                                    <img style="display: block;" width="100%" src="@ViewBag.WebsiteUrl/content/images/social/facebook.gif" />
+                                                                </a>
+                                                            </div>
+                                                        </td>
+                                                        <td width="10%" align="right">
+                                                            <a href="http://www.instagram.com">
+                                                                <img style="display: block;" width="100%" src="@ViewBag.WebsiteUrl/content/images/social/instagram.gif" />
+                                                            </a>
+                                                        </td>
+                                                        <td width="10%" align="right">
+                                                            <a href="http://www.pinterest.com">
+                                                                <img style="display: block;" width="100%" src="@ViewBag.WebsiteUrl/content/images/social/pinterest.gif" />
+                                                            </a>
+                                                        </td>
+                                                        <td width="10%" align="right">
+                                                            <a href="mailto:asd@asd.com">
+                                                                <img style="display: block;" width="100%" src="@ViewBag.WebsiteUrl/content/images/social/email.gif" />
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div><!-- /content -->
+
+
+
 
                             </td>
+                            <td></td>
                         </tr>
-                    </table>
+                    </table><!-- /BODY -->
+                </td>
+            </tr>
+        </table>
 
-                </div><!-- /content -->
+    </div>
+    <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
 
-                
-           
-
-            </td>
-            <td></td>
-        </tr>
-    </table><!-- /BODY -->
-   
 </body>
 </html>
