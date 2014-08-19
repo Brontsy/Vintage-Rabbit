@@ -48,14 +48,14 @@
                                         @orderItem.Quantity
                                     </div>
                                 </td>
-                                <td valign="top" align="right" height="40">
+                                <td valign="top" align="right" width="30%" height="40">
                                     <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc;">
                                         @orderItem.Total
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="3" valign="top">
+                                <td colspan="3" valign="top" width="88%">
                                     <p style="@Styles.Small">@orderItem.Description</p>
                                 </td>
                             </tr>
@@ -67,10 +67,10 @@
                             <td colspan="4" height="20"></td>
                         </tr>
                         <tr>
-                            <td valign="center" height="30" style=""><strong></strong></td>
-                            <td valign="center" height="30" style=""><strong>Purchase</strong></td>
-                            <td valign="center" height="30" style=""><strong>Qty</strong></td>
-                            <td valign="center" height="30" style="" align="right"><strong>Amount</strong></td>
+                            <td valign="center" height="30" style="@Styles.Text"><strong></strong></td>
+                            <td valign="center" height="30" style="@Styles.Text"><strong>Purchase</strong></td>
+                            <td valign="center" height="30" style="@Styles.Text"><strong>Qty</strong></td>
+                            <td valign="center" height="30" style="@Styles.Text" align="right"><strong>Amount</strong></td>
                         </tr>
                         foreach (var orderItem in Model.OrderItems.Where(o => o.IsBuy))
                         {
@@ -81,23 +81,23 @@
                                     </div>
                                 </td>
                                 <td valign="top" width="50%" height="40">
-                                    <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc;">
+                                    <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc; @Styles.Text">
                                         <strong>@{Html.RenderAction("ProductLink", "Product", new { area = "", productGuid = orderItem.ProductGuid, includeHostName = true });}</strong>
                                     </div>
                                 </td>
                                 <td valign="top" width="8%" height="40">
-                                    <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc;">
+                                    <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc; @Styles.Text">
                                         @orderItem.Quantity
                                     </div>
                                 </td>
-                                <td valign="top" align="right" height="40">
-                                    <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc;">
+                                <td valign="top" align="right" width="30%" height="40">
+                                    <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc; @Styles.Text">
                                         @orderItem.Total
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="3" valign="top">
+                                <td colspan="3" valign="top" width="88%">
                                     <p style="@Styles.Small">@orderItem.Description</p>
                                 </td>
                             </tr>
@@ -110,10 +110,10 @@
                             <td colspan="4" height="20"></td>
                         </tr>
                         <tr>
-                            <td valign="center" height="30" style=""><strong></strong></td>
-                            <td valign="center" height="30" style=""><strong>Hire</strong></td>
-                            <td valign="center" height="30" style=""><strong>Qty</strong></td>
-                            <td valign="center" height="30" style="" align="right"><strong>Amount</strong></td>
+                            <td valign="center" height="30" style="@Styles.Text"><strong></strong></td>
+                            <td valign="center" height="30" style="@Styles.Text"><strong>Hire</strong></td>
+                            <td valign="center" height="30" style="@Styles.Text"><strong>Qty</strong></td>
+                            <td valign="center" height="30" style="@Styles.Text" align="right"><strong>Amount</strong></td>
                         </tr>
                         foreach (var orderItem in Model.OrderItems.Where(o => o.IsHire))
                         {
@@ -124,23 +124,23 @@
                                     </div>
                                 </td>
                                 <td valign="top" width="50%" height="40">
-                                    <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc;">
+                                    <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc; @Styles.Text">
                                         <strong>@{Html.RenderAction("ProductLink", "Product", new { area = "", productGuid = orderItem.ProductGuid, includeHostName = true });}</strong>
                                     </div>
                                 </td>
                                 <td valign="top" width="8%" height="40">
-                                    <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc;">
+                                    <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc; @Styles.Text">
                                         @orderItem.Quantity
                                     </div>
                                 </td>
-                                <td valign="top" align="right" height="40">
-                                    <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc;">
+                                <td valign="top" align="right" width="30%" height="40">
+                                    <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc; @Styles.Text">
                                         @orderItem.Total
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="3" valign="top">
+                                <td colspan="3" valign="top" width="88%">
                                     <p style="@Styles.Small">@orderItem.Description</p>
                                 </td>
                             </tr>
@@ -152,10 +152,10 @@
                             <td colspan="4" height="20"></td>
                         </tr>
                         <tr>
-                            <td valign="center" height="30" style=""><strong></strong></td>
-                            <td valign="center" height="30" style=""><strong>Delivery</strong></td>
-                            <td valign="center" height="30" style=""><strong>Qty</strong></td>
-                            <td valign="center" height="30" style="" align="right"><strong>Amount</strong></td>
+                            <td valign="center" height="30" style="@Styles.Text"><strong></strong></td>
+                            <td valign="center" height="30" style="@Styles.Text"><strong>Delivery</strong></td>
+                            <td valign="center" height="30" style="@Styles.Text"><strong>Qty</strong></td>
+                            <td valign="center" height="30" style="@Styles.Text" align="right"><strong>Amount</strong></td>
                         </tr>
                         foreach (var orderItem in Model.OrderItems.Where(o => o.IsDelivery))
                         {
@@ -166,30 +166,30 @@
                                     </div>
                                 </td>
                                 <td valign="top" width="50%" height="40">
-                                    <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc;">
+                                    <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc; @Styles.Text">
                                         @orderItem.Title
                                     </div>
                                 </td>
                                 <td valign="top" width="8%" height="40">
-                                    <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc;">
+                                    <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc; @Styles.Text">
                                         @orderItem.Quantity
                                     </div>
                                 </td>
-                                <td valign="top" align="right" height="40">
-                                    <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc;">
+                                <td valign="top" align="right" width="30%" height="40">
+                                    <div style="padding-top: 10px; padding-bottom: 10px; border-top: 1px solid #cccccc; @Styles.Text">
                                         @orderItem.Total
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="3" valign="top">
+                                <td colspan="3" valign="top" width="88%">
                                     <p style="@Styles.Small">@orderItem.Description</p>
                                 </td>
                             </tr>
                         }
                     }
                     <tr>
-                        <td valign="center" height="30" style=" border-top: 1px solid #cccccc;" colspan="4" align="right"><strong>Total: @Model.Total (incl GST)</strong></td>
+                        <td valign="center" height="30" style="@Styles.Text border-top: 1px solid #cccccc;" colspan="4" align="right"><strong>Total: @Model.Total (incl GST)</strong></td>
                     </tr>
                 </table>
             </td>
