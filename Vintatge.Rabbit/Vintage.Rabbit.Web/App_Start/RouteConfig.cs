@@ -20,6 +20,9 @@ namespace Vintage.Rabbit.Web
         public static string MediaAndPress = "MediaAndPress";
         public static string Suppliers = "Suppliers";
         public static string CreativeDirector = "CreativeDirector";
+        public static string CateringPartners = "CateringPartners";
+        public static string Entertainment = "Entertainment";
+        
         
         public static string StyleProduct = "StyleProduct";
 
@@ -135,6 +138,8 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.MediaAndPress, url: "media-and-press", defaults: new { controller = "FAQ", action = "MediaAndPress" });
             routes.MapRoute(Routes.Suppliers, url: "suppliers", defaults: new { controller = "FAQ", action = "Suppliers" });
             routes.MapRoute(Routes.CreativeDirector, url: "creative-director", defaults: new { controller = "CreativeDirector", action = "Index" });
+            routes.MapRoute(Routes.CateringPartners, url: "catering-partners", defaults: new { controller = "CateringPartners", action = "Index" });
+            routes.MapRoute(Routes.Entertainment, url: "entertainment", defaults: new { controller = "Entertainment", action = "Index" });
 
             routes.MapRoute(Routes.Order.ApplyDiscount, url: "order/{orderGuid}/apply-discount", defaults: new { controller = "Order", action = "ApplyDiscount" });
             routes.MapRoute(Routes.Order.Summary, url: "order/{orderGuid}/summary", defaults: new { controller = "Order", action = "Summary" });

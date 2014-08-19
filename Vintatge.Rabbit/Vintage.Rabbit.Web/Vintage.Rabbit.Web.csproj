@@ -183,6 +183,8 @@
     <Compile Include="Attributes\HasOrderAttribute.cs" />
     <Compile Include="Attributes\CheckoutRegisterAttribute.cs" />
     <Compile Include="Attributes\Validation\EmailAttribute.cs" />
+    <Compile Include="Controllers\CateringPartnersController.cs" />
+    <Compile Include="Controllers\EntertainmentController.cs" />
     <Compile Include="Controllers\CreativeDirectorController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
@@ -517,6 +519,8 @@
     <Content Include="Areas\Emails\Views\ContactUsEmail\ContactUsEmail.cshtml" />
     <Content Include="Content\less\pages\creative-director.less" />
     <Content Include="Areas\Emails\Views\InvoiceEmail\PartyHireInformation.cshtml" />
+    <Content Include="Content\less\pages\catering-partners.less" />
+    <Content Include="Content\less\pages\entertainment.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -611,6 +615,8 @@
     <Content Include="Views\Buy\AddToCart.cshtml" />
     <Content Include="Views\Style\HireUnavailable.cshtml" />
     <Content Include="Views\Home\ComingSoon.cshtml" />
+    <Content Include="Views\CateringPartners\Index.cshtml" />
+    <Content Include="Views\Entertainment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
