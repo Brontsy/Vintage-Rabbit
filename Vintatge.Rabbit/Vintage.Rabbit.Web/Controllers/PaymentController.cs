@@ -155,7 +155,7 @@ namespace Vintage.Rabbit.Web.Controllers
 
         [OrderIsValid]
         [HttpPost]
-        public ActionResult PartyHireInformation(PartyHireInformationViewModel viewModel, Order order, Member member)
+        public ActionResult PartyHireInformation(PartyHireInformationViewModel viewModel, Order order, Member member, bool isBillingDetailsTheSame = false)
         {
             if (viewModel.IsDelivery && !this.ModelState.IsValid)
             {
@@ -166,9 +166,16 @@ namespace Vintage.Rabbit.Web.Controllers
 
             if (viewModel.IsDelivery)
             {
-                Address deliveryAddress = this._addressProvider.SaveDeliveryAddress(member, viewModel);
+                Address deliveryAddress = this._addressProvider.SaveDeliveryAddress(member, viewModel, viewModel.PhoneNumber);
                 this._commandDispatcher.Dispatch(new AddDeliveryAddressCommand(order, deliveryAddress, true, true));
                 this._commandDispatcher.Dispatch(new AddPartyAddressCommand(order, deliveryAddress, member));
+
+
+                if (isBillingDetailsTheSame)
+                {
+                    Address billingAddress = this._addressProvider.SaveBillingAddress(member, viewModel, null);
+                    this._commandDispatcher.Dispatch<AddBillingAddressCommand>(new AddBillingAddressCommand(order, billingAddress));
+                }
             }
             else
             {
@@ -223,12 +230,12 @@ namespace Vintage.Rabbit.Web.Controllers
             if (order.BillingAddressId.HasValue)
             {
                 Address address = this._queryDispatcher.Dispatch<Address, GetAddressByGuidQuery>(new GetAddressByGuidQuery(order.BillingAddressId.Value));
-                viewModel = new BillingAddressViewModel(address, order);
+                viewModel = new BillingAddressViewModel(member, order, address);
             }
             else if (member.BillingAddresses.Any())
             {
                 Address address = member.BillingAddresses.OrderByDescending(o => o.DateCreated).First();
-                viewModel = new BillingAddressViewModel(address, order);
+                viewModel = new BillingAddressViewModel(member, order, address);
             }
 
             return this.View("BillingInformation", viewModel);
@@ -240,7 +247,7 @@ namespace Vintage.Rabbit.Web.Controllers
         {
             if (this.ModelState.IsValid)
             {
-                Address billingAddress = this._addressProvider.SaveBillingAddress(member, viewModel);
+                Address billingAddress = this._addressProvider.SaveBillingAddress(member, viewModel, viewModel.Email);
                 this._commandDispatcher.Dispatch<AddBillingAddressCommand>(new AddBillingAddressCommand(order, billingAddress));
             
                 if ((shippingAddressIsTheSame.HasValue && shippingAddressIsTheSame.Value))

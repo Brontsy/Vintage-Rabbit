@@ -19,9 +19,9 @@ namespace Vintage.Rabbit.Web.Providers
     {
         Address SaveShippingAddress(Member member, AddressViewModel viewModel);
 
-        Address SaveBillingAddress(Member member, BillingAddressViewModel viewModel);
+        Address SaveBillingAddress(Member member, AddressViewModel viewModel, string email);
 
-        Address SaveDeliveryAddress(Member member, PartyHireInformationViewModel viewModel);
+        Address SaveDeliveryAddress(Member member, AddressViewModel viewModel, string phoneNumber);
     }
 
 
@@ -47,22 +47,22 @@ namespace Vintage.Rabbit.Web.Providers
             return address;
         }
 
-        public Address SaveBillingAddress(Member member, BillingAddressViewModel viewModel)
+        public Address SaveBillingAddress(Member member, AddressViewModel viewModel, string email)
         {
             Guid addressId = viewModel.Guid;
 
-            Address address = new Address(member.Guid, AddressType.Billing, addressId, viewModel.Address, viewModel.SuburbCity, viewModel.State, viewModel.Postcode.Value, viewModel.FirstName, viewModel.LastName, viewModel.Email, null, viewModel.CompanyName);
+            Address address = new Address(member.Guid, AddressType.Billing, addressId, viewModel.Address, viewModel.SuburbCity, viewModel.State, viewModel.Postcode.Value, viewModel.FirstName, viewModel.LastName, email, null, viewModel.CompanyName);
 
             this._commandDispatcher.Dispatch<SaveAddressCommand>(new SaveAddressCommand(address));
 
             return address;
         }
 
-        public Address SaveDeliveryAddress(Member member, PartyHireInformationViewModel viewModel)
+        public Address SaveDeliveryAddress(Member member, AddressViewModel viewModel, string phoneNumber)
         {
             Guid addressId = viewModel.Guid;
 
-            Address address = new Address(member.Guid, AddressType.Delivery, addressId, viewModel.Address, viewModel.SuburbCity, viewModel.State, viewModel.Postcode.Value, viewModel.FirstName, viewModel.LastName, null, viewModel.PhoneNumber, viewModel.CompanyName);
+            Address address = new Address(member.Guid, AddressType.Delivery, addressId, viewModel.Address, viewModel.SuburbCity, viewModel.State, viewModel.Postcode.Value, viewModel.FirstName, viewModel.LastName, null, phoneNumber, viewModel.CompanyName);
 
             this._commandDispatcher.Dispatch<SaveAddressCommand>(new SaveAddressCommand(address));
 

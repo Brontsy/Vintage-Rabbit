@@ -47,69 +47,6 @@ function AddApplyDiscountEvents() {
     });
 }
 
-//var componentForm = {
-//    street_number: 'short_name',
-//    route: 'long_name',
-//    locality: 'long_name',
-//    administrative_area_level_1: 'short_name',
-//    country: 'long_name',
-//    postal_code: 'short_name'
-//};
-
-//function initialize() {
-//    // Create the autocomplete object, restricting the search
-//    // to geographical location types.
-//    autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), { types: ['geocode'] });
-//    // When the user selects an address from the dropdown,
-//    // populate the address fields in the form.
-//    google.maps.event.addListener(autocomplete, 'place_changed', function () {
-//        //fillInAddress();
-
-//        var place = autocomplete.getPlace();
-        
-
-//        var streetNumber;
-//        var street;
-//        var city;
-//        var postcode;
-//        var state;
-//        var country;
-
-//        // Get each component of the address from the place details
-//        // and fill the corresponding field on the form.
-//        for (var i = 0; i < place.address_components.length; i++)
-//        {
-//            var addressType = place.address_components[i].types[0];
-
-//            if (addressType == 'street_number') {
-//                streetNumber = place.address_components[i]['short_name'];
-//            }
-
-//            if (addressType == 'route') {
-//                street = place.address_components[i]['long_name'];
-//            }
-//            if (addressType == 'locality') {
-//                city = place.address_components[i]['long_name'];
-//            }
-//            if (addressType == 'administrative_area_level_1') {
-//                state = place.address_components[i]['long_name'];
-//            }
-//            if (addressType == 'country') {
-//                country = place.address_components[i]['long_name'];
-//            }
-//            if (addressType == 'postal_code') {
-//                postcode = place.address_components[i]['short_name'];
-//            }
-//        }
-
-//        $('#Address').val(streetNumber + ' ' + street);
-//        $('#SuburbCity').val(city);
-//        $('#Postcode').val(postcode);
-//        $('#State').val(state);
-//    });
-//}
-
-
 
 $(document).ready(function () {
 
@@ -171,20 +108,24 @@ $(document).ready(function () {
 
     AddApplyDiscountEvents();
 
+    $('.processing-form').on('submit', function () {
 
-    // This example displays an address form, using the autocomplete feature
-    // of the Google Places API to help users fill in the information.
-
-    //var placeSearch, autocomplete;
-    //var componentForm = {
-    //    street_number: 'short_name',
-    //    route: 'long_name',
-    //    locality: 'long_name',
-    //    administrative_area_level_1: 'short_name',
-    //    country: 'long_name',
-    //    postal_code: 'short_name'
-    //};
-
-    //initialize();
+        if($(this).valid())
+        {
+            var btn = $(this).find('.btn');
+            if (btn.length > 0)
+            {
+                btn.addClass('disabled');
+                if (btn.html() == 'Save & continue' || btn.html() == 'Save &amp; continue')
+                {
+                    btn.html('Saving');
+                }
+                else
+                {
+                    btn.html('Processing');
+                }
+            }
+        }
+    });
 
 });

@@ -40,20 +40,20 @@
 
         <div class="col-6">
             <h2>Billing Information</h2>
-            @using (Html.BeginRouteForm(Routes.Checkout.BillingInformation, new { guid = Model.Guid }, FormMethod.Post, new { }))
+            @using (Html.BeginRouteForm(Routes.Checkout.BillingInformation, new { guid = Model.Guid }, FormMethod.Post, new { @class= "processing-form" }))
             {
                 <fieldset>
                     <ol class="row">
                         <li class="col-12">
-                            @Html.TextBoxFor(o => o.Email, new { placeholder = "Email" })
+                            @Html.TextBoxFor(o => o.Email, new { placeholder = "Email*" })
                             @Html.ValidationMessageFor(o => o.Email)
                         </li>
                         <li class="col-6">
-                            @Html.TextBoxFor(o => o.FirstName, new { placeholder = "First name" })
+                            @Html.TextBoxFor(o => o.FirstName, new { placeholder = "First name*" })
                             @Html.ValidationMessageFor(o => o.FirstName)
                         </li>
                         <li class="col-6">
-                            @Html.TextBoxFor(o => o.LastName, new { placeholder = "Last name" })
+                            @Html.TextBoxFor(o => o.LastName, new { placeholder = "Last name*" })
                             @Html.ValidationMessageFor(o => o.LastName)
                         </li>
                         <li class="col-12">
@@ -64,19 +64,19 @@
                             <input id="autocomplete" placeholder="Billing address" type="text" value="@Model.Address, @Model.SuburbCity, @Model.State "></input>
                         </li>
                         <li class="col-12">
-                            @Html.TextBoxFor(o => o.Address, new { placeholder = "Address" })
+                            @Html.TextBoxFor(o => o.Address, new { placeholder = "Address*" })
                             @Html.ValidationMessageFor(o => o.Address)
                         </li>
                         <li class="col-8">
-                            @Html.TextBoxFor(o => o.SuburbCity, new { placeholder = "Suburb / city" })
+                            @Html.TextBoxFor(o => o.SuburbCity, new { placeholder = "Suburb / city*" })
                             @Html.ValidationMessageFor(o => o.SuburbCity)
                         </li>
                         <li class="col-4">
-                            @Html.TextBoxFor(o => o.Postcode, new { placeholder = "Postcode" })
+                            @Html.TextBoxFor(o => o.Postcode, new { placeholder = "Postcode*" })
                             @Html.ValidationMessageFor(o => o.Postcode)
                         </li>
                         <li class="col-12">
-                            @Html.DropDownListFor(o => o.State, Model.States, "State...", new { })
+                            @Html.DropDownListFor(o => o.State, Model.States, "State*", new { })
                             @Html.ValidationMessageFor(o => o.State)
                         </li>
 

@@ -40,7 +40,7 @@
 
         <div class="col-6">
             <h2>Shipping Information</h2>
-            @using (Html.BeginRouteForm(Routes.Checkout.ShippingInformation, new { guid = Model.Guid }, FormMethod.Post, new { }))
+            @using (Html.BeginRouteForm(Routes.Checkout.ShippingInformation, new { guid = Model.Guid }, FormMethod.Post, new { @class= "processing-form" }))
             {
                 <fieldset>
                     <ol class="row">

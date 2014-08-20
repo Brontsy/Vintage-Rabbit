@@ -35,7 +35,7 @@
         </li>
 
     </ol>
-@using (Html.BeginRouteForm(Routes.Checkout.PartyHireInformation, new { }, FormMethod.Post, new { @class = "party-details" }))
+@using (Html.BeginRouteForm(Routes.Checkout.PartyHireInformation, new { }, FormMethod.Post, new { @class = "party-details processing-form" }))
             {
     <div class="row">
 
@@ -87,6 +87,12 @@
                     <li class="col-12 deliver-field">
                         @Html.DropDownListFor(o => o.State, Model.States, "State...", new { })
                         @Html.ValidationMessageFor(o => o.State)
+                    </li>
+                    <li class="col-12 deliver-field">
+                        <input checked="checked" id="IsBillingDetailsTheSame" name="IsBillingDetailsTheSame" type="checkbox" value="true">
+                        <input name="IsBillingDetailsTheSame" type="hidden" value="false">
+                        <label for="IsBillingDetailsTheSame">Is your billing address the same as your delivery address?</label>
+
                     </li>
                 </ol>
                 

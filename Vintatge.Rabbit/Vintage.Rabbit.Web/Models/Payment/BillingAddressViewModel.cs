@@ -20,16 +20,23 @@ namespace Vintage.Rabbit.Web.Models.Payment
 
         public BillingAddressViewModel() { }
 
-        public BillingAddressViewModel(Member member, Order order) : base()
+        public BillingAddressViewModel(Member member, Order order) 
+            : this(member, order, null)
         {
-            this.Email = member.Email;
-            this.OrderContainsBuyItems = order.ContainsBuyProducts() && !order.ContainsHireProducts() && !order.ContainsTheme();
         }
 
-        public BillingAddressViewModel(Address address, Order order)
+        public BillingAddressViewModel(Member member, Order order, Address address)
             :base (address)
         {
-            this.Email = address.Email;
+            if (address != null && !string.IsNullOrEmpty(address.Email))
+            {
+                this.Email = address.Email;
+            }
+            else
+            {
+                this.Email = member.Email;
+            }
+
             this.OrderContainsBuyItems = order.ContainsBuyProducts() && !order.ContainsHireProducts() && !order.ContainsTheme();
         }
     }
