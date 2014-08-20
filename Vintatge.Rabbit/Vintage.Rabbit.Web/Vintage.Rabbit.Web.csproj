@@ -189,6 +189,7 @@
     <Compile Include="Controllers\CateringPartnersController.cs" />
     <Compile Include="Controllers\EntertainmentController.cs" />
     <Compile Include="Controllers\CreativeDirectorController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\FAQController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
@@ -432,6 +433,7 @@
     <Content Include="Content\images\themes\wizard-of-oz\04.jpg" />
     <Content Include="Content\images\themes\wizard-of-oz\05-thumb.jpg" />
     <Content Include="Content\images\themes\wizard-of-oz\05.jpg" />
+    <Content Include="Content\images\white_rabbit_alice_in_wonderland_postcards-r484697f717604b969106d7e395917f75_vgbaq_8byvr_512.jpg" />
     <Content Include="Content\scripts\validators.js" />
     <Content Include="Content\scripts\theme-image.js" />
     <Content Include="Content\scripts\lightbox\feather-light.js" />
@@ -526,6 +528,7 @@
     <Content Include="Areas\Emails\Views\InvoiceEmail\PartyHireInformation.cshtml" />
     <Content Include="Content\less\pages\catering-partners.less" />
     <Content Include="Content\less\pages\entertainment.less" />
+    <Content Include="Content\less\pages\error.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -623,6 +626,8 @@
     <Content Include="Views\CateringPartners\Index.cshtml" />
     <Content Include="Views\Entertainment\Index.cshtml" />
     <Content Include="Views\Blog\Categories.cshtml" />
+    <Content Include="Views\Error\FourZeroFour.cshtml" />
+    <Content Include="Views\Error\FiveZeroZero.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

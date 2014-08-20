@@ -141,6 +141,11 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.CateringPartners, url: "catering-partners", defaults: new { controller = "CateringPartners", action = "Index" });
             routes.MapRoute(Routes.Entertainment, url: "entertainment", defaults: new { controller = "Entertainment", action = "Index" });
 
+
+            routes.MapRoute("Error-404", "error/404", new { controller = "Error", action = "NotFound" });
+            routes.MapRoute("Error-500", "error/500", new { controller = "Error", action = "Unknown" });
+
+
             routes.MapRoute(Routes.Order.ApplyDiscount, url: "order/{orderGuid}/apply-discount", defaults: new { controller = "Order", action = "ApplyDiscount" });
             routes.MapRoute(Routes.Order.Summary, url: "order/{orderGuid}/summary", defaults: new { controller = "Order", action = "Summary" });
 
