@@ -63,7 +63,7 @@ namespace Vintage.Rabbit.Themes.Entities
             {
                 foreach (var product in image.Products)
                 {
-                    if (!products.ContainsKey(product.Guid))
+                    if (!products.ContainsKey(product.ProductGuid))
                     {
                         products.Add(product.ProductGuid, product.Qty);
                     }
