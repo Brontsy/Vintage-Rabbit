@@ -82,7 +82,7 @@ namespace Vintage.Rabbit.Payment.Services
             var headers = new Dictionary<HttpRequestHeader, string>();
             headers.Add(HttpRequestHeader.Authorization, this._authorisation);
 
-            var response = this._httpWebUtility.Get<EwayPaymentResponse>(url, 3000, headers);
+            var response = this._httpWebUtility.Get<EwayPaymentResponse>(url, 30000, headers);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
