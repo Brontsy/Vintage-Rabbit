@@ -62,7 +62,7 @@ namespace Vintage.Rabbit.Payment.Services
             var headers = new Dictionary<HttpRequestHeader,string>();
             headers.Add(HttpRequestHeader.Authorization, this._authorisation);
 
-            var response = this._httpWebUtility.Post<AccessCodeResponse>(url, 3000, ContentType.Json, _serializer.Serialize(request), headers);
+            var response = this._httpWebUtility.Post<AccessCodeResponse>(url, 30000, ContentType.Json, _serializer.Serialize(request), headers);
 
             if(response.StatusCode == HttpStatusCode.OK)
             {
@@ -82,13 +82,14 @@ namespace Vintage.Rabbit.Payment.Services
             var headers = new Dictionary<HttpRequestHeader, string>();
             headers.Add(HttpRequestHeader.Authorization, this._authorisation);
 
-            var response = this._httpWebUtility.Get<EwayPaymentResponse>(url, 3000, headers);
+            var response = this._httpWebUtility.Get<EwayPaymentResponse>(url, 30000, headers);
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 this._commandDispatcher.Dispatch(new EwayPaymentProcessedCommand(order, response.Response));
-
-                if (response.Response.ResponseCode == "00")
+                
+IList<string> validResponseCodes = new List<string>() { "00", "08", "10", "11", "16" };
+                if (validResponseCodes.Contains(response.Response.ResponseCode))
                 {
                     this._messageService.AddMessage(new PaymentCompleteMessage(order, PaymentMethod.CreditCard));
 

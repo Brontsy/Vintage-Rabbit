@@ -34,7 +34,7 @@ using Vintage.Rabbit.Web.Providers;
 
 namespace Vintage.Rabbit.Web.Controllers
 {
-    //[RequireHttps]
+    [RequireHttps]
     public class PaymentController : Controller
     {
         private IQueryDispatcher _queryDispatcher;

@@ -30,7 +30,7 @@ namespace Vintage.Rabbit.Products.Messaging.Handlers
         public void Handle(IInventorySoldMessage message)
         {
             Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(message.InventorySold.ProductGuid));
-            //product.Inventory--;
+            product.Inventory--;
 
             this._commandDispatcher.Dispatch(new SaveProductCommand(product, new InventoryUpdater()));
         }
