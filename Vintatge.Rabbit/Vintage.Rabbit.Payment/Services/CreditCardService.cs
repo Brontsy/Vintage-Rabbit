@@ -87,8 +87,9 @@ namespace Vintage.Rabbit.Payment.Services
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 this._commandDispatcher.Dispatch(new EwayPaymentProcessedCommand(order, response.Response));
-
-                if (response.Response.ResponseCode == "00")
+                
+IList<string> validResponseCodes = new List<string>() { "00", "08", "10", "11", "16" };
+                if (validResponseCodes.Contains(response.Response.ResponseCode))
                 {
                     this._messageService.AddMessage(new PaymentCompleteMessage(order, PaymentMethod.CreditCard));
 
