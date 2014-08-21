@@ -62,7 +62,7 @@ namespace Vintage.Rabbit.Payment.Services
             var headers = new Dictionary<HttpRequestHeader,string>();
             headers.Add(HttpRequestHeader.Authorization, this._authorisation);
 
-            var response = this._httpWebUtility.Post<AccessCodeResponse>(url, 3000, ContentType.Json, _serializer.Serialize(request), headers);
+            var response = this._httpWebUtility.Post<AccessCodeResponse>(url, 30000, ContentType.Json, _serializer.Serialize(request), headers);
 
             if(response.StatusCode == HttpStatusCode.OK)
             {
