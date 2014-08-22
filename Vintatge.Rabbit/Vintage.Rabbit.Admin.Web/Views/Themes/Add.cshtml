@@ -47,6 +47,21 @@
                                         @Html.TextBoxFor(o => o.Cost, new { placeholder = "Cost*" })
                                         @Html.ValidationMessageFor(o => o.Cost)
                                     </li>
+                                    <li class="col-12">
+                                        @Html.LabelFor(o => o.SEOTitle)
+                                        @Html.TextBoxFor(o => o.SEOTitle, new { placeholder = "SEO Title*" })
+                                        @Html.ValidationMessageFor(o => o.SEOTitle)
+                                    </li>
+                                    <li class="col-12">
+                                        @Html.LabelFor(o => o.SEOKeywords)
+                                        @Html.TextBoxFor(o => o.SEOKeywords, new { placeholder = "SEO Keywords*" })
+                                        @Html.ValidationMessageFor(o => o.SEOKeywords)
+                                    </li>
+                                    <li class="col-12">
+                                        @Html.LabelFor(o => o.SEODescription)
+                                        @Html.TextBoxFor(o => o.SEODescription, new { placeholder = "SEO Description*" })
+                                        @Html.ValidationMessageFor(o => o.SEODescription)
+                                    </li>
 
                                     <li class="col-4 offset-8">
                                         <button type="submit" class="btn primary">Save</button>

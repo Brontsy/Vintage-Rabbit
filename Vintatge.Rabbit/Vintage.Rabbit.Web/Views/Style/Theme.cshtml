@@ -1,6 +1,8 @@
 ﻿@model Vintage.Rabbit.Web.Models.Themes.ThemeViewModel
 @{
-    ViewBag.Title = Model.Title + " - Vintage Rabbit";
+    ViewBag.Title = Model.SEOTitle;
+    ViewBag.Keywords = Model.SEOKeywords;
+    ViewBag.Description = Model.SEODescription;
 }
 
 

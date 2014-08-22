@@ -28,6 +28,12 @@ namespace Vintage.Rabbit.Themes.Entities
 
         public int Inventory { get { return 1; } }
 
+        public string SEOTitle { get; set; }
+
+        public string SEODescription { get; set; }
+
+        public string SEOKeywords { get; set; }
+
         public ProductType Type
         {
             get { return ProductType.Theme; }

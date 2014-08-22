@@ -76,6 +76,9 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
                 theme.Description = viewModel.Description;
                 theme.IncludedItems = viewModel.IncludedItems;
                 theme.Cost = viewModel.Cost.Value;
+                theme.SEOTitle = viewModel.SEOTitle;
+                theme.SEOKeywords = viewModel.SEOKeywords;
+                theme.SEODescription = viewModel.SEODescription;
 
                 this._commandDispatcher.Dispatch(new SaveThemeCommand(theme, member));
 

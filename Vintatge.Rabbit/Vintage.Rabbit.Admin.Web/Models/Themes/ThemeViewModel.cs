@@ -29,6 +29,16 @@ namespace Vintage.Rabbit.Admin.Web.Models.Themes
         [Required(ErrorMessage = "Please enter the cost of the theme")]
         public decimal? Cost { get; set; }
 
+
+        [Required(ErrorMessage = "Please enter the seo title")]
+        public string SEOTitle { get; set; }
+
+        [Required(ErrorMessage = "Please enter the seo description")]
+        public string SEODescription { get; set; }
+
+        [Required(ErrorMessage = "Please enter the seo keywords")]
+        public string SEOKeywords { get; set; }
+
         public string UrlTitle
         {
             get { return this.Title.ToUrl(); }
@@ -48,7 +58,9 @@ namespace Vintage.Rabbit.Admin.Web.Models.Themes
             this.IncludedItems = theme.IncludedItems;
             this.Cost = theme.Cost;
             this.Images = theme.Images.Select(o => new ThemeImageViewModel(o, products)).ToList();
-
+            this.SEOTitle = theme.SEOTitle;
+            this.SEODescription = theme.SEODescription;
+            this.SEOKeywords = theme.SEOKeywords;
         }
     }
 }

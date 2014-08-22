@@ -22,6 +22,12 @@ namespace Vintage.Rabbit.Web.Models.Themes
 
         public decimal Cost { get; set; }
 
+        public string SEOTitle { get; set; }
+
+        public string SEODescription { get; set; }
+
+        public string SEOKeywords { get; set; }
+
         public string UrlTitle
         {
             get { return this.Title.ToUrl(); }
@@ -35,6 +41,9 @@ namespace Vintage.Rabbit.Web.Models.Themes
             this.IncludedItems = theme.IncludedItems;
             this.Cost = theme.Cost;
             this.Images = theme.Images.Select(o => new ThemeImageViewModel(o, products)).ToList();
+            this.SEOTitle = theme.SEOTitle;
+            this.SEODescription = theme.SEODescription;
+            this.SEOKeywords = theme.SEOKeywords;
 
         }
     }
