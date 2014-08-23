@@ -19,7 +19,9 @@
             <li class="active">@Html.RouteLink("Details", Routes.Products.Edit)</li>
             @if(Model.ProductId != 0)
             { 
-            <li>@Html.RouteLink("Inventory", Routes.Products.Inventory)</li>
+            <li>
+                <a href="@Url.RouteUrl(Routes.Products.Inventory)">Inventory (@{Html.RenderAction("GetInventoryCount", "Products", new { productGuid = Model.ProductGuid });})</a>
+            </li>
             }
         </ul>
         <div class="tab-content">
@@ -59,11 +61,6 @@
                                         @Html.LabelFor(o => o.Cost)
                                         @Html.TextBoxFor(o => o.Cost, new { placeholder = "Price*" })
                                         @Html.ValidationMessageFor(o => o.Cost)
-                                    </li>
-                                    <li class="col-12">
-                                        @Html.LabelFor(o => o.Inventory)
-                                        @Html.TextBoxFor(o => o.Inventory, new { placeholder = "Inventory*" })
-                                        @Html.ValidationMessageFor(o => o.Inventory)
                                     </li>
                                     <li class="col-12 checkbox-container">
                                         @Html.CheckBoxFor(o => o.IsFeatured)

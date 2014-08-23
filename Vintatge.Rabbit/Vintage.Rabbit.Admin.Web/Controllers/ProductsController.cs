@@ -87,6 +87,13 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
             return this.View("Add", viewModel);
         }
 
+        public ActionResult GetInventoryCount(Guid productGuid)
+        {
+            IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductQuery>(new GetInventoryForProductQuery(productGuid));
+
+            return Content(inventory.Count.ToString());
+        }
+
         public ActionResult Save(ProductViewModel viewModel, Member member)
         {
             if (this.ModelState.IsValid)
@@ -97,7 +104,7 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
                 if(viewModel.ProductId == 0)
                 {
                     Guid productGuid = Guid.NewGuid();
-                    this._commandDispatcher.Dispatch(new CreateProductCommand(productGuid, viewModel.Inventory.Value, member));
+                    this._commandDispatcher.Dispatch(new CreateProductCommand(productGuid, 0, member));
                     product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(productGuid));
                 }
                 else
@@ -112,7 +119,6 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
                 product.Cost = viewModel.Cost.Value;
                 product.Type = viewModel.Type.Value;
                 product.IsFeatured = viewModel.IsFeatured;
-                product.Inventory = viewModel.Inventory.Value;
                 product.Categories = new List<Category>();
 
                 foreach(var category in viewModel.Categories)
@@ -134,6 +140,9 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
                         }
                     }
                 }
+
+                IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductQuery>(new GetInventoryForProductQuery(product.Guid));
+                product.Inventory = inventory.Count(o => o.Status == Rabbit.Inventory.Enums.InventoryStatus.Available);
 
                 //product.Categories = categories.Where(o => categoryIds.Contains(o.Id)).ToList();
 

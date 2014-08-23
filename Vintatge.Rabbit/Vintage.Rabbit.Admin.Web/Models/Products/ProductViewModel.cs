@@ -15,6 +15,8 @@ namespace Vintage.Rabbit.Admin.Web.Models.Products
     {
         public int ProductId { get; set; }
 
+        public Guid ProductGuid { get; set; }
+
         [Display(Name = "Code*")]
         [Required(ErrorMessage = "Please enter a product code")]
         public string Code { get; set; }
@@ -37,10 +39,6 @@ namespace Vintage.Rabbit.Admin.Web.Models.Products
         [Display(Name = "Price*")]
         [Required(ErrorMessage = "Please enter the products price")]
         public decimal? Cost { get; set; }
-
-        [Display(Name = "Inventory*")]
-        [Required(ErrorMessage = "Please enter the products inventory count")]
-        public int? Inventory { get; set; }
 
         [Display(Name = "Feature this product on the homepage?")]
         public bool IsFeatured { get; set; }
@@ -77,11 +75,11 @@ namespace Vintage.Rabbit.Admin.Web.Models.Products
             : this()
         {
             this.ProductId = product.Id;
+            this.ProductGuid = product.Guid;
             this.Code = product.Code;
             this.Title = product.Title;
             this.Description = product.Description;
             this.Keywords = product.Keywords;
-            this.Inventory = product.Inventory;
             this.Cost = product.Cost;
             this.Type = product.Type;
             this.IsFeatured = product.IsFeatured;
