@@ -541,6 +541,7 @@
     <Content Include="Content\scripts\jquery\respond.js" />
     <Content Include="Content\scripts\jquery\respond.min.js" />
     <Content Include="Content\scripts\jquery\_references.js" />
+    <Content Include="sitemap.xml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
