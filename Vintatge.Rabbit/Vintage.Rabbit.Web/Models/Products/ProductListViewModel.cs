@@ -34,5 +34,11 @@ namespace Vintage.Rabbit.Web.Models.Products
         {
             this.SelectedCategory = new CategoryViewModel(category);
         }
+
+        public ProductListViewModel(IList<Product> products, Category category)
+            : this(products)
+        {
+            this.SelectedCategory = new CategoryViewModel(category);
+        }
     }
 }

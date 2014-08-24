@@ -51,9 +51,10 @@ namespace Vintage.Rabbit.Web.Controllers
                 new Guid("1628D929-14B4-4CEF-8456-C263BC3CD1EB"),
             };
 
+            Category category = this._queryDispatcher.Dispatch<Category, GetCategoryQuery>(new GetCategoryQuery("party-supplies", ProductType.Buy));
             IList<Product> products = this._queryDispatcher.Dispatch<IList<Product>, GetProductsByGuidsQuery>(new GetProductsByGuidsQuery(guids));
 
-            ProductListViewModel viewModel = new ProductListViewModel(products);
+            ProductListViewModel viewModel = new ProductListViewModel(products, category);
 
             return View("PartySupplies", viewModel);
         }

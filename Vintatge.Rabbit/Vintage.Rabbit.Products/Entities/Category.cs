@@ -21,6 +21,12 @@ namespace Vintage.Rabbit.Products.Entities
 
         public string Description { get; set; }
 
+        public string SEOTitle { get; set; }
+
+        public string SEODescription { get; set; }
+
+        public string SEOKeywords { get; set; }
+
         public Category()
         {
             this.Children = new List<Category>();

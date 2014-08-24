@@ -20,6 +20,12 @@ namespace Vintage.Rabbit.Web.Models.Categories
 
         public string Description { get; set; }
 
+        public string SEOTitle { get; set; }
+
+        public string SEODescription { get; set; }
+
+        public string SEOKeywords { get; set; }
+
         public CategoryViewModel(Category category)
         {
             this.Id = category.Id;
@@ -27,6 +33,9 @@ namespace Vintage.Rabbit.Web.Models.Categories
             this.DisplayName = category.DisplayName;
             this.Description = category.Description;
             this.Children = category.Children.Select(o => new CategoryViewModel(o)).ToList();
+            this.SEOTitle = category.SEOTitle;
+            this.SEODescription = category.SEODescription;
+            this.SEOKeywords = category.SEOKeywords;
         }
     }
 }

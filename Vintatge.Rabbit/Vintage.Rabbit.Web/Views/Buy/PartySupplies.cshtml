@@ -1,7 +1,9 @@
 ﻿@model Vintage.Rabbit.Web.Models.Products.ProductListViewModel
 
 @{
-    ViewBag.Title = "PartySupplies - Vintage Rabbit";
+    ViewBag.Title = Model.SelectedCategory.SEOTitle;
+    ViewBag.Keywords = Model.SelectedCategory.SEOKeywords;
+    ViewBag.Description = Model.SelectedCategory.SEODescription;
 }
 
 <div class="buy-page">

@@ -1,7 +1,16 @@
 ﻿@model Vintage.Rabbit.Web.Models.Products.ProductListViewModel
 
 @{
-    ViewBag.Title = (Model.SelectedCategory == null ? "Buy - Vintage Rabbit" : string.Format("{0} - Vintage Rabbit", Model.SelectedCategory.DisplayName));
+    if(Model.SelectedCategory == null)
+    {
+        ViewBag.Title = "Buy | Vintage Rabbit";
+    }
+    else
+    {
+        ViewBag.Title = Model.SelectedCategory.SEOTitle;
+        ViewBag.Keywords = Model.SelectedCategory.SEOKeywords;
+        ViewBag.Description = Model.SelectedCategory.SEODescription;
+    }
 }
 
 <div class="buy-page">
