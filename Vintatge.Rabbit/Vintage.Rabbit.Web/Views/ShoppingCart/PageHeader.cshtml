@@ -29,7 +29,7 @@
                 {
                     <li data-update-qty-url="@Url.RouteUrl(Routes.ShoppingCart.UpdateQty, new { cartItemId = cartItem.Guid })">
                         <div class="row">
-                            <div class="col-1"><a class="remove-from-cart" href="@Url.RouteUrl(Routes.ShoppingCart.Remove, new { cartItemId = cartItem.Id, name = cartItem.Key })"><i class="fa fa-times-circle"></i></a></div>
+                            <div class="col-1"><a class="remove-from-cart" rel="nofollow" href="@Url.RouteUrl(Routes.ShoppingCart.Remove, new { cartItemId = cartItem.Id, name = cartItem.Key })"><i class="fa fa-times-circle"></i></a></div>
                             <div class="col-5 product-name">
                                 @{Html.RenderAction("ThemeLink", "Style", new { themeGuid = cartItem.ProductGuid });}
                             </div>
@@ -57,7 +57,7 @@
                 {
                     <li data-update-qty-url="@Url.RouteUrl(Routes.ShoppingCart.UpdateQty, new { cartItemId = cartItem.Guid })">
                         <div class="row">
-                            <div class="col-1"><a class="remove-from-cart" href="@Url.RouteUrl(Routes.ShoppingCart.Remove, new { cartItemId = cartItem.Id, name = cartItem.Key })"><i class="fa fa-times-circle"></i></a></div>
+                            <div class="col-1"><a class="remove-from-cart" rel="nofollow" href="@Url.RouteUrl(Routes.ShoppingCart.Remove, new { cartItemId = cartItem.Id, name = cartItem.Key })"><i class="fa fa-times-circle"></i></a></div>
                             <div class="col-5 product-name">
                                 @{Html.RenderAction("ProductLink", "Product", new { productGuid = cartItem.ProductGuid });}
                             </div>
@@ -85,7 +85,7 @@
                 {
                     <li data-update-qty-url="@Url.RouteUrl(Routes.ShoppingCart.UpdateQty, new { cartItemId = cartItem.Guid })">
                         <div class="row">
-                            <div class="col-1"><a class="remove-from-cart" href="@Url.RouteUrl(Routes.ShoppingCart.Remove, new { cartItemId = cartItem.Id, name = cartItem.Key })"><i class="fa fa-times-circle"></i></a></div>
+                            <div class="col-1"><a class="remove-from-cart" rel="nofollow" href="@Url.RouteUrl(Routes.ShoppingCart.Remove, new { cartItemId = cartItem.Id, name = cartItem.Key })"><i class="fa fa-times-circle"></i></a></div>
                             <div class="col-5 product-name">
                                 @{Html.RenderAction("ProductLink", "Product", new { productGuid = cartItem.ProductGuid });}
                             </div>

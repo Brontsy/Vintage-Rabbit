@@ -9,13 +9,13 @@
     </div>
     <div class="added-to-cart help-text">
         <div class="alert positive icon">
-            <i class="fa fa-check-circle"></i> <strong>@Model.Title</strong> has been added to your @Html.RouteLink("shopping cart", Routes.ShoppingCart.PageHeader, new { }, new { @class = "ajax-lightbox" })
+            <i class="fa fa-check-circle"></i> <strong>@Model.Title</strong> has been added to your @Html.RouteLink("shopping cart", Routes.ShoppingCart.PageHeader, new { }, new { @class = "ajax-lightbox", rel = "nofollow" })
         </div>
     </div>
 
     <div class="row">
         <div class="col-6">
-            @Html.RouteLink("Add to cart", Routes.ShoppingCart.AddTheme, new { name = Model.UrlTitle, themeGuid = Model.Guid }, new { @class = "btn primary add-to-cart" })
+            @Html.RouteLink("Add to cart", Routes.ShoppingCart.AddTheme, new { name = Model.UrlTitle, themeGuid = Model.Guid }, new { @class = "btn primary add-to-cart", rel = "nofollow" })
         </div>
 
         <div class="col-6">

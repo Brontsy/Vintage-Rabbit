@@ -44,12 +44,12 @@
 
                         <div class="product-controls">
 
-                            <a class="left add-to-cart" href="@Url.RouteUrl(Routes.ShoppingCart.Add, new { productId = product.Id, name = product.UrlTitle })">
+                            <a class="left add-to-cart" rel="nofollow" href="@Url.RouteUrl(Routes.ShoppingCart.Add, new { productId = product.Id, name = product.UrlTitle })">
                                 <i class="fa fa-shopping-cart"></i>
                                 Add
                             </a>
                             
-                            <a class="right ajax-lightbox" href="@Url.RouteUrl(Routes.Buy.Preview, new { productId = product.Id, name = product.UrlTitle, categoryName = product.Categories.First().Name })">
+                            <a class="right ajax-lightbox" rel="nofollow" href="@Url.RouteUrl(Routes.Buy.Preview, new { productId = product.Id, name = product.UrlTitle, categoryName = product.Categories.First().Name })">
                                 <i class="fa fa-search"></i>
                                 Preview
                             </a>

@@ -21,7 +21,7 @@
             <div class="product-controls">
                 @if(Model.Type == Vintage.Rabbit.Common.Enums.ProductType.Buy)
                 { 
-                <a class="left add-to-cart" href="@Url.RouteUrl(Routes.ShoppingCart.Add, new { productId = Model.Id, name = Model.UrlTitle })">
+                <a class="left add-to-cart" rel="nofollow" href="@Url.RouteUrl(Routes.ShoppingCart.Add, new { productId = Model.Id, name = Model.UrlTitle })">
                     <i class="fa fa-shopping-cart"></i>
                     Add
                 </a>

@@ -2,7 +2,7 @@
 
 @if(Model.Type == Vintage.Rabbit.Common.Enums.ProductType.Buy)
 { 
-    <a class="right ajax-lightbox" href="@Url.RouteUrl(Routes.Buy.Preview, new { categoryName = Model.Category.Name, productId = Model.Id, name = Model.UrlTitle })">
+    <a class="right ajax-lightbox" rel="nofollow" href="@Url.RouteUrl(Routes.Buy.Preview, new { categoryName = Model.Category.Name, productId = Model.Id, name = Model.UrlTitle })">
         <i class="fa fa-search"></i>
         Preview
     </a>
@@ -10,7 +10,7 @@
 }
 @if(Model.Type == Vintage.Rabbit.Common.Enums.ProductType.Hire)
 {
-    <a class="right ajax-lightbox" href="@Url.RouteUrl(Routes.Hire.Preview, new { categoryName = Model.Category.Name, productId = Model.Id, name = Model.UrlTitle })">
+    <a class="right ajax-lightbox" rel="nofollow" href="@Url.RouteUrl(Routes.Hire.Preview, new { categoryName = Model.Category.Name, productId = Model.Id, name = Model.UrlTitle })">
         <i class="fa fa-search"></i>
         Preview
     </a>
