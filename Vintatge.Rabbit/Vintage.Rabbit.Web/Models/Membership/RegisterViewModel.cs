@@ -14,7 +14,7 @@ namespace Vintage.Rabbit.Web.Models.Membership
         public string RegisterEmail { get; set; }
 
         [Required(ErrorMessage = "Please enter your password")]
-        [MinLength(6, ErrorMessage = "Your password must be greater then  characters")]
+        [MinLength(6, ErrorMessage = "Your password must be greater then 6 characters")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Please enter your password")]
