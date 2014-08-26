@@ -126,7 +126,7 @@ namespace Vintage.Rabbit.Products.Repository
         {
             Category gamesHire = new Category() 
             { 
-                Id = 14, 
+                Id = 15, 
                 Name = "games", 
                 DisplayName = "Games", 
                 ProductType = ProductType.Hire,
