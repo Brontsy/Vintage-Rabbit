@@ -123,6 +123,11 @@ namespace Vintage.Rabbit.Web
             public static string Index = "Search - Index";
             public static string RebuildIndex = "Search - RebuildIndex";
         }
+        public static class Competition
+        {
+            public static string Index = "Competition - Index";
+            public static string SaveEntry = "Competition - SaveEntry";
+        }
 
         public static void RegisterRoutes(RouteCollection routes)
         {
@@ -140,6 +145,9 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.CreativeDirector, url: "creative-director", defaults: new { controller = "CreativeDirector", action = "Index" });
             routes.MapRoute(Routes.CateringPartners, url: "catering-partners", defaults: new { controller = "CateringPartners", action = "Index" });
             routes.MapRoute(Routes.Entertainment, url: "entertainment", defaults: new { controller = "Entertainment", action = "Index" });
+
+            routes.MapRoute(Routes.Competition.Index, url: "competition", defaults: new { controller = "Competitions", action = "Index" });
+            routes.MapRoute(Routes.Competition.SaveEntry, url: "competition/save/entry", defaults: new { controller = "Competitions", action = "SaveEntry" });
 
 
             routes.MapRoute("Error-404", "error/404", new { controller = "Error", action = "NotFound" });

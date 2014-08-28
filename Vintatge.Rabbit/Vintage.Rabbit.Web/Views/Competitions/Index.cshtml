@@ -1,0 +1,90 @@
+﻿@model Vintage.Rabbit.Web.Models.Competitions.CompetitionEntryViewModel
+@{
+    ViewBag.Title = "What was your favourite childhood birthday memory - Vintage Rabbit";
+}
+
+<div class="competition">
+
+    <h2>Competition</h2>
+
+    <p>
+        Thank you for visiting Vintage Rabbit <br />
+        Enter your details to go into the draw to win a $300 visa card to spend on anything you want!!<br />
+        Entries close September 30<br />
+        Entries open to all Australian residents.<br />
+        Winner will be selected from the best answer to our question: <strong>What was your favourite childhood birthday memory?</strong>
+    </p>
+
+    @if (ViewBag.Saved)
+    {
+    <div class="row">
+        <div class="col-6">
+            <div class="alert positive icon">
+                <i class="fa fa-check-circle"></i> Thank you for entering the competition
+            </div>
+        </div>
+    </div>
+    }
+
+    <div class="row">
+        <div class="col-6">            
+            @using (Html.BeginRouteForm(Routes.Competition.SaveEntry, new { }, FormMethod.Post, new { @class = "save-entry" }))
+            {
+                <fieldset>
+                    <ol class="row">
+                        <li class="col-12">
+                            @Html.LabelFor(o => o.Name)
+                            @Html.TextBoxFor(o => o.Name, new { })
+                            @Html.ValidationMessageFor(o => o.Name)
+                        </li>
+                        <li class="col-4">
+                            <label>Date of Birth</label>
+                            @Html.DropDownListFor(o => o.DOBDay, Model.Days, "Day...", new { })
+                            @Html.ValidationMessageFor(o => o.DOBDay)
+                        </li>
+                        <li class="col-4">
+                            <label>&nbsp;</label>
+                            @Html.DropDownListFor(o => o.DOBMonth, Model.Months, "Month...", new {  })
+                            @Html.ValidationMessageFor(o => o.DOBMonth)
+                        </li>
+                        <li class="col-4">
+                            <label>&nbsp;</label>
+                            @Html.DropDownListFor(o => o.DOBYear, Model.Years, "Year...", new { })
+                            @Html.ValidationMessageFor(o => o.DOBYear)
+                        </li>
+                        <li class="col-12">                            
+                            @Html.LabelFor(o => o.Email)
+                            @Html.TextBoxFor(o => o.Email, new {  })
+                            @Html.ValidationMessageFor(o => o.Email)
+                        </li>
+                        <li class="col-12">                            
+                            @Html.LabelFor(o => o.PhoneNumber)
+                            @Html.TextBoxFor(o => o.PhoneNumber, new { })
+                            @Html.ValidationMessageFor(o => o.PhoneNumber)
+                        </li>
+                        <li class="col-12">                            
+                            @Html.LabelFor(o => o.EntryText)
+                            @Html.TextAreaFor(o => o.EntryText, new { })
+                            @Html.ValidationMessageFor(o => o.EntryText)
+                        </li>
+
+                        <li class="col-7 offset-5">
+                            <div class="float-container">
+                                <button type="submit" class="btn primary right">Save</button>
+                            </div>
+                        </li>
+                    </ol>
+                </fieldset>
+            }
+            <p>
+                You can also win your very own Vintage Rabbit styed party including all of your party supplies, delivery and styling worth over $500. To enter pick up one of our postcards with the colouring competition on the front and post your entry to Facebook or Instagram. You can also download the colouring in sheet here. Colouring competition entries open to residents living within 40km of Melbourne.
+            </p>
+            <p>
+                @Html.RouteLink("Terms and Conditions", Routes.TermsAndConditions)
+            </p>
+        </div>
+    </div>
+
+
+</div>
+

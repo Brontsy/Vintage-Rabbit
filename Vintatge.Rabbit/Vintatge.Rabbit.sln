@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Logging", "V
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Parties", "VintageRabbit.Parties\Vintage.Rabbit.Parties.csproj", "{3E1F077C-00FC-4898-B8CA-1FB217D5FEA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vintage.Rabbit.Competitions", "Vintage.Rabbit.Competitions\Vintage.Rabbit.Competitions.csproj", "{6A659BD0-1523-4F12-8CC2-2811AF9DF8D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -135,6 +137,10 @@ Global
 		{3E1F077C-00FC-4898-B8CA-1FB217D5FEA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E1F077C-00FC-4898-B8CA-1FB217D5FEA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E1F077C-00FC-4898-B8CA-1FB217D5FEA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A659BD0-1523-4F12-8CC2-2811AF9DF8D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A659BD0-1523-4F12-8CC2-2811AF9DF8D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A659BD0-1523-4F12-8CC2-2811AF9DF8D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A659BD0-1523-4F12-8CC2-2811AF9DF8D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

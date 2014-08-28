@@ -187,6 +187,7 @@
     <Compile Include="Attributes\Validation\CCVAttribute.cs" />
     <Compile Include="Attributes\Validation\ValidExpiryAttribute.cs" />
     <Compile Include="Controllers\CateringPartnersController.cs" />
+    <Compile Include="Controllers\CompetitionsController.cs" />
     <Compile Include="Controllers\EntertainmentController.cs" />
     <Compile Include="Controllers\CreativeDirectorController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="Models\Blogs\CategoryViewModel.cs" />
     <Compile Include="Models\Blogs\BlogViewModel.cs" />
     <Compile Include="Models\Breadcrumbs\BreadcrumbsViewModel.cs" />
+    <Compile Include="Models\Competitions\CompetitionEntryViewModel.cs" />
     <Compile Include="Models\ContactUs\ContactUsViewModel.cs" />
     <Compile Include="Models\Hire\HireAddProductToCartViewModel.cs" />
     <Compile Include="Models\Hire\HireAvailabilityViewModel.cs" />
@@ -529,6 +531,7 @@
     <Content Include="Content\less\pages\catering-partners.less" />
     <Content Include="Content\less\pages\entertainment.less" />
     <Content Include="Content\less\pages\error.less" />
+    <Content Include="Content\less\pages\competition.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -629,6 +632,7 @@
     <Content Include="Views\Blog\Categories.cshtml" />
     <Content Include="Views\Error\FourZeroFour.cshtml" />
     <Content Include="Views\Error\FiveZeroZero.cshtml" />
+    <Content Include="Views\Competitions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -664,6 +668,10 @@
     <ProjectReference Include="..\Vintage.Rabbit.Common\Vintage.Rabbit.Common.csproj">
       <Project>{5aff0585-9864-4f50-b84a-c8ef1f5c85e3}</Project>
       <Name>Vintage.Rabbit.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Vintage.Rabbit.Competitions\Vintage.Rabbit.Competitions.csproj">
+      <Project>{6a659bd0-1523-4f12-8cc2-2811af9df8d4}</Project>
+      <Name>Vintage.Rabbit.Competitions</Name>
     </ProjectReference>
     <ProjectReference Include="..\Vintage.Rabbit.CQRS\Vintage.Rabbit.CQRS.csproj">
       <Project>{2665e4f5-684b-4f0b-9368-801f11b78eb7}</Project>
