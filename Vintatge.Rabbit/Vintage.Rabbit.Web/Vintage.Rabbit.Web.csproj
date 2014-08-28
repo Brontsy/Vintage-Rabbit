@@ -633,6 +633,7 @@
     <Content Include="Views\Error\FourZeroFour.cshtml" />
     <Content Include="Views\Error\FiveZeroZero.cshtml" />
     <Content Include="Views\Competitions\Index.cshtml" />
+    <Content Include="Views\Style\Product.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

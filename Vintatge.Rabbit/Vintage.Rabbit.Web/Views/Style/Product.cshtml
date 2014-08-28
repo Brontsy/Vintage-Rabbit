@@ -1,0 +1,29 @@
+﻿@model Vintage.Rabbit.Web.Models.Themes.ThemeProductViewModel
+
+
+    <div class="panel @Model.Guid product-@Model.ProductId" id="@Model.Guid">
+        <span class="close-product-info">Close</span>
+        <h2>@Model.Title</h2>
+        <p>@Model.Description</p>
+        <div class="price">@Model.Cost</div>
+
+        <div class="row availability-check">
+            @{Html.RenderAction("AvailabilityCheck", "Hire", new { productGuid = Model.ProductGuid });}
+        </div>
+
+        <div class="images">
+            <ul class="row">
+                @foreach (var image in Model.Images)
+                {
+                    <li class="col-6">
+                        <div class="image-container">
+                            <img src="@image.Thumbnail" />
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+
+
+    </div>
+     

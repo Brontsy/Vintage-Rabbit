@@ -161,7 +161,7 @@ namespace Vintage.Rabbit.Web
             routes.MapRoute(Routes.Themes.Theme, url: "style/{themeName}", defaults: new { controller = "Style", action = "Theme" });
             routes.MapRoute(Routes.Themes.Hire, url: "style/{themeName}/hire", defaults: new { controller = "Style", action = "Hire" });
             routes.MapRoute(Routes.Themes.Image, url: "style/{themeName}/image/{imageGuid}", defaults: new { controller = "Style", action = "Image" });
-            routes.MapRoute(Routes.Themes.Product, url: "style/{name}/{productGuid}", defaults: new { controller = "Style", action = "Product" });
+            routes.MapRoute(Routes.Themes.Product, url: "style/{themeName}/{name}/{productGuid}", defaults: new { controller = "Style", action = "Product" });
 
             routes.MapRoute(Routes.Themes.WizardOfOz, url: "style/wizard-of-oz", defaults: new { controller = "Style", action = "WizardOfOz" });
             routes.MapRoute(Routes.Themes.Carnival, url: "style/carnival", defaults: new { controller = "Style", action = "Carnival" });

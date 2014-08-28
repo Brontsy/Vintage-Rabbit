@@ -76,7 +76,12 @@ namespace Vintage.Rabbit.Web.Controllers
 
             ThemeImageViewModel viewModel = new ThemeImageViewModel(theme.Images.First(o => o.Guid == imageGuid), products);
 
-            return this.PartialView("Image", viewModel);
+            if (this.Request.IsAjaxRequest())
+            {
+                return this.PartialView("Image", viewModel);
+            }
+
+            return this.View("Image", viewModel);
         }
 
         public ActionResult Hire(string themeName, Models.Hire.HireDatesViewModel hireDates, Models.Hire.HireAvailabilityViewModel hireAvailability, Member member, bool postcodeChecked = false, bool changePostcode = false)
@@ -110,7 +115,6 @@ namespace Vintage.Rabbit.Web.Controllers
                 }
 
                 return this.PartialView("Unavailable", viewModel);
-
             }
         }
         
@@ -149,6 +153,31 @@ namespace Vintage.Rabbit.Web.Controllers
             Theme theme = this._queryDispatcher.Dispatch<Theme, GetThemeByGuidQuery>(new GetThemeByGuidQuery(themeGuid));
 
             return this.PartialView("PreviewLink", new ThemeLinkViewModel(theme, false));
+        }
+
+        public ActionResult Product(string themeName, Guid productGuid)
+        {
+            Theme theme = this._queryDispatcher.Dispatch<IList<Theme>, GetThemesQuery>(new GetThemesQuery()).First(o => o.Title.ToUrl() == themeName);
+            Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(productGuid));
+            ThemeProduct themeProduct = null;
+
+            foreach (var image in theme.Images)
+            {
+                foreach (var p in image.Products)
+                {
+                    if(p.ProductGuid == productGuid)
+                    {
+                        themeProduct = p;
+                    }
+                }
+            }
+            
+            if(this.Request.IsAjaxRequest())
+            {
+                return this.PartialView("Product", new ThemeProductViewModel(themeProduct, product));
+            }
+
+            return this.View("Product", new ThemeProductViewModel(themeProduct, product));
         }
 	}
 }
