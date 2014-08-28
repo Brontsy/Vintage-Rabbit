@@ -40,6 +40,8 @@ namespace Vintage.Rabbit.Web.Models.Themes
 
         public int Qty { get; private set; }
 
+        public string SeoKeywords { get; private set; }
+
         public IList<ProductImageViewModel> Images { get; private set; }
 
         public ThemeProductViewModel(ThemeProduct themeProduct, Product product)
@@ -53,6 +55,7 @@ namespace Vintage.Rabbit.Web.Models.Themes
             this.ProductId = product.Id;
             this.Description = product.Description;
             this.Qty = themeProduct.Qty;
+            this.SeoKeywords = product.Keywords;
             this.Images = product.Images.Select(o => new ProductImageViewModel(o)).ToList();
         }
     }

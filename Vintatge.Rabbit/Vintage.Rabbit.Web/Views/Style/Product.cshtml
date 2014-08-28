@@ -1,5 +1,8 @@
 ﻿@model Vintage.Rabbit.Web.Models.Themes.ThemeProductViewModel
-
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.Keywords = Model.SeoKeywords;
+}
 
     <div class="panel @Model.Guid product-@Model.ProductId" id="@Model.Guid">
         <span class="close-product-info">Close</span>
