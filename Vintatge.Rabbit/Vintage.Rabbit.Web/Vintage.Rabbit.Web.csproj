@@ -532,6 +532,8 @@
     <Content Include="Content\less\pages\entertainment.less" />
     <Content Include="Content\less\pages\error.less" />
     <Content Include="Content\less\pages\competition.less" />
+    <Content Include="Content\pdf\RearA4-copy.pdf" />
+    <Content Include="Content\pdf\September-Competition.pdf" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
