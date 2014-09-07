@@ -1,0 +1,65 @@
+﻿@model IList<Vintage.Rabbit.Admin.Web.Models.Parties.PartyListItemViewModel>
+@{
+    ViewBag.Title = "Parties";
+}
+
+<div class="page-head">
+
+    <h2>Parties</h2>
+    <ol class="breadcrumbs">
+        <li><a href="#">Home</a></li>
+        <li class="active">Parties</li>
+    </ol>
+</div>
+
+
+
+    <div class="main-app item-list">
+     
+        <ul class="items">
+            <li class="items-header row">
+
+                <div class="col-2 guid">Party Date</div>
+                <div class="col-2 date-created">Name</div>
+                <div class="col-3 date-created">Delivered</div>
+                <div class="col-3 status">Return</div>
+
+            </li>
+            @foreach (var party in Model)
+            {
+                <li class="item row @(ViewBag.SelectedParty != null && ViewBag.SelectedParty == party.OrderGuid ? "selected" : "")">
+                    <div class="col-2">
+                        @party.PartyDate.ToString("dd MMM yyyy")
+                    </div>
+                    <div class="col-2">
+                        @party.Name
+                    </div>
+                    <div class="col-3">                        
+                        @if (party.DropoffAddress != null)
+                        {
+                            <p>@party.HireDate.ToString("dd MMMM yyyy")</p>
+                            Html.RenderPartial("Address", party.DropoffAddress);
+                        }
+                        else
+                        {
+                            <text>The customer is going to pick the hire items on @party.HireDate.ToString("dd MMMM yyyy")</text>
+                        }
+                    </div>
+                    <div class="col-3">                        
+                        @if (party.PickupAddress != null)
+                        {
+                            <p>@party.ReturnDate.ToString("dd MMMM yyyy")</p>
+                            Html.RenderPartial("Address", party.DropoffAddress);
+                        }
+                        else
+                        {
+                            <text>The customer is going to return the hire items on @party.ReturnDate.ToString("dd MMMM yyyy")</text>
+                        }
+                    </div>
+</li>
+            }
+        </ul>
+    </div>
+
+
+

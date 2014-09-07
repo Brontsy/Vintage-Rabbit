@@ -41,8 +41,10 @@ namespace Vintage.Rabbit.Parties.Repositories
             parties.PageNumber = page;
             parties.ItemsPerPage = resultsPerPage;
 
-            string sql = @"Select * From VintageRabbit.Parties
-                            Order By DateCreated Desc 
+            string sql = @"Select VintageRabbit.Parties.* From VintageRabbit.Parties
+                            Inner Join VintageRabbit.Orders On VintageRabbit.Parties.OrderGuid = VintageRabbit.Orders.Guid 
+                            Where VintageRabbit.Orders.Status In ('Complete', 'AwaitingShipment')
+                            Order By VintageRabbit.Parties.DateCreated Desc 
                             OFFSET @Offset ROWS FETCH NEXT @ResultsPerPage ROWS ONLY;
                             Select Count(*) From VintageRabbit.Parties;";
 

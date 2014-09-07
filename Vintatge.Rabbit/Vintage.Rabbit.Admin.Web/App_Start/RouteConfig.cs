@@ -65,6 +65,12 @@ namespace Vintage.Rabbit.Admin.Web
             public static string RemoveKey = "Cache RemoveKey";
             public static string RemoveKeys = "Cache RemoveKeys";
         }
+
+        public static class Parties
+        {
+            public static string Index = "Parties Index";
+            public static string Party = "Parties Party";
+        }
         
         public static void RegisterRoutes(RouteCollection routes)
         {
@@ -84,6 +90,9 @@ namespace Vintage.Rabbit.Admin.Web
             routes.MapRoute(Routes.Products.Inventory, url: "products/{productId}/inventory", defaults: new { controller = "Products", action = "Inventory" });
             routes.MapRoute(Routes.Products.InventoryAdd, url: "products/{productId}/inventory/add", defaults: new { controller = "Products", action = "InventoryAdd" });
             routes.MapRoute(Routes.Products.InventoryDelete, url: "products/{productId}/inventory/delete/{inventoryGuid}", defaults: new { controller = "Products", action = "InventoryDelete" });
+
+            routes.MapRoute(Routes.Parties.Index, url: "parties", defaults: new { controller = "Parties", action = "Index" });
+            routes.MapRoute(Routes.Parties.Party, url: "parties/{orderGuid}", defaults: new { controller = "Parties", action = "Party" });
 
             routes.MapRoute(Routes.Membership.Login, url: "login", defaults: new { controller = "Membership", action = "Login" });
             routes.MapRoute(Routes.Membership.Logout, url: "logout", defaults: new { controller = "Membership", action = "Logout" });
@@ -108,6 +117,7 @@ namespace Vintage.Rabbit.Admin.Web
             routes.MapRoute(Routes.Themes.AddProduct, url: "themes/edit/{guid}/products/add/image/{themeImageGuid}", defaults: new { controller = "Themes", action = "AddProduct" });
             routes.MapRoute(Routes.Themes.SaveProduct, url: "themes/edit/{guid}/products/save/{themeImageGuid}/{themeProductGuid}", defaults: new { controller = "Themes", action = "SaveProduct" });
             routes.MapRoute(Routes.Themes.RemoveProduct, url: "themes/edit/{guid}/products/remove/{themeImageGuid}/{themeProductGuid}", defaults: new { controller = "Themes", action = "RemoveProduct" });
+
 
 
             routes.MapRoute(name: Routes.Home, url: "", defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });

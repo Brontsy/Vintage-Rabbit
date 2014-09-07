@@ -58,6 +58,11 @@
                                     @Html.RouteLink("Shipped", Routes.Orders.Shipped, new { orderGuid = order.Guid }, new { @class = "btn primary left" })
                                 }
 
+                                @if (order.OrderItems.Any(o => o.Type == Vintage.Rabbit.Common.Enums.ProductType.Hire) || order.OrderItems.Any(o => o.Type == Vintage.Rabbit.Common.Enums.ProductType.Theme))
+                                {
+                                    @Html.RouteLink("View Party", Routes.Parties.Index, new { orderGuid = order.Guid }, new { @class = "btn primary left" })
+                                }
+
                             </div>
                         </div>
                     </li>

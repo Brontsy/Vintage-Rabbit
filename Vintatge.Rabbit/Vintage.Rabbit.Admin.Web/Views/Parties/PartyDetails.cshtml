@@ -1,0 +1,59 @@
+﻿@model Vintage.Rabbit.Admin.Web.Models.Parties.PartyViewModel
+@{
+    ViewBag.Title = "Parties";
+}
+
+<div class="page-head">
+
+    <h2>Parties</h2>
+    <ol class="breadcrumbs">
+        <li><a href="#">Home</a></li>
+        <li class="active">Parties</li>
+    </ol>
+</div>
+
+
+
+<div class="main-app item-list">
+
+    <div class="row">
+
+        <ul class="col-6">
+            <li class="row">
+                <div class="col-3 label">Party Date</div>
+                <div class="col-6 value">@Model.PartyDate.ToString("dd MMMM yyyy")</div>
+            </li>
+            <li class="row">
+                <div class="col-3 label">Delivered</div>
+                <div class="col-6 value">
+                    @if (Model.DropoffAddress != null)
+                    {
+                        <p>@Model.HireDate.ToString("dd MMMM yyyy")</p>
+                        Html.RenderPartial("Address", Model.DropoffAddress);
+                    }
+                    else
+                    {
+                        <text>The customer is going to pick the hire items on @Model.HireDate.ToString("dd MMMM yyyy")</text>
+                    }
+                </div>
+            </li>
+            <li class="row">
+                <div class="col-3 label">Pickup</div>
+                <div class="col-6 value">
+                    @if (Model.PickupAddress != null)
+                    {
+                        <p>@Model.ReturnDate.ToString("dd MMMM yyyy")</p>
+                        Html.RenderPartial("Address", Model.DropoffAddress);
+                    }
+                    else
+                    {
+                        <text>The customer is return the hire items on @Model.ReturnDate.ToString("dd MMMM yyyy")</text>
+                    }
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+

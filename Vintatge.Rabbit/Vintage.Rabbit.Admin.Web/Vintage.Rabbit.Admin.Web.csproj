@@ -171,6 +171,7 @@
     <Compile Include="Controllers\MembershipController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\PartiesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ThemesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -189,6 +190,8 @@
     <Compile Include="Models\Orders\OrdersPageViewModel.cs" />
     <Compile Include="Models\Orders\OrderViewModel.cs" />
     <Compile Include="Models\Pagination\PaginationViewModel.cs" />
+    <Compile Include="Models\Parties\PartyListItemViewModel.cs" />
+    <Compile Include="Models\Parties\PartyViewModel.cs" />
     <Compile Include="Models\Products\ProductListViewModel.cs" />
     <Compile Include="Models\Categories\CategoryViewModel.cs" />
     <Compile Include="Models\Membership\LoginViewModel.cs" />
@@ -329,6 +332,7 @@
     <Content Include="Content\less\components\theme-list.less" />
     <Content Include="Content\less\pages\order-view.less" />
     <Content Include="Content\less\pages\product-list.less" />
+    <Content Include="Content\less\components\item-list.less" />
     <None Include="Content\scripts\jquery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.js" />
     <Content Include="Content\scripts\jquery\jquery-1.10.2.min.js" />
@@ -395,6 +399,8 @@
     <Content Include="Views\Cache\Index.cshtml" />
     <Content Include="Views\Orders\View.cshtml" />
     <Content Include="Views\Orders\Address.cshtml" />
+    <Content Include="Views\Parties\Index.cshtml" />
+    <Content Include="Views\Parties\PartyDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
