@@ -18,7 +18,6 @@ namespace Vintage.Rabbit.Web.Controllers
     public class HomeController : Controller
     {
         private IQueryDispatcher _queryDispatcher;
-
         public HomeController(IQueryDispatcher queryDispatcher)
         {
             this._queryDispatcher = queryDispatcher;

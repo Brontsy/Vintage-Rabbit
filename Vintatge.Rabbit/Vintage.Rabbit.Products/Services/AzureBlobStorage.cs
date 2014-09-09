@@ -21,6 +21,8 @@ namespace Vintage.Rabbit.Products.Services
         UploadProductImageResult UploadFile(Stream file, string fileName, string path);
 
         bool DeleteFile(string path);
+
+        void SetCacheControl();
     }
 
     internal class AzureBlobStorage : IFileStorage
@@ -42,6 +44,28 @@ namespace Vintage.Rabbit.Products.Services
             return blob.Uri.AbsoluteUri + sas;
         }
 
+        public void SetCacheControl()
+        {
+            CloudBlobContainer blobContainer = this.GetCloudBlobContainer();
+
+            IEnumerable<IListBlobItem> blobItems = new List<IListBlobItem>();
+
+                blobItems = blobContainer.ListBlobs();
+                var path = "products/";
+                CloudBlobDirectory directory = blobContainer.GetDirectoryReference(path);
+                blobItems = directory.ListBlobs().Where(o => o.Uri != directory.Uri);
+
+            foreach (var item in blobItems)
+            {
+                if (item is CloudBlockBlob)
+                {
+                    ((CloudBlockBlob)item).Properties.CacheControl = "max-age=604800, must-revalidate";
+                    ((CloudBlockBlob)item).SetProperties();
+                }
+
+                string uri = item.Uri.ToString();
+            }
+        }
 
         public bool DeleteFile(string path)
         {
@@ -120,6 +144,8 @@ namespace Vintage.Rabbit.Products.Services
 
             CloudBlockBlob blob = blobContainer.GetBlockBlobReference(path + fileName.ToUrl());
             blob.Properties.ContentType = this.GetContentType(fileName);
+            blob.Properties.CacheControl = "max-age=604800, must-revalidate";
+            blob.SetProperties();
             blob.UploadFromStream(file);
 
             UploadProductImageResult uploadFile = new UploadProductImageResult(blob.Uri);

@@ -16,6 +16,8 @@ namespace Vintage.Rabbit.Products.Services
     public interface IUploadProductImageService
     {
         IList<ProductImage> UploadFiles(HttpFileCollectionBase files);
+
+        void SetCacheControl();
     }
 
     internal class UploadProductImageService : IUploadProductImageService
@@ -25,6 +27,11 @@ namespace Vintage.Rabbit.Products.Services
         public UploadProductImageService(IFileStorage fileStorage)
         {
             this._fileStorage = fileStorage;
+        }
+
+        public void SetCacheControl()
+        {
+            _fileStorage.SetCacheControl();
         }
 
         public IList<ProductImage> UploadFiles(HttpFileCollectionBase files)
