@@ -87,6 +87,17 @@ namespace Vintage.Rabbit.Admin.Web.Controllers
             return this.View("Add", viewModel);
         }
 
+        public ActionResult EditGuid(Guid productGuid)
+        {
+            Product product = this._queryDispatcher.Dispatch<Product, GetProductByGuidQuery>(new GetProductByGuidQuery(productGuid));
+            IList<Category> categories = this._queryDispatcher.Dispatch<IList<Category>, GetCategoriesQuery>(new GetCategoriesQuery());
+
+            ProductViewModel viewModel = new ProductViewModel(product, categories);
+
+
+            return this.View("Add", viewModel);
+        }
+
         public ActionResult GetInventoryCount(Guid productGuid)
         {
             IList<InventoryItem> inventory = this._queryDispatcher.Dispatch<IList<InventoryItem>, GetInventoryForProductQuery>(new GetInventoryForProductQuery(productGuid));

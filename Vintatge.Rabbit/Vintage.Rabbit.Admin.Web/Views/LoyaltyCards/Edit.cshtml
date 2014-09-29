@@ -1,0 +1,64 @@
+﻿@model Vintage.Rabbit.Admin.Web.Models.LoyaltyCards.LoyaltyCardViewModel
+@{
+    ViewBag.Title = "Loyalty Cards";
+}
+
+
+
+<div class="page-head">
+
+    <h2>Add / Edit Loyalty Card</h2>
+    <ol class="breadcrumbs">
+        <li>@Html.RouteLink("Home", Routes.Home)</li>
+        <li>@Html.RouteLink("Loyalty Cards", Routes.LoyaltyCards.Index)</li>
+        <li class="active">Add / Edit</li>
+    </ol>
+</div>
+<div class="main-app item-list">
+    <div class="row">
+        <div class="col-6">
+
+            @if(ViewBag.Saved != null && ViewBag.Saved)
+            {
+                <div class="alert positive">Loyalty card details have been saved</div>
+            }
+
+            @using (Html.BeginRouteForm(Routes.LoyaltyCards.Save, new { guid = Model.Guid }, FormMethod.Post, new { }))
+            {
+                <fieldset>
+                    <ol class="row">
+                        <li class="col-12">
+                            @Html.LabelFor(o => o.Number)
+                            @Html.TextBoxFor(o => o.Number, new { placeholder = "Number*" })
+                            @Html.ValidationMessageFor(o => o.Number)
+                        </li>
+                        <li class="col-12">
+                            @Html.LabelFor(o => o.LoyaltyCardType)
+                            @Html.DropDownListFor(o => o.LoyaltyCardType, Model.LoyaltyCardTypes, "Loyalty Card Type...", new { })
+                            @Html.ValidationMessageFor(o => o.LoyaltyCardType)
+                        </li>
+                        <li class="col-12">
+                            @Html.LabelFor(o => o.Discount)
+                            @Html.TextBoxFor(o => o.Discount, new { placeholder = "Discount*" })
+                            @Html.ValidationMessageFor(o => o.Discount)
+                        </li>
+                        <li class="col-12">
+                            @Html.LabelFor(o => o.Title)
+                            @Html.TextAreaFor(o => o.Title, new { placeholder = "Title" })
+                            @Html.ValidationMessageFor(o => o.Title)
+                        </li>
+
+                        <li class="col-4 offset-8">
+                            <button type="submit" class="btn primary">Save</button>
+                        </li>
+                    </ol>
+                </fieldset>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+
+     

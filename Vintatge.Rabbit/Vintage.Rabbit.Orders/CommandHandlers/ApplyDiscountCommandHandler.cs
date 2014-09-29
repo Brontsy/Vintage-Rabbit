@@ -44,6 +44,12 @@ namespace Vintage.Rabbit.Orders.CommandHandlers
 
             if(command.LoyaltyCard.Status == LoyaltyCardStatus.Available)
             {
+                if (command.LoyaltyCard.LoyaltyCardType == LoyaltyCardType.Percentage)
+                {
+                    command.LoyaltyCard.Cost = order.Total * (command.LoyaltyCard.Discount / 100) * -1;
+                    this._commandDispatcher.Dispatch(new SaveLoyaltyCardCommand(command.LoyaltyCard));
+                }
+
                 order.AddloyaltyCard(command.LoyaltyCard);
                 this._commandDispatcher.Dispatch<SaveOrderCommand>(new SaveOrderCommand(order));
             }

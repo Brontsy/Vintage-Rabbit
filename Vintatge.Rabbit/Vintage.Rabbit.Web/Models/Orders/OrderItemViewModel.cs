@@ -70,9 +70,18 @@ namespace Vintage.Rabbit.Web.Models.Orders
                 }
             }
 
-            if(orderItem.Product is Theme)
+            if (orderItem.Product is Theme)
             {
                 this.Thumbnail = (orderItem.Product as Theme).Images.First().ThumbnailUrl;
+            }
+
+            if (orderItem.Product is LoyaltyCard)
+            {
+                var loyaltyCard = orderItem.Product as LoyaltyCard;
+                if(loyaltyCard.LoyaltyCardType == Rabbit.Orders.Enums.LoyaltyCardType.Percentage)
+                {
+                    this.Cost = loyaltyCard.Discount.ToString("0") + "%";
+                }
             }
         }
     }

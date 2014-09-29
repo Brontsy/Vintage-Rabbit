@@ -39,6 +39,13 @@
                         <div class="col-3 label">Total</div>
                         <div class="col-6 value">@Model.Total</div>
                     </li>
+                    @if (Model.OrderItems.Any(o => o.Type == ProductType.Discount))
+                    {
+                        <li class="row">
+                            <div class="col-3 label">Discount</div>
+                            <div class="col-6 value">@(Model.OrderItems.First(o => o.Type == ProductType.Discount).Cost)</div>
+                        </li>
+                    }
                     <li class="row">
                         <div class="col-3 label">Date Created</div>
                         <div class="col-6 value">@Model.DateCreated.ToString("dd MMMM yyyy")</div>
@@ -81,10 +88,18 @@
                 </ul>
 
                 <ul class="col-6">
-                    @foreach (var orderItem in Model.OrderItems)
+                    @foreach (var orderItem in Model.OrderItems.Where(o => o.Type != ProductType.Discount))
                     {
                         <li>
-                            @orderItem.Quantity x @orderItem.Title
+                            @if(orderItem.Type == ProductType.Delivery)
+                            {
+                                <text>@orderItem.Quantity x @orderItem.Title</text>
+                            }
+                            else
+                            {
+                                @Html.RouteLink(orderItem.Quantity + "x" + orderItem.Title, Routes.Products.EditGuid, new { productGuid = orderItem.ProductGuid })
+                            }
+                            
                         </li>
                     }
                 </ul>

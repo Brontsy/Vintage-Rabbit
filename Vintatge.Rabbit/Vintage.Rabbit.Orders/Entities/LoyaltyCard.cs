@@ -17,7 +17,11 @@ namespace Vintage.Rabbit.Orders.Entities
 
         public string Number { get; set; }
 
+        public Guid? OrderGuid { get; set; }
+
         public decimal Discount { get; set; }
+
+        public LoyaltyCardType LoyaltyCardType { get; set; }
 
         public DateTime DateCreated { get; set; }
 
@@ -32,20 +36,23 @@ namespace Vintage.Rabbit.Orders.Entities
             get { return ProductType.Discount; }
         }
 
-        public string Title
+        public string Title { get; set; }
+
+        public decimal Cost { get; set; }
+
+        public LoyaltyCard() { }
+
+        public LoyaltyCard(Guid guid) 
         {
-            get { return "Loyalty Card Discount"; }
+            this.Guid = guid;
+            this.DateCreated = DateCreated;
         }
 
-        public decimal Cost
-        {
-            get { return this.Discount * -1; }
-        }
-
-        public void Consumed()
+        public void Consumed(Guid orderGuid)
         {
             this.DateConsumed = DateTime.Now;
             this.Status = LoyaltyCardStatus.Used;
+            this.OrderGuid = orderGuid;
         }
     }
 }

@@ -170,6 +170,7 @@
     <Compile Include="Controllers\CacheController.cs" />
     <Compile Include="Controllers\MembershipController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoyaltyCardsController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\PartiesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="Models\Inventory\AddInventoryViewModel.cs" />
     <Compile Include="Models\Inventory\InventoryItemViewModel.cs" />
     <Compile Include="Models\Inventory\InventoryPageViewModel.cs" />
+    <Compile Include="Models\LoyaltyCards\LoyaltyCardViewModel.cs" />
     <Compile Include="Models\Membership\AddressViewModel.cs" />
     <Compile Include="Models\Membership\BillingAddressViewModel.cs" />
     <Compile Include="Models\Membership\DeliveryAddressViewModel.cs" />
@@ -401,6 +403,9 @@
     <Content Include="Views\Orders\Address.cshtml" />
     <Content Include="Views\Parties\Index.cshtml" />
     <Content Include="Views\Parties\PartyDetails.cshtml" />
+    <Content Include="Views\LoyaltyCards\Index.cshtml" />
+    <Content Include="Views\LoyaltyCards\Edit.cshtml" />
+    <Content Include="Views\LoyaltyCards\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

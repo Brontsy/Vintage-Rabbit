@@ -1,0 +1,64 @@
+﻿@model Vintage.Rabbit.Admin.Web.Models.LoyaltyCards.LoyaltyCardViewModel
+@{
+    ViewBag.Title = "Loyalty Cards";
+}
+
+
+
+<div class="page-head">
+
+    <h2>Loyalty Card</h2>
+    <ol class="breadcrumbs">
+        <li>@Html.RouteLink("Home", Routes.Home)</li>
+        <li>@Html.RouteLink("Loyalty Cards", Routes.LoyaltyCards.Index)</li>
+        <li class="active">View</li>
+    </ol>
+</div>
+    <div class="main-app order-view item-list">
+    <div class="row">
+        <ul class="col-6">
+            <li class="row">
+                <div class="col-3 label">Number</div>
+                <div class="col-6 value">@Model.Number</div>
+            </li>
+            <li class="row">
+                <div class="col-3 label">Title</div>
+                <div class="col-6 value">@Model.Title</div>
+            </li>
+            <li class="row">
+                <div class="col-3 label">Amount</div>
+                <div class="col-6 value">@(Model.LoyaltyCardType == Vintage.Rabbit.Orders.Enums.LoyaltyCardType.DollarAmount ? Model.Discount.Value.ToString("C0") : Model.Discount.Value.ToString("0") + "%")</div>
+            </li>
+            <li class="row">
+                <div class="col-3 label">Status</div>
+                <div class="col-6 value">@Model.Status</div>
+            </li>
+            <li class="row">
+                <div class="col-3 label">Date Created</div>
+                <div class="col-6 value">@Model.DateCreated.ToString("dd MMMM yyyy")</div>
+            </li>
+            <li class="row">
+                <div class="col-3 label">Date Used</div>
+                <div class="col-6 value">@(Model.DateConsumed.HasValue ? Model.DateConsumed.Value.ToString("dd MMMM yyyy") : "Unused")</div>
+            </li>
+            @if (Model.OrderGuid.HasValue)
+            {
+                <li class="row">
+                    <div class="col-3 label">Order</div>
+                    <div class="col-6 value">
+                        @Html.RouteLink("View", Routes.Orders.View, new { orderGuid = Model.OrderGuid.Value }, new { @class = "" })
+                    </div>
+                </li>
+            }
+        </ul>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+     

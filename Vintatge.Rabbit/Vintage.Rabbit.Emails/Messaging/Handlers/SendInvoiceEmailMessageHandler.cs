@@ -11,6 +11,7 @@ using Vintage.Rabbit.Common.Http;
 using Vintage.Rabbit.Interfaces.CQRS;
 using Vintage.Rabbit.Interfaces.Messaging;
 using Vintage.Rabbit.Interfaces.Orders;
+using Vintage.Rabbit.Logging;
 using Vintage.Rabbit.Membership.Entities;
 using Vintage.Rabbit.Membership.QueryHandlers;
 
@@ -23,45 +24,54 @@ namespace Vintage.Rabbit.Emails.Messaging.Handlers
         private IMessageService _messageService;
         private IQueryDispatcher _queryDispatcher;
         private IHttpWebUtility _httpWebUtility;
+        private ILogger _logger;
 
-        public SendInvoiceEmailMessageHandler(IMessageService messageService, IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher, IHttpWebUtility httpWebUtility)
+        public SendInvoiceEmailMessageHandler(IMessageService messageService, IQueryDispatcher queryDispatcher, ICommandDispatcher commandDispatcher, IHttpWebUtility httpWebUtility, ILogger logger)
         {
             this._commandDispatcher = commandDispatcher;
             this._messageService = messageService;
             this._queryDispatcher = queryDispatcher;
             this._httpWebUtility = httpWebUtility;
+            this._logger = logger;
         }
 
         public void Handle(IOrderPaidMessage message)
         {
-            var username = ConfigurationManager.AppSettings["SendGrid.Username"].ToString();
-            var pswd = ConfigurationManager.AppSettings["SendGrid.Password"].ToString();
-
-            var credentials = new NetworkCredential(username, pswd);
-
-            SendGrid.ISendGrid myMessage = new SendGrid.SendGridMessage();
-
-            if (message.Order.BillingAddressId.HasValue)
+            try
             {
-                Address billingAddress = this._queryDispatcher.Dispatch<Address, GetAddressByGuidQuery>(new GetAddressByGuidQuery(message.Order.BillingAddressId.Value));
-                if(billingAddress != null && !string.IsNullOrEmpty(billingAddress.Email))
+                var username = ConfigurationManager.AppSettings["SendGrid.Username"].ToString();
+                var pswd = ConfigurationManager.AppSettings["SendGrid.Password"].ToString();
+
+                var credentials = new NetworkCredential(username, pswd);
+
+                SendGrid.ISendGrid myMessage = new SendGrid.SendGridMessage();
+
+                if (message.Order.BillingAddressId.HasValue)
                 {
-                    // Create the email object first, then add the properties.
-                    //SendGrid myMessage = SendGrid.GetInstance();
-                    myMessage.AddTo(billingAddress.Email);
-                    myMessage.From = new MailAddress("invoices@vintagerabbit.com.au", "Vintage Rabbit");
-                    myMessage.Subject = "Vintage Rabbit - Invoice";
-
-                    string url = string.Format("http://vintagerabbit.azurewebsites.net/email/invoice/{0}/{1}", message.Order.Guid, message.Order.Id);
-                    var response = this._httpWebUtility.Get<string>(url, 5000);
-                    if (response.StatusCode == HttpStatusCode.OK)
+                    Address billingAddress = this._queryDispatcher.Dispatch<Address, GetAddressByGuidQuery>(new GetAddressByGuidQuery(message.Order.BillingAddressId.Value));
+                    if (billingAddress != null && !string.IsNullOrEmpty(billingAddress.Email))
                     {
-                        myMessage.Html = response.Body;
-                        var web = new SendGrid.Web(credentials);
+                        // Create the email object first, then add the properties.
+                        //SendGrid myMessage = SendGrid.GetInstance();
+                        myMessage.AddTo(billingAddress.Email);
+                        myMessage.From = new MailAddress("invoices@vintagerabbit.com.au", "Vintage Rabbit");
+                        myMessage.Subject = "Vintage Rabbit - Invoice";
 
-                        web.Deliver(myMessage);
+                        string url = string.Format("http://vintagerabbit.azurewebsites.net/email/invoice/{0}/{1}", message.Order.Guid, message.Order.Id);
+                        var response = this._httpWebUtility.Get<string>(url, 5000);
+                        if (response.StatusCode == HttpStatusCode.OK)
+                        {
+                            myMessage.Html = response.Body;
+                            var web = new SendGrid.Web(credentials);
+
+                            web.Deliver(myMessage);
+                        }
                     }
                 }
+            }
+            catch (Exception exception)
+            {
+                this._logger.Error(exception, "Unable to send invoice email: " + message.Order.Guid);
             }
         }
     }

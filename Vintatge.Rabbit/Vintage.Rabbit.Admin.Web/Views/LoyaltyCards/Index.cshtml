@@ -1,0 +1,65 @@
+﻿@model IList<Vintage.Rabbit.Admin.Web.Models.LoyaltyCards.LoyaltyCardViewModel>
+@{
+    ViewBag.Title = "Loyalty Cards";
+}
+
+<div class="page-head">
+
+    <div class="row">
+        <div class="col-6">
+            <h2>Loyalty Cards</h2>
+            <ol class="breadcrumbs">
+                <li><a href="#">Home</a></li>
+                <li class="active">Loyalty Cards</li>
+            </ol>
+        </div>
+      
+        <div class="col-6">
+            @Html.RouteLink("Add Loyalty Card", Routes.LoyaltyCards.Add, new { }, new { @class = "btn primary right" })
+        </div>
+    </div>
+</div>
+
+
+
+    <div class="main-app item-list">
+     
+        <ul class="items">
+            <li class="items-header row">
+
+                <div class="col-2 guid">Number</div>
+                <div class="col-3 date-created">Title</div>
+                <div class="col-3 date-created">Cost</div>
+                <div class="col-2 status">Status</div>
+                <div class="col-2 status"></div>
+
+            </li>
+            @foreach (var loyaltyCard in Model)
+            {
+                <li class="item row">
+                    <div class="col-2">                       
+                        @loyaltyCard.Number
+                    </div>
+                    <div class="col-3">
+                        @loyaltyCard.Title
+                    </div>
+                    <div class="col-3">                        
+                       @(loyaltyCard.LoyaltyCardType == Vintage.Rabbit.Orders.Enums.LoyaltyCardType.DollarAmount ? loyaltyCard.Discount.Value.ToString("C0") : loyaltyCard.Discount.Value.ToString("0") + "%")
+                    </div>
+                    <div class="col-2">
+                        @loyaltyCard.Status.ToString()
+                    </div>
+                    <div class="col-2">                        
+                        @Html.RouteLink("Delete", Routes.LoyaltyCards.Delete, new { guid = loyaltyCard.Guid }, new { @class = "btn right primary" })
+                        <div class="right">&nbsp; &nbsp; </div>
+                        @Html.RouteLink("View", Routes.LoyaltyCards.View, new { guid = loyaltyCard.Guid }, new { @class = "btn right primary" })
+                        <div class="right">&nbsp; &nbsp; </div>
+                        @Html.RouteLink("Edit", Routes.LoyaltyCards.Edit, new { guid = loyaltyCard.Guid }, new { @class = "btn right primary" })
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+
+
+

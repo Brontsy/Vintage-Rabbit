@@ -61,12 +61,14 @@
     <Compile Include="CommandHandlers\AddShippingAddressCommandHandler.cs" />
     <Compile Include="CommandHandlers\ChangeOrdersMemberGuidCommandHandler.cs" />
     <Compile Include="CommandHandlers\ApplyDiscountCommandHandler.cs" />
+    <Compile Include="CommandHandlers\DeleteLoyaltyCardCommandHandler.cs" />
     <Compile Include="CommandHandlers\SaveLoyaltyCardCommandHandler.cs" />
     <Compile Include="CommandHandlers\SaveOrderCommandHandler.cs" />
     <Compile Include="Entities\Delivery.cs" />
     <Compile Include="Entities\LoyaltyCard.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderItem.cs" />
+    <Compile Include="Enums\LoyaltyCardType.cs" />
     <Compile Include="Enums\LoyaltyCardStatus.cs" />
     <Compile Include="Enums\OrderStatus.cs" />
     <Compile Include="Ioc\Bindings.cs" />
@@ -78,6 +80,8 @@
     <Compile Include="Messaging\Messages\OrderPaidMessage.cs" />
     <Compile Include="Messaging\Messages\SaveOrderMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryHandlers\GetLoyaltyCardByGuidQueryHandler.cs" />
+    <Compile Include="QueryHandlers\GetLoyaltyCardsQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetLoyaltyCardQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetOrdersQueryHandler.cs" />
     <Compile Include="QueryHandlers\GetOrderQueryHandler.cs" />

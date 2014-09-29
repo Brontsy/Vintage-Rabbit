@@ -35,6 +35,11 @@ namespace Vintage.Rabbit.Orders.CommandHandlers
 
         public void Handle(SaveLoyaltyCardCommand command)
         {
+            if(command.LoyaltyCard.LoyaltyCardType == Enums.LoyaltyCardType.DollarAmount)
+            {
+                command.LoyaltyCard.Cost = command.LoyaltyCard.Discount * -1;
+            }
+
             this._loyaltyCardRepository.SaveLoyaltyCard(command.LoyaltyCard);
         }
     }

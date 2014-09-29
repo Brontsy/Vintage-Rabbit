@@ -34,7 +34,7 @@ namespace Vintage.Rabbit.Orders.Messaging.Handlers
 
                 if(loyaltyCard != null)
                 {
-                    loyaltyCard.Consumed();
+                    loyaltyCard.Consumed(message.Order.Guid);
                     this._loyaltyCardRepository.SaveLoyaltyCard(loyaltyCard);
                 }
             }

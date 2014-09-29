@@ -17,7 +17,13 @@ namespace Vintage.Rabbit.Orders.Repository
 {
     internal interface ILoyaltyCardRepository
     {
+        IList<LoyaltyCard> GetLoyaltyCards();
+
         LoyaltyCard GetLoyaltyCard(string number);
+
+        LoyaltyCard GetLoyaltyCardByGuid(Guid guid);
+
+        void DeleteLoyaltyCard(Guid guid);
 
         void SaveLoyaltyCard(LoyaltyCard loyaltyCard);
     }
@@ -63,24 +69,36 @@ namespace Vintage.Rabbit.Orders.Repository
         }
 
 
+        public IList<LoyaltyCard> GetLoyaltyCards()
+        {
+            using (SqlConnection connection = new SqlConnection(this._connectionString))
+            {
+                return connection.Query<LoyaltyCard>("Select * From VintageRabbit.LoyaltyCards").ToList();
+            }
+        }
+
+
         public void SaveLoyaltyCard(LoyaltyCard loyaltyCard)
         {
 
             if (this.GetLoyaltyCardByGuid(loyaltyCard.Guid) == null)
             {
                 // insert
-                string sql = "Insert Into VintageRabbit.LoyaltyCards (Guid, Number, Discount, Status, DateCreated, DateConsumed) Values (@Guid, @Number, @Discount, @Status, @DateCreated, @DateConsumed)";
-
+                string sql = "Insert Into VintageRabbit.LoyaltyCards (Guid, Number, Title, Discount, Status, DateCreated, DateConsumed, OrderGuid, LoyaltyCardType, Cost) Values (@Guid, @Number, @Title, @Discount, @Status, @DateCreated, @DateConsumed, @OrderGuid, @LoyaltyCardType, @Cost)";
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
                     connection.Execute(sql, new
                     {
                         Guid = loyaltyCard.Guid,
                         Number = loyaltyCard.Number,
+                        Title = loyaltyCard.Title,
                         Discount = loyaltyCard.Discount,
+                        Cost = loyaltyCard.Cost,
                         Status = loyaltyCard.Status.ToString(),
                         DateCreated = DateTime.Now,
-                        DateConsumed = loyaltyCard.DateConsumed
+                        DateConsumed = loyaltyCard.DateConsumed,
+                        OrderGuid = loyaltyCard.OrderGuid,
+                        LoyaltyCardType = loyaltyCard.LoyaltyCardType
 
                     });
                 }
@@ -88,7 +106,7 @@ namespace Vintage.Rabbit.Orders.Repository
             else
             {
                 //update
-                string sql = @"Update VintageRabbit.LoyaltyCards Set Number = @Number, Discount = @Discount, Status = @Status, DateConsumed = @DateConsumed Where Guid = @Guid";
+                string sql = @"Update VintageRabbit.LoyaltyCards Set Number = @Number, Title = @Title, Discount = @Discount, Status = @Status, DateConsumed = @DateConsumed, OrderGuid = @OrderGuid, LoyaltyCardType= @LoyaltyCardType, Cost = @Cost Where Guid = @Guid";
 
                 using (SqlConnection connection = new SqlConnection(this._connectionString))
                 {
@@ -96,12 +114,24 @@ namespace Vintage.Rabbit.Orders.Repository
                     {
                         Guid = loyaltyCard.Guid,
                         Number = loyaltyCard.Number,
+                        Title = loyaltyCard.Title,
                         Discount = loyaltyCard.Discount,
+                        Cost = loyaltyCard.Cost,
                         Status = loyaltyCard.Status.ToString(),
                         DateCreated = DateTime.Now,
-                        DateConsumed = loyaltyCard.DateConsumed
+                        DateConsumed = loyaltyCard.DateConsumed,
+                        OrderGuid = loyaltyCard.OrderGuid,
+                        LoyaltyCardType = loyaltyCard.LoyaltyCardType
                     });
                 }
+            }
+        }
+
+        public void DeleteLoyaltyCard(Guid guid)
+        {
+            using (SqlConnection connection = new SqlConnection(this._connectionString))
+            {
+                connection.Execute("Delete From VintageRabbit.LoyaltyCards Where Guid = @Guid", new { Guid = guid });
             }
         }
     }

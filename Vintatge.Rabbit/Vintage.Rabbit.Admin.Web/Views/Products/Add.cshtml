@@ -20,7 +20,7 @@
             @if(Model.ProductId != 0)
             { 
             <li>
-                <a href="@Url.RouteUrl(Routes.Products.Inventory)">Inventory (@{Html.RenderAction("GetInventoryCount", "Products", new { productGuid = Model.ProductGuid });})</a>
+                <a href="@Url.RouteUrl(Routes.Products.Inventory, new { productId = Model.ProductId })">Inventory (@{Html.RenderAction("GetInventoryCount", "Products", new { productGuid = Model.ProductGuid });})</a>
             </li>
             }
         </ul>

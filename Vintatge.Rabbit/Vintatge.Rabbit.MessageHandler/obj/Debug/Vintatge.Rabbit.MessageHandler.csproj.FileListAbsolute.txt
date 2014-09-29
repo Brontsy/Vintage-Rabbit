@@ -10,3 +10,15 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.Messag
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\obj\Debug\Vintatge.Rabbit.MessageHandler.exe
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\obj\Debug\Vintatge.Rabbit.MessageHandler.pdb
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\obj\Debug\Vintatge.Rabbit.MessageHandler.csprojResolveAssemblyReference.cache
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\bin\Debug\Vintatge.Rabbit.MessageHandler.exe.config
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\obj\Debug\Vintatge.Rabbit.MessageHandler.exe
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\obj\Debug\Vintatge.Rabbit.MessageHandler.pdb
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\bin\Debug\Vintatge.Rabbit.MessageHandler.exe
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\bin\Debug\Vintatge.Rabbit.MessageHandler.pdb
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\bin\Debug\Autofac.dll
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\bin\Debug\Microsoft.ServiceBus.dll
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\bin\Debug\Microsoft.WindowsAzure.Configuration.dll
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\bin\Debug\Autofac.xml
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\bin\Debug\Microsoft.ServiceBus.xml
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\bin\Debug\Microsoft.WindowsAzure.Configuration.xml
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintatge.Rabbit.MessageHandler\obj\Debug\Vintatge.Rabbit.MessageHandler.csprojResolveAssemblyReference.cache

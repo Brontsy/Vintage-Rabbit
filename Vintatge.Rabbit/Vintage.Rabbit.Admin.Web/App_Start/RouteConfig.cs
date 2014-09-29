@@ -18,6 +18,7 @@ namespace Vintage.Rabbit.Admin.Web
             public static string ListPaged = "Product ListPaged";
             public static string Type = "Product Type";
             public static string Edit = "Product - Edit";
+            public static string EditGuid = "Product - EditGuid";
             public static string AddProduct = "Product - Add";
             public static string SaveProduct = "Product - Save";
             public static string UploadPhoto = "Product - Upload Photo";
@@ -59,6 +60,16 @@ namespace Vintage.Rabbit.Admin.Web
             public static string Shipped = "Order Shipped";
         }
 
+        public static class LoyaltyCards
+        {
+            public static string Index = "LoyaltyCards Index";
+            public static string Add = "LoyaltyCards Add";
+            public static string Save = "LoyaltyCards Save";
+            public static string Edit = "LoyaltyCards Edit";
+            public static string View = "LoyaltyCards View";
+            public static string Delete = "LoyaltyCards Delete";
+        }
+
         public static class Cache
         {
             public static string Index = "Cache Index";
@@ -85,6 +96,7 @@ namespace Vintage.Rabbit.Admin.Web
             routes.MapRoute(Routes.Products.Type, url: "products/{productType}", defaults: new { controller = "Products", action = "List" });
             routes.MapRoute(Routes.Products.SaveProduct, url: "products/save/{productId}", defaults: new { controller = "Products", action = "Save" });
             routes.MapRoute(Routes.Products.Edit, url: "products/edit/{name}/{productId}", defaults: new { controller = "Products", action = "Edit" });
+            routes.MapRoute(Routes.Products.EditGuid, url: "products/edit/{productGuid}", defaults: new { controller = "Products", action = "EditGuid" });
             routes.MapRoute(Routes.Products.UploadPhoto, url: "products/upload-photo/{productId}", defaults: new { controller = "Products", action = "UploadPhoto" });
             routes.MapRoute(Routes.Products.RemovePhoto, url: "products/{productId}/remove-photo/{photoId}", defaults: new { controller = "Products", action = "RemovePhoto" });
             routes.MapRoute(Routes.Products.Inventory, url: "products/{productId}/inventory", defaults: new { controller = "Products", action = "Inventory" });
@@ -105,6 +117,13 @@ namespace Vintage.Rabbit.Admin.Web
             routes.MapRoute(Routes.Orders.IndexPaged, url: "orders/{status}/page/{page}", defaults: new { controller = "Orders", action = "Index" });
             routes.MapRoute(Routes.Orders.View, url: "orders/view/{orderGuid}", defaults: new { controller = "Orders", action = "View" });
             routes.MapRoute(Routes.Orders.Shipped, url: "orders/{orderGuid}/shipped", defaults: new { controller = "Orders", action = "Shipped" });
+
+            routes.MapRoute(Routes.LoyaltyCards.Index, url: "loyalty-cards", defaults: new { controller = "LoyaltyCards", action = "Index" });
+            routes.MapRoute(Routes.LoyaltyCards.Add, url: "loyalty-cards/add", defaults: new { controller = "LoyaltyCards", action = "Add" });
+            routes.MapRoute(Routes.LoyaltyCards.View, url: "loyalty-cards/view/{guid}", defaults: new { controller = "LoyaltyCards", action = "View" });
+            routes.MapRoute(Routes.LoyaltyCards.Edit, url: "loyalty-cards/edit/{guid}", defaults: new { controller = "LoyaltyCards", action = "Edit" });
+            routes.MapRoute(Routes.LoyaltyCards.Save, url: "loyalty-cards/save/{guid}", defaults: new { controller = "LoyaltyCards", action = "Save" });
+            routes.MapRoute(Routes.LoyaltyCards.Delete, url: "loyalty-cards/delete/{guid}", defaults: new { controller = "LoyaltyCards", action = "Delete" });
 
             routes.MapRoute(Routes.Blog.Index, url: "blog", defaults: new { controller = "Blog", action = "Index" });
             routes.MapRoute(Routes.Blog.View, url: "blog/{blogId}", defaults: new { controller = "Blog", action = "View" });

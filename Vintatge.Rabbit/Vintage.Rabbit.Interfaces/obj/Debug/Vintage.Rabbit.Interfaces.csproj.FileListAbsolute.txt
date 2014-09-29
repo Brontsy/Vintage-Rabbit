@@ -9,3 +9,14 @@ D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfa
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfaces\obj\Debug\Vintage.Rabbit.Interfaces.csprojResolveAssemblyReference.cache
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfaces\obj\Debug\Vintage.Rabbit.Interfaces.dll
 D:\Programming\development\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfaces\obj\Debug\Vintage.Rabbit.Interfaces.pdb
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfaces\bin\Debug\Vintage.Rabbit.Interfaces.dll
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfaces\bin\Debug\Vintage.Rabbit.Interfaces.pdb
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfaces\bin\Debug\Vintage.Rabbit.Common.dll
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfaces\bin\Debug\Autofac.dll
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfaces\bin\Debug\Newtonsoft.Json.dll
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfaces\bin\Debug\Vintage.Rabbit.Common.pdb
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfaces\bin\Debug\Autofac.xml
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfaces\bin\Debug\Newtonsoft.Json.xml
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfaces\obj\Debug\Vintage.Rabbit.Interfaces.csprojResolveAssemblyReference.cache
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfaces\obj\Debug\Vintage.Rabbit.Interfaces.dll
+C:\Programming\Vintage-Rabbit\Vintatge.Rabbit\Vintage.Rabbit.Interfaces\obj\Debug\Vintage.Rabbit.Interfaces.pdb
